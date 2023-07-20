@@ -1,6 +1,8 @@
 const myTune = "My Tunes";
 const about = "About";
 const faq = "FAQ";
+const play = "Play";
+const buy = "Buy";
 const login = "Login";
 const pleaseEnterMsisdn = "Please enter msisdn";
 const pleaseEnterOtp = "Please enter Otp";

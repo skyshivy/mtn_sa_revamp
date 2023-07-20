@@ -12,6 +12,7 @@ class CustomButton extends StatelessWidget {
   final double? radius;
   final EdgeInsetsGeometry? titlePadding;
   final Color? color;
+  final Color? borderColor;
   final Color? txtColor;
   final Widget? leftWidget;
   final Widget? rightWidget;
@@ -43,6 +44,7 @@ class CustomButton extends StatelessWidget {
     this.titlePadding,
     this.txtColor,
     this.onTap,
+    this.borderColor,
   });
   @override
   Widget build(BuildContext context) {
@@ -72,6 +74,7 @@ class CustomButton extends StatelessWidget {
   BoxDecoration decoration() {
     return BoxDecoration(
         color: color,
+        border: Border.all(color: borderColor ?? transparent),
         borderRadius: BorderRadius.circular(radius ?? height / 2));
   }
 
