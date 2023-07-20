@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+
 import 'package:mtn_sa_revamp/flies/utility/colors.dart';
 
-class CustomText extends StatelessWidget {
+import '../custom_text/custom_text.dart';
+
+class CustomTextButton extends StatelessWidget {
   final String title;
   final Color textColor;
   final double? fontSize;
@@ -10,8 +14,9 @@ class CustomText extends StatelessWidget {
   final FontName fontName;
   final TextAlign alignment;
   final FontWeight? fontWeight;
+  final Function()? onTap;
 
-  const CustomText({
+  const CustomTextButton({
     super.key,
     required this.title,
     this.textColor = black,
@@ -20,18 +25,18 @@ class CustomText extends StatelessWidget {
     this.fontName = FontName.regular,
     this.alignment = TextAlign.start,
     this.fontWeight = FontWeight.bold,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      textAlign: alignment,
-      maxLines: maxLine,
-      style: TextStyle(
-        fontFamily: fontName.name,
+    return InkWell(
+      onTap: onTap,
+      child: CustomText(
+        title: title,
+        textColor: textColor,
+        fontName: fontName,
         fontSize: fontSize,
-        color: textColor,
         fontWeight: fontWeight,
       ),
     );

@@ -28,7 +28,7 @@ class WebNavBarView extends StatelessWidget {
       children: [
         leftSpacing(),
         HomePageLogoButton(),
-        leftSpacing(width: 20),
+        leftSpacing(width: 30),
         HomeMyTuneButton(),
         leftSpacing(),
         HomeAboutButton(),
@@ -38,7 +38,7 @@ class WebNavBarView extends StatelessWidget {
     );
   }
 
-  Widget leftSpacing({double width = 10}) {
+  Widget leftSpacing({double width = 40}) {
     return SizedBox(width: width);
   }
 

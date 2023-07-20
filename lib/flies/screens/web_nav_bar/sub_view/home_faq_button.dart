@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mtn_sa_revamp/flies/custom_buttons/text_button.dart';
 
-import 'package:mtn_sa_revamp/flies/utility/colors.dart';
+import 'package:mtn_sa_revamp/flies/custom_files/custom_buttons/text_button.dart';
+
 import 'package:mtn_sa_revamp/flies/utility/string.dart';
 
 class HomefaqButton extends StatelessWidget {

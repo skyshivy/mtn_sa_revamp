@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mtn_sa_revamp/flies/utility/colors.dart';
-import 'package:mtn_sa_revamp/flies/utility/string.dart';
+import 'package:mtn_sa_revamp/flies/custom_files/custom_buttons/text_button.dart';
 
-import '../../../custom_buttons/text_button.dart';
+import 'package:mtn_sa_revamp/flies/utility/string.dart';
 
 class HomeAboutButton extends StatelessWidget {
   @override

@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mtn_sa_revamp/flies/screens/web_nav_bar/web_nav_bar_view.dart';
-import 'package:mtn_sa_revamp/flies/utility/colors.dart';
+import 'package:mtn_sa_revamp/flies/screens/web_landing_page/landing_page_banner/landing_page_banner.dart';
 
 class WebLandingPage extends StatelessWidget {
   const WebLandingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        WebNavBarView(),
-        Container(
-          color: white,
-        ),
+        //  WebNavBarView(),
+        LandingPageBanner(),
       ],
     );
   }

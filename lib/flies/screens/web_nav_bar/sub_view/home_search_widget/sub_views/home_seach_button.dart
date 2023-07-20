@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:mtn_sa_revamp/flies/custom_buttons/image_button.dart';
 import 'package:mtn_sa_revamp/flies/utility/colors.dart';
-import 'package:mtn_sa_revamp/flies/utility/image_name.dart';
+
+import '../../../../../custom_files/custom_buttons/custom_button.dart';
 
 class HomeSearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: ImageButton(
-        width: 47,
-        iconHeight: 20,
-        iconWidth: 20,
+    return Center(
+      child: CustomButton(
         color: white,
-        imgName: logoBig,
+        width: 47,
+        leftWidget: const Icon(
+          Icons.search,
+          color: yellow,
+        ),
+        onTap: () {
+          print("HomeSearchButton");
+        },
       ),
     );
   }
