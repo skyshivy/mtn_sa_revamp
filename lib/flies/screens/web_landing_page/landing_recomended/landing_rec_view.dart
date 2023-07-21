@@ -12,7 +12,7 @@ class LandingRecoView extends StatelessWidget {
       child: Column(
         children: [
           HomeRecoTabView(),
-          //Expanded(child: gridView()),
+          gridView(),
         ],
       ),
     );
@@ -23,6 +23,7 @@ class LandingRecoView extends StatelessWidget {
         itemCount: 10,
         shrinkWrap: true,
         gridDelegate: delegate(),
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return HomeTuneCell(
             index: index,

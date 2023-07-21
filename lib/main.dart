@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/flies/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/flies/screens/web_landing_page/web_landing_screen.dart';
 
 void main() {
+  AppController _ = Get.put(AppController());
   runApp(const MyApp());
 }
 

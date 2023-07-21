@@ -11,6 +11,7 @@ class HomeMyTuneButton extends StatelessWidget {
       rightWidget: rightWidget(),
       title: myTune,
       fontName: FontName.bold,
+      fontSize: 16,
       onTap: () {
         print("On tap HomeMyTuneButton");
       },

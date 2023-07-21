@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/flies/utility/colors.dart';
+import 'package:mtn_sa_revamp/flies/utility/image_name.dart';
 
 import '../../../../../custom_files/custom_buttons/custom_button.dart';
 
@@ -10,8 +11,10 @@ class HomeSearchButton extends StatelessWidget {
       child: CustomButton(
         color: white,
         width: 47,
-        leftWidget: const Icon(
-          Icons.search,
+        leftWidget: Image.asset(
+          searchImg,
+          height: 20,
+          width: 20,
           color: yellow,
         ),
         onTap: () {

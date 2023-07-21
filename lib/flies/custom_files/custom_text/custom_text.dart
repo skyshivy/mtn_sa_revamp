@@ -9,7 +9,6 @@ class CustomText extends StatelessWidget {
   final int? maxLine;
   final FontName? fontName;
   final TextAlign? alignment;
-  final FontWeight? fontWeight;
 
   const CustomText({
     super.key,
@@ -19,7 +18,6 @@ class CustomText extends StatelessWidget {
     this.maxLine,
     this.fontName = FontName.regular,
     this.alignment = TextAlign.start,
-    this.fontWeight = FontWeight.bold,
   });
 
   @override
@@ -32,7 +30,6 @@ class CustomText extends StatelessWidget {
         fontFamily: fontName!.name,
         fontSize: fontSize,
         color: textColor,
-        fontWeight: fontWeight,
       ),
     );
   }

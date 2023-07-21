@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
   final EdgeInsetsGeometry? titlePadding;
   final Color? color;
   final Color? borderColor;
-  final Color? txtColor;
+
   final Widget? leftWidget;
   final Widget? rightWidget;
   final Color? textColor;
@@ -21,7 +21,7 @@ class CustomButton extends StatelessWidget {
   final int? maxLine;
   final FontName? fontName;
   final TextAlign? alignment;
-  final FontWeight? fontWeight;
+
   final MainAxisAlignment? mainAxisAlignment;
   final Function()? onTap;
 
@@ -37,12 +37,10 @@ class CustomButton extends StatelessWidget {
     this.maxLine,
     this.fontName,
     this.alignment,
-    this.fontWeight,
     this.mainAxisAlignment,
     this.leftWidget,
     this.rightWidget,
     this.titlePadding,
-    this.txtColor,
     this.onTap,
     this.borderColor,
   });
@@ -84,11 +82,10 @@ class CustomButton extends StatelessWidget {
           (titlePadding == null) ? const EdgeInsets.all(0.0) : titlePadding!,
       child: CustomText(
         title: title ?? '',
-        textColor: txtColor,
+        textColor: textColor,
         fontSize: fontSize,
         fontName: fontName ?? FontName.regular,
         alignment: alignment,
-        fontWeight: fontWeight,
       ),
     );
   }

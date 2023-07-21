@@ -19,7 +19,7 @@ class HomeSearchTextField extends StatelessWidget {
           hintColor: white,
           fontName: FontName.regularItalic,
           text: "",
-          hintText: pleaseEnterMsisdn,
+          hintText: whatrLookingFor,
           fontSize: 16,
           onChanged: (p0) {
             print("${p0}");

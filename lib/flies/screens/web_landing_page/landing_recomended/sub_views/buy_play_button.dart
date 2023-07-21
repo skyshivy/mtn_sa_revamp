@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/flies/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/flies/utility/colors.dart';
+import 'package:mtn_sa_revamp/flies/utility/image_name.dart';
 import 'package:mtn_sa_revamp/flies/utility/string.dart';
 
 class BuyAndPlayButton extends StatelessWidget {
@@ -12,9 +13,7 @@ class BuyAndPlayButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(child: playButtonWidget()),
-        SizedBox(
-          width: 20,
-        ),
+        const SizedBox(width: 20),
         Expanded(child: buyButtonWidget()),
       ],
     );
@@ -26,21 +25,21 @@ class BuyAndPlayButton extends StatelessWidget {
       fontSize: 16,
       titlePadding: EdgeInsets.all(4),
       borderColor: red,
-      leftWidget: Icon(Icons.play_arrow),
+      leftWidget: Icon(Icons.pause), //Icon(Icons.play_arrow),
       title: play,
     );
   }
 
   Widget buyButtonWidget() {
-    return const CustomButton(
+    return CustomButton(
       color: yellow,
-      titlePadding: EdgeInsets.all(4),
+      titlePadding: const EdgeInsets.all(4),
       fontName: FontName.bold,
       fontSize: 16,
-      leftWidget: Icon(
-        Icons.shopping_bag_outlined,
-        color: white,
-        size: 16,
+      leftWidget: Image.asset(
+        buyImg,
+        height: 20,
+        width: 20,
       ),
       title: buy,
     );

@@ -12,7 +12,7 @@ class LandingPageBanner extends StatelessWidget {
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
-        imageWidget(),
+        imageWidget(context),
         indicator(),
       ],
     );
@@ -25,10 +25,11 @@ class LandingPageBanner extends StatelessWidget {
     );
   }
 
-  Widget imageWidget() {
-    return const SizedBox(
-        height: 300,
-        child: CustomImage(
+  Widget imageWidget(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    return SizedBox(
+        height: width > 700 ? 400 : (width / 2.5),
+        child: const CustomImage(
           index: 8,
         ));
   }

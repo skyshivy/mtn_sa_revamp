@@ -8,7 +8,7 @@ class HomePageLogoButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomButton(
       leftWidget: Image.asset(
-        logoBig,
+        logoBigImg,
         height: 60,
         width: 60,
       ),
