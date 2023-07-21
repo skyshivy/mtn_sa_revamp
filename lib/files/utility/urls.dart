@@ -7,3 +7,5 @@ String baseUrl = "";
 String baseUrlSecurity = '';
 String settingUrl = '${baseUrl}settings';
 String recomurl = "${baseUrl}get-recommendation-songs?";
+String homeBannerurl = "${baseUrl}banner?language=";
+//https://ringtune.mtn.co.za/apigw/Middleware/api/adapter/v1/crbt/
