@@ -1,0 +1,4 @@
+{
+    "BASE_URL":"https://ringtune.mtn.co.za/apigw/Middleware/api/adapter/v1/crbt/",
+    "BASE_URL_SECURITY":"https://ringtune.mtn.co.za/security/Middleware/api/adapter/v1/crbt/"
+}
