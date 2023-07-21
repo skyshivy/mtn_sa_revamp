@@ -14,6 +14,8 @@ class StoreManager {
     return _instance;
   }
   bool isEnglish = true;
+  String language = "English";
+  String msisdn = '';
   late SharedPreferences prefs;
   late AppSettingModel appSetting;
 

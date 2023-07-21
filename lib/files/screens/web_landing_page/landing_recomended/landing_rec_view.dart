@@ -34,7 +34,7 @@ class _LandingRecoViewState extends State<LandingRecoView> {
   Widget gridView() {
     return Obx(() {
       return GridView.builder(
-          itemCount: controller.items.value,
+          itemCount: controller.displayList?.length,
           shrinkWrap: true,
           gridDelegate: delegate(),
           physics: const NeverScrollableScrollPhysics(),

@@ -6,3 +6,4 @@ String os = "ios";
 String baseUrl = "";
 String baseUrlSecurity = '';
 String settingUrl = '${baseUrl}settings';
+String recomurl = "${baseUrl}get-recommendation-songs?";

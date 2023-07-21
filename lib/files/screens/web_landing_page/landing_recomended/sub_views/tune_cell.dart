@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
+import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/web_landing_page/landing_recomended/sub_views/buy_play_button.dart';
 import 'package:mtn_sa_revamp/files/screens/web_landing_page/landing_recomended/sub_views/home_cell_title_sub_title.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -10,8 +11,8 @@ import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 
 class HomeTuneCell extends StatelessWidget {
   final int index;
-
-  const HomeTuneCell({super.key, required this.index});
+  final TuneInfo? info;
+  const HomeTuneCell({super.key, required this.index, this.info});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,6 +35,7 @@ class HomeTuneCell extends StatelessWidget {
     return Stack(
       children: [
         CustomImage(
+          url: info?.toneIdpreviewImageUrl ?? info?.previewImageUrl,
           index: index,
           gradient: customGredient(blackGredient, blackGredient),
         ),
@@ -111,13 +113,14 @@ class HomeTuneCell extends StatelessWidget {
   }
 
   Widget bottomSection() {
+    print("Name is ======== ${info?.toneName}");
     return Padding(
       padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          HomeCellTitleSubTilte(),
+          HomeCellTitleSubTilte(info: info),
           BuyAndPlayButton(),
         ],
       ),
