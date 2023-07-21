@@ -10,23 +10,16 @@ class WebLandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        WebNavBarView(),
-        Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                LandingPageBanner(),
-                //const LandingRecoView(),
-                const SizedBox(height: 80),
-                LandingInfoPage(),
-                const LandingPageBottomSection()
-              ],
-            ),
-          ),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const LandingPageBanner(),
+          const LandingRecoView(),
+          const SizedBox(height: 80),
+          LandingInfoPage(),
+          const LandingPageBottomSection()
+        ],
+      ),
     );
   }
 }

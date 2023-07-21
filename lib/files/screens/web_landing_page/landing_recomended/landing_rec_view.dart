@@ -46,12 +46,16 @@ class _LandingRecoViewState extends State<LandingRecoView> {
               gridDelegate: delegate(),
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
-                return HomeTuneCell(
-                  info: controller.displayList?[index],
-                  index: index,
-                );
+                return homeCell(index);
               });
     });
+  }
+
+  HomeTuneCell homeCell(int index) {
+    return HomeTuneCell(
+      info: controller.displayList?[index],
+      index: index,
+    );
   }
 
   SliverGridDelegateWithMaxCrossAxisExtent delegate() {
