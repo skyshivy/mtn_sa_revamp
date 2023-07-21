@@ -60,7 +60,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
 
   Widget corosoulWidget() {
     return Container(
-      color: yellow,
+      color: white,
       width: double.infinity, //currentSize.width,
       height: 200, //currentSize.height,
       child: CarouselSlider(
@@ -82,7 +82,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
           },
           child: Stack(alignment: Alignment.bottomCenter, children: [
             Container(
-              color: yellow,
+              color: white,
               child: FadeInImage.assetNetwork(
                 placeholder: 'images/placeholderImage.png',
                 image: banner.bannerPath ?? logoBigImg,

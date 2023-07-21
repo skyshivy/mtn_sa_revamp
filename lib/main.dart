@@ -7,13 +7,14 @@ import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/screens/web_landing_page/web_landing_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_nav_bar/web_nav_bar_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_tab/web_tab_view.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await getJson();
   AppController controller = Get.put(AppController());
-  //await controller.settinApiCall();
+  await controller.settinApiCall();
   runApp(const MyApp());
 }
 
@@ -40,20 +41,28 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Material(child: navBar()),
+      home: Material(child: navBar(context)),
     );
   }
 
-  Widget navBar() {
+  Widget navBar(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Column(
       children: [
-        WebNavBarView(),
-        Expanded(
+        width < 700 ? mobileAppBar() : WebNavBarView(),
+        const Expanded(
           child: SingleChildScrollView(
             child: WebLandingPage(),
           ),
         ),
       ],
+    );
+  }
+
+  Container mobileAppBar() {
+    return Container(
+      height: 80,
+      color: red,
     );
   }
 }
