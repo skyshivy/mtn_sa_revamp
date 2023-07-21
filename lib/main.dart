@@ -3,14 +3,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:mtn_sa_revamp/flies/controllers/app_controller.dart';
-import 'package:mtn_sa_revamp/flies/screens/web_landing_page/web_landing_screen.dart';
-import 'package:mtn_sa_revamp/flies/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/screens/web_landing_page/web_landing_screen.dart';
+import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  AppController _ = Get.put(AppController());
-  getJson();
+  await getJson();
+  AppController controller = Get.put(AppController());
+  controller.settinApiCall();
+
   runApp(const MyApp());
 }
 
