@@ -11,8 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await getJson();
   AppController controller = Get.put(AppController());
-  controller.settinApiCall();
-
+  await controller.settinApiCall();
   runApp(const MyApp());
 }
 

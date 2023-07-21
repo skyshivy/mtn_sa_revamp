@@ -1,17 +1,30 @@
 import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/screens/web_landing_page/landing_recomended/sub_views/home_reco_tab_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_landing_page/landing_recomended/sub_views/tune_cell.dart';
 
-class LandingRecoView extends StatelessWidget {
+class LandingRecoView extends StatefulWidget {
+  const LandingRecoView({super.key});
+
+  @override
+  State<LandingRecoView> createState() => _LandingRecoViewState();
+}
+
+class _LandingRecoViewState extends State<LandingRecoView> {
+  RecoController controller = Get.put(RecoController());
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          HomeRecoTabView(),
+          const SizedBox(height: 30),
+          const HomeRecoTabView(),
+          const SizedBox(height: 40),
           gridView(),
         ],
       ),
@@ -19,16 +32,18 @@ class LandingRecoView extends StatelessWidget {
   }
 
   Widget gridView() {
-    return GridView.builder(
-        itemCount: 10,
-        shrinkWrap: true,
-        gridDelegate: delegate(),
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return HomeTuneCell(
-            index: index,
-          );
-        });
+    return Obx(() {
+      return GridView.builder(
+          itemCount: controller.items.value,
+          shrinkWrap: true,
+          gridDelegate: delegate(),
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            return HomeTuneCell(
+              index: index,
+            );
+          });
+    });
   }
 
   SliverGridDelegateWithMaxCrossAxisExtent delegate() {

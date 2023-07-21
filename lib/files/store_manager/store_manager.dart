@@ -13,12 +13,16 @@ class StoreManager {
 
     return _instance;
   }
-
+  bool isEnglish = true;
   late SharedPreferences prefs;
   late AppSettingModel appSetting;
 
   initStoreManager() async {
     prefs = await SharedPreferences.getInstance();
+  }
+
+  storeAppSettingModel(AppSettingModel settingModel) async {
+    appSetting = settingModel;
   }
 
   resetData() async {}
