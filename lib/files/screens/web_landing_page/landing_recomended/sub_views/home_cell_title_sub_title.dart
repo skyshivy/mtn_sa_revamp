@@ -15,11 +15,13 @@ class HomeCellTitleSubTilte extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomText(
+          maxLine: 1,
           title: info?.toneName ?? info?.contentName ?? "",
           fontName: FontName.bold,
           fontSize: 18,
         ),
         CustomText(
+          maxLine: 1,
           title: info?.albumName ?? info?.artistName ?? '',
           fontName: FontName.regularItalic,
           fontSize: 12,

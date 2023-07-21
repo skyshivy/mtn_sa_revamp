@@ -17,6 +17,7 @@ class RecoController extends GetxController {
   List<bool> isLoadedList = <bool>[].obs;
   List<List<TuneInfo>?> tuneList = <List<TuneInfo>?>[].obs;
   RxList<TuneInfo>? displayList = <TuneInfo>[].obs;
+  RxBool isLoading = false.obs;
 
   getTabList() async {
     var abc = StoreManager().appSetting;
@@ -45,13 +46,16 @@ class RecoController extends GetxController {
   getTabItems(String identifier, int index) async {
     if (isLoadedList[index]) {
       displayList?.value = tuneList[index]!;
+      print("Tune na e is ${displayList?[0].toneName}");
       return;
     }
     Random random = Random();
     int randomNumber = random.nextInt(1000000000);
+    isLoading.value = true;
     var trailUrl =
         "language=${StoreManager().language}&msisdn=${StoreManager().msisdn}&clientTxnId=$randomNumber&identifier=$identifier";
     var result = await ServiceCall().get(recomurl + trailUrl);
+    isLoading.value = false;
     if (result != null) {
       isLoadedList[index] = true;
       HomeRecomModel model = HomeRecomModel.fromJson(result);
@@ -59,5 +63,10 @@ class RecoController extends GetxController {
       tuneList[index] = tuneInfo;
       displayList?.value = tuneInfo!;
     }
+  }
+
+  updatePlaying(int index) {
+    displayList?[index].isPlaying = displayList![index].isPlaying;
+    displayList?.refresh();
   }
 }

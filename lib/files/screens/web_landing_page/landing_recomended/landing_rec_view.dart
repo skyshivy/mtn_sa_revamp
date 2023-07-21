@@ -1,8 +1,10 @@
 import 'dart:js';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/web_landing_page/landing_recomended/sub_views/home_reco_tab_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_landing_page/landing_recomended/sub_views/tune_cell.dart';
 
@@ -33,16 +35,22 @@ class _LandingRecoViewState extends State<LandingRecoView> {
 
   Widget gridView() {
     return Obx(() {
-      return GridView.builder(
-          itemCount: controller.displayList?.length,
-          shrinkWrap: true,
-          gridDelegate: delegate(),
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            return HomeTuneCell(
-              index: index,
-            );
-          });
+      int? count = ((controller.displayList?.length ?? 0) > 8)
+          ? 8
+          : controller.displayList?.length;
+      return controller.isLoading.value
+          ? loadingIndicator()
+          : GridView.builder(
+              itemCount: count,
+              shrinkWrap: true,
+              gridDelegate: delegate(),
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return HomeTuneCell(
+                  info: controller.displayList?[index],
+                  index: index,
+                );
+              });
     });
   }
 

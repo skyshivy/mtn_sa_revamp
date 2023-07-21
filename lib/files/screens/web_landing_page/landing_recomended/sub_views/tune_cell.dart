@@ -12,6 +12,7 @@ import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 class HomeTuneCell extends StatelessWidget {
   final int index;
   final TuneInfo? info;
+
   const HomeTuneCell({super.key, required this.index, this.info});
   @override
   Widget build(BuildContext context) {
@@ -57,20 +58,22 @@ class HomeTuneCell extends StatelessWidget {
     );
   }
 
-  CustomButton likeButton() {
-    return CustomButton(
-      height: 30,
-      color: Colors.white38,
-      leftWidget: likeImage(),
-      title: "123",
-      titlePadding: const EdgeInsets.only(right: 8, left: 4),
-      fontSize: 16,
-      fontName: FontName.medium,
-      textColor: white,
-      onTap: () {
-        print("likeButton tapped");
-      },
-    );
+  Widget likeButton() {
+    return (info?.likeCount == null)
+        ? const SizedBox()
+        : CustomButton(
+            height: 30,
+            color: Colors.white38,
+            leftWidget: likeImage(),
+            title: info?.likeCount ?? '0',
+            titlePadding: const EdgeInsets.only(right: 8, left: 4),
+            fontSize: 16,
+            fontName: FontName.medium,
+            textColor: white,
+            onTap: () {
+              print("likeButton tapped");
+            },
+          );
   }
 
   Padding likeImage() {
@@ -121,7 +124,9 @@ class HomeTuneCell extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HomeCellTitleSubTilte(info: info),
-          BuyAndPlayButton(),
+          BuyAndPlayButton(
+            info: info,
+          ),
         ],
       ),
     );
