@@ -7,6 +7,14 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import '../../../../../custom_files/custom_text_field/custom_text_field.dart';
 
 class HomeSearchTextField extends StatelessWidget {
+  final Function(String) onChanged;
+  final Function(String) onSubmit;
+  final Function() onTap;
+  const HomeSearchTextField(
+      {super.key,
+      required this.onChanged,
+      required this.onSubmit,
+      required this.onTap});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,15 +29,9 @@ class HomeSearchTextField extends StatelessWidget {
           text: "",
           hintText: whatrLookingFor,
           fontSize: 16,
-          onChanged: (p0) {
-            print("${p0}");
-          },
-          onSubmit: (p0) {
-            print("Submitted value  = $p0");
-          },
-          onTap: () {
-            print("Textfield tapped");
-          },
+          onChanged: onChanged,
+          onSubmit: onSubmit,
+          onTap: onTap,
         ),
       )),
     );

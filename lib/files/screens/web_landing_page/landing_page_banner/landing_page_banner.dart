@@ -118,7 +118,6 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
   }
 
   void onPageChange(int index, CarouselPageChangedReason season) {
-    print("Index is ${index}");
     controller.updateSelectedIndex(index);
   }
 }

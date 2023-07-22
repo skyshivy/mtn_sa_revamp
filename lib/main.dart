@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/screens/web_landing_page/web_landing_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_nav_bar/web_nav_bar_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_tab/web_tab_view.dart';
@@ -14,6 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await getJson();
   AppController controller = Get.put(AppController());
+  SearchTuneController _ = Get.put(SearchTuneController());
   await controller.settinApiCall();
   runApp(const MyApp());
 }
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'MTN_SA',
       theme: ThemeData(
@@ -51,8 +53,7 @@ class MyApp extends StatelessWidget {
       children: [
         width < 700 ? mobileAppBar() : WebNavBarView(),
         Expanded(
-          child: SingleChildScrollView(child: WebTabView() //WebLandingPage(),
-              ),
+          child: WebTabView(),
         ),
       ],
     );

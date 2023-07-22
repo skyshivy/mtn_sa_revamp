@@ -3,6 +3,6 @@ import 'package:flutter/material.dart';
 
 Widget loadingIndicator() {
   return CupertinoActivityIndicator(
-    radius: 12,
+    radius: 25,
   );
 }

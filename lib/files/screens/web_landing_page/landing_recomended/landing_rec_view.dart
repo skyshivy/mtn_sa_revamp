@@ -55,6 +55,9 @@ class _LandingRecoViewState extends State<LandingRecoView> {
     return HomeTuneCell(
       info: controller.displayList?[index],
       index: index,
+      onTap: () {
+        print("homeCell tapped");
+      },
     );
   }
 

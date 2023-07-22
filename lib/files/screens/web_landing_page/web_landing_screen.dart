@@ -13,8 +13,8 @@ class WebLandingPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const LandingPageBanner(),
-          const LandingRecoView(),
+          // const LandingPageBanner(),
+          // const LandingRecoView(),
           const SizedBox(height: 80),
           LandingInfoPage(),
           const LandingPageBottomSection()

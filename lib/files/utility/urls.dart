@@ -8,4 +8,7 @@ String baseUrlSecurity = '';
 String settingUrl = '${baseUrl}settings';
 String recomurl = "${baseUrl}get-recommendation-songs?";
 String homeBannerurl = "${baseUrl}banner?language=";
+String searchSpecificToneUrl = '${baseUrl}specific-search-tones?language';
+String searchByTuneIdUrl =
+    '${baseUrl}search-tone?language=English&pageNo=0&perPageCount=20&toneId=';
 //https://ringtune.mtn.co.za/apigw/Middleware/api/adapter/v1/crbt/

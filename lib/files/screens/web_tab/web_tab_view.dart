@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_landing_page/web_landing_screen.dart';
 
 class WebTabView extends StatelessWidget {
@@ -24,7 +25,7 @@ class WebTabView extends StatelessWidget {
         //setLandingScreen(),
         const CustomText(title: "title2"),
         FAQScreen(),
-        const CustomText(title: "title4"),
+        SearchScreen()
       ],
     );
   }

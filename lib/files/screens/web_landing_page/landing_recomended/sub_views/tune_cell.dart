@@ -12,14 +12,17 @@ import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 class HomeTuneCell extends StatelessWidget {
   final int index;
   final TuneInfo? info;
-
-  const HomeTuneCell({super.key, required this.index, this.info});
+  final Function()? onTap;
+  const HomeTuneCell({super.key, required this.index, this.info, this.onTap});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.hardEdge,
-      decoration: decoration(),
-      child: mainList(),
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        clipBehavior: Clip.hardEdge,
+        decoration: decoration(),
+        child: mainList(),
+      ),
     );
   }
 
@@ -116,7 +119,6 @@ class HomeTuneCell extends StatelessWidget {
   }
 
   Widget bottomSection() {
-    print("Name is ======== ${info?.toneName}");
     return Padding(
       padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 16),
       child: Column(
