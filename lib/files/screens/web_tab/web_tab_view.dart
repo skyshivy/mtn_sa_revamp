@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_landing_page/web_landing_screen.dart';
+import 'package:mtn_sa_revamp/files/utility/route_direction.dart';
 
 class WebTabView extends StatelessWidget {
   WebTabController tabController = Get.put(WebTabController());
@@ -13,7 +14,12 @@ class WebTabView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return indexed(tabController.index.value);
+      return GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: "/",
+        getPages: routesDirection,
+        home: Material(child: indexed(tabController.index.value)),
+      );
     });
   }
 

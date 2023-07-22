@@ -16,6 +16,7 @@ class HomePageLogoButton extends StatelessWidget {
         width: 60,
       ),
       onTap: () {
+        Get.until((route) => Get.currentRoute == '/');
         controller.loadPage(0);
       },
     );

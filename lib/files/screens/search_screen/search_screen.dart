@@ -71,7 +71,8 @@ class _SearchScreenState extends State<SearchScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomText(
-              title: controller.artistList[index].matchedParam ?? '',
+              title: (controller.artistList[index].matchedParam ?? '')
+                  .toUpperCase(),
               fontName: FontName.medium,
               fontSize: 16,
             ),
