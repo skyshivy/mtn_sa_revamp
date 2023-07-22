@@ -50,10 +50,9 @@ class MyApp extends StatelessWidget {
     return Column(
       children: [
         width < 700 ? mobileAppBar() : WebNavBarView(),
-        const Expanded(
-          child: SingleChildScrollView(
-            child: WebLandingPage(),
-          ),
+        Expanded(
+          child: SingleChildScrollView(child: WebTabView() //WebLandingPage(),
+              ),
         ),
       ],
     );

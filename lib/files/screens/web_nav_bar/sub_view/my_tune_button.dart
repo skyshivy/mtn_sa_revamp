@@ -7,6 +7,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.da
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class HomeMyTuneButton extends StatelessWidget {
+  WebTabController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return CustomButton(
@@ -15,6 +16,7 @@ class HomeMyTuneButton extends StatelessWidget {
       fontName: FontName.bold,
       fontSize: 16,
       onTap: () {
+        controller.loadPage(1);
         print("On tap HomeMyTuneButton");
       },
     );
