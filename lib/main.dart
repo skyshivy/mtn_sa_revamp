@@ -10,13 +10,15 @@ import 'package:mtn_sa_revamp/files/screens/web_nav_bar/web_nav_bar_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_tab/web_tab_view.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  setPathUrlStrategy();
   await getJson();
   AppController controller = Get.put(AppController());
   SearchTuneController _ = Get.put(SearchTuneController());
-  await controller.settinApiCall();
+  //await controller.settinApiCall();
   runApp(const MyApp());
 }
 

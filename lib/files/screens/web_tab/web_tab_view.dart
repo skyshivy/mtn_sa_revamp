@@ -13,6 +13,7 @@ class WebTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //print("width is =============${Get.width}");
     return Obx(() {
       return GetMaterialApp(
         debugShowCheckedModeBanner: false,

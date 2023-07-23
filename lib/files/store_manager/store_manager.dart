@@ -9,10 +9,9 @@ class StoreManager {
     print("initiali stro manager");
   }
   factory StoreManager() {
-    print("Hello Sky ");
-
     return _instance;
   }
+  double mobileWidth = 500;
   bool isEnglish = true;
   String language = "English";
   String msisdn = '';
