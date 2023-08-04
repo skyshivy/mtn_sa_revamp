@@ -33,13 +33,13 @@ class BuyAndPlayButton extends StatelessWidget {
       fontSize: 16,
       titlePadding: const EdgeInsets.all(4),
       borderColor: red,
-      leftWidget: info!.isPlaying
+      leftWidget: (info?.isPlaying ?? false)
           ? const Icon(Icons.pause)
           : const Icon(Icons.play_arrow),
       title: play,
       onTap: () {
         print("is playing ${info?.isPlaying}");
-        info?.isPlaying = !info!.isPlaying;
+        info?.isPlaying = !(info?.isPlaying ?? false);
       },
     );
   }

@@ -10,14 +10,21 @@ class SearchTuneController extends GetxController {
   RxString searchedText = ''.obs;
   RxBool isLoading = false.obs;
   RxBool isLoaded = false.obs;
+
+  RxBool isLoadMore = false.obs;
   RxInt isTuneSelected = 0.obs;
   RxList<TuneInfo> toneList = <TuneInfo>[].obs;
   RxList<TuneInfo> songList = <TuneInfo>[].obs;
   RxList<ArtistDetailList> artistList = <ArtistDetailList>[].obs;
-  getSearchedResult(String searchedTxt, int p) async {
-    toneList.clear();
-    songList.clear();
-    artistList.clear();
+  getSearchedResult(String searchedTxt, int p,
+      {bool isloadMore = false}) async {
+    searchedText.value = searchedTxt;
+    if (!isloadMore) {
+      toneList.clear();
+      songList.clear();
+      artistList.clear();
+    }
+
     if (isNumericUsingRegularExpression(searchedTxt)) {
       _getSearchResultByTuneId(searchedTxt);
 
@@ -28,22 +35,27 @@ class SearchTuneController extends GetxController {
     if (s != null) {
       s = s.replaceAll(' ', '+');
     }
-    isLoading.value = true;
-    isLoaded.value = false;
+    if (!isloadMore) {
+      isLoading.value = true;
+      isLoaded.value = false;
+    }
+    isLoadMore.value = true;
     var url =
-        '${searchSpecificToneUrl}=${StoreManager().language}&sortBy=Order_By&perPageCount=20&searchLanguage=${StoreManager().language}&searchKey=$s&pageNo=$p';
+        '$searchSpecificToneUrl=${StoreManager().language}&sortBy=Order_By&perPageCount=20&searchLanguage=${StoreManager().language}&searchKey=$s&pageNo=$p';
     Map<String, dynamic>? result = await ServiceCall().get(url);
-    isLoading.value = false;
-    isLoaded.value = true;
+
     if (result != null) {
       SearchTuneModel model = SearchTuneModel.fromJson(result);
-      toneList.value = model.responseMap?.toneList ?? [];
-      songList.value = model.responseMap?.songList ?? [];
-      artistList.value = model.responseMap?.countList?.artistDetailList ?? [];
+      toneList.value += model.responseMap?.toneList ?? [];
+      songList.value += model.responseMap?.songList ?? [];
+      artistList.value += model.responseMap?.countList?.artistDetailList ?? [];
       print(
           "Tune list length is ${toneList.length} Tune list length ${songList.length}");
     }
     ;
+    isLoading.value = false;
+    isLoaded.value = true;
+    isLoadMore.value = false;
   }
 
   bool isNumericUsingRegularExpression(String string) {
@@ -68,5 +80,10 @@ class SearchTuneController extends GetxController {
     // artistList = <ArtistDetailList>[];
     // isLoading = false;
     // notifyListeners();
+  }
+
+  loadMoreData() async {
+    getSearchedResult(searchedText.value, toneList.length, isloadMore: true);
+    print("load more data search");
   }
 }

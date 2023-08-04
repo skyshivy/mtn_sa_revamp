@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_grid_view/custom_grid_view.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
@@ -42,10 +43,19 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: controller.isTuneSelected.value == 0
                       ? gridView()
                       : artistList()),
-              const SizedBox(height: 30),
+              //const SizedBox(height: 30),
+              loadMoreData()
             ],
           );
         }));
+  }
+
+  Widget loadMoreData() {
+    return loadMoreDataButton(
+        isLoading: controller.isLoadMore.value,
+        rightAction: () {
+          controller.loadMoreData();
+        });
   }
 
   Widget artistList() {
@@ -61,7 +71,9 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget artistCell(int index) {
     return InkWell(
       onTap: () {
-        Get.toNamed(artistTuneRoute);
+        Get.toNamed(artistTuneRoute, parameters: {
+          "artist": controller.artistList[index].matchedParam ?? ''
+        });
         print(
             "Tapped artist is ${controller.artistList[index].matchedParam ?? ''}");
       },

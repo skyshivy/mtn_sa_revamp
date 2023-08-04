@@ -17,7 +17,15 @@ List<GetPage<dynamic>> get routesDirection {
     GetPage(
       transitionDuration: Duration(milliseconds: 1),
       name: artistTuneRoute,
-      page: () => ArtistTuneScreen(),
+      page: () {
+        String artist = Get.parameters['artist'] ?? '';
+
+        return Material(
+          child: ArtistTuneScreen(
+            artistName: artist,
+          ),
+        );
+      },
     ),
     GetPage(
       transitionDuration: Duration(milliseconds: 1),

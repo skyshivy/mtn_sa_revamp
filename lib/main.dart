@@ -25,6 +25,7 @@ Future<String> getJson() async {
   final data = await json.decode(value);
   print("Json file is ${data}");
   baseUrl = data['BASE_URL'];
+  faqUrl = data["FAQ_URL"];
   baseUrlSecurity = data['BASE_URL_SECURITY'];
   print("Base url is ${baseUrl}");
   print("Base Security Url is ${baseUrlSecurity}");

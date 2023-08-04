@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget loadingIndicator() {
+Widget loadingIndicator({double radius = 25}) {
   return CupertinoActivityIndicator(
-    radius: 25,
+    radius: radius,
   );
 }

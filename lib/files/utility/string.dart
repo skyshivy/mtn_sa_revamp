@@ -1,5 +1,6 @@
 const myTune = "My Tunes";
 const about = "About";
+const homeStr = "Home";
 const faq = "FAQ";
 const play = "Play";
 const buy = "Buy";

@@ -125,9 +125,11 @@ class HomeTuneCell extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          HomeCellTitleSubTilte(info: info),
-          BuyAndPlayButton(
-            info: info,
+          Flexible(child: HomeCellTitleSubTilte(info: info)),
+          Flexible(
+            child: BuyAndPlayButton(
+              info: info,
+            ),
           ),
         ],
       ),
