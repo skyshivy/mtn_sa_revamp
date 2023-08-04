@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
-import 'package:mtn_sa_revamp/files/screens/web_landing_page/landing_page_banner/sub_views/banner_indicator.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/banner_indicator.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 

@@ -5,20 +5,18 @@ import 'package:get/get.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
-import 'package:mtn_sa_revamp/files/screens/web_landing_page/web_landing_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_nav_bar/web_nav_bar_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_tab/web_tab_view.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
-import 'package:url_strategy/url_strategy.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setPathUrlStrategy();
   await getJson();
   AppController controller = Get.put(AppController());
   SearchTuneController _ = Get.put(SearchTuneController());
-  //await controller.settinApiCall();
+  await controller.settinApiCall();
   runApp(const MyApp());
 }
 
@@ -45,7 +43,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Material(child: navBar(context)),
+      builder: (context, child) {
+        return Material(child: navBar(context));
+      },
     );
   }
 

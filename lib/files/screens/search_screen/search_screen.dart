@@ -10,7 +10,7 @@ import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_header.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_header_tab.dart';
 
-import 'package:mtn_sa_revamp/files/screens/web_landing_page/landing_recomended/sub_views/tune_cell.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 

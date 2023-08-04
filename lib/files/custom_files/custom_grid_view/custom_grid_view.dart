@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
-import 'package:mtn_sa_revamp/files/screens/web_landing_page/landing_recomended/sub_views/tune_cell.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
 
 class CustomGridView extends StatelessWidget {
   final int itemCount;

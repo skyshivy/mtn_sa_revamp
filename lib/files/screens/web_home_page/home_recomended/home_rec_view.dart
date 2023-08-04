@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
-import 'package:mtn_sa_revamp/files/screens/web_landing_page/landing_recomended/sub_views/home_reco_tab_view.dart';
-import 'package:mtn_sa_revamp/files/screens/web_landing_page/landing_recomended/sub_views/tune_cell.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/home_reco_tab_view.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
 
 class LandingRecoView extends StatefulWidget {
   const LandingRecoView({super.key});

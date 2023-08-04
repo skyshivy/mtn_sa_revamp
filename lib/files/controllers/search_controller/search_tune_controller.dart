@@ -31,7 +31,7 @@ class SearchTuneController extends GetxController {
     isLoading.value = true;
     isLoaded.value = false;
     var url =
-        '${searchSpecificToneUrl}=${StoreManager().language}&sortBy=Order_By&perPageCount=50&searchLanguage=${StoreManager().language}&searchKey=$s&pageNo=$p';
+        '${searchSpecificToneUrl}=${StoreManager().language}&sortBy=Order_By&perPageCount=20&searchLanguage=${StoreManager().language}&searchKey=$s&pageNo=$p';
     Map<String, dynamic>? result = await ServiceCall().get(url);
     isLoading.value = false;
     isLoaded.value = true;
