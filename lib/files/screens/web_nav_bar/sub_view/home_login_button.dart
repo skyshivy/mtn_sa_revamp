@@ -9,28 +9,31 @@ import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class HomeLoginButton extends StatelessWidget {
+  const HomeLoginButton({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return CustomButton(
       height: 50,
-      child: CustomButton(
-        onTap: () {
-          Get.toNamed(loginTapped);
-        },
-        leftWidget: Padding(
-          padding: EdgeInsets.only(left: 12),
-          child: Icon(
-            Icons.person_2_outlined,
-            size: 20,
-          ),
-        ),
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        titlePadding: EdgeInsets.only(right: 15, left: 5),
-        title: login,
-        fontSize: 16,
-        fontName: FontName.medium,
-        color: white,
-      ),
+      onTap: onTap,
+      leftWidget: loaginLeftWidgetPadding(),
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      titlePadding: const EdgeInsets.only(right: 15, left: 5),
+      title: login,
+      fontSize: 16,
+      fontName: FontName.medium,
+      color: white,
+    );
+  }
+
+  onTap() {
+    Get.toNamed(loginTapped);
+  }
+
+  Padding loaginLeftWidgetPadding() {
+    return const Padding(
+      padding: EdgeInsets.only(left: 12),
+      child: Icon(Icons.person_2_outlined, size: 20),
     );
   }
 }

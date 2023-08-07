@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/home_login_butt
 import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/home_search_widget/home_search_widget.dart';
 import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/home_logo_button.dart';
 import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/my_tune_button.dart';
+import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/web_nav_my_account.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 class WebNavBarView extends StatelessWidget {
@@ -17,11 +18,7 @@ class WebNavBarView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(child: leftWidget()),
-          Row(
-            children: [
-              rightWidget(),
-            ],
-          ),
+          Row(children: [rightWidget()]),
         ],
       ),
     );
@@ -52,6 +49,8 @@ class WebNavBarView extends StatelessWidget {
         HomeSearchWidget(),
         leftSpacing(),
         HomeLoginButton(),
+        leftSpacing(),
+        webMyAccountButton(),
         leftSpacing(),
       ],
     );

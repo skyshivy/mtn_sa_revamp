@@ -4,6 +4,7 @@ const homeStr = "Home";
 const faq = "FAQ";
 const play = "Play";
 const buy = "Buy";
+const myAccountStr = "My Account";
 const cancelStr = "Cancel";
 const confirmStr = "Confirm";
 const tuneChargeStr = "Tune Charge";
