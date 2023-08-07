@@ -48,7 +48,7 @@ class WebNavBarView extends StatelessWidget {
       children: [
         HomeSearchWidget(),
         leftSpacing(),
-        HomeLoginButton(),
+        const HomeLoginButton(),
         leftSpacing(),
         webMyAccountButton(),
         leftSpacing(),

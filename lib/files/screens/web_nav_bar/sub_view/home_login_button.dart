@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 
@@ -27,7 +28,13 @@ class HomeLoginButton extends StatelessWidget {
   }
 
   onTap() {
-    Get.toNamed(loginTapped);
+    print("Get.isDialogOpen === ${Get.isDialogOpen}");
+    if (Get.isDialogOpen ?? false) {
+      Get.back();
+      return;
+    }
+    Get.dialog(LoginScreen());
+    //Get.toNamed(loginTapped);
   }
 
   Padding loaginLeftWidgetPadding() {

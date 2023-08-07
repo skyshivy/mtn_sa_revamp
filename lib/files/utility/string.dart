@@ -33,3 +33,7 @@ const homeInfo3 = 'Monthly Subscription fee of 59.18 SDG for 30 days';
 const homeInfo4 = 'Subscription will be renewed after 30 days';
 const homeInfo5 = 'Tone price at 37.07 SDG valid per month';
 const homeInfo6 = 'Limited fallback available';
+const signInToYourAccountStr = "Sign in to your Account";
+const pleaseEnterYourMobileNumberInOrderToAuthenticateStr =
+    "Please enter your mobile number in order to Authenticate";
+const requestOTPStr = "Request OTP";

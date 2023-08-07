@@ -12,6 +12,12 @@ bool isPhone(BuildContext context) {
   return !(MediaQuery.of(context).size.width > StoreManager().mobileWidth);
 }
 
+bool isMobile() {
+  double widgt = Get.width;
+  return (widgt > StoreManager().mobileWidth);
+  // !(MediaQuery.of(context).size.width > StoreManager().mobileWidth);
+}
+
 double fontSize(double phone, double desktop) {
   double widgt = Get.width;
   return (widgt > StoreManager().mobileWidth) ? desktop : phone;
