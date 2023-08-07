@@ -27,7 +27,7 @@ class CustomButton extends StatelessWidget {
 
   const CustomButton({
     super.key,
-    this.height = 50,
+    this.height = 40,
     this.width,
     this.radius,
     this.color = transparent,
