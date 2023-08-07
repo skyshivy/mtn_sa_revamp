@@ -75,7 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
           subTitleWidget(),
           vSpacing(height: 40),
           textfieldWidget(),
-          vSpacing(height: 40),
+          errorWidget(),
+          //vSpacing(height: 40),
           requestOtpButton(),
           vSpacing(height: 20),
           termsAndConditionAgreement(),
@@ -83,6 +84,23 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
+  }
+
+  Widget errorWidget() {
+    return Obx(() {
+      return controller.errorMessage.isEmpty
+          ? const SizedBox(
+              height: 40,
+            )
+          : Padding(
+              padding: const EdgeInsets.only(bottom: 30, top: 5),
+              child: CustomText(
+                title: controller.errorMessage.value,
+                fontName: FontName.regular,
+                textColor: red,
+              ),
+            );
+    });
   }
 
   Widget textfieldWidget() {
@@ -101,6 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void onChange(String value) {
+    controller.editMsisdn();
     if (controller.isMsisdnVarified.value) {
       controller.otp.value = value;
     } else {
