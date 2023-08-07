@@ -4,6 +4,7 @@ const homeStr = "Home";
 const faq = "FAQ";
 const play = "Play";
 const buy = "Buy";
+const verifyOTPStr = "Verify OTP";
 const enterMobileNumberStr = "Enter Mobile Number";
 const countryCodeStr = "+27";
 const myAccountStr = "My Account";
@@ -41,3 +42,6 @@ const pleaseEnterYourMobileNumberInOrderToAuthenticateStr =
 const requestOTPStr = "Request OTP";
 const signupAgreementStr = "By Signing up you will be agree to our";
 const termsAndPolicyStr = "Terms of use & Privacy Policy";
+const enter6DigitOtpStr = "Enter 6 Digit OTP";
+const oneTimePasswordHasBeenSentStr =
+    "One Time Password (OTP) has been sent to ";

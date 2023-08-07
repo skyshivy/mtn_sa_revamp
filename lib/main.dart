@@ -14,10 +14,10 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //await getJson();
-  // AppController controller = Get.put(AppController());
-  // SearchTuneController _ = Get.put(SearchTuneController());
-  // await controller.settinApiCall();
+  await getJson();
+  AppController controller = Get.put(AppController());
+  SearchTuneController _ = Get.put(SearchTuneController());
+  await controller.settinApiCall();
   runApp(const MyApp());
 }
 
@@ -46,9 +46,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       builder: (context, child) {
-        return Material(
-          child: LoginScreen(),
-        ); //Material(child: navBar(context));
+        return Material(child: navBar(context));
+        //Material(
+        //child: LoginScreen(),
+        //); //Material(child: navBar(context));
       },
     );
   }

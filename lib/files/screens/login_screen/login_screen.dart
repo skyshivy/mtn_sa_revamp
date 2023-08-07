@@ -1,18 +1,40 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_msisdn_text_field.dart';
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
+import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  late LoginController controller;
+  @override
+  void initState() {
+    controller = Get.put(LoginController());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    Get.delete<LoginController>();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +65,10 @@ class LoginScreen extends StatelessWidget {
 
   Widget paddingColumn() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: isMobile() ? 0 : 80),
+      padding: const EdgeInsets.symmetric(horizontal: 80),
       child: Column(
-        mainAxisAlignment:
-            isMobile() ? MainAxisAlignment.center : MainAxisAlignment.start,
-        crossAxisAlignment:
-            isMobile() ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           vSpacing(),
           logoImageWidget(),
@@ -57,7 +77,7 @@ class LoginScreen extends StatelessWidget {
           vSpacing(height: 8),
           subTitleWidget(),
           vSpacing(height: 40),
-          const CustomMsisdnTextField(),
+          textfieldWidget(),
           vSpacing(height: 40),
           requestOtpButton(),
           vSpacing(height: 20),
@@ -66,6 +86,42 @@ class LoginScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget textfieldWidget() {
+    return Obx(() {
+      return CustomMsisdnTextField(
+        hintText: controller.isMsisdnVarified.value ? enter6DigitOtpStr : null,
+        text: !controller.isMsisdnVarified.value
+            ? controller.msisdn.value
+            : controller.otp.value,
+        addCountryCode: !controller.isMsisdnVarified.value,
+        isMsisdn: !controller.isMsisdnVarified.value,
+        onChanged: onChange,
+        onSubmit: onSubmit,
+      );
+    });
+  }
+
+  void onChange(String value) {
+    if (controller.isMsisdnVarified.value) {
+      controller.otp.value = value;
+    } else {
+      controller.msisdn.value = value;
+    }
+
+    print("On change ======$value");
+  }
+
+  void onSubmit(String value) {
+    if (controller.isMsisdnVarified.value) {
+      controller.otp.value = value;
+      controller.verifyOtpButtonAction();
+    } else {
+      controller.varifyMsisdnButtonAction();
+      controller.msisdn.value = value;
+    }
+    print("On submitted   ==========$value");
   }
 
   Widget termsAndConditionAgreement() {
@@ -122,37 +178,83 @@ class LoginScreen extends StatelessWidget {
   Widget logoImageWidget() {
     return Image.asset(
       logoBigImg,
-      height: 60,
+      height: 50,
     );
   }
 
   Widget titleWidget() {
-    return CustomText(
-      title: signInToYourAccountStr,
-      fontName: FontName.bold,
-      fontSize: fontSize(16, 24),
+    return Obx(() {
+      String title = controller.isMsisdnVarified.value
+          ? enter6DigitOtpStr
+          : signInToYourAccountStr;
+      return Row(
+        children: [
+          controller.isMsisdnVarified.value ? editNumber() : const SizedBox(),
+          CustomText(
+            title: title,
+            fontName: FontName.bold,
+            fontSize: fontSize(16, 24),
+          ),
+        ],
+      );
+    });
+  }
+
+  Widget editNumber() {
+    return CustomButton(
+      width: 40,
+      onTap: () {
+        controller.resetValue();
+        print("Tapped back");
+      },
+      leftWidget: const Icon(
+        Icons.arrow_back,
+        size: 25,
+      ),
     );
   }
 
   Widget subTitleWidget() {
-    return CustomText(
-      title: pleaseEnterYourMobileNumberInOrderToAuthenticateStr,
-      textColor: black,
-      fontName: fontName(FontName.regular, FontName.light),
-      fontSize: 14,
-    );
+    return Obx(() {
+      var title = controller.isMsisdnVarified.value
+          ? oneTimePasswordHasBeenSentStr +
+              ' ' +
+              countryCodeStr +
+              "-" +
+              "${controller.msisdn}"
+          : pleaseEnterYourMobileNumberInOrderToAuthenticateStr;
+      return CustomText(
+        title: title,
+        textColor: black,
+        fontName: fontName(FontName.regular, FontName.light),
+        fontSize: 14,
+      );
+    });
   }
 
   Widget requestOtpButton() {
-    return SizedBox(
-      width: 200,
-      child: CustomButton(
-        height: 50,
-        color: greyLight,
-        title: requestOTPStr,
-        fontName: FontName.bold,
-        fontSize: fontSize(12, 16),
-      ),
-    );
+    return Obx(() {
+      return controller.isVerifying.value
+          ? Center(child: loadingIndicator(radius: 12))
+          : SizedBox(
+              width: 250,
+              child: CustomButton(
+                onTap: () {
+                  if (controller.isMsisdnVarified.value) {
+                    controller.verifyOtpButtonAction();
+                  } else {
+                    controller.varifyMsisdnButtonAction();
+                  }
+                },
+                height: 50,
+                color: greyLight,
+                title: controller.isMsisdnVarified.value
+                    ? verifyOTPStr
+                    : requestOTPStr,
+                fontName: FontName.bold,
+                fontSize: fontSize(12, 16),
+              ),
+            );
+    });
   }
 }

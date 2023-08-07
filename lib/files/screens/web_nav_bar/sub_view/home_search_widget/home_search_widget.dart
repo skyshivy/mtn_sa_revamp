@@ -40,6 +40,7 @@ class HomeSearchWidget extends StatelessWidget {
             },
             onTap: () {
               controller.loadPage(3);
+              Get.back();
               print("text filedon tapped");
             },
           )),

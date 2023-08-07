@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
@@ -8,20 +9,27 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class CustomMsisdnTextField extends StatelessWidget {
-  final String hintText;
+  final String text;
+  final String? hintText;
   final bool isMsisdn;
   final Widget? prefixWidget;
   final bool addCountryCode;
-
-  const CustomMsisdnTextField({
+  final Function(String)? onChanged;
+  final Function(String)? onSubmit;
+  final TextEditingController textEditingController = TextEditingController();
+  CustomMsisdnTextField({
     super.key,
     this.isMsisdn = true,
     this.prefixWidget,
     this.addCountryCode = true,
     this.hintText = enterMobileNumberStr,
+    this.onChanged,
+    this.onSubmit,
+    required this.text,
   });
   @override
   Widget build(BuildContext context) {
+    textEditingController.text = text;
     return Container(
       height: 50,
       decoration: mainDecoration(),
@@ -49,7 +57,7 @@ class CustomMsisdnTextField extends StatelessWidget {
           ? CustomText(
               title: countryCodeStr,
               fontName: FontName.regular,
-              textColor: grey,
+              textColor: greyDark,
               fontSize: fontSize(14, 18),
             )
           : const SizedBox(width: 10),
@@ -65,7 +73,17 @@ class CustomMsisdnTextField extends StatelessWidget {
   }
 
   Widget textField() {
+    textEditingController.selection = TextSelection.fromPosition(
+        TextPosition(offset: textEditingController.text.length));
     return TextField(
+      controller: textEditingController,
+
+      onSubmitted: (value) {
+        onSubmit!(value);
+      },
+      onChanged: (value) {
+        onChanged!(value);
+      },
       style: TextStyle(
           fontFamily: FontName.regular.name, fontSize: fontSize(14, 18)),
       decoration: inputDecoration(),
