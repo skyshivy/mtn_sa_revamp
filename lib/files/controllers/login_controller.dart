@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
@@ -20,11 +19,11 @@ class LoginController extends GetxController {
       errorMessage.value = enterValidMsisdnStr;
       return;
     }
-    print("varifying Otp");
+    print("varifying Msisdn");
     isVerifying.value = true;
     await _validationMsisdn();
     isVerifying.value = false;
-    print("varified Otp");
+    print("varified Msisdn");
   }
 
   editMsisdn() {
@@ -48,13 +47,13 @@ class LoginController extends GetxController {
     print("Verify otp tapped");
   }
 
-  _validationMsisdn() async {
+  Future<String> _validationMsisdn() async {
     String stringData = await LoginVm().subscribeMsisdn(msisdn.value);
     Map<String, dynamic> valueMap = json.decode(stringData);
     SubscriberValidationModel model =
         SubscriberValidationModel.fromJson(valueMap);
     if (model.responseMap?.respCode == 'SC0000') {
-      isMsisdnVarified.value = true;
+      await generateOtp();
       print("Existing user******");
     } else if (model.responseMap?.respCode == '100') {
       isMsisdnVarified.value = true;
@@ -66,6 +65,12 @@ class LoginController extends GetxController {
       errorMessage.value = model.responseMap?.respDesc ?? '';
       print("Invalid number*******");
     }
-    return '';
+    return "";
+  }
+
+  generateOtp() async {
+    isMsisdnVarified.value = true;
+    await LoginVm().generateOtp(msisdn.value);
+    print("Generate otp api call here");
   }
 }

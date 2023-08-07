@@ -1,6 +1,6 @@
 String versionCode = '7.0';
 String appVersion = '1.0.6';
-String appId = "com.sixdee.mtnza_rbt_portal";
+String appId = 'com.sixdee.oml_rbt_portal'; //"com.sixdee.mtnza_rbt_portal";
 String os = "ios";
 
 String baseUrl = "";
@@ -14,4 +14,5 @@ String searchByTuneIdUrl =
     '${baseUrl}search-tone?language=English&pageNo=0&perPageCount=20&toneId=';
 String getArtistSearchTuneUrl = "${baseUrl}search-tone?language=";
 String subscriberValidationUrl = "${baseUrl}subscriber-validation";
+String generateOtpUrl = "${baseUrl}generate-otp";
 //https://ringtune.mtn.co.za/apigw/Middleware/api/adapter/v1/crbt/

@@ -31,4 +31,20 @@ class LoginVm {
 
     return stringData;
   }
+
+  Future<void> generateOtp(String msisdn) async {
+    var url = generateOtpUrl;
+    Map<String, String> headers = {
+      'os': 'ios',
+      'language': StoreManager().language,
+      'deviceId': '0191212',
+      'msisdn': msisdn
+    };
+    final stringData = await ServiceCall().genOtp(url, msisdn);
+    print(stringData);
+
+    Map<String, dynamic> valueMap = json.decode(stringData);
+    print('===========${valueMap}');
+    return;
+  }
 }

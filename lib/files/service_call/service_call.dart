@@ -44,6 +44,21 @@ class ServiceCall {
     // return stringData;
   }
 
+  Future<String> genOtp(String url, String msisdn) async {
+    var request = await client.getUrl(Uri.parse(url));
+    request.headers.set('os', os, preserveHeaderCase: true);
+    request.headers
+        .set('language', StoreManager().language, preserveHeaderCase: true);
+    request.headers.set('deviceId', '0191212', preserveHeaderCase: true);
+    request.headers.set('msisdn', msisdn, preserveHeaderCase: true);
+
+    HttpClientResponse response = await request.close();
+
+    final stringData = await response.transform(utf8.decoder).join();
+    return stringData;
+    print(stringData);
+  }
+
   post(String url, String? formData) async {
     var request = await client.postUrl(Uri.parse(url));
     request = await CustomHeader().settingHeader(url, request);
