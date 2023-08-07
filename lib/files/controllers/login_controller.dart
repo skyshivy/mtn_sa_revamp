@@ -1,8 +1,11 @@
+import 'dart:convert';
 import 'dart:html';
 
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 
 class LoginController extends GetxController {
   RxBool isVerifying = false.obs;
@@ -19,8 +22,7 @@ class LoginController extends GetxController {
     }
     print("varifying Otp");
     isVerifying.value = true;
-    await Future.delayed(const Duration(seconds: 2));
-    isMsisdnVarified.value = true;
+    await _validationMsisdn();
     isVerifying.value = false;
     print("varified Otp");
   }
@@ -44,5 +46,26 @@ class LoginController extends GetxController {
       return;
     }
     print("Verify otp tapped");
+  }
+
+  _validationMsisdn() async {
+    String stringData = await LoginVm().subscribeMsisdn(msisdn.value);
+    Map<String, dynamic> valueMap = json.decode(stringData);
+    SubscriberValidationModel model =
+        SubscriberValidationModel.fromJson(valueMap);
+    if (model.responseMap?.respCode == 'SC0000') {
+      isMsisdnVarified.value = true;
+      print("Existing user******");
+    } else if (model.responseMap?.respCode == '100') {
+      isMsisdnVarified.value = true;
+      print("New user*****");
+    } else if (model.responseMap?.respCode == '101') {
+      errorMessage.value = model.responseMap?.respDesc ?? '';
+      print("Invalid number*******");
+    } else {
+      errorMessage.value = model.responseMap?.respDesc ?? '';
+      print("Invalid number*******");
+    }
+    return '';
   }
 }

@@ -30,6 +30,30 @@ class ServiceCall {
     }
   }
 
+  Future<HttpClientResponse> postMsisdnValidation(
+      String url, String msisdn, String? formData) async {
+    var request = await client.postUrl(Uri.parse(url));
+    request.headers.set('msisdn', msisdn, preserveHeaderCase: true);
+    request = await CustomHeader().settingHeader(url, request);
+    if (formData != null) {
+      request.write(formData);
+    }
+    HttpClientResponse response = await request.close();
+    return response;
+    // final stringData = await response.transform(utf8.decoder).join();
+    // return stringData;
+  }
+
+  post(String url, String? formData) async {
+    var request = await client.postUrl(Uri.parse(url));
+    request = await CustomHeader().settingHeader(url, request);
+    if (formData != null) {
+      request.write(formData);
+    }
+
+    HttpClientResponse response = await request.close();
+  }
+
   Future<Map<String, dynamic>?> get(String url) async {
     try {
       var request = await client.getUrl(Uri.parse(url));

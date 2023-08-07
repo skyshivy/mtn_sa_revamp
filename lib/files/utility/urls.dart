@@ -13,4 +13,5 @@ String searchSpecificToneUrl = '${baseUrl}specific-search-tones?language';
 String searchByTuneIdUrl =
     '${baseUrl}search-tone?language=English&pageNo=0&perPageCount=20&toneId=';
 String getArtistSearchTuneUrl = "${baseUrl}search-tone?language=";
+String subscriberValidationUrl = "${baseUrl}subscriber-validation";
 //https://ringtune.mtn.co.za/apigw/Middleware/api/adapter/v1/crbt/
