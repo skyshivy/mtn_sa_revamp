@@ -4,6 +4,8 @@ const homeStr = "Home";
 const faq = "FAQ";
 const play = "Play";
 const buy = "Buy";
+const enterMobileNumberStr = "Enter Mobile Number";
+const countryCodeStr = "+27";
 const myAccountStr = "My Account";
 const cancelStr = "Cancel";
 const confirmStr = "Confirm";
@@ -37,3 +39,5 @@ const signInToYourAccountStr = "Sign in to your Account";
 const pleaseEnterYourMobileNumberInOrderToAuthenticateStr =
     "Please enter your mobile number in order to Authenticate";
 const requestOTPStr = "Request OTP";
+const signupAgreementStr = "By Signing up you will be agree to our";
+const termsAndPolicyStr = "Terms of use & Privacy Policy";

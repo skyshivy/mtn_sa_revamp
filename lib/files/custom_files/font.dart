@@ -14,6 +14,7 @@ bool isPhone(BuildContext context) {
 
 bool isMobile() {
   double widgt = Get.width;
+  print("Widhth ====== ${widgt}");
   return (widgt > StoreManager().mobileWidth);
   // !(MediaQuery.of(context).size.width > StoreManager().mobileWidth);
 }

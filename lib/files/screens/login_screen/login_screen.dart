@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_msisdn_text_field.dart';
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
@@ -15,12 +16,16 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Material(color: transparent, child: popupContainer()));
+    return Container(
+      color: Colors.black54,
+      child: Center(
+          child: Material(color: Colors.transparent, child: popupContainer())),
+    );
   }
 
   Widget popupContainer() {
     return Container(
-      width: 600,
+      width: 550,
       clipBehavior: Clip.hardEdge,
       decoration:
           BoxDecoration(borderRadius: BorderRadius.circular(6), color: white),
@@ -38,10 +43,12 @@ class LoginScreen extends StatelessWidget {
 
   Widget paddingColumn() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 80),
+      padding: EdgeInsets.symmetric(horizontal: isMobile() ? 0 : 80),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment:
+            isMobile() ? MainAxisAlignment.center : MainAxisAlignment.start,
+        crossAxisAlignment:
+            isMobile() ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: [
           vSpacing(),
           logoImageWidget(),
@@ -50,8 +57,41 @@ class LoginScreen extends StatelessWidget {
           vSpacing(height: 8),
           subTitleWidget(),
           vSpacing(height: 40),
+          const CustomMsisdnTextField(),
           vSpacing(height: 40),
           requestOtpButton(),
+          vSpacing(height: 20),
+          termsAndConditionAgreement(),
+          vSpacing(height: 50),
+        ],
+      ),
+    );
+  }
+
+  Widget termsAndConditionAgreement() {
+    return RichText(
+      text: TextSpan(
+        children: <TextSpan>[
+          TextSpan(
+            text: signupAgreementStr,
+            style: TextStyle(
+                fontFamily: FontName.light.name,
+                fontSize: fontSize(14, 14),
+                color: black),
+          ),
+          TextSpan(
+              onEnter: (event) {
+                print("You just hovered on text");
+              },
+              onExit: (event) {
+                print("You just exit from hovered");
+              },
+              text: termsAndPolicyStr,
+              style: TextStyle(
+                fontFamily: FontName.regular.name,
+                fontSize: fontSize(14, 14),
+                color: yellow,
+              )),
         ],
       ),
     );
@@ -97,6 +137,7 @@ class LoginScreen extends StatelessWidget {
   Widget subTitleWidget() {
     return CustomText(
       title: pleaseEnterYourMobileNumberInOrderToAuthenticateStr,
+      textColor: black,
       fontName: fontName(FontName.regular, FontName.light),
       fontSize: 14,
     );

@@ -15,6 +15,8 @@ class StoreManager {
   bool isEnglish = true;
   String language = "English";
   String msisdn = '';
+  int otpLength = 6;
+  int msisdnLength = 9;
   late SharedPreferences prefs;
   late AppSettingModel appSetting;
 
