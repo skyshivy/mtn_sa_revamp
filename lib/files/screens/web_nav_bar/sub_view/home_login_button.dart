@@ -33,7 +33,7 @@ class HomeLoginButton extends StatelessWidget {
       Get.back();
       return;
     }
-    Get.dialog(LoginScreen());
+    Get.dialog(LoginScreen(), barrierDismissible: false);
     //Get.toNamed(loginTapped);
   }
 

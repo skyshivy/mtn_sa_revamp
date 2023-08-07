@@ -38,11 +38,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black54,
-      child: Center(
-          child: Material(color: Colors.transparent, child: popupContainer())),
-    );
+    return Center(
+        child: Material(color: Colors.transparent, child: popupContainer()));
   }
 
   Widget popupContainer() {
