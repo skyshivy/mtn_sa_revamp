@@ -129,15 +129,30 @@ class _LoginScreenState extends State<LoginScreen> {
     print("On change ======$value");
   }
 
-  void onSubmit(String value) {
+  void onSubmit(String value) async {
     if (controller.isMsisdnVarified.value) {
       controller.otp.value = value;
-      controller.verifyOtpButtonAction();
+      bool isSuccess = await controller.verifyOtpButtonAction();
+      if (isSuccess) {
+        Get.back();
+        await Future.delayed(const Duration(milliseconds: 200));
+        successScreenWidget();
+      }
     } else {
       controller.varifyMsisdnButtonAction();
       controller.msisdn.value = value;
     }
     print("On submitted   ==========$value");
+  }
+
+  void successScreenWidget() {
+    Get.dialog(Center(
+      child: Container(
+        height: 200,
+        width: 300,
+        color: white,
+      ),
+    ));
   }
 
   Widget termsAndConditionAgreement() {

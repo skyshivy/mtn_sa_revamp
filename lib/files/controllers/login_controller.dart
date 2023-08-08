@@ -1,8 +1,13 @@
 import 'dart:convert';
 
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
+import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
+import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 
@@ -37,14 +42,15 @@ class LoginController extends GetxController {
     otp.value = '';
   }
 
-  verifyOtpButtonAction() async {
+  Future<bool> verifyOtpButtonAction() async {
     errorMessage.value = '';
     int len = StoreManager().otpLength;
     if (otp.value.length < (len)) {
       errorMessage.value = enterValidOtpStr;
-      return;
+      return false;
     }
     print("Verify otp tapped");
+    return await _confirmOtpApi();
   }
 
   Future<String> _validationMsisdn() async {
@@ -53,7 +59,7 @@ class LoginController extends GetxController {
     SubscriberValidationModel model =
         SubscriberValidationModel.fromJson(valueMap);
     if (model.responseMap?.respCode == 'SC0000') {
-      await generateOtp();
+      await _generateOtp();
       print("Existing user******");
     } else if (model.responseMap?.respCode == '100') {
       isMsisdnVarified.value = true;
@@ -68,9 +74,22 @@ class LoginController extends GetxController {
     return "";
   }
 
-  generateOtp() async {
+  Future<void> _generateOtp() async {
+    GenerateOtpModel result = await LoginVm().generateOtp(msisdn.value);
     isMsisdnVarified.value = true;
-    await LoginVm().generateOtp(msisdn.value);
     print("Generate otp api call here");
+  }
+
+  Future<bool> _confirmOtpApi() async {
+    print("Resu =Sky========");
+    isVerifying.value = true;
+    ConfirmOtpModel model = await LoginVm().confirmOtp(msisdn.value, otp.value);
+    isVerifying.value = false;
+    if (model.statusCode == "SC0000") {
+      return true;
+    } else {
+      errorMessage.value = model.message ?? '';
+      return false;
+    }
   }
 }

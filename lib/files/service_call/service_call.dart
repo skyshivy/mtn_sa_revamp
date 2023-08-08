@@ -59,14 +59,14 @@ class ServiceCall {
     print(stringData);
   }
 
-  post(String url, String? formData) async {
+  Future<HttpClientResponse> post(String url, String? formData) async {
     var request = await client.postUrl(Uri.parse(url));
     request = await CustomHeader().settingHeader(url, request);
     if (formData != null) {
       request.write(formData);
     }
-
     HttpClientResponse response = await request.close();
+    return response;
   }
 
   Future<Map<String, dynamic>?> get(String url) async {

@@ -15,4 +15,5 @@ String searchByTuneIdUrl =
 String getArtistSearchTuneUrl = "${baseUrl}search-tone?language=";
 String subscriberValidationUrl = "${baseUrl}subscriber-validation";
 String generateOtpUrl = "${baseUrl}generate-otp";
+String confirmOtpUrl = "${baseUrl}confirm-otp";
 //https://ringtune.mtn.co.za/apigw/Middleware/api/adapter/v1/crbt/

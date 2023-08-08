@@ -5,6 +5,7 @@ const faq = "FAQ";
 const play = "Play";
 const buy = "Buy";
 const verifyOTPStr = "Verify OTP";
+const someThingWentWrongStr = "Some thing went wrong";
 const enterValidMsisdnStr = "Please enter a valid msisdn.";
 const enterValidOtpStr = "Please enter a valid OTP.";
 
