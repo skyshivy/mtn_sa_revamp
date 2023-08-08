@@ -13,6 +13,7 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   RxBool isVerifying = false.obs;
@@ -139,11 +140,36 @@ class LoginController extends GetxController {
     print("resp code is ${resut.statusCode}");
     if (resut.statusCode == 200) {
       Map<String, dynamic> valueMap = json.decode(stringData);
+      await saveCredentialHere(valueMap);
       print("save credential here ===================================");
       return true;
     } else {
       errorMessage.value = someThingWentWrongStr;
       return false;
     }
+  }
+
+  saveCredentialHere(Map<String, dynamic> valueMap) async {
+    var respMap = valueMap['responseMap'];
+    final prefs = await SharedPreferences.getInstance();
+
+    var loginSessionTimeStr = DateTime.now().toString();
+    prefs.setString('loginSessionTime', loginSessionTimeStr);
+    prefs.setString('respDesc', respMap['respDesc']);
+    prefs.setString('srvType', respMap['srvType']);
+    prefs.setString('userIdEnc', respMap['userIdEnc']);
+    prefs.setString('userName', respMap['userName']);
+    prefs.setString('accessToken', respMap['accessToken']);
+    prefs.setString('userId', respMap['userId']);
+    prefs.setString('deviceId', respMap['deviceId']);
+    prefs.setString('clientTxnId', respMap['clientTxnId']);
+    prefs.setInt('expiry', respMap['expiry']);
+    prefs.setString('msisdn', respMap['msisdn']);
+    prefs.setString('txnId', respMap['txnId']);
+    prefs.setString('refreshToken', respMap['refreshToken']);
+    prefs.setBool('isLoggedIn', true);
+    StoreManager().isLoggedIn = true;
+    print("\nGoing to Store Credentials \n");
+    await StoreManager().initStoreManager();
   }
 }

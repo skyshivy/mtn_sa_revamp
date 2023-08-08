@@ -16,6 +16,7 @@ class StoreManager {
   String language = "English";
   String languageCode = "1";
   String msisdn = '';
+  bool isLoggedIn = false;
   int otpLength = 6;
   int msisdnLength = 9;
   int timeOutDuration = 15;
@@ -32,13 +33,3 @@ class StoreManager {
 
   resetData() async {}
 }
-
-// class StoreManager {
-//   static final StoreManager _instance = StoreManager._internal();
-
-//   StoreManager._internal() {
-//     print("initiali stro manager");
-//   }
-//   late SharedPreferences prefs;
-//   late AppSettingModel appSettingModel;
-// }
