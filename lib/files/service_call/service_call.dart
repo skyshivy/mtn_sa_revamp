@@ -13,7 +13,9 @@ class ServiceCall {
 
   getSetting(String url) async {
     try {
-      var request = await client.getUrl(Uri.parse(url));
+      var request = await client
+          .getUrl(Uri.parse(url))
+          .timeout(Duration(seconds: StoreManager().timeOutDuration));
       HttpClientResponse response1 = await request.close();
       final stringData = await response1.transform(utf8.decoder).join();
       print("Url is $url");
@@ -32,7 +34,9 @@ class ServiceCall {
 
   Future<HttpClientResponse> postMsisdnValidation(
       String url, String msisdn, String? formData) async {
-    var request = await client.postUrl(Uri.parse(url));
+    var request = await client
+        .postUrl(Uri.parse(url))
+        .timeout(Duration(seconds: StoreManager().timeOutDuration));
     request.headers.set('msisdn', msisdn, preserveHeaderCase: true);
     request = await CustomHeader().settingHeader(url, request);
     if (formData != null) {
@@ -45,7 +49,9 @@ class ServiceCall {
   }
 
   Future<String> genOtp(String url, String msisdn) async {
-    var request = await client.getUrl(Uri.parse(url));
+    var request = await client
+        .getUrl(Uri.parse(url))
+        .timeout(Duration(seconds: StoreManager().timeOutDuration));
     request.headers.set('os', os, preserveHeaderCase: true);
     request.headers
         .set('language', StoreManager().language, preserveHeaderCase: true);
@@ -60,7 +66,9 @@ class ServiceCall {
   }
 
   Future<HttpClientResponse> post(String url, String? formData) async {
-    var request = await client.postUrl(Uri.parse(url));
+    var request = await client
+        .postUrl(Uri.parse(url))
+        .timeout(Duration(seconds: StoreManager().timeOutDuration));
     request = await CustomHeader().settingHeader(url, request);
     if (formData != null) {
       request.write(formData);
@@ -71,7 +79,9 @@ class ServiceCall {
 
   Future<Map<String, dynamic>?> get(String url) async {
     try {
-      var request = await client.getUrl(Uri.parse(url));
+      var request = await client
+          .getUrl(Uri.parse(url))
+          .timeout(Duration(seconds: StoreManager().timeOutDuration));
       request = await CustomHeader().settingHeader(url, request);
       HttpClientResponse response1 = await request.close();
       final stringData = await response1.transform(utf8.decoder).join();

@@ -17,6 +17,7 @@ class StoreManager {
   String msisdn = '';
   int otpLength = 6;
   int msisdnLength = 9;
+  int timeOutDuration = 15;
   late SharedPreferences prefs;
   late AppSettingModel appSetting;
 

@@ -17,7 +17,7 @@ void main() async {
   await getJson();
   AppController controller = Get.put(AppController());
   SearchTuneController _ = Get.put(SearchTuneController());
-  await controller.settinApiCall();
+  controller.settinApiCall();
   runApp(const MyApp());
 }
 

@@ -1,12 +1,11 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_msisdn_text_field.dart';
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
@@ -136,23 +135,17 @@ class _LoginScreenState extends State<LoginScreen> {
       if (isSuccess) {
         Get.back();
         await Future.delayed(const Duration(milliseconds: 200));
-        successScreenWidget();
+        Get.dialog(
+          const Center(
+            child: CustomAlertView(title: successFullyLoggedInStr),
+          ),
+        );
       }
     } else {
       controller.varifyMsisdnButtonAction();
       controller.msisdn.value = value;
     }
     print("On submitted   ==========$value");
-  }
-
-  void successScreenWidget() {
-    Get.dialog(Center(
-      child: Container(
-        height: 200,
-        width: 300,
-        color: white,
-      ),
-    ));
   }
 
   Widget termsAndConditionAgreement() {
