@@ -16,6 +16,11 @@ class StoreManager {
   String language = "English";
   String languageCode = "1";
   String msisdn = '';
+  String accessToken = '';
+  String deviceId = '';
+  String expiry = '';
+  String refreshToken = '';
+
   bool isLoggedIn = false;
   int otpLength = 6;
   int msisdnLength = 9;
@@ -25,6 +30,12 @@ class StoreManager {
 
   initStoreManager() async {
     prefs = await SharedPreferences.getInstance();
+    isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
+    accessToken = prefs.getString("accessToken") ?? '';
+    deviceId = prefs.getString("deviceId") ?? '';
+    expiry = prefs.getString("expiry") ?? '';
+    msisdn = prefs.getString("msisdn") ?? '';
+    refreshToken = prefs.getString("refreshToken") ?? '';
   }
 
   storeAppSettingModel(AppSettingModel settingModel) async {
