@@ -22,7 +22,7 @@ class CustomHeader {
     request.headers.set('appId', appId, preserveHeaderCase: true);
     request.headers.set('os', os, preserveHeaderCase: true);
     request.headers.set('Accept', 'application/json', preserveHeaderCase: true);
-    request.headers.set('languageId', StoreManager().isEnglish ? '1' : '2',
+    request.headers.set('languageId', StoreManager().languageCode,
         preserveHeaderCase: true);
 
     return request;

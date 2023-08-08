@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:mtn_sa_revamp/files/custom_files/encryption.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
+import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -78,5 +80,45 @@ class LoginVm {
     //   return ConfirmOtpModel(
     //       message: someThingWentWrongStr, statusCode: "FL0000");
     // }
+  }
+
+  Future<GetSecurityTokenModel?> securityTokenApi() async {
+    String ur = getSecurityTokenUrl;
+    Map<String, dynamic>? result = await ServiceCall().get(ur);
+    if (result != null) {
+      GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(result);
+      return model;
+    }
+    return null;
+  }
+
+  Future<HttpClientResponse> passwordValidation(
+      String securityCounter, String msisdn) async {
+    Random random = Random();
+    int randomNumber = random.nextInt(1000000000);
+    String url = passwordValidationUrl;
+    var pass = 'Oem@L#@1';
+    var password = "$pass$securityCounter";
+    print("password is here " + password);
+    String encryptedPassword = Cryptom().text(password);
+    print("encryptedPassword ==========================${encryptedPassword}");
+
+    var myPost = {
+      'type': 'ValidateDetails',
+      'msisdn': msisdn,
+      'languageId': StoreManager().languageCode,
+      'clientTxnId': '$randomNumber',
+      'securityCounter': securityCounter,
+      'encryptedPassword': encryptedPassword,
+      'versionCode': '1.2'
+    };
+    var parts = [];
+    myPost.forEach((key, value) {
+      parts.add('${Uri.encodeQueryComponent(key)}='
+          '${Uri.encodeQueryComponent(value)}');
+    });
+    var formData = parts.join('&');
+    HttpClientResponse re = await ServiceCall().post(url, formData);
+    return re;
   }
 }

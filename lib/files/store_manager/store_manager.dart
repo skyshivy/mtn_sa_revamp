@@ -14,6 +14,7 @@ class StoreManager {
   double mobileWidth = 500;
   bool isEnglish = true;
   String language = "English";
+  String languageCode = "1";
   String msisdn = '';
   int otpLength = 6;
   int msisdnLength = 9;

@@ -131,16 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void onSubmit(String value) async {
     if (controller.isMsisdnVarified.value) {
       controller.otp.value = value;
-      bool isSuccess = await controller.verifyOtpButtonAction();
-      if (isSuccess) {
-        Get.back();
-        await Future.delayed(const Duration(milliseconds: 200));
-        Get.dialog(
-          const Center(
-            child: CustomAlertView(title: successFullyLoggedInStr),
-          ),
-        );
-      }
+      controller.verifyOtpButtonAction();
     } else {
       controller.varifyMsisdnButtonAction();
       controller.msisdn.value = value;
@@ -263,9 +254,19 @@ class _LoginScreenState extends State<LoginScreen> {
           : SizedBox(
               width: 250,
               child: CustomButton(
-                onTap: () {
+                onTap: () async {
                   if (controller.isMsisdnVarified.value) {
-                    controller.verifyOtpButtonAction();
+                    bool isSuccess = await controller.verifyOtpButtonAction();
+                    if (isSuccess) {
+                      Get.back();
+                      await Future.delayed(const Duration(milliseconds: 200));
+                      Get.dialog(
+                        const Center(
+                          child:
+                              CustomAlertView(title: successFullyLoggedInStr),
+                        ),
+                      );
+                    }
                   } else {
                     controller.varifyMsisdnButtonAction();
                   }
@@ -280,5 +281,25 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             );
     });
+  }
+
+  Future<void> onReqOtpAction() async {
+    {
+      if (controller.isMsisdnVarified.value) {
+        controller.verifyOtpButtonAction();
+        bool isSuccess = await controller.verifyOtpButtonAction();
+        if (isSuccess) {
+          Get.back();
+          await Future.delayed(const Duration(milliseconds: 200));
+          Get.dialog(
+            const Center(
+              child: CustomAlertView(title: successFullyLoggedInStr),
+            ),
+          );
+        }
+      } else {
+        controller.varifyMsisdnButtonAction();
+      }
+    }
   }
 }

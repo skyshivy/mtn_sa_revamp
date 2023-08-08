@@ -1,20 +1,24 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
+import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 
 class LoginController extends GetxController {
   RxBool isVerifying = false.obs;
   RxBool isMsisdnVarified = false.obs;
   RxString msisdn = ''.obs;
+  String securityToken = '';
   RxString errorMessage = ''.obs;
   RxString otp = ''.obs;
   varifyMsisdnButtonAction() async {
@@ -49,8 +53,15 @@ class LoginController extends GetxController {
       errorMessage.value = enterValidOtpStr;
       return false;
     }
-    print("Verify otp tapped");
-    return await _confirmOtpApi();
+
+    var isConfirmed = await _confirmOtpApi();
+    if (isConfirmed) {
+      bool isGotSecurityToekn = await _securityToken();
+      if (isGotSecurityToekn) {
+        return await _passwordValidationToken();
+      }
+    }
+    return false;
   }
 
   Future<String> _validationMsisdn() async {
@@ -75,8 +86,16 @@ class LoginController extends GetxController {
   }
 
   Future<void> _generateOtp() async {
+    isVerifying.value = true;
     GenerateOtpModel result = await LoginVm().generateOtp(msisdn.value);
-    isMsisdnVarified.value = true;
+    isVerifying.value = false;
+    if (result.statusCode == "SC0000") {
+      isMsisdnVarified.value = true;
+    } else {
+      errorMessage.value = result.message;
+      isMsisdnVarified.value = false;
+    }
+
     print("Generate otp api call here");
   }
 
@@ -89,6 +108,41 @@ class LoginController extends GetxController {
       return true;
     } else {
       errorMessage.value = model.message ?? '';
+      return false;
+    }
+  }
+
+  Future<bool> _securityToken() async {
+    isVerifying.value = true;
+    GetSecurityTokenModel? res = await LoginVm().securityTokenApi();
+    isVerifying.value = false;
+    if (res != null) {
+      if (res.statusCode == "SC0000") {
+        securityToken = res.responseMap.securityCounter;
+        return true;
+      } else {
+        errorMessage.value = res.statusCode;
+        return false;
+      }
+    }
+    errorMessage.value = someThingWentWrongStr;
+    return false;
+  }
+
+  Future<bool> _passwordValidationToken() async {
+    isVerifying.value = true;
+    HttpClientResponse resut =
+        await LoginVm().passwordValidation(securityToken, msisdn.value);
+    isVerifying.value = false;
+    final stringData = await resut.transform(utf8.decoder).join();
+    print(stringData);
+    print("resp code is ${resut.statusCode}");
+    if (resut.statusCode == 200) {
+      Map<String, dynamic> valueMap = json.decode(stringData);
+      print("save credential here ===================================");
+      return true;
+    } else {
+      errorMessage.value = someThingWentWrongStr;
       return false;
     }
   }
