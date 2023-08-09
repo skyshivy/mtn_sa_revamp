@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/screens/category_screen/category_popup_view.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
@@ -16,7 +18,11 @@ class HomeMyTuneButton extends StatelessWidget {
       fontName: FontName.bold,
       fontSize: 16,
       onTap: () {
-        controller.loadPage(1);
+        if (Get.isDialogOpen ?? false) {
+          Get.back();
+          return;
+        }
+        Get.dialog(CategoryPopupView());
         print("On tap HomeMyTuneButton");
       },
     );

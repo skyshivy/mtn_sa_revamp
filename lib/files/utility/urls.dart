@@ -1,3 +1,5 @@
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+
 String versionCode = '7.0';
 String appVersion = '1.0.6';
 String appId = 'com.sixdee.oml_rbt_portal'; //"com.sixdee.mtnza_rbt_portal";
@@ -18,4 +20,6 @@ String generateOtpUrl = "${baseUrl}generate-otp";
 String confirmOtpUrl = "${baseUrl}confirm-otp";
 String getSecurityTokenUrl = "${baseUrl}security-token";
 String passwordValidationUrl = "${baseUrl}password-validation";
+String categoryListUrl =
+    "${baseUrl}categories?language=${StoreManager().language}";
 //https://ringtune.mtn.co.za/apigw/Middleware/api/adapter/v1/crbt/

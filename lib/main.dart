@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
@@ -16,8 +17,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await getJson();
   AppController controller = Get.put(AppController());
+  CategoryPoupupController catCont = Get.put(CategoryPoupupController());
   SearchTuneController _ = Get.put(SearchTuneController());
-  controller.settinApiCall();
+  await controller.settinApiCall();
   runApp(const MyApp());
 }
 
