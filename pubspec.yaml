@@ -41,7 +41,7 @@ dependencies:
   universal_io: ^2.0.4
   rsa_encrypt: ^2.0.0
   basic_utils: ^4.4.3
-  
+  responsive_builder: ^0.7.0
   carousel_slider: ^4.0.0
   cupertino_icons: ^1.0.2
   dropdown_button2: ^2.3.6
