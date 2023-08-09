@@ -5,6 +5,7 @@ String appVersion = '1.0.6';
 String appId = 'com.sixdee.oml_rbt_portal'; //"com.sixdee.mtnza_rbt_portal";
 String os = "ios";
 
+int perPageCount = 20;
 String baseUrl = "";
 String baseUrlSecurity = '';
 String faqUrl = '';
@@ -22,4 +23,6 @@ String getSecurityTokenUrl = "${baseUrl}security-token";
 String passwordValidationUrl = "${baseUrl}password-validation";
 String categoryListUrl =
     "${baseUrl}categories?language=${StoreManager().language}";
+String getCategoryDetailUrl =
+    "${baseUrl}search-tone?language=${StoreManager().language}";
 //https://ringtune.mtn.co.za/apigw/Middleware/api/adapter/v1/crbt/

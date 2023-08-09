@@ -12,6 +12,7 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class HomeMyTuneButton extends StatelessWidget {
   WebTabController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return CustomButton(
@@ -26,8 +27,11 @@ class HomeMyTuneButton extends StatelessWidget {
         }
         Get.dialog(CategoryPopupView(
           onTap: (AppCategory category) {
-            Get.toNamed(tuneCatTapped,
-                parameters: {"categoryName": category.categoryName ?? ''});
+            Get.back();
+            Get.toNamed(tuneCatTapped, parameters: {
+              "categoryName": category.categoryName ?? '',
+              "categoryId": category.categoryId ?? ''
+            });
             print("On tap HomeMyTuneButton ${category.categoryName}");
           },
         ));

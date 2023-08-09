@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/model/search_tune_model.dart';
+import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/route_name.dart';
@@ -28,16 +29,13 @@ List<GetPage<dynamic>> get routesDirection {
       },
     ),
     GetPage(
-      transitionDuration: Duration(milliseconds: 1),
+      transitionDuration: const Duration(milliseconds: 1),
       name: tuneCatTapped,
       page: () {
         String categoryName = Get.parameters['categoryName'] ?? '';
-
+        String categoryId = Get.parameters['categoryId'] ?? '';
         return Material(
-          child: Container(
-            child: CustomText(title: categoryName),
-          ),
-        );
+            child: CategoryScreen(category: categoryName, id: categoryId));
       },
     ),
     GetPage(
