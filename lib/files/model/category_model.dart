@@ -40,7 +40,7 @@ class CategoryModel {
 }
 
 class ResponseMap {
-  List<Category>? categories;
+  List<AppCategory>? categories;
 
   ResponseMap({
     this.categories,
@@ -49,8 +49,8 @@ class ResponseMap {
   factory ResponseMap.fromJson(Map<String, dynamic> json) => ResponseMap(
         categories: json["categories"] == null
             ? []
-            : List<Category>.from(
-                json["categories"]!.map((x) => Category.fromJson(x))),
+            : List<AppCategory>.from(
+                json["categories"]!.map((x) => AppCategory.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -60,20 +60,20 @@ class ResponseMap {
       };
 }
 
-class Category {
+class AppCategory {
   String? categoryId;
   String? categoryName;
   String? menuImagePath;
   String? language;
 
-  Category({
+  AppCategory({
     this.categoryId,
     this.categoryName,
     this.menuImagePath,
     this.language,
   });
 
-  factory Category.fromJson(Map<String, dynamic> json) => Category(
+  factory AppCategory.fromJson(Map<String, dynamic> json) => AppCategory(
         categoryId: json["categoryId"],
         categoryName: json["categoryName"],
         menuImagePath: json["menuImagePath"],

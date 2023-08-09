@@ -29,6 +29,19 @@ List<GetPage<dynamic>> get routesDirection {
     ),
     GetPage(
       transitionDuration: Duration(milliseconds: 1),
+      name: tuneCatTapped,
+      page: () {
+        String categoryName = Get.parameters['categoryName'] ?? '';
+
+        return Material(
+          child: Container(
+            child: CustomText(title: categoryName),
+          ),
+        );
+      },
+    ),
+    GetPage(
+      transitionDuration: Duration(milliseconds: 1),
       name: loginTapped,
       page: () => Container(
         color: white,

@@ -4,7 +4,9 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_popup_view.dart';
+import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
@@ -22,7 +24,13 @@ class HomeMyTuneButton extends StatelessWidget {
           Get.back();
           return;
         }
-        Get.dialog(CategoryPopupView());
+        Get.dialog(CategoryPopupView(
+          onTap: (AppCategory category) {
+            Get.toNamed(tuneCatTapped,
+                parameters: {"categoryName": category.categoryName ?? ''});
+            print("On tap HomeMyTuneButton ${category.categoryName}");
+          },
+        ));
         print("On tap HomeMyTuneButton");
       },
     );

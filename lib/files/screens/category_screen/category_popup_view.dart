@@ -1,17 +1,20 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/gredient.dart';
 
 class CategoryPopupView extends StatelessWidget {
-  CategoryPopupView({super.key});
+  final Function(AppCategory)? onTap;
+  CategoryPopupView({super.key, this.onTap});
 
   CategoryPoupupController controller = Get.find();
 
@@ -44,14 +47,19 @@ class CategoryPopupView extends StatelessWidget {
     });
   }
 
-  Padding categoryCell(int index) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        width: 170,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(6),
-          child: cellStack(index),
+  Widget categoryCell(int index) {
+    return InkWell(
+      onTap: () {
+        onTap!(controller.catList[index]);
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
+          width: 170,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: cellStack(index),
+          ),
         ),
       ),
     );
