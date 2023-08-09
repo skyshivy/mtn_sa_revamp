@@ -1,3 +1,5 @@
+import 'package:get/instance_manager.dart';
+import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,6 +13,7 @@ class StoreManager {
   factory StoreManager() {
     return _instance;
   }
+  AppController appController = Get.find();
   double mobileWidth = 500;
   bool isEnglish = true;
   String language = "English";
@@ -18,7 +21,7 @@ class StoreManager {
   String msisdn = '';
   String accessToken = '';
   String deviceId = '';
-  String expiry = '';
+
   String refreshToken = '';
 
   bool isLoggedIn = false;
@@ -33,9 +36,10 @@ class StoreManager {
     isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
     accessToken = prefs.getString("accessToken") ?? '';
     deviceId = prefs.getString("deviceId") ?? '';
-    expiry = prefs.getString("expiry") ?? '';
+
     msisdn = prefs.getString("msisdn") ?? '';
     refreshToken = prefs.getString("refreshToken") ?? '';
+    appController.isLoggedIn.value = isLoggedIn;
   }
 
   storeAppSettingModel(AppSettingModel settingModel) async {

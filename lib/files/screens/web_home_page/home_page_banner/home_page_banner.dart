@@ -84,7 +84,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
             Container(
               color: white,
               child: FadeInImage.assetNetwork(
-                placeholder: 'images/placeholderImage.png',
+                placeholder: placeholderImage,
                 image: banner.bannerPath ?? logoBigImg,
                 fit: BoxFit.fill,
                 height: double.infinity,

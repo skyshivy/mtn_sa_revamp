@@ -163,7 +163,7 @@ class LoginController extends GetxController {
     prefs.setString('userId', respMap['userId']);
     prefs.setString('deviceId', respMap['deviceId']);
     prefs.setString('clientTxnId', respMap['clientTxnId']);
-    prefs.setInt('expiry', respMap['expiry']);
+    //prefs.setInt('expiry', respMap['expiry']);
     prefs.setString('msisdn', respMap['msisdn']);
     prefs.setString('txnId', respMap['txnId']);
     prefs.setString('refreshToken', respMap['refreshToken']);

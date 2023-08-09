@@ -16,7 +16,7 @@ class CustomImage extends StatelessWidget {
           fit: BoxFit.cover,
           height: size.height,
           width: size.width,
-          imageUrl: url ?? "https://picsum.photos/id/6${index * 9}/400/500",
+          imageUrl: url ?? "https://picsum.photos/id/1${index}/400/500",
           placeholder: (context, url) =>
               const Center(child: CircularProgressIndicator()),
           errorWidget: (context, url, error) => const Icon(Icons.error),

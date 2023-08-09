@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -12,8 +13,10 @@ import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_co
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await getJson();
   AppController controller = Get.put(AppController());
+  StoreManager().initStoreManager();
   CategoryPoupupController catCont = Get.put(CategoryPoupupController());
   SearchTuneController _ = Get.put(SearchTuneController());
   await controller.settinApiCall();

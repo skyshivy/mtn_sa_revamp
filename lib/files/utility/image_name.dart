@@ -10,3 +10,4 @@ const facebookImg = 'assets/pngs/facebook.png';
 const instagramImg = 'assets/pngs/instagram.png';
 const twitterImg = 'assets/pngs/twitter.png';
 const linkedInImg = 'assets/pngs/linkedIn.png';
+const placeholderImage = 'assets/pngs/placeholderImage.png';

@@ -12,14 +12,24 @@ class CategoryController extends GetxController {
   RxBool isHideLoadMore = true.obs;
   RxList<TuneInfo> searchList = <TuneInfo>[].obs;
 
+  resetValue() async {
+    key = '';
+    id = '';
+    isLoadMore.value = false;
+    isHideLoadMore.value = true;
+    isLoading.value = false;
+    searchList.value = [];
+  }
+
   getCategroyDetail(String searchKey, String catId,
       {int page = 0, bool isLoadMoreData = false}) async {
     key = searchKey;
     id = catId;
     if (!isLoadMoreData) {
       isLoading.value = true;
+    } else {
+      isLoadMore.value = true;
     }
-    isLoadMore.value = true;
 
     var url =
         "$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=English&perPageCount=$perPageCount";

@@ -23,25 +23,38 @@ class _CategoryScreenState extends State<CategoryScreen> {
   CategoryController controller = Get.put(CategoryController());
   @override
   void initState() {
-    controller.getCategroyDetail(widget.category, widget.id);
-    print("on init state");
     super.initState();
+
+    getCatList();
+    print("on init state");
+  }
+
+  getCatList() async {
+    await Future.delayed(Duration(milliseconds: 100));
+    controller.resetValue();
+    await Future.delayed(Duration(milliseconds: 100));
+
+    controller.getCategroyDetail(widget.category, widget.id);
   }
 
   @override
   void dispose() {
+    print("Disposed _CategoryScreenState");
     Get.delete<CategoryController>();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomTopHeaderView(title: widget.category),
-        Expanded(child: gridView()),
-        loadMoreActivity()
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        children: [
+          CustomTopHeaderView(title: widget.category),
+          Expanded(child: gridView()),
+          loadMoreActivity()
+        ],
+      ),
     );
   }
 
