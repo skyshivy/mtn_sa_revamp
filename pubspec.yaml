@@ -46,6 +46,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dropdown_button2: ^2.3.6
   url_strategy: ^0.2.0
+  custom_pop_up_menu: ^1.2.4
   shared_preferences: ^2.2.0
   cached_network_image: ^3.2.3
 
