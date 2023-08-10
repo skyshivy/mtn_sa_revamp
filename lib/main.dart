@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -44,12 +46,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      builder: (context, child) {
-        return Material(child: navBar(context));
-        //Material(
-        //child: LoginScreen(),
-        //); //Material(child: navBar(context));
-      },
+      home: Material(child: navBar(context)),
+      // builder: (context, child) {
+      //   return Material(child: navBar(context));
+      //   //Material(
+      //   //child: LoginScreen(),
+      //   //); //Material(child: navBar(context));
+      // },
     );
   }
 

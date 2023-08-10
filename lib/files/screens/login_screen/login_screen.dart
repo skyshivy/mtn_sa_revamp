@@ -182,7 +182,9 @@ class _LoginScreenState extends State<LoginScreen> {
           child: CustomButton(
             leftWidget: const Icon(Icons.close),
             onTap: () {
+              print("CLose button tapped");
               Get.back();
+              Navigator.of(context).pop();
             },
           ),
         ),

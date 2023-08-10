@@ -20,7 +20,7 @@ class WebTabView extends StatelessWidget {
         initialRoute: "/",
         getPages: routesDirection,
         onGenerateRoute: (settings) {
-          print("Setting  ${settings.name}");
+          print("onGenerateRoute  ${settings.name}");
         },
         home: Material(child: indexed(tabController.index.value)),
       );
