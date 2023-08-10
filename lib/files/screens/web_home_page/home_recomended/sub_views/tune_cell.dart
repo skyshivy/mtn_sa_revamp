@@ -91,18 +91,17 @@ class HomeTuneCell extends StatelessWidget {
     );
   }
 
-  CustomButton moreButton() {
-    return CustomButton(
-      height: 30,
-      width: 30,
-      color: Colors.white38,
-      leftWidget: const Icon(
-        Icons.more_horiz,
-        color: white,
+  Widget moreButton() {
+    return MoreButton(
+      icon: CustomButton(
+        height: 30,
+        width: 30,
+        color: Colors.white38,
+        leftWidget: Icon(
+          Icons.more_horiz,
+          color: white,
+        ),
       ),
-      onTap: () {
-        print("moreButton tapped");
-      },
     );
   }
 

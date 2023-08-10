@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_popup_widget.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:popover/popover.dart';
 
@@ -19,4 +18,26 @@ showPopover1(BuildContext context) {
           width: 200,
         );
       });
+}
+
+class MoreButton extends StatelessWidget {
+  final Widget icon;
+
+  const MoreButton({super.key, required this.icon});
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton(
+      offset: const Offset(0, 50),
+      initialValue: 0,
+      child: icon,
+      itemBuilder: (context) {
+        return List.generate(3, (index) {
+          return PopupMenuItem(
+            value: index,
+            child: Text(' no $index'),
+          );
+        });
+      },
+    );
+  }
 }
