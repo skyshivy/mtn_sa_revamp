@@ -118,5 +118,6 @@ Widget cellImage(MenuModel menu) {
           child: Image.asset(
             menu.imageName ?? '',
             color: black,
-          ));
+          ),
+        );
 }

@@ -3,25 +3,28 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/model/search_tune_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/profile_screen/profile_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/home_banner_detail_page.dart';
+import 'package:mtn_sa_revamp/files/screens/wishlist_screen/wishlsit_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 
 List<GetPage<dynamic>> get routesDirection {
+  Duration dur = const Duration(milliseconds: 1);
   return [
     GetPage(
-        transitionDuration: Duration(milliseconds: 1),
+        transitionDuration: dur,
         name: '/',
         page: () => Container(
               color: red,
             )),
     GetPage(
-      transitionDuration: Duration(milliseconds: 1),
+      transitionDuration: dur,
       name: artistTuneRoute,
       page: () {
         String artist = Get.parameters['artist'] ?? '';
-
         return Material(
           child: ArtistTuneScreen(
             artistName: artist,
@@ -30,7 +33,28 @@ List<GetPage<dynamic>> get routesDirection {
       },
     ),
     GetPage(
-      transitionDuration: const Duration(milliseconds: 1),
+      transitionDuration: dur,
+      name: profileTapped,
+      page: () {
+        return Material(child: ProfileScreen());
+      },
+    ),
+    GetPage(
+      transitionDuration: dur,
+      name: wishlistTapped,
+      page: () {
+        return Material(child: WishlistScreen());
+      },
+    ),
+    GetPage(
+      transitionDuration: dur,
+      name: myTuneTapped,
+      page: () {
+        return Material(child: MyTuneScreen());
+      },
+    ),
+    GetPage(
+      transitionDuration: dur,
       name: tuneCatTapped,
       page: () {
         String categoryName = Get.parameters['categoryName'] ?? '';
@@ -40,7 +64,7 @@ List<GetPage<dynamic>> get routesDirection {
       },
     ),
     GetPage(
-      transitionDuration: const Duration(milliseconds: 1),
+      transitionDuration: dur,
       name: bannerTapped,
       page: () {
         String searchKey = Get.parameters['searchKey'] ?? '';
@@ -52,7 +76,7 @@ List<GetPage<dynamic>> get routesDirection {
       },
     ),
     GetPage(
-      transitionDuration: Duration(milliseconds: 1),
+      transitionDuration: dur,
       name: loginTapped,
       page: () => Container(
         color: white,
