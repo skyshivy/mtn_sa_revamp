@@ -1,6 +1,6 @@
 {
-    "BASE_URL":"https://ringtune.mtn.co.za/apigw/Middleware/api/adapter/v1/crbt/",
-    "BASE_URL_SECURITY":"https://ringtune.mtn.co.za/security/Middleware/api/adapter/v1/crbt/",
+    "BASE_URL":"https://funtone.ooredoo.com.mm/apigw/Middleware/api/adapter/v1/crbt/",
+    "BASE_URL_SECURITY":"https://funtone.ooredoo.com.mm/security/Middleware/api/adapter/v1/crbt/",
     "FAQ_URL":"https://ringtune.mtn.co.za/callertunez/assets/FAQ.json"
 }
 

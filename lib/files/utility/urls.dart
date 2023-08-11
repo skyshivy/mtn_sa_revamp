@@ -2,7 +2,7 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 
 String versionCode = '7.0';
 String appVersion = '1.0.6';
-String appId = 'com.sixdee.oml_rbt_portal'; //"com.sixdee.mtnza_rbt_portal";
+String appId = "com.sixdee.oml_rbt_portal"; //'com.sixdee.oml_rbt_portal'; //
 String os = "ios";
 
 int perPageCount = 20;
