@@ -22,6 +22,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late BuildContext context;
   late LoginController controller;
   @override
   void initState() {
@@ -37,6 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    this.context = context;
     return Center(
         child: Material(color: Colors.transparent, child: popupContainer()));
   }
@@ -261,9 +263,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     bool isSuccess = await controller.verifyOtpButtonAction();
                     if (isSuccess) {
                       Get.back();
+                      Navigator.pop(context);
                       await Future.delayed(const Duration(milliseconds: 200));
                       Get.dialog(
-                        const Center(
+                        Center(
                           child:
                               CustomAlertView(title: successFullyLoggedInStr),
                         ),
@@ -292,9 +295,10 @@ class _LoginScreenState extends State<LoginScreen> {
         bool isSuccess = await controller.verifyOtpButtonAction();
         if (isSuccess) {
           Get.back();
+          Navigator.of(context);
           await Future.delayed(const Duration(milliseconds: 200));
           Get.dialog(
-            const Center(
+            Center(
               child: CustomAlertView(title: successFullyLoggedInStr),
             ),
           );

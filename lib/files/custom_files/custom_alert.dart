@@ -12,15 +12,17 @@ class CustomAlertView extends StatelessWidget {
   final String btnName;
   final Function()? onConfirm;
   final Color color;
-  const CustomAlertView({
+  CustomAlertView({
     super.key,
     this.onConfirm,
     this.color = white,
     required this.title,
     this.btnName = okStr,
   });
+  late BuildContext context;
   @override
   Widget build(BuildContext context) {
+    this.context = context;
     return Material(
       color: transparent,
       child: mainContainer(),
@@ -59,6 +61,8 @@ class CustomAlertView extends StatelessWidget {
             fontName: FontName.medium,
             onTap: () {
               Get.back();
+
+              Navigator.pop(context);
               onConfirm!();
             })
       ],
