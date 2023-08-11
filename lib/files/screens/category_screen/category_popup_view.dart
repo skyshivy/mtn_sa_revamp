@@ -21,7 +21,10 @@ class CategoryPopupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 100),
         Material(
           child: Container(
             height: 200,

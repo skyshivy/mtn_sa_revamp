@@ -32,6 +32,7 @@ class HomeMyTuneButton extends StatelessWidget {
               "categoryName": category.categoryName ?? '',
               "categoryId": category.categoryId ?? ''
             });
+            Navigator.pop(context);
             print("On tap HomeMyTuneButton ${category.categoryName}");
           },
         ));

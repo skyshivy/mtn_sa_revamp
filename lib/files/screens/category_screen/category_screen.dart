@@ -83,7 +83,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 itemCount: controller.searchList.length,
                 gridDelegate: delegate(),
                 itemBuilder: (context, index) {
-                  return HomeTuneCell(index: index);
+                  return HomeTuneCell(
+                    index: index,
+                    info: controller.searchList[index],
+                  );
                 });
       },
     );

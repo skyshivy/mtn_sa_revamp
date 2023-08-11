@@ -17,6 +17,7 @@ class HomefaqButton extends StatelessWidget {
       title: faq,
       onTap: () {
         controller.loadPage(2);
+        Get.back();
         print("HomefaqButton");
       },
     );

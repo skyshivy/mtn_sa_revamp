@@ -25,4 +25,5 @@ String categoryListUrl =
     "${baseUrl}categories?language=${StoreManager().language}";
 String getCategoryDetailUrl =
     "${baseUrl}search-tone?language=${StoreManager().language}";
-//https://ringtune.mtn.co.za/apigw/Middleware/api/adapter/v1/crbt/
+String bannerDetailUrl =
+    "${baseUrl}banner-search?language=${StoreManager().language}";

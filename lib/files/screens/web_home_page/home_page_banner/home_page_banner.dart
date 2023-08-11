@@ -7,6 +7,7 @@ import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/banner_indicator.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
+import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 
 class LandingPageBanner extends StatefulWidget {
   const LandingPageBanner({super.key});
@@ -78,7 +79,14 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
           onTap: () {
             print("Banner path is ${banner.bannerPath}");
             print("Banner path is ${banner.bannerOrder}");
-            //bannerTapped(banner, context);
+            String searchKey = banner.searchKey ?? '';
+            String type = banner.type ?? '';
+            String bannerOrder = banner.bannerOrder ?? '';
+            Get.toNamed(bannerTapped, parameters: {
+              "searchKey": searchKey,
+              "type": type,
+              "bannerOrder": bannerOrder
+            });
           },
           child: Stack(alignment: Alignment.bottomCenter, children: [
             Container(
