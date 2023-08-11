@@ -3,8 +3,12 @@ const about = "About";
 const homeStr = "Home";
 const faq = "FAQ";
 const play = "Play";
+const noActivePlanStr = "No Active Plan";
 const buy = "Buy";
-
+const userNameStr = "User Name*";
+const preferenceStr = "Preference*";
+const mobileNumberStr = "Mobile number";
+const subscribeStr = "Subscribe";
 const profileStr = "Profile";
 const wishlistStr = "Wishlist";
 const logoutStr = "Logout";

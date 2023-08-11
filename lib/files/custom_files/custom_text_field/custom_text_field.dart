@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 class CustomTextField extends StatelessWidget {
   final String text;
   final String hintText;
+  final bool? isBorder;
   final Color? cursorColor;
   final Color? textColor;
   final Color? hintColor;
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
 
   CustomTextField({
     super.key,
+    this.isBorder = true,
     required this.text,
     this.cursorColor,
     this.onChanged,
@@ -33,7 +35,13 @@ class CustomTextField extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return textField();
+    return Container(
+        height: 50,
+        decoration: BoxDecoration(
+          border: isBorder! ? Border.all(color: greyDark) : null,
+          borderRadius: BorderRadius.circular(25),
+        ),
+        child: Center(child: textField()));
   }
 
   TextField textField() {

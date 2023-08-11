@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
-import 'package:mtn_sa_revamp/files/model/search_tune_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/profile_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/wishlist_screen/wishlsit_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/home_banner_detail_page.dart';
-import 'package:mtn_sa_revamp/files/screens/wishlist_screen/wishlsit_screen.dart';
-import 'package:mtn_sa_revamp/files/utility/colors.dart';
-import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 
 List<GetPage<dynamic>> get routesDirection {
   Duration dur = const Duration(milliseconds: 1);

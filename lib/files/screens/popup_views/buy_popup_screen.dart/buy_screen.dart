@@ -97,7 +97,10 @@ class BuyScreenState extends StatelessWidget {
   }
 
   Widget numberTextField() {
-    return CustomTextField(text: "text");
+    return CustomTextField(
+      text: "text",
+      isBorder: false,
+    );
   }
 
   Widget headerWidget() {

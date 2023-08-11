@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
+import 'package:mtn_sa_revamp/files/screens/profile_screen/profile_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_info_page/home_info_page.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/home_page_banner.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_bottom_section/home_page_bottom_section.dart';
@@ -15,7 +16,7 @@ class WebLandingPage extends StatelessWidget {
           controller: _controller,
           child: Column(
             children: [
-              const LandingPageBanner(),
+              ProfileScreen(), //LandingPageBanner(),
               const LandingRecoView(),
               const SizedBox(height: 80),
               LandingInfoPage(),

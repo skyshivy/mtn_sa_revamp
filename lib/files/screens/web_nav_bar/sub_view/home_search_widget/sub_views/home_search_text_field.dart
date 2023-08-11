@@ -24,6 +24,7 @@ class HomeSearchTextField extends StatelessWidget {
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: CustomTextField(
+          isBorder: false,
           hintColor: white,
           fontName: FontName.regularItalic,
           text: "",
