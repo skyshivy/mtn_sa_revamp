@@ -10,7 +10,7 @@ import 'package:mtn_sa_revamp/files/utility/route_direction.dart';
 class WebTabView extends StatelessWidget {
   WebTabController tabController = Get.put(WebTabController());
   WebTabView({super.key});
-
+  FAQScreen? faqScreen;
   @override
   Widget build(BuildContext context) {
     //print("width is =============${Get.width}");
@@ -28,15 +28,28 @@ class WebTabView extends StatelessWidget {
   }
 
   Widget indexed(int value) {
+    print("Selected index is ${value}");
     return IndexedStack(
       index: value,
       children: [
         const WebLandingPage(),
         //setLandingScreen(),
         const CustomText(title: "title2"),
-        FAQScreen(),
+        loadFaq(value),
         SearchScreen()
       ],
     );
+  }
+
+  Widget loadFaq(int value) {
+    if (value == 2) {
+      if (faqScreen == null) {
+        faqScreen = FAQScreen();
+        return faqScreen!;
+      }
+      return faqScreen!;
+    } else {
+      return faqScreen ?? const SizedBox();
+    }
   }
 }
