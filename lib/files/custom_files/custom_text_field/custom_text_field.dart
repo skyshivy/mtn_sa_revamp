@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   final bool? isBorder;
   final Color? cursorColor;
   final Color? textColor;
+  final Color? bgColor;
   final Color? hintColor;
   final double? fontSize;
   final bool? editEnable;
@@ -20,6 +21,7 @@ class CustomTextField extends StatelessWidget {
 
   CustomTextField({
     super.key,
+    this.bgColor = transparent,
     this.isBorder = true,
     required this.text,
     this.cursorColor,
@@ -38,10 +40,15 @@ class CustomTextField extends StatelessWidget {
     return Container(
         height: 50,
         decoration: BoxDecoration(
+          color: bgColor,
           border: isBorder! ? Border.all(color: greyDark) : null,
           borderRadius: BorderRadius.circular(25),
         ),
-        child: Center(child: textField()));
+        child: Center(
+            child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 22),
+          child: textField(),
+        )));
   }
 
   TextField textField() {

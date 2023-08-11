@@ -7,13 +7,17 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget profileUserName() {
   return SizedBox(
-    width: 350,
+    width: 280,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomText(
-            title: userNameStr, fontName: FontName.regular, fontSize: 14),
+          title: userNameStr,
+          fontName: FontName.regular,
+          fontSize: 14,
+          textColor: subTitleColor,
+        ),
         SizedBox(height: 6),
         CustomTextField(
           text: "",

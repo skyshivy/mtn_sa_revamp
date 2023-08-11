@@ -31,7 +31,7 @@ Widget gridView() {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: controller.catList.length,
-      gridDelegate: delegate(mainAxisExtent: 120, maxCrossAxisExtent: 180),
+      gridDelegate: delegate(mainAxisExtent: 130, maxCrossAxisExtent: 200),
       itemBuilder: (context, index) {
         return _preferenceGridCell(controller, index);
       },
@@ -80,10 +80,12 @@ Widget _preferenceGridCell(ProfileController controller, int index) {
             ],
           ),
         ),
+        const SizedBox(height: 2),
         CustomText(
           title: controller.catList[index].categoryName ?? '',
           maxLine: 1,
-          fontSize: 14,
+          fontName: FontName.medium,
+          fontSize: 15,
         )
       ],
     ),

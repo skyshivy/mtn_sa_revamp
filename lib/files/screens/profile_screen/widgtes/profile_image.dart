@@ -15,7 +15,7 @@ Widget profileImageWidget() {
 BoxDecoration _decoration() {
   return BoxDecoration(
     boxShadow: [
-      BoxShadow(blurRadius: 4, spreadRadius: 3, color: black.withOpacity(0.1))
+      BoxShadow(blurRadius: 5, spreadRadius: 4, color: black.withOpacity(0.1))
     ],
     borderRadius: BorderRadius.circular(60),
   );

@@ -22,7 +22,7 @@ class HomeSearchTextField extends StatelessWidget {
       color: transparent,
       child: Center(
           child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 0),
         child: CustomTextField(
           isBorder: false,
           hintColor: white,

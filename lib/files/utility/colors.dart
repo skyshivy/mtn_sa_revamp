@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 const yellow = Color.fromRGBO(255, 204, 0, 1);
-
+//rgba(137, 137, 137, 1)
 const grey = Color.fromRGBO(224, 224, 224, 1);
 const greyDark = Color.fromRGBO(149, 149, 149, 1);
 
 //rgba(149, 149, 149, 1)
 const greyLight = Color.fromRGBO(245, 243, 243, 1);
-const subTitleColor = Color.fromRGBO(0, 0, 0, 0.85);
+const subTitleColor = Color.fromRGBO(137, 137, 137, 1);
 
 const black = Colors.black; //Color.fromRGBO(255, 207, 0, 1);
 const bottomColor = Color.fromRGBO(34, 30, 32, 1);
