@@ -32,7 +32,7 @@ class WebTabView extends StatelessWidget {
     return IndexedStack(
       index: value,
       children: [
-        const WebLandingPage(),
+        WebLandingPage(),
         //setLandingScreen(),
         const CustomText(title: "title2"),
         loadFaq(value),

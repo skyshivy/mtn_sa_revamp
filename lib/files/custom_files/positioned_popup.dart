@@ -60,15 +60,24 @@ Widget _customMenuListView(
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return CustomOnHover(builder: (isHover) {
-          return GestureDetector(
+          return InkWell(
             onTap: () {
               Get.back();
               Navigator.pop(context);
               onTap!(menuList[index]);
             },
-            child: Container(
-                color: isHover ? yellow : transparent,
-                child: cell(menuList, index)),
+            child: Column(
+              children: [
+                Container(
+                    color: isHover ? yellow : transparent,
+                    child: cell(menuList, index)),
+                (menuList.length - 1) == index
+                    ? SizedBox()
+                    : Divider(
+                        height: 2,
+                      )
+              ],
+            ),
           );
         });
       });
@@ -90,7 +99,7 @@ Padding cell(List<MenuModel> menuList, int index) {
 SizedBox customSpacer(List<MenuModel> menuList, int index) {
   return (menuList[index].imageName == null)
       ? const SizedBox()
-      : const SizedBox(width: 8);
+      : const SizedBox(width: 6);
 }
 
 Widget cellTitle(MenuModel menu) {
@@ -104,5 +113,10 @@ Widget cellImage(MenuModel menu) {
   return (menu.imageName == null)
       ? const SizedBox()
       : SizedBox(
-          height: 20, width: 20, child: Image.asset(menu.imageName ?? ''));
+          height: 15,
+          width: 15,
+          child: Image.asset(
+            menu.imageName ?? '',
+            color: black,
+          ));
 }

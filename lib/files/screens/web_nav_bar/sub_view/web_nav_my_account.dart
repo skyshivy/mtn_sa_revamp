@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class WebMyAccountButton extends StatefulWidget {
@@ -19,8 +20,8 @@ class WebMyAccountButton extends StatefulWidget {
   List<MenuModel> items = [
     MenuModel(profileStr),
     MenuModel(wishlistStr),
-    MenuModel(myTune, imageName: "imageName"),
-    MenuModel(logoutStr, imageName: "imageName"),
+    MenuModel(myTune, imageName: buyImg),
+    MenuModel(logoutStr, imageName: likeImg),
   ];
 }
 

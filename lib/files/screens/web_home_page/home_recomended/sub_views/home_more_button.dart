@@ -4,6 +4,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.da
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 
 class HomeMoreButton extends StatefulWidget {
   const HomeMoreButton({super.key});
@@ -18,8 +19,8 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
   List<MenuModel> menuItem = [
     MenuModel("Shiv"),
     MenuModel("Kumar"),
-    MenuModel("Yadav", imageName: "imageName"),
-    MenuModel("SKY", imageName: "imageName"),
+    MenuModel("Yadav", imageName: buyImg),
+    MenuModel("SKY", imageName: likeImg),
   ];
   final GlobalKey _key = GlobalKey();
   @override
