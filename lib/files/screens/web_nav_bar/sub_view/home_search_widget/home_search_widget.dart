@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
+import 'package:mtn_sa_revamp/files/model/menu_model.dart';
 import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/home_search_widget/sub_views/home_seach_button.dart';
 import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/home_search_widget/sub_views/home_search_text_field.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -19,7 +21,9 @@ class HomeSearchWidget extends StatelessWidget {
   }
 
   Widget borderWidget() {
+    GlobalKey _key = GlobalKey();
     return Container(
+      key: _key,
       clipBehavior: Clip.hardEdge,
       height: 50,
       width: 50,

@@ -4,6 +4,11 @@ const homeStr = "Home";
 const faq = "FAQ";
 const play = "Play";
 const buy = "Buy";
+
+const profileStr = "Profile";
+const wishlistStr = "Wishlist";
+const logoutStr = "Logout";
+
 const okStr = "Ok";
 const verifyOTPStr = "Verify OTP";
 const successFullyLoggedInStr = "Login Successful";

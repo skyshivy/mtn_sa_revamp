@@ -36,7 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   
   get: ^4.6.5
-  popover: ^0.2.8+2
+
   image_fade: ^0.6.1
   universal_io: ^2.0.4
   rsa_encrypt: ^2.0.0
@@ -45,11 +45,9 @@ dependencies:
   carousel_slider: ^4.0.0
   cupertino_icons: ^1.0.2
   dropdown_button2: ^2.3.6
-  url_strategy: ^0.2.0
-  custom_pop_up_menu: ^1.2.4
+  url_strategy: ^0.2.0  
   shared_preferences: ^2.2.0
   cached_network_image: ^3.2.3
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
