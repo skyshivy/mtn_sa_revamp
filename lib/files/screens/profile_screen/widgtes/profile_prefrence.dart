@@ -1,7 +1,14 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/gredient.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget profilePreferenceWidget() {
@@ -12,27 +19,82 @@ Widget profilePreferenceWidget() {
       CustomText(
           title: preferenceStr, fontName: FontName.regular, fontSize: 14),
       SizedBox(height: 6),
-      Row(
-        children: [
-          Flexible(
-            child: Container(
-              color: yellow,
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 50,
-                        color: red,
-                      ),
-                    );
-                  }),
-            ),
-          ),
-        ],
-      ),
+      Expanded(child: gridView())
     ],
+  );
+}
+
+Widget gridView() {
+  ProfileController controller = Get.find();
+  return Obx(() {
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: controller.catList.length,
+      gridDelegate: delegate(mainAxisExtent: 120, maxCrossAxisExtent: 180),
+      itemBuilder: (context, index) {
+        return _preferenceGridCell(controller, index);
+      },
+    );
+  });
+}
+
+Widget _preferenceGridCell(ProfileController controller, int index) {
+  return ClipRRect(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Stack(
+            children: [
+              Container(
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                  gradient: customGredient(blackGredient, blackGredient),
+                  borderRadius: BorderRadius.circular(6),
+                  color: yellow,
+                ),
+                child: CustomImage(
+                  url: controller.catList[index].menuImagePath,
+                ),
+              ),
+              IconButton(
+                  hoverColor: transparent,
+                  focusColor: transparent,
+                  splashColor: transparent,
+                  highlightColor: transparent,
+                  onPressed: () {
+                    controller.updateSelection(index);
+                    print(
+                        "Tapped circle ${controller.catList[index].isSelected!.value}");
+                  },
+                  icon: Obx(() {
+                    return Icon(
+                      (controller.catList[index].isSelected!.value)
+                          ? Icons.radio_button_checked
+                          : Icons.radio_button_unchecked,
+                      color: yellow,
+                    );
+                  }))
+            ],
+          ),
+        ),
+        CustomText(
+          title: controller.catList[index].categoryName ?? '',
+          maxLine: 1,
+          fontSize: 14,
+        )
+      ],
+    ),
+    // Stack(
+    //   fit: StackFit.loose,
+    //   children: [
+
+    //     Container(
+    //       color: blackGredient,
+    //     )
+    //   ],
+    // ),
   );
 }

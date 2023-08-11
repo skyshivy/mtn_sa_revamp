@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_active_status.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_image.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_mobile_number.dart';
@@ -16,12 +20,34 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  late ProfileController profileController;
+  @override
+  void initState() {
+    profileController = Get.put(ProfileController());
+    profileController.getProfileDetail();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    Get.delete<ProfileController>();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 35),
-      child: rowWidget(),
+      child: Obx(
+        () {
+          return profileController.isLoading.value ? loadInd() : rowWidget();
+        },
+      ),
     );
+  }
+
+  Widget loadInd() {
+    return loadingIndicator();
   }
 
   Widget rowWidget() {
@@ -49,8 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget rightWidget() {
-    return //profilePreferenceWidget();
-        Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -63,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
         ),
         SizedBox(height: 35),
-        profilePreferenceWidget()
+        Expanded(child: profilePreferenceWidget())
       ],
     );
   }

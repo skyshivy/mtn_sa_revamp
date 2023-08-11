@@ -5,16 +5,16 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class CustomHeader {
   settingHeader(String url, HttpClientRequest request) async {
-    /*  
-    var pref = await SharedPreferences.getInstance();
-      var accessToken = pref.getString('accessToken') ?? '';
+    if (url.contains("security")) {
+      print("Security url================");
 
-      var deviceId = pref.getString('deviceId') ?? '';
-      print("Access Token================${accessToken}");
-      request.headers.set('accessToken', accessToken, preserveHeaderCase: true);
-      request.headers.set('channelId', '4', preserveHeaderCase: true);
-      request.headers.set('deviceId', deviceId, preserveHeaderCase: true);
-*/
+      print("Access Token================${StoreManager().accessToken}");
+      request.headers.set('accessToken', StoreManager().accessToken,
+          preserveHeaderCase: true);
+      request.headers.set('channelId', channelId, preserveHeaderCase: true);
+      request.headers
+          .set('deviceId', StoreManager().deviceId, preserveHeaderCase: true);
+    }
     request.headers.set('Content-Type', 'application/x-www-form-urlencoded',
         preserveHeaderCase: true);
     request.headers.set('versionCode', versionCode, preserveHeaderCase: true);

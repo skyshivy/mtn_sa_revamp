@@ -52,7 +52,7 @@ class WebNavBarView extends StatelessWidget {
         HomeSearchWidget(),
         leftSpacing(),
         Obx(() {
-          return !appController.isLoggedIn.value
+          return appController.isLoggedIn.value
               ? WebMyAccountButton()
               : const HomeLoginButton();
         }),

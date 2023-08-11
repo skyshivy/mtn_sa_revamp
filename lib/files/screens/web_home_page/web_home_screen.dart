@@ -16,7 +16,7 @@ class WebLandingPage extends StatelessWidget {
           controller: _controller,
           child: Column(
             children: [
-              ProfileScreen(), //LandingPageBanner(),
+              LandingPageBanner(), //ProfileScreen(), //
               const LandingRecoView(),
               const SizedBox(height: 80),
               LandingInfoPage(),

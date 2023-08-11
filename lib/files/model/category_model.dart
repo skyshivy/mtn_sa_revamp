@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:get/get.dart';
+
 CategoryModel categoryModelFromJson(String str) =>
     CategoryModel.fromJson(json.decode(str));
 
@@ -65,6 +67,7 @@ class AppCategory {
   String? categoryName;
   String? menuImagePath;
   String? language;
+  RxBool? isSelected = false.obs;
 
   AppCategory({
     this.categoryId,
