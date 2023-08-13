@@ -3,6 +3,18 @@ const about = "About";
 const homeStr = "Home";
 const faq = "FAQ";
 const play = "Play";
+
+const statusStr = "Status";
+const callersStr = "Callers";
+const playAtStr = "Play at";
+const fulldayStr = "FullDay";
+const allStr = "All";
+
+const startTimeStr = "Start Time";
+const endTimeStr = "End Time";
+const repeatStr = "Repeat";
+
+const shuffleStr = "Shuffle";
 const noActivePlanStr = "No Active Plan";
 const buy = "Buy";
 const userNameStr = "User Name*";
@@ -64,3 +76,4 @@ const termsAndPolicyStr = "Terms of use & Privacy Policy";
 const enter6DigitOtpStr = "Enter 6 Digit OTP";
 const oneTimePasswordHasBeenSentStr =
     "One Time Password (OTP) has been sent to ";
+const currentlyPlayingToMyCallerStr = "Currently Playing To My Caller";

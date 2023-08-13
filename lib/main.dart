@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
@@ -16,12 +17,12 @@ import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_co
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await getJson();
-  AppController controller = Get.put(AppController());
-  StoreManager().initStoreManager();
-  CategoryPoupupController catCont = Get.put(CategoryPoupupController());
-  SearchTuneController _ = Get.put(SearchTuneController());
-  await controller.settinApiCall();
+  // await getJson();
+  // AppController controller = Get.put(AppController());
+  // StoreManager().initStoreManager();
+  // CategoryPoupupController catCont = Get.put(CategoryPoupupController());
+  // SearchTuneController _ = Get.put(SearchTuneController());
+  // await controller.settinApiCall();
   runApp(const MyApp());
 }
 
@@ -40,20 +41,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'MTN_GENERIC',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: Material(child: navBar(context)),
-      // builder: (context, child) {
-      //   return Material(child: navBar(context));
-      //   //Material(
-      //   //child: LoginScreen(),
-      //   //); //Material(child: navBar(context));
-      // },
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'MTN_GENERIC',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: Material(
+          child: MyTuneScreen(),
+        ) //Material(child: navBar(context)),
+        // builder: (context, child) {
+        //   return Material(child: navBar(context));
+        //   //Material(
+        //   //child: LoginScreen(),
+        //   //); //Material(child: navBar(context));
+        // },
+        );
   }
 
   Widget navBar(BuildContext context) {
