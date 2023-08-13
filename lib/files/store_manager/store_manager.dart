@@ -36,7 +36,6 @@ class StoreManager {
     isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
     accessToken = prefs.getString("accessToken") ?? '';
     deviceId = prefs.getString("deviceId") ?? '';
-
     msisdn = prefs.getString("msisdn") ?? '';
     refreshToken = prefs.getString("refreshToken") ?? '';
     appController.isLoggedIn.value = isLoggedIn;
@@ -46,9 +45,13 @@ class StoreManager {
     appSetting = settingModel;
   }
 
-  resetData() async {}
-  logout() async {
-    isLoggedIn = await prefs.setBool("isLoggedIn", false);
+  Future<void> logout() async {
+    prefs.setString("accessToken", "");
+    prefs.setString("deviceId", "");
+    prefs.setString("msisdn", "");
+    prefs.setString("refreshToken", "");
+    prefs.setBool("isLoggedIn", false);
     appController.isLoggedIn.value = false;
+    initStoreManager();
   }
 }
