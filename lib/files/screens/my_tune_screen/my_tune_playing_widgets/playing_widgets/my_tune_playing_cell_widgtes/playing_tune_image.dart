@@ -4,13 +4,16 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/gredient.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 
 Widget playingTuneImageWidget() {
   return Stack(
     alignment: Alignment.topLeft,
     children: [
-      const CustomImage(),
+      CustomImage(
+        gradient: customGredient(blackGredient, blackGredient),
+      ),
       _playingTuneLikeButton(),
     ],
   );

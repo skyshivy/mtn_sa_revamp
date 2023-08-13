@@ -18,7 +18,7 @@ class HomeMyTuneButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomButton(
       rightWidget: rightWidget(),
-      title: myTune,
+      title: myTuneStr,
       fontName: FontName.bold,
       fontSize: 16,
       onTap: () {

@@ -23,7 +23,7 @@ class WebMyAccountButton extends StatefulWidget {
   List<MenuModel> items = [
     MenuModel(profileStr),
     MenuModel(wishlistStr),
-    MenuModel(myTune, imageName: buyImg),
+    MenuModel(myTuneStr, imageName: buyImg),
     MenuModel(logoutStr, imageName: likeImg),
   ];
 }
@@ -81,7 +81,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
     } else if (item.title == wishlistStr) {
       Get.toNamed(wishlistTapped);
       print("Profile tapped");
-    } else if (item.title == myTune) {
+    } else if (item.title == myTuneStr) {
       Get.toNamed(myTuneTapped);
       print("Profile tapped");
     }

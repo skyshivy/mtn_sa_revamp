@@ -1,8 +1,14 @@
-const myTune = "My Tunes";
+const myTuneStr = "My Tunes";
 const about = "About";
 const homeStr = "Home";
 const faq = "FAQ";
-const play = "Play";
+const playStr = "Play";
+const settingStr = "Setting";
+const tunesStr = "Tunes";
+
+const musicBundleStr = "Music Bundle";
+
+const profileTunesStr = "Profile Tunes";
 
 const statusStr = "Status";
 const callersStr = "Callers";
@@ -77,3 +83,5 @@ const enter6DigitOtpStr = "Enter 6 Digit OTP";
 const oneTimePasswordHasBeenSentStr =
     "One Time Password (OTP) has been sent to ";
 const currentlyPlayingToMyCallerStr = "Currently Playing To My Caller";
+const howToPlaySelectedTunesToYourCallersStr =
+    "How to play selected tunes to your callers? Learn More >";

@@ -4,6 +4,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_header_widgets/my_tune_header_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_list_widgets/myTune_list_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/my_tune_playing_view.dart';
+import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell.dart';
 
 class MyTuneScreen extends StatefulWidget {
   @override
@@ -19,9 +20,15 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          //MyTuneHeaderView(),
-          Expanded(child: MyTunePlayingView()),
-          //MyTuneListView(),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              //MyTuneHeaderView(),
+              //MyTunePlayingView(),
+              //Flexible(child: MyTunePlayingView()),
+              MyTuneListView(),
+            ],
+          ),
         ],
       ),
     );

@@ -12,20 +12,16 @@ class MyTunePlayingView extends StatelessWidget {
       children: [
         myTuneplayingHeaderView(),
         const SizedBox(height: 10),
-        Expanded(child: gridView()),
+        gridView(),
       ],
     );
   }
 
   Widget gridView() {
     return GridView.builder(
-      itemCount: 4,
+      itemCount: 6,
       shrinkWrap: true,
-      gridDelegate: delegate(
-          mainAxisExtent: 420,
-          maxCrossAxisExtent: 300,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10),
+      gridDelegate: _delegate(),
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.all(4.0),
@@ -33,5 +29,13 @@ class MyTunePlayingView extends StatelessWidget {
         );
       },
     );
+  }
+
+  SliverGridDelegateWithMaxCrossAxisExtent _delegate() {
+    return delegate(
+        mainAxisExtent: 420,
+        maxCrossAxisExtent: 300,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10);
   }
 }
