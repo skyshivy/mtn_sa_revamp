@@ -47,5 +47,8 @@ class StoreManager {
   }
 
   resetData() async {}
-  logout() {}
+  logout() async {
+    isLoggedIn = await prefs.setBool("isLoggedIn", false);
+    appController.isLoggedIn.value = false;
+  }
 }

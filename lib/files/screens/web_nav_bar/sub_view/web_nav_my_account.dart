@@ -7,6 +7,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.da
 
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/route_name.dart';
@@ -84,6 +85,8 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
     } else if (item.title == myTuneStr) {
       Get.toNamed(myTuneTapped);
       print("Profile tapped");
+    } else if (item.title == logoutStr) {
+      StoreManager().logout();
     }
   }
 }
