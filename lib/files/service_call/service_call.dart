@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'dart:html';
 
+import 'package:get/instance_manager.dart';
+import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
+import 'package:mtn_sa_revamp/files/model/regenerate_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/header.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
@@ -62,10 +65,9 @@ class ServiceCall {
 
     final stringData = await response.transform(utf8.decoder).join();
     return stringData;
-    print(stringData);
   }
 
-  Future<HttpClientResponse> post(String url, String? formData) async {
+  Future<Map<String, dynamic>?> post(String url, String? formData) async {
     var request = await client
         .postUrl(Uri.parse(url))
         .timeout(Duration(seconds: StoreManager().timeOutDuration));
@@ -74,7 +76,15 @@ class ServiceCall {
       request.write(formData);
     }
     HttpClientResponse response = await request.close();
-    return response;
+    final stringData = await response.transform(utf8.decoder).join();
+    print(stringData);
+    print("resp code is ${response.statusCode}");
+    if (response.statusCode == 200) {
+      Map<String, dynamic> valueMap = json.decode(stringData);
+      return valueMap;
+    } else {
+      return null;
+    }
   }
 
   Future<Map<String, dynamic>?> get(String url) async {
@@ -96,6 +106,68 @@ class ServiceCall {
     } catch (error) {
       print("error for url #${url}");
       print("error =   =  ${error}");
+      return null;
+    }
+  }
+
+  regenarateTokenFromOtherClass() async {
+    Map<String, dynamic> res = await reGeneratToken();
+    RegenTokenModel model = RegenTokenModel.fromJson(res);
+    if (model.statusCode == 'SC0000') {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString("accessToken", model.responseMap?.accessToken ?? '');
+      prefs.setString("refreshToken", model.responseMap?.refreshToken ?? '');
+    } else {
+      AppController appCont = Get.find();
+      appCont.isLoggedIn.value = false;
+      StoreManager().logout();
+      //html.window.location.reload();
+    }
+    print("======Regene token ====== ${model.statusCode}");
+    return;
+  }
+
+  reGeneratToken() async {
+    String refreshToken = StoreManager().refreshToken;
+    String accessToken = StoreManager().accessToken;
+
+    String url = regenTokenUrl;
+    print("3url used currently is $url");
+
+    var parts = [];
+    var body = {'refreshToken': refreshToken};
+    body.forEach((key, value) {
+      parts.add('${Uri.encodeQueryComponent(key)}='
+          '${Uri.encodeQueryComponent(value)}');
+    });
+    var formData = parts.join('&');
+    print("\nformed data is \n$formData\n");
+    print("line 41");
+
+    var request = await client.postUrl(Uri.parse(url));
+
+    print("line 45");
+
+    request = await CustomHeader().settingHeader(url, request);
+    request.write(formData);
+    Map<String, dynamic>? result = await httpServiceCall(request);
+
+    return result;
+  }
+
+  Future<Map<String, dynamic>?> httpServiceCall(
+      HttpClientRequest request) async {
+    try {
+      HttpClientResponse response = await request.close();
+
+      if (response.statusCode == 498 || response.statusCode == 500) {
+        print("Logut in case of regen");
+      }
+      final stringData = await response.transform(utf8.decoder).join();
+      Map<String, dynamic> valueMap = json.decode(stringData);
+      return valueMap;
+    } on Exception catch (error) {
+      print('catched ${error}');
       return null;
     }
   }

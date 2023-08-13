@@ -47,4 +47,5 @@ class StoreManager {
   }
 
   resetData() async {}
+  logout() {}
 }

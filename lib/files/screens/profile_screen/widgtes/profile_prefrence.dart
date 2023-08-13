@@ -59,24 +59,7 @@ Widget _preferenceGridCell(ProfileController controller, int index) {
                   url: controller.catList[index].menuImagePath,
                 ),
               ),
-              IconButton(
-                  hoverColor: transparent,
-                  focusColor: transparent,
-                  splashColor: transparent,
-                  highlightColor: transparent,
-                  onPressed: () {
-                    controller.updateSelection(index);
-                    print(
-                        "Tapped circle ${controller.catList[index].isSelected!.value}");
-                  },
-                  icon: Obx(() {
-                    return Icon(
-                      (controller.catList[index].isSelected!.value)
-                          ? Icons.radio_button_checked
-                          : Icons.radio_button_unchecked,
-                      color: yellow,
-                    );
-                  }))
+              _profilePrefRadioButtom(controller, index)
             ],
           ),
         ),
@@ -89,14 +72,31 @@ Widget _preferenceGridCell(ProfileController controller, int index) {
         )
       ],
     ),
-    // Stack(
-    //   fit: StackFit.loose,
-    //   children: [
-
-    //     Container(
-    //       color: blackGredient,
-    //     )
-    //   ],
-    // ),
   );
+}
+
+IconButton _profilePrefRadioButtom(ProfileController controller, int index) {
+  controller.catList[index].isSelected!.value =
+      controller.selectedCatList.contains(controller.catList[index].categoryId);
+  return IconButton(
+      hoverColor: transparent,
+      focusColor: transparent,
+      splashColor: transparent,
+      highlightColor: transparent,
+      onPressed: () {
+        if (controller.editEnable.value) {
+          controller.updateSelection(index);
+          print("Tapped========");
+        }
+
+        print("Tapped circle ${controller.catList[index].isSelected!.value}");
+      },
+      icon: Obx(() {
+        return Icon(
+          (controller.catList[index].isSelected!.value)
+              ? Icons.radio_button_checked
+              : Icons.radio_button_unchecked,
+          color: yellow,
+        );
+      }));
 }

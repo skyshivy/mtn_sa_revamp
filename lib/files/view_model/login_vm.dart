@@ -54,7 +54,7 @@ class LoginVm {
     return model;
   }
 
-  Future<ConfirmOtpModel> confirmOtp(String msisdn, String otp) async {
+  Future<ConfirmOtpModel?> confirmOtp(String msisdn, String otp) async {
     var param = {
       "otp": otp,
       "msisdn": msisdn,
@@ -70,12 +70,15 @@ class LoginVm {
     print("\nformed data is \n$formData\n");
 
     String url = confirmOtpUrl;
-    HttpClientResponse resp = await ServiceCall().post(url, formData);
-    final stringData = await resp.transform(utf8.decoder).join();
-    Map<String, dynamic> valueMap = json.decode(stringData);
-    ConfirmOtpModel model = ConfirmOtpModel.fromJson(valueMap);
-    print("Result is ======= $stringData");
-    return model;
+    Map<String, dynamic>? stringData = await ServiceCall().post(url, formData);
+    //final stringData = await resp.transform(utf8.decoder).join();
+    if (stringData != null) {
+      ConfirmOtpModel model = ConfirmOtpModel.fromJson(stringData);
+      print("Result is ======= $stringData");
+      return model;
+    } else {
+      return null;
+    }
     // } else {
     //   return ConfirmOtpModel(
     //       message: someThingWentWrongStr, statusCode: "FL0000");
@@ -92,7 +95,7 @@ class LoginVm {
     return null;
   }
 
-  Future<HttpClientResponse> passwordValidation(
+  Future<Map<String, dynamic>?> passwordValidation(
       String securityCounter, String msisdn) async {
     Random random = Random();
     int randomNumber = random.nextInt(1000000000);
@@ -118,7 +121,7 @@ class LoginVm {
           '${Uri.encodeQueryComponent(value)}');
     });
     var formData = parts.join('&');
-    HttpClientResponse re = await ServiceCall().post(url, formData);
+    Map<String, dynamic>? re = await ServiceCall().post(url, formData);
     return re;
   }
 }

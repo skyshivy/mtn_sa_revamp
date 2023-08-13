@@ -6,6 +6,8 @@ import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_active_status.dart';
+import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_cancel_button.dart';
+import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_edit_button.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_image.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_mobile_number.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_prefrence.dart';
@@ -56,8 +58,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         leftWidget(),
-        SizedBox(width: 60),
-        Expanded(child: rightWidget()),
+        const SizedBox(width: 60),
+        Flexible(child: rightWidget()),
       ],
     );
   }
@@ -78,17 +80,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Flexible(child: profileUserName()),
-            SizedBox(width: 30),
+            const SizedBox(width: 30),
             Flexible(child: profileMobileNumberWidget())
           ],
         ),
-        SizedBox(height: 35),
-        Expanded(child: profilePreferenceWidget())
+        const SizedBox(height: 35),
+        Expanded(child: profilePreferenceWidget()),
+        profileCancelEditButton(),
+      ],
+    );
+  }
+
+  Widget profileCancelEditButton() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        SizedBox(width: 140, child: profileCancelButton()),
+        const SizedBox(width: 20),
+        SizedBox(width: 140, child: profileEditButton())
       ],
     );
   }

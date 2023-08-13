@@ -11,6 +11,7 @@ String baseUrl = "";
 String baseUrlSecurity = '';
 String faqUrl = '';
 String settingUrl = '${baseUrl}settings';
+String regenTokenUrl = "${baseUrlSecurity}regen-token";
 String recomurl = "${baseUrl}get-recommendation-songs?";
 String homeBannerurl = "${baseUrl}banner?language=";
 String searchSpecificToneUrl = '${baseUrl}specific-search-tones?language';
@@ -21,6 +22,7 @@ String subscriberValidationUrl = "${baseUrl}subscriber-validation";
 String generateOtpUrl = "${baseUrl}generate-otp";
 String confirmOtpUrl = "${baseUrl}confirm-otp";
 String getSecurityTokenUrl = "${baseUrl}security-token";
+String editProfileUrl = "${baseUrlSecurity}edit-profile";
 String passwordValidationUrl = "${baseUrl}password-validation";
 String categoryListUrl =
     "${baseUrl}categories?language=${StoreManager().language}";

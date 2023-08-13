@@ -15,14 +15,16 @@ Widget profileMobileNumberWidget() {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomText(
+        const CustomText(
           title: mobileNumberStr,
           fontName: FontName.regular,
           fontSize: 14,
           textColor: subTitleColor,
         ),
-        SizedBox(height: 6),
+        const SizedBox(height: 6),
         CustomTextField(
+          fontName: FontName.medium,
+          fontSize: 18,
           isBorder: false,
           bgColor: grey,
           editEnable: false,

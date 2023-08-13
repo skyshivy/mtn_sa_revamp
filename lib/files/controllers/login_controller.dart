@@ -1,17 +1,15 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
-import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
+
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
-import 'package:mtn_sa_revamp/files/utility/colors.dart';
+
 import 'package:mtn_sa_revamp/files/utility/string.dart';
-import 'package:mtn_sa_revamp/files/utility/urls.dart';
+
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -103,12 +101,13 @@ class LoginController extends GetxController {
   Future<bool> _confirmOtpApi() async {
     print("Resu =Sky========");
     isVerifying.value = true;
-    ConfirmOtpModel model = await LoginVm().confirmOtp(msisdn.value, otp.value);
+    ConfirmOtpModel? model =
+        await LoginVm().confirmOtp(msisdn.value, otp.value);
     isVerifying.value = false;
-    if (model.statusCode == "SC0000") {
+    if (model?.statusCode == "SC0000") {
       return true;
     } else {
-      errorMessage.value = model.message ?? '';
+      errorMessage.value = model?.message ?? '';
       return false;
     }
   }
@@ -132,15 +131,12 @@ class LoginController extends GetxController {
 
   Future<bool> _passwordValidationToken() async {
     isVerifying.value = true;
-    HttpClientResponse resut =
+    Map<String, dynamic>? resut =
         await LoginVm().passwordValidation(securityToken, msisdn.value);
     isVerifying.value = false;
-    final stringData = await resut.transform(utf8.decoder).join();
-    print(stringData);
-    print("resp code is ${resut.statusCode}");
-    if (resut.statusCode == 200) {
-      Map<String, dynamic> valueMap = json.decode(stringData);
-      await saveCredentialHere(valueMap);
+
+    if (resut != null) {
+      await saveCredentialHere(resut);
       print("save credential here ===================================");
       return true;
     } else {

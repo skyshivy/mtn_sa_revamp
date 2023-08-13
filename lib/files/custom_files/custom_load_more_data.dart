@@ -11,7 +11,7 @@ Widget loadMoreDataButton({
   return SizedBox(
     height: 50,
     child: isLoading
-        ? loadingIndi()
+        ? _loadingIndi()
         : Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,7 +57,7 @@ SingleChildRenderObjectWidget leftButton(
       : const SizedBox();
 }
 
-Row loadingIndi() {
+Row _loadingIndi() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
