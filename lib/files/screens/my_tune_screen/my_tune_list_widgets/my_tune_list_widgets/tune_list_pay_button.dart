@@ -11,14 +11,15 @@ Widget tuneListPlayButton() {
       print("tuneListPlayButton");
     },
     height: 40,
-    titlePadding: EdgeInsets.symmetric(horizontal: 4),
-    color: yellow,
+    borderColor: red,
+    titlePadding: const EdgeInsets.symmetric(horizontal: 4),
+    //color: yellow,
     title: playStr,
     fontName: FontName.medium,
     fontSize: 16,
     leftWidget: const Icon(
       Icons.play_arrow,
-      color: white,
+      color: black,
     ),
   );
 }
