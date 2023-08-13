@@ -31,3 +31,7 @@ String getCategoryDetailUrl =
 String bannerDetailUrl =
     "${baseUrl}banner-search?language=${StoreManager().language}";
 String getprofileDetailUrl = "${baseUrlSecurity}get-profile-details";
+String getPlayingTunesUrl =
+    '${baseUrl}list-tones?language=0&msisdn=${StoreManager().msisdn}&startIndex=0&endIndex=40&rbtMode=0';
+String getMyTuneListUrl =
+    '${baseUrl}list-tones?language=0&msisdn=${StoreManager().msisdn}&startIndex=0&endIndex=40&rbtMode=400';

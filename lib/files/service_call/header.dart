@@ -5,7 +5,7 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class CustomHeader {
   settingHeader(String url, HttpClientRequest request) async {
-    if (url.contains("security")) {
+    if (url.contains("security") || StoreManager().isLoggedIn) {
       print("Security url================");
 
       print("Access Token================${StoreManager().accessToken}");

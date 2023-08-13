@@ -17,12 +17,12 @@ import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_co
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // await getJson();
-  // AppController controller = Get.put(AppController());
-  // StoreManager().initStoreManager();
-  // CategoryPoupupController catCont = Get.put(CategoryPoupupController());
-  // SearchTuneController _ = Get.put(SearchTuneController());
-  // await controller.settinApiCall();
+  await getJson();
+  AppController controller = Get.put(AppController());
+  StoreManager().initStoreManager();
+  CategoryPoupupController catCont = Get.put(CategoryPoupupController());
+  SearchTuneController _ = Get.put(SearchTuneController());
+  await controller.settinApiCall();
   runApp(const MyApp());
 }
 
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: Material(
-          child: MyTuneScreen(),
+          child: Material(child: navBar(context)),
         ) //Material(child: navBar(context)),
         // builder: (context, child) {
         //   return Material(child: navBar(context));
