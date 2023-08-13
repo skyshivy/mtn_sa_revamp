@@ -5,9 +5,9 @@ const faq = "FAQ";
 const playStr = "Play";
 const settingStr = "Setting";
 const tunesStr = "Tunes";
-
+const setYourTunesStr = "Set your tunes";
 const musicBundleStr = "Music Bundle";
-
+const customiseYourTunesStr = "Customise your tunes";
 const profileTunesStr = "Profile Tunes";
 
 const statusStr = "Status";
