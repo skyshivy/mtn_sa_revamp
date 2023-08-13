@@ -87,12 +87,13 @@ class ProfileController extends GetxController {
     print(
         "Save api call  user name ${profileDetails?.userName}  new ${userName.value}");
     isSaving.value = true;
-    EditProfileModel? result =
-        await ProfileVM().editProfile(true, catIs: selectedCatList.join(','));
     if (profileDetails?.userName != userName.value) {
-      EditProfileModel? result =
+      EditProfileModel? result1 =
           await ProfileVM().editProfile(false, userName: userName.value);
     }
+    EditProfileModel? result =
+        await ProfileVM().editProfile(true, catIs: selectedCatList.join(','));
+
     isSaving.value = false;
   }
 
