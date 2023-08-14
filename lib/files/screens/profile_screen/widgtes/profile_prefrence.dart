@@ -33,7 +33,16 @@ Widget gridView() {
       itemCount: controller.catList.length,
       gridDelegate: delegate(mainAxisExtent: 130, maxCrossAxisExtent: 200),
       itemBuilder: (context, index) {
-        return _preferenceGridCell(controller, index);
+        return InkWell(
+            onTap: () {
+              if (controller.editEnable.value) {
+                controller.updateSelection(index);
+                print("Tapped========");
+              }
+              print(
+                  "Tapped circle ${controller.catList[index].isSelected!.value}");
+            },
+            child: _preferenceGridCell(controller, index));
       },
     );
   });
@@ -51,12 +60,12 @@ Widget _preferenceGridCell(ProfileController controller, int index) {
               Container(
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
-                  gradient: customGredient(blackGredient, blackGredient),
                   borderRadius: BorderRadius.circular(6),
                   color: yellow,
                 ),
                 child: CustomImage(
                   url: controller.catList[index].menuImagePath,
+                  gradient: customGredient(blackGredient, blackGredient),
                 ),
               ),
               _profilePrefRadioButtom(controller, index)
@@ -75,28 +84,18 @@ Widget _preferenceGridCell(ProfileController controller, int index) {
   );
 }
 
-IconButton _profilePrefRadioButtom(ProfileController controller, int index) {
+Widget _profilePrefRadioButtom(ProfileController controller, int index) {
   controller.catList[index].isSelected!.value =
       controller.selectedCatList.contains(controller.catList[index].categoryId);
-  return IconButton(
-      hoverColor: transparent,
-      focusColor: transparent,
-      splashColor: transparent,
-      highlightColor: transparent,
-      onPressed: () {
-        if (controller.editEnable.value) {
-          controller.updateSelection(index);
-          print("Tapped========");
-        }
-
-        print("Tapped circle ${controller.catList[index].isSelected!.value}");
-      },
-      icon: Obx(() {
-        return Icon(
-          (controller.catList[index].isSelected!.value)
-              ? Icons.radio_button_checked
-              : Icons.radio_button_unchecked,
-          color: yellow,
-        );
-      }));
+  return Obx(() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Icon(
+        (controller.catList[index].isSelected!.value)
+            ? Icons.radio_button_checked
+            : Icons.radio_button_unchecked,
+        color: yellow,
+      ),
+    );
+  });
 }

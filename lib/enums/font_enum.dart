@@ -12,3 +12,11 @@ enum FontName {
   regular,
   regularItalic,
 }
+
+enum TimeType {
+  none,
+  fullDay,
+  weekDay,
+  monthly,
+  yearly,
+}

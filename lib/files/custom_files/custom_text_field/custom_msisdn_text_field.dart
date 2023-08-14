@@ -85,7 +85,7 @@ class CustomMsisdnTextField extends StatelessWidget {
         onChanged!(value);
       },
       style: TextStyle(
-          fontFamily: FontName.regular.name, fontSize: fontSize(14, 18)),
+          fontFamily: FontName.regular.name, fontSize: fontSize(12, 14)),
       decoration: inputDecoration(),
       keyboardType: TextInputType.phone,
 

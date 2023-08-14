@@ -26,7 +26,7 @@ class StoreManager {
 
   bool isLoggedIn = false;
   int otpLength = 6;
-  int msisdnLength = 10;
+  int msisdnLength = 9;
   int timeOutDuration = 15;
   late SharedPreferences prefs;
   late AppSettingModel appSetting;

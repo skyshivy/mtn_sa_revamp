@@ -21,6 +21,8 @@ const endTimeStr = "End Time";
 const repeatStr = "Repeat";
 
 const shuffleStr = "Shuffle";
+const customStr = "Custom";
+const activeStr = "Active";
 const noActivePlanStr = "No Active Plan";
 const buy = "Buy";
 const userNameStr = "User Name*";
