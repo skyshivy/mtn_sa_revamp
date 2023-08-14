@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -50,6 +51,15 @@ List<GetPage<dynamic>> get routesDirection {
       name: myTuneTapped,
       page: () {
         return Material(child: MyTuneScreen());
+      },
+    ),
+    GetPage(
+      name: myTuneSettingTapped,
+      page: () {
+        String toneId = Get.parameters['toneId'] ?? '';
+        String toneName = Get.parameters['toneName'] ?? '';
+        return Material(
+            child: MyTuneSettingScreen(toneId: toneId, toneName: toneName));
       },
     ),
     GetPage(
