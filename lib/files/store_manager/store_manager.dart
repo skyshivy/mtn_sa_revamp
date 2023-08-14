@@ -1,6 +1,8 @@
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
+import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StoreManager {
@@ -39,6 +41,7 @@ class StoreManager {
     msisdn = prefs.getString("msisdn") ?? '';
     refreshToken = prefs.getString("refreshToken") ?? '';
     appController.isLoggedIn.value = isLoggedIn;
+    Get.until((route) => Get.currentRoute == '/');
   }
 
   storeAppSettingModel(AppSettingModel settingModel) async {
