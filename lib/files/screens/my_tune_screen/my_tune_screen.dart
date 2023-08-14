@@ -19,13 +19,15 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
   late MyTuneController controller;
   @override
   void initState() {
+    print("initState");
     controller = Get.put(MyTuneController());
-    controller.getPlayingList();
+    controller.getPlayingTuneList();
     super.initState();
   }
 
   @override
   void dispose() {
+    print("Disposed");
     Get.delete<MyTuneController>();
     super.dispose();
   }
@@ -40,7 +42,7 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
           children: [
             MyTuneHeaderView(),
             const SizedBox(height: 15),
-            const MyTunePlayingView(),
+            MyTunePlayingView(),
             const SizedBox(height: 35),
             MyTuneListView(),
             const SizedBox(height: 200),

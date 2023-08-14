@@ -1,6 +1,7 @@
 import 'dart:js_util';
 
 import 'package:flutter/cupertino.dart';
+import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_divider.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_image.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_info.dart';
@@ -11,20 +12,20 @@ import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widge
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_time.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
-Widget myTunePlayingCell() {
+Widget myTunePlayingCell(ListToneApk item) {
   return Container(
     clipBehavior: Clip.hardEdge,
     decoration: _myTunePlayingCellDecoration(),
     child: Column(
       children: [
-        Expanded(child: playingTuneImageWidget()),
+        Expanded(child: playingTuneImageWidget(item)),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _playingTuneInfoRow(),
+              _playingTuneInfoRow(item),
               playingTuneDivider(),
               playingTuneStatus(),
               playingTuneDivider(),
@@ -40,11 +41,11 @@ Widget myTunePlayingCell() {
   );
 }
 
-Row _playingTuneInfoRow() {
+Row _playingTuneInfoRow(ListToneApk item) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      playingTuneInfo(),
+      Expanded(child: playingTuneInfo(item)),
       Row(
         children: [
           playingTunePlayButton(),

@@ -8,11 +8,12 @@ class MyTuneController extends GetxController {
   RxBool switchEnabled = false.obs;
   RxList<ListToneApk> playingList = <ListToneApk>[].obs;
 
-  getPlayingList() async {
+  getPlayingTuneList() async {
     isLoadingPlaying.value = true;
     playingList.value = <ListToneApk>[];
     PlayingTuneModel? playingTune =
-        await MyTunePlayingVM().getPlayingTuneList();
+        await MyTunePlayingVM().getPlayingTuneListApiCall();
+
     if (playingTune != null) {
       isSuffle.value = playingTune.isSuffle!;
       playingList.value = playingTune.responseMap?.listToneApk ?? [];

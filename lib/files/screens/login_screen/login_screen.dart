@@ -107,7 +107,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget textfieldWidget() {
     return Obx(() {
       return CustomMsisdnTextField(
-        hintText: controller.isMsisdnVarified.value ? enter6DigitOtpStr : null,
+        hintText: controller.isMsisdnVarified.value
+            ? enter6DigitOtpStr
+            : enterMobileNumberStr,
         text: !controller.isMsisdnVarified.value
             ? controller.msisdn.value
             : controller.otp.value,

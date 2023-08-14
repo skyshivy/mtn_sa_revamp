@@ -9,74 +9,79 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class MyTunePlayingVM {
-  Future<PlayingTuneModel?> getPlayingTuneList() async {
+  Future<PlayingTuneModel?> getPlayingTuneListApiCall() async {
     List<ListToneApk> playingList = <ListToneApk>[];
     bool switchEnabled = false;
     Map<String, dynamic>? result = await ServiceCall().get(getPlayingTunesUrl);
-    if (result != null) {
-      PlayingTuneModel? playing = await MyTunePlayingVM().getPlayingTuneList();
-      if (playing != null) {
-        print("Total get in list ${playing.responseMap?.listToneApk?.length}");
-        //playingList = playing.responseMap?.listToneApk ?? [];
-        var tempPlayingList = <ListToneApk>[];
-        if (playing.responseMap?.listToneApk != null ||
-            (playing.responseMap?.listToneApk?.isNotEmpty ?? true)) {
-          _checkSuffleStatus(playing, switchEnabled);
-          tempPlayingList = playing.responseMap!.listToneApk ?? [];
-          playingList.removeAt(0);
 
-          List<ListToneApk> list =
-              await createPlayingList(tempPlayingList, playingList);
-          PlayingTuneModel model = PlayingTuneModel(
-              isSuffle: switchEnabled,
-              responseMap: ResponseMap(listToneApk: list));
-          return model;
-        }
+    if (result != null) {
+      PlayingTuneModel? playing = PlayingTuneModel.fromJson(result);
+      //PlayingTuneModel? playing = await MyTunePlayingVM().getPlayingTuneList();
+      var tempPlayingList = <ListToneApk>[];
+      if (playing.responseMap?.listToneApk != null ||
+          (playing.responseMap?.listToneApk?.isNotEmpty ?? true)) {
+        await _checkSuffleStatus(playing, switchEnabled);
+        tempPlayingList = playing.responseMap!.listToneApk ?? [];
+        tempPlayingList.removeAt(0);
+        print("Total get in list ${tempPlayingList.length}");
+        print("Test 1");
+        List<ListToneApk> list =
+            await createPlayingList(tempPlayingList, playingList);
+        print("Test 11");
         PlayingTuneModel model = PlayingTuneModel(
             isSuffle: switchEnabled,
-            responseMap: ResponseMap(listToneApk: <ListToneApk>[]));
-        print(
-            "Total get in list sorted ${model.responseMap?.listToneApk?.length}");
+            responseMap: ResponseMap(listToneApk: list));
+        print("Total get in list sorted new ${list.length}");
         return model;
       }
+      PlayingTuneModel model = PlayingTuneModel(
+          isSuffle: switchEnabled,
+          responseMap: ResponseMap(listToneApk: <ListToneApk>[]));
+      print(
+          "Total get in list sorted ${model.responseMap?.listToneApk?.length}");
+      return model;
     } else {
       return null;
     }
-    return null;
   }
 
   Future<List<ListToneApk>> createPlayingList(
       List<ListToneApk> tempPlayingList, List<ListToneApk> playingList) async {
+    print("Test 2");
     for (ListToneApk info in tempPlayingList) {
       ToneDetail? tD = info.toneDetails?.first;
       bool isFullDay = true;
-      createPlayingList1(isFullDay, info, tD, playingList);
+      await createPlayingList1(isFullDay, info, tD, playingList);
     }
+    print("Test 3");
     await Future.delayed(const Duration(milliseconds: 300));
+    print("Test 4");
     return playingList;
   }
 
-  void _checkSuffleStatus(PlayingTuneModel? playing, bool switchEnabled) {
+  Future<void> _checkSuffleStatus(
+      PlayingTuneModel? playing, bool switchEnabled) async {
     if ((playing?.responseMap?.listToneApk!.length)! > 1) {
       for (ListToneApk ind in playing?.responseMap?.listToneApk ?? []) {
         if (ind.callerType == "AllCaller") {
+          print("Suffle is enabled");
           switchEnabled = (ind.toneDetails?[0].isShuffle) == "T" ? true : false;
         }
       }
     }
   }
 
-  void createPlayingList1(bool isFullDay, ListToneApk info, ToneDetail? tD,
-      List<ListToneApk> playingList) {
-    _fulldayCheck(isFullDay, info, tD, playingList);
-    _yearlyCheck(tD, isFullDay, info, playingList);
-    _monthlyCheck(tD, isFullDay, info, playingList);
-    _noneCheck(tD, isFullDay, info, playingList);
-    _weeklyCheck(tD, isFullDay, info, playingList);
+  Future<void> createPlayingList1(bool isFullDay, ListToneApk info,
+      ToneDetail? tD, List<ListToneApk> playingList) async {
+    await _fulldayCheck(isFullDay, info, tD, playingList);
+    await _yearlyCheck(tD, isFullDay, info, playingList);
+    await _monthlyCheck(tD, isFullDay, info, playingList);
+    await _noneCheck(tD, isFullDay, info, playingList);
+    await _weeklyCheck(tD, isFullDay, info, playingList);
   }
 
-  void _fulldayCheck(bool isFullDay, ListToneApk info, ToneDetail? tD,
-      List<ListToneApk> playingList) {
+  Future<void> _fulldayCheck(bool isFullDay, ListToneApk info, ToneDetail? tD,
+      List<ListToneApk> playingList) async {
     if (isFullDay) {
       isFullDay = false;
       info.sTime =
@@ -84,7 +89,7 @@ class MyTunePlayingVM {
       info.eTime =
           "${tD?.customiseEndTime?.substring(0, tD.customiseEndTime!.length - 3)}";
       if (info.status != "P") {
-        playingList.add(newDetail(
+        playingList.add(await newDetail(
             info, TimeType.fullDay, "", info.sTime!, info.eTime!,
             isFullday: true));
       }
@@ -92,8 +97,8 @@ class MyTunePlayingVM {
     }
   }
 
-  _weeklyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
-      List<ListToneApk> playingList) {
+  Future<void> _weeklyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
+      List<ListToneApk> playingList) async {
     if (tD?.weeklyDays != "0") {
       isFullDay = false;
       info.sTime =
@@ -101,15 +106,15 @@ class MyTunePlayingVM {
       info.eTime =
           "${tD?.endTimeWeekly?.substring(0, tD.endTimeWeekly!.length - 3)}";
       if (info.status != "P") {
-        playingList.add(
-            newDetail(info, TimeType.weekDay, "2", info.sTime!, info.eTime!));
+        playingList.add(await newDetail(
+            info, TimeType.weekDay, "2", info.sTime!, info.eTime!));
       }
       print("WeekDay");
     }
   }
 
-  _noneCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
-      List<ListToneApk> playingList) {
+  Future<void> _noneCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
+      List<ListToneApk> playingList) async {
     if ((!(tD?.customiseStartDate == '0')) ||
         (!(tD?.customiseEndDate == '0'))) {
       isFullDay = false;
@@ -118,15 +123,15 @@ class MyTunePlayingVM {
       info.eTime =
           "${tD?.customiseEndDate}\n${tD?.customiseEndTime?.substring(0, tD.customiseEndTime!.length - 3)}";
       if (info.status != "P") {
-        playingList
-            .add(newDetail(info, TimeType.none, "7", info.sTime!, info.eTime!));
+        playingList.add(await newDetail(
+            info, TimeType.none, "7", info.sTime!, info.eTime!));
       }
       print("None");
     }
   }
 
-  _monthlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
-      List<ListToneApk> playingList) {
+  Future<void> _monthlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
+      List<ListToneApk> playingList) async {
     if (!(tD?.startDayMonthly == '0') || (!(tD?.endDayMonthly == '0'))) {
       isFullDay = false;
 
@@ -135,15 +140,15 @@ class MyTunePlayingVM {
       info.eTime =
           "${tD?.endDayMonthly}th Day\n${tD?.endTimeMonthly?.substring(0, tD.endTimeMonthly!.length - 3)}"; //${tD?.endTimeMonthly}";
       if (info.status != "P") {
-        playingList.add(
-            newDetail(info, TimeType.monthly, "3", info.sTime!, info.eTime!));
+        playingList.add(await newDetail(
+            info, TimeType.monthly, "3", info.sTime!, info.eTime!));
       }
       print("Monthly");
     }
   }
 
-  _yearlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
-      List<ListToneApk> playingList) {
+  Future<void> _yearlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
+      List<ListToneApk> playingList) async {
     if (!(tD?.yearlyStartMonth == '0') || (!(tD?.yearlyEndMonth == '0'))) {
       isFullDay = false;
       info.sTime =
@@ -151,17 +156,17 @@ class MyTunePlayingVM {
       info.eTime =
           "${tD?.yearlyEndDay}/${tD?.yearlyEndMonth}\n${tD?.yearlyEndTime?.substring(0, tD.yearlyEndTime!.length - 3)}"; //${tD?.yearlyEndTime}";
       if (info.status != "P") {
-        playingList.add(
-            newDetail(info, TimeType.yearly, "4", info.sTime!, info.eTime!));
+        playingList.add(await newDetail(
+            info, TimeType.yearly, "4", info.sTime!, info.eTime!));
       }
 
       print("Yearly");
     }
   }
 
-  newDetail(ListToneApk info, TimeType toneDetailTimeType, String timeType,
-      String sTime, String eTime,
-      {bool isFullday = false}) {
+  Future<ListToneApk> newDetail(ListToneApk info, TimeType toneDetailTimeType,
+      String timeType, String sTime, String eTime,
+      {bool isFullday = false}) async {
     ListToneApk listToneApk = ListToneApk();
 
     listToneApk.callerType = info.msisdnB ?? info.serviceName;
