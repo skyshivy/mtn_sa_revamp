@@ -58,8 +58,15 @@ List<GetPage<dynamic>> get routesDirection {
       page: () {
         String toneId = Get.parameters['toneId'] ?? '';
         String toneName = Get.parameters['toneName'] ?? '';
+        String toneArtist = Get.parameters['toneArtist'] ?? '';
+        String toneImage = Get.parameters['toneImage'] ?? '';
         return Material(
-            child: MyTuneSettingScreen(toneId: toneId, toneName: toneName));
+            child: MyTuneSettingScreen(
+          toneId: toneId,
+          toneName: toneName,
+          toneArtist: toneArtist,
+          toneImage: toneImage,
+        ));
       },
     ),
     GetPage(

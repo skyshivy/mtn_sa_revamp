@@ -21,7 +21,7 @@ class BuyAndPlayButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(child: playButtonWidget()),
-        const SizedBox(width: 20),
+        const SizedBox(width: 10),
         Expanded(child: buyButtonWidget()),
       ],
     );

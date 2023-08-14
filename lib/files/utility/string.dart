@@ -15,6 +15,24 @@ const callersStr = "Callers";
 const playAtStr = "Play at";
 const fulldayStr = "FullDay";
 const allStr = "All";
+const advancedSettingsStr = "Advanced Settings";
+
+const selectTimeTypeStr = "Select Time Type";
+const fullDay24HourStr = "Full Day - 24 hr";
+
+const sunStr = "Sun";
+const monStr = "Mon";
+const tueStr = "Tue";
+const wedStr = "Wed";
+const thusStr = "Thus";
+const friStr = "Fri";
+const satStr = "Sat";
+
+const allCallerStr = "All Callers";
+const specificCallerStr = "Callers Group";
+const callerGroupStr = "Specific Caller";
+const whomYouWantToPlayItStr = "Whom you want to play it?";
+const whenYouWantToPlayItStr = "when you want to play it?";
 
 const startTimeStr = "Start Time";
 const endTimeStr = "End Time";

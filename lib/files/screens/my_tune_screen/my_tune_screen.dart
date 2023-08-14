@@ -64,10 +64,15 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
   }
 
   Widget listIsEmpty() {
-    return const CustomText(
-      title: tuneListEmptyStr,
-      fontName: FontName.bold,
-      fontSize: 20,
+    return const SizedBox(
+      height: 200,
+      child: Center(
+        child: CustomText(
+          title: tuneListEmptyStr,
+          fontName: FontName.bold,
+          fontSize: 20,
+        ),
+      ),
     );
   }
 

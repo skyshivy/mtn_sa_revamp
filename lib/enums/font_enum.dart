@@ -20,3 +20,9 @@ enum TimeType {
   monthly,
   yearly,
 }
+
+enum CallerType {
+  allCaller,
+  callerGroup,
+  specificCaller,
+}

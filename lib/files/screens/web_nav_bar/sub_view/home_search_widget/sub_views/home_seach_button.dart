@@ -17,6 +17,7 @@ class HomeSearchButton extends StatelessWidget {
       child: CustomButton(
         color: white,
         width: 47,
+        height: 47,
         leftWidget: Image.asset(
           searchImg,
           height: 20,

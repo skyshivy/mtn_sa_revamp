@@ -42,7 +42,9 @@ Widget tuneListSettingWidget(ListToneApk1 info) {
 
       Get.toNamed(myTuneSettingTapped, parameters: {
         'toneId': inf?.toneId ?? '',
-        'toneName': inf?.toneName ?? ''
+        'toneName': inf?.toneName ?? '',
+        'toneArtist': inf?.artistName ?? '',
+        'toneImage': inf?.toneIdpreviewImageUrl ?? '',
       });
       print("tuneListSettingWidget");
     },
