@@ -69,4 +69,16 @@ class RecoController extends GetxController {
     displayList?[index].isPlaying = displayList![index].isPlaying;
     displayList?.refresh();
   }
+
+  wishlistTapped() {
+    print("Wishlist tapped in tune cell");
+  }
+
+  tellAFriendTapped() {
+    print("Tell a friend tapped in tune cell");
+  }
+
+  shareTapped() {
+    print("Share tapped in tune cell");
+  }
 }

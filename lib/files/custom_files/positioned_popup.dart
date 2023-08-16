@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
@@ -9,7 +10,10 @@ import 'package:mtn_sa_revamp/files/model/menu_model.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 
 showPositionedPopup(GlobalKey key, List<MenuModel> menuList,
-    {bool isLeft = false, double? width, Function(MenuModel)? onTap}) {
+    {bool isLeft = false,
+    double? width,
+    bool isSvg = false,
+    Function(MenuModel)? onTap}) {
   RenderBox renderbox = key.currentContext!.findRenderObject() as RenderBox;
   Size size = renderbox.size;
 
@@ -29,7 +33,7 @@ showPositionedPopup(GlobalKey key, List<MenuModel> menuList,
             color: transparent,
             child: SizedBox(
                 width: width ?? size.width,
-                child: _widgetDecoration(menuList, onTap)),
+                child: _widgetDecoration(menuList, isSvg, onTap)),
           ),
         ),
       ],
@@ -37,11 +41,12 @@ showPositionedPopup(GlobalKey key, List<MenuModel> menuList,
   );
 }
 
-Widget _widgetDecoration(List<MenuModel> menuList, Function(MenuModel)? onTap) {
+Widget _widgetDecoration(
+    List<MenuModel> menuList, bool isSvg, Function(MenuModel)? onTap) {
   return Container(
     clipBehavior: Clip.hardEdge,
     decoration: mainContainerDecoration(menuList),
-    child: _customMenuListView(menuList, onTap),
+    child: _customMenuListView(menuList, isSvg, onTap),
   );
 }
 
@@ -54,7 +59,7 @@ BoxDecoration mainContainerDecoration(List<MenuModel> menuList) {
 }
 
 Widget _customMenuListView(
-    List<MenuModel> menuList, Function(MenuModel)? onTap) {
+    List<MenuModel> menuList, bool isSvg, Function(MenuModel)? onTap) {
   return ListView.builder(
       itemCount: menuList.length,
       shrinkWrap: true,
@@ -70,10 +75,10 @@ Widget _customMenuListView(
               children: [
                 Container(
                     color: isHover ? yellow : transparent,
-                    child: cell(menuList, index)),
+                    child: cell(menuList, index, isSvg)),
                 (menuList.length - 1) == index
-                    ? SizedBox()
-                    : Divider(
+                    ? const SizedBox()
+                    : const Divider(
                         height: 2,
                       )
               ],
@@ -83,12 +88,12 @@ Widget _customMenuListView(
       });
 }
 
-Padding cell(List<MenuModel> menuList, int index) {
+Padding cell(List<MenuModel> menuList, int index, bool isSvg) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Row(
       children: [
-        cellImage(menuList[index]),
+        cellImage(menuList[index], isSvg),
         customSpacer(menuList, index),
         cellTitle(menuList[index]),
       ],
@@ -109,15 +114,14 @@ Widget cellTitle(MenuModel menu) {
   );
 }
 
-Widget cellImage(MenuModel menu) {
+Widget cellImage(MenuModel menu, bool isSvg) {
   return (menu.imageName == null)
       ? const SizedBox()
       : SizedBox(
           height: 15,
           width: 15,
-          child: Image.asset(
-            menu.imageName ?? '',
-            color: black,
-          ),
+          child: isSvg
+              ? SvgPicture.asset(menu.imageName ?? '')
+              : Image.asset(menu.imageName ?? '', color: black),
         );
 }

@@ -23,9 +23,11 @@ class CustomAlertView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     this.context = context;
-    return Material(
-      color: transparent,
-      child: mainContainer(),
+    return Center(
+      child: Material(
+        color: transparent,
+        child: mainContainer(),
+      ),
     );
   }
 

@@ -95,21 +95,6 @@ class HomeTuneCell extends StatelessWidget {
 
   Widget moreButton() {
     return HomeMoreButton();
-    // CustomButton(
-    //   height: 30,
-    //   width: 30,
-    //   color: Colors.white38,
-    //   leftWidget: Icon(
-    //     Icons.more_horiz,
-    //     color: white,
-    //   ),
-    //   onTap: () {
-    //     showPositionedPopup(key, menuList)
-    //   },
-    // );
-    // MoreButton(
-    //   icon:
-    // );
   }
 
   BoxDecoration decoration() {

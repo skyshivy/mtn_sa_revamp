@@ -11,3 +11,11 @@ const instagramImg = 'assets/pngs/instagram.png';
 const twitterImg = 'assets/pngs/twitter.png';
 const linkedInImg = 'assets/pngs/linkedIn.png';
 const placeholderImage = 'assets/pngs/placeholderImage.png';
+
+// svg image bottom =======================
+
+const wishlistSvg = 'assets/svg/wishlistSvg.svg';
+const tellFriendSvg = 'assets/svg/tellFriendSvg.svg';
+const shareSvg = 'assets/svg/shareSvg.svg';
+const editSvg = 'assets/svg/editSvg.svg';
+const deleteSvg = 'assets/svg/deleteSvg.svg';
