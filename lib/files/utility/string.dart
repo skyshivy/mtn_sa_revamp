@@ -3,6 +3,7 @@ const about = "About";
 const homeStr = "Home";
 const faq = "FAQ";
 const playStr = "Play";
+const playingStr = "Playing";
 const settingStr = "Setting";
 const tunesStr = "Tunes";
 const setYourTunesStr = "Set your tunes";

@@ -6,19 +6,32 @@ class MtnAudioPlayer {
   MtnAudioPlayer._internal() {
     print("initialize MtnAudioPlayer");
     _player = AudioPlayer();
-    //_playerState();
   }
   factory MtnAudioPlayer() {
     return instance;
   }
 
-  Future<void> playUrl(String url, Function(AudioPlayer player) action) async {
-    print("playing url is ${url}");
+  Future<void> playUrl(
+      String url, Function(AudioPlayer player) action, Function() error) async {
+    print("playing url is $url");
     action(_player);
     await stop();
-    await _player.setUrl(url);
+    try {
+      await _player.setUrl(url);
+    } on PlayerException catch (e) {
+      error();
+      print("SKY Error code: ${e.code}");
+      print("SKY Error message: ${e.message}");
+    } on PlayerInterruptedException catch (e) {
+      error();
+      print("SKY Connection aborted: ${e.message}");
+    } catch (e) {
+      error();
+      print('SKY An error occured: $e');
+    }
+
     _player.setSpeed(10);
-    //_player.play();
+    _player.setVolume(0.02);
   }
 
   Future<void> play() async {
@@ -36,30 +49,4 @@ class MtnAudioPlayer {
   Future<void> resume() async {
     await _player.play();
   }
-
-  // _playerState() async {
-  //   _player.playerStateStream.listen((state) {
-  //     if (state.playing) {
-  //       switch (state.processingState) {
-  //         case ProcessingState.idle:
-  //           print("idle  ===  ProcessingState.idle   ");
-  //           break;
-  //         case ProcessingState.loading:
-  //           print("loading  ===  ProcessingState.loading   ");
-  //           break;
-  //         case ProcessingState.buffering:
-  //           print("buffering  ===  ProcessingState.buffering   ");
-  //           break;
-  //         case ProcessingState.ready:
-  //           print("ready  ===  ProcessingState.ready   ");
-  //           break;
-  //         case ProcessingState.completed:
-  //           print("completed  ===  ProcessingState.completed   ");
-  //           break;
-  //       }
-  //     } else {
-  //       print("Player is not playing");
-  //     }
-  //   });
-  // }
 }

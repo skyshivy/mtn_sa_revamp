@@ -67,7 +67,9 @@ class CustomButton extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
       children: [
         leftWidget ?? const SizedBox(),
-        (title == null) ? const SizedBox() : titleWidget(),
+        (title == null)
+            ? const SizedBox()
+            : (title!.isEmpty ? const SizedBox() : titleWidget()),
         rightWidget ?? const SizedBox(),
       ],
     );

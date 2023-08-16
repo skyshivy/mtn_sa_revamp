@@ -41,7 +41,6 @@ class StoreManager {
     msisdn = prefs.getString("msisdn") ?? '';
     refreshToken = prefs.getString("refreshToken") ?? '';
     appController.isLoggedIn.value = isLoggedIn;
-    Get.until((route) => Get.currentRoute == '/');
   }
 
   storeAppSettingModel(AppSettingModel settingModel) async {

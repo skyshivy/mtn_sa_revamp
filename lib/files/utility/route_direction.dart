@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/route_name.dart';
@@ -13,6 +14,7 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_v
 
 List<GetPage<dynamic>> get routesDirection {
   Duration dur = const Duration(milliseconds: 1);
+  PlayerController controller = Get.find();
   return [
     GetPage(
         transitionDuration: dur,
@@ -25,6 +27,7 @@ List<GetPage<dynamic>> get routesDirection {
       name: artistTuneRoute,
       page: () {
         String artist = Get.parameters['artist'] ?? '';
+        controller.stop();
         return Material(
           child: ArtistTuneScreen(
             artistName: artist,
@@ -36,6 +39,7 @@ List<GetPage<dynamic>> get routesDirection {
       transitionDuration: dur,
       name: profileTapped,
       page: () {
+        controller.stop();
         return Material(child: ProfileScreen());
       },
     ),
@@ -43,6 +47,7 @@ List<GetPage<dynamic>> get routesDirection {
       transitionDuration: dur,
       name: wishlistTapped,
       page: () {
+        controller.stop();
         return Material(child: WishlistScreen());
       },
     ),
@@ -50,12 +55,14 @@ List<GetPage<dynamic>> get routesDirection {
       transitionDuration: dur,
       name: myTuneTapped,
       page: () {
+        controller.stop();
         return Material(child: MyTuneScreen());
       },
     ),
     GetPage(
       name: myTuneSettingTapped,
       page: () {
+        controller.stop();
         String toneId = Get.parameters['toneId'] ?? '';
         String toneName = Get.parameters['toneName'] ?? '';
         String toneArtist = Get.parameters['toneArtist'] ?? '';
@@ -73,6 +80,7 @@ List<GetPage<dynamic>> get routesDirection {
       transitionDuration: dur,
       name: tuneCatTapped,
       page: () {
+        controller.stop();
         String categoryName = Get.parameters['categoryName'] ?? '';
         String categoryId = Get.parameters['categoryId'] ?? '';
         return Material(
@@ -83,6 +91,7 @@ List<GetPage<dynamic>> get routesDirection {
       transitionDuration: dur,
       name: bannerTapped,
       page: () {
+        controller.stop();
         String searchKey = Get.parameters['searchKey'] ?? '';
         String bannerOrder = Get.parameters['bannerOrder'] ?? '';
         String type = Get.parameters['type'] ?? '';

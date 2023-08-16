@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/buy_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -32,27 +33,41 @@ class BuyAndPlayButton extends StatelessWidget {
   }
 
   Widget playButtonWidget(int index) {
-    return CustomButton(
-      fontName: FontName.medium,
-      fontSize: 16,
-      titlePadding: const EdgeInsets.all(4),
-      borderColor: red,
-      leftWidget: Obx(() {
-        return (playerController.playingIndex.value == index)
-            ? const Icon(Icons.pause)
-            : const Icon(Icons.play_arrow);
-      }),
-      title: playStr,
-      onTap: () {
-        // if ((playerController.isPlaying.value)) {
-        //   playerController.pause();
-        // } else {
-        playerController.playUrl(info?.toneIdStreamingUrl ?? '', index);
-//        }
+    return Obx(() {
+      return CustomButton(
+        fontName: FontName.medium,
+        fontSize: 16,
+        titlePadding: const EdgeInsets.all(4),
+        borderColor: red,
+        leftWidget: playAndPauseButtonIcon(index),
+        title: playButtonTitleWidget(index),
+        onTap: () {
+          playerController.playUrl(info?.toneIdStreamingUrl ?? '', index);
+          info?.isPlaying = !(info?.isPlaying ?? false);
+        },
+      );
+    });
+  }
 
-        info?.isPlaying = !(info?.isPlaying ?? false);
-      },
-    );
+  String playButtonTitleWidget(int index) {
+    return (playerController.playingIndex.value == index)
+        ? (playerController.isPlaying.value
+            ? (playerController.isBuffering.value ? "" : playingStr)
+            : playStr)
+        : playStr;
+  }
+
+  Widget playAndPauseButtonIcon(int index) {
+    return (playerController.playingIndex.value == index)
+        ? (playerController.isPlaying.value
+            ? (playerController.isBuffering.value
+                ? loadingIndicator(color: red, radius: 10)
+                : const Icon(
+                    Icons.pause,
+                    size: 20,
+                  ))
+            : const Icon(Icons.play_arrow))
+        : const Icon(Icons.play_arrow);
   }
 
   Widget buyButtonWidget() {

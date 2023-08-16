@@ -25,7 +25,7 @@ void main() async {
   SearchTuneController _ = Get.put(SearchTuneController());
   PlayerController playerController = Get.put(PlayerController());
   await controller.settinApiCall();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 Future<String> getJson() async {
@@ -38,27 +38,31 @@ Future<String> getJson() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+  PlayerController playerController = Get.find();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'MTN_GENERIC',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: Material(
-          child: Material(child: navBar(context)),
-        ) //Material(child: navBar(context)),
-        // builder: (context, child) {
-        //   return Material(child: navBar(context));
-        //   //Material(
-        //   //child: LoginScreen(),
-        //   //); //Material(child: navBar(context));
-        // },
-        );
+      debugShowCheckedModeBanner: false,
+      title: 'MTN_GENERIC',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: Material(
+        child: Material(child: navBar(context)),
+      ),
+      onGenerateRoute: (settings) {
+        playerController.stop();
+      },
+      //Material(child: navBar(context)),
+      // builder: (context, child) {
+      //   return Material(child: navBar(context));
+      //   //Material(
+      //   //child: LoginScreen(),
+      //   //); //Material(child: navBar(context));
+      // },
+    );
   }
 
   Widget navBar(BuildContext context) {

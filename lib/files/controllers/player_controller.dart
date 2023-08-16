@@ -4,88 +4,125 @@ import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.d
 
 class PlayerController extends GetxController {
   RxBool isPlaying = false.obs;
-  RxInt playingIndex = 909990.obs;
+  bool stopStatePring = true;
+  RxInt playingIndex = 9999999.obs;
+  RxBool isBuffering = false.obs;
   bool _isPaused = false;
   bool _isCompleted = false;
   playUrl(String url, int index) async {
     print(
-        "1 was playing  $playingIndex and tapped is $index _isPaused $_isPaused");
+        "1 was $playingIndex and is $index  _isPaused $_isPaused  isPlaying$isPlaying");
 
-    if (playingIndex == index) {
+    if (playingIndex.value == index) {
       playingIndex.value = index;
       print(
-          "2 was playing  $playingIndex and tapped is $index  _isPaused $_isPaused");
+          "2 was $playingIndex and is $index  _isPaused $_isPaused  isPlaying$isPlaying");
       if (_isPaused) {
-        await play();
-        isPlaying.value = true;
+        await resume();
       } else {
         await pause();
-        isPlaying.value = false;
       }
-
+      print("Is playing status $isPlaying");
       return;
     } else {
       playingIndex.value = index;
       print(
-          "3 was playing  $playingIndex and tapped is $index  _isPaused $_isPaused");
+          "3 was $playingIndex and is $index  _isPaused $_isPaused  isPlaying $isPlaying");
       await MtnAudioPlayer.instance.playUrl(url, (player) {
         _playerState(player);
+      }, () async {
+        await stop();
+        return;
       });
-      play();
+      // await MtnAudioPlayer.instance.playUrl(url, (player), {
+      //   _playerState(player);
+      // });
+      await play();
     }
   }
 
   Future<void> play() async {
-    await MtnAudioPlayer.instance.play();
     isPlaying.value = true;
-    _isPaused = true;
+    _isPaused = false;
+    await MtnAudioPlayer.instance.play();
   }
 
   Future<void> pause() async {
     _isPaused = true;
-
     print("paused tapped");
-    await MtnAudioPlayer.instance.pause();
     isPlaying.value = false;
+    await MtnAudioPlayer.instance.pause();
   }
 
   Future<void> resume() async {
     _isPaused = false;
+    isPlaying.value = true;
     await MtnAudioPlayer.instance.resume();
   }
 
   Future<void> stop() async {
     await MtnAudioPlayer.instance.stop();
+    playingIndex.value = -1;
+    isPlaying.value = false;
+    _isCompleted = true;
+    _isPaused = false;
   }
 
   _playerState(AudioPlayer player) async {
+    error(player);
     player.playerStateStream.listen((state) {
+      isBuffering.value = false;
       if (state.playing) {
-        _isPaused = false;
         switch (state.processingState) {
           case ProcessingState.idle:
-            print("idle  =SKY==  ProcessingState.idle   ");
+            if (stopStatePring) {
+              print("idle  =SKY==  ProcessingState.idle   ");
+            }
+
             break;
           case ProcessingState.loading:
-            print("loading  =SKY==  ProcessingState.loading   ");
+            if (stopStatePring) {
+              print("loading  =SKY==  ProcessingState.loading   ");
+            }
             break;
           case ProcessingState.buffering:
-            print("buffering  =SKY==  ProcessingState.buffering   ");
+            if (stopStatePring) {
+              print("buffering  =SKY==  ProcessingState.buffering   ");
+            }
+            isBuffering.value = true;
             break;
           case ProcessingState.ready:
-            print("ready  =SKY==  ProcessingState.ready   ");
-            isPlaying.value = true;
+            if (stopStatePring) {
+              print("ready  =SKY==  ProcessingState.ready   ");
+            }
+
             break;
           case ProcessingState.completed:
-            print("completed  =SKY==  ProcessingState.completed   ");
+            if (stopStatePring) {
+              print("completed  =SKY==  ProcessingState.completed   ");
+            }
+            playingIndex.value = -1;
             isPlaying.value = false;
             _isCompleted = true;
+            _isPaused = false;
             break;
         }
       } else {
-        _isPaused = true;
         isPlaying.value = false;
-        print("Player is not playing is playing$isPlaying");
+        _isPaused = true;
+        print("Player is not playing");
+      }
+    });
+  }
+
+  error(AudioPlayer player) {
+    player.playbackEventStream.listen((event) {},
+        onError: (Object e, StackTrace st) {
+      if (e is PlayerException) {
+        print('SKY Error code: ${e.code}');
+        print('SKY Error message: ${e.message}');
+      } else {
+        print('SKY An error occurred: $e');
       }
     });
   }
