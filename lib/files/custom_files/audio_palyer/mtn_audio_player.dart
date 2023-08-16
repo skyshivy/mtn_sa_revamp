@@ -29,9 +29,6 @@ class MtnAudioPlayer {
       error();
       print('SKY An error occured: $e');
     }
-
-    _player.setSpeed(10);
-    _player.setVolume(0.02);
   }
 
   Future<void> play() async {

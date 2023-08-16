@@ -34,9 +34,7 @@ class PlayerController extends GetxController {
         await stop();
         return;
       });
-      // await MtnAudioPlayer.instance.playUrl(url, (player), {
-      //   _playerState(player);
-      // });
+
       await play();
     }
   }
