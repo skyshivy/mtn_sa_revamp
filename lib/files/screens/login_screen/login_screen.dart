@@ -10,6 +10,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_msisdn_text_field.dart';
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -107,18 +108,35 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget textfieldWidget() {
     return Obx(() {
       return CustomMsisdnTextField(
-        hintText: controller.isMsisdnVarified.value
-            ? enter6DigitOtpStr
-            : enterMobileNumberStr,
-        text: !controller.isMsisdnVarified.value
-            ? controller.msisdn.value
-            : controller.otp.value,
+        hintText: textFieldHint(),
+        borderColor: textFieldBorderColorChange(),
+        text: textFieldText(),
         addCountryCode: !controller.isMsisdnVarified.value,
         isMsisdn: !controller.isMsisdnVarified.value,
         onChanged: onChange,
         onSubmit: onSubmit,
       );
     });
+  }
+
+  String textFieldText() {
+    return !controller.isMsisdnVarified.value
+        ? controller.msisdn.value
+        : controller.otp.value;
+  }
+
+  String textFieldHint() {
+    return controller.isMsisdnVarified.value
+        ? enter6DigitOtpStr
+        : enterMobileNumberStr;
+  }
+
+  Color textFieldBorderColorChange() {
+    return controller.isMsisdnVarified.value
+        ? (controller.otp.value.length == StoreManager().otpLength ? red : grey)
+        : (controller.msisdn.value.length == StoreManager().msisdnLength
+            ? red
+            : grey);
   }
 
   void onChange(String value) {
@@ -149,10 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
         children: <TextSpan>[
           TextSpan(
             text: signupAgreementStr,
-            style: TextStyle(
-                fontFamily: FontName.light.name,
-                fontSize: fontSize(14, 14),
-                color: black),
+            style: richTextStyle(),
           ),
           TextSpan(
               onEnter: (event) {
@@ -170,6 +185,13 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
+  }
+
+  TextStyle richTextStyle() {
+    return TextStyle(
+        fontFamily: FontName.light.name,
+        fontSize: fontSize(14, 14),
+        color: black);
   }
 
   Widget vSpacing({double height = 20}) {
@@ -261,33 +283,48 @@ class _LoginScreenState extends State<LoginScreen> {
               width: 250,
               child: CustomButton(
                 onTap: () async {
-                  if (controller.isMsisdnVarified.value) {
-                    bool isSuccess = await controller.verifyOtpButtonAction();
-                    if (isSuccess) {
-                      Get.back();
-                      Navigator.pop(context);
-                      await Future.delayed(const Duration(milliseconds: 200));
-                      Get.dialog(
-                        Center(
-                          child:
-                              CustomAlertView(title: successFullyLoggedInStr),
-                        ),
-                      );
-                    }
-                  } else {
-                    controller.varifyMsisdnButtonAction();
-                  }
+                  await onRequestButtonAction();
                 },
                 height: 50,
-                color: greyLight,
-                title: controller.isMsisdnVarified.value
-                    ? verifyOTPStr
-                    : requestOTPStr,
+                color: requestButtonColor(),
+                title: requestButtonTitle(),
                 fontName: FontName.bold,
                 fontSize: fontSize(12, 16),
               ),
             );
     });
+  }
+
+  String requestButtonTitle() {
+    return controller.isMsisdnVarified.value ? verifyOTPStr : requestOTPStr;
+  }
+
+  Color requestButtonColor() {
+    return controller.isMsisdnVarified.value
+        ? ((controller.otp.value.length == StoreManager().otpLength)
+            ? yellow
+            : grey)
+        : ((controller.msisdn.value.length == StoreManager().msisdnLength)
+            ? yellow
+            : grey);
+  }
+
+  Future<void> onRequestButtonAction() async {
+    if (controller.isMsisdnVarified.value) {
+      bool isSuccess = await controller.verifyOtpButtonAction();
+      if (isSuccess) {
+        Get.back();
+        Navigator.pop(context);
+        await Future.delayed(const Duration(milliseconds: 200));
+        Get.dialog(
+          Center(
+            child: CustomAlertView(title: successFullyLoggedInStr),
+          ),
+        );
+      }
+    } else {
+      controller.varifyMsisdnButtonAction();
+    }
   }
 
   Future<void> onReqOtpAction() async {

@@ -79,12 +79,12 @@ class ServiceCall {
     final stringData = await response.transform(utf8.decoder).join();
     print(stringData);
     print("resp code is ${response.statusCode}");
-    if (response.statusCode == 200) {
-      Map<String, dynamic> valueMap = json.decode(stringData);
-      return valueMap;
-    } else {
-      return null;
-    }
+    //if (response.statusCode == 200) {
+    Map<String, dynamic> valueMap = json.decode(stringData);
+    return valueMap;
+    // } else {
+    //   return null;
+    // }
   }
 
   Future<Map<String, dynamic>?> get(String url) async {

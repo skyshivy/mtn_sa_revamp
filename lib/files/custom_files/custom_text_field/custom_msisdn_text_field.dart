@@ -12,6 +12,7 @@ class CustomMsisdnTextField extends StatelessWidget {
   final String text;
   final String? hintText;
   final bool isMsisdn;
+  final Color borderColor;
   final Widget? prefixWidget;
   final bool addCountryCode;
   final Function(String)? onChanged;
@@ -26,6 +27,7 @@ class CustomMsisdnTextField extends StatelessWidget {
     this.onChanged,
     this.onSubmit,
     required this.text,
+    this.borderColor = grey,
   });
   @override
   Widget build(BuildContext context) {
@@ -67,7 +69,7 @@ class CustomMsisdnTextField extends StatelessWidget {
   BoxDecoration mainDecoration() {
     return BoxDecoration(
       //color: yellow,
-      border: Border.all(color: grey),
+      border: Border.all(color: borderColor),
       borderRadius: BorderRadius.circular(25),
     );
   }

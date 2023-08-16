@@ -72,6 +72,7 @@ class LoginVm {
     String url = confirmOtpUrl;
     Map<String, dynamic>? stringData = await ServiceCall().post(url, formData);
     //final stringData = await resp.transform(utf8.decoder).join();
+    print("Result is ======= $stringData");
     if (stringData != null) {
       ConfirmOtpModel model = ConfirmOtpModel.fromJson(stringData);
       print("Result is ======= $stringData");
