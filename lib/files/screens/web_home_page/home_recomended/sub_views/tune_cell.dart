@@ -33,7 +33,7 @@ class HomeTuneCell extends StatelessWidget {
     return Column(
       children: [
         Expanded(flex: 7, child: tuneImageWidget(index)),
-        Expanded(flex: 6, child: bottomSection()),
+        Expanded(flex: 6, child: bottomSection(index)),
       ],
     );
   }
@@ -125,7 +125,7 @@ class HomeTuneCell extends StatelessWidget {
         ]);
   }
 
-  Widget bottomSection() {
+  Widget bottomSection(int index) {
     return Padding(
       padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 16),
       child: Column(
@@ -136,6 +136,7 @@ class HomeTuneCell extends StatelessWidget {
           Flexible(
             child: BuyAndPlayButton(
               info: info,
+              index: index,
             ),
           ),
         ],
