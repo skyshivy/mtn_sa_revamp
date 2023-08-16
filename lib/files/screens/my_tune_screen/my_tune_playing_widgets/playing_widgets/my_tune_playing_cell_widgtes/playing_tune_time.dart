@@ -1,25 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/home_cell_title_sub_title.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
-Widget playingTuneTimeView() {
+Widget playingTuneTimeView(ListToneApk item) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      _startTime(),
-      _endTime(),
+      _startTime(item),
+      _endTime(item),
     ],
   );
 }
 
-Widget _startTime() {
-  return _titleSubTitleWidget(startTimeStr, "00:00");
+Widget _startTime(ListToneApk item) {
+  return _titleSubTitleWidget(startTimeStr, item.sTime ?? '');
 }
 
-Widget _endTime() {
-  return _titleSubTitleWidget(startTimeStr, "23:59");
+Widget _endTime(ListToneApk item) {
+  return _titleSubTitleWidget(startTimeStr, item.eTime ?? '');
 }
 
 Widget _titleSubTitleWidget(String title, String subTitle) {

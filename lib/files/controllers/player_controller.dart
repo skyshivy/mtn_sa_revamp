@@ -28,6 +28,7 @@ class PlayerController extends GetxController {
       playingIndex.value = index;
       print(
           "3 was $playingIndex and is $index  _isPaused $_isPaused  isPlaying $isPlaying");
+      isBuffering.value = true;
       await MtnAudioPlayer.instance.playUrl(url, (player) {
         _playerState(player);
       }, () async {

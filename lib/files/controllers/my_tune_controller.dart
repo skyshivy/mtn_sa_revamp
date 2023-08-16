@@ -42,4 +42,13 @@ class MyTuneController extends GetxController {
     print("getTuneList  ${tuneList.length}");
     isLoadingTune.value = false;
   }
+
+  Future<void> suffleTune() async {
+    print("Suffle status");
+    print("calling api ${switchEnabled}");
+    var result = await MyTunePlayingVM().suffleTune(!switchEnabled.value);
+    switchEnabled.value = !switchEnabled.value;
+    print("result ========= ${result}");
+    print("Result ${result}");
+  }
 }

@@ -43,7 +43,7 @@ Widget _bottomWidget() {
       children: [
         _whenWantToPlayText(),
         const SizedBox(height: 8),
-        tuneSettingTimeTypeButton(),
+        const TuneSettingTimeTypeButton(),
         tuneSettingDaySelectionView(),
       ],
     ),

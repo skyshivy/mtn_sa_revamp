@@ -1,6 +1,7 @@
 import 'dart:js_util';
 
 import 'package:flutter/cupertino.dart';
+import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_divider.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_image.dart';
@@ -27,11 +28,10 @@ Widget myTunePlayingCell(ListToneApk item) {
             children: [
               _playingTuneInfoRow(item),
               playingTuneDivider(),
-              playingTuneStatus(),
+              playingTuneStatus(item),
               playingTuneDivider(),
-              playingTuneTimeView(),
-              playingTuneDivider(),
-              playingTuneRepeatDays(),
+              playingTuneTimeView(item),
+              repeatView(item),
               const SizedBox(height: 8),
             ],
           ),
@@ -39,6 +39,21 @@ Widget myTunePlayingCell(ListToneApk item) {
       ],
     ),
   );
+}
+
+Widget repeatView(ListToneApk item) {
+  return (item.toneDetailTimeType == TimeType.monthly ||
+          item.toneDetailTimeType == TimeType.yearly ||
+          item.toneDetailTimeType == TimeType.none)
+      ? const SizedBox()
+      : Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            playingTuneDivider(),
+            playingTuneRepeatDays(item),
+          ],
+        );
 }
 
 Row _playingTuneInfoRow(ListToneApk item) {

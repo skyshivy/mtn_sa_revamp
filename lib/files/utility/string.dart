@@ -50,6 +50,8 @@ const mobileNumberStr = "Mobile number";
 const subscribeStr = "Subscribe";
 const profileStr = "Profile";
 const wishlistStr = "Wishlist";
+const timeBaseStr = "Select time base";
+const repeatBaseStr = "Select repeat";
 const featureIsAvailableForLoggedInStr =
     "This feature is availabe for logged in users";
 const tellFriendStr = "Tell a friend";

@@ -50,7 +50,8 @@ Widget _toggleButton() {
       return Switch.adaptive(
         value: controller.isSuffle.value,
         onChanged: (value) {
-          controller.isSuffle.value = !controller.isSuffle.value;
+          controller.suffleTune();
+          //controller.isSuffle.value = !controller.isSuffle.value;
           print("On change swith");
         },
       );

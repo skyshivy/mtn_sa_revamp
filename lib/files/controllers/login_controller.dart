@@ -103,6 +103,8 @@ class LoginController extends GetxController {
     isVerifying.value = true;
     ConfirmOtpModel? model =
         await LoginVm().confirmOtp(msisdn.value, otp.value);
+    print(
+        "Resu =Sky====model?.statusCode ${model?.statusCode}==model?.message ${model?.message}=");
     isVerifying.value = false;
     if (model?.statusCode == "SC0000") {
       return true;
