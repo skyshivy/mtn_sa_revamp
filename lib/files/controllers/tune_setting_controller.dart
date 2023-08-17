@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
 import 'package:mtn_sa_revamp/files/model/set_tune_model.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -11,14 +12,17 @@ class TuneSettingController extends GetxController {
   RxString msisdn = ''.obs;
   String tuneName = '';
   String tuneId = '';
-  DateTime? fromTD;
-  DateTime? toTD;
-  String fromTimeStr = '';
-  String toTimeStr = '';
+  DateTime? _fromTD;
+  DateTime? _toTD;
+  String _fromTimeStr = '';
+  String _toTimeStr = '';
   String tuneImage = '';
   String tuneArtist = '';
-  String dedicatedMsisdn = '';
+  String _dedicatedMsisdn = '';
   String packName = '';
+  ToWhomAction _toWhome = ToWhomAction.allCaller;
+  SelectTimeType _timeType = SelectTimeType.fullday;
+  RepeatYearlyViewAction _repeatYearlyViewAction = RepeatYearlyViewAction.none;
   String selectedDays = '';
   RxString error = ''.obs;
 
@@ -31,103 +35,162 @@ class TuneSettingController extends GetxController {
     DayModel(friStr),
     DayModel(satStr)
   ];
+  fromTimeStr(String fromTime) {
+    _fromTimeStr = fromTime;
+  }
+
+  toTimeStr(String toTime) {
+    _toTimeStr = toTime;
+  }
+
+  updateDedictedUser(String text) {
+    _dedicatedMsisdn = text;
+  }
+
+  updateToWhom(ToWhomAction toWhomAction) {
+    _toWhome = toWhomAction;
+  }
+
+  updateRepate(RepeatYearlyViewAction action) {
+    _repeatYearlyViewAction = action;
+  }
+
+  updateTimeType(SelectTimeType type) {
+    _timeType = type;
+  }
 
   updateMsisdn(String msisdn) {
     this.msisdn.value = msisdn;
   }
 
-  result(Map<String, dynamic> map) {
-    SetToneModel model = SetToneModel.fromJson(map);
-    if (model.statusCode == "SC0000") {
+  setTune() {
+    _checkToWhom(_toWhome);
+  }
+
+  _checkToWhom(ToWhomAction selection) {
+    switch (selection) {
+      case ToWhomAction.allCaller:
+        _setTuneForAllCaller();
+        break;
+      case ToWhomAction.specificCaller:
+        _setTuneForSpecificCaller();
+        break;
+      default:
+    }
+  }
+
+  _setTuneForAllCaller() async {
+    if (SelectTimeType.fullday == _timeType) {
+      print("_allCallerFullDay");
+      //await _allCallerFullDay();
+    } else if (SelectTimeType.time == _timeType) {
+      print("_allCallerTimeBase");
+      //await _allCallerTimeBase();
     } else {
-      showSnackBar(message: model.message ?? '');
+      if (RepeatYearlyViewAction.none == _repeatYearlyViewAction) {
+        print("_allCallerDateBaseNone");
+        //_allCallerDateBaseNone();
+      } else if (RepeatYearlyViewAction.monthly == _repeatYearlyViewAction) {
+        print("_allCallerDateBaseMonthly");
+        //_allCallerDateBaseMonthly();
+      } else {
+        print("_allCallerDateBaseYearly");
+        //_allCallerDateBaseYearly();
+      }
     }
   }
 
-  allCallerDateBaseNone() async {
-    var map = await TuneSettingAllCallerVM()
-        .allCallerNone(tuneId, fromTD, toTD, fromTimeStr, toTimeStr);
+  _setTuneForSpecificCaller() async {
+    if (SelectTimeType.fullday == _timeType) {
+      print("_dedicatedFullDay");
+      //_dedicatedFullDay();
+    } else if (SelectTimeType.time == _timeType) {
+      print("_dedicatedTimeBase");
+      //_dedicatedTimeBase();
+    } else {
+      if (RepeatYearlyViewAction.none == _repeatYearlyViewAction) {
+        print("_dedicatedDateBaseNone");
+        //_dedicatedDateBaseNone();
+      } else if (RepeatYearlyViewAction.monthly == _repeatYearlyViewAction) {
+        print("_dedicatedDateBaseMonthly");
+        //_dedicatedDateBaseMonthly();
+      } else {
+        print("_dedicatedDateBaseYearly");
+        //_dedicatedDateBaseYearly();
+      }
+    }
+  }
+
+  _result(Map<String, dynamic>? map) {
     if (map != null) {
-      result(map);
-      return;
+      SetToneModel model = SetToneModel.fromJson(map);
+      if (model.statusCode == "SC0000") {
+        return;
+      } else {
+        showSnackBar(message: model.message ?? '');
+        return;
+      }
     }
     showSnackBar(message: someThingWentWrongStr);
-    print("allCallerDateBaseNone");
   }
 
-  allCallerDateBaseMonthly() async {
+  _allCallerFullDay() async {
     var map = await TuneSettingAllCallerVM()
-        .allCallerMonthly(tuneId, fromTD, toTD, fromTimeStr, toTimeStr);
-    if (map != null) {
-      result(map);
-      return;
-    }
-    showSnackBar(message: someThingWentWrongStr);
+        .setAllCallerFullDay(tuneId, selectedDays);
+    _result(map);
   }
 
-  allCallerDateBaseYearly() async {
+  _allCallerTimeBase() async {
     var map = await TuneSettingAllCallerVM()
-        .allDayYearly(tuneId, fromTD, toTD, fromTimeStr, toTimeStr);
-    if (map != null) {
-      result(map);
-      return;
-    }
-    showSnackBar(message: someThingWentWrongStr);
-    print("allCallerDateBaseYearly");
+        .allCallerTimeBase(tuneId, selectedDays, _fromTimeStr, endTimeStr);
+    _result(map);
   }
 
-  dedicatedFullDay() async {
+  _allCallerDateBaseNone() async {
+    var map = await TuneSettingAllCallerVM()
+        .allCallerNone(tuneId, _fromTD, _toTD, _fromTimeStr, _toTimeStr);
+    _result(map);
+  }
+
+  _allCallerDateBaseMonthly() async {
+    var map = await TuneSettingAllCallerVM()
+        .allCallerMonthly(tuneId, _fromTD, _toTD, _fromTimeStr, _toTimeStr);
+    _result(map);
+  }
+
+  _allCallerDateBaseYearly() async {
+    var map = await TuneSettingAllCallerVM()
+        .allDayYearly(tuneId, _fromTD, _toTD, _fromTimeStr, _toTimeStr);
+    _result(map);
+  }
+
+  _dedicatedFullDay() async {
     var map = await TuneSettingDedicatedVM()
-        .dedicatedFullday(tuneId, dedicatedMsisdn, packName, selectedDays);
-    if (map != null) {
-      result(map);
-      return;
-    }
-    showSnackBar(message: someThingWentWrongStr);
-    print("dedicatedFullDay");
+        .dedicatedFullday(tuneId, _dedicatedMsisdn, packName, selectedDays);
+    _result(map);
   }
 
-  dedicatedTimeBase() async {
+  _dedicatedTimeBase() async {
     var map = await TuneSettingDedicatedVM().dedicatedTimeBase(tuneId,
-        dedicatedMsisdn, packName, selectedDays, fromTimeStr, toTimeStr);
-    if (map != null) {
-      result(map);
-      return;
-    }
-    showSnackBar(message: someThingWentWrongStr);
-    print("dedicatedTimeBase");
+        _dedicatedMsisdn, packName, selectedDays, _fromTimeStr, _toTimeStr);
+    _result(map);
   }
 
-  void dedicatedDateBaseNone() async {
+  void _dedicatedDateBaseNone() async {
     var map = await TuneSettingDedicatedVM().dedicatedNone(tuneId,
-        dedicatedMsisdn, packName, fromTD, toTD, fromTimeStr, toTimeStr);
-    if (map != null) {
-      result(map);
-      return;
-    }
-    showSnackBar(message: someThingWentWrongStr);
-    print("dedicatedDateBaseNone");
+        _dedicatedMsisdn, packName, _fromTD, _toTD, _fromTimeStr, _toTimeStr);
+    _result(map);
   }
 
-  void dedicatedDateBaseMonthly() async {
+  void _dedicatedDateBaseMonthly() async {
     var map = await TuneSettingDedicatedVM().dedicatedMonthly(tuneId,
-        dedicatedMsisdn, packName, fromTD, toTD, fromTimeStr, toTimeStr);
-    if (map != null) {
-      result(map);
-      return;
-    }
-    showSnackBar(message: someThingWentWrongStr);
-    print("dedicatedDateBaseMonthly");
+        _dedicatedMsisdn, packName, _fromTD, _toTD, _fromTimeStr, _toTimeStr);
+    _result(map);
   }
 
-  void dedicatedDateBaseYearly() async {
+  void _dedicatedDateBaseYearly() async {
     var map = await TuneSettingDedicatedVM().dedicatedYearly(tuneId,
-        dedicatedMsisdn, packName, fromTD, toTD, fromTimeStr, toTimeStr);
-    if (map != null) {
-      result(map);
-      return;
-    }
-    showSnackBar(message: someThingWentWrongStr);
-    print("dedicatedDateBaseYearly");
+        _dedicatedMsisdn, packName, _fromTD, _toTD, _fromTimeStr, _toTimeStr);
+    _result(map);
   }
 }

@@ -26,3 +26,20 @@ enum CallerType {
   callerGroup,
   specificCaller,
 }
+
+enum SelectTimeType {
+  fullday,
+  time,
+  timeDate,
+}
+
+enum RepeatYearlyViewAction {
+  none,
+  monthly,
+  yearly,
+}
+
+enum ToWhomAction {
+  allCaller,
+  specificCaller,
+}
