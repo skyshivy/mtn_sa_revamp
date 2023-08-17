@@ -20,6 +20,7 @@ class TuneSettingController extends GetxController {
   String tuneArtist = '';
   String _dedicatedMsisdn = '';
   String packName = '';
+  RxString timeTypeBtm = fullDay24HourStr.obs;
   ToWhomAction _toWhome = ToWhomAction.allCaller;
   SelectTimeType _timeType = SelectTimeType.fullday;
   RepeatYearlyViewAction _repeatYearlyViewAction = RepeatYearlyViewAction.none;
@@ -49,6 +50,7 @@ class TuneSettingController extends GetxController {
 
   updateToWhom(ToWhomAction toWhomAction) {
     _toWhome = toWhomAction;
+    print("TO whom $_toWhome");
   }
 
   updateRepate(RepeatYearlyViewAction action) {
@@ -57,6 +59,7 @@ class TuneSettingController extends GetxController {
 
   updateTimeType(SelectTimeType type) {
     _timeType = type;
+    print("selected time type is $type");
   }
 
   updateMsisdn(String msisdn) {

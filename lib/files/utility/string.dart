@@ -21,6 +21,9 @@ const advancedSettingsStr = "Advanced Settings";
 const selectTimeTypeStr = "Select Time Type";
 const fullDay24HourStr = "Full Day - 24 hr";
 
+const selecteTimeStr = "Select Time";
+const selectRepeatStr = "Select Repeat";
+
 const sunStr = "Sun";
 const monStr = "Mon";
 const tueStr = "Tue";

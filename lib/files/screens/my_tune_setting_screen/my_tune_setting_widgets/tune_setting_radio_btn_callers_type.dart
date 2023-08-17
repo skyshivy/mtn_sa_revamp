@@ -49,6 +49,11 @@ Widget _combinedWidget(int index, bool isSelected, String title) {
   return InkWell(
     onTap: () {
       cont.callerType.value = index;
+      cont.updateToWhom(index == 0
+          ? ToWhomAction.allCaller
+          : (index == 1
+              ? ToWhomAction.specificCaller
+              : ToWhomAction.callerGroup));
       print("tuneSettingRadioButtonCallersType tapped");
     },
     child: Row(

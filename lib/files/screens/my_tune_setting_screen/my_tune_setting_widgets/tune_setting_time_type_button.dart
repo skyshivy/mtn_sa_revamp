@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
@@ -19,11 +20,12 @@ class TuneSettingTimeTypeButton extends StatefulWidget {
 }
 
 class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
+  TuneSettingController con = Get.find();
   GlobalKey _key = GlobalKey();
   List<MenuModel> menuList = [
     MenuModel(fullDay24HourStr),
-    MenuModel(timeBaseStr),
-    MenuModel(repeatBaseStr)
+    MenuModel(selecteTimeStr),
+    MenuModel(selectRepeatStr)
   ];
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
       onTap: () {
         print("tuneSettingTimeTypeButton tapped");
 
-        Get.dialog(showPositionedPopup(_key, menuList));
+        Get.dialog(showPositionedPopup(_key, menuList, onTap: action));
       },
       child: Container(
         height: 55,
@@ -73,15 +75,31 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
   }
 
   Widget _timeTypeTitleWidget() {
-    return const CustomText(
-      title: fullDay24HourStr,
-      textColor: red,
-      fontName: FontName.medium,
-      fontSize: 14,
-    );
+    return Obx(() {
+      return CustomText(
+        title: con.timeTypeBtm.value,
+        textColor: red,
+        fontName: FontName.medium,
+        fontSize: 14,
+      );
+    });
   }
 
   Widget dropIconWidget() {
     return const Icon(Icons.arrow_drop_down);
+  }
+
+  void action(MenuModel model) {
+    print("Model is name ${model.title}");
+    if (model.title == fullDay24HourStr) {
+      con.timeTypeBtm.value = fullDay24HourStr;
+      con.updateTimeType(SelectTimeType.fullday);
+    } else if (model.title == selecteTimeStr) {
+      con.timeTypeBtm.value = selecteTimeStr;
+      con.updateTimeType(SelectTimeType.time);
+    } else if (model.title == selectRepeatStr) {
+      con.timeTypeBtm.value = selectRepeatStr;
+      con.updateTimeType(SelectTimeType.timeDate);
+    }
   }
 }
