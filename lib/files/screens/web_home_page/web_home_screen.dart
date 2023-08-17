@@ -16,11 +16,16 @@ class WebLandingPage extends StatelessWidget {
         controller: _controller,
         child: Column(
           children: [
-            const LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
-            const LandingRecoView(),
-            const SizedBox(height: 80),
-            LandingInfoPage(),
-            const LandingPageBottomSection()
+            MyTuneSettingScreen(
+                toneId: "34324",
+                toneName: "toneName",
+                toneArtist: "toneArtist",
+                toneImage:
+                    "toneImage"), //const LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
+            // const LandingRecoView(),
+            // const SizedBox(height: 80),
+            // LandingInfoPage(),
+            // const LandingPageBottomSection()
           ],
         ),
       ),

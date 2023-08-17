@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/view_model/my_tune_playing_vm.dart';
 class MyTuneController extends GetxController {
   RxBool isLoadingPlaying = false.obs;
   RxBool isLoadingTune = false.obs;
+  RxBool isChangeSuffle = false.obs;
   RxBool isSuffle = false.obs;
   RxBool switchEnabled = false.obs;
   RxList<ListToneApk> playingList = <ListToneApk>[].obs;
@@ -23,6 +24,7 @@ class MyTuneController extends GetxController {
     if (playingTune != null) {
       print("Is suffle status 1 ${playingTune.isSuffle!}");
       isSuffle.value = playingTune.isSuffle!;
+      switchEnabled.value = playingTune.isSuffle!;
       playingList.value = playingTune.responseMap?.listToneApk ?? [];
     }
     isLoadingPlaying.value = false;
@@ -44,11 +46,10 @@ class MyTuneController extends GetxController {
   }
 
   Future<void> suffleTune() async {
-    print("Suffle status");
-    print("calling api ${switchEnabled}");
+    isChangeSuffle.value = true;
     var result = await MyTunePlayingVM().suffleTune(!switchEnabled.value);
+    isChangeSuffle.value = false;
     switchEnabled.value = !switchEnabled.value;
-    print("result ========= ${result}");
-    print("Result ${result}");
+    isSuffle.value = switchEnabled.value;
   }
 }

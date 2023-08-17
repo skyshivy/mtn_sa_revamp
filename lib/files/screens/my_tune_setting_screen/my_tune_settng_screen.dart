@@ -79,9 +79,9 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
   }
 
   Widget topTitleWidget() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 20),
-      child: const CustomText(
+    return const Padding(
+      padding: EdgeInsets.only(top: 20, bottom: 20),
+      child: CustomText(
         title: advancedSettingsStr,
         fontName: FontName.regular,
         fontSize: 25,

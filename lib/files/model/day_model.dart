@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 class DayModel {
   String title;
-  RxBool? isSelected = false.obs;
+  RxBool? isSelected = true.obs;
   DayModel(
     this.title,
   );

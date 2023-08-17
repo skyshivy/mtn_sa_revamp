@@ -30,8 +30,8 @@ class ServiceCall {
         StoreManager().appSetting = setting;
       }
     } catch (error) {
-      print("error for url #${url}");
-      print("error =   =  ${error}");
+      print("error for url $url");
+      print("error =   =  $error");
     }
   }
 
