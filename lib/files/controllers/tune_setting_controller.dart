@@ -91,39 +91,39 @@ class TuneSettingController extends GetxController {
       case ToWhomAction.specificCaller:
         _setTuneForSpecificCaller();
         break;
+      case ToWhomAction.callerGroup:
+        print("callerGroup is ");
+        //_setTuneForCallergroup();
+        break;
       default:
     }
   }
 
   _setTuneForAllCaller() async {
-    if (SelectTimeType.fullday == timeType) {
-      print("_allCallerFullDay");
-      //await _allCallerFullDay();
-    } else if (SelectTimeType.time == timeType) {
-      print("_allCallerTimeBase");
-      //await _allCallerTimeBase();
-    } else {
+    if (isTimeAndDate.value) {
       if (RepeatYearlyViewAction.none == _repeatYearlyViewAction) {
         print("_allCallerDateBaseNone");
         //_allCallerDateBaseNone();
       } else if (RepeatYearlyViewAction.monthly == _repeatYearlyViewAction) {
         print("_allCallerDateBaseMonthly");
         //_allCallerDateBaseMonthly();
-      } else if (RepeatYearlyViewAction.none == _repeatYearlyViewAction) {
+      } else if (RepeatYearlyViewAction.yearly == _repeatYearlyViewAction) {
         print("_allCallerDateBaseYearly");
         //_allCallerDateBaseYearly();
+      }
+    } else {
+      if (SelectTimeType.fullday == timeType) {
+        print("_allCallerFullDay");
+        //await _allCallerFullDay();
+      } else if (SelectTimeType.time == timeType) {
+        print("_allCallerTimeBase");
+        //await _allCallerTimeBase();
       }
     }
   }
 
   _setTuneForSpecificCaller() async {
-    if (SelectTimeType.fullday == timeType) {
-      print("_dedicatedFullDay");
-      //_dedicatedFullDay();
-    } else if (SelectTimeType.time == timeType) {
-      print("_dedicatedTimeBase");
-      //_dedicatedTimeBase();
-    } else {
+    if (isTimeAndDate.value) {
       if (RepeatYearlyViewAction.none == _repeatYearlyViewAction) {
         print("_dedicatedDateBaseNone");
         //_dedicatedDateBaseNone();
@@ -133,6 +133,14 @@ class TuneSettingController extends GetxController {
       } else {
         print("_dedicatedDateBaseYearly");
         //_dedicatedDateBaseYearly();
+      }
+    } else {
+      if (SelectTimeType.fullday == timeType) {
+        print("_dedicatedFullDay");
+        //_dedicatedFullDay();
+      } else if (SelectTimeType.time == timeType) {
+        print("_dedicatedTimeBase");
+        //_dedicatedTimeBase();
       }
     }
   }
