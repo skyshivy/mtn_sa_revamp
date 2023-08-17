@@ -27,7 +27,7 @@ Widget tuneSettingRightWidgte() {
           children: [
             _bottomWidget(),
           ],
-        )
+        ),
       ],
     ),
   );
