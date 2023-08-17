@@ -16,6 +16,11 @@ const callersStr = "Callers";
 const playAtStr = "Play at";
 const fulldayStr = "FullDay";
 const allStr = "All";
+
+const noneStr = "None";
+const monthlyStr = "Monthly";
+const yearlyStr = "Yearly";
+
 const advancedSettingsStr = "Advanced Settings";
 
 const selectTimeTypeStr = "Select Time Type";

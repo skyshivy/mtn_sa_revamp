@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_day_selection_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_dedicated_msisdn_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_radio_btn_callers_type.dart';
+import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_repeat.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_time_type_button.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -51,10 +52,27 @@ Widget _bottomWidget() {
         _whenWantToPlayText(),
         const SizedBox(height: 2),
         const TuneSettingTimeTypeButton(),
-        tuneSettingDaySelectionView(),
+        _selectDayView(),
+        _repeatYear(),
       ],
     ),
   );
+}
+
+Widget _selectDayView() {
+  TuneSettingController con = Get.find();
+  return Obx(() {
+    return con.isTimeAndDate.value
+        ? const SizedBox()
+        : tuneSettingDaySelectionView();
+  });
+}
+
+Widget _repeatYear() {
+  TuneSettingController con = Get.find();
+  return Obx(() {
+    return con.isTimeAndDate.value ? tuneSettingRepeatView() : const SizedBox();
+  });
 }
 
 Widget _dedicatedUserTextField() {

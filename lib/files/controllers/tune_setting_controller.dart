@@ -9,6 +9,7 @@ import 'package:mtn_sa_revamp/files/view_model/tune_setting_dedicated_vm.dart';
 
 class TuneSettingController extends GetxController {
   RxInt callerType = 0.obs;
+  RxInt repeatYear = 0.obs;
   RxString msisdn = ''.obs;
   String tuneName = '';
   String tuneId = '';
@@ -20,9 +21,10 @@ class TuneSettingController extends GetxController {
   String tuneArtist = '';
   String _dedicatedMsisdn = '';
   String packName = '';
+  RxBool isTimeAndDate = false.obs;
   RxString timeTypeBtm = fullDay24HourStr.obs;
   ToWhomAction _toWhome = ToWhomAction.allCaller;
-  SelectTimeType _timeType = SelectTimeType.fullday;
+  SelectTimeType timeType = SelectTimeType.fullday;
   RepeatYearlyViewAction _repeatYearlyViewAction = RepeatYearlyViewAction.none;
   String selectedDays = '';
   RxString error = ''.obs;
@@ -44,6 +46,20 @@ class TuneSettingController extends GetxController {
     _toTimeStr = toTime;
   }
 
+  updateRepeatYear(int index) {
+    repeatYear.value = index;
+    if (index == 0) {
+      _repeatYearlyViewAction = RepeatYearlyViewAction.none;
+      timeType = SelectTimeType.fullday;
+    } else if (index == 1) {
+      _repeatYearlyViewAction = RepeatYearlyViewAction.monthly;
+      timeType = SelectTimeType.time;
+    } else if (index == 2) {
+      _repeatYearlyViewAction = RepeatYearlyViewAction.yearly;
+      timeType = SelectTimeType.timeDate;
+    }
+  }
+
   updateDedictedUser(String text) {
     _dedicatedMsisdn = text;
   }
@@ -53,12 +69,9 @@ class TuneSettingController extends GetxController {
     print("TO whom $_toWhome");
   }
 
-  updateRepate(RepeatYearlyViewAction action) {
-    _repeatYearlyViewAction = action;
-  }
-
   updateTimeType(SelectTimeType type) {
-    _timeType = type;
+    timeType = type;
+    isTimeAndDate.value = (timeType == SelectTimeType.timeDate);
     print("selected time type is $type");
   }
 
@@ -83,10 +96,10 @@ class TuneSettingController extends GetxController {
   }
 
   _setTuneForAllCaller() async {
-    if (SelectTimeType.fullday == _timeType) {
+    if (SelectTimeType.fullday == timeType) {
       print("_allCallerFullDay");
       //await _allCallerFullDay();
-    } else if (SelectTimeType.time == _timeType) {
+    } else if (SelectTimeType.time == timeType) {
       print("_allCallerTimeBase");
       //await _allCallerTimeBase();
     } else {
@@ -96,7 +109,7 @@ class TuneSettingController extends GetxController {
       } else if (RepeatYearlyViewAction.monthly == _repeatYearlyViewAction) {
         print("_allCallerDateBaseMonthly");
         //_allCallerDateBaseMonthly();
-      } else {
+      } else if (RepeatYearlyViewAction.none == _repeatYearlyViewAction) {
         print("_allCallerDateBaseYearly");
         //_allCallerDateBaseYearly();
       }
@@ -104,10 +117,10 @@ class TuneSettingController extends GetxController {
   }
 
   _setTuneForSpecificCaller() async {
-    if (SelectTimeType.fullday == _timeType) {
+    if (SelectTimeType.fullday == timeType) {
       print("_dedicatedFullDay");
       //_dedicatedFullDay();
-    } else if (SelectTimeType.time == _timeType) {
+    } else if (SelectTimeType.time == timeType) {
       print("_dedicatedTimeBase");
       //_dedicatedTimeBase();
     } else {
