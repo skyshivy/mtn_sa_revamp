@@ -32,12 +32,15 @@ const satStr = "Sat";
 const allCallerStr = "All Callers";
 const specificCallerStr = "Callers Group";
 const callerGroupStr = "Specific Caller";
-const whomYouWantToPlayItStr = "Whom you want to play it?";
-const whenYouWantToPlayItStr = "when you want to play it?";
+const whomYouWantToPlayItStr = "Whom You Want To Play It?";
+const whenYouWantToPlayItStr = "When You Want To Play It?";
 
 const startTimeStr = "Start Time";
 const endTimeStr = "End Time";
 const repeatStr = "Repeat";
+
+const addNuberStr = "Add Number";
+const enterNuberStr = "Enter Number";
 
 const shuffleStr = "Shuffle";
 const customStr = "Custom";

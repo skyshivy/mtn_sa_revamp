@@ -26,6 +26,7 @@ String editProfileUrl = "${baseUrlSecurity}edit-profile";
 String passwordValidationUrl = "${baseUrl}password-validation";
 String categoryListUrl =
     "${baseUrl}categories?language=${StoreManager().language}";
+
 String getCategoryDetailUrl =
     "${baseUrl}search-tone?language=${StoreManager().language}";
 String bannerDetailUrl =
@@ -36,3 +37,19 @@ String getPlayingTunesUrl =
     '${baseUrl}list-tones?language=0&msisdn=${StoreManager().msisdn}&startIndex=0&endIndex=40&rbtMode=0';
 String getMyTuneListUrl =
     '${baseUrl}list-tones?language=0&msisdn=${StoreManager().msisdn}&startIndex=0&endIndex=40&rbtMode=400';
+
+//====================================
+
+String timeBaseTuneSetUrl =
+    '${baseUrlSecurity}time-based-setting-for-already-activated';
+String addToneToSuffleUrl = '${baseUrlSecurity}add-tone-to-shuffle';
+String dedicatedTuneSetUrl =
+    '${baseUrlSecurity}dedicated-user-tone-addition-with-time-setting';
+    
+
+  
+// String fulldayTuneSetUrl =
+//     '${baseUrlSecurity}time-based-setting-for-already-activated';
+// String timeBaseTuneSet =
+//     '${baseUrlSecurity}time-based-setting-for-already-activated';
+    

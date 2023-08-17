@@ -19,10 +19,10 @@ Widget tuneSettingDaySelectionView() {
         const SizedBox(height: 25),
         const CustomText(
           title: repeatStr,
-          fontName: FontName.bold,
-          fontSize: 16,
+          fontName: FontName.medium,
+          fontSize: 14,
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
         Obx(() {
           return Row(
             children: [
@@ -44,12 +44,12 @@ Widget tuneSettingDaySelectionView() {
 Widget _dayButton(
     String title, bool isSelected, int index, TuneSettingController cont) {
   return Padding(
-    padding: const EdgeInsets.only(left: 8),
+    padding: const EdgeInsets.only(right: 8),
     child: CustomButton(
       titlePadding: const EdgeInsets.symmetric(horizontal: 16),
       color: isSelected ? yellow : white,
       borderColor: isSelected ? yellow : red,
-      height: 40,
+      height: 35,
       fontName: isSelected ? FontName.medium : FontName.regular,
       title: title,
       onTap: () {

@@ -35,16 +35,18 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
         Get.dialog(showPositionedPopup(_key, menuList));
       },
       child: Container(
-        height: 60,
+        height: 55,
         width: 300,
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(4), color: white),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            color: white,
+            border: Border.all(color: borderColor)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 8),
+              padding: const EdgeInsets.only(left: 12),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,

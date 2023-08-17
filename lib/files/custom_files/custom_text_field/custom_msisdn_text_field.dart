@@ -13,6 +13,10 @@ class CustomMsisdnTextField extends StatelessWidget {
   final String? hintText;
   final bool isMsisdn;
   final Color borderColor;
+  final Color bgColor;
+  final Widget? rightWidget;
+  final Color countryCodeColor;
+  final double cornerRadius;
   final Widget? prefixWidget;
   final bool addCountryCode;
   final Function(String)? onChanged;
@@ -22,6 +26,10 @@ class CustomMsisdnTextField extends StatelessWidget {
     super.key,
     this.isMsisdn = true,
     this.prefixWidget,
+    this.cornerRadius = 25,
+    this.countryCodeColor = greyDark,
+    this.bgColor = transparent,
+    this.rightWidget,
     this.addCountryCode = true,
     this.hintText = enterMobileNumberStr,
     this.onChanged,
@@ -42,6 +50,7 @@ class CustomMsisdnTextField extends StatelessWidget {
         children: [
           prefixContainerWidget(),
           Expanded(child: textField()),
+          rightWidget ?? const SizedBox()
         ],
       )),
     );
@@ -54,12 +63,12 @@ class CustomMsisdnTextField extends StatelessWidget {
 
   Widget countryCode() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: addCountryCode
           ? CustomText(
               title: countryCodeStr,
               fontName: FontName.regular,
-              textColor: greyDark,
+              textColor: countryCodeColor,
               fontSize: fontSize(14, 18),
             )
           : const SizedBox(width: 10),
@@ -69,8 +78,9 @@ class CustomMsisdnTextField extends StatelessWidget {
   BoxDecoration mainDecoration() {
     return BoxDecoration(
       //color: yellow,
+      color: bgColor,
       border: Border.all(color: borderColor),
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.circular(cornerRadius),
     );
   }
 
