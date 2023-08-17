@@ -20,8 +20,8 @@ class TuneSettingController extends GetxController {
   String dedicatedMsisdn = '';
   String packName = '';
   String selectedDays = '';
-
   RxString error = ''.obs;
+
   List<DayModel> daysList = [
     DayModel(sunStr),
     DayModel(monStr),
@@ -31,6 +31,7 @@ class TuneSettingController extends GetxController {
     DayModel(friStr),
     DayModel(satStr)
   ];
+
   updateMsisdn(String msisdn) {
     this.msisdn.value = msisdn;
   }
