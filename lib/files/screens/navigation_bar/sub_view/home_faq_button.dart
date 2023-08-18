@@ -14,7 +14,7 @@ class HomefaqButton extends StatelessWidget {
     return CustomTextButton(
       fontName: FontName.bold,
       fontSize: 16,
-      title: faq,
+      title: faqStr,
       onTap: () {
         controller.loadPage(2);
         Get.back();

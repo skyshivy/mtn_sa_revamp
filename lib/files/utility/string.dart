@@ -1,11 +1,12 @@
 const myTuneStr = "My Tunes";
 const about = "About";
 const homeStr = "Home";
-const faq = "FAQ";
+const faqStr = "FAQ";
 const playStr = "Play";
 const playingStr = "Playing";
 const settingStr = "Setting";
 const tunesStr = "Tunes";
+const signinStr = "SignIn";
 const setYourTunesStr = "Set your tunes";
 const musicBundleStr = "Music Bundle";
 const customiseYourTunesStr = "Customise your tunes";

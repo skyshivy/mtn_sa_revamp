@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_controller.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class ArtistTuneScreen extends StatefulWidget {
   final String artistName;
@@ -54,16 +55,20 @@ class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
     );
   }
 
-  GridView gridView() {
-    return GridView.builder(
-        primary: true,
-        itemCount: controller.searchList.length,
-        gridDelegate: delegate(),
-        itemBuilder: (context, index) {
-          return HomeTuneCell(
-            index: index,
-            info: controller.searchList[index],
-          );
-        });
+  Widget gridView() {
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return GridView.builder(
+            primary: true,
+            itemCount: controller.searchList.length,
+            gridDelegate: delegate(mainAxisExtent: si.isMobile ? 230 : null),
+            itemBuilder: (context, index) {
+              return HomeTuneCell(
+                index: index,
+                info: controller.searchList[index],
+              );
+            });
+      },
+    );
   }
 }

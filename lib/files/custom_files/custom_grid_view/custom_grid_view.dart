@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class CustomGridView extends StatelessWidget {
   final int itemCount;
@@ -19,16 +21,20 @@ class CustomGridView extends StatelessWidget {
   }
 
   Widget gridView() {
-    return Obx(() {
-      return GridView.builder(
-          itemCount: itemCount,
-          shrinkWrap: true,
-          gridDelegate: delegate(),
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            return homeCell(index);
-          });
-    });
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Obx(() {
+          return GridView.builder(
+              itemCount: itemCount,
+              shrinkWrap: true,
+              gridDelegate: delegate(mainAxisExtent: si.isMobile ? 230 : null),
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return homeCell(index);
+              });
+        });
+      },
+    );
   }
 
   HomeTuneCell homeCell(int index) {
@@ -37,14 +43,5 @@ class CustomGridView extends StatelessWidget {
       index: index,
       onTap: onTap,
     );
-  }
-
-  SliverGridDelegateWithMaxCrossAxisExtent delegate() {
-    return const SliverGridDelegateWithMaxCrossAxisExtent(
-        childAspectRatio: 0.911,
-        mainAxisExtent: 280,
-        maxCrossAxisExtent: 290,
-        mainAxisSpacing: 20,
-        crossAxisSpacing: 20);
   }
 }

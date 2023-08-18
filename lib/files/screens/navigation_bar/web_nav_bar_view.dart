@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
-import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/home_about_button.dart';
-import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/home_faq_button.dart';
-import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/home_login_button.dart';
-import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/home_search_widget/home_search_widget.dart';
-import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/home_logo_button.dart';
-import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/my_tune_button.dart';
-import 'package:mtn_sa_revamp/files/screens/web_nav_bar/sub_view/web_nav_my_account.dart';
+import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_about_button.dart';
+import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_faq_button.dart';
+import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_login_button.dart';
+import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/home_search_widget.dart';
+import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_logo_button.dart';
+import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/my_tune_button.dart';
+import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/web_nav_my_account.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 class WebNavBarView extends StatelessWidget {

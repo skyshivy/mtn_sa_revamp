@@ -9,6 +9,7 @@ import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:mtn_sa_revamp/files/service_call/header.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class CategoryScreen extends StatefulWidget {
   final String id;
@@ -74,20 +75,25 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   Widget gridView() {
-    return Obx(
-      () {
-        return controller.isLoading.value
-            ? loadingIndicator()
-            : GridView.builder(
-                shrinkWrap: true,
-                itemCount: controller.searchList.length,
-                gridDelegate: delegate(),
-                itemBuilder: (context, index) {
-                  return HomeTuneCell(
-                    index: index,
-                    info: controller.searchList[index],
-                  );
-                });
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Obx(
+          () {
+            return controller.isLoading.value
+                ? loadingIndicator()
+                : GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.searchList.length,
+                    gridDelegate:
+                        delegate(mainAxisExtent: si.isMobile ? 230 : null),
+                    itemBuilder: (context, index) {
+                      return HomeTuneCell(
+                        index: index,
+                        info: controller.searchList[index],
+                      );
+                    });
+          },
+        );
       },
     );
   }

@@ -14,6 +14,7 @@ import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/searc
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -99,17 +100,22 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget gridView() {
-    return controller.isLoading.value
-        ? loading()
-        : controller.songList.isEmpty
-            ? emptyWidget(tuneListEmptyStr)
-            : GridView.builder(
-                itemCount: controller.songList.length,
-                shrinkWrap: true,
-                gridDelegate: delegate(),
-                itemBuilder: (context, index) {
-                  return homeCell(index);
-                });
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return controller.isLoading.value
+            ? loading()
+            : controller.songList.isEmpty
+                ? emptyWidget(tuneListEmptyStr)
+                : GridView.builder(
+                    itemCount: controller.songList.length,
+                    shrinkWrap: true,
+                    gridDelegate:
+                        delegate(mainAxisExtent: si.isMobile ? 230 : null),
+                    itemBuilder: (context, index) {
+                      return homeCell(index);
+                    });
+      },
+    );
   }
 
   Widget loading() =>

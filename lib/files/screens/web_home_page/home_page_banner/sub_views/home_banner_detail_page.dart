@@ -9,6 +9,7 @@ import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeBannerDetailPage extends StatefulWidget {
   const HomeBannerDetailPage({
@@ -78,16 +79,20 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
   }
 
   Widget gridView() {
-    return Obx(() {
-      return GridView.builder(
-        shrinkWrap: true,
-        itemCount: controller.list.length,
-        gridDelegate: delegate(),
-        itemBuilder: (context, index) {
-          return cell(index);
-        },
-      );
-    });
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Obx(() {
+          return GridView.builder(
+            shrinkWrap: true,
+            itemCount: controller.list.length,
+            gridDelegate: delegate(mainAxisExtent: si.isMobile ? 230 : null),
+            itemBuilder: (context, index) {
+              return cell(index);
+            },
+          );
+        });
+      },
+    );
   }
 
   Widget cell(int index) {
