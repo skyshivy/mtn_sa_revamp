@@ -7,7 +7,10 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 class MobileAppBar extends StatelessWidget {
+  final Widget widget;
   MyDrawerController drawerController = Get.put(MyDrawerController());
+
+  MobileAppBar({super.key, required this.widget});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +23,7 @@ class MobileAppBar extends StatelessWidget {
         leading: mobileAppBarLogoButton(),
         backgroundColor: yellow,
       ),
-      body: WebLandingPage(),
+      body: widget,
     );
   }
 }

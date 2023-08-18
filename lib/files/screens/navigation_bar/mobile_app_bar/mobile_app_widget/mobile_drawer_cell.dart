@@ -9,7 +9,7 @@ import 'package:mtn_sa_revamp/files/model/drawer_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 
-Widget mobileDrawerCell(DrawerModel info) {
+Widget mobileDrawerCell(BuildContext context, DrawerModel info) {
   MyDrawerController controller = Get.find();
   return InkWell(
     splashColor: transparent,
@@ -33,7 +33,7 @@ Widget mobileDrawerCell(DrawerModel info) {
               info.isExpandable!.value ? _expandedIcon(info) : const SizedBox()
             ],
           ),
-          _subList(info, controller)
+          _subList(context, info, controller)
         ],
       ),
     ),
@@ -49,7 +49,8 @@ Widget _expandedIcon(DrawerModel info) {
   });
 }
 
-Widget _subList(DrawerModel info, MyDrawerController controller) {
+Widget _subList(
+    BuildContext context, DrawerModel info, MyDrawerController controller) {
   return Obx(() {
     return info.isSelected!.value
         ? Column(
@@ -60,7 +61,7 @@ Widget _subList(DrawerModel info, MyDrawerController controller) {
                   shrinkWrap: true,
                   itemCount: controller.catList.length,
                   itemBuilder: (context, index) {
-                    return _subListCell(controller, index);
+                    return _subListCell(controller, context, index);
                   }),
             ],
           )
@@ -68,13 +69,14 @@ Widget _subList(DrawerModel info, MyDrawerController controller) {
   });
 }
 
-Widget _subListCell(MyDrawerController controller, int index) {
+Widget _subListCell(
+    MyDrawerController controller, BuildContext context, int index) {
   return InkWell(
     splashColor: transparent,
     hoverColor: transparent,
     //focusColor: transparent,
     onTap: () {
-      _tappedOnSubCell(controller.catList[index]);
+      _tappedOnSubCell(context, controller.catList[index]);
       // _expandedIcon(info);
     },
     child: Padding(
@@ -98,7 +100,9 @@ Widget _subListCell(MyDrawerController controller, int index) {
   );
 }
 
-_tappedOnSubCell(AppCategory cat) {
+_tappedOnSubCell(BuildContext context, AppCategory cat) async {
+  Navigator.pop(context);
+  await Future.delayed(const Duration(milliseconds: 100));
   Get.toNamed(tuneCatTapped, parameters: {
     'categoryName': cat.categoryName ?? '',
     'categoryId': cat.categoryId ?? ''

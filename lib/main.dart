@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/mobile_home_screen/mobile_home_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_bar.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
@@ -61,13 +63,6 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (settings) {
         playerController.stop();
       },
-      //Material(child: navBar(context)),
-      // builder: (context, child) {
-      //   return Material(child: navBar(context));
-      //   //Material(
-      //   //child: LoginScreen(),
-      //   //); //Material(child: navBar(context));
-      // },
     );
   }
 
@@ -75,7 +70,7 @@ class MyApp extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, si) {
         return si.isMobile
-            ? MobileAppBar()
+            ? MobileHomeScreen()
             : Column(
                 children: [
                   WebNavBarView(),
