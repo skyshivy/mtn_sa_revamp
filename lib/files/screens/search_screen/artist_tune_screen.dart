@@ -66,6 +66,9 @@ class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
               return HomeTuneCell(
                 index: index,
                 info: controller.searchList[index],
+                onTap: () {
+                  print("Artist Tune cell tapped");
+                },
               );
             });
       },

@@ -90,6 +90,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       return HomeTuneCell(
                         index: index,
                         info: controller.searchList[index],
+                        onTap: () {
+                          print("Category screen cell tapped");
+                        },
                       );
                     });
           },

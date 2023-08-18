@@ -135,6 +135,9 @@ class _SearchScreenState extends State<SearchScreen> {
     return HomeTuneCell(
       info: controller.songList[index],
       index: index,
+      onTap: () {
+        print("Search screen cell tapped");
+      },
     );
   }
 }

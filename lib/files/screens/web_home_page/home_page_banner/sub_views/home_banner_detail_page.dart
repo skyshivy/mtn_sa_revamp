@@ -99,6 +99,9 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
     return HomeTuneCell(
       index: index,
       info: controller.list[index],
+      onTap: () {
+        print("Home banner cell tapped");
+      },
     );
   }
 }
