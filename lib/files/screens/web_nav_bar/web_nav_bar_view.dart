@@ -20,8 +20,8 @@ class WebNavBarView extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Flexible(child: leftWidget()),
-          Row(children: [rightWidget()]),
+          leftWidget(),
+          rightWidget(),
         ],
       ),
     );

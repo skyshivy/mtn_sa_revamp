@@ -19,7 +19,7 @@ Widget tuneSettingDedicatedMsisdnView() {
           borderColor: borderColor,
           cornerRadius: 4,
           onChanged: (p0) {
-            tuneSettingCont.updateMsisdn(p0);
+            tuneSettingCont.updateDedictedUser(p0);
           },
           bgColor: white,
           text: tuneSettingCont.msisdn.value,

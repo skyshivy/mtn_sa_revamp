@@ -30,7 +30,7 @@ class HomeSearchWidget extends StatelessWidget {
       decoration: decoration(),
       child: Row(
         children: [
-          Expanded(
+          Flexible(
               child: HomeSearchTextField(
             onChanged: (p0) {
               searchTuneController.searchedText.value = p0;

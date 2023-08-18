@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -9,14 +10,18 @@ class LandingInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500,
+      height: isPhone(context) ? 250 : 500,
       color: yellow,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(child: leftImageWidget()),
-          Expanded(
+          isPhone(context)
+              ? const SizedBox(
+                  width: 20,
+                )
+              : Flexible(child: leftImageWidget()),
+          Flexible(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,10 +42,10 @@ class LandingInfoPage extends StatelessWidget {
   }
 
   CustomText expressWidget() {
-    return const CustomText(
+    return CustomText(
       title: express,
       fontName: FontName.bold,
-      fontSize: 50,
+      fontSize: fontSize(20, 50),
     );
   }
 
@@ -56,15 +61,13 @@ class LandingInfoPage extends StatelessWidget {
   Widget infoDot(String title) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Container(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            dotWidget(),
-            const SizedBox(width: 4),
-            Expanded(child: textWidget(title)),
-          ],
-        ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          dotWidget(),
+          const SizedBox(width: 4),
+          Expanded(child: textWidget(title)),
+        ],
       ),
     );
   }
@@ -73,7 +76,7 @@ class LandingInfoPage extends StatelessWidget {
     return CustomText(
       title: title,
       fontName: FontName.regular,
-      fontSize: 25,
+      fontSize: fontSize(14, 24),
     );
   }
 

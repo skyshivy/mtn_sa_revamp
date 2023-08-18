@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/home_reco_tab_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
@@ -59,14 +60,5 @@ class _LandingRecoViewState extends State<LandingRecoView> {
         print("homeCell tapped");
       },
     );
-  }
-
-  SliverGridDelegateWithMaxCrossAxisExtent delegate() {
-    return const SliverGridDelegateWithMaxCrossAxisExtent(
-        childAspectRatio: 0.911,
-        mainAxisExtent: 280,
-        maxCrossAxisExtent: 290,
-        mainAxisSpacing: 20,
-        crossAxisSpacing: 20);
   }
 }

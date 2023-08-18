@@ -112,9 +112,9 @@ class TuneSettingController extends GetxController {
     print("selected time type is $type");
   }
 
-  updateMsisdn(String msisdn) {
-    this.msisdn.value = msisdn;
-  }
+  // updateMsisdn(String msisdn) {
+  //   this.msisdn.value = msisdn;
+  // }
 
   setTune() {
     _checkToWhom(_toWhome);
