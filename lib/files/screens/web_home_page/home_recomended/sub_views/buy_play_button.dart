@@ -11,6 +11,7 @@ import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/bu
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class BuyAndPlayButton extends StatelessWidget {
   PlayerController playerController = Get.find();
@@ -33,20 +34,24 @@ class BuyAndPlayButton extends StatelessWidget {
   }
 
   Widget playButtonWidget(int index) {
-    return Obx(() {
-      return CustomButton(
-        fontName: FontName.medium,
-        fontSize: 16,
-        titlePadding: const EdgeInsets.all(4),
-        borderColor: red,
-        leftWidget: playAndPauseButtonIcon(index),
-        title: playButtonTitleWidget(index),
-        onTap: () {
-          playerController.playUrl(info?.toneIdStreamingUrl ?? '', index);
-          info?.isPlaying = !(info?.isPlaying ?? false);
-        },
-      );
-    });
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Obx(() {
+          return CustomButton(
+            fontName: si.isMobile ? FontName.regular : FontName.medium,
+            fontSize: si.isMobile ? 12 : 16,
+            titlePadding: const EdgeInsets.all(4),
+            borderColor: red,
+            leftWidget: playAndPauseButtonIcon(index),
+            title: playButtonTitleWidget(index),
+            onTap: () {
+              playerController.playUrl(info?.toneIdStreamingUrl ?? '', index);
+              info?.isPlaying = !(info?.isPlaying ?? false);
+            },
+          );
+        });
+      },
+    );
   }
 
   String playButtonTitleWidget(int index) {
@@ -71,21 +76,25 @@ class BuyAndPlayButton extends StatelessWidget {
   }
 
   Widget buyButtonWidget() {
-    return CustomButton(
-      onTap: () {
-        print("Buy button");
-        BuyTuneScreen().show(context, info);
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return CustomButton(
+          onTap: () {
+            print("Buy button");
+            BuyTuneScreen().show(context, info);
+          },
+          color: yellow,
+          titlePadding: const EdgeInsets.all(4),
+          fontName: si.isMobile ? FontName.regular : FontName.bold,
+          fontSize: si.isMobile ? 12 : 16,
+          leftWidget: Image.asset(
+            buyImg,
+            height: 20,
+            width: 20,
+          ),
+          title: buy,
+        );
       },
-      color: yellow,
-      titlePadding: const EdgeInsets.all(4),
-      fontName: FontName.bold,
-      fontSize: 16,
-      leftWidget: Image.asset(
-        buyImg,
-        height: 20,
-        width: 20,
-      ),
-      title: buy,
     );
   }
 }

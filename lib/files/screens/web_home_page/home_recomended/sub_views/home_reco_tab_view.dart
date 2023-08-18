@@ -4,6 +4,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeRecoTabView extends StatefulWidget {
   const HomeRecoTabView({super.key});
@@ -51,7 +52,6 @@ class _HomeRecoTabViewState extends State<HomeRecoTabView> {
       child: InkWell(
         onTap: () {
           controller.updateSelectedIndex(index);
-          //value.selectedTab(index);
         },
         child: Column(
           //crossAxisAlignment: CrossAxisAlignment.,
@@ -63,26 +63,30 @@ class _HomeRecoTabViewState extends State<HomeRecoTabView> {
   }
 
   Widget instrinsicWidget(int index) {
-    return Obx(() {
-      return IntrinsicWidth(
-          child: Column(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          CustomText(
-            title: controller.tabTitle[index],
-            fontName: (controller.selectedIndex.value == index)
-                ? FontName.bold
-                : FontName.regular,
-            fontSize: (controller.selectedIndex.value == index) ? 20 : 20,
-            textColor:
-                (controller.selectedIndex.value == index) ? yellow : grey,
-          ),
-          const SizedBox(height: 5),
-          selectionIndicator(index)
-        ],
-      ));
-    });
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Obx(() {
+          return IntrinsicWidth(
+              child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              CustomText(
+                title: controller.tabTitle[index],
+                fontName: (controller.selectedIndex.value == index)
+                    ? FontName.bold
+                    : FontName.regular,
+                fontSize: si.isMobile ? 14 : 20,
+                textColor:
+                    (controller.selectedIndex.value == index) ? yellow : grey,
+              ),
+              const SizedBox(height: 5),
+              selectionIndicator(index)
+            ],
+          ));
+        });
+      },
+    );
   }
 
   Container selectionIndicator(int index) {

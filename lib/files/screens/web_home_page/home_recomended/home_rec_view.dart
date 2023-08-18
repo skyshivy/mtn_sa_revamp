@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/home_reco_tab_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class LandingRecoView extends StatefulWidget {
   const LandingRecoView({super.key});
@@ -41,14 +42,19 @@ class _LandingRecoViewState extends State<LandingRecoView> {
           : controller.displayList?.length;
       return controller.isLoading.value
           ? loadingIndicator()
-          : GridView.builder(
-              itemCount: count,
-              shrinkWrap: true,
-              gridDelegate: delegate(),
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return homeCell(index);
-              });
+          : ResponsiveBuilder(
+              builder: (context, si) {
+                return GridView.builder(
+                    itemCount: count,
+                    shrinkWrap: true,
+                    gridDelegate:
+                        delegate(mainAxisExtent: si.isMobile ? 230 : null),
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return homeCell(index);
+                    });
+              },
+            );
     });
   }
 

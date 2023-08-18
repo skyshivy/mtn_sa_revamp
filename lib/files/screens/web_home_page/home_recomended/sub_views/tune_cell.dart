@@ -11,6 +11,7 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_vi
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/gredient.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeTuneCell extends StatelessWidget {
   final int index;
@@ -55,12 +56,18 @@ class HomeTuneCell extends StatelessWidget {
   }
 
   Widget likeAndMoreWidget() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        likeButton(),
-        moreButton(),
-      ],
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return si.isMobile
+            ? const SizedBox()
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  likeButton(),
+                  moreButton(),
+                ],
+              );
+      },
     );
   }
 
@@ -111,21 +118,30 @@ class HomeTuneCell extends StatelessWidget {
   }
 
   Widget bottomSection(int index) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Flexible(child: HomeCellTitleSubTilte(info: info)),
-          Flexible(
-            child: BuyAndPlayButton(
-              info: info,
-              index: index,
-            ),
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Flexible(
+                  child: HomeCellTitleSubTilte(
+                info: info,
+                titleFontSize: si.isMobile ? 14 : null,
+                subTitleFontSize: si.isMobile ? 12 : null,
+              )),
+              Flexible(
+                child: BuyAndPlayButton(
+                  info: info,
+                  index: index,
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
