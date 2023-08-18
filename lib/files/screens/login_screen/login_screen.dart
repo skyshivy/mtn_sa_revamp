@@ -14,6 +14,7 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -45,26 +46,30 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget popupContainer() {
-    return Container(
-      width: 550,
-      clipBehavior: Clip.hardEdge,
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(6), color: white),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          closeButtonPopup(),
-          paddingColumn(),
-        ],
-      ),
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Container(
+          width: si.isMobile ? 300 : 550,
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6), color: white),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              closeButtonPopup(),
+              paddingColumn(si),
+            ],
+          ),
+        );
+      },
     );
   }
 
-  Widget paddingColumn() {
+  Widget paddingColumn(SizingInformation si) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 80),
+      padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 20 : 80),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,

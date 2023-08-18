@@ -6,16 +6,22 @@ import 'package:mtn_sa_revamp/files/controllers/drawer_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/model/drawer_model.dart';
+import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/route_name.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget mobileDrawerCell(BuildContext context, DrawerModel info) {
   MyDrawerController controller = Get.find();
   return InkWell(
     splashColor: transparent,
     onTap: () {
+      print("Tapped ==========");
       if (info.isExpandable!.value) {
         info.isSelected!.value = !info.isSelected!.value;
+      } else {
+        print("123 Tapped ==========");
+        _tappedOnCell(context, info.title);
       }
     },
     child: Padding(
@@ -55,18 +61,22 @@ Widget _subList(
     return info.isSelected!.value
         ? Column(
             children: [
-              SizedBox(height: 16),
-              ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: controller.catList.length,
-                  itemBuilder: (context, index) {
-                    return _subListCell(controller, context, index);
-                  }),
+              const SizedBox(height: 16),
+              sunListWidget(controller),
             ],
           )
         : const SizedBox();
   });
+}
+
+ListView sunListWidget(MyDrawerController controller) {
+  return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: controller.catList.length,
+      itemBuilder: (context, index) {
+        return _subListCell(controller, context, index);
+      });
 }
 
 Widget _subListCell(
@@ -108,4 +118,24 @@ _tappedOnSubCell(BuildContext context, AppCategory cat) async {
     'categoryId': cat.categoryId ?? ''
   });
   print("object ==== ${cat.categoryId}");
+}
+
+_tappedOnCell(BuildContext context, String title) async {
+  Navigator.pop(context);
+  await Future.delayed(const Duration(milliseconds: 100));
+  if (title == profileStr) {
+    Get.toNamed(profileTapped);
+  } else if (title == myTuneStr) {
+    Get.toNamed(myTuneTapped);
+  } else if (title == wishlistStr) {
+    Get.toNamed(wishlistTapped);
+  } else if (title == faqStr) {
+    Get.toNamed(faqTapped);
+  } else if (title == logoutStr) {
+    print("Logout btapped");
+  } else if (title == signinStr) {
+    Get.dialog(LoginScreen(), barrierDismissible: false);
+  } else {
+    print("=========Default tapped==============");
+  }
 }

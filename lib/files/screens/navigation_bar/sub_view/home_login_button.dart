@@ -5,8 +5,6 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
-import 'package:mtn_sa_revamp/files/utility/route_name.dart';
-
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class HomeLoginButton extends StatelessWidget {
@@ -20,7 +18,7 @@ class HomeLoginButton extends StatelessWidget {
       leftWidget: loaginLeftWidgetPadding(),
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       titlePadding: const EdgeInsets.only(right: 15, left: 5),
-      title: login,
+      title: loginStr,
       fontSize: 16,
       fontName: FontName.medium,
       color: white,
