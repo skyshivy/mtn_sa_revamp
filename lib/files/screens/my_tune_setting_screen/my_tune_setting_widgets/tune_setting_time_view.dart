@@ -16,7 +16,7 @@ class TuneSettingTimeView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Container(
         height: 55,
-        width: 300,
+        width: 250,
         decoration: _boxDecoration(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),

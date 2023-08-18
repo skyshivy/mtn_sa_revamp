@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 Widget tuneSettingDaySelectionView() {
   TuneSettingController cont = Get.find();
 
-  return Container(
-    child: Column(
+  return ResponsiveBuilder(builder: (context, si) {
+    return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -24,21 +27,34 @@ Widget tuneSettingDaySelectionView() {
         ),
         const SizedBox(height: 8),
         Obx(() {
-          return Row(
-            children: [
-              _dayButton(sunStr, cont.daysList[0].isSelected!.value, 0, cont),
-              _dayButton(monStr, cont.daysList[1].isSelected!.value, 1, cont),
-              _dayButton(tueStr, cont.daysList[2].isSelected!.value, 2, cont),
-              _dayButton(wedStr, cont.daysList[3].isSelected!.value, 3, cont),
-              _dayButton(thusStr, cont.daysList[4].isSelected!.value, 4, cont),
-              _dayButton(friStr, cont.daysList[5].isSelected!.value, 5, cont),
-              _dayButton(satStr, cont.daysList[6].isSelected!.value, 6, cont),
-            ],
+          bool isLessWid = MediaQuery.of(context).size.width < 700;
+          return SizedBox(
+            height: 35,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              children: [
+                _dayButton(isLessWid ? sStr : sunStr,
+                    cont.daysList[0].isSelected!.value, 0, cont),
+                _dayButton(isLessWid ? mStr : monStr,
+                    cont.daysList[1].isSelected!.value, 1, cont),
+                _dayButton(isLessWid ? tStr : tueStr,
+                    cont.daysList[2].isSelected!.value, 2, cont),
+                _dayButton(isLessWid ? wStr : wedStr,
+                    cont.daysList[3].isSelected!.value, 3, cont),
+                _dayButton(isLessWid ? tStr : thusStr,
+                    cont.daysList[4].isSelected!.value, 4, cont),
+                _dayButton(isLessWid ? fStr : friStr,
+                    cont.daysList[5].isSelected!.value, 5, cont),
+                _dayButton(isLessWid ? saStr : satStr,
+                    cont.daysList[6].isSelected!.value, 6, cont),
+              ],
+            ),
           );
         })
       ],
-    ),
-  );
+    );
+  });
 }
 
 Widget _dayButton(

@@ -74,7 +74,7 @@ Widget _yearlyButton(TuneSettingController con) {
       title: yearlyStr,
       borderColor: (con.repeatYear.value == 2) ? null : red,
       color: (con.repeatYear.value == 2) ? yellow : white,
-      titlePadding: EdgeInsets.symmetric(horizontal: 16),
+      titlePadding: const EdgeInsets.symmetric(horizontal: 16),
       onTap: () {
         con.updateRepeatYear(2);
       },

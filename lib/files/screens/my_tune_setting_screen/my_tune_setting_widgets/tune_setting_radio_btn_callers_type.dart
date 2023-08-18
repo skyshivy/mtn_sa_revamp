@@ -24,9 +24,9 @@ Widget tuneSettingRadioButtonCallersType() {
                 _combinedWidget(0, cont.callerType.value == 0, allCallerStr),
                 const SizedBox(width: 20),
                 _combinedWidget(1, cont.callerType.value == 1, callerGroupStr),
-                const SizedBox(width: 20),
-                _combinedWidget(
-                    2, cont.callerType.value == 2, specificCallerStr),
+                // const SizedBox(width: 20),
+                // _combinedWidget(
+                //     2, cont.callerType.value == 2, specificCallerStr),
               ],
             );
           })
@@ -49,11 +49,12 @@ Widget _combinedWidget(int index, bool isSelected, String title) {
   return InkWell(
     onTap: () {
       cont.callerType.value = index;
-      cont.updateToWhom(index == 0
-          ? ToWhomAction.allCaller
-          : (index == 1
-              ? ToWhomAction.specificCaller
-              : ToWhomAction.callerGroup));
+      cont.updateToWhom(
+          index == 0 ? ToWhomAction.allCaller : ToWhomAction.specificCaller
+          // (index == 1
+          //     ? ToWhomAction.specificCaller
+          //     : ToWhomAction.callerGroup)
+          );
       print("tuneSettingRadioButtonCallersType tapped");
     },
     child: Row(

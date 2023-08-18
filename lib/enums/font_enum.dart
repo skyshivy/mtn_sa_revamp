@@ -39,4 +39,4 @@ enum RepeatYearlyViewAction {
   yearly,
 }
 
-enum ToWhomAction { allCaller, specificCaller, callerGroup }
+enum ToWhomAction { allCaller, specificCaller }

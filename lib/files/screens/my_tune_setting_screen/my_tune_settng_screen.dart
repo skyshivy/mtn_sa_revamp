@@ -9,6 +9,7 @@ import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setti
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_radio_btn_callers_type.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_right_widget.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class MyTuneSettingScreen extends StatefulWidget {
   final String toneId;
@@ -50,26 +51,30 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          topTitleWidget(),
-          Row(
+    return ResponsiveBuilder(builder: (contex, si) {
+      return Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: si.isMobile ? 12 : 80, vertical: 10),
+        child: Center(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _leftWidget(),
-              const SizedBox(width: 30),
-              (_rightWidget()),
-              const SizedBox(width: 120),
+              topTitleWidget(),
+              Wrap(
+                alignment: WrapAlignment.center,
+                children: [
+                  _leftWidget(),
+                  const SizedBox(width: 30),
+                  Flexible(child: _rightWidget()),
+                  const SizedBox(width: 120),
+                ],
+              ),
             ],
           ),
-        ],
-      ),
-    );
+        ),
+      );
+    });
   }
 
   Widget _leftWidget() {
@@ -77,14 +82,17 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
   }
 
   Widget _rightWidget() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        tuneSettingRightWidgte(),
-        const SizedBox(height: 15),
-        tuneSettingConfirmButton(),
-      ],
+    return SizedBox(
+      width: 600,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          tuneSettingRightWidgte(),
+          const SizedBox(height: 15),
+          tuneSettingConfirmButton(),
+        ],
+      ),
     );
   }
 

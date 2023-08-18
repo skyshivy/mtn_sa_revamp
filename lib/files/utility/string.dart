@@ -43,6 +43,14 @@ const thusStr = "Thus";
 const friStr = "Fri";
 const satStr = "Sat";
 
+const sStr = "S";
+const mStr = "M";
+const tuStr = "T";
+const wStr = "W";
+const tStr = "T";
+const fStr = "F";
+const saStr = "S";
+
 const allCallerStr = "All Callers";
 const specificCallerStr = "Callers Group";
 const callerGroupStr = "Specific Caller";

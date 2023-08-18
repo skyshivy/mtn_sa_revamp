@@ -9,6 +9,7 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 Widget tuneSettingConfirmButton() {
   TuneSettingController tuneController = Get.find();
   return CustomButton(
+    width: 160,
     titlePadding: const EdgeInsets.symmetric(horizontal: 20),
     fontName: FontName.medium,
     color: yellow,

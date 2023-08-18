@@ -43,6 +43,15 @@ class TuneSettingController extends GetxController {
     DayModel(friStr),
     DayModel(satStr)
   ];
+  List<DayModel> sortDaysList = [
+    DayModel(sStr),
+    DayModel(mStr),
+    DayModel(tStr),
+    DayModel(wStr),
+    DayModel(tStr),
+    DayModel(fStr),
+    DayModel(saStr)
+  ];
   openCalenderView(BuildContext context) async {
     var results = await showCalendarDatePicker2Dialog(
       context: context,
@@ -119,10 +128,10 @@ class TuneSettingController extends GetxController {
       case ToWhomAction.specificCaller:
         _setTuneForSpecificCaller();
         break;
-      case ToWhomAction.callerGroup:
-        print("callerGroup is ");
-        //_setTuneForCallergroup();
-        break;
+      // case ToWhomAction.callerGroup:
+      //   print("callerGroup is ");
+      //   //_setTuneForCallergroup();
+      //   break;
       default:
     }
   }
