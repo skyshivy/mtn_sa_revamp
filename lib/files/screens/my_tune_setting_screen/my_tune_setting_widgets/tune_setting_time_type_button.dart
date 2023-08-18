@@ -39,10 +39,7 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
       child: Container(
         height: 55,
         width: 300,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            color: white,
-            border: Border.all(color: borderColor)),
+        decoration: _decoration(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,6 +60,13 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
         ),
       ),
     );
+  }
+
+  BoxDecoration _decoration() {
+    return BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+        color: white,
+        border: Border.all(color: borderColor));
   }
 
   Widget _titleWidget() {
@@ -90,11 +94,13 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
   }
 
   void action(MenuModel model) {
+    con.isTime.value = false;
     print("Model is name ${model.title}");
     if (model.title == fullDay24HourStr) {
       con.timeTypeBtm.value = fullDay24HourStr;
       con.updateTimeType(SelectTimeType.fullday);
     } else if (model.title == selecteTimeStr) {
+      con.isTime.value = true;
       con.timeTypeBtm.value = selecteTimeStr;
       con.updateTimeType(SelectTimeType.time);
     } else if (model.title == selectRepeatStr) {

@@ -1,9 +1,13 @@
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
 import 'package:mtn_sa_revamp/files/model/set_tune_model.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/model/day_model.dart';
+import 'package:mtn_sa_revamp/files/utility/style.dart';
 import 'package:mtn_sa_revamp/files/view_model/tune_setting_all_caller_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/tune_setting_dedicated_vm.dart';
 
@@ -22,6 +26,7 @@ class TuneSettingController extends GetxController {
   String _dedicatedMsisdn = '';
   String packName = '';
   RxBool isTimeAndDate = false.obs;
+  RxBool isTime = false.obs;
   RxString timeTypeBtm = fullDay24HourStr.obs;
   ToWhomAction _toWhome = ToWhomAction.allCaller;
   SelectTimeType timeType = SelectTimeType.fullday;
@@ -38,6 +43,24 @@ class TuneSettingController extends GetxController {
     DayModel(friStr),
     DayModel(satStr)
   ];
+  openCalenderView(BuildContext context) async {
+    var results = await showCalendarDatePicker2Dialog(
+      context: context,
+      config: CalendarDatePicker2WithActionButtonsConfig(
+        calendarType: CalendarDatePicker2Type.single,
+        selectedDayHighlightColor: yellow,
+        dayTextStyle: calenderDateStyle(),
+        weekdayLabelTextStyle: calenderWeekDayStyle(),
+        yearTextStyle: calenderYearStyle(),
+        selectedYearTextStyle: calenderYearStyle(),
+        controlsTextStyle: calenderYearStyle(),
+      ),
+      dialogSize: const Size(300, 350),
+      borderRadius: BorderRadius.circular(15),
+    );
+    print("Seelcted date is ${results?.length}");
+  }
+
   fromTimeStr(String fromTime) {
     _fromTimeStr = fromTime;
   }

@@ -21,6 +21,12 @@ const noneStr = "None";
 const monthlyStr = "Monthly";
 const yearlyStr = "Yearly";
 
+const fromTimeStr = "From Time";
+const toTimeStr = "To Time";
+
+const fromDateStr = "From Date";
+const toDateStr = "To Date";
+
 const advancedSettingsStr = "Advanced Settings";
 
 const selectTimeTypeStr = "Select Time Type";
