@@ -61,6 +61,11 @@ class TuneSettingController extends GetxController {
     print("Seelcted date is ${results?.length}");
   }
 
+  updateSelectedDay(String text) {
+    selectedDays = text;
+    print("selected id = $selectedDays");
+  }
+
   fromTimeStr(String fromTime) {
     _fromTimeStr = fromTime;
   }

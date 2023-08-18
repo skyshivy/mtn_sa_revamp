@@ -43,6 +43,8 @@ Widget tuneSettingDaySelectionView() {
 
 Widget _dayButton(
     String title, bool isSelected, int index, TuneSettingController cont) {
+  selectedDaysUpdate(cont);
+
   return Padding(
     padding: const EdgeInsets.only(right: 8),
     child: CustomButton(
@@ -55,7 +57,18 @@ Widget _dayButton(
       onTap: () {
         cont.daysList[index].isSelected!.value =
             !(cont.daysList[index].isSelected!.value);
+        selectedDaysUpdate(cont);
       },
     ),
   );
+}
+
+selectedDaysUpdate(TuneSettingController cont) {
+  String selDays = '';
+  for (int i = 0; i < cont.daysList.length; i++) {
+    if (cont.daysList[i].isSelected!.value) {
+      selDays.isEmpty ? (selDays += "${i + 1}") : (selDays += ",${i + 1}");
+    }
+  }
+  cont.updateSelectedDay(selDays);
 }
