@@ -126,21 +126,21 @@ class TuneSettingController extends GetxController {
     if (isTimeAndDate.value) {
       if (RepeatYearlyViewAction.none == _repeatYearlyViewAction) {
         print("_allCallerDateBaseNone");
-        //_allCallerDateBaseNone();
+        _allCallerDateBaseNone();
       } else if (RepeatYearlyViewAction.monthly == _repeatYearlyViewAction) {
         print("_allCallerDateBaseMonthly");
-        //_allCallerDateBaseMonthly();
+        _allCallerDateBaseMonthly();
       } else if (RepeatYearlyViewAction.yearly == _repeatYearlyViewAction) {
         print("_allCallerDateBaseYearly");
-        //_allCallerDateBaseYearly();
+        _allCallerDateBaseYearly();
       }
     } else {
       if (SelectTimeType.fullday == timeType) {
         print("_allCallerFullDay");
-        //await _allCallerFullDay();
+        await _allCallerFullDay();
       } else if (SelectTimeType.time == timeType) {
         print("_allCallerTimeBase");
-        //await _allCallerTimeBase();
+        await _allCallerTimeBase();
       }
     }
   }
@@ -149,21 +149,21 @@ class TuneSettingController extends GetxController {
     if (isTimeAndDate.value) {
       if (RepeatYearlyViewAction.none == _repeatYearlyViewAction) {
         print("_dedicatedDateBaseNone");
-        //_dedicatedDateBaseNone();
+        _dedicatedDateBaseNone();
       } else if (RepeatYearlyViewAction.monthly == _repeatYearlyViewAction) {
         print("_dedicatedDateBaseMonthly");
-        //_dedicatedDateBaseMonthly();
+        _dedicatedDateBaseMonthly();
       } else {
         print("_dedicatedDateBaseYearly");
-        //_dedicatedDateBaseYearly();
+        _dedicatedDateBaseYearly();
       }
     } else {
       if (SelectTimeType.fullday == timeType) {
         print("_dedicatedFullDay");
-        //_dedicatedFullDay();
+        _dedicatedFullDay();
       } else if (SelectTimeType.time == timeType) {
         print("_dedicatedTimeBase");
-        //_dedicatedTimeBase();
+        _dedicatedTimeBase();
       }
     }
   }
