@@ -303,7 +303,7 @@ class _LoginScreenState extends State<LoginScreen> {
             title: title,
             textColor: black,
             fontName: si.isMobile ? FontName.light : FontName.regular,
-            fontSize: si.isMobile ? 12 : 14,
+            fontSize: si.isMobile ? 10 : 14,
           );
         },
       );
@@ -357,7 +357,13 @@ class _LoginScreenState extends State<LoginScreen> {
         await Future.delayed(const Duration(milliseconds: 200));
         Get.dialog(
           Center(
-            child: CustomAlertView(title: successFullyLoggedInStr),
+            child: ResponsiveBuilder(
+              builder: (context, sizingInformation) {
+                return CustomAlertView(
+                    width: sizingInformation.isMobile ? 200 : 400,
+                    title: successFullyLoggedInStr);
+              },
+            ),
           ),
         );
       }

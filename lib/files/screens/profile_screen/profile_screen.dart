@@ -13,6 +13,7 @@ import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_mobil
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_prefrence.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_subscribe_button.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_user_name.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -23,6 +24,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late ProfileController profileController;
+  late SizingInformation si;
   @override
   void initState() {
     profileController = Get.put(ProfileController());
@@ -38,13 +40,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 35),
-      child: Obx(
-        () {
-          return profileController.isLoading.value ? loadInd() : rowWidget();
-        },
-      ),
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        si = sizingInformation;
+        return Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: si.isMobile ? 8 : 60, vertical: si.isMobile ? 8 : 35),
+          child: Obx(
+            () {
+              return profileController.isLoading.value
+                  ? loadInd()
+                  : rowWidget();
+            },
+          ),
+        );
+      },
     );
   }
 
@@ -53,15 +63,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget rowWidget() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        leftWidget(),
-        const SizedBox(width: 60),
-        Flexible(child: rightWidget()),
-      ],
-    );
+    return si.isMobile
+        ? Column(
+            children: [
+              leftWidget(),
+              const SizedBox(height: 20),
+              Flexible(child: rightWidget(si)),
+            ],
+          )
+        : Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              leftWidget(),
+              const SizedBox(width: 60),
+              Flexible(child: rightWidget(si)),
+            ],
+          );
   }
 
   Widget leftWidget() {
@@ -76,25 +94,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget rightWidget() {
+  Widget rightWidget(SizingInformation si) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Flexible(child: profileUserName()),
-            const SizedBox(width: 30),
-            Flexible(child: profileMobileNumberWidget())
-          ],
-        ),
+        userDetailWidget(si),
         const SizedBox(height: 35),
         Expanded(child: profilePreferenceWidget()),
         profileCancelEditButton(),
       ],
     );
+  }
+
+  Widget userDetailWidget(SizingInformation si) {
+    return si.isMobile
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              profileUserName(),
+              const SizedBox(height: 8),
+              profileMobileNumberWidget(),
+            ],
+          )
+        : Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(child: profileUserName()),
+              const SizedBox(width: 30),
+              Flexible(child: profileMobileNumberWidget())
+            ],
+          );
   }
 
   Widget profileCancelEditButton() {

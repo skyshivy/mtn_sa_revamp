@@ -18,7 +18,7 @@ class MyDrawerController extends GetxController {
   }
 
   createMenuList() {
-    if (StoreManager().isLoggedIn) {
+    if (!StoreManager().isLoggedIn) {
       menuList.value = [
         DrawerModel(profileStr),
         DrawerModel(myTuneStr),
