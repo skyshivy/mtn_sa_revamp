@@ -12,6 +12,7 @@ class CustomMsisdnTextField extends StatelessWidget {
   final String text;
   final String? hintText;
   final bool isMsisdn;
+  final double height;
   final Color borderColor;
   final Color bgColor;
   final Widget? rightWidget;
@@ -26,6 +27,7 @@ class CustomMsisdnTextField extends StatelessWidget {
     super.key,
     this.isMsisdn = true,
     this.prefixWidget,
+    this.height = 50,
     this.cornerRadius = 25,
     this.countryCodeColor = greyDark,
     this.bgColor = transparent,
@@ -41,7 +43,7 @@ class CustomMsisdnTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     textEditingController.text = text;
     return Container(
-      height: 50,
+      height: height,
       decoration: mainDecoration(),
       child: Center(
           child: Row(

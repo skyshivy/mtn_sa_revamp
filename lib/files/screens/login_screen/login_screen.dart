@@ -70,49 +70,60 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget paddingColumn(SizingInformation si) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 20 : 80),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          vSpacing(),
-          logoImageWidget(),
-          vSpacing(height: 30),
-          titleWidget(),
-          vSpacing(height: 8),
-          subTitleWidget(),
-          vSpacing(height: 40),
-          textfieldWidget(),
-          errorWidget(),
-          //vSpacing(height: 40),
-          requestOtpButton(),
-          vSpacing(height: 20),
-          termsAndConditionAgreement(),
-          vSpacing(height: 50),
-        ],
+      child: ResponsiveBuilder(
+        builder: (context, sizingInformation) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              vSpacing(height: si.isMobile ? 10 : 20),
+              logoImageWidget(si),
+              vSpacing(height: si.isMobile ? 10 : 30),
+              titleWidget(),
+              vSpacing(height: 8),
+              subTitleWidget(),
+              vSpacing(height: si.isMobile ? 10 : 40),
+              textfieldWidget(si),
+              errorWidget(si),
+              //vSpacing(height: 40),
+              requestOtpButton(si),
+              vSpacing(height: si.isMobile ? 10 : 20),
+              termsAndConditionAgreement(),
+              vSpacing(height: si.isMobile ? 10 : 50),
+            ],
+          );
+        },
       ),
     );
   }
 
-  Widget errorWidget() {
+  Widget errorWidget(SizingInformation si) {
     return Obx(() {
       return controller.errorMessage.isEmpty
-          ? const SizedBox(
-              height: 40,
+          ? SizedBox(
+              height: si.isMobile ? 15 : 40,
             )
           : Padding(
-              padding: const EdgeInsets.only(bottom: 30, top: 5),
-              child: CustomText(
-                title: controller.errorMessage.value,
-                fontName: FontName.regular,
-                textColor: red,
+              padding: EdgeInsets.only(bottom: si.isMobile ? 15 : 30, top: 5),
+              child: ResponsiveBuilder(
+                builder: (context, si) {
+                  return CustomText(
+                    title: controller.errorMessage.value,
+                    fontName: FontName.regular,
+                    textColor: red,
+                    fontSize: si.isMobile ? 10 : 16,
+                  );
+                },
               ),
             );
     });
   }
 
-  Widget textfieldWidget() {
+  Widget textfieldWidget(SizingInformation si) {
     return Obx(() {
       return CustomMsisdnTextField(
+        height: si.isMobile ? 40 : 50,
+        cornerRadius: si.isMobile ? 20 : 25,
         hintText: textFieldHint(),
         borderColor: textFieldBorderColorChange(),
         text: textFieldText(),
@@ -167,36 +178,41 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget termsAndConditionAgreement() {
-    return RichText(
-      text: TextSpan(
-        children: <TextSpan>[
-          TextSpan(
-            text: signupAgreementStr,
-            style: richTextStyle(),
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return RichText(
+          text: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                text: signupAgreementStr,
+                style: richTextStyle(si),
+              ),
+              TextSpan(
+                  onEnter: (event) {
+                    print("You just hovered on text");
+                  },
+                  onExit: (event) {
+                    print("You just exit from hovered");
+                  },
+                  text: termsAndPolicyStr,
+                  style: TextStyle(
+                    fontFamily: FontName.regular.name,
+                    fontSize: si.isMobile ? 10 : 14,
+                    color: yellow,
+                  )),
+            ],
           ),
-          TextSpan(
-              onEnter: (event) {
-                print("You just hovered on text");
-              },
-              onExit: (event) {
-                print("You just exit from hovered");
-              },
-              text: termsAndPolicyStr,
-              style: TextStyle(
-                fontFamily: FontName.regular.name,
-                fontSize: fontSize(14, 14),
-                color: yellow,
-              )),
-        ],
-      ),
+        );
+      },
     );
   }
 
-  TextStyle richTextStyle() {
+  TextStyle richTextStyle(SizingInformation si) {
     return TextStyle(
-        fontFamily: FontName.light.name,
-        fontSize: fontSize(14, 14),
-        color: black);
+      fontFamily: FontName.light.name,
+      fontSize: si.isMobile ? 10 : 14,
+      color: black,
+    );
   }
 
   Widget vSpacing({double height = 20}) {
@@ -204,29 +220,34 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget closeButtonPopup() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 10, right: 20),
-          child: CustomButton(
-            leftWidget: const Icon(Icons.close),
-            onTap: () {
-              print("CLose button tapped");
-              Get.back();
-              Navigator.of(context).pop();
-            },
-          ),
-        ),
-      ],
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                  top: si.isMobile ? 2 : 10, right: si.isMobile ? 10 : 20),
+              child: CustomButton(
+                leftWidget: const Icon(Icons.close),
+                onTap: () {
+                  print("CLose button tapped");
+                  Get.back();
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 
-  Widget logoImageWidget() {
+  Widget logoImageWidget(SizingInformation si) {
     return Image.asset(
       logoBigImg,
-      height: 50,
+      height: si.isMobile ? 30 : 50,
     );
   }
 
@@ -241,7 +262,7 @@ class _LoginScreenState extends State<LoginScreen> {
           CustomText(
             title: title,
             fontName: FontName.bold,
-            fontSize: fontSize(16, 24),
+            fontSize: fontSize(14, 24),
           ),
         ],
       );
@@ -249,16 +270,21 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget editNumber() {
-    return CustomButton(
-      width: 40,
-      onTap: () {
-        controller.resetValue();
-        print("Tapped back");
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return CustomButton(
+          alignment: TextAlign.left,
+          width: si.isMobile ? 30 : 40,
+          onTap: () {
+            controller.resetValue();
+            print("Tapped back");
+          },
+          leftWidget: Icon(
+            Icons.arrow_back,
+            size: si.isMobile ? 18 : 25,
+          ),
+        );
       },
-      leftWidget: const Icon(
-        Icons.arrow_back,
-        size: 25,
-      ),
     );
   }
 
@@ -271,30 +297,38 @@ class _LoginScreenState extends State<LoginScreen> {
               "-" +
               "${controller.msisdn}"
           : pleaseEnterYourMobileNumberInOrderToAuthenticateStr;
-      return CustomText(
-        title: title,
-        textColor: black,
-        fontName: fontName(FontName.regular, FontName.light),
-        fontSize: 14,
+      return ResponsiveBuilder(
+        builder: (context, si) {
+          return CustomText(
+            title: title,
+            textColor: black,
+            fontName: si.isMobile ? FontName.light : FontName.regular,
+            fontSize: si.isMobile ? 12 : 14,
+          );
+        },
       );
     });
   }
 
-  Widget requestOtpButton() {
+  Widget requestOtpButton(SizingInformation si) {
     return Obx(() {
       return controller.isVerifying.value
           ? Center(child: loadingIndicator(radius: 12))
           : SizedBox(
               width: 250,
-              child: CustomButton(
-                onTap: () async {
-                  await onRequestButtonAction();
+              child: ResponsiveBuilder(
+                builder: (context, si) {
+                  return CustomButton(
+                    onTap: () async {
+                      await onRequestButtonAction();
+                    },
+                    height: si.isMobile ? 40 : 50,
+                    color: requestButtonColor(),
+                    title: requestButtonTitle(),
+                    fontName: si.isMobile ? FontName.medium : FontName.bold,
+                    fontSize: si.isMobile ? 12 : 16,
+                  );
                 },
-                height: 50,
-                color: requestButtonColor(),
-                title: requestButtonTitle(),
-                fontName: FontName.bold,
-                fontSize: fontSize(12, 16),
               ),
             );
     });
@@ -339,7 +373,8 @@ class _LoginScreenState extends State<LoginScreen> {
         bool isSuccess = await controller.verifyOtpButtonAction();
         if (isSuccess) {
           Get.back();
-          Navigator.of(context);
+
+          Navigator.pop(context);
           await Future.delayed(const Duration(milliseconds: 200));
           Get.dialog(
             Center(
