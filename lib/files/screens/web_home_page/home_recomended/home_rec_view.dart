@@ -19,19 +19,24 @@ class LandingRecoView extends StatefulWidget {
 
 class _LandingRecoViewState extends State<LandingRecoView> {
   RecoController controller = Get.put(RecoController());
-
+  late SizingInformation si;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          const SizedBox(height: 30),
-          const HomeRecoTabView(),
-          const SizedBox(height: 40),
-          gridView(),
-        ],
-      ),
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        this.si = sizingInformation;
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              SizedBox(height: si.isMobile ? 10 : 30),
+              const HomeRecoTabView(),
+              SizedBox(height: si.isMobile ? 10 : 40),
+              gridView(),
+            ],
+          ),
+        );
+      },
     );
   }
 

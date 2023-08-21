@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/home_info_page/home_in
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/home_page_banner.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_bottom_section/home_page_bottom_section.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/home_rec_view.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class WebLandingPage extends StatelessWidget {
   WebLandingPage({super.key});
@@ -14,20 +15,18 @@ class WebLandingPage extends StatelessWidget {
     return customScroll(
       SingleChildScrollView(
         controller: _controller,
-        child: Column(
-          children: [
-            // MyTuneSettingScreen(
-            //     toneId: "34324",
-            //     toneName: "toneName",
-            //     toneArtist: "toneArtist",
-            //     toneImage:
-            //         "toneImage"),
-            const LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
-            const LandingRecoView(),
-            const SizedBox(height: 80),
-            LandingInfoPage(),
-            const LandingPageBottomSection()
-          ],
+        child: ResponsiveBuilder(
+          builder: (context, si) {
+            return Column(
+              children: [
+                const LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
+                const LandingRecoView(),
+                SizedBox(height: si.isMobile ? 10 : 80),
+                LandingInfoPage(),
+                const LandingPageBottomSection()
+              ],
+            );
+          },
         ),
       ),
       _controller,

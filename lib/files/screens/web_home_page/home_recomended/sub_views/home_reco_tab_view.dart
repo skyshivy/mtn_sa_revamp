@@ -29,9 +29,13 @@ class _HomeRecoTabViewState extends State<HomeRecoTabView> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 55,
-      child: listView(),
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        return SizedBox(
+          height: sizingInformation.isMobile ? 45 : 55,
+          child: listView(),
+        );
+      },
     );
   }
 
