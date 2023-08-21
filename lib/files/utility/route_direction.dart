@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
+import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_bar.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -67,6 +68,14 @@ List<GetPage<dynamic>> get routesDirection {
       page: () {
         controller.stop();
         return Material(child: MyTuneScreen());
+      },
+    ),
+    GetPage(
+      transitionDuration: dur,
+      name: faqTapped,
+      page: () {
+        controller.stop();
+        return Material(child: reteurnWidget(FAQScreen()));
       },
     ),
     GetPage(

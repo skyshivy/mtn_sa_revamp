@@ -31,9 +31,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   getCatList() async {
-    await Future.delayed(Duration(milliseconds: 100));
+    await Future.delayed(const Duration(milliseconds: 100));
     controller.resetValue();
-    await Future.delayed(Duration(milliseconds: 100));
+    await Future.delayed(const Duration(milliseconds: 100));
 
     controller.getCategroyDetail(widget.category, widget.id);
   }
@@ -47,16 +47,17 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Column(
-        children: [
-          CustomTopHeaderView(title: widget.category),
-          Expanded(child: gridView()),
-          loadMoreActivity()
-        ],
-      ),
+    return Column(
+      children: [
+        CustomTopHeaderView(title: widget.category),
+        Expanded(child: gridView()),
+        loadMoreActivity()
+      ],
     );
+    // Padding(
+    //   padding: const EdgeInsets.symmetric(horizontal: 30),
+    //   child:
+    // );
   }
 
   Widget loadMoreActivity() {
@@ -81,20 +82,24 @@ class _CategoryScreenState extends State<CategoryScreen> {
           () {
             return controller.isLoading.value
                 ? loadingIndicator()
-                : GridView.builder(
-                    shrinkWrap: true,
-                    itemCount: controller.searchList.length,
-                    gridDelegate:
-                        delegate(mainAxisExtent: si.isMobile ? 230 : null),
-                    itemBuilder: (context, index) {
-                      return HomeTuneCell(
-                        index: index,
-                        info: controller.searchList[index],
-                        onTap: () {
-                          print("Category screen cell tapped");
-                        },
-                      );
-                    });
+                : Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: si.isMobile ? 8 : 30, vertical: 8),
+                    child: GridView.builder(
+                        shrinkWrap: true,
+                        itemCount: controller.searchList.length,
+                        gridDelegate:
+                            delegate(mainAxisExtent: si.isMobile ? 230 : null),
+                        itemBuilder: (context, index) {
+                          return HomeTuneCell(
+                            index: index,
+                            info: controller.searchList[index],
+                            onTap: () {
+                              print("Category screen cell tapped");
+                            },
+                          );
+                        }),
+                  );
           },
         );
       },

@@ -7,9 +7,11 @@ import 'package:mtn_sa_revamp/files/controllers/faq_controller/faq_controller.da
 import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/model/faq_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class FAQScreen extends StatefulWidget {
   @override
@@ -51,15 +53,27 @@ class _FAQScreenState extends State<FAQScreen> {
   }
 
   Widget faqListView() {
-    return ListView.builder(
-        itemCount: faqController.list.length,
-        itemBuilder: (context, index) {
-          return InkWell(
-              onTap: () {
-                onCellTap(index);
-              },
-              child: faqCell(faqController.list[index], index));
-        });
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
+          child: ListView.builder(
+              itemCount: faqController.list.length,
+              itemBuilder: (context, index) {
+                return InkWell(
+                    onTap: () {
+                      onCellTap(index);
+                    },
+                    child: Column(
+                      children: [
+                        SizedBox(height: index == 0 ? 10 : 0),
+                        faqCell(faqController.list[index], index),
+                      ],
+                    ));
+              }),
+        );
+      },
+    );
   }
 
   void onCellTap(int index) {
@@ -101,10 +115,14 @@ class _FAQScreenState extends State<FAQScreen> {
 
   Widget questionWidget(int index) {
     var info = faqController.list[index];
-    return CustomText(
-      title: info.question ?? '',
-      fontName: FontName.bold,
-      fontSize: 14,
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return CustomText(
+          title: info.question ?? '',
+          fontName: FontName.bold,
+          fontSize: si.isMobile ? 14 : 18,
+        );
+      },
     );
   }
 
@@ -118,26 +136,30 @@ class _FAQScreenState extends State<FAQScreen> {
   Widget answerList(int index) {
     var info = faqController.list[index];
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        for (int i = 0; i < (info.answer?.length ?? 0); i++)
-          info.answer![i].header!.isEmpty
-              ? SizedBox()
-              : Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: CustomText(
-                    title: "${info.answer?[i].header}",
-                    fontName: FontName.regular,
-                    fontSize: 14,
-                  ),
-                ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          child: subAnswer(index),
-        )
-      ],
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            for (int i = 0; i < (info.answer?.length ?? 0); i++)
+              info.answer![i].header!.isEmpty
+                  ? const SizedBox()
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: CustomText(
+                        title: "${info.answer?[i].header}",
+                        fontName: FontName.regular,
+                        fontSize: si.isMobile ? 14 : 18,
+                      ),
+                    ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: subAnswer(index),
+            )
+          ],
+        );
+      },
     );
   }
 
