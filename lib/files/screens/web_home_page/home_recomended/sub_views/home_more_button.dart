@@ -37,7 +37,7 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
       leftWidget: const Icon(Icons.more_horiz, color: white),
       onTap: () {
         print("StoreManager().isLoggedIn ====== ${StoreManager().isLoggedIn}");
-        if (!StoreManager().isLoggedIn) {
+        if (StoreManager().isLoggedIn) {
           showPopupMenu();
         } else {
           Get.dialog(CustomAlertView(title: featureIsAvailableForLoggedInStr));

@@ -29,7 +29,7 @@ class CustomAlertView extends StatelessWidget {
     return Center(
       child: Material(
         color: transparent,
-        child: mainContainer(),
+        child: Center(child: mainContainer()),
       ),
     );
   }
@@ -39,12 +39,12 @@ class CustomAlertView extends StatelessWidget {
       builder: (context, si) {
         return Container(
           clipBehavior: Clip.hardEdge,
-          height: 200,
+          //height: 200,
           width: si.isMobile ? MediaQuery.of(context).size.width - 60 : 400,
           decoration: mainContainerDecoration(),
           child: Padding(
             padding:
-                const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
+                const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 20),
             child: mainColumn(),
           ),
         );
@@ -56,6 +56,7 @@ class CustomAlertView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         CustomText(
           alignment: TextAlign.center,
