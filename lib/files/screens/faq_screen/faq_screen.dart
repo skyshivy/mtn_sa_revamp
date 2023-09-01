@@ -1,19 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
-import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
-import 'package:mtn_sa_revamp/files/controllers/faq_controller/faq_controller.dart';
-import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
-import 'package:mtn_sa_revamp/files/custom_files/font.dart';
-import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
-import 'package:mtn_sa_revamp/files/model/faq_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/model/faq_model.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/controllers/faq_controller/faq_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 
 class FAQScreen extends StatefulWidget {
+  const FAQScreen({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _FAQScreenState();
