@@ -78,13 +78,13 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
   void navigateTo(MenuModel item) {
     if (item.title == profileStr) {
       Get.toNamed(profileTapped);
-      print("Profile tapped");
+      print("profileTapped tapped");
     } else if (item.title == wishlistStr) {
       Get.toNamed(wishlistTapped);
-      print("Profile tapped");
+      print("wishlistTapped tapped");
     } else if (item.title == myTuneStr) {
       Get.toNamed(myTuneTapped);
-      print("Profile tapped");
+      print("myTuneTapped tapped");
     } else if (item.title == logoutStr) {
       StoreManager().logout();
     }

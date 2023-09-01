@@ -8,15 +8,13 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget profileCancelButton() {
   ProfileController controller = Get.find();
-  return controller.editEnable.value
-      ? CustomButton(
-          title: cancelStr,
-          color: transparent,
-          fontName: FontName.medium,
-          borderColor: red,
-          onTap: () {
-            controller.cancelButton();
-          },
-        )
-      : const SizedBox();
+  return CustomButton(
+    title: cancelStr,
+    color: transparent,
+    fontName: FontName.medium,
+    borderColor: red,
+    onTap: () {
+      controller.cancelButton();
+    },
+  );
 }

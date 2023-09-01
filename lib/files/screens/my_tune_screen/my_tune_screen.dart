@@ -10,6 +10,7 @@ import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_list_widgets/
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/my_tune_playing_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class MyTuneScreen extends StatefulWidget {
   @override
@@ -37,21 +38,29 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SingleChildScrollView(child: Obx(() {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            MyTuneHeaderView(),
-            const SizedBox(height: 15),
-            controller.isLoadingPlaying.value ? loadInd() : checkMyTuneEmpty(),
-            const SizedBox(height: 35),
-            controller.isLoadingTune.value ? loadInd() : checkMyTuneListEmpty(),
-            const SizedBox(height: 200),
-          ],
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 4 : 20),
+          child: SingleChildScrollView(child: Obx(() {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                MyTuneHeaderView(),
+                const SizedBox(height: 15),
+                controller.isLoadingPlaying.value
+                    ? loadInd()
+                    : checkMyTuneEmpty(),
+                const SizedBox(height: 35),
+                controller.isLoadingTune.value
+                    ? loadInd()
+                    : checkMyTuneListEmpty(),
+                const SizedBox(height: 200),
+              ],
+            );
+          })),
         );
-      })),
+      },
     );
   }
 

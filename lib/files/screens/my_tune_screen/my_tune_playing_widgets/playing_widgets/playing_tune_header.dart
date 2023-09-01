@@ -8,38 +8,43 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 Widget myTuneplayingHeaderView() {
-  return SizedBox(
-    height: 60,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        _leftWidget(),
-        Row(
+  return ResponsiveBuilder(
+    builder: (context, si) {
+      return SizedBox(
+        height: 60,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _suffleText(),
-            _toggleButton(),
+            _leftWidget(si),
+            Row(
+              children: [
+                _suffleText(si),
+                _toggleButton(),
+              ],
+            )
           ],
-        )
-      ],
-    ),
+        ),
+      );
+    },
   );
 }
 
-Widget _leftWidget() {
-  return const CustomText(
+Widget _leftWidget(SizingInformation si) {
+  return CustomText(
     title: currentlyPlayingToMyCallerStr,
     fontName: FontName.light,
-    fontSize: 30,
+    fontSize: si.isMobile ? 18 : 30,
   );
 }
 
-Widget _suffleText() {
-  return const CustomText(
+Widget _suffleText(SizingInformation si) {
+  return CustomText(
     title: shuffleStr,
     fontName: FontName.light,
-    fontSize: 18,
+    fontSize: si.isMobile ? 14 : 18,
     textColor: subTitleColor,
   );
 }

@@ -6,11 +6,12 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_text_field.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
-Widget profileMobileNumberWidget() {
+Widget profileMobileNumberWidget(SizingInformation si) {
   ProfileController profileController = Get.find();
   return SizedBox(
-    width: 280,
+    width: si.isMobile ? null : 280,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,

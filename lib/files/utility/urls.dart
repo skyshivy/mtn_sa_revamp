@@ -26,7 +26,7 @@ String editProfileUrl = "${baseUrlSecurity}edit-profile";
 String passwordValidationUrl = "${baseUrl}password-validation";
 String categoryListUrl =
     "${baseUrl}categories?language=${StoreManager().language}";
-
+String myWishListUrl = "${baseUrl}wishlist";
 String getCategoryDetailUrl =
     "${baseUrl}search-tone?language=${StoreManager().language}";
 String bannerDetailUrl =
