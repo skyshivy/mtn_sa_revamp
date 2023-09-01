@@ -25,8 +25,8 @@ class HomeSearchWidget extends StatelessWidget {
     return Container(
       key: _key,
       clipBehavior: Clip.hardEdge,
-      height: 50,
-      width: 50,
+      height: 40,
+      width: 40,
       decoration: decoration(),
       child: Row(
         children: [
@@ -51,6 +51,8 @@ class HomeSearchWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(1.5),
             child: HomeSearchButton(
+              width: 35,
+              height: 37,
               onTap: () {
                 controller.loadPage(3);
                 searchTuneController.getSearchedResult(

@@ -13,7 +13,7 @@ class HomeLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomButton(
-      height: 50,
+      height: 40,
       onTap: onTap,
       leftWidget: loaginLeftWidgetPadding(),
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

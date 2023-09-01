@@ -15,7 +15,7 @@ class WebNavBarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 70,
       color: yellow,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,7 +42,7 @@ class WebNavBarView extends StatelessWidget {
     );
   }
 
-  Widget leftSpacing({double width = 40}) {
+  Widget leftSpacing({double width = 20}) {
     return SizedBox(width: width);
   }
 
