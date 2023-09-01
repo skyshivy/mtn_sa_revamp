@@ -110,7 +110,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     itemCount: controller.songList.length,
                     shrinkWrap: true,
                     gridDelegate:
-                        delegate(mainAxisExtent: si.isMobile ? 230 : null),
+                        delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
                     itemBuilder: (context, index) {
                       return homeCell(index);
                     });

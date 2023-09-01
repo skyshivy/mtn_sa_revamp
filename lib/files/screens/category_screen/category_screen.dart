@@ -88,8 +88,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     child: GridView.builder(
                         shrinkWrap: true,
                         itemCount: controller.searchList.length,
-                        gridDelegate:
-                            delegate(mainAxisExtent: si.isMobile ? 230 : null),
+                        gridDelegate: delegate(si,
+                            mainAxisExtent: si.isMobile ? 230 : null),
                         itemBuilder: (context, index) {
                           return HomeTuneCell(
                             index: index,

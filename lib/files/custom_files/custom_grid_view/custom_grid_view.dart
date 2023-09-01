@@ -27,7 +27,8 @@ class CustomGridView extends StatelessWidget {
           return GridView.builder(
               itemCount: itemCount,
               shrinkWrap: true,
-              gridDelegate: delegate(mainAxisExtent: si.isMobile ? 230 : null),
+              gridDelegate:
+                  delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return homeCell(index);

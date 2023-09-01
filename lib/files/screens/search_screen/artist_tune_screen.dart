@@ -61,7 +61,8 @@ class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
         return GridView.builder(
             primary: true,
             itemCount: controller.searchList.length,
-            gridDelegate: delegate(mainAxisExtent: si.isMobile ? 230 : null),
+            gridDelegate:
+                delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
             itemBuilder: (context, index) {
               return HomeTuneCell(
                 index: index,

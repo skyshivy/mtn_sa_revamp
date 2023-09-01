@@ -25,19 +25,19 @@ Widget profilePreferenceWidget(
       const CustomText(
           title: preferenceStr, fontName: FontName.regular, fontSize: 14),
       const SizedBox(height: 6),
-      si.isMobile ? alignedGrid(si, controller) : Flexible(child: gridView())
+      si.isMobile ? alignedGrid(si, controller) : Flexible(child: gridView(si))
     ],
   );
 }
 
-Widget gridView() {
+Widget gridView(SizingInformation si) {
   ProfileController controller = Get.find();
   return Obx(() {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: controller.catList.length,
-      gridDelegate: delegate(mainAxisExtent: 130, maxCrossAxisExtent: 200),
+      gridDelegate: delegate(si, mainAxisExtent: 130, maxCrossAxisExtent: 200),
       itemBuilder: (context, index) {
         return InkWell(
             onTap: () {

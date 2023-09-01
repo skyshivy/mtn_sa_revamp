@@ -52,8 +52,10 @@ class _LandingRecoViewState extends State<LandingRecoView> {
                 return GridView.builder(
                     itemCount: count,
                     shrinkWrap: true,
-                    gridDelegate:
-                        delegate(mainAxisExtent: si.isMobile ? 230 : null),
+                    gridDelegate: delegate(si,
+                        mainAxisExtent: si.isMobile ? 230 : null,
+                        mainAxisSpacing: si.isMobile ? 8 : null,
+                        crossAxisSpacing: si.isMobile ? 8 : null),
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
                       return homeCell(index);

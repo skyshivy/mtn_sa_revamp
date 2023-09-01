@@ -35,6 +35,7 @@ class MyTuneListView extends StatelessWidget {
           physics: si.isMobile ? null : const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           gridDelegate: delegate(
+            si,
             mainAxisExtent: si.isMobile ? 280 : 400,
             maxCrossAxisExtent: si.isMobile ? 420 : 380,
             crossAxisSpacing: 10,

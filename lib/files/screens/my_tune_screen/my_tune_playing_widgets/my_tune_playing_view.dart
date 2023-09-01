@@ -49,6 +49,7 @@ class MyTunePlayingView extends StatelessWidget {
 
   SliverGridDelegateWithMaxCrossAxisExtent _delegate(SizingInformation si) {
     return delegate(
+      si,
       mainAxisExtent: si.isMobile ? 280 : 400,
       maxCrossAxisExtent: si.isMobile ? 420 : 380,
       crossAxisSpacing: 10,

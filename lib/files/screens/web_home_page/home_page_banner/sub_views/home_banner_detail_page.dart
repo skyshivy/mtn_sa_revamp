@@ -85,7 +85,8 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
           return GridView.builder(
             shrinkWrap: true,
             itemCount: controller.list.length,
-            gridDelegate: delegate(mainAxisExtent: si.isMobile ? 230 : null),
+            gridDelegate:
+                delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
             itemBuilder: (context, index) {
               return cell(index);
             },
