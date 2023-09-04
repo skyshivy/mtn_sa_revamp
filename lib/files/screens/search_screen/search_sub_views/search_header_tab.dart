@@ -35,9 +35,10 @@ class SeacrhHeaderTab extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 50,
-        color: blue,
+        color: blueLight,
         child: Center(
             child: CustomText(
+          textColor: index == controller.isTuneSelected.value ? blue : white,
           title: title,
           fontName: index == controller.isTuneSelected.value
               ? FontName.bold

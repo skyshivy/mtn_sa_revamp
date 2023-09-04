@@ -77,20 +77,22 @@ class BuyScreenState extends StatelessWidget {
           ? MainAxisAlignment.center
           : MainAxisAlignment.start,
       children: [
-        Column(
-          mainAxisAlignment: isPhone(context!)
-              ? MainAxisAlignment.start
-              : MainAxisAlignment.start,
-          crossAxisAlignment: isPhone(context!)
-              ? CrossAxisAlignment.start
-              : CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20),
-            title(),
-            SizedBox(height: 20),
-            tuneCharge(),
-            SizedBox(height: 10),
-          ],
+        Flexible(
+          child: Column(
+            mainAxisAlignment: isPhone(context!)
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.start,
+            crossAxisAlignment: isPhone(context!)
+                ? CrossAxisAlignment.start
+                : CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20),
+              title(),
+              SizedBox(height: 20),
+              tuneCharge(),
+              SizedBox(height: 10),
+            ],
+          ),
         ),
       ],
     );
