@@ -67,6 +67,7 @@ class HomeSearchWidget extends StatelessWidget {
 
   BoxDecoration decoration() {
     return BoxDecoration(
+      color: blueLight,
       border: border(),
       borderRadius: BorderRadius.circular(25),
     );

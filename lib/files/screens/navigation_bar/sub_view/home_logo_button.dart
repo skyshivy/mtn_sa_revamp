@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 
 class HomePageLogoButton extends StatelessWidget {
@@ -14,6 +15,7 @@ class HomePageLogoButton extends StatelessWidget {
         logoBigImg,
         height: 60,
         width: 60,
+        color: white,
       ),
       onTap: () {
         Get.until((route) => Get.currentRoute == '/');
