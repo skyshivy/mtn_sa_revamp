@@ -31,7 +31,7 @@ List<GetPage<dynamic>> get routesDirection {
         transitionDuration: dur,
         name: '/',
         page: () => Container(
-              color: red,
+              color: blueLight,
             )),
     GetPage(
       transitionDuration: dur,

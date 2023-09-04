@@ -110,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   return CustomText(
                     title: controller.errorMessage.value,
                     fontName: FontName.regular,
-                    textColor: red,
+                    textColor: blueLight,
                     fontSize: si.isMobile ? 10 : 16,
                   );
                 },
@@ -149,9 +149,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Color textFieldBorderColorChange() {
     return controller.isMsisdnVarified.value
-        ? (controller.otp.value.length == StoreManager().otpLength ? red : grey)
+        ? (controller.otp.value.length == StoreManager().otpLength
+            ? blueLight
+            : grey)
         : (controller.msisdn.value.length == StoreManager().msisdnLength
-            ? red
+            ? blueLight
             : grey);
   }
 
@@ -198,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                     fontFamily: FontName.regular.name,
                     fontSize: si.isMobile ? 10 : 14,
-                    color: yellow,
+                    color: blue,
                   )),
             ],
           ),
@@ -341,10 +343,10 @@ class _LoginScreenState extends State<LoginScreen> {
   Color requestButtonColor() {
     return controller.isMsisdnVarified.value
         ? ((controller.otp.value.length == StoreManager().otpLength)
-            ? yellow
+            ? blue
             : grey)
         : ((controller.msisdn.value.length == StoreManager().msisdnLength)
-            ? yellow
+            ? blue
             : grey);
   }
 

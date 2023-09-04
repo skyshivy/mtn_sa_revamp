@@ -12,7 +12,7 @@ profileEditButton() {
   return controller.isSaving.value
       ? loadingIndicator(radius: 12)
       : CustomButton(
-          color: yellow,
+          color: blue,
           fontName: FontName.medium,
           title: controller.editEnable.value ? saveStr : editStr,
           onTap: () {

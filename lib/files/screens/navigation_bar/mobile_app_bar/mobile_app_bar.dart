@@ -21,7 +21,7 @@ class MobileAppBar extends StatelessWidget {
       ),
       appBar: AppBar(
         leading: mobileAppBarLogoButton(),
-        backgroundColor: yellow,
+        backgroundColor: blue,
       ),
       body: widget,
     );

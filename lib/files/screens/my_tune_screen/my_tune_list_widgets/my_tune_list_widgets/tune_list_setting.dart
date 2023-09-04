@@ -10,7 +10,7 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget tuneListSettingWidget(ListToneApk1 info) {
   return CustomButton(
-    color: yellow,
+    color: blue,
     titlePadding: const EdgeInsets.symmetric(horizontal: 4),
     fontName: FontName.medium,
     fontSize: 16,

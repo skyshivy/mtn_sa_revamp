@@ -12,7 +12,7 @@ Widget profileCancelButton() {
     title: cancelStr,
     color: transparent,
     fontName: FontName.medium,
-    borderColor: red,
+    borderColor: blueLight,
     onTap: () {
       controller.cancelButton();
     },

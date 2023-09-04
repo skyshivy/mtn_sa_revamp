@@ -10,7 +10,7 @@ Widget myTuneOvalShapre() {
     children: [
       ClipOval(
         child: Container(
-          color: yellow,
+          color: blue,
           height: 200,
           width: 320,
           child: Padding(

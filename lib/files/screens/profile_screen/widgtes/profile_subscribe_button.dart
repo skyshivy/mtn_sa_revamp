@@ -11,7 +11,7 @@ Widget profileSubscribeButtonWidget(SizingInformation si, Function()? onTap) {
     child: Padding(
       padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 100 : 0),
       child: CustomButton(
-        color: yellow,
+        color: blue,
         title: subscribeStr,
         fontName: FontName.bold,
         fontSize: si.isMobile ? 12 : 16,

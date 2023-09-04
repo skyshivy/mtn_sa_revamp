@@ -82,7 +82,7 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
     return Obx(() {
       return CustomText(
         title: con.timeTypeBtm.value,
-        textColor: red,
+        textColor: blueLight,
         fontName: FontName.medium,
         fontSize: 14,
       );

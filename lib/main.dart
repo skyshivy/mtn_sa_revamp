@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'MTN_GENERIC',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: yellow),
+        colorScheme: ColorScheme.fromSeed(seedColor: blue),
         useMaterial3: true,
       ),
       home: Material(

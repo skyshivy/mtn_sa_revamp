@@ -83,7 +83,7 @@ class BuyAndPlayButton extends StatelessWidget {
             print("Buy button");
             BuyTuneScreen().show(context, info);
           },
-          color: yellow,
+          color: blue,
           titlePadding: const EdgeInsets.all(4),
           fontName: si.isMobile ? FontName.regular : FontName.bold,
           fontSize: si.isMobile ? 12 : 16,
@@ -93,6 +93,7 @@ class BuyAndPlayButton extends StatelessWidget {
             width: 20,
           ),
           title: buy,
+          textColor: white,
         );
       },
     );

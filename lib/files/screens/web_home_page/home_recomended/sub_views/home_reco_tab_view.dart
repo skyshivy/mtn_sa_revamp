@@ -82,7 +82,7 @@ class _HomeRecoTabViewState extends State<HomeRecoTabView> {
                     : FontName.regular,
                 fontSize: si.isMobile ? 14 : 20,
                 textColor:
-                    (controller.selectedIndex.value == index) ? yellow : grey,
+                    (controller.selectedIndex.value == index) ? blue : grey,
               ),
               const SizedBox(height: 5),
               selectionIndicator(index)
@@ -96,6 +96,6 @@ class _HomeRecoTabViewState extends State<HomeRecoTabView> {
   Container selectionIndicator(int index) {
     return Container(
         height: 3,
-        color: controller.selectedIndex.value == index ? yellow : transparent);
+        color: controller.selectedIndex.value == index ? blue : transparent);
   }
 }

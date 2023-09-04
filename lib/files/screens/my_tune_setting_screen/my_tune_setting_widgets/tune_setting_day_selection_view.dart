@@ -65,8 +65,8 @@ Widget _dayButton(
     padding: const EdgeInsets.only(right: 8),
     child: CustomButton(
       titlePadding: const EdgeInsets.symmetric(horizontal: 16),
-      color: isSelected ? yellow : white,
-      borderColor: isSelected ? yellow : red,
+      color: isSelected ? blue : white,
+      borderColor: isSelected ? blue : blueLight,
       height: 35,
       fontName: isSelected ? FontName.medium : FontName.regular,
       title: title,

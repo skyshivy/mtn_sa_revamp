@@ -70,7 +70,7 @@ Widget _combinedWidget(int index, bool isSelected, String title) {
 Widget _radioButton(bool isSelected) {
   return Icon(
     isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-    color: isSelected ? red : subTitleColor,
+    color: isSelected ? blueLight : subTitleColor,
     size: 18,
   ); //SizedBox(child: ,);
 }

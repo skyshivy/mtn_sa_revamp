@@ -12,7 +12,7 @@ Widget tuneSettingConfirmButton() {
     width: 160,
     titlePadding: const EdgeInsets.symmetric(horizontal: 20),
     fontName: FontName.medium,
-    color: yellow,
+    color: blue,
     title: confirmStr,
     onTap: () {
       tuneController.setTune();

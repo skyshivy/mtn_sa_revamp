@@ -24,7 +24,7 @@ class HomeSearchButton extends StatelessWidget {
           searchImg,
           height: 20,
           width: 20,
-          color: yellow,
+          color: blue,
         ),
         onTap: onTap,
       ),

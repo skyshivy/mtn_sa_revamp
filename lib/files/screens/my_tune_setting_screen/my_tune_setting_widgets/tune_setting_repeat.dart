@@ -40,8 +40,8 @@ Widget _noneButton(TuneSettingController con) {
       height: 35,
       fontName: FontName.medium,
       title: noneStr,
-      borderColor: (con.repeatYear.value == 0) ? null : red,
-      color: (con.repeatYear.value == 0) ? yellow : white,
+      borderColor: (con.repeatYear.value == 0) ? null : blueLight,
+      color: (con.repeatYear.value == 0) ? blue : white,
       titlePadding: const EdgeInsets.symmetric(horizontal: 16),
       onTap: () {
         con.updateRepeatYear(0);
@@ -56,8 +56,8 @@ Widget _monthlyButton(TuneSettingController con) {
       height: 35,
       fontName: FontName.medium,
       title: monthlyStr,
-      borderColor: (con.repeatYear.value == 1) ? null : red,
-      color: (con.repeatYear.value == 1) ? yellow : white,
+      borderColor: (con.repeatYear.value == 1) ? null : blueLight,
+      color: (con.repeatYear.value == 1) ? blue : white,
       titlePadding: EdgeInsets.symmetric(horizontal: 16),
       onTap: () {
         con.updateRepeatYear(1);
@@ -72,8 +72,8 @@ Widget _yearlyButton(TuneSettingController con) {
       height: 35,
       fontName: FontName.medium,
       title: yearlyStr,
-      borderColor: (con.repeatYear.value == 2) ? null : red,
-      color: (con.repeatYear.value == 2) ? yellow : white,
+      borderColor: (con.repeatYear.value == 2) ? null : blueLight,
+      color: (con.repeatYear.value == 2) ? blue : white,
       titlePadding: const EdgeInsets.symmetric(horizontal: 16),
       onTap: () {
         con.updateRepeatYear(2);

@@ -16,7 +16,7 @@ class WebNavBarView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 70,
-      color: yellow,
+      color: blue,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

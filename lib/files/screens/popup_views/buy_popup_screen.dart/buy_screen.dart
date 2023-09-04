@@ -215,7 +215,7 @@ class BuyScreenState extends StatelessWidget {
       },
       fontName: FontName.bold,
       title: confirmStr,
-      color: yellow,
+      color: blue,
     );
   }
 
@@ -226,7 +226,7 @@ class BuyScreenState extends StatelessWidget {
       },
       fontName: FontName.bold,
       title: cancelStr,
-      borderColor: red,
+      borderColor: blueLight,
       color: white,
     );
   }

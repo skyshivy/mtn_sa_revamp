@@ -95,8 +95,7 @@ Widget custText(AppCategory item, int index, ProfileController controller) {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: ShapeDecoration(
-            color:
-                item.isSelected!.value ? yellow : Colors.grey.withOpacity(0.4),
+            color: item.isSelected!.value ? blue : Colors.grey.withOpacity(0.4),
             shape: const StadiumBorder(),
           ),
           child: CustomText(title: item.categoryName ?? ''),
@@ -123,7 +122,7 @@ Widget _preferenceGridCell(ProfileController controller, int index) {
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
-                  color: yellow,
+                  color: blue,
                 ),
                 child: CustomImage(
                   url: controller.catList[index].menuImagePath,
@@ -156,7 +155,7 @@ Widget _profilePrefRadioButtom(ProfileController controller, int index) {
         (controller.catList[index].isSelected!.value)
             ? Icons.radio_button_checked
             : Icons.radio_button_unchecked,
-        color: yellow,
+        color: blue,
       ),
     );
   });

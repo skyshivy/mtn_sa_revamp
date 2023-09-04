@@ -11,7 +11,7 @@ Widget tuneListPlayButton() {
       print("tuneListPlayButton");
     },
     height: 40,
-    borderColor: red,
+    borderColor: blueLight,
     titlePadding: const EdgeInsets.symmetric(horizontal: 4),
     //color: yellow,
     title: playStr,
