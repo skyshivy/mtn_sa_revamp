@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
+
+Widget tunePreviewWishlistView() {
+  return Container(
+    height: 60,
+    decoration: _decoration(),
+    child: InkWell(
+      onTap: () {
+        print("tunePreviewWishlistView tapped");
+      },
+      child: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SvgPicture.asset(wishlistSvg),
+          CustomText(
+            title: wishlistStr,
+            fontName: FontName.regular,
+            fontSize: 12,
+          ),
+        ],
+      )),
+    ),
+  );
+}
+
+BoxDecoration _decoration() {
+  return const BoxDecoration(
+    color: greyLight,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(12),
+      topRight: Radius.circular(12),
+    ),
+  );
+}

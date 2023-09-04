@@ -4,8 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_mobile_nav_bar.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/screens/tune_preview_screen/tune_preview_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/home_reco_tab_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -65,13 +68,30 @@ class _LandingRecoViewState extends State<LandingRecoView> {
     });
   }
 
-  HomeTuneCell homeCell(int index) {
-    return HomeTuneCell(
-      info: controller.displayList?[index],
-      index: index,
-      onTap: () {
-        print("homeCell tapped");
-      },
-    );
+  Widget homeCell(int index) {
+    return ResponsiveBuilder(builder: (context, si) {
+      return si.isMobile
+          ? HomeTuneCell(
+              info: controller.displayList?[index],
+              index: index,
+              onTap: () {
+                print("homeCell tapped");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          customMobileNavBar(TunePreviewScreen(
+                            tuneList: controller.displayList ?? [],
+                            index: index,
+                          ))),
+                );
+              },
+            )
+          : HomeTuneCell(
+              info: controller.displayList?[index],
+              index: index,
+            );
+      //si.isMobile ? : SizedBox();
+    });
   }
 }

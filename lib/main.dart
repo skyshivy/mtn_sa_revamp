@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/tune_preview_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/mobile_home_screen/mobile_home_screen.dart';
@@ -30,6 +31,7 @@ void main() async {
   SearchTuneController _ = Get.put(SearchTuneController());
   PlayerController playerController = Get.put(PlayerController());
   WebTabController tabController = Get.put(WebTabController());
+  TunePreviewController preview = Get.put(TunePreviewController());
   await controller.settinApiCall();
   runApp(MyApp());
 }

@@ -16,9 +16,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 class HomeTuneCell extends StatelessWidget {
   final int index;
   final TuneInfo? info;
-  final Function() onTap;
-  const HomeTuneCell(
-      {super.key, required this.index, this.info, required this.onTap});
+  final Function()? onTap;
+  const HomeTuneCell({super.key, required this.index, this.info, this.onTap});
   @override
   Widget build(BuildContext context) {
     return InkWell(

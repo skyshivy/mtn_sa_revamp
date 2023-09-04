@@ -92,7 +92,7 @@ class BuyAndPlayButton extends StatelessWidget {
             height: 20,
             width: 20,
           ),
-          title: buy,
+          title: buyStr,
           textColor: white,
         );
       },

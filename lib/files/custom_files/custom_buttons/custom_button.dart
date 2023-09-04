@@ -8,6 +8,7 @@ import '../custom_text/custom_text.dart';
 class CustomButton extends StatelessWidget {
   final String? title;
   final double height;
+  final double borderWidth;
   final double? width;
   final double? radius;
   final EdgeInsetsGeometry? titlePadding;
@@ -29,6 +30,7 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     this.height = 40,
+    this.borderWidth = 1,
     this.width,
     this.radius,
     this.color = transparent,
@@ -83,7 +85,8 @@ class CustomButton extends StatelessWidget {
   BoxDecoration decoration() {
     return BoxDecoration(
         color: color,
-        border: Border.all(color: borderColor ?? transparent),
+        border:
+            Border.all(color: borderColor ?? transparent, width: borderWidth),
         borderRadius: BorderRadius.circular(radius ?? height / 2));
   }
 
