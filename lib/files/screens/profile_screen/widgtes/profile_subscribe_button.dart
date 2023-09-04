@@ -13,6 +13,7 @@ Widget profileSubscribeButtonWidget(SizingInformation si, Function()? onTap) {
       child: CustomButton(
         color: blue,
         title: subscribeStr,
+        textColor: white,
         fontName: FontName.bold,
         fontSize: si.isMobile ? 12 : 16,
         onTap: onTap,

@@ -248,7 +248,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget logoImageWidget(SizingInformation si) {
     return Image.asset(
-      logoBigImg,
+      atomLogoBigImg,
       height: si.isMobile ? 30 : 50,
     );
   }

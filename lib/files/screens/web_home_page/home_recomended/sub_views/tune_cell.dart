@@ -102,7 +102,7 @@ class HomeTuneCell extends StatelessWidget {
   }
 
   Widget moreButton() {
-    return HomeMoreButton();
+    return HomeMoreButton(info: info);
   }
 
   BoxDecoration decoration() {

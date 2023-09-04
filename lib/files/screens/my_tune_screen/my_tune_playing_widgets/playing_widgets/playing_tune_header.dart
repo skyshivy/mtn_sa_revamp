@@ -58,6 +58,8 @@ Widget _toggleButton() {
               width: 60, child: Center(child: loadingIndicator(radius: 14)))
           : Switch.adaptive(
               value: controller.isSuffle.value,
+              activeColor: blueLight,
+              activeTrackColor: blue,
               onChanged: (value) {
                 controller.suffleTune();
                 //controller.isSuffle.value = !controller.isSuffle.value;

@@ -11,6 +11,7 @@ class CustomButton extends StatelessWidget {
   final double? width;
   final double? radius;
   final EdgeInsetsGeometry? titlePadding;
+  final EdgeInsetsGeometry? leftWidgetPadding;
   final Color? color;
   final Color? borderColor;
 
@@ -41,6 +42,7 @@ class CustomButton extends StatelessWidget {
     this.leftWidget,
     this.rightWidget,
     this.titlePadding,
+    this.leftWidgetPadding,
     this.onTap,
     this.borderColor,
   });
@@ -66,7 +68,10 @@ class CustomButton extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
       children: [
-        leftWidget ?? const SizedBox(),
+        Padding(
+          padding: leftWidgetPadding ?? EdgeInsets.all(0),
+          child: leftWidget ?? const SizedBox(),
+        ),
         (title == null)
             ? const SizedBox()
             : (title!.isEmpty ? const SizedBox() : titleWidget()),

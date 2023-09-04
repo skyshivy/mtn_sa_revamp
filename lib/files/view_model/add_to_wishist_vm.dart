@@ -7,16 +7,16 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class AddToWishlistVm {
-  add(TuneInfo info) async {
+  add(TuneInfo? info) async {
     var myPost = {
       "identifier": "AddToWishList",
       "msisdn": StoreManager().msisdn,
-      "contentId": info.toneId,
-      "contentName": info.toneName,
-      "path": info.path ?? info.toneIdStreamingUrl,
-      "previewImage": info.toneIdpreviewImageUrl,
-      "album": info.album ?? info.albumName,
-      "artist": info.artist ?? info.artistName,
+      "contentId": info?.toneId,
+      "contentName": info?.toneName,
+      "path": info?.path ?? info?.toneIdStreamingUrl,
+      "previewImage": info?.toneIdpreviewImageUrl,
+      "album": info?.album ?? info?.albumName,
+      "artist": info?.artist ?? info?.artistName,
       "price": "undefined",
       "language": StoreManager().language,
       "wishlistType": "1"

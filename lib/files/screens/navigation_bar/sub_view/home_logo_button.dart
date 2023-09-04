@@ -11,11 +11,14 @@ class HomePageLogoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomButton(
+      color: white,
+      leftWidgetPadding: const EdgeInsets.symmetric(horizontal: 10),
+      radius: 2,
       leftWidget: Image.asset(
-        logoBigImg,
+        atomLogoBigImg,
         height: 60,
         width: 60,
-        color: white,
+        //color: ,
       ),
       onTap: () {
         Get.until((route) => Get.currentRoute == '/');

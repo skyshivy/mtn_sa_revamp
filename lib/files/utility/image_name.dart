@@ -1,4 +1,5 @@
 const logoBigImg = 'assets/pngs/logo_big.png';
+const atomLogoBigImg = 'assets/pngs/atom_logo.png';
 const bannerBigImg = 'assets/pngs/banner.png';
 
 const buyImg = 'assets/pngs/buy.png';

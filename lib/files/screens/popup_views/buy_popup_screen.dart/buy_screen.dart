@@ -216,6 +216,7 @@ class BuyScreenState extends StatelessWidget {
       fontName: FontName.bold,
       title: confirmStr,
       color: blue,
+      textColor: white,
     );
   }
 

@@ -67,7 +67,7 @@ Widget _customMenuListView(
         return CustomOnHover(builder: (isHover) {
           return InkWell(
             onTap: () {
-              Get.back();
+              //Get.back();
               Navigator.pop(context);
               onTap!(menuList[index]);
             },
@@ -78,7 +78,7 @@ Widget _customMenuListView(
                       borderRadius: BorderRadius.circular(2),
                       color: isHover ? blue : transparent,
                     ),
-                    child: cell(menuList, index, isSvg)),
+                    child: cell(menuList, index, isSvg, isHover)),
                 (menuList.length - 1) == index
                     ? const SizedBox()
                     : const Divider(
@@ -91,14 +91,14 @@ Widget _customMenuListView(
       });
 }
 
-Padding cell(List<MenuModel> menuList, int index, bool isSvg) {
+Padding cell(List<MenuModel> menuList, int index, bool isSvg, bool isHover) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Row(
       children: [
         cellImage(menuList[index], isSvg),
         customSpacer(menuList, index),
-        cellTitle(menuList[index]),
+        cellTitle(menuList[index], isHover),
       ],
     ),
   );
@@ -110,9 +110,10 @@ SizedBox customSpacer(List<MenuModel> menuList, int index) {
       : const SizedBox(width: 6);
 }
 
-Widget cellTitle(MenuModel menu) {
+Widget cellTitle(MenuModel menu, bool isHover) {
   return CustomText(
     title: menu.title,
+    textColor: isHover ? white : black,
     fontName: FontName.regular,
   );
 }

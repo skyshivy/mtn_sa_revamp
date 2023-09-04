@@ -122,7 +122,7 @@ Widget _preferenceGridCell(ProfileController controller, int index) {
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
-                  color: blue,
+                  color: blueLight,
                 ),
                 child: CustomImage(
                   url: controller.catList[index].menuImagePath,

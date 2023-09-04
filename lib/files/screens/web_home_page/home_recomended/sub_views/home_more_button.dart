@@ -6,13 +6,15 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
+import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class HomeMoreButton extends StatefulWidget {
-  const HomeMoreButton({super.key});
+  final TuneInfo? info;
+  const HomeMoreButton({super.key, this.info});
 
   @override
   State<StatefulWidget> createState() {
@@ -56,7 +58,7 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
       isLeft: true,
       onTap: (p0) {
         if (p0.title == wishlistStr) {
-          recoController.wishlistTapped();
+          recoController.wishlistTapped(widget.info);
         } else if (p0.title == tellFriendStr) {
           recoController.tellAFriendTapped();
         } else if (p0.title == shareStr) {

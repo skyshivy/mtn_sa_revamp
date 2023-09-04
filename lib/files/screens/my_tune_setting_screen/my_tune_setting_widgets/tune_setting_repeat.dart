@@ -39,6 +39,7 @@ Widget _noneButton(TuneSettingController con) {
     return CustomButton(
       height: 35,
       fontName: FontName.medium,
+      textColor: (con.repeatYear.value == 0) ? white : black,
       title: noneStr,
       borderColor: (con.repeatYear.value == 0) ? null : blueLight,
       color: (con.repeatYear.value == 0) ? blue : white,
@@ -56,6 +57,7 @@ Widget _monthlyButton(TuneSettingController con) {
       height: 35,
       fontName: FontName.medium,
       title: monthlyStr,
+      textColor: (con.repeatYear.value == 1) ? white : black,
       borderColor: (con.repeatYear.value == 1) ? null : blueLight,
       color: (con.repeatYear.value == 1) ? blue : white,
       titlePadding: EdgeInsets.symmetric(horizontal: 16),
@@ -72,6 +74,7 @@ Widget _yearlyButton(TuneSettingController con) {
       height: 35,
       fontName: FontName.medium,
       title: yearlyStr,
+      textColor: (con.repeatYear.value == 2) ? white : black,
       borderColor: (con.repeatYear.value == 2) ? null : blueLight,
       color: (con.repeatYear.value == 2) ? blue : white,
       titlePadding: const EdgeInsets.symmetric(horizontal: 16),

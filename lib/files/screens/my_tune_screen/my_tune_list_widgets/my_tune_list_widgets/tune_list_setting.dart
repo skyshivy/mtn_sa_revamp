@@ -14,6 +14,7 @@ Widget tuneListSettingWidget(ListToneApk1 info) {
     titlePadding: const EdgeInsets.symmetric(horizontal: 4),
     fontName: FontName.medium,
     fontSize: 16,
+    textColor: white,
     leftWidget: const Padding(
       padding: EdgeInsets.only(left: 6),
       child: Icon(

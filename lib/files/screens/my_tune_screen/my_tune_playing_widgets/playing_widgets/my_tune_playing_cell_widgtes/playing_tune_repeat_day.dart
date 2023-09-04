@@ -56,7 +56,7 @@ Widget _dayButton(String title, ListToneApk item, int index) {
     padding: const EdgeInsets.symmetric(horizontal: 2),
     child: CustomButton(
       width: 30,
-      color: isSelected ? blue : grey,
+      color: isSelected ? blueLight : grey,
       height: 30,
       title: title,
     ),

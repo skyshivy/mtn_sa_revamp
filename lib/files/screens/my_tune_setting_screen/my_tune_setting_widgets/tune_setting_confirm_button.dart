@@ -10,6 +10,7 @@ Widget tuneSettingConfirmButton() {
   TuneSettingController tuneController = Get.find();
   return CustomButton(
     width: 160,
+    textColor: white,
     titlePadding: const EdgeInsets.symmetric(horizontal: 20),
     fontName: FontName.medium,
     color: blue,

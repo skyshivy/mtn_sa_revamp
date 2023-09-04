@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/view_model/add_to_wishist_vm.dart';
 
 class RecoController extends GetxController {
   List<String> tabTitle = [];
@@ -70,7 +71,8 @@ class RecoController extends GetxController {
     displayList?.refresh();
   }
 
-  wishlistTapped() {
+  wishlistTapped(TuneInfo? info) {
+    AddToWishlistVm().add(info);
     print("Wishlist tapped in tune cell");
   }
 
