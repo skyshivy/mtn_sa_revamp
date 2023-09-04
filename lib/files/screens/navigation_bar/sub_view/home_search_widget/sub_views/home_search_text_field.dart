@@ -10,11 +10,16 @@ class HomeSearchTextField extends StatelessWidget {
   final Function(String) onChanged;
   final Function(String) onSubmit;
   final Function() onTap;
-  const HomeSearchTextField(
-      {super.key,
-      required this.onChanged,
-      required this.onSubmit,
-      required this.onTap});
+  final Color textColor;
+  final Color hintColor;
+  const HomeSearchTextField({
+    super.key,
+    required this.onChanged,
+    required this.onSubmit,
+    required this.onTap,
+    this.textColor = black,
+    this.hintColor = white,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,8 +29,9 @@ class HomeSearchTextField extends StatelessWidget {
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0),
         child: CustomTextField(
+          textColor: textColor,
           isBorder: false,
-          hintColor: white,
+          hintColor: hintColor,
           fontName: FontName.regularItalic,
           text: "",
           hintText: whatrLookingFor,

@@ -8,7 +8,7 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/route_direction.dart';
 
 class WebTabView extends StatelessWidget {
-  WebTabController tabController = Get.put(WebTabController());
+  WebTabController tabController = Get.find();
   WebTabView({super.key});
   FAQScreen? faqScreen;
   @override
