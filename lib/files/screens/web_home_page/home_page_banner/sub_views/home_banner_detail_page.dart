@@ -7,6 +7,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -88,7 +89,7 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
             gridDelegate:
                 delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
             itemBuilder: (context, index) {
-              return cell(index);
+              return cell(index, si);
             },
           );
         });
@@ -96,13 +97,15 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
     );
   }
 
-  Widget cell(int index) {
+  Widget cell(int index, SizingInformation si) {
     return HomeTuneCell(
       index: index,
       info: controller.list[index],
-      onTap: () {
-        print("Home banner cell tapped");
-      },
+      onTap: si.isMobile
+          ? () {
+              pushToTunePreView(context, controller.list, index);
+            }
+          : null,
     );
   }
 }

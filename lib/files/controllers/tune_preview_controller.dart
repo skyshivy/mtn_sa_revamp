@@ -36,6 +36,10 @@ class TunePreviewController extends GetxController {
     isPlaying.value = false;
     if (index.value > 0) {
       index.value -= 1;
+      hideNext.value = false;
+    }
+    if (index.value <= 0) {
+      hidePrevious.value = true;
     }
   }
 
@@ -43,6 +47,11 @@ class TunePreviewController extends GetxController {
     isPlaying.value = false;
     if (index.value <= (list.length - 1)) {
       index.value += 1;
+      hidePrevious.value = false;
     }
+    if (index.value >= (list.length - 1)) {
+      hideNext.value = true;
+    }
+    print("nextTapped list.length = ${list.length} =========$index");
   }
 }

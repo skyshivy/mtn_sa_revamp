@@ -6,4 +6,6 @@ String profileTapped = "/profile";
 String wishlistTapped = "/wishList";
 String myTuneTapped = "/myTune";
 String faqTapped = "/faq";
+String searchTapped = "/search";
+String seeMoreTapped = "/seemore";
 String myTuneSettingTapped = "/tuneSetting";

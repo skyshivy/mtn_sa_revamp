@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -58,20 +59,26 @@ class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
   Widget gridView() {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return GridView.builder(
-            primary: true,
-            itemCount: controller.searchList.length,
-            gridDelegate:
-                delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
-            itemBuilder: (context, index) {
-              return HomeTuneCell(
-                index: index,
-                info: controller.searchList[index],
-                onTap: () {
-                  print("Artist Tune cell tapped");
-                },
-              );
-            });
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
+          child: GridView.builder(
+              primary: true,
+              itemCount: controller.searchList.length,
+              gridDelegate:
+                  delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
+              itemBuilder: (context, index) {
+                return HomeTuneCell(
+                  index: index,
+                  info: controller.searchList[index],
+                  onTap: si.isMobile
+                      ? () {
+                          pushToTunePreView(
+                              context, controller.searchList, index);
+                        }
+                      : null,
+                );
+              }),
+        );
       },
     );
   }

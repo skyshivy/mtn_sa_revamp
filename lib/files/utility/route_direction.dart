@@ -4,6 +4,8 @@ import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_bar.dart';
+import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/see_more_screen/see_more_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -68,6 +70,22 @@ List<GetPage<dynamic>> get routesDirection {
       page: () {
         controller.stop();
         return Material(child: MyTuneScreen());
+      },
+    ),
+    GetPage(
+      transitionDuration: dur,
+      name: seeMoreTapped,
+      page: () {
+        controller.stop();
+        return Material(child: SeeMoreScreen());
+      },
+    ),
+    GetPage(
+      transitionDuration: dur,
+      name: searchTapped,
+      page: () {
+        controller.stop();
+        return Material(child: reteurnWidget(SearchScreen()));
       },
     ),
     GetPage(

@@ -29,7 +29,10 @@ Widget _nextButton(TunePreviewController cont) {
               width: 40,
               height: 40,
               borderColor: grey,
-              leftWidget: Icon(Icons.skip_next),
+              leftWidget: Icon(
+                Icons.skip_next,
+                color: greyDark,
+              ),
             ),
           );
   });
@@ -48,7 +51,10 @@ Widget _previousButton(TunePreviewController cont) {
               width: 40,
               height: 40,
               borderColor: grey,
-              leftWidget: Icon(Icons.skip_previous),
+              leftWidget: Icon(
+                Icons.skip_previous,
+                color: greyDark,
+              ),
             ),
           );
   });
@@ -63,8 +69,8 @@ Widget _playButton(TunePreviewController cont) {
           cont.playTapped();
         },
         borderWidth: 3,
-        width: 50,
-        height: 50,
+        width: 60,
+        height: 60,
         borderColor: grey,
         color: blue,
         leftWidget: Icon(
@@ -84,5 +90,5 @@ BoxDecoration _shadowDecoration() {
         spreadRadius: 2,
         offset: Offset(0, 2),
         color: black.withOpacity(0.25))
-  ], borderRadius: BorderRadius.circular(26), color: white);
+  ], borderRadius: BorderRadius.circular(30), color: white);
 }

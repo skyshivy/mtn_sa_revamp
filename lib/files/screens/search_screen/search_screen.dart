@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_header.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_header_tab.dart';
 
@@ -32,23 +33,27 @@ class _SearchScreenState extends State<SearchScreen> {
   SearchTuneController controller = Get.find();
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Obx(() {
-          return Column(
-            children: [
-              SearchHeader(),
-              SeacrhHeaderTab(),
-              const SizedBox(height: 20),
-              Expanded(
-                  child: controller.isTuneSelected.value == 0
-                      ? gridView()
-                      : artistList()),
-              //const SizedBox(height: 30),
-              loadMoreData()
-            ],
-          );
-        }));
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Padding(
+            padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
+            child: Obx(() {
+              return Column(
+                children: [
+                  SearchHeader(),
+                  SeacrhHeaderTab(),
+                  const SizedBox(height: 20),
+                  Expanded(
+                      child: controller.isTuneSelected.value == 0
+                          ? gridView()
+                          : artistList()),
+                  //const SizedBox(height: 30),
+                  loadMoreData()
+                ],
+              );
+            }));
+      },
+    );
   }
 
   Widget loadMoreData() {
@@ -112,7 +117,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     gridDelegate:
                         delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
                     itemBuilder: (context, index) {
-                      return homeCell(index);
+                      return homeCell(index, si);
                     });
       },
     );
@@ -131,13 +136,15 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  HomeTuneCell homeCell(int index) {
+  HomeTuneCell homeCell(int index, SizingInformation si) {
     return HomeTuneCell(
       info: controller.songList[index],
       index: index,
-      onTap: () {
-        print("Search screen cell tapped");
-      },
+      onTap: si.isMobile
+          ? () {
+              pushToTunePreView(context, controller.songList, index);
+            }
+          : null,
     );
   }
 }

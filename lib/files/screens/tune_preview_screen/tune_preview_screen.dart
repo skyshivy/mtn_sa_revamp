@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_preview_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/buy_screen.dart';
@@ -40,19 +42,65 @@ class _TunePreviewScreenState extends State<TunePreviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return cont.isLoading.value
-          ? Center(child: loadingIndicator())
-          : Column(
-              children: [
-                Flexible(flex: 2, child: topSection()),
-                Flexible(flex: 3, child: bottomSection())
-              ],
-            );
-    });
+    return Material(
+      child: Obx(() {
+        return cont.isLoading.value
+            ? Center(child: loadingIndicator())
+            : Column(
+                children: [
+                  Flexible(flex: 2, child: topSection()),
+                  Flexible(flex: 3, child: bottomSection())
+                ],
+              );
+      }),
+    );
   }
 
-  Widget topSection() => tunePreviewImage(cont);
+  Widget topSection() {
+    return Stack(
+      children: [
+        tunePreviewImage(cont),
+        imageTopWidget(),
+      ],
+    );
+  }
+
+  Widget imageTopWidget() {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                    color: black.withOpacity(0.5),
+                    blurRadius: 18,
+                    spreadRadius: 0)
+              ]),
+              child: const CustomText(
+                  title: previewTuneStr,
+                  fontName: FontName.bold,
+                  textColor: white),
+            ),
+            CustomButton(
+              width: 40,
+              color: black.withOpacity(0.4),
+              onTap: () {
+                Navigator.pop(context);
+              },
+              leftWidget: const Icon(
+                Icons.close,
+                color: white,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget bottomSection() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
