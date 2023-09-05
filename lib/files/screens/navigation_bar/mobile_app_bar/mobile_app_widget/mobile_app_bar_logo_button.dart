@@ -9,17 +9,20 @@ import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 Widget mobileAppBarLogoButton() {
   PlayerController con = Get.find();
   return Center(
-    child: CustomButton(
-      color: white,
-      radius: 2,
-      onTap: () {
-        con.stop();
-        Get.until((route) => Get.currentRoute == '/');
-      },
-      leftWidget: Image.asset(
-        atomLogoBigImg,
-        height: 40,
-        width: 40,
+    child: Padding(
+      padding: const EdgeInsets.only(left: 12),
+      child: CustomButton(
+        color: white,
+        radius: 2,
+        onTap: () {
+          con.stop();
+          Get.until((route) => Get.currentRoute == '/');
+        },
+        leftWidget: Image.asset(
+          atomLogoBigImg,
+          height: 40,
+          width: 40,
+        ),
       ),
     ),
   );

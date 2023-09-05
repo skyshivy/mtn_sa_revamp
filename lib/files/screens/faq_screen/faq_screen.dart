@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/model/faq_model.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
@@ -42,7 +44,14 @@ class _FAQScreenState extends State<FAQScreen> {
     return Container(
       color: white,
       child: Obx(() {
-        return faqController.isLoading.value ? loadingInd() : faqListView();
+        return faqController.isLoading.value
+            ? loadingInd()
+            : Column(
+                children: [
+                  CustomTopHeaderView(title: faqStr),
+                  Flexible(child: faqListView()),
+                ],
+              );
       }),
     );
   }

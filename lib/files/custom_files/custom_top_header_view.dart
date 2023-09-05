@@ -11,12 +11,12 @@ class CustomTopHeaderView extends StatelessWidget {
   const CustomTopHeaderView({super.key, required this.title});
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 50,
-        color: greyLight,
-        child: ResponsiveBuilder(
-          builder: (context, si) {
-            return Padding(
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Container(
+            height: si.isMobile ? 40 : 50,
+            color: greyLight,
+            child: Padding(
               padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
               child: Row(
                 children: [
@@ -29,8 +29,8 @@ class CustomTopHeaderView extends StatelessWidget {
                   CustomText(title: title, fontName: FontName.medium)
                 ],
               ),
-            );
-          },
-        ));
+            ));
+      },
+    );
   }
 }

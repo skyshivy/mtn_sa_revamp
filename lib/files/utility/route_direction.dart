@@ -77,7 +77,7 @@ List<GetPage<dynamic>> get routesDirection {
       name: seeMoreTapped,
       page: () {
         controller.stop();
-        return Material(child: SeeMoreScreen());
+        return Material(child: reteurnWidget(SeeMoreScreen()));
       },
     ),
     GetPage(

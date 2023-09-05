@@ -6,25 +6,30 @@ import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_co
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class SearchHeader extends StatelessWidget {
   SearchTuneController controller = Get.find();
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return !controller.isLoaded.value
-          ? SizedBox()
-          : Row(
-              children: [
-                Container(
-                  height: 50,
-                  child: Center(
-                    child: row(),
-                  ),
-                ),
-              ],
-            );
-    });
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Obx(() {
+          return !controller.isLoaded.value
+              ? SizedBox()
+              : Row(
+                  children: [
+                    Container(
+                      height: si.isMobile ? 40 : 50,
+                      child: Center(
+                        child: row(),
+                      ),
+                    ),
+                  ],
+                );
+        });
+      },
+    );
   }
 
   Row row() {

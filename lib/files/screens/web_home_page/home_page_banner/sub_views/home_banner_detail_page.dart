@@ -46,23 +46,24 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return controller.isloading.value
-          ? loadingIndi()
-          : controller.list.isEmpty
-              ? emptyWidget()
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const CustomTopHeaderView(title: bannerDetailStr),
-                      Expanded(child: gridView()),
-                    ],
-                  ),
-                );
-    });
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Obx(() {
+          return controller.isloading.value
+              ? loadingIndi()
+              : controller.list.isEmpty
+                  ? emptyWidget()
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const CustomTopHeaderView(title: bannerDetailStr),
+                        Expanded(child: gridView()),
+                      ],
+                    );
+        });
+      },
+    );
   }
 
   Widget emptyWidget() {
@@ -82,17 +83,20 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
   Widget gridView() {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return Obx(() {
-          return GridView.builder(
-            shrinkWrap: true,
-            itemCount: controller.list.length,
-            gridDelegate:
-                delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
-            itemBuilder: (context, index) {
-              return cell(index, si);
-            },
-          );
-        });
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 12 : 30),
+          child: Obx(() {
+            return GridView.builder(
+              shrinkWrap: true,
+              itemCount: controller.list.length,
+              gridDelegate:
+                  delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
+              itemBuilder: (context, index) {
+                return cell(index, si);
+              },
+            );
+          }),
+        );
       },
     );
   }
