@@ -31,6 +31,10 @@ class MtnAudioPlayer {
     }
   }
 
+  playerSeek(Duration position) async {
+    _player.seek(position);
+  }
+
   Future<void> play() async {
     await _player.play();
   }

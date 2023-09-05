@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/tune_preview_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
-Widget tunePreviewWishlistView() {
+Widget tunePreviewWishlistView(
+    TunePreviewController pCont, PlayerController playCont) {
   return Container(
     height: 60,
     decoration: _decoration(),
     child: InkWell(
       onTap: () {
+        pCont.stopPlayer();
         print("tunePreviewWishlistView tapped");
       },
       child: Center(
@@ -21,7 +25,7 @@ Widget tunePreviewWishlistView() {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset(wishlistSvg),
-          CustomText(
+          const CustomText(
             title: wishlistStr,
             fontName: FontName.regular,
             fontSize: 12,

@@ -9,6 +9,12 @@ class PlayerController extends GetxController {
   RxBool isBuffering = false.obs;
   bool _isPaused = false;
   bool _isCompleted = false;
+
+  RxInt current = 0.obs;
+  RxInt maxDuration = 0.obs;
+  RxString maxDurationStr = '00:00'.obs;
+  RxString currentSeekingStr = '00:00'.obs;
+
   playUrl(String url, int index) async {
     print(
         "1 was $playingIndex and is $index  _isPaused $_isPaused  isPlaying$isPlaying");
@@ -46,6 +52,10 @@ class PlayerController extends GetxController {
     await MtnAudioPlayer.instance.play();
   }
 
+  Future<void> seekTo(Duration position) async {
+    await MtnAudioPlayer.instance.playerSeek(position);
+  }
+
   Future<void> pause() async {
     _isPaused = true;
     print("paused tapped");
@@ -61,6 +71,7 @@ class PlayerController extends GetxController {
 
   Future<void> stop() async {
     await MtnAudioPlayer.instance.stop();
+    current.value = 0;
     playingIndex.value = -1;
     isPlaying.value = false;
     _isCompleted = true;
@@ -111,6 +122,18 @@ class PlayerController extends GetxController {
         _isPaused = true;
         print("Player is not playing");
       }
+    });
+    player.positionStream.listen((position) {
+      currentSeekingStr.value = position.inSeconds > 9
+          ? "00:${position.inSeconds}"
+          : "00:0${position.inSeconds}";
+      ;
+      current.value = position.inSeconds;
+      maxDuration.value = player.duration!.inSeconds;
+
+      maxDurationStr.value = player.duration!.inSeconds > 9
+          ? "00:${player.duration!.inSeconds}"
+          : "00:0${player.duration!.inSeconds}";
     });
   }
 
