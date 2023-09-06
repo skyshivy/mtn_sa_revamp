@@ -32,6 +32,7 @@ class BuyController extends GetxController {
           SubscriberValidationModel.fromJson(valueMap);
       if (model.responseMap?.respCode == 'SC0000') {
         await _generateOtp(msisdn.value);
+        Get.dialog(BuyOtpView());
         print("Existing user******");
       } else if (model.responseMap?.respCode == '100') {
         isMsisdnVarified.value = true;
