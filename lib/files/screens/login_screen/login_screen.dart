@@ -254,21 +254,27 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget titleWidget() {
-    return Obx(() {
-      String title = controller.isMsisdnVarified.value
-          ? enter6DigitOtpStr
-          : signInToYourAccountStr;
-      return Row(
-        children: [
-          controller.isMsisdnVarified.value ? editNumber() : const SizedBox(),
-          CustomText(
-            title: title,
-            fontName: FontName.bold,
-            fontSize: fontSize(14, 24),
-          ),
-        ],
-      );
-    });
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Obx(() {
+          String title = controller.isMsisdnVarified.value
+              ? enter6DigitOtpStr
+              : signInToYourAccountStr;
+          return Row(
+            children: [
+              controller.isMsisdnVarified.value
+                  ? editNumber()
+                  : const SizedBox(),
+              CustomText(
+                title: title,
+                fontName: FontName.bold,
+                fontSize: si.isMobile ? 14 : 24,
+              ),
+            ],
+          );
+        });
+      },
+    );
   }
 
   Widget editNumber() {

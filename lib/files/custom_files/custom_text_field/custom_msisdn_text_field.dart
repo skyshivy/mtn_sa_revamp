@@ -7,11 +7,13 @@ import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class CustomMsisdnTextField extends StatelessWidget {
   final String text;
   final String? hintText;
   final bool isMsisdn;
+  final bool enabled;
   final double height;
   final Color borderColor;
   final Color bgColor;
@@ -28,6 +30,7 @@ class CustomMsisdnTextField extends StatelessWidget {
     this.isMsisdn = true,
     this.prefixWidget,
     this.height = 45,
+    this.enabled = true,
     this.cornerRadius = 25,
     this.countryCodeColor = greyDark,
     this.bgColor = transparent,
@@ -89,21 +92,27 @@ class CustomMsisdnTextField extends StatelessWidget {
   Widget textField() {
     textEditingController.selection = TextSelection.fromPosition(
         TextPosition(offset: textEditingController.text.length));
-    return TextField(
-      controller: textEditingController,
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return TextField(
+          controller: textEditingController,
+          enabled: enabled,
+          onSubmitted: (value) {
+            onSubmit!(value);
+          },
+          onChanged: (value) {
+            onChanged!(value);
+          },
 
-      onSubmitted: (value) {
-        onSubmit!(value);
-      },
-      onChanged: (value) {
-        onChanged!(value);
-      },
-      style: TextStyle(
-          fontFamily: FontName.regular.name, fontSize: fontSize(14, 18)),
-      decoration: inputDecoration(),
-      keyboardType: TextInputType.phone,
+          style: TextStyle(
+              fontFamily: FontName.regular.name,
+              fontSize: si.isMobile ? 14 : 18),
+          decoration: inputDecoration(si),
+          keyboardType: TextInputType.phone,
 
-      inputFormatters: inputFormate, // Only numbers can be entered
+          inputFormatters: inputFormate, // Only numbers can be entered
+        );
+      },
     );
   }
 
@@ -115,10 +124,12 @@ class CustomMsisdnTextField extends StatelessWidget {
     ];
   }
 
-  InputDecoration inputDecoration() {
+  InputDecoration inputDecoration(SizingInformation si) {
     return InputDecoration(
       hintText: hintText,
       isDense: true,
+      hintStyle: TextStyle(
+          fontFamily: FontName.regular.name, fontSize: si.isMobile ? 14 : 18),
       border: InputBorder.none,
     );
   }

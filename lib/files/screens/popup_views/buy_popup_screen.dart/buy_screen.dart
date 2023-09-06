@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/buy_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_popup_widget.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_remote_image.dart';
@@ -10,11 +11,13 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_msisdn_text_field.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_text_field.dart';
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
+import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/home_cell_title_sub_title.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class BuyTuneScreen {
   TextEditingController textFieldController = TextEditingController();
@@ -29,6 +32,7 @@ class BuyTuneScreen {
 }
 
 class BuyScreenState extends StatelessWidget {
+  BuyController buyController = Get.find();
   late BuildContext? context;
   final TuneInfo? info;
 
@@ -49,7 +53,7 @@ class BuyScreenState extends StatelessWidget {
         color: white,
       ),
       clipBehavior: Clip.hardEdge,
-      width: 600,
+      width: 500,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -87,11 +91,11 @@ class BuyScreenState extends StatelessWidget {
                 ? CrossAxisAlignment.start
                 : CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               title(),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               tuneCharge(),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               numberTextField()
             ],
           ),
@@ -101,10 +105,47 @@ class BuyScreenState extends StatelessWidget {
   }
 
   Widget numberTextField() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10, bottom: 15),
-      child: CustomMsisdnTextField(text: "2342"),
+    return Visibility(
+      visible: !StoreManager().isLoggedIn,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10, bottom: 15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Obx(() {
+              return CustomMsisdnTextField(
+                borderColor: (buyController.msisdn.value.length ==
+                        StoreManager().msisdnLength)
+                    ? blueLight
+                    : borderColor,
+                enabled: !buyController.isVerifying.value,
+                text: buyController.msisdn.value,
+                onChanged: (p0) {
+                  buyController.msisdn.value = p0;
+                  buyController.updateMsisdn(p0);
+                },
+                onSubmit: (p0) {
+                  buyController.msisdnValidation();
+                },
+              );
+            }),
+            _msisdnErrorMessage(),
+          ],
+        ),
+      ),
     );
+  }
+
+  Widget _msisdnErrorMessage() {
+    return Obx(() {
+      return Visibility(
+          visible: buyController.errorMessage.isNotEmpty,
+          child: CustomText(
+            title: buyController.errorMessage.value,
+            textColor: red,
+          ));
+    });
   }
 
   Widget headerWidget() {
@@ -180,8 +221,11 @@ class BuyScreenState extends StatelessWidget {
   }
 
   Widget buttons() {
-    //print("Width is ${Get.width}");
-    return !isPhone(context!) ? buttonRow() : buttonColumns();
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return !si.isMobile ? buttonRow() : buttonColumns();
+      },
+    );
   }
 
   Column buttonColumns() {
@@ -213,15 +257,20 @@ class BuyScreenState extends StatelessWidget {
   }
 
   Widget confirmButton() {
-    return CustomButton(
-      onTap: () {
-        print("Confirm buy button tapped");
-      },
-      fontName: FontName.bold,
-      title: confirmStr,
-      color: blue,
-      textColor: white,
-    );
+    return Obx(() {
+      return buyController.isVerifying.value
+          ? loadingIndicator(radius: 12, height: 40)
+          : CustomButton(
+              onTap: () {
+                buyController.msisdnValidation();
+                print("Confirm buy button tapped");
+              },
+              fontName: FontName.bold,
+              title: confirmStr,
+              color: blue,
+              textColor: white,
+            );
+    });
   }
 
   Widget cancelButton() {

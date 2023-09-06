@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:mtn_sa_revamp/files/controllers/buy_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_preview_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
@@ -32,6 +33,7 @@ void main() async {
   PlayerController playerController = Get.put(PlayerController());
   WebTabController tabController = Get.put(WebTabController());
   TunePreviewController preview = Get.put(TunePreviewController());
+  BuyController buyController = Get.put(BuyController());
   await controller.settinApiCall();
   runApp(MyApp());
 }

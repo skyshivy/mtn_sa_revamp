@@ -11,6 +11,7 @@ String baseUrl = "";
 String baseUrlSecurity = '';
 String faqUrl = '';
 String settingUrl = '${baseUrl}settings';
+
 String addToWishlistUrl = "${baseUrlSecurity}add-to-wishlist";
 String regenTokenUrl = "${baseUrlSecurity}regen-token";
 String recomurl = "${baseUrl}get-recommendation-songs?";
