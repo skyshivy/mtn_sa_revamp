@@ -1,16 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
-
-import 'package:mtn_sa_revamp/files/custom_files/encryption.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
-import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
+
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
-import 'package:mtn_sa_revamp/files/utility/string.dart';
+
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/view_model/password_validation_vm.dart';
 
 class LoginVm {
   Future<String> subscribeMsisdn(String msisdn) async {
@@ -98,31 +97,34 @@ class LoginVm {
 
   Future<Map<String, dynamic>?> passwordValidation(
       String securityCounter, String msisdn) async {
-    Random random = Random();
-    int randomNumber = random.nextInt(1000000000);
-    String url = passwordValidationUrl;
-    var pass = 'Oem@L#@1';
-    var password = "$pass$securityCounter";
-    print("password is here " + password);
-    String encryptedPassword = Cryptom().text(password);
-    print("encryptedPassword ==========================${encryptedPassword}");
+    Map<String, dynamic>? map =
+        await PasswordValidationVm().validatePassword(msisdn, securityCounter);
+    return map;
+    // Random random = Random();
+    // int randomNumber = random.nextInt(1000000000);
+    // String url = passwordValidationUrl;
+    // var pass = 'Oem@L#@1';
+    // var password = "$pass$securityCounter";
+    // print("password is here " + password);
+    // String encryptedPassword = Cryptom().text(password);
+    // print("encryptedPassword ==========================${encryptedPassword}");
 
-    var myPost = {
-      'type': 'ValidateDetails',
-      'msisdn': msisdn,
-      'languageId': StoreManager().languageCode,
-      'clientTxnId': '$randomNumber',
-      'securityCounter': securityCounter,
-      'encryptedPassword': encryptedPassword,
-      'versionCode': '1.2'
-    };
-    var parts = [];
-    myPost.forEach((key, value) {
-      parts.add('${Uri.encodeQueryComponent(key)}='
-          '${Uri.encodeQueryComponent(value)}');
-    });
-    var formData = parts.join('&');
-    Map<String, dynamic>? re = await ServiceCall().post(url, formData);
-    return re;
+    // var myPost = {
+    //   'type': 'ValidateDetails',
+    //   'msisdn': msisdn,
+    //   'languageId': StoreManager().languageCode,
+    //   'clientTxnId': '$randomNumber',
+    //   'securityCounter': securityCounter,
+    //   'encryptedPassword': encryptedPassword,
+    //   'versionCode': '1.2'
+    // };
+    // var parts = [];
+    // myPost.forEach((key, value) {
+    //   parts.add('${Uri.encodeQueryComponent(key)}='
+    //       '${Uri.encodeQueryComponent(value)}');
+    // });
+    // var formData = parts.join('&');
+    // Map<String, dynamic>? re = await ServiceCall().post(url, formData);
+    // return re;
   }
 }

@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/buy_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
@@ -9,7 +7,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_popup_widget.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_msisdn_text_field.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_text_field.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -25,18 +23,18 @@ class BuyTuneScreen {
 
   Future<dynamic> show(BuildContext context, TuneInfo? info) {
     this.info = info;
-    return showPopup(BuyScreenState(
+    return showPopup(_BuyScreenState(
       info: info,
     ));
   }
 }
 
-class BuyScreenState extends StatelessWidget {
+class _BuyScreenState extends StatelessWidget {
   BuyController buyController = Get.find();
   late BuildContext? context;
   final TuneInfo? info;
 
-  BuyScreenState({super.key, this.info});
+  _BuyScreenState({super.key, this.info});
   @override
   Widget build(BuildContext context) {
     this.context = context;
@@ -126,7 +124,7 @@ class BuyScreenState extends StatelessWidget {
                   buyController.updateMsisdn(p0);
                 },
                 onSubmit: (p0) {
-                  buyController.msisdnValidation();
+                  buyController.msisdnValidation(info);
                 },
               );
             }),
@@ -262,7 +260,7 @@ class BuyScreenState extends StatelessWidget {
           ? loadingIndicator(radius: 12, height: 40)
           : CustomButton(
               onTap: () {
-                buyController.msisdnValidation();
+                buyController.msisdnValidation(info);
                 print("Confirm buy button tapped");
               },
               fontName: FontName.bold,

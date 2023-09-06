@@ -23,7 +23,7 @@ class StoreManager {
   String msisdn = '';
   String accessToken = '';
   String deviceId = '';
-
+  String securityToken = '';
   String refreshToken = '';
 
   bool isLoggedIn = false;

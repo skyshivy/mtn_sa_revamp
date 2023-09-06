@@ -11,11 +11,14 @@ String baseUrl = "";
 String baseUrlSecurity = '';
 String faqUrl = '';
 String settingUrl = '${baseUrl}settings';
+String checkOtpNewUserUrl = "${baseUrl}otp-check";
 
+String getTonePriceUrl = "${baseUrlSecurity}get-tone-price";
 String addToWishlistUrl = "${baseUrlSecurity}add-to-wishlist";
 String regenTokenUrl = "${baseUrlSecurity}regen-token";
 String recomurl = "${baseUrl}get-recommendation-songs?";
 String homeBannerurl = "${baseUrl}banner?language=";
+String newUserRegistrationUrl = "${baseUrl}registration";
 String searchSpecificToneUrl = '${baseUrl}specific-search-tones?language';
 String searchByTuneIdUrl =
     '${baseUrl}search-tone?language=English&pageNo=0&perPageCount=20&toneId=';
