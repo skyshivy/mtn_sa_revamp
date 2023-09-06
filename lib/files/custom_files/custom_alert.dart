@@ -70,7 +70,7 @@ class CustomAlertView extends StatelessWidget {
             title: okStr,
             fontName: FontName.medium,
             onTap: () {
-              Get.back();
+              //Get.back();
 
               Navigator.pop(context);
               onConfirm!();

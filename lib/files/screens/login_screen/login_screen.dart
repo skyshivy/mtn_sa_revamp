@@ -122,8 +122,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget textfieldWidget(SizingInformation si) {
     return Obx(() {
       return CustomMsisdnTextField(
-        height: si.isMobile ? 40 : 50,
-        cornerRadius: si.isMobile ? 20 : 25,
+        height: si.isMobile ? 40 : 44,
+        cornerRadius: si.isMobile ? 20 : 22,
         hintText: textFieldHint(),
         borderColor: textFieldBorderColorChange(),
         text: textFieldText(),
@@ -324,7 +324,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap: () async {
                       await onRequestButtonAction();
                     },
-                    height: si.isMobile ? 40 : 50,
+                    height: si.isMobile ? 40 : 44,
                     color: requestButtonColor(),
                     title: requestButtonTitle(),
                     fontName: si.isMobile ? FontName.medium : FontName.bold,

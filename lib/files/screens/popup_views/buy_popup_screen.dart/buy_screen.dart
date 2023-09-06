@@ -7,6 +7,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.da
 import 'package:mtn_sa_revamp/files/custom_files/custom_popup_widget.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_msisdn_text_field.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_text_field.dart';
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -55,7 +56,7 @@ class BuyScreenState extends StatelessWidget {
         children: [
           headerWidget(),
           Padding(
-            padding: EdgeInsets.all(isPhone(context!) ? 20 : 40),
+            padding: EdgeInsets.all(isPhone(context!) ? 10 : 30),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -91,6 +92,7 @@ class BuyScreenState extends StatelessWidget {
               SizedBox(height: 20),
               tuneCharge(),
               SizedBox(height: 10),
+              numberTextField()
             ],
           ),
         ),
@@ -99,9 +101,9 @@ class BuyScreenState extends StatelessWidget {
   }
 
   Widget numberTextField() {
-    return CustomTextField(
-      text: "text",
-      isBorder: false,
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, bottom: 15),
+      child: CustomMsisdnTextField(text: "2342"),
     );
   }
 

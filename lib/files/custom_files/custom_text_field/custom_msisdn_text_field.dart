@@ -27,7 +27,7 @@ class CustomMsisdnTextField extends StatelessWidget {
     super.key,
     this.isMsisdn = true,
     this.prefixWidget,
-    this.height = 50,
+    this.height = 45,
     this.cornerRadius = 25,
     this.countryCodeColor = greyDark,
     this.bgColor = transparent,
