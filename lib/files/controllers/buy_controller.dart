@@ -54,7 +54,7 @@ class BuyController extends GetxController {
       SubscriberValidationModel model =
           SubscriberValidationModel.fromJson(valueMap);
       if (model.responseMap?.respCode == 'SC0000') {
-        await _generateOtp(msisdn.value);
+        var resu = await _generateOtp(msisdn.value, false);
         isShowOtpView.value = true;
         isVerifying.value = false;
         //Get.dialog(BuyOtpView());
@@ -79,7 +79,7 @@ class BuyController extends GetxController {
     }
   }
 
-  _generateOtp(String msisdn) async {
+  Future<GenerateOtpModel> _generateOtp(String msisdn, bool isNewUser) async {
     isVerifying.value = true;
     GenerateOtpModel result = await LoginVm().generateOtp(msisdn);
 
@@ -90,6 +90,7 @@ class BuyController extends GetxController {
       isMsisdnVarified.value = false;
       isVerifying.value = false;
     }
+    return result;
   }
 
   Future<void> getSecurityToken(String msisdn) async {
@@ -102,7 +103,7 @@ class BuyController extends GetxController {
           await NewRegistrartionVm().register(msisdn, securityCounter);
       isVerifying.value = false;
       if (isRegistered) {
-        await _generateOtp(msisdn);
+        await _generateOtp(msisdn, true);
         return;
       } else {
         errorMessage.value = someThingWentWrongStr;
@@ -137,6 +138,7 @@ class BuyController extends GetxController {
     if (map != null) {
       NewUserCheckOtpModel model = NewUserCheckOtpModel.fromJson(map);
       if (model.statusCode == 'SCOOOO') {
+        StoreManager().setMsisdn(model.responseMap?.msisdn ?? '');
       } else {
         errorMessage.value = model.message ?? '';
       }

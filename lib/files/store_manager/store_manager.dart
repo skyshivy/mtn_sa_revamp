@@ -49,12 +49,44 @@ class StoreManager {
   }
 
   Future<void> logout() async {
-    prefs.setString("accessToken", "");
-    prefs.setString("deviceId", "");
-    prefs.setString("msisdn", "");
-    prefs.setString("refreshToken", "");
-    prefs.setBool("isLoggedIn", false);
+    setAccessToken('');
+    setDeviceId('');
+    setMsisdn('');
+    setRefreshToken('');
+    setLoggedIn(false);
+
     appController.isLoggedIn.value = false;
     initStoreManager();
+  }
+
+  setMsisdn(String value) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString('msisdn', value);
+    msisdn = value;
+  }
+
+  setLoggedIn(bool value) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isLoggedIn', value);
+
+    isLoggedIn = value;
+  }
+
+  setAccessToken(String value) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString('accessToken', value);
+    accessToken = value;
+  }
+
+  setDeviceId(String value) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString('deviceId', value);
+    deviceId = value;
+  }
+
+  setRefreshToken(String value) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString('refreshToken', value);
+    refreshToken = value;
   }
 }
