@@ -20,13 +20,26 @@ import 'package:mtn_sa_revamp/files/view_model/new_registration_vm.dart';
 class BuyController extends GetxController {
   AppController appController = Get.find();
   RxBool isVerifying = false.obs;
+  RxBool isVerifyingOtp = false.obs;
   RxString errorMessage = ''.obs;
+  RxBool isShowOtpView = false.obs;
   RxBool isMsisdnVarified = false.obs;
   RxString otp = ''.obs;
   String securityCounter = '';
   RxString msisdn = '9923964719'.obs;
   late TuneInfo? info;
+
+  customInit() {
+    isVerifying.value = false;
+    errorMessage.value = '';
+    isShowOtpView.value = false;
+    isMsisdnVarified.value = false;
+    otp.value = '';
+    msisdn.value = '9923964719';
+  }
+
   Future<void> msisdnValidation(TuneInfo? inf) async {
+    isShowOtpView.value = false;
     info = inf;
     if (msisdn.value.length == StoreManager().msisdnLength) {
       isVerifying.value = true;
@@ -37,8 +50,9 @@ class BuyController extends GetxController {
           SubscriberValidationModel.fromJson(valueMap);
       if (model.responseMap?.respCode == 'SC0000') {
         await _generateOtp(msisdn.value);
+        isShowOtpView.value = true;
         isVerifying.value = false;
-        Get.dialog(BuyOtpView());
+        //Get.dialog(BuyOtpView());
 
         print("Existing user******");
       } else if (model.responseMap?.respCode == '100') {
@@ -46,7 +60,8 @@ class BuyController extends GetxController {
 
         await getSecurityToken(msisdn.value);
         //getTunePrice();
-        Get.dialog(BuyOtpView());
+        isShowOtpView.value = true;
+        //Get.dialog(BuyOtpView());
       } else if (model.responseMap?.respCode == '101') {
         errorMessage.value = model.responseMap?.respDesc ?? '';
         print("Invalid number*******");
@@ -110,10 +125,10 @@ class BuyController extends GetxController {
   }
 
   verifyingOtp() async {
+    isVerifyingOtp.value = true;
     if (otp.value.length == StoreManager().otpLength) {
-      isVerifying.value = true;
       await Future.delayed(const Duration(seconds: 1));
-      isVerifying.value = false;
+      isVerifyingOtp.value = false;
       return;
     }
     errorMessage.value = pleaseEnterAValidOtpStr;

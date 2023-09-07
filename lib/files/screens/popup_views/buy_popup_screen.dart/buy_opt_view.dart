@@ -60,7 +60,7 @@ class BuyOtpView extends StatelessWidget {
                 leftWidget: const Icon(Icons.close),
                 onTap: () {
                   print("CLose button tapped");
-                  Get.back();
+
                   Navigator.of(context).pop();
                 },
               ),
@@ -102,7 +102,7 @@ class BuyOtpView extends StatelessWidget {
       padding: const EdgeInsets.only(top: 14),
       child: Obx(() {
         return CustomMsisdnTextField(
-          enabled: !buyController.isVerifying.value,
+          enabled: !buyController.isVerifyingOtp.value,
           height: si.isMobile ? 40 : 44,
           cornerRadius: si.isMobile ? 20 : 22,
           hintText: enter6DigitOtpStr,
@@ -206,7 +206,7 @@ class BuyOtpView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 14),
       child: Obx(() {
-        return buyController.isVerifying.value
+        return buyController.isVerifyingOtp.value
             ? Center(child: loadingIndicator(radius: 12))
             : SizedBox(
                 width: 250,

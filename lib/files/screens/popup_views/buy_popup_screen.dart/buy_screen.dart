@@ -11,6 +11,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_msisdn
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
+import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/buy_opt_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/home_cell_title_sub_title.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -23,24 +24,43 @@ class BuyTuneScreen {
 
   Future<dynamic> show(BuildContext context, TuneInfo? info) {
     this.info = info;
-    return showPopup(_BuyScreenState(
+    return showPopup(_BuyScreen(
       info: info,
     ));
   }
 }
 
-class _BuyScreenState extends StatelessWidget {
-  BuyController buyController = Get.find();
-  late BuildContext? context;
+class _BuyScreen extends StatefulWidget {
   final TuneInfo? info;
 
-  _BuyScreenState({super.key, this.info});
+  const _BuyScreen({super.key, this.info});
+  @override
+  State<StatefulWidget> createState() => _BuyScreenState(info);
+}
+
+class _BuyScreenState extends State<_BuyScreen> {
+  BuyController buyController = Get.find();
+  @override
+  void initState() {
+    buyController.customInit();
+    super.initState();
+  }
+
+  late BuildContext context;
+  final TuneInfo? info;
+
+  _BuyScreenState(this.info);
+
   @override
   Widget build(BuildContext context) {
     this.context = context;
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: mainContainer(),
+      child: Obx(() {
+        return buyController.isShowOtpView.value
+            ? BuyOtpView()
+            : mainContainer();
+      }),
     );
   }
 
