@@ -5,7 +5,8 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class NewUserOtpCheckVm {
-  check(String otp, String msisdn, String securityToken) async {
+  Future<Map<String, dynamic>?> check(
+      String otp, String msisdn, String securityToken) async {
     var url = checkOtpNewUserUrl;
     Random random = Random();
     int randomNumber = random.nextInt(1000000000);
@@ -29,5 +30,6 @@ class NewUserOtpCheckVm {
     Map<String, dynamic>? map = await ServiceCall().post(url, formData);
 
     print(map);
+    return map;
   }
 }

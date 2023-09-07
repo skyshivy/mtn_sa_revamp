@@ -27,7 +27,7 @@ class BuyOtpView extends StatelessWidget {
       child: ResponsiveBuilder(
         builder: (context, si) {
           return Container(
-            width: si.isMobile ? 300 : 550,
+            width: si.isMobile ? 300 : 500,
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(6), color: white),
@@ -73,7 +73,7 @@ class BuyOtpView extends StatelessWidget {
 
   Widget paddingColumn(SizingInformation si) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 20 : 80),
+      padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 20 : 40),
       child: ResponsiveBuilder(
         builder: (context, sizingInformation) {
           return Column(
@@ -125,7 +125,7 @@ class BuyOtpView extends StatelessWidget {
   }
 
   void onSubmit(String value) async {
-    buyController.verifyingOtp();
+    buyController.verifyingNewUserOtpCheck();
     buyController.otp.value = value;
 
     print("On submitted   ==========$value");
@@ -223,7 +223,7 @@ class BuyOtpView extends StatelessWidget {
                       return CustomButton(
                         textColor: white,
                         onTap: () async {
-                          buyController.verifyingOtp();
+                          buyController.verifyingNewUserOtpCheck();
                         },
                         height: si.isMobile ? 40 : 44,
                         color: requestButtonColor(),

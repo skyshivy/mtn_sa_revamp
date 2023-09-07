@@ -1,17 +1,17 @@
 // To parse this JSON data, do
 //
-//     final newUserRegistrationModel = newUserRegistrationModelFromJson(jsonString);
+//     final newUserCheckOtpModel = newUserCheckOtpModelFromJson(jsonString);
 
 import 'dart:convert';
 
-NewUserRegistrationModel newUserRegistrationModelFromJson(String str) =>
-    NewUserRegistrationModel.fromJson(json.decode(str));
+NewUserCheckOtpModel newUserCheckOtpModelFromJson(String str) =>
+    NewUserCheckOtpModel.fromJson(json.decode(str));
 
-String newUserRegistrationModelToJson(NewUserRegistrationModel data) =>
+String newUserCheckOtpModelToJson(NewUserCheckOtpModel data) =>
     json.encode(data.toJson());
 
-class NewUserRegistrationModel {
-  NewUserRegistrationModel({
+class NewUserCheckOtpModel {
+  NewUserCheckOtpModel({
     this.responseMap,
     this.message,
     this.respTime,
@@ -23,8 +23,8 @@ class NewUserRegistrationModel {
   String? respTime;
   String? statusCode;
 
-  factory NewUserRegistrationModel.fromJson(Map<String, dynamic> json) =>
-      NewUserRegistrationModel(
+  factory NewUserCheckOtpModel.fromJson(Map<String, dynamic> json) =>
+      NewUserCheckOtpModel(
         responseMap: ResponseMap.fromJson(json["responseMap"]),
         message: json["message"],
         respTime: json["respTime"],
@@ -44,24 +44,30 @@ class ResponseMap {
     this.respDesc,
     this.clientTxnId,
     this.srvType,
+    this.userIdEnc,
     this.msisdn,
-    this.secToc,
+    this.userName,
+    this.userId,
     this.txnId,
   });
 
   String? respDesc;
   String? clientTxnId;
   String? srvType;
+  String? userIdEnc;
   String? msisdn;
-  String? secToc;
+  String? userName;
+  String? userId;
   String? txnId;
 
   factory ResponseMap.fromJson(Map<String, dynamic> json) => ResponseMap(
         respDesc: json["respDesc"],
         clientTxnId: json["clientTxnId"],
         srvType: json["srvType"],
+        userIdEnc: json["userIdEnc"],
         msisdn: json["msisdn"],
-        secToc: json["secToc"],
+        userName: json["userName"],
+        userId: json["userId"],
         txnId: json["txnId"],
       );
 
@@ -69,8 +75,10 @@ class ResponseMap {
         "respDesc": respDesc,
         "clientTxnId": clientTxnId,
         "srvType": srvType,
+        "userIdEnc": userIdEnc,
         "msisdn": msisdn,
-        "secToc": secToc,
+        "userName": userName,
+        "userId": userId,
         "txnId": txnId,
       };
 }

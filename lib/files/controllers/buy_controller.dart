@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -11,6 +12,7 @@ import 'package:mtn_sa_revamp/files/view_model/get_tune_price_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/new_registration_vm.dart';
 import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_security_token_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/new_user_otp_check_vm.dart';
 
 class BuyController extends GetxController {
   AppController appController = Get.find();
@@ -113,7 +115,7 @@ class BuyController extends GetxController {
     return;
   }
 
-  getTunePrice() async {
+  Future<void> getTunePrice() async {
     await GetTunePrice().api(msisdn.value, info?.toneId ?? '');
   }
 
@@ -127,11 +129,26 @@ class BuyController extends GetxController {
     errorMessage.value = '';
   }
 
-  verifyingOtp() async {
+  Future<void> newUserOtpCheck() async {
     isVerifyingOtp.value = true;
+    Map<String, dynamic>? map = await NewUserOtpCheckVm()
+        .check(otp.value, msisdn.value, StoreManager().securityToken);
+    print("newUserOtpCheck ========== ${map}");
+    if (map != null) {
+      NewUserCheckOtpModel model = NewUserCheckOtpModel.fromJson(map);
+      if (model.statusCode == 'SCOOOO') {
+      } else {
+        errorMessage.value = model.message ?? '';
+      }
+    } else {
+      errorMessage.value = someThingWentWrongStr;
+    }
+    isVerifyingOtp.value = false;
+  }
+
+  Future<void> verifyingNewUserOtpCheck() async {
     if (otp.value.length == StoreManager().otpLength) {
-      await Future.delayed(const Duration(seconds: 1));
-      isVerifyingOtp.value = false;
+      await newUserOtpCheck();
       return;
     }
     errorMessage.value = pleaseEnterAValidOtpStr;
