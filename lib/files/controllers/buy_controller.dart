@@ -1,21 +1,16 @@
 import 'dart:convert';
-
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
-import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
-import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
-import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
-import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
-import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/buy_opt_view.dart';
-import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
-import 'package:mtn_sa_revamp/files/utility/urls.dart';
-import 'package:mtn_sa_revamp/files/view_model/get_security_token_vm.dart';
-import 'package:mtn_sa_revamp/files/view_model/get_tune_price_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
+import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
+import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
+import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
+import 'package:mtn_sa_revamp/files/view_model/get_tune_price_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/new_registration_vm.dart';
+import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
+import 'package:mtn_sa_revamp/files/view_model/get_security_token_vm.dart';
 
 class BuyController extends GetxController {
   AppController appController = Get.find();
@@ -38,7 +33,15 @@ class BuyController extends GetxController {
     msisdn.value = '9923964719';
   }
 
-  Future<void> msisdnValidation(TuneInfo? inf) async {
+  onEditAction() {
+    isVerifying.value = false;
+    errorMessage.value = '';
+    isShowOtpView.value = false;
+    isMsisdnVarified.value = false;
+    otp.value = '';
+  }
+
+  msisdnValidation(TuneInfo? inf) async {
     isShowOtpView.value = false;
     info = inf;
     if (msisdn.value.length == StoreManager().msisdnLength) {
