@@ -24,6 +24,7 @@ class StoreManager {
   String accessToken = '';
   String deviceId = '';
   String securityToken = '';
+  String securityCounter = '';
   String refreshToken = '';
 
   bool isLoggedIn = false;

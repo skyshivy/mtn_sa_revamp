@@ -123,9 +123,7 @@ class _BuyScreenState extends StatelessWidget {
                   buyController.msisdn.value = p0;
                   buyController.updateMsisdn(p0);
                 },
-                onSubmit: (p0) {
-                  buyController.msisdnValidation(info);
-                },
+                onSubmit: (p0) {},
               );
             }),
             _msisdnErrorMessage(),
@@ -133,6 +131,12 @@ class _BuyScreenState extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void validateMsisdnAction(BuildContext context) async {
+    await buyController.msisdnValidation(info);
+
+    print("Confirm buy button tapped");
   }
 
   Widget _msisdnErrorMessage() {
@@ -258,15 +262,18 @@ class _BuyScreenState extends StatelessWidget {
     return Obx(() {
       return buyController.isVerifying.value
           ? loadingIndicator(radius: 12, height: 40)
-          : CustomButton(
-              onTap: () {
-                buyController.msisdnValidation(info);
-                print("Confirm buy button tapped");
+          : ResponsiveBuilder(
+              builder: (context, si) {
+                return CustomButton(
+                  onTap: () async {
+                    validateMsisdnAction(context);
+                  },
+                  fontName: FontName.bold,
+                  title: confirmStr,
+                  color: blue,
+                  textColor: white,
+                );
               },
-              fontName: FontName.bold,
-              title: confirmStr,
-              color: blue,
-              textColor: white,
             );
     });
   }

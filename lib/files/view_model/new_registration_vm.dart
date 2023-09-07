@@ -35,7 +35,7 @@ class NewRegistrartionVm {
         await ServiceCall().post(newUserRegistrationUrl, formData);
     if (map != null) {
       NewUserRegistrationModel model = NewUserRegistrationModel.fromJson(map);
-      StoreManager().securityToken = model.responseMap.respDesc;
+      StoreManager().securityToken = model.responseMap.secToc;
       return true;
     } else {
       return false;

@@ -121,6 +121,7 @@ class LoginController extends GetxController {
     if (res != null) {
       if (res.statusCode == "SC0000") {
         securityToken = res.responseMap.securityCounter;
+        StoreManager().securityToken = securityToken;
         return true;
       } else {
         errorMessage.value = res.statusCode;
