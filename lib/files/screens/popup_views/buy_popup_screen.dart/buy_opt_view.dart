@@ -172,6 +172,12 @@ class BuyOtpView extends StatelessWidget {
       builder: (context, si) {
         return Row(
           children: [
+            // CustomButton(
+            //   title: editStr,
+            //   onTap: () {
+            //     buyController.onEditAction();
+            //   },
+            // ),
             CustomText(
               title: title,
               fontName: FontName.bold,
@@ -184,6 +190,7 @@ class BuyOtpView extends StatelessWidget {
   }
 
   Widget subTitleWidget() {
+    // ignore: prefer_interpolation_to_compose_strings
     var title = oneTimePasswordHasBeenSentStr +
         ' ' +
         countryCodeStr +
