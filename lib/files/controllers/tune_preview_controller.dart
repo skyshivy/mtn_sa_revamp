@@ -35,7 +35,8 @@ class TunePreviewController extends GetxController {
 
   playTapped() {
     isPlaying.value = !isPlaying.value;
-    playerController.playUrl(list[index.value].toneIdStreamingUrl, index.value);
+    playerController.playUrl(
+        list[index.value].toneIdStreamingUrl ?? '', index.value);
     print("tapped ======= ${isPlaying.value}");
   }
 

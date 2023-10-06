@@ -142,3 +142,6 @@ const oneTimePasswordHasBeenSentStr =
 const currentlyPlayingToMyCallerStr = "Currently Playing To My Caller";
 const howToPlaySelectedTunesToYourCallersStr =
     "How to play selected tunes to your callers? Learn More >";
+const chooseSubscriptionPlanStr = "Choose your Subscription Plan";
+const youShouldSubscribeAPlanStr =
+    "You should subscribe a plan before you buy or gift tunes";

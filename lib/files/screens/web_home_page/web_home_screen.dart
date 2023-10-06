@@ -4,6 +4,8 @@ import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/subscription_view.dart';
+import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/home_search_widget.dart';
 import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/buy_opt_view.dart';
@@ -26,6 +28,15 @@ class WebLandingPage extends StatelessWidget {
           builder: (context, si) {
             return Column(
               children: [
+                CustomButton(
+                  title: "Open",
+                  onTap: () {
+                    Get.dialog(SubscriptionView(
+                      info: TuneInfo(
+                          toneName: "Yone Kyi Yar", albumName: "Diary"),
+                    ));
+                  },
+                ),
                 homeSearchTopView(),
                 const LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
                 const LandingRecoView(),

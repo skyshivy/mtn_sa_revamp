@@ -12,40 +12,40 @@ class TuneInfo {
   String? price;
   String? expiryDate;
   String? categoryId;
-  String toneId;
+  String? toneId;
   String? toneName;
   String? albumName;
   String? artistName;
-  String toneUrl;
+  String? toneUrl;
   String? previewImageUrl;
   String? downloadCount;
   String? likeCount;
-  String toneIdStreamingUrl;
-  String toneIdpreviewImageUrl;
+  String? toneIdStreamingUrl;
+  String? toneIdpreviewImageUrl;
   bool isLiked = false;
   bool isPlaying = false;
 
   TuneInfo({
-    required this.id,
-    required this.contentId,
-    required this.contentName,
-    required this.path,
-    required this.album,
-    required this.artist,
-    required this.msisdn,
-    required this.createdDate,
-    required this.wishListType,
-    required this.albumName,
-    required this.artistName,
-    required this.categoryId,
-    required this.downloadCount,
+    this.id,
+    this.contentId,
+    this.contentName,
+    this.path,
+    this.album,
+    this.artist,
+    this.msisdn,
+    this.createdDate,
+    this.wishListType,
+    this.albumName,
+    this.artistName,
+    this.categoryId,
+    this.downloadCount,
     this.likeCount,
-    required this.previewImageUrl,
-    required this.toneId,
-    required this.toneIdStreamingUrl,
-    required this.toneIdpreviewImageUrl,
-    required this.toneName,
-    required this.toneUrl,
+    this.previewImageUrl,
+    this.toneId,
+    this.toneIdStreamingUrl,
+    this.toneIdpreviewImageUrl,
+    this.toneName,
+    this.toneUrl,
     this.price,
     this.expiryDate,
   });
