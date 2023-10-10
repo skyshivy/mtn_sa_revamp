@@ -1,8 +1,12 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/sub_views/home_seach_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/sub_views/home_search_text_field.dart';
@@ -20,13 +24,13 @@ class HomeSearchWidget extends StatelessWidget {
       builder: (context, si) {
         return SizedBox(
           width: si.isMobile ? double.infinity : 300,
-          child: borderWidget(si),
+          child: borderWidget(context, si),
         );
       },
     );
   }
 
-  Widget borderWidget(SizingInformation si) {
+  Widget borderWidget(BuildContext context, SizingInformation si) {
     GlobalKey key = GlobalKey();
     return Container(
       key: key,
@@ -50,9 +54,11 @@ class HomeSearchWidget extends StatelessWidget {
               if (si.isMobile) {
                 Get.toNamed(searchTapped);
               } else {
-                controller.loadPage(3);
+                //controller.loadPage(3);
+                context.goNamed(searchRoute, queryParameters: {"key": p0});
               }
-              searchTuneController.getSearchedResult(p0, 0);
+              //searchTuneController.getSearchedResult(p0, 0);
+
               print("onSubmit======$p0");
             },
             onTap: () {
@@ -72,6 +78,7 @@ class HomeSearchWidget extends StatelessWidget {
                 } else {
                   controller.loadPage(3);
                 }
+                //context.goNamed(searchRoute, queryParameters: {"key": p0});
                 searchTuneController.getSearchedResult(
                     searchTuneController.searchedText.value, 0);
               },

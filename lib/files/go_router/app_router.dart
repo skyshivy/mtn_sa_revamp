@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/web_nav_bar_view.dart';
+import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
 
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _sectionNavigatorKey = GlobalKey<NavigatorState>();
@@ -24,6 +27,7 @@ final router = GoRouter(
         homeScreen(),
         faqScreen(),
         categoryDetailScreen(),
+        searchScreen(),
       ],
     ),
   ],
@@ -55,6 +59,21 @@ StatefulShellBranch faqScreen() {
       path: faqRoute,
       builder: (context, state) {
         return FAQScreen();
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch searchScreen() {
+  SearchTuneController sCOnt = Get.find();
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: searchRoute,
+      path: searchRoute,
+      builder: (context, state) {
+        String searchkey = state.uri.queryParameters['key'] ?? '';
+        sCOnt.getSearchedResult(searchkey, 0);
+        return SearchScreen(); //CustomText(title: "title  $searchkey");
       },
     ),
   ]);
