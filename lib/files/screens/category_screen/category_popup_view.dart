@@ -44,15 +44,16 @@ class CategoryPopupView extends StatelessWidget {
         shrinkWrap: true,
         itemCount: controller.catList.length,
         itemBuilder: (context, index) {
-          return categoryCell(index);
+          return categoryCell(context, index);
         },
       );
     });
   }
 
-  Widget categoryCell(int index) {
+  Widget categoryCell(BuildContext context, int index) {
     return InkWell(
-      onTap: () {
+      onTap: () async {
+        Navigator.pop(context);
         onTap!(controller.catList[index]);
       },
       child: Padding(

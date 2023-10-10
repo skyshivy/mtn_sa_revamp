@@ -1,6 +1,10 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_about_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_faq_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_login_button.dart';
@@ -12,8 +16,13 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 class WebNavBarView extends StatelessWidget {
   AppController appController = Get.find();
+  final StatefulNavigationShell navigationShell;
+
+  WebNavBarView({super.key, required this.navigationShell});
+  late BuildContext context;
   @override
   Widget build(BuildContext context) {
+    this.context = context;
     return Container(
       height: 70,
       color: blue,
@@ -31,13 +40,31 @@ class WebNavBarView extends StatelessWidget {
     return Row(
       children: [
         leftSpacing(),
-        HomePageLogoButton(),
+        HomePageLogoButton(onTap: () {
+          _onTap(0);
+        }),
         leftSpacing(width: 30),
-        HomeMyTuneButton(),
+        HomeMyTuneButton(
+          onTap: (category) {
+            print("Tapped === ${category.categoryName}");
+
+            Map<String, dynamic> map = {
+              "categoryName": category.categoryName ?? '',
+              "categoryId": category.categoryId ?? ''
+            };
+            print("Map is ========$map");
+            context.goNamed(tuneRoute, queryParameters: map);
+            //_onTap(2);
+          },
+        ),
         // leftSpacing(),
         // HomeAboutButton(),
         leftSpacing(),
-        HomefaqButton(),
+        HomefaqButton(
+          onTap: () {
+            _onTap(1);
+          },
+        ),
       ],
     );
   }
@@ -58,6 +85,14 @@ class WebNavBarView extends StatelessWidget {
         }),
         leftSpacing(),
       ],
+    );
+  }
+
+  void _onTap(index) {
+    print("Index is =========$index");
+    navigationShell.goBranch(
+      index,
+      initialLocation: index == navigationShell.currentIndex,
     );
   }
 }

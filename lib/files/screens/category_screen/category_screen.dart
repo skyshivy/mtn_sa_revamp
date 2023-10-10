@@ -22,7 +22,7 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-  CategoryController controller = Get.put(CategoryController());
+  CategoryController controller = Get.find();
   @override
   void initState() {
     super.initState();

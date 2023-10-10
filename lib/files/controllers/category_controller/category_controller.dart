@@ -23,6 +23,7 @@ class CategoryController extends GetxController {
 
   getCategroyDetail(String searchKey, String catId,
       {int page = 0, bool isLoadMoreData = false}) async {
+    resetValue();
     key = searchKey;
     id = catId;
     if (!isLoadMoreData) {

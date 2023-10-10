@@ -12,8 +12,8 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class HomeMyTuneButton extends StatelessWidget {
   WebTabController controller = Get.find();
-
-  HomeMyTuneButton({super.key});
+  final Function(AppCategory category) onTap;
+  HomeMyTuneButton({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +24,9 @@ class HomeMyTuneButton extends StatelessWidget {
       fontName: FontName.bold,
       fontSize: 16,
       onTap: () {
-        if (Get.isDialogOpen ?? false) {
-          Get.back();
-          return;
-        }
         Get.dialog(CategoryPopupView(
           onTap: (AppCategory category) {
-            Get.back();
-            Get.toNamed(tuneCatTapped, parameters: {
-              "categoryName": category.categoryName ?? '',
-              "categoryId": category.categoryId ?? ''
-            });
-            Navigator.pop(context);
-            print("On tap HomeMyTuneButton ${category.categoryName}");
+            onTap(category);
           },
         ));
       },

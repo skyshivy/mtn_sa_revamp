@@ -8,6 +8,10 @@ import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 
 class HomePageLogoButton extends StatelessWidget {
   WebTabController controller = Get.find();
+  final Function() onTap;
+
+  HomePageLogoButton({super.key, required this.onTap});
+
   @override
   Widget build(BuildContext context) {
     return CustomButton(
@@ -21,7 +25,8 @@ class HomePageLogoButton extends StatelessWidget {
         //color: ,
       ),
       onTap: () {
-        Get.until((route) => Get.currentRoute == '/');
+        onTap();
+        // Get.until((route) => Get.currentRoute == '/');
         controller.loadPage(0);
       },
     );

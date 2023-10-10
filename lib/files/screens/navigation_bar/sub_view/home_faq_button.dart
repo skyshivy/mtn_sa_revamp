@@ -10,6 +10,10 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class HomefaqButton extends StatelessWidget {
   WebTabController controller = Get.find();
+  final Function() onTap;
+
+  HomefaqButton({super.key, required this.onTap});
+
   @override
   Widget build(BuildContext context) {
     return CustomTextButton(
@@ -18,9 +22,10 @@ class HomefaqButton extends StatelessWidget {
       fontSize: 16,
       title: faqStr,
       onTap: () {
-        controller.loadPage(2);
-        Get.back();
-        print("HomefaqButton");
+        onTap();
+        // controller.loadPage(2);
+        // Get.back();
+        // print("HomefaqButton");
       },
     );
   }
