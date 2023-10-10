@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_prefrence.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -52,11 +53,15 @@ class SubscriptionView extends StatelessWidget {
   }
 
   Widget subscriptionInfo() {
-    return const CustomText(
-      title: youShouldSubscribeAPlanStr,
-      fontName: FontName.light,
-      textColor: greyDark,
-      fontSize: 14,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: const CustomText(
+        title: youShouldSubscribeAPlanStr,
+        fontName: FontName.light,
+        alignment: TextAlign.center,
+        textColor: greyDark,
+        fontSize: 14,
+      ),
     );
   }
 
@@ -195,9 +200,10 @@ class SubscriptionView extends StatelessWidget {
           const SizedBox(
             width: 50,
           ),
-          const CustomText(
+          CustomText(
             title: chooseSubscriptionPlanStr,
-            fontName: FontName.medium,
+            fontName: fontName(FontName.regular, FontName.medium),
+            fontSize: fontSize(12, 16),
             textColor: greyDark,
           ),
           CustomButton(
