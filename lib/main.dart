@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'MTN_GENERIC',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: blue),

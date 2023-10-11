@@ -96,12 +96,13 @@ Widget shellRouteIndex(context, state, navigationShell) {
   print("Selected index must be===== ${navigationShell.currentIndex}");
 
   return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Material(
-    child: Column(
-      children: [
-        WebNavBarView(navigationShell: navigationShell),
-        Expanded(child: navigationShell)
-      ],
-    ),
-  ));
+        child: Column(
+          children: [
+            WebNavBarView(navigationShell: navigationShell),
+            Expanded(child: navigationShell)
+          ],
+        ),
+      ));
 }
