@@ -1,9 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
+import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/banner_indicator.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
@@ -81,7 +84,14 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
             String searchKey = banner.searchKey ?? '';
             String type = banner.type ?? '';
             String bannerOrder = banner.bannerOrder ?? '';
-
+            context.goNamed(
+              bannerGoRoute,
+              queryParameters: {
+                'searchKey': searchKey,
+                'type': type,
+                'bannerOrder': bannerOrder
+              },
+            );
             // Get.toNamed(bannerTapped, parameters: {
             //   "searchKey": searchKey,
             //   "type": type,

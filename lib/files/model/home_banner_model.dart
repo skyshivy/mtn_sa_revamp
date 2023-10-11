@@ -42,7 +42,7 @@ class HomeBannerModel {
 }
 
 class ResponseMap {
-  List<Banner>? banners;
+  List<HomeBanner>? banners;
 
   ResponseMap({
     this.banners,
@@ -51,8 +51,8 @@ class ResponseMap {
   factory ResponseMap.fromJson(Map<String, dynamic> json) => ResponseMap(
         banners: json["banners"] == null
             ? []
-            : List<Banner>.from(
-                json["banners"]!.map((x) => Banner.fromJson(x))),
+            : List<HomeBanner>.from(
+                json["banners"]!.map((x) => HomeBanner.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -62,14 +62,14 @@ class ResponseMap {
       };
 }
 
-class Banner {
+class HomeBanner {
   String? language;
   String? bannerPath;
   String? type;
   String? searchKey;
   String? bannerOrder;
 
-  Banner({
+  HomeBanner({
     this.language,
     this.bannerPath,
     this.type,
@@ -77,7 +77,7 @@ class Banner {
     this.bannerOrder,
   });
 
-  factory Banner.fromJson(Map<String, dynamic> json) => Banner(
+  factory HomeBanner.fromJson(Map<String, dynamic> json) => HomeBanner(
         language: json["language"],
         bannerPath: json["bannerPath"],
         type: json["type"],

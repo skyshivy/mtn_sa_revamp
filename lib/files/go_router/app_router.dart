@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
+import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/web_nav_bar_view.dart';
@@ -31,7 +33,8 @@ final router = GoRouter(
         faqScreen(),
         categoryDetailScreen(),
         searchScreen(),
-        artistTuneDetailScreen()
+        artistTuneDetailScreen(),
+        bannerDetailScreen(),
       ],
     ),
   ],
@@ -49,6 +52,24 @@ StatefulShellBranch artistTuneDetailScreen() {
         String artistName = state.uri.queryParameters['artist'] ?? '';
         artCont.getArtistSongs(artistName);
         return ArtistTuneScreen(artistName: artistName);
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch bannerDetailScreen() {
+  ArtistController artCont = Get.put(ArtistController());
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: bannerGoRoute,
+      path: bannerGoRoute,
+      builder: (context, state) {
+        String? bannerOrkder = state.uri.queryParameters['bannerOrder'];
+        String? type = state.uri.queryParameters['type'];
+        String? searchKey = state.uri.queryParameters['searchKey'];
+
+        return Text(
+            "Banner ${bannerOrkder}  \n ${searchKey}  \n ${type}"); //Bannerscr(artistName: artistName);
       },
     ),
   ]);

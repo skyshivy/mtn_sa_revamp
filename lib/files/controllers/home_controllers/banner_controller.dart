@@ -6,7 +6,7 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class BannerController extends GetxController {
   RxBool isLoading = false.obs;
-  RxList<Banner> bannerList = <Banner>[].obs;
+  RxList<HomeBanner> bannerList = <HomeBanner>[].obs;
   RxInt selectedIndex = 0.obs;
   getBanner() async {
     isLoading.value = true;
