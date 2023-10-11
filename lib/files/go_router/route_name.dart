@@ -1,4 +1,5 @@
-const String homeRoute = '/home';
-const String faqRoute = '/faq';
-const String tuneRoute = '/tune';
-const String searchRoute = '/search';
+const String homeGoRoute = '/';
+const String faqGoRoute = '/faq';
+const String tuneGoRoute = '/tune';
+const String searchGoRoute = '/search';
+const String artistGoRoute = '/artistTunes';

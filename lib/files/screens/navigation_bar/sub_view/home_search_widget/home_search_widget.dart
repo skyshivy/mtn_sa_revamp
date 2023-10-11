@@ -11,7 +11,7 @@ import 'package:mtn_sa_revamp/files/model/menu_model.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/sub_views/home_seach_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/sub_views/home_search_text_field.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
-import 'package:mtn_sa_revamp/files/utility/route_name.dart';
+
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeSearchWidget extends StatelessWidget {
@@ -52,10 +52,11 @@ class HomeSearchWidget extends StatelessWidget {
             },
             onSubmit: (p0) {
               if (si.isMobile) {
-                Get.toNamed(searchTapped);
+                print("onChanged====asdas==$p0");
+                //Get.toNamed(searchTapped);
               } else {
                 //controller.loadPage(3);
-                context.goNamed(searchRoute, queryParameters: {"key": p0});
+                context.goNamed(searchGoRoute, queryParameters: {"key": p0});
               }
               //searchTuneController.getSearchedResult(p0, 0);
 
@@ -74,7 +75,8 @@ class HomeSearchWidget extends StatelessWidget {
               height: 37,
               onTap: () {
                 if (si.isMobile) {
-                  Get.toNamed(searchTapped);
+                  print("text filedon tapped");
+                  //Get.toNamed(searchTapped);
                 } else {
                   controller.loadPage(3);
                 }

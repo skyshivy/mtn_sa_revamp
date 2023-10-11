@@ -8,7 +8,7 @@ import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/model/drawer_model.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
-import 'package:mtn_sa_revamp/files/utility/route_name.dart';
+
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget mobileDrawerCell(BuildContext context, DrawerModel info) {
@@ -113,24 +113,25 @@ Widget _subListCell(
 _tappedOnSubCell(BuildContext context, AppCategory cat) async {
   Navigator.pop(context);
   await Future.delayed(const Duration(milliseconds: 100));
-  Get.toNamed(tuneCatTapped, parameters: {
-    'categoryName': cat.categoryName ?? '',
-    'categoryId': cat.categoryId ?? ''
-  });
+  // Get.toNamed(tuneCatTapped, parameters: {
+  //   'categoryName': cat.categoryName ?? '',
+  //   'categoryId': cat.categoryId ?? ''
+  // });
   print("object ==== ${cat.categoryId}");
 }
 
 _tappedOnCell(BuildContext context, String title) async {
+  print("=========_tappedOnCell==============");
   Navigator.pop(context);
   await Future.delayed(const Duration(milliseconds: 100));
   if (title == profileStr) {
-    Get.toNamed(profileTapped);
+    //Get.toNamed(profileTapped);
   } else if (title == myTuneStr) {
-    Get.toNamed(myTuneTapped);
+    //Get.toNamed(myTuneTapped);
   } else if (title == wishlistStr) {
-    Get.toNamed(wishlistTapped);
+    //Get.toNamed(wishlistTapped);
   } else if (title == faqStr) {
-    Get.toNamed(faqTapped);
+    //Get.toNamed(faqTapped);
   } else if (title == logoutStr) {
     print("Logout btapped");
   } else if (title == signinStr) {

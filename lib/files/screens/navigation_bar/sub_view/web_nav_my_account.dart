@@ -10,7 +10,7 @@ import 'package:mtn_sa_revamp/files/model/menu_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
-import 'package:mtn_sa_revamp/files/utility/route_name.dart';
+
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class WebMyAccountButton extends StatefulWidget {
@@ -76,14 +76,15 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
   }
 
   void navigateTo(MenuModel item) {
+    print("Items tapped is ====== $item");
     if (item.title == profileStr) {
-      Get.toNamed(profileTapped);
+      //Get.toNamed(profileTapped);
       print("profileTapped tapped");
     } else if (item.title == wishlistStr) {
-      Get.toNamed(wishlistTapped);
+      //Get.toNamed(wishlistTapped);
       print("wishlistTapped tapped");
     } else if (item.title == myTuneStr) {
-      Get.toNamed(myTuneTapped);
+      //Get.toNamed(myTuneTapped);
       print("myTuneTapped tapped");
     } else if (item.title == logoutStr) {
       StoreManager().logout();

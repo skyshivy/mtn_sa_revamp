@@ -6,7 +6,6 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.da
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_popup_view.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
-import 'package:mtn_sa_revamp/files/utility/route_name.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 

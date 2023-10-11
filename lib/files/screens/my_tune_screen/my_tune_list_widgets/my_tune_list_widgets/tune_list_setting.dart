@@ -5,7 +5,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/model/my_tunel_list_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
-import 'package:mtn_sa_revamp/files/utility/route_name.dart';
+
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget tuneListSettingWidget(ListToneApk1 info) {
@@ -41,12 +41,12 @@ Widget tuneListSettingWidget(ListToneApk1 info) {
       // String? toneIdStreamingUrl;
       // String? toneIdpreviewImageUrl;
 
-      Get.toNamed(myTuneSettingTapped, parameters: {
-        'toneId': inf?.toneId ?? '',
-        'toneName': inf?.toneName ?? '',
-        'toneArtist': inf?.artistName ?? '',
-        'toneImage': inf?.toneIdpreviewImageUrl ?? '',
-      });
+      // Get.toNamed(myTuneSettingTapped, parameters: {
+      //   'toneId': inf?.toneId ?? '',
+      //   'toneName': inf?.toneName ?? '',
+      //   'toneArtist': inf?.artistName ?? '',
+      //   'toneImage': inf?.toneIdpreviewImageUrl ?? '',
+      // });
       print("tuneListSettingWidget");
     },
   );

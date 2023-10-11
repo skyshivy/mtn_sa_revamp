@@ -18,7 +18,7 @@ class ArtistTuneScreen extends StatefulWidget {
 }
 
 class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
-  ArtistController controller = Get.put(ArtistController());
+  ArtistController controller = Get.find();
 
   @override
   void initState() {
@@ -28,7 +28,9 @@ class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
 
   @override
   void dispose() {
+    Get.delete<ArtistController>();
     // TODO: implement dispose
+    print("Delete controller ArtistController");
     super.dispose();
   }
 

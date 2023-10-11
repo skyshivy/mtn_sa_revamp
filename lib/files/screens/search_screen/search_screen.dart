@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 
@@ -8,11 +9,12 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_header.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_header_tab.dart';
 
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
-import 'package:mtn_sa_revamp/files/utility/route_name.dart';
+
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -76,9 +78,12 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget artistCell(int index) {
     return InkWell(
       onTap: () {
-        Get.toNamed(artistTuneRoute, parameters: {
-          "artist": controller.artistList[index].matchedParam ?? ''
+        context.goNamed(artistGoRoute, queryParameters: {
+          'artist': controller.artistList[index].matchedParam ?? ''
         });
+        // Get.toNamed(artistTuneRoute, parameters: {
+        //   "artist": controller.artistList[index].matchedParam ?? ''
+        // });
         print(
             "Tapped artist is ${controller.artistList[index].matchedParam ?? ''}");
       },

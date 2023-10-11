@@ -53,7 +53,7 @@ class WebNavBarView extends StatelessWidget {
               "categoryId": category.categoryId ?? ''
             };
             print("Map is ========$map");
-            context.goNamed(tuneRoute, queryParameters: map);
+            context.goNamed(tuneGoRoute, queryParameters: map);
             //_onTap(2);
           },
         ),
