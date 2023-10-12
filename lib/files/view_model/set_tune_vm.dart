@@ -32,8 +32,6 @@ class SetTuneVM {
     Map<String, dynamic>? map = await ServiceCall().post(buyTuneUrl, formData);
 
     if (map != null) {
-      Map<String, dynamic>? map =
-          await ServiceCall().post(buyTuneUrl, formData);
       BuyTuneModel? model = BuyTuneModel.fromJson(map!);
       return model;
     } else {

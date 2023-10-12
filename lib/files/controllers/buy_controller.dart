@@ -1,12 +1,16 @@
 import 'dart:convert';
 
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_popup_widget.dart';
 import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
 import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_existing_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
 import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_price_model.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/confirm_otp_vm.dart';
@@ -55,6 +59,14 @@ class BuyController extends GetxController {
   }
 
   msisdnValidation(TuneInfo? inf) async {
+    // if (StoreManager().isLoggedIn) {
+    //   isVerifying.value = true;
+    //   print("User is already loggedin plese direct buy");
+    //   await getTunePriceAndBuyTune();
+
+    //   return;
+    // }
+
     isShowOtpView.value = false;
     info = inf;
     if (msisdn.value.length == StoreManager().msisdnLength) {
@@ -128,10 +140,16 @@ class BuyController extends GetxController {
     return;
   }
 
-  Future<Map<String, dynamic>?> getTunePrice() async {
-    Map<String, dynamic>? res =
+  Future<TonePriceModel> getTunePrice() async {
+    Map<String, dynamic>? map =
         await GetTunePrice().api(msisdn.value, info?.toneId ?? '');
-    return res;
+    if (map != null) {
+      TonePriceModel model = TonePriceModel.fromJson(map);
+      return model;
+    } else {
+      TonePriceModel model = TonePriceModel(message: someThingWentWrongStr);
+      return model;
+    }
   }
 
   updateOtp(String value) {
@@ -164,6 +182,8 @@ class BuyController extends GetxController {
 
   Future<void> verifyingNewUserOtpCheck() async {
     if (otp.value.length == StoreManager().otpLength) {
+      isVerifyingOtp.value = true;
+
       if (isNewUser) {
         await newUserOtpCheck();
       } else {
@@ -172,6 +192,9 @@ class BuyController extends GetxController {
         print("res = ${res.statusCode}");
         if (res.statusCode == "SC0000") {
           await getSecurityTokenForOldUser();
+        } else {
+          isVerifyingOtp.value = false;
+          errorMessage.value = res.message ?? '';
         }
       }
 
@@ -189,6 +212,9 @@ class BuyController extends GetxController {
 
       if (model.statusCode == "SC0000") {
         passwordValidation();
+      } else {
+        isVerifyingOtp.value = false;
+        errorMessage.value = '';
       }
     }
   }
@@ -198,25 +224,43 @@ class BuyController extends GetxController {
         .validatePassword(msisdn.value, securityCounter);
     if (map != null) {
       PasswordValidationModel model = PasswordValidationModel.fromJson(map);
-
       await saveCredentialHere(map);
       print("save credential here ===================================");
 
       if (model.statusCode == 'SC0000') {
-        Map<String, dynamic>? map = await getTunePrice();
-        if (map != null) {
-          TonePriceModel model = TonePriceModel.fromJson(map);
-          if (model.statusCode == 'SC0000') {
-            await setTune(model);
-          }
-        }
+        getTunePriceAndBuyTune(this.info);
+      } else {
+        isVerifyingOtp.value = false;
+        errorMessage.value = '';
       }
+    }
+  }
+
+  Future<void> getTunePriceAndBuyTune(TuneInfo? info) async {
+    this.info = info;
+    isVerifying.value = true;
+    TonePriceModel model = await getTunePrice();
+    if (model.statusCode == 'SC0000') {
+      await setTune(model);
+    } else {
+      isVerifyingOtp.value = false;
+      errorMessage.value = '';
     }
   }
 
   Future<void> setTune(TonePriceModel model) async {
     BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(),
         model.responseMap?.responseDetails?.first.packName ?? '');
-    print("Make Set tune api call here");
+    if (res.statusCode == 'SC0000') {
+      print("Success buy tune api");
+      isVerifyingOtp.value = false;
+      isVerifying.value = false;
+      await Future.delayed(const Duration(milliseconds: 300));
+      showPopup(CustomAlertView(title: res.message ?? ""));
+    } else {
+      isVerifyingOtp.value = false;
+      errorMessage.value = '';
+      isVerifying.value = false;
+    }
   }
 }

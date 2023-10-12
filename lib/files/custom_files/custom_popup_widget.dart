@@ -7,16 +7,16 @@ Future<dynamic> showPopup(
   Widget widget,
 ) {
   return Get.dialog(
-    Center(
-      child: Material(
-        color: transparent,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            widget,
-          ],
+      Center(
+        child: Material(
+          color: transparent,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              widget,
+            ],
+          ),
         ),
       ),
-    ),
-  );
+      barrierDismissible: false);
 }

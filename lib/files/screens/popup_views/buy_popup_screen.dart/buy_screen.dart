@@ -153,8 +153,12 @@ class _BuyScreenState extends State<_BuyScreen> {
     );
   }
 
-  void validateMsisdnAction(BuildContext context) async {
-    await buyController.msisdnValidation(info);
+  void validateMsisdnAction(BuildContext context, TuneInfo info) async {
+    if (StoreManager().isLoggedIn) {
+      await buyController.getTunePriceAndBuyTune(info);
+    } else {
+      await buyController.msisdnValidation(info);
+    }
 
     print("Confirm buy button tapped");
   }
@@ -286,7 +290,7 @@ class _BuyScreenState extends State<_BuyScreen> {
               builder: (context, si) {
                 return CustomButton(
                   onTap: () async {
-                    validateMsisdnAction(context);
+                    validateMsisdnAction(context, info ?? TuneInfo());
                   },
                   fontName: FontName.bold,
                   title: confirmStr,
