@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:js';
 
 import 'package:flutter/material.dart';
@@ -23,10 +24,14 @@ Widget mobileAppBarLogoButton(BuildContext context) {
             radius: 2,
             onTap: () {
               con.stop();
-              //if(appCont.index == )
-              context.go(homeGoRoute);
-              //GoRouter.of(context).pop();
-              //Get.until((route) => Get.currentRoute == '/');
+
+              if (appCont.index.value == 0) {
+                context.go(homeGoRoute);
+              } else {
+                window.history.back();
+              }
+
+              //Navigator.of(context).maybePop();
             },
             leftWidget: Image.asset(
               appCont.index.value != 0 ? mobileBackImg : atomLogoBigImg,
