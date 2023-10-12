@@ -144,8 +144,15 @@ class BuyController extends GetxController {
     Map<String, dynamic>? map =
         await GetTunePrice().api(msisdn.value, info?.toneId ?? '');
     if (map != null) {
-      TonePriceModel model = TonePriceModel.fromJson(map);
-      return model;
+      try {
+        TonePriceModel model = TonePriceModel.fromJson(map);
+        print("status code is ============== ${model.statusCode}");
+        return model;
+      } catch (e) {
+        print("error is ========${e}");
+        TonePriceModel model = TonePriceModel(message: someThingWentWrongStr);
+        return model;
+      }
     } else {
       TonePriceModel model = TonePriceModel(message: someThingWentWrongStr);
       return model;
@@ -240,11 +247,13 @@ class BuyController extends GetxController {
     this.info = info;
     isVerifying.value = true;
     TonePriceModel model = await getTunePrice();
+    print("New status code is ${model.statusCode}====");
     if (model.statusCode == 'SC0000') {
       await setTune(model);
     } else {
       isVerifyingOtp.value = false;
-      errorMessage.value = '';
+      isVerifying.value = false;
+      errorMessage.value = someThingWentWrongStr;
     }
   }
 

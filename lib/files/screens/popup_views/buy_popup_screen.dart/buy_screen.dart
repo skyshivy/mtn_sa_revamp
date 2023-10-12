@@ -96,16 +96,15 @@ class _BuyScreenState extends State<_BuyScreen> {
 
   Row titleAndTuneChargeRow() {
     return Row(
-      mainAxisAlignment: isPhone(context!)
-          ? MainAxisAlignment.center
-          : MainAxisAlignment.start,
+      mainAxisAlignment:
+          isPhone(context) ? MainAxisAlignment.center : MainAxisAlignment.start,
       children: [
         Flexible(
           child: Column(
-            mainAxisAlignment: isPhone(context!)
+            mainAxisAlignment: isPhone(context)
                 ? MainAxisAlignment.start
                 : MainAxisAlignment.start,
-            crossAxisAlignment: isPhone(context!)
+            crossAxisAlignment: isPhone(context)
                 ? CrossAxisAlignment.start
                 : CrossAxisAlignment.start,
             children: [
@@ -114,7 +113,10 @@ class _BuyScreenState extends State<_BuyScreen> {
               const SizedBox(height: 20),
               tuneCharge(),
               const SizedBox(height: 10),
-              numberTextField()
+              numberTextField(),
+              StoreManager().isLoggedIn
+                  ? _msisdnErrorMessage()
+                  : const SizedBox()
             ],
           ),
         ),
