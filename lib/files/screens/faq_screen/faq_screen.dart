@@ -26,7 +26,7 @@ class _FAQScreenState extends State<FAQScreen> {
 
   @override
   void initState() {
-    faqController = Get.put(FaqController());
+    faqController = Get.find();
     faqController.getFaqList();
     super.initState();
   }

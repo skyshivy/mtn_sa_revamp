@@ -1,12 +1,17 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/drawer_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/model/drawer_model.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -113,6 +118,14 @@ Widget _subListCell(
 _tappedOnSubCell(BuildContext context, AppCategory cat) async {
   Navigator.pop(context);
   await Future.delayed(const Duration(milliseconds: 100));
+
+  Map<String, dynamic> map = {
+    "categoryName": cat.categoryName ?? '',
+    "categoryId": cat.categoryId ?? ''
+  };
+  print("Map is ========$map");
+  context.goNamed(tuneGoRoute, queryParameters: map);
+
   // Get.toNamed(tuneCatTapped, parameters: {
   //   'categoryName': cat.categoryName ?? '',
   //   'categoryId': cat.categoryId ?? ''
@@ -125,15 +138,21 @@ _tappedOnCell(BuildContext context, String title) async {
   Navigator.pop(context);
   await Future.delayed(const Duration(milliseconds: 100));
   if (title == profileStr) {
+    context.goNamed(profileGoRoute);
     //Get.toNamed(profileTapped);
   } else if (title == myTuneStr) {
+    context.goNamed(myTuneGoRoute);
     //Get.toNamed(myTuneTapped);
   } else if (title == wishlistStr) {
+    context.goNamed(wishlistGoRoute);
     //Get.toNamed(wishlistTapped);
   } else if (title == faqStr) {
+    print("FAQ tapped");
+    context.goNamed(faqGoRoute);
     //Get.toNamed(faqTapped);
   } else if (title == logoutStr) {
     print("Logout btapped");
+    StoreManager().logout();
   } else if (title == signinStr) {
     Get.dialog(LoginScreen(), barrierDismissible: false);
   } else {

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/banner_detail_controller/banner_detail_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/faq_controller/faq_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
@@ -16,6 +17,7 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_bar.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/web_nav_bar_view.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/profile_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
@@ -28,6 +30,7 @@ import 'package:mtn_sa_revamp/files/screens/wishlist_screen/wishlsit_screen.dart
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _sectionNavigatorKey = GlobalKey<NavigatorState>();
@@ -168,8 +171,10 @@ StatefulShellBranch categoryDetailScreen() {
 }
 
 StatefulShellBranch faqScreen() {
+  FaqController faqCont = Get.put(FaqController());
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
+      name: faqGoRoute,
       path: faqGoRoute,
       builder: (context, state) {
         return FAQScreen();
@@ -231,12 +236,20 @@ Widget shellRouteIndex(context, state, navigationShell) {
 
   return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Material(
-        child: Column(
-          children: [
-            WebNavBarView(navigationShell: navigationShell),
-            Expanded(child: navigationShell)
-          ],
-        ),
+      home: ResponsiveBuilder(
+        builder: (context, si) {
+          return Material(
+            child: Column(
+              children: [
+                si.isMobile
+                    ? SizedBox()
+                    : WebNavBarView(navigationShell: navigationShell),
+                si.isMobile
+                    ? Expanded(child: MobileAppBar(widget: navigationShell))
+                    : Expanded(child: navigationShell)
+              ],
+            ),
+          );
+        },
       ));
 }

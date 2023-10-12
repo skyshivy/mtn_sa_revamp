@@ -54,6 +54,7 @@ class HomeSearchWidget extends StatelessWidget {
               if (si.isMobile) {
                 print("onChanged====asdas==$p0");
                 //Get.toNamed(searchTapped);
+                context.goNamed(searchGoRoute, queryParameters: {"key": p0});
               } else {
                 //controller.loadPage(3);
                 context.goNamed(searchGoRoute, queryParameters: {"key": p0});
