@@ -20,7 +20,7 @@ class GetTunePrice {
       'validationIdentifier': '3',
       'channelId': channelId,
     };
-    await ServiceCall().regenarateTokenFromOtherClass();
+    //await ServiceCall().regenarateTokenFromOtherClass();
     body.forEach((key, value) {
       parts.add('${Uri.encodeQueryComponent(key)}='
           '${Uri.encodeQueryComponent(value.toString())}');

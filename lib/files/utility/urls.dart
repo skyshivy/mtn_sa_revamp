@@ -12,7 +12,7 @@ String baseUrlSecurity = '';
 String faqUrl = '';
 String settingUrl = '${baseUrl}settings';
 String checkOtpNewUserUrl = "${baseUrl}otp-check";
-
+String buyTuneUrl = "${baseUrlSecurity}set-tone";
 String getTonePriceUrl = "${baseUrlSecurity}get-tone-price";
 String addToWishlistUrl = "${baseUrlSecurity}add-to-wishlist";
 String regenTokenUrl = "${baseUrlSecurity}regen-token";

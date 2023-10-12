@@ -1,7 +1,15 @@
 import 'dart:convert';
+
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
+import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
+import 'package:mtn_sa_revamp/files/model/confirm_otp_existing_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
+import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
+import 'package:mtn_sa_revamp/files/model/tune_price_model.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/view_model/confirm_otp_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
@@ -13,6 +21,8 @@ import 'package:mtn_sa_revamp/files/view_model/new_registration_vm.dart';
 import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_security_token_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/new_user_otp_check_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/password_validation_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/set_tune_vm.dart';
 
 class BuyController extends GetxController {
   AppController appController = Get.find();
@@ -21,6 +31,7 @@ class BuyController extends GetxController {
   RxString errorMessage = ''.obs;
   RxBool isShowOtpView = false.obs;
   RxBool isMsisdnVarified = false.obs;
+  bool isNewUser = false;
   RxString otp = ''.obs;
   String securityCounter = '';
   RxString msisdn = '9923964719'.obs;
@@ -55,6 +66,7 @@ class BuyController extends GetxController {
           SubscriberValidationModel.fromJson(valueMap);
       if (model.responseMap?.respCode == 'SC0000') {
         var resu = await _generateOtp(msisdn.value, false);
+        isNewUser = false;
         isShowOtpView.value = true;
         isVerifying.value = false;
         //Get.dialog(BuyOtpView());
@@ -62,8 +74,8 @@ class BuyController extends GetxController {
         print("Existing user******");
       } else if (model.responseMap?.respCode == '100') {
         print("New User*******");
-
-        await getSecurityToken(msisdn.value);
+        isNewUser = true;
+        await getSecurityTokenForNew(msisdn.value);
         //getTunePrice();
         isShowOtpView.value = true;
         //Get.dialog(BuyOtpView());
@@ -93,7 +105,7 @@ class BuyController extends GetxController {
     return result;
   }
 
-  Future<void> getSecurityToken(String msisdn) async {
+  Future<void> getSecurityTokenForNew(String msisdn) async {
     var map = await GetSecurityVM().token();
     if (map != null) {
       GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(map);
@@ -116,8 +128,10 @@ class BuyController extends GetxController {
     return;
   }
 
-  Future<void> getTunePrice() async {
-    await GetTunePrice().api(msisdn.value, info?.toneId ?? '');
+  Future<Map<String, dynamic>?> getTunePrice() async {
+    Map<String, dynamic>? res =
+        await GetTunePrice().api(msisdn.value, info?.toneId ?? '');
+    return res;
   }
 
   updateOtp(String value) {
@@ -150,9 +164,59 @@ class BuyController extends GetxController {
 
   Future<void> verifyingNewUserOtpCheck() async {
     if (otp.value.length == StoreManager().otpLength) {
-      await newUserOtpCheck();
+      if (isNewUser) {
+        await newUserOtpCheck();
+      } else {
+        ConfirmOtpExistingModel res =
+            await ConfirmOtpVM().confirm(msisdn.value, otp.value);
+        print("res = ${res.statusCode}");
+        if (res.statusCode == "SC0000") {
+          await getSecurityTokenForOldUser();
+        }
+      }
+
       return;
     }
     errorMessage.value = pleaseEnterAValidOtpStr;
+  }
+
+  Future<void> getSecurityTokenForOldUser() async {
+    var map = await GetSecurityVM().token();
+    if (map != null) {
+      GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(map);
+      StoreManager().securityCounter = model.responseMap.securityCounter;
+      securityCounter = model.responseMap.securityCounter;
+
+      if (model.statusCode == "SC0000") {
+        passwordValidation();
+      }
+    }
+  }
+
+  Future<void> passwordValidation() async {
+    Map<String, dynamic>? map = await PasswordValidationVm()
+        .validatePassword(msisdn.value, securityCounter);
+    if (map != null) {
+      PasswordValidationModel model = PasswordValidationModel.fromJson(map);
+
+      await saveCredentialHere(map);
+      print("save credential here ===================================");
+
+      if (model.statusCode == 'SC0000') {
+        Map<String, dynamic>? map = await getTunePrice();
+        if (map != null) {
+          TonePriceModel model = TonePriceModel.fromJson(map);
+          if (model.statusCode == 'SC0000') {
+            await setTune(model);
+          }
+        }
+      }
+    }
+  }
+
+  Future<void> setTune(TonePriceModel model) async {
+    BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(),
+        model.responseMap?.responseDetails?.first.packName ?? '');
+    print("Make Set tune api call here");
   }
 }
