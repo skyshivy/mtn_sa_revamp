@@ -8,3 +8,4 @@ const String moreGoRoute = '/more';
 const String profileGoRoute = '/profile';
 const String wishlistGoRoute = '/wishlist';
 const String myTuneGoRoute = '/mytune';
+const String myTuneSettingGoRoute = '/mytuneSetting12';

@@ -9,6 +9,7 @@ import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
@@ -17,6 +18,7 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_bar.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/web_nav_bar_view.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/profile_screen.dart';
@@ -52,6 +54,7 @@ final router = GoRouter(
         profileScreen(),
         wishlistScreen(),
         myTuneScreen(),
+        openMyTuneSettingScreen(),
       ],
     ),
   ],
@@ -223,6 +226,34 @@ StatefulShellBranch artistTuneScreen() {
             print("we are ate $artist");
             //
             return CustomText(title: "sdfsdfsdfsdfs");
+            // ArtistTuneScreen(
+            //   artistName: artist,
+            // );
+          }),
+    ],
+  );
+}
+
+StatefulShellBranch openMyTuneSettingScreen() {
+  TuneSettingController cont = Get.put(TuneSettingController());
+  return StatefulShellBranch(
+    navigatorKey: _sectionNavigatorKey,
+    routes: <RouteBase>[
+      GoRoute(
+          name: myTuneSettingGoRoute,
+          path: myTuneSettingGoRoute,
+          builder: (context, state) {
+            String toneId = state.uri.queryParameters['toneId'] ?? '';
+            String toneName = state.uri.queryParameters['toneName'] ?? '';
+            String toneArtist = state.uri.queryParameters['toneArtist'] ?? '';
+            String toneImage = state.uri.queryParameters['toneImage'] ?? '';
+            //
+            return MyTuneSettingScreen(
+              toneId: toneId,
+              toneName: toneName,
+              toneArtist: toneArtist,
+              toneImage: toneImage,
+            );
             // ArtistTuneScreen(
             //   artistName: artist,
             // );

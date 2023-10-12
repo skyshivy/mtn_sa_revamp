@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/cupertino.dart';
 import 'package:mtn_sa_revamp/files/model/my_tunel_list_model.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_list_widgets/my_tune_list_widgets/tune_list_image_view.dart';
@@ -6,7 +8,7 @@ import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_list_widgets/
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_list_widgets/my_tune_list_widgets/tune_list_tune_info.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
-Widget tuneListCell(ListToneApk1 info) {
+Widget tuneListCell(BuildContext context, ListToneApk1 info) {
   return Container(
       clipBehavior: Clip.hardEdge,
       decoration: _cellDecoration(),
@@ -17,13 +19,13 @@ Widget tuneListCell(ListToneApk1 info) {
           Flexible(
             child: tuneListImageView(info),
           ),
-          _bottomSection(info),
+          _bottomSection(context, info),
           const SizedBox(height: 8),
         ],
       ));
 }
 
-Padding _bottomSection(ListToneApk1 info) {
+Padding _bottomSection(BuildContext context, ListToneApk1 info) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Column(
@@ -39,7 +41,7 @@ Padding _bottomSection(ListToneApk1 info) {
           children: [
             Expanded(child: tuneListPlayButton()),
             const SizedBox(width: 18),
-            Expanded(child: tuneListSettingWidget(info))
+            Expanded(child: tuneListSettingWidget(context, info))
           ],
         ),
       ],

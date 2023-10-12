@@ -35,7 +35,7 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
 
   @override
   void initState() {
-    controller = Get.put(TuneSettingController());
+    controller = Get.find();
     controller.tuneName = widget.toneName;
     controller.tuneArtist = widget.toneArtist;
     controller.tuneId = widget.toneId;
