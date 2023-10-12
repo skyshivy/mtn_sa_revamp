@@ -54,7 +54,9 @@ final router = GoRouter(
         profileScreen(),
         wishlistScreen(),
         myTuneScreen(),
-        openMyTuneSettingScreen(),
+        tuneSettingScreen(),
+        //openMyTuneSettingScreen(),
+        //newSceen(),
       ],
     ),
   ],
@@ -186,6 +188,29 @@ StatefulShellBranch faqScreen() {
   ]);
 }
 
+StatefulShellBranch tuneSettingScreen() {
+  TuneSettingController cont = Get.put(TuneSettingController());
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: myTuneSettingGoRoute,
+      path: myTuneSettingGoRoute,
+      builder: (context, state) {
+        String toneId = state.uri.queryParameters['toneId'] ?? '';
+        String toneName = state.uri.queryParameters['toneName'] ?? '';
+        String toneArtist = state.uri.queryParameters['toneArtist'] ?? '';
+        String toneImage = state.uri.queryParameters['toneImage'] ?? '';
+
+        return MyTuneSettingScreen(
+          toneId: toneId,
+          toneName: toneName,
+          toneArtist: toneArtist,
+          toneImage: toneImage,
+        );
+      },
+    ),
+  ]);
+}
+
 StatefulShellBranch searchScreen() {
   SearchTuneController sCOnt = Get.find();
   return StatefulShellBranch(routes: <RouteBase>[
@@ -195,7 +220,7 @@ StatefulShellBranch searchScreen() {
       builder: (context, state) {
         String searchkey = state.uri.queryParameters['key'] ?? '';
         sCOnt.getSearchedResult(searchkey, 0);
-        return SearchScreen(); //CustomText(title: "title  $searchkey");
+        return const SearchScreen(); //CustomText(title: "title  $searchkey");
       },
     ),
   ]);
@@ -226,34 +251,6 @@ StatefulShellBranch artistTuneScreen() {
             print("we are ate $artist");
             //
             return CustomText(title: "sdfsdfsdfsdfs");
-            // ArtistTuneScreen(
-            //   artistName: artist,
-            // );
-          }),
-    ],
-  );
-}
-
-StatefulShellBranch openMyTuneSettingScreen() {
-  TuneSettingController cont = Get.put(TuneSettingController());
-  return StatefulShellBranch(
-    navigatorKey: _sectionNavigatorKey,
-    routes: <RouteBase>[
-      GoRoute(
-          name: myTuneSettingGoRoute,
-          path: myTuneSettingGoRoute,
-          builder: (context, state) {
-            String toneId = state.uri.queryParameters['toneId'] ?? '';
-            String toneName = state.uri.queryParameters['toneName'] ?? '';
-            String toneArtist = state.uri.queryParameters['toneArtist'] ?? '';
-            String toneImage = state.uri.queryParameters['toneImage'] ?? '';
-            //
-            return MyTuneSettingScreen(
-              toneId: toneId,
-              toneName: toneName,
-              toneArtist: toneArtist,
-              toneImage: toneImage,
-            );
             // ArtistTuneScreen(
             //   artistName: artist,
             // );
