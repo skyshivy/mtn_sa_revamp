@@ -9,11 +9,13 @@ import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_co
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
+import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/web_nav_bar_view.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/see_more_screen/see_more_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/home_banner_detail_page.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
 
@@ -37,6 +39,7 @@ final router = GoRouter(
         searchScreen(),
         artistTuneDetailScreen(),
         bannerDetailScreen(),
+        seeMoreScreen(),
       ],
     ),
   ],
@@ -72,6 +75,25 @@ StatefulShellBranch bannerDetailScreen() {
         bannerCont.getDetail(bannerOrder, searchKey);
         return HomeBannerDetailPage(
             type: type, bannerOrder: bannerOrder, searchKey: searchKey);
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch seeMoreScreen() {
+  BannerDetailController bannerCont = Get.put(BannerDetailController());
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: moreGoRoute,
+      path: moreGoRoute,
+      builder: (context, state) {
+        List<TuneInfo>? list = state.extra as List<TuneInfo>;
+        //print("List is =========== $list");
+        if (list.isEmpty) {
+          context.go(homeGoRoute);
+          return WebLandingPage();
+        }
+        return SeeMoreScreen();
       },
     ),
   ]);
