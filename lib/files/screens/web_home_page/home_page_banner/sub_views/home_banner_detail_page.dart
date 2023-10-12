@@ -33,7 +33,7 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
   late BannerDetailController controller;
   @override
   void initState() {
-    controller = Get.put(BannerDetailController());
+    controller = Get.find();
     controller.getDetail(widget.bannerOrder, widget.searchKey);
     super.initState();
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mtn_sa_revamp/files/controllers/banner_detail_controller/banner_detail_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_controller.dart';
@@ -13,6 +14,7 @@ import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/web_nav_bar_view.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/home_banner_detail_page.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
 
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -58,18 +60,18 @@ StatefulShellBranch artistTuneDetailScreen() {
 }
 
 StatefulShellBranch bannerDetailScreen() {
-  ArtistController artCont = Get.put(ArtistController());
+  BannerDetailController bannerCont = Get.put(BannerDetailController());
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: bannerGoRoute,
       path: bannerGoRoute,
       builder: (context, state) {
-        String? bannerOrkder = state.uri.queryParameters['bannerOrder'];
-        String? type = state.pathParameters['type'];
-        String? searchKey = state.uri.queryParameters['searchKey'];
-
-        return Text(
-            "Banner ${bannerOrkder}  \n ${searchKey}  \n ${type}"); //Bannerscr(artistName: artistName);
+        String bannerOrder = state.uri.queryParameters['bannerOrder'] ?? '';
+        String type = state.pathParameters['type'] ?? '';
+        String searchKey = state.uri.queryParameters['searchKey'] ?? '';
+        bannerCont.getDetail(bannerOrder, searchKey);
+        return HomeBannerDetailPage(
+            type: type, bannerOrder: bannerOrder, searchKey: searchKey);
       },
     ),
   ]);
