@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class AppController extends GetxController {
   RxBool isLoggedIn = false.obs;
+  RxInt index = 0.obs;
   String tunePrice = '';
   settinApiCall() async {
     print("Setting api calling");
@@ -18,6 +19,10 @@ class AppController extends GetxController {
     AppSettingModel setting = StoreManager().appSetting;
     var items = setting.responseMap!.settings!.others!.tonePrice;
     print("Tune price is =======================${items}");
+  }
+
+  updateIndex(int index) {
+    this.index.value = index;
   }
 }
 /*

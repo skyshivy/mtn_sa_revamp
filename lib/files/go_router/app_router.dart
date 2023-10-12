@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/banner_detail_controller/banner_detail_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/faq_controller/faq_controller.dart';
@@ -37,7 +38,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _sectionNavigatorKey = GlobalKey<NavigatorState>();
-
+AppController appCont = Get.find();
 final router = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: homeGoRoute,
@@ -280,7 +281,7 @@ StatefulShellBranch artistTuneScreen() {
 
 Widget shellRouteIndex(context, state, navigationShell) {
   print("Selected index must be===== ${navigationShell.currentIndex}");
-
+  appCont.updateIndex(navigationShell.currentIndex);
   return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: ResponsiveBuilder(
