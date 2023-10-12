@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/buy_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_popup_widget.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_remote_image.dart';
@@ -57,9 +58,13 @@ class _BuyScreenState extends State<_BuyScreen> {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Obx(() {
-        return buyController.isShowOtpView.value
-            ? BuyOtpView()
-            : mainContainer();
+        return buyController.isBuySuccess.value
+            ? CustomAlertView(
+                title: buyController.successMessage.value,
+              )
+            : buyController.isShowOtpView.value
+                ? BuyOtpView()
+                : mainContainer();
       }),
     );
   }

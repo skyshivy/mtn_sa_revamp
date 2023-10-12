@@ -76,10 +76,23 @@ class ServiceCall {
       request.write(formData);
     }
     HttpClientResponse response = await request.close();
-    final stringData = await response.transform(utf8.decoder).join();
+    String stringData = '';
+    stringData = await response.transform(utf8.decoder).join();
     print(stringData);
     print("resp code is ${response.statusCode}");
-    //if (response.statusCode == 200) {
+    if (response.statusCode == 498) {
+      await ServiceCall().regenarateTokenFromOtherClass();
+
+      var request = await client
+          .postUrl(Uri.parse(url))
+          .timeout(Duration(seconds: StoreManager().timeOutDuration));
+      request = await CustomHeader().settingHeader(url, request);
+      if (formData != null) {
+        request.write(formData);
+      }
+      HttpClientResponse response = await request.close();
+      stringData = await response.transform(utf8.decoder).join();
+    }
     Map<String, dynamic> valueMap = json.decode(stringData);
     return valueMap;
     // } else {
@@ -93,11 +106,25 @@ class ServiceCall {
           .getUrl(Uri.parse(url))
           .timeout(Duration(seconds: StoreManager().timeOutDuration));
       request = await CustomHeader().settingHeader(url, request);
+      String stringData = '';
       HttpClientResponse response1 = await request.close();
-      final stringData = await response1.transform(utf8.decoder).join();
+
+      stringData = await response1.transform(utf8.decoder).join();
       print(stringData);
       print("resp code is ${response1.statusCode}");
       if (response1.statusCode == 200) {
+        Map<String, dynamic> valueMap = json.decode(stringData);
+        return valueMap;
+      } else if (response1.statusCode == 498) {
+        await ServiceCall().regenarateTokenFromOtherClass();
+        var request = await client
+            .getUrl(Uri.parse(url))
+            .timeout(Duration(seconds: StoreManager().timeOutDuration));
+        request = await CustomHeader().settingHeader(url, request);
+        String stringData = '';
+        HttpClientResponse response1 = await request.close();
+
+        stringData = await response1.transform(utf8.decoder).join();
         Map<String, dynamic> valueMap = json.decode(stringData);
         return valueMap;
       } else {
@@ -110,13 +137,14 @@ class ServiceCall {
     }
   }
 
-  regenarateTokenFromOtherClass() async {
+  Future<void> regenarateTokenFromOtherClass() async {
     Map<String, dynamic> res = await reGeneratToken();
     RegenTokenModel model = RegenTokenModel.fromJson(res);
     if (model.statusCode == 'SC0000') {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString("accessToken", model.responseMap?.accessToken ?? '');
       prefs.setString("refreshToken", model.responseMap?.refreshToken ?? '');
+      await Future.delayed(const Duration(milliseconds: 300));
     } else {
       AppController appCont = Get.find();
       appCont.isLoggedIn.value = false;

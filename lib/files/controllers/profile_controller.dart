@@ -34,7 +34,7 @@ class ProfileController extends GetxController {
   getProfileDetail() async {
     selectedCatList.clear();
     isLoading.value = true;
-    await ServiceCall().regenarateTokenFromOtherClass();
+    //await ServiceCall().regenarateTokenFromOtherClass();
     await getPref();
     Map<String, dynamic>? res =
         await ProfileVM().getProfileDetail(StoreManager().msisdn);

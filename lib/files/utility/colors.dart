@@ -13,7 +13,7 @@ const subTitleColor = Color.fromRGBO(137, 137, 137, 1);
 const black = Colors.black; //Color.fromRGBO(255, 207, 0, 1);
 const bottomColor = Color.fromRGBO(34, 30, 32, 1);
 
-const blackGredient = Color.fromRGBO(10, 10, 9, 0.1);
+const blackGredient = Color.fromRGBO(10, 10, 9, 0.4);
 const white = Color.fromRGBO(255, 255, 255, 1);
 const whiteTrans = Color.fromRGBO(255, 255, 255, 0.6);
 const borderColor = Color.fromRGBO(215, 213, 213, 1);

@@ -122,7 +122,7 @@ Widget _preferenceGridCell(ProfileController controller, int index) {
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
-                  color: blueLight,
+                  color: greyLight.withOpacity(0.2),
                 ),
                 child: CustomImage(
                   url: controller.catList[index].menuImagePath,
@@ -155,7 +155,7 @@ Widget _profilePrefRadioButtom(ProfileController controller, int index) {
         (controller.catList[index].isSelected!.value)
             ? Icons.radio_button_checked
             : Icons.radio_button_unchecked,
-        color: blue,
+        color: white,
       ),
     );
   });

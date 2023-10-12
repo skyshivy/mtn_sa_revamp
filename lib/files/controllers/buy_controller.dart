@@ -34,6 +34,8 @@ class BuyController extends GetxController {
   RxBool isVerifyingOtp = false.obs;
   RxString errorMessage = ''.obs;
   RxBool isShowOtpView = false.obs;
+  RxBool isBuySuccess = false.obs;
+  RxString successMessage = ''.obs;
   RxBool isMsisdnVarified = false.obs;
   bool isNewUser = false;
   RxString otp = ''.obs;
@@ -48,6 +50,8 @@ class BuyController extends GetxController {
     isMsisdnVarified.value = false;
     otp.value = '';
     msisdn.value = '9923964719';
+    isBuySuccess.value = false;
+    successMessage.value = '';
   }
 
   onEditAction() {
@@ -56,6 +60,8 @@ class BuyController extends GetxController {
     isShowOtpView.value = false;
     isMsisdnVarified.value = false;
     otp.value = '';
+    isBuySuccess.value = false;
+    successMessage.value = '';
   }
 
   msisdnValidation(TuneInfo? inf) async {
@@ -264,8 +270,8 @@ class BuyController extends GetxController {
       print("Success buy tune api");
       isVerifyingOtp.value = false;
       isVerifying.value = false;
-      await Future.delayed(const Duration(milliseconds: 300));
-      showPopup(CustomAlertView(title: res.message ?? ""));
+      isBuySuccess.value = true;
+      successMessage.value = res.message ?? '';
     } else {
       isVerifyingOtp.value = false;
       errorMessage.value = '';

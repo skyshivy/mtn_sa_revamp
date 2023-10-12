@@ -124,6 +124,7 @@ StatefulShellBranch profileScreen() {
       name: profileGoRoute,
       path: profileGoRoute,
       builder: (context, state) {
+        //pCont.getProfileDetail();
         return ProfileScreen();
       },
     ),
@@ -150,6 +151,7 @@ StatefulShellBranch myTuneScreen() {
       name: myTuneGoRoute,
       path: myTuneGoRoute,
       builder: (context, state) {
+        myTuneController.getPlayingTuneList();
         return MyTuneScreen();
       },
     ),

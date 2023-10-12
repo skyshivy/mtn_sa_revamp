@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_active_status.dart';
@@ -13,6 +14,7 @@ import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_mobil
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_prefrence.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_subscribe_button.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_user_name.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -81,6 +83,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // CustomButton(
+              //   title: "changeToken",
+              //   onTap: () {
+              //     StoreManager().accessToken = '3r5345werrwerewr';
+              //     StoreManager().setAccessToken("eer4rewtewrewtet");
+              //   },
+              // ),
               leftWidget(si),
               const SizedBox(width: 60),
               Flexible(child: rightWidget(si, controller)),
