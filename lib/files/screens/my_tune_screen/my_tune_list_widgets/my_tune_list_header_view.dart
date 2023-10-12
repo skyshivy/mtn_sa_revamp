@@ -5,18 +5,23 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.da
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 Widget myTuneListHeaderView() {
-  return SizedBox(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _leftWidget(),
-        SizedBox(height: 20, child: _rightWidget()),
-      ],
-    ),
-  );
+  return SizedBox(child: ResponsiveBuilder(
+    builder: (context, si) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _leftWidget(),
+          si.isMobile
+              ? SizedBox()
+              : SizedBox(height: 20, child: _rightWidget()),
+        ],
+      );
+    },
+  ));
 }
 
 Widget _leftWidget() {
@@ -32,6 +37,7 @@ Widget _leftWidget() {
       CustomText(
         title: howToPlaySelectedTunesToYourCallersStr,
         fontName: FontName.regular,
+        maxLine: 2,
         textColor: subTitleColor,
         fontSize: 12,
       ),

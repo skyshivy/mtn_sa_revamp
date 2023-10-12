@@ -4,6 +4,7 @@ import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/drawer_controller.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_widget/mobile_drawer_cell.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 class MobileDrawer extends StatelessWidget {
   final MyDrawerController con = Get.find();
@@ -15,7 +16,11 @@ class MobileDrawer extends StatelessWidget {
       appCont.isLoggedIn.value ? con.createMenuList() : con.createMenuList();
       return Column(
         children: [
-          const SizedBox(height: 60),
+          Container(
+            height: 56,
+            color: blue,
+          ),
+          const SizedBox(height: 4),
           Expanded(child: listView(context)),
         ],
       );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/banner_detail_controller/banner_detail_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/faq_controller/faq_controller.dart';
@@ -60,7 +61,25 @@ final router = GoRouter(
       ],
     ),
   ],
+  errorPageBuilder: (context, state) {
+    return MaterialPage(child: errorWidget(context, state));
+  },
 );
+
+Widget errorWidget(BuildContext context, GoRouterState state) {
+  return Scaffold(
+      body: MobileAppBar(
+    widget: Container(
+      child: Center(
+        child: CustomText(
+          title: "Page Not Found",
+          fontName: FontName.bold,
+          fontSize: 20,
+        ),
+      ),
+    ),
+  ));
+}
 
 StatefulShellBranch artistTuneDetailScreen() {
   ArtistController artCont = Get.put(ArtistController());
@@ -270,7 +289,7 @@ Widget shellRouteIndex(context, state, navigationShell) {
             child: Column(
               children: [
                 si.isMobile
-                    ? SizedBox()
+                    ? const SizedBox()
                     : WebNavBarView(navigationShell: navigationShell),
                 si.isMobile
                     ? Expanded(child: MobileAppBar(widget: navigationShell))

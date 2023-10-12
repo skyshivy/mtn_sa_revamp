@@ -40,15 +40,6 @@ Widget tuneListSettingWidget(BuildContext context, ListToneApk1 info) {
       };
 
       context.goNamed(myTuneSettingGoRoute, queryParameters: detail);
-
-      // Get.toNamed(myTuneSettingTapped,
-      //parameters: {
-      //   'toneId': inf?.toneId ?? '',
-      //   'toneName': inf?.toneName ?? '',
-      //   'toneArtist': inf?.artistName ?? '',
-      //   'toneImage': inf?.toneIdpreviewImageUrl ?? '',
-      // }
-      // );
       print("tuneListSettingWidget");
     },
   );
