@@ -4,20 +4,26 @@ import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/banner_detail_controller/banner_detail_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/web_nav_bar_view.dart';
+import 'package:mtn_sa_revamp/files/screens/profile_screen/profile_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/see_more_screen/see_more_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/home_banner_detail_page.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/wishlist_screen/wishlsit_screen.dart';
 
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
@@ -40,6 +46,9 @@ final router = GoRouter(
         artistTuneDetailScreen(),
         bannerDetailScreen(),
         seeMoreScreen(),
+        profileScreen(),
+        wishlistScreen(),
+        myTuneScreen(),
       ],
     ),
   ],
@@ -75,6 +84,45 @@ StatefulShellBranch bannerDetailScreen() {
         bannerCont.getDetail(bannerOrder, searchKey);
         return HomeBannerDetailPage(
             type: type, bannerOrder: bannerOrder, searchKey: searchKey);
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch profileScreen() {
+  ProfileController pCont = Get.put(ProfileController());
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: profileGoRoute,
+      path: profileGoRoute,
+      builder: (context, state) {
+        return ProfileScreen();
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch wishlistScreen() {
+  WishlistController wCont = Get.put(WishlistController());
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: wishlistGoRoute,
+      path: wishlistGoRoute,
+      builder: (context, state) {
+        return WishlistScreen();
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch myTuneScreen() {
+  MyTuneController myTuneController = Get.put(MyTuneController());
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: myTuneGoRoute,
+      path: myTuneGoRoute,
+      builder: (context, state) {
+        return MyTuneScreen();
       },
     ),
   ]);

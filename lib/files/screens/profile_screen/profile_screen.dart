@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late SizingInformation si;
   @override
   void initState() {
-    profileController = Get.put(ProfileController());
+    profileController = Get.find();
     profileController.getProfileDetail();
     super.initState();
   }

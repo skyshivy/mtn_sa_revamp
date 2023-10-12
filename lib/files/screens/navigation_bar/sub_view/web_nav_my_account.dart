@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -78,13 +80,15 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
   void navigateTo(MenuModel item) {
     print("Items tapped is ====== $item");
     if (item.title == profileStr) {
+      context.goNamed(profileGoRoute);
       //Get.toNamed(profileTapped);
       print("profileTapped tapped");
     } else if (item.title == wishlistStr) {
       //Get.toNamed(wishlistTapped);
+      context.goNamed(wishlistGoRoute);
       print("wishlistTapped tapped");
     } else if (item.title == myTuneStr) {
-      //Get.toNamed(myTuneTapped);
+      context.goNamed(myTuneGoRoute);
       print("myTuneTapped tapped");
     } else if (item.title == logoutStr) {
       StoreManager().logout();
