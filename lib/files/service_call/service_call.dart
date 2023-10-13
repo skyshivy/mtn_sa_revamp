@@ -144,6 +144,8 @@ class ServiceCall {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString("accessToken", model.responseMap?.accessToken ?? '');
       prefs.setString("refreshToken", model.responseMap?.refreshToken ?? '');
+      StoreManager().accessToken = model.responseMap?.accessToken ?? '';
+      StoreManager().refreshToken = model.responseMap?.refreshToken ?? "";
       await Future.delayed(const Duration(milliseconds: 300));
     } else {
       AppController appCont = Get.find();
