@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/hover/custom_hover.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/gredient.dart';
@@ -24,13 +25,26 @@ class CategoryPopupView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 100),
+        const SizedBox(
+          height: 102,
+        ),
         Material(
-          child: Container(
-            height: 200,
-            width: MediaQuery.of(context).size.width,
-            color: white,
-            child: categoryListView(),
+          color: transparent,
+          child: Row(
+            children: [
+              const SizedBox(width: 160),
+              Container(
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                  border: Border.all(color: white),
+                  borderRadius: BorderRadius.circular(2),
+                  color: white,
+                ),
+                width: 200, //MediaQuery.of(context).size.width,
+
+                child: categoryListView(),
+              ),
+            ],
           ),
         ),
       ],
@@ -40,7 +54,7 @@ class CategoryPopupView extends StatelessWidget {
   Widget categoryListView() {
     return Obx(() {
       return ListView.builder(
-        scrollDirection: Axis.horizontal,
+        scrollDirection: Axis.vertical,
         shrinkWrap: true,
         itemCount: controller.catList.length,
         itemBuilder: (context, index) {
@@ -51,21 +65,35 @@ class CategoryPopupView extends StatelessWidget {
   }
 
   Widget categoryCell(BuildContext context, int index) {
-    return InkWell(
-      onTap: () async {
-        Navigator.pop(context);
-        onTap!(controller.catList[index]);
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          width: 170,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: cellStack(index),
+    return CustomOnHover(
+      builder: (isHovered) {
+        return Container(
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+              gradient: isHovered
+                  ? const LinearGradient(colors: [darkGreen, lightGreen])
+                  : null),
+          child: InkWell(
+            onTap: () async {
+              Navigator.pop(context);
+              onTap!(controller.catList[index]);
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+              child: SizedBox(
+                width: 170,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
+                    child: CustomText(
+                        textColor: isHovered ? white : black,
+                        title:
+                            "${controller.catList[index].categoryName}") //cellStack(index),
+                    ),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 

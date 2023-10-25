@@ -23,11 +23,13 @@ class HomeMyTuneButton extends StatelessWidget {
       fontName: FontName.ztbold,
       fontSize: 16,
       onTap: () {
-        Get.dialog(CategoryPopupView(
-          onTap: (AppCategory category) {
-            onTap(category);
-          },
-        ));
+        Get.dialog(
+          CategoryPopupView(
+            onTap: (AppCategory category) {
+              onTap(category);
+            },
+          ),
+        );
       },
     );
   }

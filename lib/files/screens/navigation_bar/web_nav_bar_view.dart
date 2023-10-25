@@ -30,7 +30,7 @@ class WebNavBarView extends StatelessWidget {
     this.context = context;
     return Column(
       children: [
-        WebNavTopView(),
+        const WebNavTopView(),
         bottomSectionWidget(),
       ],
     );
