@@ -13,26 +13,28 @@ import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class BuyAndPlayButton extends StatelessWidget {
+class BuyButton extends StatelessWidget {
   PlayerController playerController = Get.find();
   final TuneInfo? info;
   final int index;
   late BuildContext context;
-  BuyAndPlayButton({super.key, this.info, required this.index});
+  BuyButton({super.key, this.info, required this.index});
 
   @override
   Widget build(BuildContext context) {
     this.context = context;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(child: playButtonWidget(index)),
-        const SizedBox(width: 10),
-        Expanded(child: buyButtonWidget()),
-      ],
-    );
+    return buyButtonWidget();
+    // Row(
+    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //   children: [
+    //     // Expanded(child: playButtonWidget(index)),
+    //     // const SizedBox(width: 10),
+    //     Expanded(child: buyButtonWidget()),
+    //   ],
+    // );
   }
 
+/*
   Widget playButtonWidget(int index) {
     return ResponsiveBuilder(
       builder: (context, si) {
@@ -74,26 +76,29 @@ class BuyAndPlayButton extends StatelessWidget {
             : const Icon(Icons.play_arrow))
         : const Icon(Icons.play_arrow);
   }
-
+*/
   Widget buyButtonWidget() {
     return ResponsiveBuilder(
       builder: (context, si) {
         return CustomButton(
+          height: 30,
           onTap: () {
             print("Buy button");
             BuyTuneScreen().show(context, info);
           },
-          color: blue,
-          titlePadding: const EdgeInsets.all(4),
+          color: transparent,
+          borderColor: red,
+          radius: 0,
+          titlePadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
           fontName: si.isMobile ? FontName.abook : FontName.ztbold,
           fontSize: si.isMobile ? 12 : 16,
-          leftWidget: Image.asset(
-            buyImg,
-            height: 20,
-            width: 20,
-          ),
-          title: buyStr,
-          textColor: white,
+          // leftWidget: Image.asset(
+          //   buyImg,
+          //   height: 20,
+          //   width: 20,
+          // ),
+          title: buyNowStr,
+          textColor: red,
         );
       },
     );

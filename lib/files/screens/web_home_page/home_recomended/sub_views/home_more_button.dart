@@ -31,20 +31,28 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
   final GlobalKey _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return CustomButton(
-      key: _key,
+    return Container(
       height: 30,
       width: 30,
-      color: Colors.white38,
-      leftWidget: const Icon(Icons.more_horiz, color: white),
-      onTap: () {
-        print("StoreManager().isLoggedIn ====== ${StoreManager().isLoggedIn}");
-        if (StoreManager().isLoggedIn) {
-          showPopupMenu();
-        } else {
-          Get.dialog(CustomAlertView(title: featureIsAvailableForLoggedInStr));
-        }
-      },
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          gradient: const LinearGradient(colors: [darkGreen, lightGreen])),
+      child: CustomButton(
+        key: _key,
+        height: 30,
+        width: 30,
+        leftWidget: const Icon(Icons.more_horiz, color: white),
+        onTap: () {
+          print(
+              "StoreManager().isLoggedIn ====== ${StoreManager().isLoggedIn}");
+          if (StoreManager().isLoggedIn) {
+            showPopupMenu();
+          } else {
+            Get.dialog(
+                CustomAlertView(title: featureIsAvailableForLoggedInStr));
+          }
+        },
+      ),
     );
   }
 

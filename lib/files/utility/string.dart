@@ -74,6 +74,7 @@ const customStr = "Custom";
 const activeStr = "Active";
 const noActivePlanStr = "No Active Plan";
 const buyStr = "Buy";
+const buyNowStr = "Buy Now";
 const userNameStr = "User Name*";
 const preferenceStr = "Preference*";
 const mobileNumberStr = "Mobile number";

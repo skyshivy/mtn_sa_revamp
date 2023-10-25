@@ -22,22 +22,30 @@ class HomeTuneCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        clipBehavior: Clip.hardEdge,
-        decoration: decoration(),
-        child: mainList(),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Expanded(
+            child: Container(
+              clipBehavior: Clip.hardEdge,
+              decoration: decoration(),
+              child: tuneImageWidget(index),
+            ),
+          ),
+          Flexible(child: bottomSection(index))
+        ],
       ),
     );
   }
 
-  Column mainList() {
-    return Column(
-      children: [
-        Expanded(flex: 7, child: tuneImageWidget(index)),
-        Expanded(flex: 6, child: bottomSection(index)),
-      ],
-    );
-  }
+  // Column mainList() {
+  //   return Column(
+  //     children: [
+  //       Expanded(flex: 7, child: tuneImageWidget(index)),
+  //       Expanded(flex: 6, child: bottomSection(index)),
+  //     ],
+  //   );
+  // }
 
   Widget tuneImageWidget(int index) {
     return Stack(
@@ -122,21 +130,20 @@ class HomeTuneCell extends StatelessWidget {
       builder: (context, si) {
         return Padding(
           padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 16),
-          child: Column(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Flexible(
-                  child: HomeCellTitleSubTilte(
-                info: info,
-                titleFontSize: si.isMobile ? 14 : null,
-                subTitleFontSize: si.isMobile ? 12 : null,
-              )),
-              Flexible(
-                child: BuyAndPlayButton(
+                child: HomeCellTitleSubTilte(
                   info: info,
-                  index: index,
+                  titleFontSize: si.isMobile ? 14 : null,
+                  subTitleFontSize: si.isMobile ? 12 : null,
                 ),
+              ),
+              BuyButton(
+                info: info,
+                index: index,
               ),
             ],
           ),
