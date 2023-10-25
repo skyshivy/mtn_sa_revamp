@@ -6,7 +6,7 @@ import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/banner_detail_controller/banner_detail_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/faq_controller/faq_controller.dart';
-import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
+
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_controller.dart';

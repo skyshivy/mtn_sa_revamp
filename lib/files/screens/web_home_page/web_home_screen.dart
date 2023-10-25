@@ -28,15 +28,15 @@ class WebLandingPage extends StatelessWidget {
           builder: (context, si) {
             return Column(
               children: [
-                CustomButton(
-                  title: "Open",
-                  onTap: () {
-                    Get.dialog(SubscriptionView(
-                      info: TuneInfo(
-                          toneName: "Yone Kyi Yar", albumName: "Diary"),
-                    ));
-                  },
-                ),
+                // CustomButton(
+                //   title: "Open",
+                //   onTap: () {
+                //     Get.dialog(SubscriptionView(
+                //       info: TuneInfo(
+                //           toneName: "Yone Kyi Yar", albumName: "Diary"),
+                //     ));
+                //   },
+                // ),
                 homeSearchTopView(),
                 const LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
                 const LandingRecoView(),
