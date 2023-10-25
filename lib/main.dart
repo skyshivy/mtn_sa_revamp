@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/diy_controller.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
@@ -30,6 +31,7 @@ void main() async {
   TunePreviewController preview = Get.put(TunePreviewController());
   BuyController buyController = Get.put(BuyController());
   CategoryController catDetailCont = Get.put(CategoryController());
+  DiyController diyCont = Get.put(DiyController());
   await controller.settinApiCall();
   runApp(MyApp());
 }

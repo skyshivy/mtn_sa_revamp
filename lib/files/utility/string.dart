@@ -71,9 +71,24 @@ const enterNuberStr = "Enter Number";
 
 const shuffleStr = "Shuffle";
 const customStr = "Custom";
+const dropYourFileStr = "Drop your file here or browse";
+const supportMp3Str = "Supports MP3 files.";
 const activeStr = "Active";
+const tuneNameStr = "Tune Name";
+const nameOfTuneStr = "Name of the tune *";
+const createYourOwnTuneStr = "Create your own tune";
+const shareYourOwnSongStr =
+    'Share your own song or audio message with your callers.';
+const tuneNameHereStr = 'Enter Tune name';
+const listningStr = 'Listening...';
+const iHaveReadtermsStr = "I have read and agree to the";
 const noActivePlanStr = "No Active Plan";
 const buyStr = "Buy";
+const tapToRecordStr = 'Tap to record your tune...';
+const diyDescriptionStr =
+    'Share your own duaa, song or audio message with your callers before you pick up the phone. This is Caller Tunes Karaoke.  Record, Upload & Play';
+const replaceStr = "Replace";
+const submitStr = "Submit";
 const giftStr = "Gift";
 const buyNowStr = "Buy Now";
 const userNameStr = "User Name*";

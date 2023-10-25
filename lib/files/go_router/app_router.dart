@@ -19,6 +19,7 @@ import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/diy_screen/diy_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
@@ -60,6 +61,7 @@ final router = GoRouter(
         myTuneScreen(),
         tuneSettingScreen(),
         salatiScreen(),
+        _diyScreen()
         //openMyTuneSettingScreen(),
         //newSceen(),
       ],
@@ -252,13 +254,24 @@ StatefulShellBranch searchScreen() {
 }
 
 StatefulShellBranch salatiScreen() {
-  SearchTuneController sCOnt = Get.find();
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: salatiGoRoute,
       path: salatiGoRoute,
       builder: (context, state) {
         return SalatiScreen(); //CustomText(title: "title  $searchkey");
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch _diyScreen() {
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: diyGoRoute,
+      path: diyGoRoute,
+      builder: (context, state) {
+        return DIYScreen(); //CustomText(title: "title  $searchkey");
       },
     ),
   ]);
