@@ -9,6 +9,7 @@ class BannerController extends GetxController {
   RxList<HomeBanner> bannerList = <HomeBanner>[].obs;
   RxInt selectedIndex = 0.obs;
   getBanner() async {
+    return;
     isLoading.value = true;
     var url = homeBannerurl + StoreManager().language;
     Map<String, dynamic>? result = await ServiceCall().get(url);

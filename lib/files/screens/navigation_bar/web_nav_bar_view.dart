@@ -15,6 +15,7 @@ import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_logo_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/my_tune_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/web_nav_my_account.dart';
+import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/web_nav_top_view.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
@@ -29,16 +30,9 @@ class WebNavBarView extends StatelessWidget {
     this.context = context;
     return Column(
       children: [
-        topSectionWidget(),
+        WebNavTopView(),
         bottomSectionWidget(),
       ],
-    );
-  }
-
-  Widget topSectionWidget() {
-    return Container(
-      height: 40,
-      color: white,
     );
   }
 

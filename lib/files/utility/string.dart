@@ -1,6 +1,8 @@
 const myTuneStr = "My Tunes";
-const about = "About";
+const aboutStr = "About";
 const homeStr = "Home";
+const englishStr = "English";
+const arabicStr = "Arabic";
 const faqStr = "FAQ";
 const playStr = "Play";
 const previewTuneStr = "Preview Tune";
@@ -104,6 +106,7 @@ const confirmStr = "Confirm";
 const tuneChargeStr = "Tune Charge";
 const buyTuneStr = "Buy Tune";
 const tuneStr = "Tunes";
+const la7innaStr = "La7inna";
 const salatiStr = "Salati";
 const diyStr = "Do It Yourself";
 const bannerDetailStr = "Banner Detail";
