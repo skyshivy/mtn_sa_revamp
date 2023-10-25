@@ -54,7 +54,7 @@ class SubscriptionView extends StatelessWidget {
   Widget subscriptionInfo() {
     return const CustomText(
       title: youShouldSubscribeAPlanStr,
-      fontName: FontName.light,
+      fontName: FontName.ztlight,
       textColor: greyDark,
       fontSize: 14,
     );
@@ -95,12 +95,12 @@ class SubscriptionView extends StatelessWidget {
         children: [
           CustomText(
             title: title,
-            fontName: FontName.extraBold,
+            fontName: FontName.ztbold,
             fontSize: 28,
           ),
           CustomText(
             title: subTitle,
-            fontName: FontName.regular,
+            fontName: FontName.abook,
             fontSize: 14,
           )
         ],
@@ -127,12 +127,12 @@ class SubscriptionView extends StatelessWidget {
                 children: [
                   CustomText(
                     title: info.toneName ?? '',
-                    fontName: FontName.bold,
+                    fontName: FontName.ztbold,
                     fontSize: 16,
                   ),
                   CustomText(
                     title: info.albumName ?? '',
-                    fontName: FontName.regular,
+                    fontName: FontName.abook,
                     fontSize: 14,
                   ),
                 ],
@@ -143,11 +143,11 @@ class SubscriptionView extends StatelessWidget {
                 children: [
                   CustomText(
                     title: tuneChargeStr,
-                    fontName: FontName.regular,
+                    fontName: FontName.abook,
                   ),
                   CustomText(
                     title: '320/month',
-                    fontName: FontName.bold,
+                    fontName: FontName.ztbold,
                     fontSize: 16,
                   ),
                 ],
@@ -167,7 +167,7 @@ class SubscriptionView extends StatelessWidget {
         Expanded(
           child: CustomButton(
             title: cancelStr,
-            fontName: FontName.medium,
+            fontName: FontName.ztregular,
             borderColor: blueLight,
             color: white,
           ),
@@ -176,7 +176,7 @@ class SubscriptionView extends StatelessWidget {
         Expanded(
           child: CustomButton(
             title: confirmStr,
-            fontName: FontName.medium,
+            fontName: FontName.ztregular,
             color: blue,
             textColor: white,
           ),
@@ -197,7 +197,7 @@ class SubscriptionView extends StatelessWidget {
           ),
           const CustomText(
             title: chooseSubscriptionPlanStr,
-            fontName: FontName.medium,
+            fontName: FontName.ztregular,
             textColor: greyDark,
           ),
           CustomButton(

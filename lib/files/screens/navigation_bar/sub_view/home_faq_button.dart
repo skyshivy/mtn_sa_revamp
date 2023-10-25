@@ -18,7 +18,7 @@ class HomefaqButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomTextButton(
       textColor: white,
-      fontName: FontName.bold,
+      fontName: FontName.ztbold,
       fontSize: 16,
       title: faqStr,
       onTap: () {

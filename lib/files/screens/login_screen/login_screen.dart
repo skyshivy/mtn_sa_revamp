@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 builder: (context, si) {
                   return CustomText(
                     title: controller.errorMessage.value,
-                    fontName: FontName.regular,
+                    fontName: FontName.abook,
                     textColor: blueLight,
                     fontSize: si.isMobile ? 10 : 16,
                   );
@@ -198,7 +198,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   text: termsAndPolicyStr,
                   style: TextStyle(
-                    fontFamily: FontName.regular.name,
+                    fontFamily: FontName.abook.name,
                     fontSize: si.isMobile ? 10 : 14,
                     color: blue,
                   )),
@@ -211,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextStyle richTextStyle(SizingInformation si) {
     return TextStyle(
-      fontFamily: FontName.light.name,
+      fontFamily: FontName.ztlight.name,
       fontSize: si.isMobile ? 10 : 14,
       color: black,
     );
@@ -267,7 +267,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   : const SizedBox(),
               CustomText(
                 title: title,
-                fontName: FontName.bold,
+                fontName: FontName.ztbold,
                 fontSize: si.isMobile ? 14 : 24,
               ),
             ],
@@ -310,7 +310,7 @@ class _LoginScreenState extends State<LoginScreen> {
           return CustomText(
             title: title,
             textColor: black,
-            fontName: si.isMobile ? FontName.light : FontName.regular,
+            fontName: si.isMobile ? FontName.ztlight : FontName.abook,
             fontSize: si.isMobile ? 10 : 14,
           );
         },
@@ -333,7 +333,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: si.isMobile ? 40 : 44,
                     color: requestButtonColor(),
                     title: requestButtonTitle(),
-                    fontName: si.isMobile ? FontName.medium : FontName.bold,
+                    fontName:
+                        si.isMobile ? FontName.ztregular : FontName.ztbold,
                     fontSize: si.isMobile ? 12 : 16,
                   );
                 },

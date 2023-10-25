@@ -10,9 +10,9 @@ Widget playingTuneInfo(ListToneApk item) {
     subTitle: item.toneDetails?.first.artistName ??
         item.toneDetails?.first.albumName ??
         '',
-    titleFontName: FontName.bold,
+    titleFontName: FontName.ztbold,
     titleFontSize: 16,
-    subTitleFontName: FontName.regularItalic,
+    subTitleFontName: FontName.ztlight,
     subTitleFontSize: 12,
     subTitleColor: subTitleColor,
   );

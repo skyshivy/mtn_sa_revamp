@@ -7,7 +7,7 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 Widget tuneSettingCancelButton() {
   return CustomButton(
     titlePadding: const EdgeInsets.symmetric(horizontal: 20),
-    fontName: FontName.medium,
+    fontName: FontName.ztregular,
     title: cancelStr,
     borderColor: blueLight,
     onTap: () {

@@ -39,7 +39,7 @@ Widget tuneSettingRadioButtonCallersType() {
 Widget titleWidget() {
   return const CustomText(
     title: whomYouWantToPlayItStr,
-    fontName: FontName.bold,
+    fontName: FontName.ztbold,
     fontSize: 18,
   );
 }
@@ -78,7 +78,7 @@ Widget _radioButton(bool isSelected) {
 Widget _titleButton(bool isSelected, String title) {
   return CustomText(
     title: title,
-    fontName: FontName.regular,
+    fontName: FontName.abook,
     fontSize: 14,
     textColor: isSelected ? black : subTitleColor,
   );

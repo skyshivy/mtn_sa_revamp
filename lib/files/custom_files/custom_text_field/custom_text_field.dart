@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
   final Color? bgColor;
   final Color? hintColor;
   final double? fontSize;
+  final double? radius;
   final bool? editEnable;
   final FontName fontName;
   final Function(String)? onChanged;
@@ -32,8 +33,9 @@ class CustomTextField extends StatelessWidget {
     this.fontSize = 14,
     this.hintText = pleaseEnterMsisdn,
     this.hintColor = textFieldPlaceHolderColor,
-    this.fontName = FontName.regular,
+    this.fontName = FontName.abook,
     this.editEnable,
+    this.radius,
   });
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class CustomTextField extends StatelessWidget {
         decoration: BoxDecoration(
           color: bgColor,
           border: isBorder! ? Border.all(color: greyDark) : null,
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(radius ?? 25),
         ),
         child: Center(
             child: Padding(

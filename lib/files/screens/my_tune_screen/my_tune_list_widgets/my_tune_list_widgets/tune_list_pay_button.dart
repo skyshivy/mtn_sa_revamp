@@ -15,7 +15,7 @@ Widget tuneListPlayButton() {
     titlePadding: const EdgeInsets.symmetric(horizontal: 4),
     //color: yellow,
     title: playStr,
-    fontName: FontName.medium,
+    fontName: FontName.ztregular,
     fontSize: 16,
     leftWidget: const Icon(
       Icons.play_arrow,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+const darkGreen = Color.fromRGBO(31, 80, 94, 1);
+const lightGreen = Color.fromRGBO(77, 169, 161, 1);
+
 const blue = Color.fromRGBO(15, 17, 164, 1);
 const blueLight = Color.fromRGBO(23, 187, 255, 1);
 //rgba(137, 137, 137, 1)
@@ -19,5 +22,5 @@ const whiteTrans = Color.fromRGBO(255, 255, 255, 0.6);
 const borderColor = Color.fromRGBO(215, 213, 213, 1);
 const cellShadowColor = Color.fromRGBO(0, 0, 0, 0.03);
 const textFieldPlaceHolderColor = Color.fromRGBO(142, 141, 141, 1);
-const red = Color.fromRGBO(245, 23, 23, 1);
+const red = Color.fromRGBO(217, 57, 110, 1);
 const transparent = Color.fromRGBO(245, 23, 23, 0);

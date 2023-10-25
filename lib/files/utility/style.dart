@@ -3,13 +3,13 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 TextStyle calenderDateStyle() {
-  return TextStyle(fontFamily: FontName.regular.name);
+  return TextStyle(fontFamily: FontName.abook.name);
 }
 
 TextStyle calenderWeekDayStyle() {
-  return TextStyle(fontFamily: FontName.medium.name, color: blueLight);
+  return TextStyle(fontFamily: FontName.ztregular.name, color: blueLight);
 }
 
 TextStyle calenderYearStyle() {
-  return TextStyle(fontFamily: FontName.medium.name, color: black);
+  return TextStyle(fontFamily: FontName.ztregular.name, color: black);
 }

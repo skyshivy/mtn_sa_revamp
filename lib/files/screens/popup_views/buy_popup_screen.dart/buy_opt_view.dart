@@ -144,7 +144,7 @@ class BuyOtpView extends StatelessWidget {
           builder: (context, si) {
             return CustomText(
               title: buyController.errorMessage.value,
-              fontName: FontName.light,
+              fontName: FontName.ztlight,
               textColor: red,
               fontSize: si.isMobile ? 10 : 16,
             );
@@ -179,7 +179,7 @@ class BuyOtpView extends StatelessWidget {
             // ),
             CustomText(
               title: title,
-              fontName: FontName.bold,
+              fontName: FontName.ztbold,
               fontSize: si.isMobile ? 14 : 24,
             ),
           ],
@@ -201,7 +201,7 @@ class BuyOtpView extends StatelessWidget {
         return CustomText(
           title: title,
           textColor: black,
-          fontName: si.isMobile ? FontName.light : FontName.regular,
+          fontName: si.isMobile ? FontName.ztlight : FontName.abook,
           fontSize: si.isMobile ? 10 : 14,
         );
       },
@@ -227,7 +227,8 @@ class BuyOtpView extends StatelessWidget {
                         height: si.isMobile ? 40 : 44,
                         color: requestButtonColor(),
                         title: requestButtonTitle(),
-                        fontName: si.isMobile ? FontName.medium : FontName.bold,
+                        fontName:
+                            si.isMobile ? FontName.ztregular : FontName.ztbold,
                         fontSize: si.isMobile ? 12 : 16,
                       );
                     });

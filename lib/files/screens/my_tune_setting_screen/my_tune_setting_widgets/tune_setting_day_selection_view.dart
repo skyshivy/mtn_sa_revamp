@@ -22,7 +22,7 @@ Widget tuneSettingDaySelectionView() {
         const SizedBox(height: 25),
         const CustomText(
           title: repeatStr,
-          fontName: FontName.medium,
+          fontName: FontName.ztregular,
           fontSize: 14,
         ),
         const SizedBox(height: 8),
@@ -69,7 +69,7 @@ Widget _dayButton(
       textColor: isSelected ? white : blue,
       borderColor: isSelected ? blue : blueLight,
       height: 35,
-      fontName: isSelected ? FontName.medium : FontName.regular,
+      fontName: isSelected ? FontName.ztregular : FontName.abook,
       title: title,
       onTap: () {
         cont.daysList[index].isSelected!.value =

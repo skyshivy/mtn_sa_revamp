@@ -38,7 +38,7 @@ Widget mobileDrawerCell(BuildContext context, DrawerModel info) {
             children: [
               CustomText(
                 title: info.title,
-                fontName: FontName.medium,
+                fontName: FontName.ztregular,
                 fontSize: 16,
               ),
               info.isExpandable!.value ? _expandedIcon(info) : const SizedBox()
@@ -105,7 +105,7 @@ Widget _subListCell(
             child: Center(
               child: CustomText(
                 title: controller.catList[index].categoryName ?? '',
-                fontName: FontName.regular,
+                fontName: FontName.abook,
               ),
             ),
           ),

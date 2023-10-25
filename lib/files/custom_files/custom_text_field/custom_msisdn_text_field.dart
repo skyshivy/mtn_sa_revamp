@@ -72,7 +72,7 @@ class CustomMsisdnTextField extends StatelessWidget {
       child: addCountryCode
           ? CustomText(
               title: countryCodeStr,
-              fontName: FontName.regular,
+              fontName: FontName.abook,
               textColor: countryCodeColor,
               fontSize: fontSize(14, 18),
             )
@@ -105,8 +105,7 @@ class CustomMsisdnTextField extends StatelessWidget {
           },
 
           style: TextStyle(
-              fontFamily: FontName.regular.name,
-              fontSize: si.isMobile ? 14 : 18),
+              fontFamily: FontName.abook.name, fontSize: si.isMobile ? 14 : 18),
           decoration: inputDecoration(si),
           keyboardType: TextInputType.phone,
 
@@ -129,7 +128,7 @@ class CustomMsisdnTextField extends StatelessWidget {
       hintText: hintText,
       isDense: true,
       hintStyle: TextStyle(
-          fontFamily: FontName.regular.name, fontSize: si.isMobile ? 14 : 18),
+          fontFamily: FontName.abook.name, fontSize: si.isMobile ? 14 : 18),
       border: InputBorder.none,
     );
   }

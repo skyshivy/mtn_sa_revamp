@@ -14,7 +14,7 @@ profileEditButton() {
       : CustomButton(
           color: blue,
           textColor: white,
-          fontName: FontName.medium,
+          fontName: FontName.ztregular,
           title: controller.editEnable.value ? saveStr : editStr,
           onTap: () {
             controller.editButtonAction();

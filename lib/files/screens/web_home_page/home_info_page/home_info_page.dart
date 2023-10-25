@@ -44,7 +44,7 @@ class LandingInfoPage extends StatelessWidget {
   CustomText expressWidget() {
     return CustomText(
       title: express,
-      fontName: FontName.bold,
+      fontName: FontName.ztbold,
       fontSize: fontSize(20, 50),
     );
   }
@@ -75,7 +75,7 @@ class LandingInfoPage extends StatelessWidget {
   CustomText textWidget(String title) {
     return CustomText(
       title: title,
-      fontName: FontName.regular,
+      fontName: FontName.abook,
       fontSize: fontSize(14, 24),
     );
   }

@@ -31,12 +31,12 @@ Widget _leftWidget() {
     children: [
       CustomText(
         title: myTuneStr,
-        fontName: FontName.bold,
+        fontName: FontName.ztbold,
         fontSize: 24,
       ),
       CustomText(
         title: howToPlaySelectedTunesToYourCallersStr,
-        fontName: FontName.regular,
+        fontName: FontName.abook,
         maxLine: 2,
         textColor: subTitleColor,
         fontSize: 12,
@@ -66,7 +66,7 @@ Widget _titleWidget(String title, {bool isBold = false}) {
     },
     fontSize: 16,
     title: title,
-    fontName: isBold ? FontName.bold : FontName.regular,
+    fontName: isBold ? FontName.ztbold : FontName.abook,
   );
 }
 

@@ -12,7 +12,7 @@ Widget tuneSettingConfirmButton() {
     width: 160,
     textColor: white,
     titlePadding: const EdgeInsets.symmetric(horizontal: 20),
-    fontName: FontName.medium,
+    fontName: FontName.ztregular,
     color: blue,
     title: confirmStr,
     onTap: () {

@@ -42,7 +42,8 @@ class HomeSearchWidget extends StatelessWidget {
         children: [
           Flexible(
               child: HomeSearchTextField(
-            hintColor: blueLight,
+            radius: 4,
+            hintColor: white.withOpacity(0.6),
             textColor: white,
             onChanged: (p0) {
               searchTuneController.searchedText.value = p0;
@@ -70,10 +71,10 @@ class HomeSearchWidget extends StatelessWidget {
             },
           )),
           Padding(
-            padding: const EdgeInsets.all(1.5),
+            padding: const EdgeInsets.all(0),
             child: HomeSearchButton(
-              width: 35,
-              height: 37,
+              width: 40,
+              height: 40,
               onTap: () {
                 if (si.isMobile) {
                   print("text filedon tapped");
@@ -94,9 +95,9 @@ class HomeSearchWidget extends StatelessWidget {
 
   BoxDecoration decoration() {
     return BoxDecoration(
-      color: blue,
+      color: transparent,
       border: border(),
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.circular(4),
     );
   }
 

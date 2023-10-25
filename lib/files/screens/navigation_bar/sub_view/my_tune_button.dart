@@ -20,7 +20,7 @@ class HomeMyTuneButton extends StatelessWidget {
       rightWidget: rightWidget(),
       title: myTuneStr,
       textColor: white,
-      fontName: FontName.bold,
+      fontName: FontName.ztbold,
       fontSize: 16,
       onTap: () {
         Get.dialog(CategoryPopupView(

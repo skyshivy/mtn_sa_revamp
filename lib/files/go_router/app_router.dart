@@ -74,7 +74,7 @@ Widget errorWidget(BuildContext context, GoRouterState state) {
       child: Center(
         child: CustomText(
           title: "Page Not Found",
-          fontName: FontName.bold,
+          fontName: FontName.abook,
           fontSize: 20,
         ),
       ),
@@ -255,7 +255,8 @@ StatefulShellBranch homeScreen() {
       GoRoute(
           path: homeGoRoute,
           builder: (context, state) {
-            return WebLandingPage();
+            return Container();
+            WebLandingPage();
           }),
     ],
   );

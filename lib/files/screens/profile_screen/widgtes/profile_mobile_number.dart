@@ -18,13 +18,13 @@ Widget profileMobileNumberWidget(SizingInformation si) {
       children: [
         const CustomText(
           title: mobileNumberStr,
-          fontName: FontName.regular,
+          fontName: FontName.abook,
           fontSize: 14,
           textColor: subTitleColor,
         ),
         const SizedBox(height: 6),
         CustomTextField(
-          fontName: FontName.medium,
+          fontName: FontName.ztregular,
           fontSize: 18,
           isBorder: false,
           bgColor: grey,

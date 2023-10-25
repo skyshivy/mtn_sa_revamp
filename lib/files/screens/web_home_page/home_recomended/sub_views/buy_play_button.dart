@@ -38,7 +38,7 @@ class BuyAndPlayButton extends StatelessWidget {
       builder: (context, si) {
         return Obx(() {
           return CustomButton(
-            fontName: si.isMobile ? FontName.regular : FontName.medium,
+            fontName: si.isMobile ? FontName.abook : FontName.ztregular,
             fontSize: si.isMobile ? 12 : 16,
             titlePadding: const EdgeInsets.all(4),
             borderColor: red,
@@ -85,7 +85,7 @@ class BuyAndPlayButton extends StatelessWidget {
           },
           color: blue,
           titlePadding: const EdgeInsets.all(4),
-          fontName: si.isMobile ? FontName.regular : FontName.bold,
+          fontName: si.isMobile ? FontName.abook : FontName.ztbold,
           fontSize: si.isMobile ? 12 : 16,
           leftWidget: Image.asset(
             buyImg,

@@ -94,42 +94,65 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: bold
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-Bold.ttf
-    - family: boldItalic
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-BoldItalic.ttf
-    - family: extraBold
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-ExtraBold.ttf
-    - family: extraBoldItalic
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-ExtraBoldItalic.ttf
-    - family: extraLight
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-ExtraLight.ttf    
-    - family: extraLightItalic
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-ExtraLightItalic.ttf    
-    - family: light
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-Light.ttf
-    - family: lightItalic
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-LightItalic.ttf
-    - family: medium
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-Medium.ttf
-    - family: mediumItalic
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-MediumItalic.ttf
-    - family: regular
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-Regular.ttf
-    - family: regularItalic
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-RegularItalic.ttf  
+     - family: ablack
+       fonts:
+         - asset: assets/fonts/avenir_black.ttf
+     - family: abook
+       fonts:
+         - asset: assets/fonts/avenir_book.ttf 
+     - family: aheavy
+       fonts:
+         - asset: assets/fonts/avenir_heavy.ttf  
+     - family: ztblack
+       fonts:
+         - asset: assets/fonts/QTZainTextBlack.otf
+     - family: ztbold
+       fonts:
+         - asset: assets/fonts/QTZainTextBold.otf 
+     - family: ztlight
+       fonts:
+         - asset: assets/fonts/QTZainTextLight.otf  
+     - family: ztregular
+       fonts:
+         - asset: assets/fonts/QTZainTextRegular.otf
+    
+  # fonts:
+  #   - family: bold
+  #     fonts:
+  #       - asset: assets/fonts/MTNBrighterSans-Bold.ttf
+  #   - family: boldItalic
+  #     fonts:
+  #       - asset: assets/fonts/MTNBrighterSans-BoldItalic.ttf
+  #   - family: extraBold
+  #     fonts:
+  #       - asset: assets/fonts/MTNBrighterSans-ExtraBold.ttf
+  #   - family: extraBoldItalic
+  #     fonts:
+  #       - asset: assets/fonts/MTNBrighterSans-ExtraBoldItalic.ttf
+  #   - family: extraLight
+  #     fonts:
+  #       - asset: assets/fonts/MTNBrighterSans-ExtraLight.ttf    
+  #   - family: extraLightItalic
+  #     fonts:
+  #       - asset: assets/fonts/MTNBrighterSans-ExtraLightItalic.ttf    
+  #   - family: light
+  #     fonts:
+  #       - asset: assets/fonts/MTNBrighterSans-Light.ttf
+  #   - family: lightItalic
+  #     fonts:
+  #       - asset: assets/fonts/MTNBrighterSans-LightItalic.ttf
+  #   - family: medium
+  #     fonts:
+  #       - asset: assets/fonts/MTNBrighterSans-Medium.ttf
+  #   - family: mediumItalic
+  #     fonts:
+  #       - asset: assets/fonts/MTNBrighterSans-MediumItalic.ttf
+  #   - family: regular
+  #     fonts:
+  #       - asset: assets/fonts/MTNBrighterSans-Regular.ttf
+  #   - family: regularItalic
+  #     fonts:
+  #       - asset: assets/fonts/MTNBrighterSans-RegularItalic.ttf  
   # fonts:
   #   - family: Schyler
   #     fonts:

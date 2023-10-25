@@ -41,7 +41,7 @@ class HomeCellTitleSubTilte extends StatelessWidget {
           maxLine: 1,
           title:
               title ?? info?.toneName ?? info?.contentName ?? "Tune name here",
-          fontName: titleFontName ?? FontName.bold,
+          fontName: titleFontName ?? FontName.ztbold,
           fontSize: titleFontSize ?? 18,
         ),
         CustomText(
@@ -50,7 +50,7 @@ class HomeCellTitleSubTilte extends StatelessWidget {
               info?.albumName ??
               info?.artistName ??
               ' ARtist name here',
-          fontName: subTitleFontName ?? FontName.regularItalic,
+          fontName: subTitleFontName ?? FontName.ztlight,
           fontSize: subTitleFontSize ?? 12,
           textColor: subTitleColor,
         ),

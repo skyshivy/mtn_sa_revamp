@@ -98,7 +98,7 @@ class CustomButton extends StatelessWidget {
         title: title ?? '',
         textColor: textColor,
         fontSize: fontSize,
-        fontName: fontName ?? FontName.regular,
+        fontName: fontName ?? FontName.abook,
         alignment: alignment,
       ),
     );

@@ -11,7 +11,7 @@ Widget profileCancelButton() {
   return CustomButton(
     title: cancelStr,
     color: transparent,
-    fontName: FontName.medium,
+    fontName: FontName.ztregular,
     borderColor: blueLight,
     onTap: () {
       controller.cancelButton();

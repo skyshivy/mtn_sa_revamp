@@ -211,7 +211,7 @@ class _BuyScreenState extends State<_BuyScreen> {
   CustomText heaerTitle() {
     return CustomText(
       title: buyTuneStr,
-      fontName: fontName(FontName.medium, FontName.bold),
+      fontName: fontName(FontName.ztregular, FontName.ztbold),
       fontSize: fontSize(18, 20),
     );
   }
@@ -246,9 +246,9 @@ class _BuyScreenState extends State<_BuyScreen> {
           : CrossAxisAlignment.start,
       title: tuneChargeStr,
       subTitle: "10 RAND/MONTH",
-      titleFontName: FontName.regular,
+      titleFontName: FontName.abook,
       titleFontSize: 16,
-      subTitleFontName: FontName.bold,
+      subTitleFontName: FontName.ztbold,
       subTitleFontSize: 20,
     );
   }
@@ -299,7 +299,7 @@ class _BuyScreenState extends State<_BuyScreen> {
                   onTap: () async {
                     validateMsisdnAction(context, info ?? TuneInfo());
                   },
-                  fontName: FontName.bold,
+                  fontName: FontName.ztbold,
                   title: confirmStr,
                   color: blue,
                   textColor: white,
@@ -314,7 +314,7 @@ class _BuyScreenState extends State<_BuyScreen> {
       onTap: () {
         Navigator.pop(context!);
       },
-      fontName: FontName.bold,
+      fontName: FontName.ztbold,
       title: cancelStr,
       borderColor: blueLight,
       color: white,

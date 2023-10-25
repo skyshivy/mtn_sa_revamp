@@ -3,7 +3,10 @@ import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_about_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_faq_button.dart';
@@ -13,6 +16,7 @@ import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_logo_bu
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/my_tune_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/web_nav_my_account.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class WebNavBarView extends StatelessWidget {
   AppController appController = Get.find();
@@ -23,27 +27,54 @@ class WebNavBarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     this.context = context;
+    return Column(
+      children: [
+        topSectionWidget(),
+        bottomSectionWidget(),
+      ],
+    );
+  }
+
+  Widget topSectionWidget() {
     return Container(
-      height: 70,
-      color: blue,
+      height: 40,
+      color: white,
+    );
+  }
+
+  Widget bottomSectionWidget() {
+    return Container(
+      height: 60,
+      decoration: decorationBottomSection(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          leftWidget(),
-          rightWidget(),
+          bottomLeftWidget(),
+          bottomRightWidget(),
         ],
       ),
     );
   }
 
-  Widget leftWidget() {
+  BoxDecoration decorationBottomSection() {
+    return const BoxDecoration(
+      gradient: LinearGradient(
+        colors: [
+          darkGreen,
+          lightGreen,
+        ],
+      ),
+    );
+  }
+
+  Widget bottomLeftWidget() {
     return Row(
       children: [
         leftSpacing(),
         HomePageLogoButton(onTap: () {
           _onTap(0);
         }),
-        leftSpacing(width: 30),
+        leftSpacing(width: 20),
         HomeMyTuneButton(
           onTap: (category) {
             print("Tapped === ${category.categoryName}");
@@ -57,15 +88,41 @@ class WebNavBarView extends StatelessWidget {
             //_onTap(2);
           },
         ),
-        // leftSpacing(),
+        leftSpacing(),
+        salatiButton(),
         // HomeAboutButton(),
         leftSpacing(),
-        HomefaqButton(
-          onTap: () {
-            _onTap(1);
-          },
-        ),
+        diyButton(),
+        // HomefaqButton(
+        //   onTap: () {
+        //     _onTap(1);
+        //   },
+        // ),
       ],
+    );
+  }
+
+  Widget salatiButton() {
+    return CustomButton(
+      title: salatiStr,
+      textColor: white,
+      fontName: FontName.ztbold,
+      fontSize: 16,
+      onTap: () {
+        print("salati tapped");
+      },
+    );
+  }
+
+  Widget diyButton() {
+    return CustomButton(
+      title: diyStr,
+      textColor: white,
+      fontName: FontName.ztbold,
+      fontSize: 16,
+      onTap: () {
+        print("Diy tapped");
+      },
     );
   }
 
@@ -73,7 +130,7 @@ class WebNavBarView extends StatelessWidget {
     return SizedBox(width: width);
   }
 
-  Widget rightWidget() {
+  Widget bottomRightWidget() {
     return Row(
       children: [
         HomeSearchWidget(),
@@ -95,4 +152,6 @@ class WebNavBarView extends StatelessWidget {
       initialLocation: index == navigationShell.currentIndex,
     );
   }
+
+  navDecoration() {}
 }

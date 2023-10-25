@@ -41,7 +41,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
           : const Center(
               child: CustomText(
               title: "_WishlistScreenState",
-              fontName: FontName.bold,
+              fontName: FontName.ztbold,
               fontSize: 20,
             ));
     });

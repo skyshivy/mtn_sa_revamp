@@ -30,7 +30,7 @@ class LandingSocialMedia extends StatelessWidget {
   CustomText titleWidget() {
     return const CustomText(
       title: fallowUsStr,
-      fontName: FontName.bold,
+      fontName: FontName.ztbold,
       fontSize: 18,
       textColor: blueLight,
     );

@@ -34,8 +34,8 @@ Widget _titleSubTitleWidget(ListToneApk item, String title, String subTitle) {
     subTitle: subTitle,
     titleColor: subTitleColor,
     titleFontSize: 13,
-    titleFontName: FontName.light,
-    subTitleFontName: FontName.regular,
+    titleFontName: FontName.ztlight,
+    subTitleFontName: FontName.abook,
     subTitleFontSize: 13,
   );
 }

@@ -14,7 +14,7 @@ showSnackBar({String message = "List is empty"}) {
       alignment: TextAlign.center,
       title: message,
       textColor: black,
-      fontName: FontName.bold,
+      fontName: FontName.ztbold,
       fontSize: 18,
     ),
   );

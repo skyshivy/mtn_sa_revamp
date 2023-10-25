@@ -95,7 +95,7 @@ class _SearchScreenState extends State<SearchScreen> {
             CustomText(
               title: (controller.artistList[index].matchedParam ?? '')
                   .toUpperCase(),
-              fontName: FontName.medium,
+              fontName: FontName.ztregular,
               fontSize: 16,
             ),
             const Icon(
@@ -134,7 +134,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Center(
       child: CustomText(
         title: controller.isLoaded.value ? title : searchTuneStr,
-        fontName: FontName.medium,
+        fontName: FontName.ztregular,
         fontSize: 16,
       ),
     );

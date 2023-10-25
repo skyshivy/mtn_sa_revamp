@@ -61,14 +61,14 @@ class CustomAlertView extends StatelessWidget {
         CustomText(
           alignment: TextAlign.center,
           title: title,
-          fontName: FontName.regular,
+          fontName: FontName.abook,
         ),
         const SizedBox(height: 20),
         CustomButton(
             borderColor: greyDark,
             width: 120,
             title: okStr,
-            fontName: FontName.medium,
+            fontName: FontName.ztregular,
             onTap: () {
               //Get.back();
 

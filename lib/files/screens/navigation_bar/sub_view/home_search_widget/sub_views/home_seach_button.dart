@@ -9,22 +9,23 @@ import '../../../../../custom_files/custom_buttons/custom_button.dart';
 
 class HomeSearchButton extends StatelessWidget {
   final Function() onTap;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   const HomeSearchButton(
-      {super.key, required this.onTap, this.width = 47, this.height = 47});
+      {super.key, required this.onTap, this.width, this.height});
   @override
   Widget build(BuildContext context) {
     return Center(
       child: CustomButton(
-        color: white,
-        width: width,
-        height: height,
+        radius: 4,
+        color: red,
+        width: width ?? 47,
+        height: height ?? 47,
         leftWidget: Image.asset(
           searchImg,
           height: 20,
           width: 20,
-          color: blue,
+          color: white,
         ),
         onTap: onTap,
       ),

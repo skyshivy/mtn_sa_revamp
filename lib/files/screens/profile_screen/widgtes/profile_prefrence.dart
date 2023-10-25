@@ -23,7 +23,7 @@ Widget profilePreferenceWidget(
     mainAxisSize: MainAxisSize.min,
     children: [
       const CustomText(
-          title: preferenceStr, fontName: FontName.regular, fontSize: 14),
+          title: preferenceStr, fontName: FontName.abook, fontSize: 14),
       const SizedBox(height: 6),
       si.isMobile ? alignedGrid(si, controller) : Flexible(child: gridView(si))
     ],
@@ -137,7 +137,7 @@ Widget _preferenceGridCell(ProfileController controller, int index) {
         CustomText(
           title: controller.catList[index].categoryName ?? '',
           maxLine: 1,
-          fontName: FontName.medium,
+          fontName: FontName.ztregular,
           fontSize: 15,
         )
       ],

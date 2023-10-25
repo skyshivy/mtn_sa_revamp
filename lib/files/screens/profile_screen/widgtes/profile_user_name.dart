@@ -18,13 +18,13 @@ Widget profileUserName(SizingInformation si) {
       children: [
         const CustomText(
           title: userNameStr,
-          fontName: FontName.regular,
+          fontName: FontName.abook,
           fontSize: 14,
           textColor: subTitleColor,
         ),
         const SizedBox(height: 6),
         CustomTextField(
-          fontName: FontName.medium,
+          fontName: FontName.ztregular,
           fontSize: 18,
           editEnable: controller.editEnable.value,
           text: controller.profileDetails?.userName ?? '',

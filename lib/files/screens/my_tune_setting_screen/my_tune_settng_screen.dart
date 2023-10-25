@@ -101,7 +101,7 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
       padding: EdgeInsets.only(top: 20, bottom: 20),
       child: CustomText(
         title: advancedSettingsStr,
-        fontName: FontName.regular,
+        fontName: FontName.abook,
         fontSize: 25,
       ),
     );

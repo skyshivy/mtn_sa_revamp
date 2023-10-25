@@ -1,17 +1,4 @@
-enum FontName {
-  bold,
-  boldItalic,
-  extraBold,
-  extraBoldItalic,
-  extraLight,
-  extraLightItalic,
-  light,
-  lightItalic,
-  medium,
-  mediumItalic,
-  regular,
-  regularItalic,
-}
+enum FontName { abook, aheavy, ablack, ztblack, ztbold, ztlight, ztregular }
 
 enum TimeType {
   none,

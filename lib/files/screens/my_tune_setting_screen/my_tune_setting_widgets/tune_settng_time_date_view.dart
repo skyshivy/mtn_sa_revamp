@@ -64,10 +64,10 @@ class TuneSettingTimeDateView extends StatelessWidget {
       titleColor: subTitleColor,
       titleFontSize: 12,
       subTitle: subtitle,
-      titleFontName: FontName.regular,
+      titleFontName: FontName.abook,
       subTitleColor: blueLight,
       subTitleFontSize: 14,
-      subTitleFontName: FontName.medium,
+      subTitleFontName: FontName.ztregular,
     );
   }
 
