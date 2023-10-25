@@ -13,6 +13,7 @@ import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_control
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/app_bg_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
@@ -24,6 +25,7 @@ import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settn
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_bar.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/web_nav_bar_view.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/profile_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/salati_screen/salati_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/see_more_screen/see_more_screen.dart';
@@ -57,6 +59,7 @@ final router = GoRouter(
         wishlistScreen(),
         myTuneScreen(),
         tuneSettingScreen(),
+        salatiScreen(),
         //openMyTuneSettingScreen(),
         //newSceen(),
       ],
@@ -248,6 +251,19 @@ StatefulShellBranch searchScreen() {
   ]);
 }
 
+StatefulShellBranch salatiScreen() {
+  SearchTuneController sCOnt = Get.find();
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: salatiGoRoute,
+      path: salatiGoRoute,
+      builder: (context, state) {
+        return SalatiScreen(); //CustomText(title: "title  $searchkey");
+      },
+    ),
+  ]);
+}
+
 StatefulShellBranch homeScreen() {
   return StatefulShellBranch(
     navigatorKey: _sectionNavigatorKey,
@@ -255,8 +271,7 @@ StatefulShellBranch homeScreen() {
       GoRoute(
           path: homeGoRoute,
           builder: (context, state) {
-            return Container();
-            WebLandingPage();
+            return WebLandingPage();
           }),
     ],
   );
@@ -290,14 +305,19 @@ Widget shellRouteIndex(context, state, navigationShell) {
       home: ResponsiveBuilder(
         builder: (context, si) {
           return Material(
-            child: Column(
+            child: Stack(
               children: [
-                si.isMobile
-                    ? const SizedBox()
-                    : WebNavBarView(navigationShell: navigationShell),
-                si.isMobile
-                    ? Expanded(child: MobileAppBar(widget: navigationShell))
-                    : Expanded(child: navigationShell)
+                backgroundImageWidget(),
+                Column(
+                  children: [
+                    si.isMobile
+                        ? const SizedBox()
+                        : WebNavBarView(navigationShell: navigationShell),
+                    si.isMobile
+                        ? Expanded(child: MobileAppBar(widget: navigationShell))
+                        : Expanded(child: navigationShell)
+                  ],
+                ),
               ],
             ),
           );

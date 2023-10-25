@@ -31,19 +31,19 @@ class WebNavBarView extends StatelessWidget {
     return Column(
       children: [
         const WebNavTopView(),
-        bottomSectionWidget(),
+        bottomSectionWidget(context),
       ],
     );
   }
 
-  Widget bottomSectionWidget() {
+  Widget bottomSectionWidget(BuildContext context) {
     return Container(
       height: 60,
       decoration: decorationBottomSection(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          bottomLeftWidget(),
+          bottomLeftWidget(context),
           bottomRightWidget(),
         ],
       ),
@@ -61,7 +61,7 @@ class WebNavBarView extends StatelessWidget {
     );
   }
 
-  Widget bottomLeftWidget() {
+  Widget bottomLeftWidget(BuildContext context) {
     return Row(
       children: [
         leftSpacing(),
@@ -83,7 +83,7 @@ class WebNavBarView extends StatelessWidget {
           },
         ),
         leftSpacing(),
-        salatiButton(),
+        salatiButton(context),
         // HomeAboutButton(),
         leftSpacing(),
         diyButton(),
@@ -96,13 +96,14 @@ class WebNavBarView extends StatelessWidget {
     );
   }
 
-  Widget salatiButton() {
+  Widget salatiButton(BuildContext context) {
     return CustomButton(
       title: salatiStr,
       textColor: white,
       fontName: FontName.ztbold,
       fontSize: 16,
       onTap: () {
+        context.goNamed(salatiGoRoute);
         print("salati tapped");
       },
     );

@@ -21,7 +21,6 @@ class RecoController extends GetxController {
   RxBool isLoading = false.obs;
 
   getTabList() async {
-    return;
     var abc = StoreManager().appSetting;
     var featureCatSrt =
         abc.responseMap?.settings?.others?.featuredCategoryEnglish?.attribute;

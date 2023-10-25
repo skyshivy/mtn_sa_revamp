@@ -74,11 +74,15 @@ const customStr = "Custom";
 const activeStr = "Active";
 const noActivePlanStr = "No Active Plan";
 const buyStr = "Buy";
+const giftStr = "Gift";
 const buyNowStr = "Buy Now";
 const userNameStr = "User Name*";
 const preferenceStr = "Preference*";
 const mobileNumberStr = "Mobile number";
 const subscribeStr = "Subscribe";
+const aReminderFullOfBenStr = "A REMINDER FULL OF BENIFITS";
+const salatiDescriptionStr =
+    "Let your callers listen to adhan when they call youat prayer times. Remind them that it is imeto pray with some of the most beautifulAdhan. Between each prayer times your default tone will be playing";
 const profileStr = "Profile";
 const wishlistStr = "Wishlist";
 const timeBaseStr = "Select time base";

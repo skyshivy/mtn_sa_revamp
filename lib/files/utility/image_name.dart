@@ -13,6 +13,12 @@ const instagramImg = 'assets/pngs/instagram.png';
 const twitterImg = 'assets/pngs/twitter.png';
 const linkedInImg = 'assets/pngs/linkedIn.png';
 const placeholderImage = 'assets/pngs/placeholderImage.png';
+const appBgImage = 'assets/pngs/ZN_Brand_bg.png';
+const salatiHeaderImage = 'assets/pngs/salati1.png';
+
+const wishlistImage = 'assets/pngs/wishListR.png';
+const tellafriendImage = 'assets/pngs/tellAFriendR.png';
+const giftImage = 'assets/pngs/gift.png';
 
 // svg image bottom =======================
 

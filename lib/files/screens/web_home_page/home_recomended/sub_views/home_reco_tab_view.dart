@@ -81,8 +81,9 @@ class _HomeRecoTabViewState extends State<HomeRecoTabView> {
                     ? FontName.ztbold
                     : FontName.abook,
                 fontSize: si.isMobile ? 14 : 20,
-                textColor:
-                    (controller.selectedIndex.value == index) ? blue : grey,
+                textColor: (controller.selectedIndex.value == index)
+                    ? blue
+                    : subTitleColor,
               ),
               const SizedBox(height: 5),
               selectionIndicator(index)

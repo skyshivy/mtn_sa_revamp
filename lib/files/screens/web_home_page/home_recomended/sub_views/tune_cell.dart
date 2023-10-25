@@ -130,7 +130,8 @@ class HomeTuneCell extends StatelessWidget {
   }
 
   Widget likeButton() {
-    return (info?.likeCount == null)
+    return SizedBox();
+    (info?.likeCount == null)
         ? const SizedBox()
         : CustomButton(
             height: 30,
@@ -191,6 +192,7 @@ class HomeTuneCell extends StatelessWidget {
                   subTitleFontSize: si.isMobile ? 12 : null,
                 ),
               ),
+              const SizedBox(width: 20),
               BuyButton(
                 info: info,
                 index: index,

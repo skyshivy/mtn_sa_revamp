@@ -41,7 +41,7 @@ class WebLandingPage extends StatelessWidget {
                 const LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
                 const LandingRecoView(),
                 SizedBox(height: si.isMobile ? 10 : 80),
-                LandingInfoPage(),
+                //LandingInfoPage(),
                 const LandingPageBottomSection()
               ],
             );
