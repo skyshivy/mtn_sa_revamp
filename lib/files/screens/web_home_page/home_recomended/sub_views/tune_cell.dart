@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
+import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
 import 'package:mtn_sa_revamp/files/delete_popover.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -17,13 +20,13 @@ class HomeTuneCell extends StatelessWidget {
   final int index;
   final TuneInfo? info;
   final Function()? onTap;
-  const HomeTuneCell({super.key, required this.index, this.info, this.onTap});
+  HomeTuneCell({super.key, required this.index, this.info, this.onTap});
+  PlayerController playerController = Get.find();
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
             child: Container(
@@ -32,7 +35,8 @@ class HomeTuneCell extends StatelessWidget {
               child: tuneImageWidget(index),
             ),
           ),
-          Flexible(child: bottomSection(index))
+          const SizedBox(height: 8),
+          bottomSection(index)
         ],
       ),
     );
@@ -57,10 +61,56 @@ class HomeTuneCell extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(10.0),
-          child: likeAndMoreWidget(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [likeAndMoreWidget(), playButton()],
+          ),
         ),
       ],
     );
+  }
+
+  Widget playButton() {
+    return Row(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              gradient: const LinearGradient(colors: [darkGreen, lightGreen]),
+              borderRadius: BorderRadius.circular(20)),
+          height: 40,
+          width: 40,
+          child: CustomButton(
+            leftWidget: playAndPauseButtonIcon(index),
+            onTap: () {
+              playerController.playUrl(info?.toneIdStreamingUrl ?? '', index);
+            },
+          ),
+        ),
+        const SizedBox()
+      ],
+    );
+  }
+
+  Widget playAndPauseButtonIcon(int index) {
+    return Obx(() {
+      return (playerController.playingIndex.value == index)
+          ? (playerController.isPlaying.value
+              ? (playerController.isBuffering.value
+                  ? loadingIndicator(color: red, radius: 10)
+                  : const Icon(
+                      Icons.pause,
+                      size: 20,
+                      color: white,
+                    ))
+              : const Icon(
+                  Icons.play_arrow,
+                  color: white,
+                ))
+          : const Icon(
+              Icons.play_arrow,
+              color: white,
+            );
+    });
   }
 
   Widget likeAndMoreWidget() {
@@ -129,7 +179,7 @@ class HomeTuneCell extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, si) {
         return Padding(
-          padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 16),
+          padding: const EdgeInsets.only(top: 8, left: 0, right: 0, bottom: 16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
