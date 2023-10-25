@@ -14,7 +14,7 @@ class WebNavTopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 35,
       color: white,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

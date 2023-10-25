@@ -20,7 +20,7 @@ Widget mobileAppBarLogoButton(BuildContext context) {
         padding: const EdgeInsets.only(left: 12),
         child: Obx(() {
           return CustomButton(
-            color: appCont.index.value != 0 ? transparent : white,
+            color: appCont.index.value != 0 ? transparent : transparent,
             radius: 2,
             onTap: () {
               con.stop();
@@ -35,7 +35,7 @@ Widget mobileAppBarLogoButton(BuildContext context) {
             },
             leftWidget: Image.asset(
               appCont.index.value != 0 ? mobileBackImg : atomLogoBigImg,
-              color: appCont.index.value != 0 ? white : transparent,
+              color: appCont.index.value != 0 ? white : white,
               height: 40,
               width: 40,
             ),

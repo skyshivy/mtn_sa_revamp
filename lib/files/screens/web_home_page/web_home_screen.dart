@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_gredient.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/subscription_view.dart';
@@ -60,7 +61,7 @@ class WebLandingPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 1.2),
             child: Container(
-                color: blue,
+                decoration: BoxDecoration(gradient: customGredient()),
                 height: 60,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
