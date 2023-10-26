@@ -124,7 +124,7 @@ _tappedOnSubCell(BuildContext context, AppCategory cat) async {
     "categoryId": cat.categoryId ?? ''
   };
   print("Map is ========$map");
-  context.goNamed(tuneGoRoute, queryParameters: map);
+  context.pushNamed(tuneGoRoute, queryParameters: map);
 
   // Get.toNamed(tuneCatTapped, parameters: {
   //   'categoryName': cat.categoryName ?? '',

@@ -52,10 +52,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'SHIV',
-      onGenerateTitle: (context) {
-        return "onGenerateTitle";
-      },
+      title: 'Generic',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: blue),
         useMaterial3: true,

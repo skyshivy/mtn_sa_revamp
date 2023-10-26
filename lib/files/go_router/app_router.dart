@@ -51,9 +51,12 @@ final router = GoRouter(
       builder: shellRouteIndex,
       branches: [
         homeScreen(),
+        searchScreen(),
+        _diyScreen(),
+        salatiScreen(),
         faqScreen(),
         categoryDetailScreen(),
-        searchScreen(),
+
         artistTuneDetailScreen(),
         bannerDetailScreen(),
         seeMoreScreen(),
@@ -61,8 +64,8 @@ final router = GoRouter(
         wishlistScreen(),
         myTuneScreen(),
         tuneSettingScreen(),
-        salatiScreen(),
-        _diyScreen()
+
+        //_diyScreen()
         //openMyTuneSettingScreen(),
         //newSceen(),
       ],
@@ -76,13 +79,11 @@ final router = GoRouter(
 Widget errorWidget(BuildContext context, GoRouterState state) {
   return Scaffold(
       body: MobileAppBar(
-    widget: Container(
-      child: Center(
-        child: CustomText(
-          title: "Page Not Found",
-          fontName: FontName.abook,
-          fontSize: 20,
-        ),
+    widget: const Center(
+      child: CustomText(
+        title: "Page Not Found",
+        fontName: FontName.abook,
+        fontSize: 20,
       ),
     ),
   ));
@@ -330,7 +331,10 @@ Widget shellRouteIndex(context, state, navigationShell) {
                           : WebNavBarView(navigationShell: navigationShell),
                       si.isMobile
                           ? Expanded(
-                              child: MobileAppBar(widget: navigationShell))
+                              child: MobileAppBar(
+                              widget: navigationShell,
+                              navigationShell: navigationShell,
+                            ))
                           : Expanded(child: navigationShell)
                     ],
                   ),

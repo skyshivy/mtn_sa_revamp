@@ -42,7 +42,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   void dispose() {
     print("Disposed _CategoryScreenState");
-    Get.delete<CategoryController>();
+    //Get.delete<CategoryController>();
     super.dispose();
   }
 

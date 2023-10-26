@@ -100,7 +100,7 @@ class DIYHeaderView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CustomText(
-            title: diyStr,
+            title: doItYourStr,
             textColor: Colors.white,
             fontName: FontName.ztbold,
             fontSize: sizeInfo.isMobile ? 14 : 28,

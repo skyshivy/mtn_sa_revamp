@@ -87,24 +87,32 @@ class HomeCategoryView extends StatelessWidget {
   }
 
   Widget cellTitle(BuildContext context, AppCategory info) {
-    return InkWell(
-      onTap: () {
-        context.goNamed(tuneGoRoute, queryParameters: {
-          'categoryName': info.categoryName,
-          'categoryId': info.categoryId,
-        });
-      },
-      child: Center(child: ResponsiveBuilder(
-        builder: (context, si) {
-          return CustomText(
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return InkWell(
+          onTap: () {
+            if (si.isMobile) {
+              context.pushNamed(tuneGoRoute, queryParameters: {
+                'categoryName': info.categoryName,
+                'categoryId': info.categoryId,
+              });
+            } else {
+              context.goNamed(tuneGoRoute, queryParameters: {
+                'categoryName': info.categoryName,
+                'categoryId': info.categoryId,
+              });
+            }
+          },
+          child: Center(
+              child: CustomText(
             alignment: TextAlign.center,
             title: (info.categoryName ?? ''),
             textColor: white,
             fontSize: si.isMobile ? 18 : 25,
             fontName: FontName.ztbold,
-          );
-        },
-      )),
+          )),
+        );
+      },
     );
   }
 }

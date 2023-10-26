@@ -20,7 +20,7 @@ class DiyInfo extends StatelessWidget {
                 : CrossAxisAlignment.center,
             children: [
               CustomText(
-                title: diyStr,
+                title: doItYourStr,
                 fontSize: sizeInfo.isMobile ? 18 : 38,
                 fontName: FontName.ztbold,
               ),

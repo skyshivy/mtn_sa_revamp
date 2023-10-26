@@ -18,6 +18,7 @@ import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/web_nav_my_a
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/web_nav_top_view.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class WebNavBarView extends StatelessWidget {
   AppController appController = Get.find();
@@ -62,37 +63,45 @@ class WebNavBarView extends StatelessWidget {
   }
 
   Widget bottomLeftWidget(BuildContext context) {
-    return Row(
-      children: [
-        leftSpacing(),
-        HomePageLogoButton(onTap: () {
-          _onTap(0);
-        }),
-        leftSpacing(width: 20),
-        HomeMyTuneButton(
-          onTap: (category) {
-            print("Tapped === ${category.categoryName}");
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Row(
+          children: [
+            leftSpacing(),
+            HomePageLogoButton(onTap: () {
+              _onTap(0);
+            }),
+            leftSpacing(width: 20),
+            HomeMyTuneButton(
+              onTap: (category) {
+                print("Tapped === ${category.categoryName}");
+                Map<String, dynamic> map = {
+                  "categoryName": category.categoryName ?? '',
+                  "categoryId": category.categoryId ?? ''
+                };
+                print("Map is ========$map");
+                if (si.isMobile) {
+                  context.pushNamed(tuneGoRoute, queryParameters: map);
+                } else {
+                  context.goNamed(tuneGoRoute, queryParameters: map);
+                }
 
-            Map<String, dynamic> map = {
-              "categoryName": category.categoryName ?? '',
-              "categoryId": category.categoryId ?? ''
-            };
-            print("Map is ========$map");
-            context.goNamed(tuneGoRoute, queryParameters: map);
-            //_onTap(2);
-          },
-        ),
-        leftSpacing(),
-        salatiButton(context),
-        // HomeAboutButton(),
-        leftSpacing(),
-        diyButton(context),
-        // HomefaqButton(
-        //   onTap: () {
-        //     _onTap(1);
-        //   },
-        // ),
-      ],
+                //_onTap(2);
+              },
+            ),
+            leftSpacing(),
+            salatiButton(context),
+            // HomeAboutButton(),
+            leftSpacing(),
+            diyButton(context),
+            // HomefaqButton(
+            //   onTap: () {
+            //     _onTap(1);
+            //   },
+            // ),
+          ],
+        );
+      },
     );
   }
 
@@ -111,7 +120,7 @@ class WebNavBarView extends StatelessWidget {
 
   Widget diyButton(BuildContext context) {
     return CustomButton(
-      title: diyStr,
+      title: doItYourStr,
       textColor: white,
       fontName: FontName.ztbold,
       fontSize: 16,
