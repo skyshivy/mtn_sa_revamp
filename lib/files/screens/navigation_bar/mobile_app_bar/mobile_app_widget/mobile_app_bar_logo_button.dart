@@ -1,6 +1,3 @@
-import 'dart:html';
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
@@ -28,7 +25,7 @@ Widget mobileAppBarLogoButton(BuildContext context) {
               if (appCont.index.value == 0) {
                 context.go(homeGoRoute);
               } else {
-                window.history.back();
+                //window.history.back();
               }
 
               //Navigator.of(context).maybePop();
