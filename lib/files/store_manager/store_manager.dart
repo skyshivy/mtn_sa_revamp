@@ -43,6 +43,7 @@ class StoreManager {
     refreshToken = prefs.getString("refreshToken") ?? '';
     appController.isLoggedIn.value = isLoggedIn;
     isEnglish = prefs.getBool("isEnglish") ?? true;
+    appController.isEnglish.value = isEnglish;
   }
 
   storeAppSettingModel(AppSettingModel settingModel) async {
