@@ -10,6 +10,7 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/home_search_widget.dart';
 import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/buy_opt_view.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/home_category/home_category_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_info_page/home_info_page.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/home_page_banner.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_bottom_section/home_page_bottom_section.dart';
@@ -28,21 +29,26 @@ class WebLandingPage extends StatelessWidget {
         child: ResponsiveBuilder(
           builder: (context, si) {
             return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // CustomButton(
-                //   title: "Open",
-                //   onTap: () {
-                //     Get.dialog(SubscriptionView(
-                //       info: TuneInfo(
-                //           toneName: "Yone Kyi Yar", albumName: "Diary"),
-                //     ));
-                //   },
-                // ),
                 homeSearchTopView(),
                 const LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
-                const LandingRecoView(),
-                SizedBox(height: si.isMobile ? 10 : 80),
-                //LandingInfoPage(),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 80),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const LandingRecoView(),
+                      SizedBox(height: si.isMobile ? 10 : 20),
+                      //LandingInfoPage(),
+
+                      HomeCategoryView(),
+                      SizedBox(height: si.isMobile ? 10 : 30),
+                    ],
+                  ),
+                ),
                 const LandingPageBottomSection()
               ],
             );

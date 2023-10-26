@@ -52,8 +52,9 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
     return Obx(() {
       return SizedBox(
           height: width > 700 ? 400 : (width / 2.5),
-          child:
-              controller.isLoading.value ? loadingIndicator() : corosoulWidget()
+          child: controller.isLoading.value
+              ? Center(child: loadingIndicator())
+              : corosoulWidget()
           // CustomImage(
           //     index: 8,
           //   ),

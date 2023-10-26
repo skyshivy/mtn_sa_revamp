@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -44,10 +46,14 @@ class _HomeRecoTabViewState extends State<HomeRecoTabView> {
         itemCount: controller.tabTitle.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: mainContainer(index),
-          );
+          return Obx(() {
+            return Padding(
+              padding: appCont.isEnglish.value
+                  ? const EdgeInsets.only(right: 8)
+                  : const EdgeInsets.only(left: 8),
+              child: mainContainer(index),
+            );
+          });
         });
   }
 

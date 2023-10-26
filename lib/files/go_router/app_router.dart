@@ -285,7 +285,7 @@ StatefulShellBranch homeScreen() {
       GoRoute(
           path: homeGoRoute,
           builder: (context, state) {
-            return widgetDirection(WebLandingPage());
+            return WebLandingPage();
           }),
     ],
   );

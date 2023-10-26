@@ -36,17 +36,14 @@ class _LandingRecoViewState extends State<LandingRecoView> {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         this.si = sizingInformation;
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              SizedBox(height: si.isMobile ? 10 : 30),
-              const HomeRecoTabView(),
-              SizedBox(height: si.isMobile ? 10 : 40),
-              gridView(),
-              seeMoreButton(context, si),
-            ],
-          ),
+        return Column(
+          children: [
+            SizedBox(height: si.isMobile ? 10 : 30),
+            const HomeRecoTabView(),
+            SizedBox(height: si.isMobile ? 10 : 20),
+            gridView(),
+            seeMoreButton(context, si),
+          ],
         );
       },
     );
@@ -82,7 +79,7 @@ class _LandingRecoViewState extends State<LandingRecoView> {
           ? 8
           : controller.displayList?.length;
       return controller.isLoading.value
-          ? loadingIndicator()
+          ? SizedBox(height: 200, child: loadingIndicator())
           : ResponsiveBuilder(
               builder: (context, si) {
                 return GridView.builder(
