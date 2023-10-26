@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -87,23 +89,35 @@ class WebNavTopView extends StatelessWidget {
   }
 
   Widget englishButton() {
-    return CustomButton(
-      title: englishStr,
-      fontName: FontName.ztbold,
-      fontSize: 14,
-      onTap: () {
-        print("english tapped");
+    return Obx(
+      () {
+        return CustomButton(
+          title: englishStr,
+          textColor: appCont.isEnglish.value ? red : black,
+          fontName: FontName.ztbold,
+          fontSize: 14,
+          onTap: () {
+            print("english tapped");
+            StoreManager().setLanguage(true);
+          },
+        );
       },
     );
   }
 
   Widget arabicButton() {
-    return CustomButton(
-      title: arabicStr,
-      fontName: FontName.ztbold,
-      fontSize: 14,
-      onTap: () {
-        print("arabic tapped");
+    return Obx(
+      () {
+        return CustomButton(
+          title: arabicStr,
+          textColor: appCont.isEnglish.value ? black : red,
+          fontName: FontName.ztbold,
+          fontSize: 14,
+          onTap: () {
+            StoreManager().setLanguage(false);
+            print("arabic tapped");
+          },
+        );
       },
     );
   }

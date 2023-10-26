@@ -15,6 +15,7 @@ import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/app_bg_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/directionality.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -284,7 +285,7 @@ StatefulShellBranch homeScreen() {
       GoRoute(
           path: homeGoRoute,
           builder: (context, state) {
-            return WebLandingPage();
+            return widgetDirection(WebLandingPage());
           }),
     ],
   );
@@ -317,21 +318,24 @@ Widget shellRouteIndex(context, state, navigationShell) {
       debugShowCheckedModeBanner: false,
       home: ResponsiveBuilder(
         builder: (context, si) {
-          return Material(
-            child: Stack(
-              children: [
-                backgroundImageWidget(),
-                Column(
-                  children: [
-                    si.isMobile
-                        ? const SizedBox()
-                        : WebNavBarView(navigationShell: navigationShell),
-                    si.isMobile
-                        ? Expanded(child: MobileAppBar(widget: navigationShell))
-                        : Expanded(child: navigationShell)
-                  ],
-                ),
-              ],
+          return widgetDirection(
+            Material(
+              child: Stack(
+                children: [
+                  backgroundImageWidget(),
+                  Column(
+                    children: [
+                      si.isMobile
+                          ? const SizedBox()
+                          : WebNavBarView(navigationShell: navigationShell),
+                      si.isMobile
+                          ? Expanded(
+                              child: MobileAppBar(widget: navigationShell))
+                          : Expanded(child: navigationShell)
+                    ],
+                  ),
+                ],
+              ),
             ),
           );
         },

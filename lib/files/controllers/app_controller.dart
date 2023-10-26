@@ -8,6 +8,8 @@ class AppController extends GetxController {
   RxBool isLoggedIn = false.obs;
   RxInt index = 0.obs;
   String tunePrice = '';
+  RxBool isEnglish = true.obs;
+
   settinApiCall() async {
     print("Setting api calling");
     var abc = await ServiceCall().getSetting(settingUrl);

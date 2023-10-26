@@ -42,6 +42,7 @@ class StoreManager {
     msisdn = prefs.getString("msisdn") ?? '';
     refreshToken = prefs.getString("refreshToken") ?? '';
     appController.isLoggedIn.value = isLoggedIn;
+    isEnglish = prefs.getBool("isEnglish") ?? true;
   }
 
   storeAppSettingModel(AppSettingModel settingModel) async {
@@ -70,6 +71,13 @@ class StoreManager {
     prefs.setBool('isLoggedIn', value);
 
     isLoggedIn = value;
+  }
+
+  setLanguage(bool isEnglish) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isEnglish', isEnglish);
+    this.isEnglish = isEnglish;
+    appController.isEnglish.value = isEnglish;
   }
 
   setAccessToken(String value) async {
