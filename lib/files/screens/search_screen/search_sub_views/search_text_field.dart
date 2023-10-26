@@ -9,17 +9,25 @@ import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/sub_views/home_seach_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/sub_views/home_search_text_field.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class SearchTextField extends StatelessWidget {
   SearchTextField({super.key});
   final SearchTuneController cont = Get.find();
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        seperatorWidget(),
-        mainContainer(context),
-      ],
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Visibility(
+          visible: si.isMobile,
+          child: Column(
+            children: [
+              seperatorWidget(),
+              mainContainer(context),
+            ],
+          ),
+        );
+      },
     );
   }
 

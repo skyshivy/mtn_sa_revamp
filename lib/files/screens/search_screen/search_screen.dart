@@ -30,12 +30,17 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  SearchTuneController controller = Get.find();
   @override
   void initState() {
     super.initState();
   }
 
-  SearchTuneController controller = Get.find();
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(

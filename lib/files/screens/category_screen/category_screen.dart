@@ -48,12 +48,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomTopHeaderView(title: widget.category),
-        Expanded(child: gridView()),
-        loadMoreActivity()
-      ],
+    return Scaffold(
+      body: Column(
+        children: [
+          CustomTopHeaderView(title: widget.category),
+          Expanded(child: gridView()),
+          loadMoreActivity()
+        ],
+      ),
     );
     // Padding(
     //   padding: const EdgeInsets.symmetric(horizontal: 30),
