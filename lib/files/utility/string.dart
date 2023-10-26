@@ -74,6 +74,7 @@ const customStr = "Custom";
 const dropYourFileStr = "Drop your file here or browse";
 const supportMp3Str = "Supports MP3 files.";
 const activeStr = "Active";
+
 const tuneNameStr = "Tune Name";
 const nameOfTuneStr = "Name of the tune *";
 const createYourOwnTuneStr = "Create your own tune";
@@ -107,7 +108,7 @@ const featureIsAvailableForLoggedInStr =
 const tellFriendStr = "Tell a friend";
 const shareStr = "Share";
 const logoutStr = "Logout";
-
+const categoryStr = "Category";
 const okStr = "Ok";
 const verifyOTPStr = "Verify OTP";
 const successFullyLoggedInStr = "Login Successful";

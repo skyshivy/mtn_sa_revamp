@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -12,17 +13,21 @@ class HomeLoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomButton(
-      height: 40,
-      onTap: onTap,
-      leftWidget: loaginLeftWidgetPadding(),
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      titlePadding: const EdgeInsets.only(right: 15, left: 5),
-      title: loginStr,
-      fontSize: 16,
-      fontName: FontName.ztregular,
-      color: white,
-    );
+    return Obx(() {
+      return CustomButton(
+        height: 40,
+        onTap: onTap,
+        leftWidget: loaginLeftWidgetPadding(),
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        titlePadding: appCont.isEnglish.value
+            ? const EdgeInsets.only(right: 15, left: 5)
+            : const EdgeInsets.only(right: 5, left: 15),
+        title: loginStr,
+        fontSize: 16,
+        fontName: FontName.ztbold,
+        color: white,
+      );
+    });
   }
 
   onTap() {
@@ -36,10 +41,14 @@ class HomeLoginButton extends StatelessWidget {
     //Get.toNamed(loginTapped);
   }
 
-  Padding loaginLeftWidgetPadding() {
-    return const Padding(
-      padding: EdgeInsets.only(left: 12),
-      child: Icon(Icons.person_2_outlined, size: 20),
-    );
+  Widget loaginLeftWidgetPadding() {
+    return Obx(() {
+      return Padding(
+        padding: appCont.isEnglish.value
+            ? const EdgeInsets.only(left: 12)
+            : const EdgeInsets.only(right: 12),
+        child: const Icon(Icons.person_2_outlined, size: 20),
+      );
+    });
   }
 }
