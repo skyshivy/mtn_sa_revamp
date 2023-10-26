@@ -31,6 +31,7 @@ import 'package:mtn_sa_revamp/files/screens/salati_screen/salati_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/see_more_screen/see_more_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/setting_screen/setting_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/home_banner_detail_page.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/wishlist_screen/wishlsit_screen.dart';
@@ -54,6 +55,7 @@ final router = GoRouter(
         searchScreen(),
         _diyScreen(),
         salatiScreen(),
+        _settingScreenRoute(),
         faqScreen(),
         categoryDetailScreen(),
 
@@ -212,6 +214,18 @@ StatefulShellBranch faqScreen() {
       path: faqGoRoute,
       builder: (context, state) {
         return FAQScreen();
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch _settingScreenRoute() {
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: settingGoRoute,
+      path: settingGoRoute,
+      builder: (context, state) {
+        return SettingScreen();
       },
     ),
   ]);

@@ -31,7 +31,13 @@ Widget mobileAppBarLogoButton(BuildContext context) {
               //Navigator.of(context).maybePop();
             },
             leftWidget: Image.asset(
-              appCont.index.value != 0 ? mobileBackImg : atomLogoBigImg,
+              (appCont.index.value == 0 ||
+                      appCont.index.value == 1 ||
+                      appCont.index.value == 2 ||
+                      appCont.index.value == 3 ||
+                      appCont.index.value == 4)
+                  ? atomLogoBigImg
+                  : mobileBackImg,
               color: appCont.index.value != 0 ? white : white,
               height: 40,
               width: 40,

@@ -11,4 +11,6 @@ const String myTuneGoRoute = '/mytune';
 const String salatiGoRoute = '/salati';
 const String myTuneSettingGoRoute = '/mytuneSetting12';
 const String diyGoRoute = '/diy';
+const String settingGoRoute = '/setting';
+
 const String testScreenGoRoute = '/test';

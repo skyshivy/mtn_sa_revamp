@@ -45,6 +45,8 @@ class MobileAppBar extends StatelessWidget {
             BottomNavigationBarItem(icon: Icon(Icons.shop), label: salatiStr),
             BottomNavigationBarItem(
                 icon: Icon(Icons.dirty_lens), label: diyStr),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), label: settingStr),
             // BottomNavigationBarItem(icon: Icon(Icons.shop), label: diyStr),
           ],
           onTap: (index) {
