@@ -40,6 +40,7 @@ class HomeSearchWidget extends StatelessWidget {
         children: [
           Flexible(
               child: HomeSearchTextField(
+            text: searchTuneController.searchedText.value,
             radius: 4,
             hintColor: white.withOpacity(0.6),
             textColor: white,
@@ -63,7 +64,10 @@ class HomeSearchWidget extends StatelessWidget {
               print("onSubmit======$p0");
             },
             onTap: () {
-              controller.loadPage(3);
+              if (searchTuneController.searchedText.value.isNotEmpty) {
+                controller.loadPage(3);
+              }
+
               //Get.back();
               print("text filedon tapped");
             },

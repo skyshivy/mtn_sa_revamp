@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/diy_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/setting_controller.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
@@ -21,6 +22,7 @@ void main() async {
 
   await getJson();
   AppController controller = Get.put(AppController());
+  SettingController settingCont = Get.put(SettingController());
   StoreManager().initStoreManager();
   CategoryPoupupController catCont = Get.put(CategoryPoupupController());
   SearchTuneController _ = Get.put(SearchTuneController());
@@ -30,6 +32,7 @@ void main() async {
   BuyController buyController = Get.put(BuyController());
   CategoryController catDetailCont = Get.put(CategoryController());
   DiyController diyCont = Get.put(DiyController());
+
   await controller.settinApiCall();
   runApp(MyApp());
 }

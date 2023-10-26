@@ -13,6 +13,7 @@ class HomeSearchTextField extends StatelessWidget {
   final Color textColor;
   final Color hintColor;
   final double? radius;
+  final String text;
   const HomeSearchTextField({
     super.key,
     required this.onChanged,
@@ -21,6 +22,7 @@ class HomeSearchTextField extends StatelessWidget {
     this.textColor = black,
     this.hintColor = white,
     this.radius,
+    required this.text,
   });
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class HomeSearchTextField extends StatelessWidget {
           isBorder: false,
           hintColor: hintColor,
           fontName: FontName.ztlight,
-          text: "",
+          text: text,
           hintText: searchStr,
           fontSize: 16,
           onChanged: onChanged,

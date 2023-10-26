@@ -32,7 +32,7 @@ class WebLandingPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                homeSearchTopView(),
+                //homeSearchTopView(),
                 const LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
                 Padding(
                   padding:

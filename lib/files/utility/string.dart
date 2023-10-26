@@ -4,6 +4,8 @@ const homeStr = "Home";
 const englishStr = "English";
 const arabicStr = "Arabic";
 const faqStr = "FAQ";
+
+const enarStr = "EN | AR";
 const playStr = "Play";
 const previewTuneStr = "Preview Tune";
 const seeMoreStr = "See More";
@@ -101,6 +103,7 @@ const salatiDescriptionStr =
     "Let your callers listen to adhan when they call youat prayer times. Remind them that it is imeto pray with some of the most beautifulAdhan. Between each prayer times your default tone will be playing";
 const profileStr = "Profile";
 const wishlistStr = "Wishlist";
+const historyStr = "History";
 const timeBaseStr = "Select time base";
 const repeatBaseStr = "Select repeat";
 const featureIsAvailableForLoggedInStr =

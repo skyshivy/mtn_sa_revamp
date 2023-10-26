@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/drawer_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_gredient.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_widget/mobile_app_bar_logo_button.dart';
@@ -17,11 +18,11 @@ class MobileAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: Drawer(
-        backgroundColor: white,
-        surfaceTintColor: white,
-        child: MobileDrawer(),
-      ),
+      // endDrawer: Drawer(
+      //   backgroundColor: white,
+      //   surfaceTintColor: white,
+      //   child: MobileDrawer(),
+      // ),
       appBar: AppBar(
         leading: mobileAppBarLogoButton(context),
         flexibleSpace: Container(
@@ -33,7 +34,12 @@ class MobileAppBar extends StatelessWidget {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(gradient: customGredient()),
         child: BottomNavigationBar(
+          selectedLabelStyle:
+              TextStyle(fontFamily: FontName.ztblack.name, fontSize: 14),
+          unselectedLabelStyle:
+              TextStyle(fontFamily: FontName.ztlight.name, fontSize: 12),
           type: BottomNavigationBarType.fixed,
+          iconSize: 20,
           backgroundColor: Colors.transparent,
           fixedColor: red,
           showUnselectedLabels: true,

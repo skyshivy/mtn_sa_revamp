@@ -10,10 +10,14 @@ import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
+import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/home_search_widget.dart';
+import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/sub_views/home_search_text_field.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_header.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_header_tab.dart';
+import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_text_field.dart';
 
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -36,23 +40,27 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return Padding(
-            padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
-            child: Obx(() {
-              return Column(
-                children: [
-                  SearchHeader(),
-                  SeacrhHeaderTab(),
-                  const SizedBox(height: 20),
-                  Expanded(
-                      child: controller.isTuneSelected.value == 0
-                          ? gridView()
-                          : artistList()),
-                  //const SizedBox(height: 30),
-                  loadMoreData()
-                ],
-              );
-            }));
+        return Obx(() {
+          return Column(
+            children: [
+              SearchTextField(),
+              Visibility(visible: !si.isMobile, child: SearchHeader()),
+              SeacrhHeaderTab(),
+              const SizedBox(height: 20),
+              Expanded(
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
+                  child: controller.isTuneSelected.value == 0
+                      ? gridView()
+                      : artistList(),
+                ),
+              ),
+              //const SizedBox(height: 30),
+              loadMoreData()
+            ],
+          );
+        });
       },
     );
   }
