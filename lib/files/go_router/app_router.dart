@@ -22,6 +22,7 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/diy_screen/diy_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_bar.dart';
@@ -93,6 +94,7 @@ Widget errorWidget(BuildContext context, GoRouterState state) {
 
 StatefulShellBranch artistTuneDetailScreen() {
   ArtistController artCont = Get.put(ArtistController());
+
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: artistGoRoute,

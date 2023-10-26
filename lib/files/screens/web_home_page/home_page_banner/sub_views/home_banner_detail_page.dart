@@ -40,7 +40,7 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
 
   @override
   void dispose() {
-    Get.delete<BannerDetailController>();
+    //Get.delete<BannerDetailController>();
     super.dispose();
   }
 

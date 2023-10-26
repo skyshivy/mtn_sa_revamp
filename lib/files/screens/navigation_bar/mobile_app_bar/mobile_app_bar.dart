@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/drawer_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_gredient.dart';
+import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
+import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_widget/mobile_app_bar_logo_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_widget/mobile_drawer.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
@@ -56,6 +59,12 @@ class MobileAppBar extends StatelessWidget {
             // BottomNavigationBarItem(icon: Icon(Icons.shop), label: diyStr),
           ],
           onTap: (index) {
+            if (index != 0) {
+              if (!appCont.isLoggedIn.value) {
+                _openLogin();
+                return;
+              }
+            }
             navigationShell?.goBranch(
               index,
               // A common pattern when using bottom navigation bars is to support
@@ -69,4 +78,9 @@ class MobileAppBar extends StatelessWidget {
       ),
     );
   }
+}
+
+_openLogin() async {
+  await Future.delayed(Duration(milliseconds: 200));
+  Get.dialog(LoginScreen(), barrierDismissible: false);
 }

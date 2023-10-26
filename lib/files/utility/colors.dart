@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 const darkGreen = Color.fromRGBO(31, 80, 94, 1);
 const lightGreen = Color.fromRGBO(77, 169, 161, 1);
 
-const blue = Color.fromRGBO(15, 17, 164, 1);
-const blueLight = Color.fromRGBO(23, 187, 255, 1);
+const blue = Color.fromRGBO(31, 80, 94, 1);
+const blueLight = Color.fromRGBO(77, 169, 161, 1);
 //rgba(137, 137, 137, 1)
 const grey = Color.fromRGBO(224, 224, 224, 1);
 const greyDark = Color.fromRGBO(149, 149, 149, 1);

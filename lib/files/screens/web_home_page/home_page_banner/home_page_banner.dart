@@ -10,6 +10,7 @@ import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/banner_indicator.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class LandingPageBanner extends StatefulWidget {
   const LandingPageBanner({super.key});
@@ -63,18 +64,22 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
   }
 
   Widget corosoulWidget() {
-    return Container(
-      color: white,
-      width: double.infinity, //currentSize.width,
-      height: 200, //currentSize.height,
-      child: CarouselSlider(
-        options: carousalOptionWidget(),
-        items: itemsWidget(),
-      ),
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        return Container(
+          color: white,
+          width: double.infinity, //currentSize.width,
+          height: 200, //currentSize.height,
+          child: CarouselSlider(
+            options: carousalOptionWidget(),
+            items: itemsWidget(sizingInformation),
+          ),
+        );
+      },
     );
   }
 
-  List<Container> itemsWidget() {
+  List<Container> itemsWidget(SizingInformation si) {
     return controller.bannerList.map((banner) {
       return Container(
         child: InkWell(
@@ -85,14 +90,27 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
             String searchKey = banner.searchKey ?? '';
             String type = banner.type ?? '';
             String bannerOrder = banner.bannerOrder ?? '';
-            context.goNamed(
-              bannerGoRoute,
-              queryParameters: {
-                'searchKey': searchKey,
-                'type': type,
-                'bannerOrder': bannerOrder
-              },
-            );
+
+            if (si.isMobile) {
+              context.pushNamed(
+                bannerGoRoute,
+                queryParameters: {
+                  'searchKey': searchKey,
+                  'type': type,
+                  'bannerOrder': bannerOrder
+                },
+              );
+            } else {
+              context.goNamed(
+                bannerGoRoute,
+                queryParameters: {
+                  'searchKey': searchKey,
+                  'type': type,
+                  'bannerOrder': bannerOrder
+                },
+              );
+            }
+
             // Get.toNamed(bannerTapped, parameters: {
             //   "searchKey": searchKey,
             //   "type": type,

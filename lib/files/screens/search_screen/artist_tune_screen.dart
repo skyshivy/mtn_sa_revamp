@@ -28,7 +28,7 @@ class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
 
   @override
   void dispose() {
-    Get.delete<ArtistController>();
+    //Get.delete<ArtistController>();
     // TODO: implement dispose
     print("Delete controller ArtistController");
     super.dispose();

@@ -74,21 +74,32 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget artistList() {
-    return controller.artistList.isEmpty
-        ? emptyWidget(artistListEmptyStr)
-        : ListView.builder(
-            itemCount: controller.artistList.length,
-            itemBuilder: (context, index) {
-              return artistCell(index);
-            });
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return controller.artistList.isEmpty
+            ? emptyWidget(artistListEmptyStr)
+            : ListView.builder(
+                itemCount: controller.artistList.length,
+                itemBuilder: (context, index) {
+                  return artistCell(index, si);
+                });
+      },
+    );
   }
 
-  Widget artistCell(int index) {
+  Widget artistCell(int index, SizingInformation si) {
     return InkWell(
       onTap: () {
-        context.goNamed(artistGoRoute, queryParameters: {
-          'artist': controller.artistList[index].matchedParam ?? ''
-        });
+        if (si.isMobile) {
+          context.pushNamed(artistGoRoute, queryParameters: {
+            'artist': controller.artistList[index].matchedParam ?? ''
+          });
+        } else {
+          context.goNamed(artistGoRoute, queryParameters: {
+            'artist': controller.artistList[index].matchedParam ?? ''
+          });
+        }
+
         // Get.toNamed(artistTuneRoute, parameters: {
         //   "artist": controller.artistList[index].matchedParam ?? ''
         // });
