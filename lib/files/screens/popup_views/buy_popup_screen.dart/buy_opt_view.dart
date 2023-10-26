@@ -132,7 +132,7 @@ class BuyOtpView extends StatelessWidget {
 
   Color textFieldBorderColorChange() {
     return (buyController.otp.value.length == StoreManager().otpLength
-        ? blueLight
+        ? lightGreen
         : grey);
   }
 
@@ -245,10 +245,10 @@ class BuyOtpView extends StatelessWidget {
 
   Color requestButtonColor() {
     (buyController.otp.value.length == StoreManager().otpLength
-        ? blueLight
+        ? lightGreen
         : grey);
     return ((buyController.otp.value.length == StoreManager().otpLength)
-        ? blue
+        ? darkGreen
         : grey);
   }
 }

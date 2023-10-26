@@ -72,7 +72,7 @@ Widget _playButton(TunePreviewController cont) {
         width: 60,
         height: 60,
         borderColor: grey,
-        color: blue,
+        color: darkGreen,
         leftWidget: Icon(
           cont.isPlaying.value ? Icons.pause : Icons.play_arrow,
           color: white,

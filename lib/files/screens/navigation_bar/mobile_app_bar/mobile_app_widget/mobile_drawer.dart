@@ -18,7 +18,7 @@ class MobileDrawer extends StatelessWidget {
         children: [
           Container(
             height: 56,
-            color: blue,
+            color: darkGreen,
           ),
           const SizedBox(height: 4),
           Expanded(child: listView(context)),

@@ -12,7 +12,7 @@ profileEditButton() {
   return controller.isSaving.value
       ? loadingIndicator(radius: 12)
       : CustomButton(
-          color: blue,
+          color: darkGreen,
           textColor: white,
           fontName: FontName.ztregular,
           title: controller.editEnable.value ? saveStr : editStr,

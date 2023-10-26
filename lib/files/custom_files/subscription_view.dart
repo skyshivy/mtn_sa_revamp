@@ -168,7 +168,7 @@ class SubscriptionView extends StatelessWidget {
           child: CustomButton(
             title: cancelStr,
             fontName: FontName.ztregular,
-            borderColor: blueLight,
+            borderColor: lightGreen,
             color: white,
           ),
         ),
@@ -177,7 +177,7 @@ class SubscriptionView extends StatelessWidget {
           child: CustomButton(
             title: confirmStr,
             fontName: FontName.ztregular,
-            color: blue,
+            color: darkGreen,
             textColor: white,
           ),
         ),

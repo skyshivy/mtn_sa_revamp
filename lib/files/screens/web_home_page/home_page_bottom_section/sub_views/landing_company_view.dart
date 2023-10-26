@@ -15,7 +15,7 @@ class LandingCompanyView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         customText(companyStr,
-            fontName: FontName.ztbold, color: blueLight, fontSize: 18),
+            fontName: FontName.ztbold, color: lightGreen, fontSize: 18),
         customText(contactusStr, onTap: contactusTapped),
         customText(helpStr, onTap: helpTapped),
         customText(privacyStr, onTap: privacyTapped),

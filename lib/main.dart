@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Generic',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: darkGreen),
         useMaterial3: true,
       ),
       routerConfig: router,
@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
     //   debugShowCheckedModeBanner: false,
     //   title: 'MTN_GENERIC',
     //   theme: ThemeData(
-    //     colorScheme: ColorScheme.fromSeed(seedColor: blue),
+    //     colorScheme: ColorScheme.fromSeed(seedColor: darkGreen),
     //     useMaterial3: true,
     //   ),
     //   home: Material(

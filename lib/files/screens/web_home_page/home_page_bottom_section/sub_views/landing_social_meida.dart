@@ -32,7 +32,7 @@ class LandingSocialMedia extends StatelessWidget {
       title: fallowUsStr,
       fontName: FontName.ztbold,
       fontSize: 18,
-      textColor: blueLight,
+      textColor: lightGreen,
     );
   }
 

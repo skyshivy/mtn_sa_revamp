@@ -11,7 +11,7 @@ class LandingInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: isPhone(context) ? 250 : 500,
-      color: blueLight,
+      color: lightGreen,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,

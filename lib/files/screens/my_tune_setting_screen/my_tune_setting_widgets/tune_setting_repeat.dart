@@ -41,8 +41,8 @@ Widget _noneButton(TuneSettingController con) {
       fontName: FontName.ztregular,
       textColor: (con.repeatYear.value == 0) ? white : black,
       title: noneStr,
-      borderColor: (con.repeatYear.value == 0) ? null : blueLight,
-      color: (con.repeatYear.value == 0) ? blue : white,
+      borderColor: (con.repeatYear.value == 0) ? null : lightGreen,
+      color: (con.repeatYear.value == 0) ? darkGreen : white,
       titlePadding: const EdgeInsets.symmetric(horizontal: 16),
       onTap: () {
         con.updateRepeatYear(0);
@@ -58,8 +58,8 @@ Widget _monthlyButton(TuneSettingController con) {
       fontName: FontName.ztregular,
       title: monthlyStr,
       textColor: (con.repeatYear.value == 1) ? white : black,
-      borderColor: (con.repeatYear.value == 1) ? null : blueLight,
-      color: (con.repeatYear.value == 1) ? blue : white,
+      borderColor: (con.repeatYear.value == 1) ? null : lightGreen,
+      color: (con.repeatYear.value == 1) ? darkGreen : white,
       titlePadding: EdgeInsets.symmetric(horizontal: 16),
       onTap: () {
         con.updateRepeatYear(1);
@@ -75,8 +75,8 @@ Widget _yearlyButton(TuneSettingController con) {
       fontName: FontName.ztregular,
       title: yearlyStr,
       textColor: (con.repeatYear.value == 2) ? white : black,
-      borderColor: (con.repeatYear.value == 2) ? null : blueLight,
-      color: (con.repeatYear.value == 2) ? blue : white,
+      borderColor: (con.repeatYear.value == 2) ? null : lightGreen,
+      color: (con.repeatYear.value == 2) ? darkGreen : white,
       titlePadding: const EdgeInsets.symmetric(horizontal: 16),
       onTap: () {
         con.updateRepeatYear(2);

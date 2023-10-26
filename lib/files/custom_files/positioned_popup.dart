@@ -76,7 +76,7 @@ Widget _customMenuListView(
                 Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(2),
-                      color: isHover ? blue : transparent,
+                      color: isHover ? darkGreen : transparent,
                     ),
                     child: cell(menuList, index, isSvg, isHover)),
                 (menuList.length - 1) == index

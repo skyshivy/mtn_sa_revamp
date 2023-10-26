@@ -43,11 +43,11 @@ class SeacrhHeaderTab extends StatelessWidget {
           onTap: onTap,
           child: Container(
             height: si.isMobile ? 40 : 50,
-            color: blueLight,
+            color: lightGreen,
             child: Center(
                 child: CustomText(
               textColor:
-                  index == controller.isTuneSelected.value ? blue : white,
+                  index == controller.isTuneSelected.value ? darkGreen : white,
               title: title,
               fontName: index == controller.isTuneSelected.value
                   ? FontName.ztbold

@@ -7,7 +7,7 @@ playingTunePlayButton() {
   return const CustomButton(
     height: 40,
     width: 40,
-    color: blue,
+    color: darkGreen,
     leftWidget: Icon(
       Icons.play_arrow,
       color: white,

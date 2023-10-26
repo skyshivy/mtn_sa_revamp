@@ -142,7 +142,7 @@ class _BuyScreenState extends State<_BuyScreen> {
               return CustomMsisdnTextField(
                 borderColor: (buyController.msisdn.value.length ==
                         StoreManager().msisdnLength)
-                    ? blueLight
+                    ? lightGreen
                     : borderColor,
                 enabled: !buyController.isVerifying.value,
                 text: buyController.msisdn.value,
@@ -301,7 +301,7 @@ class _BuyScreenState extends State<_BuyScreen> {
                   },
                   fontName: FontName.ztbold,
                   title: confirmStr,
-                  color: blue,
+                  color: darkGreen,
                   textColor: white,
                 );
               },
@@ -316,7 +316,7 @@ class _BuyScreenState extends State<_BuyScreen> {
       },
       fontName: FontName.ztbold,
       title: cancelStr,
-      borderColor: blueLight,
+      borderColor: lightGreen,
       color: white,
     );
   }

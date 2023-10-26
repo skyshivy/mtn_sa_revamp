@@ -57,7 +57,7 @@ class TuneSettingController extends GetxController {
       context: context,
       config: CalendarDatePicker2WithActionButtonsConfig(
         calendarType: CalendarDatePicker2Type.single,
-        selectedDayHighlightColor: blue,
+        selectedDayHighlightColor: darkGreen,
         dayTextStyle: calenderDateStyle(),
         weekdayLabelTextStyle: calenderWeekDayStyle(),
         yearTextStyle: calenderYearStyle(),

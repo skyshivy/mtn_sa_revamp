@@ -161,8 +161,8 @@ class _TunePreviewScreenState extends State<TunePreviewScreen> {
                 min: 0,
                 max: playCont.maxDuration.value.toDouble(),
                 value: playCont.current.value.toDouble(),
-                activeColor: blue,
-                inactiveColor: blueLight,
+                activeColor: darkGreen,
+                inactiveColor: lightGreen,
                 onChanged: (value) {
                   playCont.seekTo(Duration(seconds: value.toInt()));
                   print("value changed ${value.seconds}");
@@ -204,7 +204,7 @@ class _TunePreviewScreenState extends State<TunePreviewScreen> {
         textColor: white,
         fontName: FontName.ztbold,
         fontSize: 14,
-        color: blue,
+        color: darkGreen,
         title: buyStr,
       ),
     );
