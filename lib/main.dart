@@ -30,7 +30,7 @@ void main() async {
   TunePreviewController preview = Get.put(TunePreviewController());
   BuyController buyController = Get.put(BuyController());
   CategoryController catDetailCont = Get.put(CategoryController());
-  await controller.settinApiCall();
+  controller.settinApiCall();
   runApp(MyApp());
 }
 
