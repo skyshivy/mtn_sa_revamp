@@ -24,7 +24,7 @@ class SeacrhHeaderTab extends StatelessWidget {
                       controller.isTuneSelected.value = 0;
                     })),
                     Container(
-                        height: si.isMobile ? 40 : 50, width: 1, color: white),
+                        height: si.isMobile ? 35 : 40, width: 1, color: white),
                     Expanded(
                         child: customButton(artistStr, 1, () {
                       controller.isTuneSelected.value = 1;
@@ -42,12 +42,14 @@ class SeacrhHeaderTab extends StatelessWidget {
         return InkWell(
           onTap: onTap,
           child: Container(
-            height: si.isMobile ? 40 : 50,
-            color: lightGreen,
+            height: si.isMobile ? 35 : 40,
+            color: index == controller.isTuneSelected.value
+                ? darkGreen
+                : lightGreen,
             child: Center(
                 child: CustomText(
               textColor:
-                  index == controller.isTuneSelected.value ? darkGreen : white,
+                  index == controller.isTuneSelected.value ? white : white,
               title: title,
               fontName: index == controller.isTuneSelected.value
                   ? FontName.ztbold

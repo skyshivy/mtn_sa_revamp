@@ -9,6 +9,7 @@ class CategoryController extends GetxController {
   String id = '';
   RxBool isLoading = false.obs;
   RxBool isLoadMore = false.obs;
+  bool _LoadingMore = false;
   RxBool isHideLoadMore = true.obs;
   RxList<TuneInfo> searchList = <TuneInfo>[].obs;
 
@@ -23,7 +24,10 @@ class CategoryController extends GetxController {
 
   getCategroyDetail(String searchKey, String catId,
       {int page = 0, bool isLoadMoreData = false}) async {
-    resetValue();
+    if (key != searchKey) {
+      resetValue();
+    }
+    //
     key = searchKey;
     id = catId;
     if (isLoadMoreData) {
@@ -32,6 +36,7 @@ class CategoryController extends GetxController {
       isLoading.value = true;
     }
     //isLoading.value = true;
+    _LoadingMore = true;
     var url =
         "$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=English&perPageCount=$perPageCount";
 
@@ -45,10 +50,15 @@ class CategoryController extends GetxController {
       if (list.isEmpty) {
         isHideLoadMore.value = true;
       }
+
+      print("New items length = ${list.length}");
+      print("Old total  items length = ${searchList.length}");
       searchList += list;
+      print("New total  items length = ${searchList.length}");
       if (list.isEmpty) {
         isHideLoadMore.value = true;
       }
+      _LoadingMore = false;
     }
     if (searchList.length < perPageCount) {
       isHideLoadMore.value = true;
@@ -57,6 +67,10 @@ class CategoryController extends GetxController {
   }
 
   loadMoreData() async {
+    if (_LoadingMore) {
+      return;
+    }
+    isLoadMore.value = true;
     await getCategroyDetail(key, id,
         page: searchList.length, isLoadMoreData: true);
   }

@@ -18,6 +18,7 @@ import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/searc
 
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -49,8 +50,13 @@ class _SearchScreenState extends State<SearchScreen> {
           return Column(
             children: [
               SearchTextField(),
-              Visibility(visible: !si.isMobile, child: SearchHeader()),
+              Container(
+                height: 1,
+                color: white,
+              ),
+              //Visibility(visible: !si.isMobile, child: SearchHeader()),
               SeacrhHeaderTab(),
+
               const SizedBox(height: 20),
               Expanded(
                 child: Padding(

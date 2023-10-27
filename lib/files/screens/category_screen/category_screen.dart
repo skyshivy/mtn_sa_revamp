@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
+import 'package:mtn_sa_revamp/files/custom_files/load_more_scroll_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
@@ -28,27 +29,30 @@ class _CategoryScreenState extends State<CategoryScreen> {
   void initState() {
     super.initState();
     _scrollCont = ScrollController();
-    _scrollCont.addListener(() {
-      _scrollListener();
+
+    CustomScrollController.loadMoreInitialize(_scrollCont, () {
+      print("Load more");
+      catContcontroller.loadMoreData();
     });
+
     getCatList();
     print("on init state");
   }
 
-  _scrollListener() {
-    if (_scrollCont.offset >= _scrollCont.position.maxScrollExtent) {
-      setState(() {
-        //catContcontroller.loadMoreData();
-        print("reach the bottom");
-      });
-    }
-    if (_scrollCont.offset <= _scrollCont.position.minScrollExtent &&
-        !_scrollCont.position.outOfRange) {
-      setState(() {
-        print("reach the top");
-      });
-    }
-  }
+  // _scrollListener() {
+  //   if (_scrollCont.offset >= _scrollCont.position.maxScrollExtent) {
+  //     setState(() {
+  //       //catContcontroller.loadMoreData();
+  //       print("reach the bottom");
+  //     });
+  //   }
+  //   if (_scrollCont.offset <= _scrollCont.position.minScrollExtent &&
+  //       !_scrollCont.position.outOfRange) {
+  //     setState(() {
+  //       print("reach the top");
+  //     });
+  //   }
+  // }
 
   getCatList() async {
     await Future.delayed(const Duration(milliseconds: 100));
