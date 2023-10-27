@@ -108,7 +108,7 @@ class HomeCategoryView extends StatelessWidget {
             alignment: TextAlign.center,
             title: (info.categoryName ?? ''),
             textColor: white,
-            fontSize: si.isMobile ? 18 : 25,
+            fontSize: si.isMobile ? 18 : 20,
             fontName: FontName.ztbold,
           )),
         );

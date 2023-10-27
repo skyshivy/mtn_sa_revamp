@@ -38,6 +38,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     CustomScrollController.loadMoreInitialize(tuneScrollCont, () {
+      controller.loadMoreData();
       print("Tune scrolled bottom");
     });
     // CustomScrollController.loadMoreInitialize(artistScrollCont, () {
@@ -86,25 +87,28 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget loadMoreData() {
-    return loadingIndicator(radius: 10);
-    // loadMoreDataButton(
-    //     isLoading: controller.isLoadMore.value,
-    //     rightAction: () {
-    //       controller.loadMoreData();
-    //     });
+    //controller.loadMoreData();
+
+    return Obx(() {
+      return controller.isLoadMore.value
+          ? loadingIndicator(radius: 15)
+          : const SizedBox();
+    });
   }
 
   Widget artistList() {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return controller.artistList.isEmpty
-            ? emptyWidget(artistListEmptyStr)
-            : ListView.builder(
-                controller: tuneScrollCont,
-                itemCount: controller.artistList.length,
-                itemBuilder: (context, index) {
-                  return artistCell(index, si);
-                });
+        return Obx(() {
+          return controller.artistList.isEmpty
+              ? emptyWidget(artistListEmptyStr)
+              : ListView.builder(
+                  controller: tuneScrollCont,
+                  itemCount: controller.artistList.length,
+                  itemBuilder: (context, index) {
+                    return artistCell(index, si);
+                  });
+        });
       },
     );
   }
@@ -152,19 +156,21 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget gridView() {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return controller.isLoading.value
-            ? loading()
-            : controller.songList.isEmpty
-                ? emptyWidget(tuneListEmptyStr)
-                : GridView.builder(
-                    controller: tuneScrollCont,
-                    itemCount: controller.songList.length,
-                    shrinkWrap: true,
-                    gridDelegate:
-                        delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
-                    itemBuilder: (context, index) {
-                      return homeCell(index, si);
-                    });
+        return Obx(() {
+          return controller.isLoading.value
+              ? loading()
+              : controller.songList.isEmpty
+                  ? emptyWidget(tuneListEmptyStr)
+                  : GridView.builder(
+                      controller: tuneScrollCont,
+                      itemCount: controller.songList.length,
+                      shrinkWrap: true,
+                      gridDelegate: delegate(si,
+                          mainAxisExtent: si.isMobile ? 230 : null),
+                      itemBuilder: (context, index) {
+                        return homeCell(index, si);
+                      });
+        });
       },
     );
   }

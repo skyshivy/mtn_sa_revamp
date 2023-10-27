@@ -10,15 +10,23 @@ class SearchTuneController extends GetxController {
   RxString searchedText = ''.obs;
   RxBool isLoading = false.obs;
   RxBool isLoaded = false.obs;
-
+  bool _NoMoreDataToLoad = false;
   RxBool isLoadMore = false.obs;
   RxInt isTuneSelected = 0.obs;
   RxList<TuneInfo> toneList = <TuneInfo>[].obs;
   RxList<TuneInfo> songList = <TuneInfo>[].obs;
   RxList<ArtistDetailList> artistList = <ArtistDetailList>[].obs;
+
+  clearSearchData() {
+    toneList.value = [];
+    songList.value = [];
+    artistList.value = [];
+  }
+
   getSearchedResult(String searchedTxt, int p,
       {bool isloadMore = false}) async {
     searchedText.value = searchedTxt;
+
     if (!isloadMore) {
       // toneList.clear();
       // songList.clear();
@@ -38,14 +46,21 @@ class SearchTuneController extends GetxController {
     if (!isloadMore) {
       isLoading.value = true;
       isLoaded.value = false;
+    } else {
+      isLoadMore.value = true;
     }
-    isLoadMore.value = true;
+
     var url =
         '$searchSpecificToneUrl=${StoreManager().language}&sortBy=Order_By&perPageCount=20&searchLanguage=${StoreManager().language}&searchKey=$s&pageNo=$p';
     Map<String, dynamic>? result = await ServiceCall().get(url);
 
     if (result != null) {
       SearchTuneModel model = SearchTuneModel.fromJson(result);
+      if ((model.responseMap?.songList ?? []).isEmpty) {
+        _NoMoreDataToLoad = true;
+      } else {
+        _NoMoreDataToLoad = false;
+      }
       toneList.value += model.responseMap?.toneList ?? [];
       songList.value += model.responseMap?.songList ?? [];
       artistList.value += model.responseMap?.countList?.artistDetailList ?? [];
@@ -83,6 +98,13 @@ class SearchTuneController extends GetxController {
   }
 
   loadMoreData() async {
+    if (_NoMoreDataToLoad) {
+      return;
+    }
+    if (isLoadMore.value) {
+      return;
+    }
+    isLoadMore.value = true;
     getSearchedResult(searchedText.value, toneList.length, isloadMore: true);
     print("load more data search");
   }

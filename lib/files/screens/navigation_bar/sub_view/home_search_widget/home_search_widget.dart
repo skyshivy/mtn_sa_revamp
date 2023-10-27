@@ -51,9 +51,11 @@ class HomeSearchWidget extends StatelessWidget {
               print("onChanged======$p0");
             },
             onSubmit: (p0) {
+              searchTuneController.clearSearchData();
               if (si.isMobile) {
                 print("onChanged====asdas==$p0");
                 //Get.toNamed(searchTapped);
+
                 context.goNamed(searchGoRoute, queryParameters: {"key": p0});
               } else {
                 //controller.loadPage(3);
@@ -84,6 +86,7 @@ class HomeSearchWidget extends StatelessWidget {
                 } else {
                   controller.loadPage(3);
                 }
+                searchTuneController.clearSearchData();
                 //context.goNamed(searchRoute, queryParameters: {"key": p0});
                 searchTuneController.getSearchedResult(
                     searchTuneController.searchedText.value, 0);
