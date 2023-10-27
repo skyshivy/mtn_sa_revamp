@@ -33,7 +33,7 @@ void main() async {
   CategoryController catDetailCont = Get.put(CategoryController());
   DiyController diyCont = Get.put(DiyController());
 
-  await controller.settinApiCall();
+  controller.settinApiCall();
   runApp(MyApp());
 }
 
