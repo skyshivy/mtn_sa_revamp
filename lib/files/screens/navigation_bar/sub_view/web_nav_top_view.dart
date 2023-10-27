@@ -51,7 +51,7 @@ class WebNavTopView extends StatelessWidget {
             horizintalSpace(),
           ],
         ),
-        languageButtonWidget()
+        languageButtonWidget(context)
       ],
     );
   }
@@ -67,14 +67,14 @@ class WebNavTopView extends StatelessWidget {
     );
   }
 
-  Widget languageButtonWidget() {
+  Widget languageButtonWidget(BuildContext context) {
     return Row(
       children: [
-        englishButton(),
+        englishButton(context),
         horizintalSpace(width: 6),
         customDivider(),
         horizintalSpace(width: 6),
-        arabicButton()
+        arabicButton(context)
       ],
     );
   }
@@ -91,7 +91,7 @@ class WebNavTopView extends StatelessWidget {
     );
   }
 
-  Widget englishButton() {
+  Widget englishButton(BuildContext context) {
     return Obx(
       () {
         return CustomButton(
@@ -101,6 +101,7 @@ class WebNavTopView extends StatelessWidget {
               appCont.isEnglish.value ? FontName.ztbold : FontName.ztregular,
           fontSize: 14,
           onTap: () {
+            context.go(homeGoRoute);
             print("english tapped");
             StoreManager().setLanguage(true);
           },
@@ -109,7 +110,7 @@ class WebNavTopView extends StatelessWidget {
     );
   }
 
-  Widget arabicButton() {
+  Widget arabicButton(BuildContext context) {
     return Obx(
       () {
         return CustomButton(
@@ -119,6 +120,8 @@ class WebNavTopView extends StatelessWidget {
               appCont.isEnglish.value ? FontName.ztregular : FontName.ztbold,
           fontSize: 14,
           onTap: () {
+            context.go(homeGoRoute);
+            //replaceNamed(homeGoRoute);
             StoreManager().setLanguage(false);
             print("arabic tapped");
           },

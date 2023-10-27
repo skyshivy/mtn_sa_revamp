@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 SliverGridDelegateWithMaxCrossAxisExtent delegate(SizingInformation si,
-    {double? mainAxisExtent = 280,
-    double? maxCrossAxisExtent = 290,
+    {double? mainAxisExtent = 240,
+    double? maxCrossAxisExtent = 250,
     double? mainAxisSpacing,
     double? crossAxisSpacing}) {
   return SliverGridDelegateWithMaxCrossAxisExtent(
