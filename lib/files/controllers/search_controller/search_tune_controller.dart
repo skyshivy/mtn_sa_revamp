@@ -20,9 +20,9 @@ class SearchTuneController extends GetxController {
       {bool isloadMore = false}) async {
     searchedText.value = searchedTxt;
     if (!isloadMore) {
-      toneList.clear();
-      songList.clear();
-      artistList.clear();
+      // toneList.clear();
+      // songList.clear();
+      // artistList.clear();
     }
 
     if (isNumericUsingRegularExpression(searchedTxt)) {

@@ -54,8 +54,9 @@ final router = GoRouter(
       branches: [
         homeScreen(),
         searchScreen(),
-        _diyScreen(),
         salatiScreen(),
+        _diyScreen(),
+
         _settingScreenRoute(),
         faqScreen(),
         categoryDetailScreen(),

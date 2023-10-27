@@ -49,7 +49,9 @@ class WebLandingPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                const LandingPageBottomSection()
+                Visibility(
+                    visible: !si.isMobile,
+                    child: const LandingPageBottomSection())
               ],
             );
           },

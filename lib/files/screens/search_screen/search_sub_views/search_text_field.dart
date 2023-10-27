@@ -70,8 +70,9 @@ class SearchTextField extends StatelessWidget {
                   if (cont.searchedText.value.isEmpty) {
                     return;
                   }
-                  context
-                      .goNamed(searchGoRoute, queryParameters: {"key": value});
+                  cont.getSearchedResult(value, 0);
+                  // context
+                  //     .goNamed(searchGoRoute, queryParameters: {"key": value});
                 },
                 onTap: () {
                   if (cont.searchedText.value.isEmpty) {
@@ -96,8 +97,9 @@ class SearchTextField extends StatelessWidget {
     return HomeSearchButton(
         width: 40,
         onTap: () {
-          context.goNamed(searchGoRoute,
-              queryParameters: {"key": cont.searchedText.value});
+          cont.getSearchedResult(cont.searchedText.value, 0);
+          // context.goNamed(searchGoRoute,
+          //     queryParameters: {"key": cont.searchedText.value});
         });
   }
 }
