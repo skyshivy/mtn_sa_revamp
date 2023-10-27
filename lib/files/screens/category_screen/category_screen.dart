@@ -22,21 +22,40 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-  CategoryController controller = Get.find();
+  CategoryController catContcontroller = Get.find();
+  late ScrollController _scrollCont;
   @override
   void initState() {
     super.initState();
-
+    _scrollCont = ScrollController();
+    _scrollCont.addListener(() {
+      _scrollListener();
+    });
     getCatList();
     print("on init state");
   }
 
+  _scrollListener() {
+    if (_scrollCont.offset >= _scrollCont.position.maxScrollExtent &&
+        !_scrollCont.position.outOfRange) {
+      setState(() {
+        print("reach the bottom");
+      });
+    }
+    if (_scrollCont.offset <= _scrollCont.position.minScrollExtent &&
+        !_scrollCont.position.outOfRange) {
+      setState(() {
+        print("reach the top");
+      });
+    }
+  }
+
   getCatList() async {
     await Future.delayed(const Duration(milliseconds: 100));
-    controller.resetValue();
+    catContcontroller.resetValue();
     await Future.delayed(const Duration(milliseconds: 100));
 
-    controller.getCategroyDetail(widget.category, widget.id);
+    catContcontroller.getCategroyDetail(widget.category, widget.id);
   }
 
   @override
@@ -65,14 +84,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   Widget loadMoreActivity() {
     return Obx(() {
-      return controller.isLoadMore.value
+      return catContcontroller.isLoadMore.value
           ? loadingIndicator(radius: 12)
-          : controller.isHideLoadMore.value
+          : catContcontroller.isHideLoadMore.value
               ? const SizedBox()
               : loadMoreDataButton(
-                  isLoading: controller.isLoadMore.value,
+                  isLoading: catContcontroller.isLoadMore.value,
                   rightAction: () {
-                    controller.loadMoreData();
+                    catContcontroller.loadMoreData();
                   },
                 );
     });
@@ -83,24 +102,25 @@ class _CategoryScreenState extends State<CategoryScreen> {
       builder: (context, si) {
         return Obx(
           () {
-            return controller.isLoading.value
+            return catContcontroller.isLoading.value
                 ? loadingIndicator()
                 : Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: si.isMobile ? 8 : 30, vertical: 8),
                     child: GridView.builder(
+                        controller: _scrollCont,
                         shrinkWrap: true,
-                        itemCount: controller.searchList.length,
+                        itemCount: catContcontroller.searchList.length,
                         gridDelegate: delegate(si,
                             mainAxisExtent: si.isMobile ? 230 : null),
                         itemBuilder: (context, index) {
                           return HomeTuneCell(
                             index: index,
-                            info: controller.searchList[index],
+                            info: catContcontroller.searchList[index],
                             onTap: si.isMobile
                                 ? () {
-                                    pushToTunePreView(
-                                        context, controller.searchList, index);
+                                    pushToTunePreView(context,
+                                        catContcontroller.searchList, index);
                                   }
                                 : null,
                           );
