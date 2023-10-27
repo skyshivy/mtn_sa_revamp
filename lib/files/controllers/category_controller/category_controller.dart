@@ -26,12 +26,12 @@ class CategoryController extends GetxController {
     resetValue();
     key = searchKey;
     id = catId;
-    if (!isLoadMoreData) {
-      isLoading.value = true;
-    } else {
+    if (isLoadMoreData) {
       isLoadMore.value = true;
+    } else {
+      isLoading.value = true;
     }
-
+    //isLoading.value = true;
     var url =
         "$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=English&perPageCount=$perPageCount";
 
@@ -46,6 +46,9 @@ class CategoryController extends GetxController {
         isHideLoadMore.value = true;
       }
       searchList += list;
+      if (list.isEmpty) {
+        isHideLoadMore.value = true;
+      }
     }
     if (searchList.length < perPageCount) {
       isHideLoadMore.value = true;

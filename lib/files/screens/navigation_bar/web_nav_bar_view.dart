@@ -91,7 +91,7 @@ class WebNavBarView extends StatelessWidget {
             salatiButton(context),
             // HomeAboutButton(),
             leftSpacing(),
-            diyButton(context),
+            //diyButton(context),
             // HomefaqButton(
             //   onTap: () {
             //     _onTap(1);

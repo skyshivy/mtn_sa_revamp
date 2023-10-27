@@ -36,9 +36,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   _scrollListener() {
-    if (_scrollCont.offset >= _scrollCont.position.maxScrollExtent &&
-        !_scrollCont.position.outOfRange) {
+    if (_scrollCont.offset >= _scrollCont.position.maxScrollExtent) {
       setState(() {
+        //catContcontroller.loadMoreData();
         print("reach the bottom");
       });
     }
