@@ -52,19 +52,19 @@ class MobileAppBar extends StatelessWidget {
             BottomNavigationBarItem(icon: Icon(Icons.home), label: homeStr),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: searchStr),
             BottomNavigationBarItem(icon: Icon(Icons.shop), label: salatiStr),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.dirty_lens), label: diyStr),
+            // BottomNavigationBarItem(
+            //     icon: Icon(Icons.dirty_lens), label: diyStr),
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings), label: settingStr),
             // BottomNavigationBarItem(icon: Icon(Icons.shop), label: diyStr),
           ],
           onTap: (index) {
-            if (index != 0) {
-              if (!appCont.isLoggedIn.value) {
-                _openLogin();
-                return;
-              }
-            }
+            // if (index != 0) {
+            //   if (!appCont.isLoggedIn.value) {
+            //     _openLogin();
+            //     return;
+            //   }
+            // }
             navigationShell?.goBranch(
               index,
               // A common pattern when using bottom navigation bars is to support

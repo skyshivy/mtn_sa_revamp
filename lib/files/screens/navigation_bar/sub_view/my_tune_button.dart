@@ -37,10 +37,11 @@ class HomeMyTuneButton extends StatelessWidget {
 
   Padding rightWidget() {
     return const Padding(
-      padding: EdgeInsets.only(top: 2),
+      padding: EdgeInsets.only(top: 0),
       child: Icon(
-        Icons.arrow_drop_down_outlined,
+        Icons.arrow_drop_down,
         color: white,
+        size: 20,
       ),
     );
   }

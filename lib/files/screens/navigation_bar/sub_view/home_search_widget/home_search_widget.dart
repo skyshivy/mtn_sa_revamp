@@ -59,7 +59,7 @@ class HomeSearchWidget extends StatelessWidget {
                       context
                           .goNamed(searchGoRoute, queryParameters: {"key": p0});
                     }
-                    //searchTuneController.getSearchedResult(p0, 0);
+                    searchTuneController.getSearchedResult(p0, 0);
 
                     print("onSubmit======$p0");
                   },

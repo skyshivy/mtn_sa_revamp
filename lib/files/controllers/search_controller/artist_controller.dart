@@ -11,18 +11,23 @@ class ArtistController extends GetxController {
   RxBool isLaoding = false.obs;
   RxBool isLoadMore = false.obs;
   String searchedArtist = '';
+  bool _loading = false;
   RxList<TuneInfo> searchList = <TuneInfo>[].obs;
 
   getArtistSongs(String artist, {int page = 0, bool isLoadMore = false}) async {
     searchedArtist = artist;
     if (!isLoadMore) {
+      searchList.value = [];
       isLaoding.value = true;
     }
-    this.isLoadMore.value = true;
+    if (page != 0) {
+      this.isLoadMore.value = true;
+    }
+    _loading = true;
     var url =
         "$getArtistSearchTuneUrl${StoreManager().isEnglish ? "English" : "Arabic"}&artistKey=$artist&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=${StoreManager().isEnglish ? "English" : "Arabic"}&perPageCount=20";
     Map<String, dynamic>? res = await ServiceCall().get(url);
-
+    _loading = false;
     if (res != null) {
       ArtistModel artistModel = ArtistModel.fromJson(res);
       List<TuneInfo> list = artistModel.responseMap?.searchList ?? [];
@@ -41,6 +46,9 @@ class ArtistController extends GetxController {
   }
 
   loadMoreData() {
+    if (_loading) {
+      return;
+    }
     getArtistSongs(searchedArtist, page: searchList.length, isLoadMore: true);
     print("Load more data tapped");
   }

@@ -97,7 +97,8 @@ class WebNavTopView extends StatelessWidget {
         return CustomButton(
           title: englishStr,
           textColor: appCont.isEnglish.value ? red : black,
-          fontName: FontName.ztbold,
+          fontName:
+              appCont.isEnglish.value ? FontName.ztbold : FontName.ztregular,
           fontSize: 14,
           onTap: () {
             print("english tapped");
@@ -114,7 +115,8 @@ class WebNavTopView extends StatelessWidget {
         return CustomButton(
           title: arabicStr,
           textColor: appCont.isEnglish.value ? black : red,
-          fontName: FontName.ztbold,
+          fontName:
+              appCont.isEnglish.value ? FontName.ztregular : FontName.ztbold,
           fontSize: 14,
           onTap: () {
             StoreManager().setLanguage(false);

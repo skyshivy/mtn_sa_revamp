@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
+import 'package:mtn_sa_revamp/files/custom_files/load_more_scroll_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
@@ -19,10 +20,14 @@ class ArtistTuneScreen extends StatefulWidget {
 
 class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
   ArtistController controller = Get.find();
-
+  late ScrollController _scrollCont; // = ScrollController();
   @override
   void initState() {
+    _scrollCont = ScrollController();
     controller.getArtistSongs(widget.artistName);
+    CustomScrollController.loadMoreInitialize(_scrollCont, () {
+      controller.loadMoreData();
+    });
     super.initState();
   }
 
@@ -50,12 +55,11 @@ class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
   }
 
   Widget loadMoreData() {
-    return loadMoreDataButton(
-      isLoading: controller.isLoadMore.value,
-      rightAction: () {
-        controller.loadMoreData();
-      },
-    );
+    return Obx(() {
+      return controller.isLoadMore.value
+          ? loadingIndicator(radius: 15)
+          : const SizedBox();
+    });
   }
 
   Widget gridView() {
@@ -64,7 +68,7 @@ class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
           child: GridView.builder(
-              primary: true,
+              controller: _scrollCont,
               itemCount: controller.searchList.length,
               gridDelegate:
                   delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
