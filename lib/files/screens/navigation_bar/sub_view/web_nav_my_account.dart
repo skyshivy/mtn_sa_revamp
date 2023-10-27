@@ -37,7 +37,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
   Widget build(BuildContext context) {
     return CustomButton(
       key: _key,
-      height: 40,
+      height: 35,
       fontName: FontName.ztregular,
       fontSize: 16,
       borderColor: white,

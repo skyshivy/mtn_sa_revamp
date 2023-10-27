@@ -13,12 +13,14 @@ class HomeSearchTextField extends StatelessWidget {
   final Color textColor;
   final Color hintColor;
   final double? radius;
+  final double hPadding;
   final String text;
   const HomeSearchTextField({
     super.key,
     required this.onChanged,
     required this.onSubmit,
     required this.onTap,
+    this.hPadding = 22,
     this.textColor = black,
     this.hintColor = white,
     this.radius,
@@ -33,6 +35,7 @@ class HomeSearchTextField extends StatelessWidget {
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0),
         child: CustomTextField(
+          hPadding: hPadding,
           radius: radius,
           cursorColor: white,
           textColor: textColor,

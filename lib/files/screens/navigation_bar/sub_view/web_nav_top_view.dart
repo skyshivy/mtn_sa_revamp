@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
@@ -19,7 +20,7 @@ class WebNavTopView extends StatelessWidget {
       height: 35,
       color: white,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [leftWidget(), rightWidget(context)],
@@ -32,13 +33,15 @@ class WebNavTopView extends StatelessWidget {
     return const CustomText(
       title: la7innaStr,
       textColor: red,
-      fontName: FontName.ablack,
+      fontName: FontName.ztbold,
       fontSize: 18,
     );
   }
 
   Widget rightWidget(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Row(
           children: [

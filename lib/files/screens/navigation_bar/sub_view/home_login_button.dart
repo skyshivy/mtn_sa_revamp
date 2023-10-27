@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
@@ -9,13 +10,13 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class HomeLoginButton extends StatelessWidget {
-  const HomeLoginButton({super.key});
+  HomeLoginButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       return CustomButton(
-        height: 40,
+        height: 35,
         onTap: onTap,
         leftWidget: loaginLeftWidgetPadding(),
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,6 +33,7 @@ class HomeLoginButton extends StatelessWidget {
 
   onTap() {
     print("Get.isDialogOpen === ${Get.isDialogOpen}");
+
     if (Get.isDialogOpen ?? false) {
       Get.back();
       return;

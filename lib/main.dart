@@ -12,7 +12,7 @@ import 'package:mtn_sa_revamp/files/controllers/buy_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
-import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
+
 import 'package:mtn_sa_revamp/files/controllers/tune_preview_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
@@ -27,7 +27,7 @@ void main() async {
   CategoryPoupupController catCont = Get.put(CategoryPoupupController());
   SearchTuneController _ = Get.put(SearchTuneController());
   PlayerController playerController = Get.put(PlayerController());
-  WebTabController tabController = Get.put(WebTabController());
+
   TunePreviewController preview = Get.put(TunePreviewController());
   BuyController buyController = Get.put(BuyController());
   CategoryController catDetailCont = Get.put(CategoryController());

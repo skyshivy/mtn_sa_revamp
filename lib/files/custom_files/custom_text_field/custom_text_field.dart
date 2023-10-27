@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
   final Color? bgColor;
   final Color? hintColor;
   final double? fontSize;
+  final double hPadding;
   final double? radius;
   final bool? editEnable;
   final FontName fontName;
@@ -28,6 +29,7 @@ class CustomTextField extends StatelessWidget {
     this.cursorColor,
     this.onChanged,
     this.onTap,
+    this.hPadding = 22,
     this.onSubmit,
     this.textColor,
     this.fontSize = 14,
@@ -48,7 +50,7 @@ class CustomTextField extends StatelessWidget {
         ),
         child: Center(
             child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 22),
+          padding: EdgeInsets.symmetric(horizontal: hPadding),
           child: textField(),
         )));
   }

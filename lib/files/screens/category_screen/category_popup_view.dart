@@ -26,7 +26,7 @@ class CategoryPopupView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
-          height: 102,
+          height: 85,
         ),
         Material(
           color: transparent,

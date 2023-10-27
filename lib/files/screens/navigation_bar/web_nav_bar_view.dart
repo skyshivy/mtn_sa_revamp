@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
@@ -29,7 +30,7 @@ class WebNavBarView extends StatelessWidget {
     this.context = context;
     return Column(
       children: [
-        const WebNavTopView(),
+        WebNavTopView(),
         bottomSectionWidget(context),
       ],
     );
@@ -37,7 +38,7 @@ class WebNavBarView extends StatelessWidget {
 
   Widget bottomSectionWidget(BuildContext context) {
     return Container(
-      height: 60,
+      height: 50,
       decoration: decorationBottomSection(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -141,7 +142,7 @@ class WebNavBarView extends StatelessWidget {
         Obx(() {
           return appController.isLoggedIn.value
               ? WebMyAccountButton()
-              : const HomeLoginButton();
+              : HomeLoginButton();
         }),
         leftSpacing(),
       ],
