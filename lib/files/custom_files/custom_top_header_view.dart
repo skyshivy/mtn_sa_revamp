@@ -23,7 +23,7 @@ class CustomTopHeaderView extends StatelessWidget {
                   const CustomText(
                     title: homeStr,
                     fontName: FontName.ztregular,
-                    textColor: grey,
+                    textColor: textFieldPlaceHolderColor,
                   ),
                   const CustomText(title: "/"),
                   CustomText(title: title, fontName: FontName.ztregular)

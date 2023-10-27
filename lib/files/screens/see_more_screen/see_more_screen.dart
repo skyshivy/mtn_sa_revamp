@@ -21,7 +21,8 @@ class _SeeMoreScreenState extends State<SeeMoreScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomTopHeaderView(title: seeMoreStr),
+        CustomTopHeaderView(
+            title: recCont.tabTitle[recCont.selectedIndex.value]),
         Expanded(
           child: gridView(),
         ),

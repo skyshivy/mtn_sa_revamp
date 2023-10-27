@@ -20,7 +20,9 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class LandingRecoView extends StatefulWidget {
-  const LandingRecoView({super.key});
+  const LandingRecoView({
+    super.key,
+  });
 
   @override
   State<LandingRecoView> createState() => _LandingRecoViewState();
@@ -28,6 +30,7 @@ class LandingRecoView extends StatefulWidget {
 
 class _LandingRecoViewState extends State<LandingRecoView> {
   RecoController controller = Get.put(RecoController());
+
   late SizingInformation si;
   @override
   Widget build(BuildContext context) {
@@ -59,7 +62,10 @@ class _LandingRecoViewState extends State<LandingRecoView> {
               List<TuneInfo>? list = controller.displayList?.value;
 
               print("List is $list");
-              context.goNamed(moreGoRoute, extra: list);
+
+              context.goNamed(moreGoRoute, extra: list, queryParameters: {
+                '': controller.tabTitle[controller.selectedIndex.value]
+              });
               print("See more tapped");
             },
             title: seeMoreStr,
