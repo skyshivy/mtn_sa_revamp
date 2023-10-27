@@ -36,7 +36,7 @@ class WebLandingPage extends StatelessWidget {
                 const LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
                 Padding(
                   padding:
-                      EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 80),
+                      EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

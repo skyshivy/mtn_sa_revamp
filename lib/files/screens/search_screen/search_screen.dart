@@ -7,6 +7,7 @@ import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_co
 import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
+import 'package:mtn_sa_revamp/files/custom_files/load_more_scroll_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
@@ -32,8 +33,16 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   SearchTuneController controller = Get.find();
+  ScrollController tuneScrollCont = ScrollController();
+
   @override
   void initState() {
+    CustomScrollController.loadMoreInitialize(tuneScrollCont, () {
+      print("Tune scrolled bottom");
+    });
+    // CustomScrollController.loadMoreInitialize(artistScrollCont, () {
+    //   print("Artist scrolled bottom");
+    // });
     super.initState();
   }
 
@@ -77,11 +86,12 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget loadMoreData() {
-    return loadMoreDataButton(
-        isLoading: controller.isLoadMore.value,
-        rightAction: () {
-          controller.loadMoreData();
-        });
+    return loadingIndicator(radius: 10);
+    // loadMoreDataButton(
+    //     isLoading: controller.isLoadMore.value,
+    //     rightAction: () {
+    //       controller.loadMoreData();
+    //     });
   }
 
   Widget artistList() {
@@ -90,6 +100,7 @@ class _SearchScreenState extends State<SearchScreen> {
         return controller.artistList.isEmpty
             ? emptyWidget(artistListEmptyStr)
             : ListView.builder(
+                controller: tuneScrollCont,
                 itemCount: controller.artistList.length,
                 itemBuilder: (context, index) {
                   return artistCell(index, si);
@@ -146,6 +157,7 @@ class _SearchScreenState extends State<SearchScreen> {
             : controller.songList.isEmpty
                 ? emptyWidget(tuneListEmptyStr)
                 : GridView.builder(
+                    controller: tuneScrollCont,
                     itemCount: controller.songList.length,
                     shrinkWrap: true,
                     gridDelegate:
