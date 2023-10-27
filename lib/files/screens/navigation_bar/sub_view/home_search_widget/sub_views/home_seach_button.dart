@@ -17,14 +17,13 @@ class HomeSearchButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: CustomButton(
-        radius: 4,
         color: red,
         width: width ?? 47,
         height: height ?? 47,
         leftWidget: Image.asset(
           searchImg,
-          height: 20,
-          width: 20,
+          height: 16,
+          width: 16,
           color: white,
         ),
         onTap: onTap,

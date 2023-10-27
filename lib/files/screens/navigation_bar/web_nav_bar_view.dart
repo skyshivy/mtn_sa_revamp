@@ -67,30 +67,18 @@ class WebNavBarView extends StatelessWidget {
         return Row(
           children: [
             leftSpacing(),
-            HomePageLogoButton(onTap: () {
-              _onTap(0);
-            }),
-            leftSpacing(width: 20),
-            HomeMyTuneButton(
-              onTap: (category) {
-                print("Tapped === ${category.categoryName}");
-                Map<String, dynamic> map = {
-                  "categoryName": category.categoryName ?? '',
-                  "categoryId": category.categoryId ?? ''
-                };
-                print("Map is ========$map");
-                if (si.isMobile) {
-                  context.pushNamed(tuneGoRoute, queryParameters: map);
-                } else {
-                  context.goNamed(tuneGoRoute, queryParameters: map);
-                }
 
-                //_onTap(2);
-              },
-            ),
+            _homeLogoButton(),
+            leftSpacing(),
+            seperator(),
+
+            leftSpacing(width: 20),
+            _tuneNavButton(si, context),
+            leftSpacing(),
+            seperator(),
             leftSpacing(),
             salatiButton(context),
-            // HomeAboutButton(),
+
             leftSpacing(),
             //diyButton(context),
             // HomefaqButton(
@@ -101,6 +89,40 @@ class WebNavBarView extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+
+  HomeMyTuneButton _tuneNavButton(SizingInformation si, BuildContext context) {
+    return HomeMyTuneButton(
+      onTap: (category) {
+        print("Tapped === ${category.categoryName}");
+        Map<String, dynamic> map = {
+          "categoryName": category.categoryName ?? '',
+          "categoryId": category.categoryId ?? ''
+        };
+        print("Map is ========$map");
+        if (si.isMobile) {
+          context.pushNamed(tuneGoRoute, queryParameters: map);
+        } else {
+          context.goNamed(tuneGoRoute, queryParameters: map);
+        }
+
+        //_onTap(2);
+      },
+    );
+  }
+
+  HomePageLogoButton _homeLogoButton() {
+    return HomePageLogoButton(onTap: () {
+      _onTap(0);
+    });
+  }
+
+  Widget seperator() {
+    return Container(
+      height: 50,
+      color: white,
+      width: 1,
     );
   }
 

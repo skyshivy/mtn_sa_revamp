@@ -80,15 +80,18 @@ class BuyButton extends StatelessWidget {
   Widget buyButtonWidget() {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return CustomButton(
+        return
+            //Container(color: red, child: Text(okStr));
+
+            CustomButton(
           height: 30,
           onTap: () {
             print("Buy button");
             BuyTuneScreen().show(context, info);
           },
-          color: transparent,
-          borderColor: red,
-          radius: 0,
+          color: red,
+          //borderColor: red,
+
           titlePadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
           fontName: si.isMobile ? FontName.abook : FontName.ztbold,
           fontSize: si.isMobile ? 12 : 16,
@@ -98,7 +101,7 @@ class BuyButton extends StatelessWidget {
           //   width: 20,
           // ),
           title: buyNowStr,
-          textColor: red,
+          textColor: white,
         );
       },
     );

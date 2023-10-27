@@ -38,7 +38,7 @@ class HomeSearchWidget extends StatelessWidget {
             child: Obx(
               () {
                 return HomeSearchTextField(
-                  hPadding: 8,
+                  hPadding: 16,
                   text: searchTuneController.searchedText.value,
                   radius: 4,
                   hintColor: white.withOpacity(0.6),
@@ -73,22 +73,19 @@ class HomeSearchWidget extends StatelessWidget {
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(0),
-            child: HomeSearchButton(
-              width: 35,
-              height: 40,
-              onTap: () {
-                if (si.isMobile) {
-                  print("text filedon tapped");
-                  //Get.toNamed(searchTapped);
-                } else {}
-                searchTuneController.clearSearchData();
-                //context.goNamed(searchRoute, queryParameters: {"key": p0});
-                searchTuneController.getSearchedResult(
-                    searchTuneController.searchedText.value, 0);
-              },
-            ),
+          HomeSearchButton(
+            width: 35,
+            height: 40,
+            onTap: () {
+              if (si.isMobile) {
+                print("text filedon tapped");
+                //Get.toNamed(searchTapped);
+              } else {}
+              searchTuneController.clearSearchData();
+              //context.goNamed(searchRoute, queryParameters: {"key": p0});
+              searchTuneController.getSearchedResult(
+                  searchTuneController.searchedText.value, 0);
+            },
           ),
         ],
       ),
@@ -99,7 +96,7 @@ class HomeSearchWidget extends StatelessWidget {
     return BoxDecoration(
       color: transparent,
       border: border(),
-      borderRadius: BorderRadius.circular(4),
+      borderRadius: BorderRadius.circular(17.5),
     );
   }
 
