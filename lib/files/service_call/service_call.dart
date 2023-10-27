@@ -14,7 +14,7 @@ import 'package:universal_io/io.dart';
 class ServiceCall {
   final client = HttpClient();
 
-  getSetting(String url) async {
+  Future<void> getSetting(String url) async {
     try {
       var request = await client
           .getUrl(Uri.parse(url))

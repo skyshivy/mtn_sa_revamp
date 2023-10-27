@@ -12,7 +12,7 @@ class AppController extends GetxController {
     print("Setting api calling");
     var abc = await ServiceCall().getSetting(settingUrl);
     getTunePrice();
-    print("=======================${abc}");
+    print("=======================}");
   }
 
   getTunePrice() {

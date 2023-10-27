@@ -22,6 +22,7 @@ void main() async {
 
   await getJson();
   AppController controller = Get.put(AppController());
+  controller.settinApiCall();
   StoreManager().initStoreManager();
   CategoryPoupupController catCont = Get.put(CategoryPoupupController());
   SearchTuneController _ = Get.put(SearchTuneController());
@@ -30,7 +31,7 @@ void main() async {
   TunePreviewController preview = Get.put(TunePreviewController());
   BuyController buyController = Get.put(BuyController());
   CategoryController catDetailCont = Get.put(CategoryController());
-  controller.settinApiCall();
+
   runApp(MyApp());
 }
 

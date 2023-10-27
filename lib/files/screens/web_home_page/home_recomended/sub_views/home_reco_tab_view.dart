@@ -40,15 +40,17 @@ class _HomeRecoTabViewState extends State<HomeRecoTabView> {
   }
 
   Widget listView() {
-    return ListView.builder(
-        itemCount: controller.tabTitle.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: mainContainer(index),
-          );
-        });
+    return Obx(() {
+      return ListView.builder(
+          itemCount: controller.tabTitle.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: mainContainer(index),
+            );
+          });
+    });
   }
 
   Container mainContainer(int index) {

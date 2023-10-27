@@ -9,7 +9,7 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/add_to_wishist_vm.dart';
 
 class RecoController extends GetxController {
-  List<String> tabTitle = [];
+  RxList<String> tabTitle = <String>[].obs;
   List<String> tabValue = [];
   List<String> tabId = [];
   RxInt selectedIndex = 0.obs;
@@ -21,7 +21,10 @@ class RecoController extends GetxController {
   RxBool isLoading = false.obs;
 
   getTabList() async {
+    isLoading.value = true;
+    var _ = await ServiceCall().getSetting(settingUrl);
     var abc = StoreManager().appSetting;
+
     var featureCatSrt =
         abc.responseMap?.settings?.others?.featuredCategoryEnglish?.attribute;
     if (featureCatSrt != null) {
