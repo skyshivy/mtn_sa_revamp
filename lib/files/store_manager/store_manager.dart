@@ -32,7 +32,7 @@ class StoreManager {
   int msisdnLength = 10;
   int timeOutDuration = 15;
   late SharedPreferences prefs;
-  late AppSettingModel appSetting;
+  AppSettingModel? appSetting;
 
   initStoreManager() async {
     prefs = await SharedPreferences.getInstance();

@@ -9,7 +9,7 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/add_to_wishist_vm.dart';
 
 class RecoController extends GetxController {
-  List<String> tabTitle = [];
+  RxList<String> tabTitle = <String>[].obs;
   List<String> tabValue = [];
   List<String> tabId = [];
   RxInt selectedIndex = 0.obs;
@@ -21,9 +21,19 @@ class RecoController extends GetxController {
   RxBool isLoading = false.obs;
 
   getTabList() async {
+    print("1featuredCategoryEnglish  ====== }");
+    isLoading.value = true;
     var abc = StoreManager().appSetting;
+    if (StoreManager().appSetting == null) {
+      print("1featuredCategoryEnglish  ====123== }");
+
+      var _ = await ServiceCall().getSetting(settingUrl);
+      abc = StoreManager().appSetting;
+    }
     var featureCatSrt =
-        abc.responseMap?.settings?.others?.featuredCategoryEnglish?.attribute;
+        abc?.responseMap?.settings?.others?.featuredCategoryEnglish?.attribute;
+
+    print("2featuredCategoryEnglish  ====== ${featureCatSrt}");
     if (featureCatSrt != null) {
       featureCatList.value = featureCatSrt.split("|");
       for (String item in featureCatList) {
@@ -34,7 +44,7 @@ class RecoController extends GetxController {
         isLoadedList.add(false);
       }
       print(
-          "Tune empty list ${tuneList.length} and item inside is ${tuneList[0]?.length}");
+          "Tune empty list ${tuneList.length} and item inside is ${tuneList[0].length}");
       getTabItems(tabValue[0], 0);
     }
   }
