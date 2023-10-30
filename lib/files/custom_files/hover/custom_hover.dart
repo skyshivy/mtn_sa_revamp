@@ -39,8 +39,10 @@ class _CustomOnHoverState extends State<CustomOnHover> {
   void onEntered(bool isHovered) {
     setState(() {
       this.isHovered = isHovered;
-      //mainFocusNode.unfocus();
-      widget.hovered!();
+
+      if (widget.hovered != null) {
+        widget.hovered!();
+      }
     });
   }
 }

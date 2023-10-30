@@ -74,9 +74,9 @@ class WebNavBarView extends StatelessWidget {
             leftSpacing(),
             seperator(),
 
-            leftSpacing(width: 20),
+            //leftSpacing(width: 20),
             _tuneNavButton(si, context),
-            leftSpacing(),
+            //leftSpacing(),
             seperator(),
             leftSpacing(),
             salatiButton(context),
@@ -94,22 +94,33 @@ class WebNavBarView extends StatelessWidget {
     );
   }
 
-  HomeMyTuneButton _tuneNavButton(SizingInformation si, BuildContext context) {
-    return HomeMyTuneButton(
-      onTap: (category) {
-        print("Tapped === ${category.categoryName}");
-        Map<String, dynamic> map = {
-          "categoryName": category.categoryName ?? '',
-          "categoryId": category.categoryId ?? ''
-        };
-        print("Map is ========$map");
-        if (si.isMobile) {
-          context.pushNamed(tuneGoRoute, queryParameters: map);
-        } else {
-          context.goNamed(tuneGoRoute, queryParameters: map);
-        }
+  Widget _tuneNavButton(SizingInformation si, BuildContext context) {
+    return CustomOnHover(
+      builder: (isHovered) {
+        return Container(
+          height: 180,
+          color: isHovered ? red : transparent,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: HomeMyTuneButton(
+              onTap: (category) {
+                print("Tapped === ${category.categoryName}");
+                Map<String, dynamic> map = {
+                  "categoryName": category.categoryName ?? '',
+                  "categoryId": category.categoryId ?? ''
+                };
+                print("Map is ========$map");
+                if (si.isMobile) {
+                  context.pushNamed(tuneGoRoute, queryParameters: map);
+                } else {
+                  context.goNamed(tuneGoRoute, queryParameters: map);
+                }
 
-        //_onTap(2);
+                //_onTap(2);
+              },
+            ),
+          ),
+        );
       },
     );
   }

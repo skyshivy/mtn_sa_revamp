@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_co
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/hover/hover_menu.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_popup_view.dart';
@@ -14,35 +15,58 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/main.dart';
 
-class HomeMyTuneButton extends StatelessWidget {
+class HomeMyTuneButton extends StatefulWidget {
   final Function(AppCategory category) onTap;
+  const HomeMyTuneButton({super.key, required this.onTap});
+  @override
+  State<StatefulWidget> createState() {
+    return _HomeMyTuneButtonState();
+  }
+}
+
+class _HomeMyTuneButtonState extends State<HomeMyTuneButton> {
   CategoryPoupupController controller = Get.find();
-  HomeMyTuneButton({super.key, required this.onTap});
+  @override
+  void initState() {
+    mainFocusNode = FocusNode();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return HoverMenu(
-        focusNode: mainFocusNode,
-        widget: Container(
-          height: 120,
-          width: MediaQuery.of(context).size.width - 200,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4), color: white),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 3),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemCount: controller.catList.length,
-              itemBuilder: (context, index) {
-                return myTuneCell(index);
-              },
+      focusNode: mainFocusNode,
+      widget: Container(
+        height: 120,
+        color: transparent,
+        width: MediaQuery.of(context).size.width - 200,
+        child: Row(
+          children: [
+            Flexible(
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4), color: white),
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 3),
+                    child: Obx(() {
+                      return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: controller.catList.length,
+                        itemBuilder: (context, index) {
+                          return myTuneCell(index);
+                        },
+                      );
+                    })),
+              ),
             ),
-          ),
+          ],
         ),
-        title: Container(
-          child: mainButton(),
-        ));
+      ),
+      title: Container(
+        child: mainButton(),
+      ),
+    );
     //mainButton();
   }
 
@@ -69,13 +93,33 @@ class HomeMyTuneButton extends StatelessWidget {
   }
 
   Widget mainContaner(int index) {
-    return AspectRatio(
-      aspectRatio: 1,
-      child: Container(
-        color: Colors.amber,
-        width: 50,
-        child: CustomImage(
-          url: controller.catList[index].menuImagePath,
+    return InkWell(
+      onTap: () {
+        widget.onTap(controller.catList[index]);
+      },
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: Container(
+          color: darkGreen,
+          //width: 50,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              CustomImage(
+                url: controller.catList[index].menuImagePath,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: CustomText(
+                  title: controller.catList[index].categoryName ?? '',
+                  textColor: white,
+                  fontName: FontName.ztbold,
+                  fontSize: 18,
+                  alignment: TextAlign.center,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -90,13 +134,14 @@ class HomeMyTuneButton extends StatelessWidget {
       fontSize: 16,
       onTap: () async {
         print("tune tapped");
-        Get.dialog(
-          CategoryPopupView(
-            onTap: (AppCategory category) {
-              onTap(category);
-            },
-          ),
-        );
+        mainFocusNode.requestFocus();
+        // Get.dialog(
+        //   CategoryPopupView(
+        //     onTap: (AppCategory category) {
+        //       widget.onTap(category);
+        //     },
+        //   ),
+        // );
       },
     );
   }

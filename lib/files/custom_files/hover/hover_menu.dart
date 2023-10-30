@@ -1,6 +1,7 @@
 library hover_menu;
 
 import 'package:flutter/material.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 
 import 'hover_menu_controller.dart';
 
@@ -50,7 +51,9 @@ class HoverMenuState extends State<HoverMenu> {
   void _onFocusChanged() {
     if (widget.focusNode.hasFocus) {
       _overlayEntry = _createOverlayEntry();
-      Overlay.of(context).insert(_overlayEntry!);
+      Overlay.of(
+        context,
+      ).insert(_overlayEntry!);
     } else {
       _overlayEntry?.remove();
       _removeOverlay();
@@ -88,7 +91,7 @@ class HoverMenuState extends State<HoverMenu> {
     return OverlayEntry(
       maintainState: true,
       builder: (context) => Positioned(
-          left: offset.dx,
+          left: StoreManager().isEnglish ? (offset.dx - 20) : null,
           top: offset.dy + size.height,
           width: widget.width,
           child: TextButton(
@@ -103,57 +106,7 @@ class HoverMenuState extends State<HoverMenu> {
               }
             },
             child: widget.widget,
-          )
-          //widget.widget,
-          // TextButton(
-          //   onPressed: () {},
-          //   onHover: (isHovered) {
-          //     if (isHovered && _isHovered) {
-          //       _focusNode.requestFocus();
-          //     } else {
-          //       _focusNode.unfocus();
-          //     }
-          //   },
-          //   child: Column(
-          //     mainAxisSize: MainAxisSize.min,
-          //     children: [
-          //       SizedBox(height: 20),
-          //       Container(
-          //           height: 50,
-          //           color: Colors.red,
-          //           child: ListView.builder(
-          //             shrinkWrap: true,
-          //             scrollDirection: Axis.horizontal,
-          //             itemCount: 10,
-          //             itemBuilder: (context, index) {
-          //               return InkWell(
-          //                 onTap: () {
-          //                   _focusNode.unfocus();
-          //                 },
-          //                 child: Padding(
-          //                   padding: EdgeInsets.only(
-          //                       top: 2,
-          //                       bottom: 2,
-          //                       right: 2,
-          //                       left: index == 0 ? 2 : 0),
-          //                   child: Container(
-          //                     height: 40,
-          //                     width: 40,
-          //                     color: Colors.amber,
-          //                   ),
-          //                 ),
-          //               );
-          //             },
-          //           )
-          //           // ListView(
-          //           //     padding: EdgeInsets.zero,
-          //           //     shrinkWrap: true,
-          //           //     children: widget.items),
-          //           ),
-          //     ],
-          //   ),
-          // ),
-          ),
+          )),
     );
   }
 }
