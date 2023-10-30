@@ -13,15 +13,14 @@ class HoverMenu extends StatefulWidget {
 
   final HoverMenuController? controller;
 
-  HoverMenu({
-    Key? key,
+  const HoverMenu({
+    super.key,
     required this.title,
-    //this.items = const [],
     this.width,
     this.controller,
     required this.widget,
     required this.focusNode,
-  }) : super(key: key);
+  });
 
   @override
   HoverMenuState createState() => HoverMenuState();
