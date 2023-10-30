@@ -5,27 +5,36 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/hover/custom_hover.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/main.dart';
 
 class WebNavTopView extends StatelessWidget {
   const WebNavTopView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 35,
-      color: white,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [leftWidget(), rightWidget(context)],
-        ),
-      ),
+    return CustomOnHover(
+      builder: (isHovered) {
+        return Container(
+          height: 35,
+          color: white,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [leftWidget(), rightWidget(context)],
+            ),
+          ),
+        );
+      },
+      hovered: () {
+        mainFocusNode.unfocus();
+      },
     );
   }
 

@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/hover/custom_hover.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_about_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_faq_button.dart';
@@ -17,6 +18,7 @@ import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/web_nav_my_a
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/web_nav_top_view.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/main.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class WebNavBarView extends StatelessWidget {
@@ -30,7 +32,7 @@ class WebNavBarView extends StatelessWidget {
     this.context = context;
     return Column(
       children: [
-        WebNavTopView(),
+        const WebNavTopView(),
         bottomSectionWidget(context),
       ],
     );
@@ -112,10 +114,17 @@ class WebNavBarView extends StatelessWidget {
     );
   }
 
-  HomePageLogoButton _homeLogoButton() {
-    return HomePageLogoButton(onTap: () {
-      _onTap(0);
-    });
+  Widget _homeLogoButton() {
+    return CustomOnHover(
+      builder: (isHovered) {
+        return HomePageLogoButton(onTap: () {
+          _onTap(0);
+        });
+      },
+      hovered: () {
+        mainFocusNode.unfocus();
+      },
+    );
   }
 
   Widget seperator() {
@@ -127,14 +136,21 @@ class WebNavBarView extends StatelessWidget {
   }
 
   Widget salatiButton(BuildContext context) {
-    return CustomButton(
-      title: salatiStr,
-      textColor: white,
-      fontName: FontName.ztbold,
-      fontSize: 16,
-      onTap: () {
-        context.goNamed(salatiGoRoute);
-        print("salati tapped");
+    return CustomOnHover(
+      builder: (isHovered) {
+        return CustomButton(
+          title: salatiStr,
+          textColor: white,
+          fontName: FontName.ztbold,
+          fontSize: 16,
+          onTap: () {
+            context.goNamed(salatiGoRoute);
+            print("salati tapped");
+          },
+        );
+      },
+      hovered: () {
+        mainFocusNode.unfocus();
       },
     );
   }

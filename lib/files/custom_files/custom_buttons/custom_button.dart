@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/main.dart';
 
 import '../custom_text/custom_text.dart';
 
@@ -55,7 +56,10 @@ class CustomButton extends StatelessWidget {
       hoverColor: transparent,
       splashColor: transparent,
       highlightColor: transparent,
-      onTap: onTap,
+      onTap: () {
+        mainFocusNode.unfocus();
+        onTap!();
+      },
       child: Container(
         height: height,
         width: width,

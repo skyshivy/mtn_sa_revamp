@@ -17,9 +17,10 @@ import 'package:mtn_sa_revamp/files/controllers/tune_preview_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 
+late FocusNode mainFocusNode;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  mainFocusNode = FocusNode();
   await getJson();
   AppController controller = Get.put(AppController());
   SettingController settingCont = Get.put(SettingController());

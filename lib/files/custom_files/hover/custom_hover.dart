@@ -1,11 +1,13 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:mtn_sa_revamp/main.dart';
 
 class CustomOnHover extends StatefulWidget {
   final Widget Function(bool isHovered) builder;
-
-  const CustomOnHover({Key? key, required this.builder}) : super(key: key);
+  final Function()? hovered;
+  const CustomOnHover({Key? key, required this.builder, this.hovered})
+      : super(key: key);
 
   @override
   _CustomOnHoverState createState() => _CustomOnHoverState();
@@ -37,6 +39,8 @@ class _CustomOnHoverState extends State<CustomOnHover> {
   void onEntered(bool isHovered) {
     setState(() {
       this.isHovered = isHovered;
+      //mainFocusNode.unfocus();
+      widget.hovered!();
     });
   }
 }
