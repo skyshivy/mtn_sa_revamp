@@ -91,22 +91,23 @@ class HoverMenuState extends State<HoverMenu> {
     return OverlayEntry(
       maintainState: true,
       builder: (context) => Positioned(
-          left: StoreManager().isEnglish ? (offset.dx - 20) : null,
-          top: offset.dy + size.height,
-          width: widget.width,
-          child: TextButton(
-            onPressed: () {
-              //_focusNode.unfocus();
-            },
-            onHover: (isHovered) {
-              if (isHovered && _isHovered) {
-                widget.focusNode.requestFocus();
-              } else {
-                widget.focusNode.unfocus();
-              }
-            },
-            child: widget.widget,
-          )),
+        left: StoreManager().isEnglish ? (offset.dx - 20) : null,
+        top: offset.dy + size.height,
+        width: widget.width,
+        child: TextButton(
+          onPressed: () {
+            widget.focusNode.unfocus();
+          },
+          onHover: (isHovered) {
+            if (isHovered && _isHovered) {
+              widget.focusNode.requestFocus();
+            } else {
+              widget.focusNode.unfocus();
+            }
+          },
+          child: widget.widget,
+        ),
+      ),
     );
   }
 }

@@ -21,7 +21,13 @@ class CustomImage extends StatelessWidget {
           imageUrl: url ?? "https://picsum.photos/id/1${index}/400/500",
           placeholder: (context, url) =>
               const Center(child: CircularProgressIndicator()),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+          errorWidget: (context, url, error) {
+            print("\n Image url is $url \n");
+            print("\n Image error string loading===== ${error.toString()}\n");
+
+            print("\n Image error loading===== $error\n");
+            return const Icon(Icons.error);
+          },
         ),
         gradient == null
             ? const SizedBox()

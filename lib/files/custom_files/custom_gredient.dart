@@ -11,11 +11,12 @@ Gradient customGredient() {
   );
 }
 
-Gradient customImageGredient() {
-  return const LinearGradient(
+Gradient customImageGredient(
+    {Color color1 = blackGredient, Color color2 = blackGredient}) {
+  return LinearGradient(
     colors: [
-      blackGredient,
-      blackGredient,
+      color1,
+      color2,
     ],
   );
 }

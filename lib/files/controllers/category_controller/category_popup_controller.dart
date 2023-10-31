@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 class CategoryPoupupController extends GetxController {
   RxList<AppCategory> catList = <AppCategory>[].obs;
   RxBool isLoading = false.obs;
+  RxBool isLoadingCat = false.obs;
   @override
   void onInit() {
     getCatList();
@@ -14,11 +15,13 @@ class CategoryPoupupController extends GetxController {
 
   getCatList() async {
     isLoading.value = true;
+    isLoadingCat.value = true;
     var result = await ServiceCall().get(categoryListUrl);
     isLoading.value = false;
     if (result != null) {
       CategoryModel model = CategoryModel.fromJson(result);
       catList.value = model.responseMap?.categories ?? [];
     }
+    isLoadingCat.value = false;
   }
 }

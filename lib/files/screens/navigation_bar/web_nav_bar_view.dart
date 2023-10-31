@@ -153,7 +153,7 @@ class WebNavBarView extends StatelessWidget {
           title: salatiStr,
           textColor: white,
           fontName: FontName.ztbold,
-          fontSize: 16,
+          fontSize: 18,
           onTap: () {
             context.goNamed(salatiGoRoute);
             print("salati tapped");
