@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/header_inrichment.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:mtn_sa_revamp/files/controllers/buy_controller.dart';
@@ -16,10 +17,11 @@ import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_preview_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  setPathUrlStrategy();
   await getJson();
   AppController controller = Get.put(AppController());
   controller.settinApiCall();
@@ -36,7 +38,7 @@ void main() async {
 }
 
 Future<String> getJson() async {
-  _headerInrichment();
+  parseUrl();
   final String value = await rootBundle.loadString('properties.json');
   final data = await json.decode(value);
   baseUrl = data['BASE_URL'];
@@ -44,8 +46,6 @@ Future<String> getJson() async {
   baseUrlSecurity = data['BASE_URL_SECURITY'];
   return value;
 }
-
-Future<void> _headerInrichment() async {}
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
