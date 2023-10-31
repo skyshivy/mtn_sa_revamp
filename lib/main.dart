@@ -36,6 +36,7 @@ void main() async {
 }
 
 Future<String> getJson() async {
+  _headerInrichment();
   final String value = await rootBundle.loadString('properties.json');
   final data = await json.decode(value);
   baseUrl = data['BASE_URL'];
@@ -43,6 +44,8 @@ Future<String> getJson() async {
   baseUrlSecurity = data['BASE_URL_SECURITY'];
   return value;
 }
+
+Future<void> _headerInrichment() async {}
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});

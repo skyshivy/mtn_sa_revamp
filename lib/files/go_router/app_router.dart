@@ -58,6 +58,7 @@ final router = GoRouter(
         wishlistScreen(),
         myTuneScreen(),
         tuneSettingScreen(),
+        deleteScreenRoute(),
         //openMyTuneSettingScreen(),
         //newSceen(),
       ],
@@ -71,13 +72,11 @@ final router = GoRouter(
 Widget errorWidget(BuildContext context, GoRouterState state) {
   return Scaffold(
       body: MobileAppBar(
-    widget: Container(
-      child: Center(
-        child: CustomText(
-          title: "Page Not Found",
-          fontName: FontName.bold,
-          fontSize: 20,
-        ),
+    widget: const Center(
+      child: CustomText(
+        title: "Page Not Found",
+        fontName: FontName.bold,
+        fontSize: 20,
       ),
     ),
   ));
@@ -244,6 +243,18 @@ StatefulShellBranch searchScreen() {
         String searchkey = state.uri.queryParameters['key'] ?? '';
         sCOnt.getSearchedResult(searchkey, 0);
         return const SearchScreen(); //CustomText(title: "title  $searchkey");
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch deleteScreenRoute() {
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: deleteGoRoute,
+      path: deleteGoRoute,
+      builder: (context, state) {
+        return DeleteScreen(); //CustomText(title: "title  $searchkey");
       },
     ),
   ]);
