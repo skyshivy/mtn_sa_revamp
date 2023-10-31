@@ -3,7 +3,9 @@ import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_about_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_faq_button.dart';
@@ -65,6 +67,16 @@ class WebNavBarView extends StatelessWidget {
             _onTap(1);
           },
         ),
+        leftSpacing(),
+        CustomButton(
+          title: "Remove this",
+          textColor: white,
+          fontName: FontName.bold,
+          onTap: () {
+            context.goNamed(deleteGoRoute);
+            print("remove this");
+          },
+        )
       ],
     );
   }
