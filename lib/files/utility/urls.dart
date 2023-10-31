@@ -5,6 +5,9 @@ String appVersion = '1.0.6';
 String channelId = '4';
 String appId = "com.sixdee.oml_rbt_portal"; //'com.sixdee.oml_rbt_portal'; //
 String os = "ios";
+String ccid = '';
+String userName = '';
+String password = '';
 
 int perPageCount = 20;
 String baseUrl = "";

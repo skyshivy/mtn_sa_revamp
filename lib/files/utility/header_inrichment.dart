@@ -1,5 +1,6 @@
 import 'package:mtn_sa_revamp/files/cryptor/decryptor.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 void parseUrl() {
   print("========== Uri parser ============ ${Uri.parse(Uri.base.toString())}");
@@ -46,11 +47,6 @@ Future<void> _getValueForTag(List<String> lst) async {
   if (lst.isEmpty) {
     return;
   }
-  String msisdn = '';
-  String ccid = '';
-  String userName = '';
-  String password = '';
-  String channel = '';
 
   try {
     for (String item in lst) {
@@ -59,7 +55,8 @@ Future<void> _getValueForTag(List<String> lst) async {
       try {
         if (newL[0] == 'msisdn') {
           print("msisdn = ${newL[1]}");
-          msisdn = newL[1];
+          var msisdn = newL[1];
+          StoreManager().setMsisdn(msisdn);
         }
       } catch (e) {}
 
@@ -67,12 +64,14 @@ Future<void> _getValueForTag(List<String> lst) async {
         if (newL[0] == 'ccid') {
           print("ccid = ${newL[1]}");
           ccid = newL[1];
+          StoreManager().setccid(ccid);
         }
       } catch (e) {}
       try {
         if (newL[0] == 'userName') {
           print("userName = ${newL[1]}");
           userName = newL[1];
+          StoreManager().setUserName(userName);
         }
       } catch (e) {}
 
@@ -80,20 +79,23 @@ Future<void> _getValueForTag(List<String> lst) async {
         if (newL[0] == 'password') {
           print("password = ${newL[1]}");
           password = newL[1];
+          StoreManager().setPassword(password);
         }
       } catch (e) {}
       try {
         if (newL[0] == 'channel') {
           print("channel = ${newL[1]}");
-          channel = newL[1];
+          channelId = newL[1];
+          StoreManager().setChannelId(channelId);
         }
       } catch (e) {}
     }
-    print("SKY Msisdn = $msisdn");
+
+    print("SKY Msisdn = ${StoreManager().msisdn}");
     print("SKY ccid = $ccid");
     print("SKY userName = $userName");
     print("SKY password = $password");
-    print("SKY channel = $channel");
+    print("SKY channel = $channelId");
   } catch (e) {
     print("Some thing went wrong === $e");
   }

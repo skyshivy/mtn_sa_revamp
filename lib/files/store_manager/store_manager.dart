@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
+import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,6 +42,11 @@ class StoreManager {
     deviceId = prefs.getString("deviceId") ?? '';
     msisdn = prefs.getString("msisdn") ?? '';
     refreshToken = prefs.getString("refreshToken") ?? '';
+    ccid = prefs.getString('ccid') ?? '';
+    userName = prefs.getString('userName') ?? '';
+    password = prefs.getString('password') ?? '';
+    channelId = prefs.getString('channelId') ?? '4';
+
     appController.isLoggedIn.value = isLoggedIn;
   }
 
@@ -54,7 +60,10 @@ class StoreManager {
     setMsisdn('');
     setRefreshToken('');
     setLoggedIn(false);
-
+    setccid('');
+    setUserName('');
+    setPassword('');
+    setChannelId('4');
     appController.isLoggedIn.value = false;
     initStoreManager();
   }
@@ -63,6 +72,30 @@ class StoreManager {
     prefs = await SharedPreferences.getInstance();
     prefs.setString('msisdn', value);
     msisdn = value;
+  }
+
+  setccid(String value) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString('ccid', value);
+    ccid = value;
+  }
+
+  setUserName(String value) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString('userName', value);
+    userName = value;
+  }
+
+  setPassword(String value) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString('password', value);
+    password = value;
+  }
+
+  setChannelId(String value) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString('channelId', value);
+    channelId = value;
   }
 
   setLoggedIn(bool value) async {
