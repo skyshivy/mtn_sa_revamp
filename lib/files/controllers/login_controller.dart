@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
+import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
 
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -138,6 +140,14 @@ class LoginController extends GetxController {
     Map<String, dynamic>? resut =
         await LoginVm().passwordValidation(securityToken, msisdn.value);
     isVerifying.value = false;
+    if (resut != null) {
+      PasswordValidationModel mode = PasswordValidationModel.fromJson(resut);
+      if (mode.statusCode != 'SC0000') {
+        Get.dialog(CustomAlertView(title: mode.message ?? ''));
+        print("Password validation fialed");
+        return false;
+      }
+    }
 
     if (resut != null) {
       await saveCredentialHere(resut);
@@ -172,13 +182,15 @@ class LoginController extends GetxController {
   //   print("\nGoing to Store Credentials \n");
   //   await StoreManager().initStoreManager();
   // }
-  Future<void> autoLogin(String msisdn) async {
-    String stringData = await LoginVm().subscribeMsisdn(msisdn);
+  Future<void> autoLogin(String msisdn1) async {
+    msisdn.value = msisdn1;
+    String stringData = await LoginVm().subscribeMsisdn(msisdn1);
     Map<String, dynamic> valueMap = json.decode(stringData);
     SubscriberValidationModel model =
         SubscriberValidationModel.fromJson(valueMap);
     if (model.responseMap?.respCode == 'SC0000') {
       //await _generateOtp();
+      await _autoLoginPassowrdValidation();
       print("Existing user******");
     } else if (model.responseMap?.respCode == '100') {
       isMsisdnVarified.value = true;
@@ -191,4 +203,13 @@ class LoginController extends GetxController {
       print("Invalid number*******");
     }
   }
+
+  Future<void> _autoLoginPassowrdValidation() async {
+    bool isGotSecurityToekn = await _securityToken();
+    if (isGotSecurityToekn) {
+      await _passwordValidationToken();
+    }
+  }
+
+  _autoLoginSecurityToken(bool isNewUser) {}
 }

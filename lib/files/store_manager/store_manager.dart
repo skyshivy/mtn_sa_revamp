@@ -101,7 +101,6 @@ class StoreManager {
   setLoggedIn(bool value) async {
     prefs = await SharedPreferences.getInstance();
     prefs.setBool('isLoggedIn', value);
-
     isLoggedIn = value;
   }
 

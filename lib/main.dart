@@ -24,11 +24,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
   AppController controller = Get.put(AppController());
+  StoreManager().initStoreManager();
   LoginController logCont = Get.put(LoginController());
   await getJson();
 
   controller.settinApiCall();
-  StoreManager().initStoreManager();
+
   CategoryPoupupController catCont = Get.put(CategoryPoupupController());
   SearchTuneController _ = Get.put(SearchTuneController());
   PlayerController playerController = Get.put(PlayerController());

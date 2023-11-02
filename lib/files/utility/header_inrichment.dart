@@ -6,7 +6,6 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 
 void parseUrl() async {
-  LoginController loginCont = Get.find();
   print("========== Uri parser ============ ${Uri.parse(Uri.base.toString())}");
   var uri = Uri.parse(Uri.base.toString());
   print("++++++++++++++${uri}");
@@ -29,10 +28,6 @@ void parseUrl() async {
           List<String> lst = decryptedValue.split('&');
           print("lst ==== $lst");
           _getValueForTag(lst);
-          if (!StoreManager().isLoggedIn) {
-            loginCont.autoLogin(StoreManager().msisdn);
-            print("Make here auto login ");
-          }
         } catch (e) {
           print(
               "Else condition error occured in decrypt \n Error in decoding is =  ${e.toString()}\n");
@@ -53,6 +48,7 @@ Future<String> _getValueForTag(List<String> lst) async {
   if (lst.isEmpty) {
     return '';
   }
+  LoginController loginCont = Get.find();
 
   try {
     for (String item in lst) {
@@ -61,8 +57,8 @@ Future<String> _getValueForTag(List<String> lst) async {
       try {
         if (newL[0] == 'msisdn') {
           print("msisdn = ${newL[1]}");
-          var msisdn = newL[1];
-          StoreManager().setMsisdn(msisdn);
+          var msisdn1 = newL[1];
+          await StoreManager().setMsisdn(msisdn1);
         }
       } catch (e) {}
 
@@ -104,6 +100,10 @@ Future<String> _getValueForTag(List<String> lst) async {
     print("SKY channel = $channelId");
   } catch (e) {
     print("Some thing went wrong === $e");
+  }
+  if (!StoreManager().isLoggedIn) {
+    loginCont.autoLogin(StoreManager().msisdn);
+    print("Make here auto login ");
   }
   return '';
 }

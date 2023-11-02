@@ -100,31 +100,5 @@ class LoginVm {
     Map<String, dynamic>? map =
         await PasswordValidationVm().validatePassword(msisdn, securityCounter);
     return map;
-    // Random random = Random();
-    // int randomNumber = random.nextInt(1000000000);
-    // String url = passwordValidationUrl;
-    // var pass = 'Oem@L#@1';
-    // var password = "$pass$securityCounter";
-    // print("password is here " + password);
-    // String encryptedPassword = Cryptom().text(password);
-    // print("encryptedPassword ==========================${encryptedPassword}");
-
-    // var myPost = {
-    //   'type': 'ValidateDetails',
-    //   'msisdn': msisdn,
-    //   'languageId': StoreManager().languageCode,
-    //   'clientTxnId': '$randomNumber',
-    //   'securityCounter': securityCounter,
-    //   'encryptedPassword': encryptedPassword,
-    //   'versionCode': '1.2'
-    // };
-    // var parts = [];
-    // myPost.forEach((key, value) {
-    //   parts.add('${Uri.encodeQueryComponent(key)}='
-    //       '${Uri.encodeQueryComponent(value)}');
-    // });
-    // var formData = parts.join('&');
-    // Map<String, dynamic>? re = await ServiceCall().post(url, formData);
-    // return re;
   }
 }
