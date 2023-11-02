@@ -172,4 +172,23 @@ class LoginController extends GetxController {
   //   print("\nGoing to Store Credentials \n");
   //   await StoreManager().initStoreManager();
   // }
+  Future<void> autoLogin(String msisdn) async {
+    String stringData = await LoginVm().subscribeMsisdn(msisdn);
+    Map<String, dynamic> valueMap = json.decode(stringData);
+    SubscriberValidationModel model =
+        SubscriberValidationModel.fromJson(valueMap);
+    if (model.responseMap?.respCode == 'SC0000') {
+      //await _generateOtp();
+      print("Existing user******");
+    } else if (model.responseMap?.respCode == '100') {
+      isMsisdnVarified.value = true;
+      print("New user*****");
+    } else if (model.responseMap?.respCode == '101') {
+      errorMessage.value = model.responseMap?.respDesc ?? '';
+      print("Invalid number*******");
+    } else {
+      errorMessage.value = model.responseMap?.respDesc ?? '';
+      print("Invalid number*******");
+    }
+  }
 }

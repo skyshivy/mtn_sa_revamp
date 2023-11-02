@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/header_inrichment.dart';
@@ -22,8 +23,10 @@ import 'package:url_strategy/url_strategy.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
-  await getJson();
   AppController controller = Get.put(AppController());
+  LoginController logCont = Get.put(LoginController());
+  await getJson();
+
   controller.settinApiCall();
   StoreManager().initStoreManager();
   CategoryPoupupController catCont = Get.put(CategoryPoupupController());
@@ -38,12 +41,12 @@ void main() async {
 }
 
 Future<String> getJson() async {
-  parseUrl();
   final String value = await rootBundle.loadString('properties.json');
   final data = await json.decode(value);
   baseUrl = data['BASE_URL'];
   faqUrl = data["FAQ_URL"];
   baseUrlSecurity = data['BASE_URL_SECURITY'];
+  parseUrl();
   return value;
 }
 
