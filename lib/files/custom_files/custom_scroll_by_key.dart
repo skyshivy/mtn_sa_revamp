@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mtn_sa_revamp/main.dart';
 
-Widget customScroll(Widget widget, ScrollController controller) {
+Widget customScroll(ScrollController controller, Widget widget) {
   void handleKeyEvent(RawKeyEvent event) {
     var offset = controller.offset;
     print("Key is pressiing");

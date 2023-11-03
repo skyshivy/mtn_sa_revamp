@@ -34,6 +34,7 @@ class _WebLandingPageState extends State<WebLandingPage> {
   @override
   Widget build(BuildContext context) {
     return customScroll(
+      _controller,
       SingleChildScrollView(
         controller: _controller,
         child: ResponsiveBuilder(
@@ -60,7 +61,6 @@ class _WebLandingPageState extends State<WebLandingPage> {
           },
         ),
       ),
-      _controller,
     );
   }
 

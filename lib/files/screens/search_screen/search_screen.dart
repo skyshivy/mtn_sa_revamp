@@ -36,32 +36,35 @@ class _SearchScreenState extends State<SearchScreen> {
   SearchTuneController controller = Get.find();
   @override
   Widget build(BuildContext context) {
-    return customScroll(ResponsiveBuilder(
-      builder: (context, si) {
-        return Padding(
-            padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
-            child: Obx(() {
-              return Column(
-                children: [
-                  SearchHeader(),
-                  SeacrhHeaderTab(),
-                  const SizedBox(height: 20),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      controller: _controller,
-                      child: controller.isTuneSelected.value == 0
-                          ? gridView()
-                          : artistList(),
+    return customScroll(
+      _controller,
+      ResponsiveBuilder(
+        builder: (context, si) {
+          return Padding(
+              padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
+              child: Obx(() {
+                return Column(
+                  children: [
+                    SearchHeader(),
+                    SeacrhHeaderTab(),
+                    const SizedBox(height: 20),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        controller: _controller,
+                        child: controller.isTuneSelected.value == 0
+                            ? gridView()
+                            : artistList(),
+                      ),
                     ),
-                  ),
 
-                  //const SizedBox(height: 30),
-                  loadMoreData()
-                ],
-              );
-            }));
-      },
-    ), _controller);
+                    //const SizedBox(height: 30),
+                    loadMoreData()
+                  ],
+                );
+              }));
+        },
+      ),
+    );
   }
 
   Widget loadMoreData() {
