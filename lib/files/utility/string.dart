@@ -94,7 +94,7 @@ const enterValidMsisdnStr = "Please enter a valid msisdn.";
 const enterValidOtpStr = "Please enter a valid OTP.";
 
 const enterMobileNumberStr = "Enter Mobile Number";
-const countryCodeStr = "+27";
+const countryCodeStr = "+95";
 const myAccountStr = "My Account";
 const cancelStr = "Cancel";
 const editStr = "Edit";
