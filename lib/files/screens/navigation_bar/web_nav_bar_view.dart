@@ -22,7 +22,7 @@ import 'package:mtn_sa_revamp/main.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class WebNavBarView extends StatelessWidget {
-  AppController appController = Get.find();
+  final AppController appController = Get.find();
   final StatefulNavigationShell navigationShell;
 
   WebNavBarView({super.key, required this.navigationShell});
