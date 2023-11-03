@@ -298,6 +298,7 @@ Widget shellRouteIndex(context, state, navigationShell) {
   appCont.updateIndex(navigationShell.currentIndex);
   return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      title: "ATOM",
       home: ResponsiveBuilder(
         builder: (context, si) {
           return Material(
