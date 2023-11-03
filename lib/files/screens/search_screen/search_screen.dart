@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
@@ -26,6 +27,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  final ScrollController _controller = ScrollController();
   @override
   void initState() {
     super.initState();
@@ -34,7 +36,7 @@ class _SearchScreenState extends State<SearchScreen> {
   SearchTuneController controller = Get.find();
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
+    return customScroll(ResponsiveBuilder(
       builder: (context, si) {
         return Padding(
             padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
@@ -45,16 +47,21 @@ class _SearchScreenState extends State<SearchScreen> {
                   SeacrhHeaderTab(),
                   const SizedBox(height: 20),
                   Expanded(
+                    child: SingleChildScrollView(
+                      controller: _controller,
                       child: controller.isTuneSelected.value == 0
                           ? gridView()
-                          : artistList()),
+                          : artistList(),
+                    ),
+                  ),
+
                   //const SizedBox(height: 30),
                   loadMoreData()
                 ],
               );
             }));
       },
-    );
+    ), _controller);
   }
 
   Widget loadMoreData() {
@@ -69,6 +76,8 @@ class _SearchScreenState extends State<SearchScreen> {
     return controller.artistList.isEmpty
         ? emptyWidget(artistListEmptyStr)
         : ListView.builder(
+            shrinkWrap: true,
+            controller: _controller,
             itemCount: controller.artistList.length,
             itemBuilder: (context, index) {
               return artistCell(index);

@@ -7,7 +7,7 @@ String appId = "com.sixdee.oml_rbt_portal"; //'com.sixdee.oml_rbt_portal'; //
 String os = "ios";
 String ccid = '';
 String userName = '';
-String password = '';
+String password = 'Oem@L#@1';
 
 int perPageCount = 20;
 String baseUrl = "";

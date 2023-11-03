@@ -20,6 +20,7 @@ import 'package:mtn_sa_revamp/files/controllers/category_controller/category_pop
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+FocusNode keyScrollFocusNode = FocusNode();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();

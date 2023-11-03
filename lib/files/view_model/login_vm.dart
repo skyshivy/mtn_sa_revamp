@@ -96,9 +96,10 @@ class LoginVm {
   }
 
   Future<Map<String, dynamic>?> passwordValidation(
-      String securityCounter, String msisdn) async {
-    Map<String, dynamic>? map =
-        await PasswordValidationVm().validatePassword(msisdn, securityCounter);
+      String securityCounter, String msisdn,
+      {bool isAutoLogin = false}) async {
+    Map<String, dynamic>? map = await PasswordValidationVm()
+        .validatePassword(msisdn, securityCounter, isAutoLogin);
     return map;
   }
 }

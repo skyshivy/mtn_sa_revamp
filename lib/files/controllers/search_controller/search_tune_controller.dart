@@ -3,6 +3,7 @@ import 'package:mtn_sa_revamp/files/model/search_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/main.dart';
 
 import '../../store_manager/store_manager.dart';
 
@@ -19,6 +20,7 @@ class SearchTuneController extends GetxController {
   getSearchedResult(String searchedTxt, int p,
       {bool isloadMore = false}) async {
     searchedText.value = searchedTxt;
+    keyScrollFocusNode.requestFocus();
     if (!isloadMore) {
       toneList.clear();
       songList.clear();

@@ -13,6 +13,7 @@ import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_control
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
@@ -35,6 +36,7 @@ import 'package:mtn_sa_revamp/files/screens/wishlist_screen/wishlsit_screen.dart
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/main.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -160,6 +162,8 @@ StatefulShellBranch myTuneScreen() {
 
 StatefulShellBranch seeMoreScreen() {
   BannerDetailController bannerCont = Get.put(BannerDetailController());
+  keyScrollFocusNode = FocusNode();
+  keyScrollFocusNode.requestFocus();
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: moreGoRoute,
@@ -235,6 +239,7 @@ StatefulShellBranch tuneSettingScreen() {
 
 StatefulShellBranch searchScreen() {
   SearchTuneController sCOnt = Get.find();
+
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: searchGoRoute,
@@ -242,6 +247,7 @@ StatefulShellBranch searchScreen() {
       builder: (context, state) {
         String searchkey = state.uri.queryParameters['key'] ?? '';
         sCOnt.getSearchedResult(searchkey, 0);
+
         return const SearchScreen(); //CustomText(title: "title  $searchkey");
       },
     ),
@@ -301,6 +307,7 @@ Widget shellRouteIndex(context, state, navigationShell) {
       title: "ATOM",
       home: ResponsiveBuilder(
         builder: (context, si) {
+          keyScrollFocusNode.requestFocus();
           return Material(
             child: Column(
               children: [

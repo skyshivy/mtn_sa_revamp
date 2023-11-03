@@ -234,7 +234,7 @@ class BuyController extends GetxController {
 
   Future<void> passwordValidation() async {
     Map<String, dynamic>? map = await PasswordValidationVm()
-        .validatePassword(msisdn.value, securityCounter);
+        .validatePassword(msisdn.value, securityCounter, false);
     if (map != null) {
       PasswordValidationModel model = PasswordValidationModel.fromJson(map);
       await saveCredentialHere(map);

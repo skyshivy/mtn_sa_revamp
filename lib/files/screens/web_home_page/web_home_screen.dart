@@ -16,9 +16,21 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/home_r
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class WebLandingPage extends StatelessWidget {
-  WebLandingPage({super.key});
+class WebLandingPage extends StatefulWidget {
+  const WebLandingPage({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _WebLandingPageState();
+}
+
+class _WebLandingPageState extends State<WebLandingPage> {
   final ScrollController _controller = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return customScroll(

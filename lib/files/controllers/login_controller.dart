@@ -135,10 +135,11 @@ class LoginController extends GetxController {
     return false;
   }
 
-  Future<bool> _passwordValidationToken() async {
+  Future<bool> _passwordValidationToken({bool isAutoLogin = false}) async {
     isVerifying.value = true;
-    Map<String, dynamic>? resut =
-        await LoginVm().passwordValidation(securityToken, msisdn.value);
+    Map<String, dynamic>? resut = await LoginVm().passwordValidation(
+        securityToken, msisdn.value,
+        isAutoLogin: isAutoLogin);
     isVerifying.value = false;
     if (resut != null) {
       PasswordValidationModel mode = PasswordValidationModel.fromJson(resut);
@@ -207,7 +208,7 @@ class LoginController extends GetxController {
   Future<void> _autoLoginPassowrdValidation() async {
     bool isGotSecurityToekn = await _securityToken();
     if (isGotSecurityToekn) {
-      await _passwordValidationToken();
+      await _passwordValidationToken(isAutoLogin: true);
     }
   }
 

@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mtn_sa_revamp/main.dart';
 
 Widget customScroll(Widget widget, ScrollController controller) {
-  final FocusNode focusNode = FocusNode();
   void handleKeyEvent(RawKeyEvent event) {
     var offset = controller.offset;
-
+    print("Key is pressiing");
     if (event.logicalKey == LogicalKeyboardKey.arrowUp) {
       if (offset <= 0) {
         return;
@@ -34,7 +34,7 @@ Widget customScroll(Widget widget, ScrollController controller) {
   }
 
   return RawKeyboardListener(
-    focusNode: focusNode,
+    focusNode: keyScrollFocusNode,
     autofocus: true,
     onKey: handleKeyEvent,
     child: widget,
