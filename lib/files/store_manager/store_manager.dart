@@ -44,7 +44,7 @@ class StoreManager {
     refreshToken = prefs.getString("refreshToken") ?? '';
     ccid = prefs.getString('ccid') ?? '';
     userName = prefs.getString('userName') ?? '';
-    password = prefs.getString('password') ?? '';
+    password = prefs.getString('password') ?? 'Oem@L#@1';
     channelId = prefs.getString('channelId') ?? '4';
 
     appController.isLoggedIn.value = isLoggedIn;

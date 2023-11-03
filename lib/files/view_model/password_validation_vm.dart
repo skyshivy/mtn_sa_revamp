@@ -43,6 +43,7 @@ class PasswordValidationVm {
       };
     }
     print("Password validation Data ==== $params");
+
     var parts = [];
     params.forEach((key, value) {
       parts.add('${Uri.encodeQueryComponent(key)}='

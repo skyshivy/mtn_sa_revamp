@@ -22,7 +22,7 @@ class DeleteScreen extends StatelessWidget {
             onTap: () {
 //encrypted<msisdn=9255265120&ccid=admin&userName=ccare&password=ccare&channel=ccportal>
               String enc = Decryptor().aesEnc(
-                  "msisdn=9975654677&ccid=admin&userName=ccare&password=ccare&channel=ccportal");
+                  "msisdn=9975654677&ccid=admin&userName=ccare&password=imiuser@mw1&channel=ccportal");
               print("enc = \n $enc ");
 
               print("dec = \n ${Decryptor().decryptWithAES(enc)}");
