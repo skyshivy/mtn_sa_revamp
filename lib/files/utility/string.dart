@@ -63,7 +63,7 @@ const whenYouWantToPlayItStr = "When You Want To Play It?";
 const startTimeStr = "Start Time";
 const endTimeStr = "End Time";
 const repeatStr = "Repeat";
-
+const pleaseEnterFriendNumberStr = "Please enter friend number.";
 const addNuberStr = "Add Number";
 const enterNuberStr = "Enter Number";
 
@@ -93,6 +93,7 @@ const someThingWentWrongStr = "Some thing went wrong";
 const enterValidMsisdnStr = "Please enter a valid msisdn.";
 const enterValidOtpStr = "Please enter a valid OTP.";
 
+const bothMsisdnCanBeSameStr = "Number cannot be same as the logged in number";
 const enterMobileNumberStr = "Enter Mobile Number";
 const countryCodeStr = "+95";
 const myAccountStr = "My Account";

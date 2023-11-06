@@ -180,6 +180,7 @@ class _TellAFriendViewState extends State<TellAFriendView> {
   Widget friendNumber() {
     return Obx(() {
       return CustomMsisdnTextField(
+        hintText: pleaseEnterFriendNumberStr,
         enabled: !cont.isVerifing.value,
         height: 40,
         text: cont.bPartyMsisdn.value,
@@ -187,7 +188,7 @@ class _TellAFriendViewState extends State<TellAFriendView> {
           cont.updateMsisdn(p0);
         },
         onSubmit: (p0) {
-          cont.confirmButtonAction();
+          cont.confirmButtonAction(widget.info ?? TuneInfo());
         },
       );
     });
@@ -247,7 +248,7 @@ class _TellAFriendViewState extends State<TellAFriendView> {
               textColor: white,
               fontName: FontName.bold,
               onTap: () {
-                cont.confirmButtonAction();
+                cont.confirmButtonAction(widget.info ?? TuneInfo());
               },
             );
     });

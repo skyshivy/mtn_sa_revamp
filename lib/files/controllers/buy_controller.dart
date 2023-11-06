@@ -162,7 +162,7 @@ class BuyController extends GetxController {
 
   Future<TonePriceModel> getTunePrice() async {
     Map<String, dynamic>? map =
-        await GetTunePrice().api(msisdn.value, info?.toneId ?? '');
+        await GetTunePrice().api(msisdn.value, info?.toneId ?? '', '3');
     if (map != null) {
       try {
         TonePriceModel model = TonePriceModel.fromJson(map);

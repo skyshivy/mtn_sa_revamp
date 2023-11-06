@@ -38,7 +38,7 @@ String getSecurityTokenUrl = "${baseUrl}security-token";
 String editProfileUrl = "${baseUrlSecurity}edit-profile";
 String passwordValidationUrl = "${baseUrl}password-validation";
 String passwordValidationAutoLoginUrl =
-    "${baseUrl}password-validation-3pp"; //"${baseUrl}password-validation-3pp";
+    "${baseUrl}password-validation"; //"${baseUrl}password-validation-3pp";
 String categoryListUrl =
     "${baseUrl}categories?language=${StoreManager().language}";
 String myWishListUrl = "${baseUrl}wishlist";
