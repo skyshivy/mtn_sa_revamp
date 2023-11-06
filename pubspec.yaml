@@ -125,12 +125,20 @@ flutter:
     - family: mediumItalic
       fonts:
         - asset: assets/fonts/ATOM_SANS_MEDIUM_ITALIC.OTF
-    # - family: regular
-    #   fonts:
-    #     - asset: assets/fonts/MTNBrighterSans-Regular.ttf
-    # - family: regularItalic
-    #   fonts:
-    #     - asset: assets/fonts/MTNBrighterSans-RegularItalic.ttf  
+
+
+    - family: bLight
+      fonts:
+        - asset: assets/fonts/ATOM-Light.ttf
+    - family: bPm
+      fonts:
+        - asset: assets/fonts/ATOM-PM.otf
+    - family: bRegular
+      fonts:
+        - asset: assets/fonts/ATOM-Regular.ttf
+    - family: bThin
+      fonts:
+        - asset: assets/fonts/ATOM-Thin.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

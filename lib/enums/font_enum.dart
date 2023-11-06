@@ -9,6 +9,10 @@ enum FontName {
   lightItalic,
   medium,
   mediumItalic,
+  bLight,
+  bPm,
+  bRegular,
+  bThin
 }
 
 enum TimeType {
