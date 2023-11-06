@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
+import 'package:mtn_sa_revamp/files/custom_files/tell_a_friend.dart';
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -27,7 +28,7 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
   List<MenuModel> menuItem = [
     MenuModel(wishlistStr, imageName: wishlistSvg),
     MenuModel(tellFriendStr, imageName: tellFriendSvg),
-    MenuModel(shareStr, imageName: shareSvg),
+    //MenuModel(shareStr, imageName: shareSvg),
   ];
   final GlobalKey _key = GlobalKey();
   @override
@@ -63,6 +64,12 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
           recoController.wishlistTapped(widget.info);
         } else if (p0.title == tellFriendStr) {
           recoController.tellAFriendTapped();
+
+          Get.dialog(Center(
+            child: TellAFriendView(
+              info: widget.info,
+            ),
+          ));
         } else if (p0.title == shareStr) {
           recoController.shareTapped();
         } else {

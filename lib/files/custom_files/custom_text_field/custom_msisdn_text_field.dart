@@ -17,6 +17,7 @@ class CustomMsisdnTextField extends StatelessWidget {
   final double height;
   final Color borderColor;
   final Color bgColor;
+  final double? fontSiz;
   final Widget? rightWidget;
   final Color countryCodeColor;
   final double cornerRadius;
@@ -35,6 +36,7 @@ class CustomMsisdnTextField extends StatelessWidget {
     this.countryCodeColor = greyDark,
     this.bgColor = transparent,
     this.rightWidget,
+    this.fontSiz = 18,
     this.addCountryCode = true,
     this.hintText = enterMobileNumberStr,
     this.onChanged,
@@ -74,7 +76,7 @@ class CustomMsisdnTextField extends StatelessWidget {
               title: countryCodeStr,
               fontName: FontName.medium,
               textColor: countryCodeColor,
-              fontSize: fontSize(14, 18),
+              fontSize: fontSiz ?? fontSize(12, 16),
             )
           : const SizedBox(width: 10),
     );
@@ -106,7 +108,7 @@ class CustomMsisdnTextField extends StatelessWidget {
 
           style: TextStyle(
               fontFamily: FontName.medium.name,
-              fontSize: si.isMobile ? 14 : 18),
+              fontSize: fontSiz ?? (si.isMobile ? 12 : 16)),
           decoration: inputDecoration(si),
           keyboardType: TextInputType.phone,
 
@@ -129,7 +131,8 @@ class CustomMsisdnTextField extends StatelessWidget {
       hintText: hintText,
       isDense: true,
       hintStyle: TextStyle(
-          fontFamily: FontName.medium.name, fontSize: si.isMobile ? 14 : 18),
+          fontFamily: FontName.medium.name,
+          fontSize: fontSiz ?? (si.isMobile ? 12 : 16)),
       border: InputBorder.none,
     );
   }
