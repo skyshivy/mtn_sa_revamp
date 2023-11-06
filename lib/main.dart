@@ -25,7 +25,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
   AppController controller = Get.put(AppController());
-  StoreManager().initStoreManager();
+  initStoreManager();
   LoginController logCont = Get.put(LoginController());
   await getJson();
 
@@ -42,14 +42,22 @@ void main() async {
   runApp(MyApp());
 }
 
+initStoreManager() async {
+  await StoreManager().initStoreManager();
+}
+
 Future<String> getJson() async {
-  final String value = await rootBundle.loadString('properties.json');
-  final data = await json.decode(value);
-  baseUrl = data['BASE_URL'];
-  faqUrl = data["FAQ_URL"];
-  baseUrlSecurity = data['BASE_URL_SECURITY'];
-  parseUrl();
-  return value;
+  try {
+    final String value = await rootBundle.loadString('properties.json');
+    final data = await json.decode(value);
+    baseUrl = data['BASE_URL'];
+    faqUrl = data["FAQ_URL"];
+    baseUrlSecurity = data['BASE_URL_SECURITY'];
+    parseUrl();
+    return value;
+  } catch (e) {
+    return '';
+  }
 }
 
 class MyApp extends StatelessWidget {
