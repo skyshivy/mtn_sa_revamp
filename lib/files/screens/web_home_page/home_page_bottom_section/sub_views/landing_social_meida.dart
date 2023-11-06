@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_web_launcher.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class LandingSocialMedia extends StatelessWidget {
   const LandingSocialMedia({super.key});
@@ -17,10 +19,18 @@ class LandingSocialMedia extends StatelessWidget {
         titleWidget(),
         Row(
           children: [
-            mediaButton(facebookImg, () => null),
-            mediaButton(instagramImg, () => null),
-            mediaButton(twitterImg, () => null),
-            mediaButton(linkedInImg, () => null),
+            mediaButton(facebookImg, () {
+              customWebLauncher(facebook_url);
+            }),
+            mediaButton(instagramImg, () {
+              customWebLauncher(instagram_url);
+            }),
+            mediaButton(twitterImg, () {
+              customWebLauncher(twitter_url);
+            }),
+            mediaButton(linkedInImg, () {
+              customWebLauncher(linkedin_url);
+            }),
           ],
         ),
       ],

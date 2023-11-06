@@ -2,7 +2,12 @@
     "BASE_URL":"https://funtone.ooredoo.com.mm/apigw/Middleware/api/adapter/v1/crbt/",
     "BASE_URL_SECURITY":"https://funtone.ooredoo.com.mm/security/Middleware/api/adapter/v1/crbt/",
     "FAQ_URL":"https://callertunez.mtn.co.za/callertunez/assets/FAQ.json",
-    "OOREDOO_Url":"https://ringtune.mtn.co.za/callertunez/assets/FAQ.json"
+    "OOREDOO_Url":"https://ringtune.mtn.co.za/callertunez/assets/FAQ.json",
+
+    "FACEBOOK_URL":"https://m.facebook.com/ATOMOfficialPage/",
+    "INSTAGRAM_URL":"https://www.instagram.com/atom_officialpage/",
+    "TWITTER_URL":"https://twitter.com/atommyanmar?lang=en",
+    "LINKEDIN_URL":"https://www.linkedin.com/company/atom-myanmar?trk=feed-detail_main-feed-card_feed-actor-name"
 }
 
 

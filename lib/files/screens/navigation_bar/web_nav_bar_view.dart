@@ -68,15 +68,15 @@ class WebNavBarView extends StatelessWidget {
           },
         ),
         leftSpacing(),
-        CustomButton(
-          title: "Remove this",
-          textColor: white,
-          fontName: FontName.bold,
-          onTap: () {
-            context.goNamed(deleteGoRoute);
-            print("remove this");
-          },
-        )
+        // CustomButton(
+        //   title: "Remove this",
+        //   textColor: white,
+        //   fontName: FontName.bold,
+        //   onTap: () {
+        //     context.goNamed(deleteGoRoute);
+        //     print("remove this");
+        //   },
+        // )
       ],
     );
   }

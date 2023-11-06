@@ -1,6 +1,7 @@
 import 'dart:math';
 
-import 'package:mtn_sa_revamp/files/custom_files/encryption.dart';
+import 'package:mtn_sa_revamp/files/cryptor/cryptor.dart';
+
 import 'package:mtn_sa_revamp/files/model/new_user_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';

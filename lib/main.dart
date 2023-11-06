@@ -53,6 +53,12 @@ Future<String> getJson() async {
     baseUrl = data['BASE_URL'];
     faqUrl = data["FAQ_URL"];
     baseUrlSecurity = data['BASE_URL_SECURITY'];
+
+    facebook_url = data['FACEBOOK_URL'];
+    instagram_url = data['INSTAGRAM_URL'];
+    twitter_url = data['TWITTER_URL'];
+    linkedin_url = data['LINKEDIN_URL'];
+
     parseUrl();
     return value;
   } catch (e) {

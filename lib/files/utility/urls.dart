@@ -9,6 +9,11 @@ String ccid = '';
 String userName = '';
 String password = 'Oem@L#@1';
 
+String facebook_url = '';
+String instagram_url = '';
+String twitter_url = '';
+String linkedin_url = '';
+
 int perPageCount = 20;
 String baseUrl = "";
 String baseUrlSecurity = '';
