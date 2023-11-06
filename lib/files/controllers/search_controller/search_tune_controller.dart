@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/main.dart';
 
 import '../../store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class SearchTuneController extends GetxController {
   RxString searchedText = ''.obs;
@@ -51,7 +52,7 @@ class SearchTuneController extends GetxController {
       toneList.value += model.responseMap?.toneList ?? [];
       songList.value += model.responseMap?.songList ?? [];
       artistList.value += model.responseMap?.countList?.artistDetailList ?? [];
-      print(
+      printCustom(
           "Tune list length is ${toneList.length} Tune list length ${songList.length}");
     }
     ;
@@ -67,7 +68,7 @@ class SearchTuneController extends GetxController {
   }
 
   _getSearchResultByTuneId(String tuneId) async {
-    print("Tune is searched $tuneId");
+    printCustom("Tune is searched $tuneId");
     String s = tuneId.trim();
     if (s != null) {
       s = s.replaceAll(' ', '+');
@@ -75,7 +76,7 @@ class SearchTuneController extends GetxController {
     // isLoading = true;
     // notifyListeners();
     // var result = await SearchVM.searchTunesById(tuneId);
-    // print("search result by tune id is ${result}");
+    // customPrint("search result by tune id is ${result}");
     // recomList = await Convertmodel().toneInfoModelToRecomended(
     //     result.responseMap?.searchList ?? result.responseMap?.searchList);
 
@@ -86,6 +87,6 @@ class SearchTuneController extends GetxController {
 
   loadMoreData() async {
     getSearchedResult(searchedText.value, toneList.length, isloadMore: true);
-    print("load more data search");
+    printCustom("load more data search");
   }
 }

@@ -16,6 +16,7 @@ import 'package:mtn_sa_revamp/files/screens/tune_preview_screen/widgtes/tune_pre
 import 'package:mtn_sa_revamp/files/screens/tune_preview_screen/widgtes/tune_preview_wishlist_view.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class TunePreviewScreen extends StatefulWidget {
   final List<TuneInfo> tuneList;
@@ -165,7 +166,7 @@ class _TunePreviewScreenState extends State<TunePreviewScreen> {
                 inactiveColor: atomCryan,
                 onChanged: (value) {
                   playCont.seekTo(Duration(seconds: value.toInt()));
-                  print("value changed ${value.seconds}");
+                  printCustom("value changed ${value.seconds}");
                 }));
       }),
     );

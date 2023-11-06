@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/model/faq_model.dart';
@@ -33,7 +34,7 @@ class _FAQScreenState extends State<FAQScreen> {
 
   @override
   void dispose() {
-    print("Disposed ===========");
+    printCustom("Disposed ===========");
     Get.delete<FaqController>();
     super.dispose();
   }

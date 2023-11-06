@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
@@ -49,7 +49,7 @@ class ProfileController extends GetxController {
         selectedCatList.value = (profileDetails?.categories ?? "").split(',');
       }
 
-      print("Selected selectedCatList  ${selectedCatList.length}");
+      printCustom("Selected selectedCatList  ${selectedCatList.length}");
     }
   }
 
@@ -63,7 +63,7 @@ class ProfileController extends GetxController {
     }
 
     selectedCatList.value = selectedCatList.toSet().toList();
-    print("selected id = ${selectedCatList.join(',')}");
+    printCustom("selected id = ${selectedCatList.join(',')}");
   }
 
   editButtonAction() {
@@ -78,13 +78,13 @@ class ProfileController extends GetxController {
   }
 
   saveEdit() async {
-    print("Save api call ======== ${selectedCatList} ");
+    printCustom("Save api call ======== ${selectedCatList} ");
     if (selectedCatList.isEmpty) {
       editEnable.value = true;
       showSnackBar(message: selectAtleastOneCatStr);
       return;
     }
-    print(
+    printCustom(
         "Save api call  user name ${profileDetails?.userName}  new ${userName.value}");
     isSaving.value = true;
     if (profileDetails?.userName != userName.value) {

@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/home_cell_title_sub_title.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class TuneSettingTimeView extends StatelessWidget {
   TuneSettingTimeView({super.key});
@@ -68,12 +69,12 @@ class TuneSettingTimeView extends StatelessWidget {
   }
 
   fromTapped(BuildContext context) {
-    print("From time tapped");
+    printCustom("From time tapped");
     con.openCalenderView(context);
   }
 
   toTapped(BuildContext context) {
-    print("to time tapped");
+    printCustom("to time tapped");
     con.openCalenderView(context);
   }
 }

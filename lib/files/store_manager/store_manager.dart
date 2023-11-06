@@ -5,13 +5,14 @@ import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class StoreManager {
   static final StoreManager _instance = StoreManager._internal();
 
   StoreManager._internal() {
     initStoreManager();
-    print("initiali stro manager");
+    printCustom("initiali stro manager");
   }
   factory StoreManager() {
     return _instance;

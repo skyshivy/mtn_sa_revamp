@@ -9,6 +9,7 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_vi
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/style.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class TuneSettingTimeDateView extends StatelessWidget {
   TuneSettingTimeDateView({super.key});
@@ -72,12 +73,12 @@ class TuneSettingTimeDateView extends StatelessWidget {
   }
 
   Future<void> fromDateTapped(BuildContext context) async {
-    print("From Date tapped");
+    printCustom("From Date tapped");
     con.openCalenderView(context);
   }
 
   toDateTapped(BuildContext context) async {
-    print("To Date tapped");
+    printCustom("To Date tapped");
     con.openCalenderView(context);
   }
 }

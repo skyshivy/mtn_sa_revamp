@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class TuneSettingAllCallerVM {
   Future<Map<String, dynamic>?> setAllCallerFullDay(
@@ -15,11 +16,11 @@ class TuneSettingAllCallerVM {
     String url = '';
     Map<String, dynamic> params;
     if (days.isEmpty) {
-      print("add to suffle api need to call $addToneToSuffleUrl");
+      printCustom("add to suffle api need to call $addToneToSuffleUrl");
       url = addToneToSuffleUrl;
       params = _addToneSuffleParams(randomNumber, toneIdList);
     } else {
-      print("Tradition api need to call $timeBaseTuneSetUrl");
+      printCustom("Tradition api need to call $timeBaseTuneSetUrl");
       url = timeBaseTuneSetUrl;
       params = _fullDayTuneSetParams(randomNumber, toneId, days);
     }

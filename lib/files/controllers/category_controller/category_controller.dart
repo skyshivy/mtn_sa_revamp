@@ -3,6 +3,7 @@ import 'package:mtn_sa_revamp/files/model/category_detail_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class CategoryController extends GetxController {
   String key = '';
@@ -50,7 +51,7 @@ class CategoryController extends GetxController {
     if (searchList.length < perPageCount) {
       isHideLoadMore.value = true;
     }
-    print("Rsult is ============ $result");
+    printCustom("Rsult is ============ $result");
   }
 
   loadMoreData() async {

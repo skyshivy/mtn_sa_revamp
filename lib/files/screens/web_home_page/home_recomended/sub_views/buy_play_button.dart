@@ -12,6 +12,7 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class BuyAndPlayButton extends StatelessWidget {
   PlayerController playerController = Get.find();
@@ -80,7 +81,7 @@ class BuyAndPlayButton extends StatelessWidget {
       builder: (context, si) {
         return CustomButton(
           onTap: () {
-            print("Buy button");
+            printCustom("Buy button");
             BuyTuneScreen().show(context, info);
           },
           color: blue,

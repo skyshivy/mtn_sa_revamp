@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:basic_utils/basic_utils.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:pointycastle/export.dart';
 
 class Cryptom {
@@ -19,8 +20,9 @@ class Cryptom {
     Uint8List output =
         cipher.process(Uint8List.fromList(utf8.encode(plaintext)));
     var base64EncodedText = base64Encode(output);
-    print('\nencrypted password is below=VVVVVVV==> \n${base64EncodedText}\n');
-    print('\nencrypted password is above=^^^^^^^^==> \n');
+    printCustom(
+        '\nencrypted password is below=VVVVVVV==> \n$base64EncodedText\n');
+    printCustom('\nencrypted password is above=^^^^^^^^==> \n');
     return base64EncodedText;
   }
 

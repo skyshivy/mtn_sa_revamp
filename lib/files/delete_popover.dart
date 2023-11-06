@@ -7,7 +7,7 @@
 // showPopover1(BuildContext context) {
 //   showPopover(
 //       context: context,
-//       onPop: () => print('Popover was popped!'),
+//       onPop: () => customPrint('Popover was popped!'),
 //       direction: PopoverDirection.bottom,
 //       width: 200,
 //       height: 400,
@@ -68,7 +68,7 @@
 //                     (item) => GestureDetector(
 //                       behavior: HitTestBehavior.translucent,
 //                       onTap: () {
-//                         print("onTap");
+//                         customPrint("onTap");
 //                         _controller.hideMenu();
 //                       },
 //                       child: Container(

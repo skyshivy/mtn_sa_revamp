@@ -15,6 +15,7 @@ import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_logo_bu
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/my_tune_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/web_nav_my_account.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class WebNavBarView extends StatelessWidget {
   AppController appController = Get.find();
@@ -48,13 +49,13 @@ class WebNavBarView extends StatelessWidget {
         leftSpacing(width: 30),
         HomeMyTuneButton(
           onTap: (category) {
-            print("Tapped === ${category.categoryName}");
+            printCustom("Tapped === ${category.categoryName}");
 
             Map<String, dynamic> map = {
               "categoryName": category.categoryName ?? '',
               "categoryId": category.categoryId ?? ''
             };
-            print("Map is ========$map");
+            printCustom("Map is ========$map");
             context.goNamed(tuneGoRoute, queryParameters: map);
             //_onTap(2);
           },
@@ -74,7 +75,7 @@ class WebNavBarView extends StatelessWidget {
         //   fontName: FontName.bold,
         //   onTap: () {
         //     context.goNamed(deleteGoRoute);
-        //     print("remove this");
+        //     customPrint("remove this");
         //   },
         // )
       ],
@@ -101,7 +102,7 @@ class WebNavBarView extends StatelessWidget {
   }
 
   void _onTap(index) {
-    print("Index is =========$index");
+    printCustom("Index is =========$index");
     navigationShell.goBranch(
       index,
       initialLocation: index == navigationShell.currentIndex,

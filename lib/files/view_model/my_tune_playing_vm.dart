@@ -4,6 +4,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
@@ -22,11 +23,12 @@ class MyTunePlayingVM {
           (playing.responseMap?.listToneApk?.isNotEmpty ?? true)) {
         if ((playing.responseMap?.listToneApk!.length)! > 1) {
           for (ListToneApk ind in playing.responseMap?.listToneApk ?? []) {
-            print("AllCaller=== ${ind.serviceName}");
+            printCustom("AllCaller=== ${ind.serviceName}");
             if (ind.serviceName == "AllCaller") {
-              print("Suffle is enabled");
+              printCustom("Suffle is enabled");
 
-              print("Is suffle status 3 ${ind.toneDetails?[0].isShuffle}");
+              printCustom(
+                  "Is suffle status 3 ${ind.toneDetails?[0].isShuffle}");
               switchEnabled =
                   (ind.toneDetails?[0].isShuffle) == "T" ? true : false;
             }
@@ -34,21 +36,21 @@ class MyTunePlayingVM {
         }
         tempPlayingList = playing.responseMap!.listToneApk ?? [];
         tempPlayingList.removeAt(0);
-        print("Total get in list ${tempPlayingList.length}");
-        print("Test 1");
+        printCustom("Total get in list ${tempPlayingList.length}");
+        printCustom("Test 1");
         List<ListToneApk> list =
             await createPlayingList(tempPlayingList, playingList);
-        print("Test 11");
+        printCustom("Test 11");
         PlayingTuneModel model = PlayingTuneModel(
             isSuffle: switchEnabled,
             responseMap: ResponseMap(listToneApk: list));
-        print("Total get in list sorted new ${list.length}");
+        printCustom("Total get in list sorted new ${list.length}");
         return model;
       }
       PlayingTuneModel model = PlayingTuneModel(
           isSuffle: switchEnabled,
           responseMap: ResponseMap(listToneApk: <ListToneApk>[]));
-      print(
+      printCustom(
           "Total get in list sorted ${model.responseMap?.listToneApk?.length}");
       return model;
     } else {
@@ -59,23 +61,23 @@ class MyTunePlayingVM {
   Future<List<ListToneApk>> createPlayingList(
       List<ListToneApk> tempPlayingList, List<ListToneApk> playingList) async {
     playingList.clear();
-    print("Test 2");
+    printCustom("Test 2");
     for (ListToneApk info in tempPlayingList) {
-      print("createPlayingList ++++++++++");
+      printCustom("createPlayingList ++++++++++");
       ToneDetail? tD = info.toneDetails?.first;
       bool isFullDay = true;
       await createPlayingList1(isFullDay, info, tD, playingList);
     }
-    print("Test 3  items are ${playingList.length}");
+    printCustom("Test 3  items are ${playingList.length}");
     await Future.delayed(const Duration(milliseconds: 300));
-    print("Test 4");
+    printCustom("Test 4");
     return playingList;
   }
 
   Future<Map<String, dynamic>?> suffleTune(bool activate) async {
     Random random = Random();
     var randomNumber = random.nextInt(1000000000);
-    print(" randomNumber data is = 123");
+    printCustom(" randomNumber data is = 123");
     Map<String, dynamic> params = {
       'clientTxnId': '$randomNumber',
       'aPartyMsisdn': StoreManager().msisdn,
@@ -116,7 +118,7 @@ Future<void> _fulldayCheck(bool isFullDay, ListToneApk info, ToneDetail? tD,
           info, TimeType.fullDay, "", info.sTime!, info.eTime!,
           isFullday: true));
     }
-    print("_fulldayCheck");
+    printCustom("_fulldayCheck");
   }
 }
 
@@ -132,7 +134,7 @@ Future<void> _weeklyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
       playingList.add(await newDetail(
           info, TimeType.weekDay, "2", info.sTime!, info.eTime!));
     }
-    print("_weeklyCheck");
+    printCustom("_weeklyCheck");
   }
 }
 
@@ -148,7 +150,7 @@ Future<void> _noneCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
       playingList.add(
           await newDetail(info, TimeType.none, "7", info.sTime!, info.eTime!));
     }
-    print("_noneCheck");
+    printCustom("_noneCheck");
   }
 }
 
@@ -165,7 +167,7 @@ Future<void> _monthlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
       playingList.add(await newDetail(
           info, TimeType.monthly, "3", info.sTime!, info.eTime!));
     }
-    print("_monthlyCheck");
+    printCustom("_monthlyCheck");
   }
 }
 
@@ -182,7 +184,7 @@ Future<void> _yearlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
           info, TimeType.yearly, "4", info.sTime!, info.eTime!));
     }
 
-    print("_yearlyCheck");
+    printCustom("_yearlyCheck");
   }
 }
 

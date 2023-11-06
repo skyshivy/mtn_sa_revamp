@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 Widget myTuneListHeaderView() {
   return SizedBox(child: ResponsiveBuilder(
@@ -62,7 +63,7 @@ Widget _rightWidget() {
 Widget _titleWidget(String title, {bool isBold = false}) {
   return CustomButton(
     onTap: () {
-      print("tapped =============$title");
+      printCustom("tapped =============$title");
     },
     fontSize: 16,
     title: title,

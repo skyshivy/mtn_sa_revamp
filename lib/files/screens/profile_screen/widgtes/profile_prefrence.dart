@@ -14,6 +14,7 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/gredient.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 Widget profilePreferenceWidget(
     SizingInformation si, ProfileController controller) {
@@ -43,9 +44,9 @@ Widget gridView(SizingInformation si) {
             onTap: () {
               if (controller.editEnable.value) {
                 controller.updateSelection(index);
-                print("Tapped========");
+                printCustom("Tapped========");
               }
-              print(
+              printCustom(
                   "Tapped circle ${controller.catList[index].isSelected!.value}");
             },
             child: _preferenceGridCell(controller, index));
@@ -85,12 +86,13 @@ Widget custText(AppCategory item, int index, ProfileController controller) {
       child: InkWell(
         hoverColor: transparent,
         onTap: () {
-          print("Title is = $item");
+          printCustom("Title is = $item");
           if (controller.editEnable.value) {
             controller.updateSelection(index);
-            print("Tapped========");
+            printCustom("Tapped========");
           }
-          print("Tapped circle ${controller.catList[index].isSelected!.value}");
+          printCustom(
+              "Tapped circle ${controller.catList[index].isSelected!.value}");
         },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),

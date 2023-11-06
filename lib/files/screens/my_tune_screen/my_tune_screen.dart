@@ -11,6 +11,7 @@ import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widge
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class MyTuneScreen extends StatefulWidget {
   @override
@@ -23,7 +24,7 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
   late MyTuneController controller;
   @override
   void initState() {
-    print("initState");
+    printCustom("initState");
     controller = Get.put(MyTuneController());
     controller.getPlayingTuneList();
     super.initState();
@@ -31,7 +32,7 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
 
   @override
   void dispose() {
-    print("Disposed");
+    printCustom("Disposed");
     Get.delete<MyTuneController>();
     super.dispose();
   }

@@ -5,9 +5,10 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 Widget playingTuneRepeatDays(ListToneApk item) {
-  print("Repeat day s== ${item.toneDetails?.first.weeklyDays}");
+  printCustom("Repeat day s== ${item.toneDetails?.first.weeklyDays}");
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +52,7 @@ Widget _dayButton(String title, ListToneApk item, int index) {
   var str = item.toneDetails?.first.weeklyDays ?? "";
   var arr = str.split(",");
   bool isSelected = arr.contains("$index");
-  print("Is selected is ${isSelected}");
+  printCustom("Is selected is ${isSelected}");
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 2),
     child: CustomButton(

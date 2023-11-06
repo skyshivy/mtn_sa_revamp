@@ -11,6 +11,7 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class HomeMoreButton extends StatefulWidget {
   final TuneInfo? info;
@@ -38,7 +39,8 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
       color: Colors.white38,
       leftWidget: const Icon(Icons.more_horiz, color: white),
       onTap: () {
-        print("StoreManager().isLoggedIn ====== ${StoreManager().isLoggedIn}");
+        printCustom(
+            "StoreManager().isLoggedIn ====== ${StoreManager().isLoggedIn}");
         if (StoreManager().isLoggedIn) {
           showPopupMenu();
         } else {
@@ -64,9 +66,9 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
         } else if (p0.title == shareStr) {
           recoController.shareTapped();
         } else {
-          print("Default tapped");
+          printCustom("Default tapped");
         }
-        print("Item name is ${p0.title}");
+        printCustom("Item name is ${p0.title}");
       },
     );
   }

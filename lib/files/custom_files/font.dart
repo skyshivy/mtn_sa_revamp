@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 FontName fontName(FontName phone, FontName desktop) {
   double widgt = Get.width;
@@ -14,7 +15,7 @@ bool isPhone(BuildContext context) {
 
 bool isMobile() {
   double widgt = Get.width;
-  print("Widhth ====== ${widgt}");
+  printCustom("Widhth ====== ${widgt}");
   return (widgt > StoreManager().mobileWidth);
   // !(MediaQuery.of(context).size.width > StoreManager().mobileWidth);
 }

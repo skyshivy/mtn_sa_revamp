@@ -17,7 +17,7 @@ Widget tuneSettingConfirmButton() {
     title: confirmStr,
     onTap: () {
       tuneController.setTune();
-      //print("Confirm button tapped");
+      //customPrint("Confirm button tapped");
     },
   );
 }

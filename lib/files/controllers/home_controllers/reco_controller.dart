@@ -7,6 +7,7 @@ import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/add_to_wishist_vm.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class RecoController extends GetxController {
   RxList<String> tabTitle = <String>[].obs;
@@ -36,7 +37,7 @@ class RecoController extends GetxController {
         tuneList.add([]);
         isLoadedList.add(false);
       }
-      print(
+      printCustom(
           "Tune empty list ${tuneList.length} and item inside is ${tuneList[0]?.length}");
       getTabItems(tabValue[0], 0);
     }
@@ -50,7 +51,7 @@ class RecoController extends GetxController {
   getTabItems(String identifier, int index) async {
     if (isLoadedList[index]) {
       displayList?.value = tuneList[index]!;
-      print("Tune na e is ${displayList?[0].toneName}");
+      printCustom("Tune na e is ${displayList?[0].toneName}");
       return;
     }
     Random random = Random();
@@ -76,14 +77,14 @@ class RecoController extends GetxController {
 
   wishlistTapped(TuneInfo? info) {
     AddToWishlistVm().add(info);
-    print("Wishlist tapped in tune cell");
+    printCustom("Wishlist tapped in tune cell");
   }
 
   tellAFriendTapped() {
-    print("Tell a friend tapped in tune cell");
+    printCustom("Tell a friend tapped in tune cell");
   }
 
   shareTapped() {
-    print("Share tapped in tune cell");
+    printCustom("Share tapped in tune cell");
   }
 }

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class WishlistController extends GetxController {
   RxBool isLoading = false.obs;
@@ -22,10 +23,10 @@ class WishlistController extends GetxController {
     });
 
     var formData = parts.join('&');
-    print("\nformed data is \n$formData\n");
+    printCustom("\nformed data is \n$formData\n");
     Map<String, dynamic>? map =
         await ServiceCall().post(myWishListUrl, formData);
     isLoading.value = false;
-    print(" ==== wishlist $map");
+    printCustom(" ==== wishlist $map");
   }
 }

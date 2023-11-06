@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class PlayerController extends GetxController {
   RxBool isPlaying = false.obs;
@@ -16,23 +17,23 @@ class PlayerController extends GetxController {
   RxString currentSeekingStr = '00:00'.obs;
 
   playUrl(String url, int index) async {
-    print(
+    printCustom(
         "1 was $playingIndex and is $index  _isPaused $_isPaused  isPlaying$isPlaying");
 
     if (playingIndex.value == index) {
       playingIndex.value = index;
-      print(
+      printCustom(
           "2 was $playingIndex and is $index  _isPaused $_isPaused  isPlaying$isPlaying");
       if (_isPaused) {
         await resume();
       } else {
         await pause();
       }
-      print("Is playing status $isPlaying");
+      printCustom("Is playing status $isPlaying");
       return;
     } else {
       playingIndex.value = index;
-      print(
+      printCustom(
           "3 was $playingIndex and is $index  _isPaused $_isPaused  isPlaying $isPlaying");
       isBuffering.value = true;
       await MtnAudioPlayer.instance.playUrl(url, (player) {
@@ -58,7 +59,7 @@ class PlayerController extends GetxController {
 
   Future<void> pause() async {
     _isPaused = true;
-    print("paused tapped");
+    printCustom("paused tapped");
     isPlaying.value = false;
     await MtnAudioPlayer.instance.pause();
   }
@@ -86,30 +87,30 @@ class PlayerController extends GetxController {
         switch (state.processingState) {
           case ProcessingState.idle:
             if (stopStatePring) {
-              print("idle  =SKY==  ProcessingState.idle   ");
+              printCustom("idle  =SKY==  ProcessingState.idle   ");
             }
 
             break;
           case ProcessingState.loading:
             if (stopStatePring) {
-              print("loading  =SKY==  ProcessingState.loading   ");
+              printCustom("loading  =SKY==  ProcessingState.loading   ");
             }
             break;
           case ProcessingState.buffering:
             if (stopStatePring) {
-              print("buffering  =SKY==  ProcessingState.buffering   ");
+              printCustom("buffering  =SKY==  ProcessingState.buffering   ");
             }
             isBuffering.value = true;
             break;
           case ProcessingState.ready:
             if (stopStatePring) {
-              print("ready  =SKY==  ProcessingState.ready   ");
+              printCustom("ready  =SKY==  ProcessingState.ready   ");
             }
 
             break;
           case ProcessingState.completed:
             if (stopStatePring) {
-              print("completed  =SKY==  ProcessingState.completed   ");
+              printCustom("completed  =SKY==  ProcessingState.completed   ");
             }
             playingIndex.value = -1;
             isPlaying.value = false;
@@ -120,7 +121,7 @@ class PlayerController extends GetxController {
       } else {
         isPlaying.value = false;
         _isPaused = true;
-        print("Player is not playing");
+        printCustom("Player is not playing");
       }
     });
     player.positionStream.listen((position) {
@@ -141,10 +142,10 @@ class PlayerController extends GetxController {
     player.playbackEventStream.listen((event) {},
         onError: (Object e, StackTrace st) {
       if (e is PlayerException) {
-        print('SKY Error code: ${e.code}');
-        print('SKY Error message: ${e.message}');
+        printCustom('SKY Error code: ${e.code}');
+        printCustom('SKY Error message: ${e.message}');
       } else {
-        print('SKY An error occurred: $e');
+        printCustom('SKY An error occurred: $e');
       }
     });
   }

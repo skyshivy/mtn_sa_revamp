@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class ArtistController extends GetxController {
   RxBool isLaoding = false.obs;
@@ -34,7 +35,7 @@ class ArtistController extends GetxController {
       }
       searchList.value += list;
     }
-    print('Artist songs list ==== ${res}');
+    printCustom('Artist songs list ==== ${res}');
 
     isLaoding.value = false;
     this.isLoadMore.value = false;
@@ -42,6 +43,6 @@ class ArtistController extends GetxController {
 
   loadMoreData() {
     getArtistSongs(searchedArtist, page: searchList.length, isLoadMore: true);
-    print("Load more data tapped");
+    printCustom("Load more data tapped");
   }
 }

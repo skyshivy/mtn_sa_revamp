@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -9,16 +10,16 @@ class AppController extends GetxController {
   RxInt index = 0.obs;
   String tunePrice = '';
   settinApiCall() async {
-    print("Setting api calling");
+    printCustom("Setting api calling");
     var abc = await ServiceCall().getSetting(settingUrl);
     getTunePrice();
-    print("=======================}");
+    printCustom("=======================}");
   }
 
   getTunePrice() {
     AppSettingModel setting = StoreManager().appSetting;
     var items = setting.responseMap!.settings!.others!.tonePrice;
-    print("Tune price is =======================${items}");
+    printCustom("Tune price is =======================${items}");
   }
 
   updateIndex(int index) {
@@ -29,19 +30,19 @@ class AppController extends GetxController {
 getTunePrice() async {
     this.setting = setting;
     var items = setting.responseMap!.settings!.others!.entries;
-    print("items is ${items}");
+    customPrint("items is ${items}");
 
     var recomTab = await items.map((e) {
       if (e.key == ("TONE_PRICE")) {
         tunePrice = e.value.attribute ?? "No";
 
-        print("Tab item is ======1 ${tunePrice}");
+        customPrint("Tab item is ======1 ${tunePrice}");
       }
       ;
-      print("Tab item is ======3 ${tunePrice}");
+      customPrint("Tab item is ======3 ${tunePrice}");
       return tunePrice;
     });
-    print("Tune prince is=== ${tunePrice}========== ${recomTab}");
+    customPrint("Tune prince is=== ${tunePrice}========== ${recomTab}");
     return tunePrice;
   }
   */

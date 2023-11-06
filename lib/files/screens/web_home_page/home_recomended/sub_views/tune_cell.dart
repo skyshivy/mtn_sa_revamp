@@ -12,6 +12,7 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/gredient.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class HomeTuneCell extends StatelessWidget {
   final int index;
@@ -85,7 +86,7 @@ class HomeTuneCell extends StatelessWidget {
             fontName: FontName.medium,
             textColor: white,
             onTap: () {
-              print("likeButton tapped");
+              printCustom("likeButton tapped");
             },
           );
   }

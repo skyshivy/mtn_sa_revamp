@@ -13,7 +13,7 @@ import 'package:mtn_sa_revamp/files/model/drawer_model.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
-
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget mobileDrawerCell(BuildContext context, DrawerModel info) {
@@ -21,11 +21,11 @@ Widget mobileDrawerCell(BuildContext context, DrawerModel info) {
   return InkWell(
     splashColor: transparent,
     onTap: () {
-      print("Tapped ==========");
+      printCustom("Tapped ==========");
       if (info.isExpandable!.value) {
         info.isSelected!.value = !info.isSelected!.value;
       } else {
-        print("123 Tapped ==========");
+        printCustom("123 Tapped ==========");
         _tappedOnCell(context, info.title);
       }
     },
@@ -123,18 +123,18 @@ _tappedOnSubCell(BuildContext context, AppCategory cat) async {
     "categoryName": cat.categoryName ?? '',
     "categoryId": cat.categoryId ?? ''
   };
-  print("Map is ========$map");
+  printCustom("Map is ========$map");
   context.goNamed(tuneGoRoute, queryParameters: map);
 
   // Get.toNamed(tuneCatTapped, parameters: {
   //   'categoryName': cat.categoryName ?? '',
   //   'categoryId': cat.categoryId ?? ''
   // });
-  print("object ==== ${cat.categoryId}");
+  printCustom("object ==== ${cat.categoryId}");
 }
 
 _tappedOnCell(BuildContext context, String title) async {
-  print("=========_tappedOnCell==============");
+  printCustom("=========_tappedOnCell==============");
   Navigator.pop(context);
   await Future.delayed(const Duration(milliseconds: 100));
   if (title == profileStr) {
@@ -147,15 +147,15 @@ _tappedOnCell(BuildContext context, String title) async {
     context.goNamed(wishlistGoRoute);
     //Get.toNamed(wishlistTapped);
   } else if (title == faqStr) {
-    print("FAQ tapped");
+    printCustom("FAQ tapped");
     context.goNamed(faqGoRoute);
     //Get.toNamed(faqTapped);
   } else if (title == logoutStr) {
-    print("Logout btapped");
+    printCustom("Logout btapped");
     StoreManager().logout();
   } else if (title == signinStr) {
     Get.dialog(LoginScreen(), barrierDismissible: false);
   } else {
-    print("=========Default tapped==============");
+    printCustom("=========Default tapped==============");
   }
 }

@@ -27,6 +27,7 @@ import 'package:mtn_sa_revamp/files/view_model/get_security_token_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/new_user_otp_check_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/password_validation_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/set_tune_vm.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class BuyController extends GetxController {
   AppController appController = Get.find();
@@ -80,7 +81,7 @@ class BuyController extends GetxController {
   msisdnValidation(TuneInfo? inf) async {
     // if (StoreManager().isLoggedIn) {
     //   isVerifying.value = true;
-    //   print("User is already loggedin plese direct buy");
+    //   customPrint("User is already loggedin plese direct buy");
     //   await getTunePriceAndBuyTune();
 
     //   return;
@@ -102,9 +103,9 @@ class BuyController extends GetxController {
         isVerifying.value = false;
         //Get.dialog(BuyOtpView());
 
-        print("Existing user******");
+        printCustom("Existing user******");
       } else if (model.responseMap?.respCode == '100') {
-        print("New User*******");
+        printCustom("New User*******");
         isNewUser = true;
         await getSecurityTokenForNew(msisdn.value);
         //getTunePrice();
@@ -112,10 +113,10 @@ class BuyController extends GetxController {
         //Get.dialog(BuyOtpView());
       } else if (model.responseMap?.respCode == '101') {
         errorMessage.value = model.responseMap?.respDesc ?? '';
-        print("Invalid number*******");
+        printCustom("Invalid number*******");
       } else {
         errorMessage.value = model.responseMap?.respDesc ?? '';
-        print("Invalid number*******");
+        printCustom("Invalid number*******");
       }
     } else {
       errorMessage.value = pleaseEnterValidMsisdnStr;
@@ -152,7 +153,7 @@ class BuyController extends GetxController {
         errorMessage.value = someThingWentWrongStr;
         isVerifying.value = false;
       }
-      print("NewRegistrartionVm status $isRegistered");
+      printCustom("NewRegistrartionVm status $isRegistered");
       return;
     }
     isVerifying.value = false;
@@ -165,10 +166,10 @@ class BuyController extends GetxController {
     if (map != null) {
       try {
         TonePriceModel model = TonePriceModel.fromJson(map);
-        print("status code is ============== ${model.statusCode}");
+        printCustom("status code is ============== ${model.statusCode}");
         return model;
       } catch (e) {
-        print("error is ========${e}");
+        printCustom("error is ========${e}");
         TonePriceModel model = TonePriceModel(message: someThingWentWrongStr);
         return model;
       }
@@ -192,7 +193,7 @@ class BuyController extends GetxController {
     isVerifyingOtp.value = true;
     Map<String, dynamic>? map = await NewUserOtpCheckVm()
         .check(otp.value, msisdn.value, StoreManager().securityToken);
-    print("newUserOtpCheck ========== ${map}");
+    printCustom("newUserOtpCheck ========== ${map}");
     if (map != null) {
       NewUserCheckOtpModel model = NewUserCheckOtpModel.fromJson(map);
       if (model.statusCode == 'SCOOOO') {
@@ -215,7 +216,7 @@ class BuyController extends GetxController {
       } else {
         ConfirmOtpExistingModel res =
             await ConfirmOtpVM().confirm(msisdn.value, otp.value);
-        print("res = ${res.statusCode}");
+        printCustom("res = ${res.statusCode}");
         if (res.statusCode == "SC0000") {
           await getSecurityTokenForOldUser();
         } else {
@@ -251,7 +252,7 @@ class BuyController extends GetxController {
     if (map != null) {
       PasswordValidationModel model = PasswordValidationModel.fromJson(map);
       await saveCredentialHere(map);
-      print("save credential here ===================================");
+      printCustom("save credential here ===================================");
 
       if (model.statusCode == 'SC0000') {
         getTunePriceAndBuyTune(this.info);
@@ -266,7 +267,7 @@ class BuyController extends GetxController {
     this.info = info;
     isVerifying.value = true;
     TonePriceModel model = await getTunePrice();
-    print("New status code is ${model.statusCode}====");
+    printCustom("New status code is ${model.statusCode}====");
     if (model.statusCode == 'SC0000') {
       await setTune(model);
     } else {
@@ -280,7 +281,7 @@ class BuyController extends GetxController {
     BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(),
         model.responseMap?.responseDetails?.first.packName ?? '');
     if (res.statusCode == 'SC0000') {
-      print("Success buy tune api");
+      printCustom("Success buy tune api");
       isVerifyingOtp.value = false;
       isVerifying.value = false;
       isBuySuccess.value = true;

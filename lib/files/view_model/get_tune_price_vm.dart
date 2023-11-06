@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class GetTunePrice {
   Future<Map<String, dynamic>?> api(String msisdn, String toneId) async {
@@ -26,11 +27,11 @@ class GetTunePrice {
           '${Uri.encodeQueryComponent(value.toString())}');
     });
     var formData = parts.join('&');
-    print("\nformed data is \n$formData\n");
+    printCustom("\nformed data is \n$formData\n");
 
     Map<String, dynamic>? request =
         await ServiceCall().post(getTonePriceUrl, formData);
-    print("request is $request");
+    printCustom("request is $request");
     return request;
   }
 }

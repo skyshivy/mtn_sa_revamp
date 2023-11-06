@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
@@ -28,7 +29,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     super.initState();
 
     getCatList();
-    print("on init state");
+    printCustom("on init state");
   }
 
   getCatList() async {
@@ -41,7 +42,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   void dispose() {
-    print("Disposed _CategoryScreenState");
+    printCustom("Disposed _CategoryScreenState");
     Get.delete<CategoryController>();
     super.dispose();
   }

@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 Widget tunePreviewWishlistView(
     TunePreviewController pCont, PlayerController playCont) {
@@ -17,7 +18,7 @@ Widget tunePreviewWishlistView(
     child: InkWell(
       onTap: () {
         pCont.stopPlayer();
-        print("tunePreviewWishlistView tapped");
+        printCustom("tunePreviewWishlistView tapped");
       },
       child: Center(
           child: Column(

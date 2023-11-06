@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/cryptor/cryptor.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class PasswordValidationVm {
   Future<Map<String, dynamic>?> validatePassword(
@@ -15,14 +16,15 @@ class PasswordValidationVm {
     Random random = Random();
     int randomNumber = random.nextInt(1000000000);
     if (kDebugMode) {
-      print("password is here $appendPassword");
+      printCustom("password is here $appendPassword");
     }
     String encryptedPassword = Cryptom().text(appendPassword);
-    print("encryptedPassword ==========================\n$encryptedPassword\n");
+    printCustom(
+        "encryptedPassword ==========================\n$encryptedPassword\n");
     Map<String, String> params = {};
     if (isAutoLogin) {
-      print("Password is \n$pass\n");
-      print("securityCounter is \n$securityCounter\n");
+      printCustom("Password is \n$pass\n");
+      printCustom("securityCounter is \n$securityCounter\n");
 
       params = {
         'msisdn': msisdn,
@@ -43,7 +45,7 @@ class PasswordValidationVm {
         "securityCounter": securityCounter
       };
     }
-    print("Password validation Data ==== $params");
+    printCustom("Password validation Data ==== $params");
 
     var parts = [];
     params.forEach((key, value) {

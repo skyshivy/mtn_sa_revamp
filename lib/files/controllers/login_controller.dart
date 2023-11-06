@@ -12,7 +12,7 @@ import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
-
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,11 +30,11 @@ class LoginController extends GetxController {
       errorMessage.value = enterValidMsisdnStr;
       return;
     }
-    print("varifying Msisdn");
+    printCustom("varifying Msisdn");
     isVerifying.value = true;
     await _validationMsisdn();
     isVerifying.value = false;
-    print("varified Msisdn");
+    printCustom("varified Msisdn");
   }
 
   editMsisdn() {
@@ -73,16 +73,16 @@ class LoginController extends GetxController {
         SubscriberValidationModel.fromJson(valueMap);
     if (model.responseMap?.respCode == 'SC0000') {
       await _generateOtp();
-      print("Existing user******");
+      printCustom("Existing user******");
     } else if (model.responseMap?.respCode == '100') {
       isMsisdnVarified.value = true;
-      print("New user*****");
+      printCustom("New user*****");
     } else if (model.responseMap?.respCode == '101') {
       errorMessage.value = model.responseMap?.respDesc ?? '';
-      print("Invalid number*******");
+      printCustom("Invalid number*******");
     } else {
       errorMessage.value = model.responseMap?.respDesc ?? '';
-      print("Invalid number*******");
+      printCustom("Invalid number*******");
     }
     return "";
   }
@@ -98,15 +98,15 @@ class LoginController extends GetxController {
       isMsisdnVarified.value = false;
     }
 
-    print("Generate otp api call here");
+    printCustom("Generate otp api call here");
   }
 
   Future<bool> _confirmOtpApi() async {
-    print("Resu =Sky========");
+    printCustom("Resu =Sky========");
     isVerifying.value = true;
     ConfirmOtpModel? model =
         await LoginVm().confirmOtp(msisdn.value, otp.value);
-    print(
+    printCustom(
         "Resu =Sky====model?.statusCode ${model?.statusCode}==model?.message ${model?.message}=");
     isVerifying.value = false;
     if (model?.statusCode == "SC0000") {
@@ -145,14 +145,14 @@ class LoginController extends GetxController {
       PasswordValidationModel mode = PasswordValidationModel.fromJson(resut);
       if (mode.statusCode != 'SC0000') {
         Get.dialog(CustomAlertView(title: mode.message ?? ''));
-        print("Password validation fialed");
+        printCustom("Password validation fialed");
         return false;
       }
     }
 
     if (resut != null) {
       await saveCredentialHere(resut);
-      print("save credential here ===================================");
+      printCustom("save credential here ===================================");
       return true;
     } else {
       errorMessage.value = someThingWentWrongStr;
@@ -180,7 +180,7 @@ class LoginController extends GetxController {
   //   prefs.setString('refreshToken', respMap['refreshToken']);
   //   prefs.setBool('isLoggedIn', true);
   //   StoreManager().isLoggedIn = true;
-  //   print("\nGoing to Store Credentials \n");
+  //   customPrint("\nGoing to Store Credentials \n");
   //   await StoreManager().initStoreManager();
   // }
   Future<void> autoLogin(String msisdn1) async {
@@ -192,16 +192,16 @@ class LoginController extends GetxController {
     if (model.responseMap?.respCode == 'SC0000') {
       //await _generateOtp();
       await _autoLoginPassowrdValidation();
-      print("Existing user******");
+      printCustom("Existing user******");
     } else if (model.responseMap?.respCode == '100') {
       isMsisdnVarified.value = true;
-      print("New user*****");
+      printCustom("New user*****");
     } else if (model.responseMap?.respCode == '101') {
       errorMessage.value = model.responseMap?.respDesc ?? '';
-      print("Invalid number*******");
+      printCustom("Invalid number*******");
     } else {
       errorMessage.value = model.responseMap?.respDesc ?? '';
-      print("Invalid number*******");
+      printCustom("Invalid number*******");
     }
   }
 

@@ -4,6 +4,7 @@ import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/my_tune_playing_vm.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class MyTuneController extends GetxController {
   RxBool isLoadingPlaying = false.obs;
@@ -22,7 +23,7 @@ class MyTuneController extends GetxController {
         await MyTunePlayingVM().getPlayingTuneListApiCall();
 
     if (playingTune != null) {
-      print("Is suffle status 1 ${playingTune.isSuffle!}");
+      printCustom("Is suffle status 1 ${playingTune.isSuffle!}");
       isSuffle.value = playingTune.isSuffle!;
       switchEnabled.value = playingTune.isSuffle!;
       playingList.value = playingTune.responseMap?.listToneApk ?? [];
@@ -37,11 +38,11 @@ class MyTuneController extends GetxController {
     if (re != null) {
       MyTuneListModel model = MyTuneListModel.fromJson(re);
       tuneList.value = model.responseMap?.listToneApk ?? [];
-      print(
+      printCustom(
           "============== res ============ ${model.responseMap?.listToneApk}");
     }
 
-    print("getTuneList  ${tuneList.length}");
+    printCustom("getTuneList  ${tuneList.length}");
     isLoadingTune.value = false;
   }
 

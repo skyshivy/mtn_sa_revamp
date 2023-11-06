@@ -20,6 +20,7 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_vi
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class LandingRecoView extends StatefulWidget {
   const LandingRecoView({super.key});
@@ -63,9 +64,9 @@ class _LandingRecoViewState extends State<LandingRecoView> {
               //Get.toNamed(seeMoreTapped);
               List<TuneInfo>? list = controller.displayList?.value;
 
-              print("List is $list");
+              printCustom("List is $list");
               context.goNamed(moreGoRoute, extra: list);
-              print("See more tapped");
+              printCustom("See more tapped");
             },
             title: seeMoreStr,
             fontName: FontName.bold,
@@ -108,7 +109,7 @@ class _LandingRecoViewState extends State<LandingRecoView> {
         index: index,
         onTap: si.isMobile
             ? () {
-                print("homeCell tapped");
+                printCustom("homeCell tapped");
                 pushToTunePreView(context, controller.displayList, index);
               }
             : null,

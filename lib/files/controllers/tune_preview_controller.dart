@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class TunePreviewController extends GetxController {
   PlayerController playerController = Get.find();
@@ -37,7 +38,7 @@ class TunePreviewController extends GetxController {
     isPlaying.value = !isPlaying.value;
     playerController.playUrl(
         list[index.value].toneIdStreamingUrl ?? '', index.value);
-    print("tapped ======= ${isPlaying.value}");
+    printCustom("tapped ======= ${isPlaying.value}");
   }
 
   prevousTapped() {
@@ -67,6 +68,6 @@ class TunePreviewController extends GetxController {
       hideNext.value = true;
     }
     playTapped();
-    print("nextTapped list.length = ${list.length} =========$index");
+    printCustom("nextTapped list.length = ${list.length} =========$index");
   }
 }

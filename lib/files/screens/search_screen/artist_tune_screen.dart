@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_control
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class ArtistTuneScreen extends StatefulWidget {
   final String artistName;
@@ -30,7 +31,7 @@ class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
   void dispose() {
     Get.delete<ArtistController>();
     // TODO: implement dispose
-    print("Delete controller ArtistController");
+    printCustom("Delete controller ArtistController");
     super.dispose();
   }
 

@@ -19,7 +19,7 @@ class BannerController extends GetxController {
       return;
     }
     bannerList.value = [];
-    //print("+++++++++++++++banner detai;l is ${abc}");
+    //customPrint("+++++++++++++++banner detai;l is ${abc}");
   }
 
   updateSelectedIndex(int index) {

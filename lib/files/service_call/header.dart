@@ -2,16 +2,17 @@ import 'dart:io';
 
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class CustomHeader {
   settingHeader(String url, HttpClientRequest request) async {
     if (url.contains("security") || StoreManager().isLoggedIn) {
-      print("Security url================");
+      printCustom("Security url================");
 // if (Constant.addMsisdn) {
 //       Constants.addMsisdn = false;
 //       request.headers.set('msisdn', msisdn!, preserveHeaderCase: true);
 //     }
-      print("Access Token================${StoreManager().accessToken}");
+      printCustom("Access Token================${StoreManager().accessToken}");
       request.headers.set('accessToken', StoreManager().accessToken,
           preserveHeaderCase: true);
       request.headers.set('channelId', channelId, preserveHeaderCase: true);

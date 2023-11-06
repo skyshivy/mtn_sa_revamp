@@ -13,6 +13,7 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class BuyOtpView extends StatelessWidget {
   BuyController buyController = Get.find();
@@ -58,7 +59,7 @@ class BuyOtpView extends StatelessWidget {
               child: CustomButton(
                 leftWidget: const Icon(Icons.close),
                 onTap: () {
-                  print("CLose button tapped");
+                  printCustom("CLose button tapped");
 
                   Navigator.of(context).pop();
                 },
@@ -117,7 +118,7 @@ class BuyOtpView extends StatelessWidget {
   }
 
   void onChange(String value) {
-    print("Otp length ==== ${value.length}");
+    printCustom("Otp length ==== ${value.length}");
     buyController.updateOtp(value);
 
     buyController.otp.value = value;
@@ -127,7 +128,7 @@ class BuyOtpView extends StatelessWidget {
     buyController.verifyingNewUserOtpCheck();
     buyController.otp.value = value;
 
-    print("On submitted   ==========$value");
+    printCustom("On submitted   ==========$value");
   }
 
   Color textFieldBorderColorChange() {

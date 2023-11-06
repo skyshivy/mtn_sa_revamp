@@ -9,6 +9,7 @@ import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 Widget myTuneplayingHeaderView() {
   return ResponsiveBuilder(
@@ -63,7 +64,7 @@ Widget _toggleButton() {
               onChanged: (value) {
                 controller.suffleTune();
                 //controller.isSuffle.value = !controller.isSuffle.value;
-                print("On change swith");
+                printCustom("On change swith");
               },
             );
     },

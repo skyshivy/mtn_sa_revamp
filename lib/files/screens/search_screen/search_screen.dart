@@ -19,6 +19,8 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_vi
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
@@ -96,7 +98,7 @@ class _SearchScreenState extends State<SearchScreen> {
         // Get.toNamed(artistTuneRoute, parameters: {
         //   "artist": controller.artistList[index].matchedParam ?? ''
         // });
-        print(
+        printCustom(
             "Tapped artist is ${controller.artistList[index].matchedParam ?? ''}");
       },
       child: Container(

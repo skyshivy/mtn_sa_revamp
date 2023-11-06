@@ -16,6 +16,8 @@ import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import '../../custom_files/custom_print.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -165,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
       controller.msisdn.value = value;
     }
 
-    print("On change ======$value");
+    printCustom("On change ======$value");
   }
 
   void onSubmit(String value) async {
@@ -176,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
       controller.varifyMsisdnButtonAction();
       controller.msisdn.value = value;
     }
-    print("On submitted   ==========$value");
+    printCustom("On submitted   ==========$value");
   }
 
   Widget termsAndConditionAgreement() {
@@ -191,10 +193,10 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextSpan(
                   onEnter: (event) {
-                    print("You just hovered on text");
+                    printCustom("You just hovered on text");
                   },
                   onExit: (event) {
-                    print("You just exit from hovered");
+                    printCustom("You just exit from hovered");
                   },
                   text: termsAndPolicyStr,
                   style: TextStyle(
@@ -234,7 +236,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: CustomButton(
                 leftWidget: const Icon(Icons.close),
                 onTap: () {
-                  print("CLose button tapped");
+                  printCustom("CLose button tapped");
                   Get.back();
                   Navigator.of(context).pop();
                 },
@@ -285,7 +287,7 @@ class _LoginScreenState extends State<LoginScreen> {
           width: si.isMobile ? 30 : 40,
           onTap: () {
             controller.resetValue();
-            print("Tapped back");
+            printCustom("Tapped back");
           },
           leftWidget: Icon(
             Icons.arrow_back,

@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
-
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
@@ -48,7 +48,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
       onTap: () {
         showPositionedPopup(_key, widget.items,
             isLeft: false, onTap: navigateTo);
-        print("On My Account tapped sss");
+        printCustom("On My Account tapped sss");
       },
     );
   }
@@ -65,7 +65,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
       titlePadding: const EdgeInsets.only(right: 14),
       onTap: () {
         Get.dialog(Center(child: CustomAlertView(title: "check here")));
-        print("On My Account tapped");
+        printCustom("On My Account tapped");
       },
     );
   }
@@ -78,18 +78,18 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
   }
 
   void navigateTo(MenuModel item) {
-    print("Items tapped is ====== $item");
+    printCustom("Items tapped is ====== $item");
     if (item.title == profileStr) {
       context.goNamed(profileGoRoute);
       //Get.toNamed(profileTapped);
-      print("profileTapped tapped");
+      printCustom("profileTapped tapped");
     } else if (item.title == wishlistStr) {
       //Get.toNamed(wishlistTapped);
       context.goNamed(wishlistGoRoute);
-      print("wishlistTapped tapped");
+      printCustom("wishlistTapped tapped");
     } else if (item.title == myTuneStr) {
       context.goNamed(myTuneGoRoute);
-      print("myTuneTapped tapped");
+      printCustom("myTuneTapped tapped");
     } else if (item.title == logoutStr) {
       StoreManager().logout();
     }

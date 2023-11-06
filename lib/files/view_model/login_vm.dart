@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
@@ -27,7 +28,7 @@ class LoginVm {
           '${Uri.encodeQueryComponent(value)}');
     });
     var formData = parts.join('&');
-    print("\nformed data is \n$formData\n");
+    printCustom("\nformed data is \n$formData\n");
 
     HttpClientResponse response =
         await ServiceCall().postMsisdnValidation(url, msisdn, formData);
@@ -45,11 +46,11 @@ class LoginVm {
       'msisdn': msisdn
     };
     final stringData = await ServiceCall().genOtp(url, msisdn);
-    print(stringData);
+    printCustom(stringData);
 
     Map<String, dynamic> valueMap = json.decode(stringData);
     GenerateOtpModel model = GenerateOtpModel.fromJson(valueMap);
-    print('===========${valueMap}');
+    printCustom('===========${valueMap}');
     return model;
   }
 
@@ -66,15 +67,15 @@ class LoginVm {
           '${Uri.encodeQueryComponent(value)}');
     });
     var formData = parts.join('&');
-    print("\nformed data is \n$formData\n");
+    printCustom("\nformed data is \n$formData\n");
 
     String url = confirmOtpUrl;
     Map<String, dynamic>? stringData = await ServiceCall().post(url, formData);
     //final stringData = await resp.transform(utf8.decoder).join();
-    print("Result is ======= $stringData");
+    printCustom("Result is ======= $stringData");
     if (stringData != null) {
       ConfirmOtpModel model = ConfirmOtpModel.fromJson(stringData);
-      print("Result is ======= $stringData");
+      printCustom("Result is ======= $stringData");
       return model;
     } else {
       return null;

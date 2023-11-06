@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 Widget loadMoreDataButton({
   bool enableLeftButton = false,
@@ -32,7 +33,7 @@ SingleChildRenderObjectWidget rightButton(
           child: IconButton(
             onPressed: () {
               rightAction!();
-              print("arrow_forward_ios tapped");
+              printCustom("arrow_forward_ios tapped");
             },
             icon: const Icon(Icons.arrow_forward_ios),
           ),
@@ -47,7 +48,7 @@ SingleChildRenderObjectWidget leftButton(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: IconButton(
             onPressed: () {
-              print("arrow_back_ios tapped");
+              printCustom("arrow_back_ios tapped");
               leftAction!();
               //leftAction != null?()
             },

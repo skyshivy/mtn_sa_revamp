@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class NewUserOtpCheckVm {
   Future<Map<String, dynamic>?> check(
@@ -29,7 +30,7 @@ class NewUserOtpCheckVm {
     var formData = parts.join('&');
     Map<String, dynamic>? map = await ServiceCall().post(url, formData);
 
-    print(map);
+    printCustom(map);
     return map;
   }
 }

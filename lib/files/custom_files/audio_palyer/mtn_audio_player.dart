@@ -1,10 +1,11 @@
 import 'package:just_audio/just_audio.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class MtnAudioPlayer {
   static final MtnAudioPlayer instance = MtnAudioPlayer._internal();
   late AudioPlayer _player;
   MtnAudioPlayer._internal() {
-    print("initialize MtnAudioPlayer");
+    printCustom("initialize MtnAudioPlayer");
     _player = AudioPlayer();
   }
   factory MtnAudioPlayer() {
@@ -13,21 +14,21 @@ class MtnAudioPlayer {
 
   Future<void> playUrl(
       String url, Function(AudioPlayer player) action, Function() error) async {
-    print("playing url is $url");
+    printCustom("playing url is $url");
     action(_player);
     await stop();
     try {
       await _player.setUrl(url);
     } on PlayerException catch (e) {
       error();
-      print("SKY Error code: ${e.code}");
-      print("SKY Error message: ${e.message}");
+      printCustom("SKY Error code: ${e.code}");
+      printCustom("SKY Error message: ${e.message}");
     } on PlayerInterruptedException catch (e) {
       error();
-      print("SKY Connection aborted: ${e.message}");
+      printCustom("SKY Connection aborted: ${e.message}");
     } catch (e) {
       error();
-      print('SKY An error occured: $e');
+      printCustom('SKY An error occured: $e');
     }
   }
 

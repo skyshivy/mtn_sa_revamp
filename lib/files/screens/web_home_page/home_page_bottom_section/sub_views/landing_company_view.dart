@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_web_launcher.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -44,7 +45,7 @@ class LandingCompanyView extends StatelessWidget {
   }
 
   void contactusTapped() {
-    print("Contact us tapped");
+    printCustom("Contact us tapped");
     Others? others = StoreManager().appSetting.responseMap?.settings?.others;
     String url = '';
     if (StoreManager().isEnglish) {
@@ -56,7 +57,7 @@ class LandingCompanyView extends StatelessWidget {
   }
 
   void helpTapped() {
-    print("helpTapped tapped");
+    printCustom("helpTapped tapped");
     Others? others = StoreManager().appSetting.responseMap?.settings?.others;
     String url = '';
     if (StoreManager().isEnglish) {
@@ -68,7 +69,7 @@ class LandingCompanyView extends StatelessWidget {
   }
 
   void privacyTapped() {
-    print("privacyTapped tapped");
+    printCustom("privacyTapped tapped");
     Others? others = StoreManager().appSetting.responseMap?.settings?.others;
     String url = '';
     if (StoreManager().isEnglish) {
@@ -87,8 +88,8 @@ class LandingCompanyView extends StatelessWidget {
     } else {
       url = others?.tndBurmese?.attribute ?? '';
     }
-    print("Url is ===== $url");
+    printCustom("Url is ===== $url");
     customWebLauncher(url);
-    print("termsTapped tapped");
+    printCustom("termsTapped tapped");
   }
 }

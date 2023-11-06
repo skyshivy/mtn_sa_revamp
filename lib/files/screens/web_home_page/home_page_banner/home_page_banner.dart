@@ -10,6 +10,7 @@ import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/banner_indicator.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class LandingPageBanner extends StatefulWidget {
   const LandingPageBanner({
@@ -48,7 +49,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
       padding: const EdgeInsets.only(bottom: 15),
       child: BannerIndicator(tapIndex: (index) {
         carouselController.jumpToPage(index);
-        print("Tapped index is $index");
+        printCustom("Tapped index is $index");
       }),
     );
   }
@@ -86,8 +87,8 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
         child: InkWell(
           hoverColor: transparent,
           onTap: () {
-            print("Banner path is ${banner.bannerPath}");
-            print("Banner path is ${banner.bannerOrder}");
+            printCustom("Banner path is ${banner.bannerPath}");
+            printCustom("Banner path is ${banner.bannerOrder}");
             String searchKey = banner.searchKey ?? '';
             String type = banner.type ?? '';
             String bannerOrder = banner.bannerOrder ?? '';

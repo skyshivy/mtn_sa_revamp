@@ -6,7 +6,7 @@ import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
-
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
@@ -32,7 +32,7 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
     return InkWell(
       key: _key,
       onTap: () {
-        print("tuneSettingTimeTypeButton tapped");
+        printCustom("tuneSettingTimeTypeButton tapped");
 
         Get.dialog(showPositionedPopup(_key, menuList, onTap: action));
       },
@@ -95,7 +95,7 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
 
   void action(MenuModel model) {
     con.isTime.value = false;
-    print("Model is name ${model.title}");
+    printCustom("Model is name ${model.title}");
     if (model.title == fullDay24HourStr) {
       con.timeTypeBtm.value = fullDay24HourStr;
       con.updateTimeType(SelectTimeType.fullday);

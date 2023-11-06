@@ -10,6 +10,7 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_io/io.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class ServiceCall {
   final client = HttpClient();
@@ -21,8 +22,8 @@ class ServiceCall {
           .timeout(Duration(seconds: StoreManager().timeOutDuration));
       HttpClientResponse response1 = await request.close();
       final stringData = await response1.transform(utf8.decoder).join();
-      print("Url is $url");
-      print("App Setting resp code is ${response1.statusCode}");
+      printCustom("Url is $url");
+      printCustom("App Setting resp code is ${response1.statusCode}");
       if (response1.statusCode == 200) {
         Map<String, dynamic> valueMap = json.decode(stringData);
         AppSettingModel setting = AppSettingModel.fromJson(valueMap);
@@ -30,8 +31,8 @@ class ServiceCall {
         StoreManager().appSetting = setting;
       }
     } catch (error) {
-      print("error for url $url");
-      print("error =   =  $error");
+      printCustom("error for url $url");
+      printCustom("error =   =  $error");
     }
   }
 
@@ -78,8 +79,8 @@ class ServiceCall {
     HttpClientResponse response = await request.close();
     String stringData = '';
     stringData = await response.transform(utf8.decoder).join();
-    print(stringData);
-    print("resp code is ${response.statusCode}");
+    printCustom(stringData);
+    printCustom("resp code is ${response.statusCode}");
     if (response.statusCode == 498) {
       await ServiceCall().regenarateTokenFromOtherClass();
 
@@ -110,8 +111,8 @@ class ServiceCall {
       HttpClientResponse response1 = await request.close();
 
       stringData = await response1.transform(utf8.decoder).join();
-      print(stringData);
-      print("resp code is ${response1.statusCode}");
+      printCustom(stringData);
+      printCustom("resp code is ${response1.statusCode}");
       if (response1.statusCode == 200) {
         Map<String, dynamic> valueMap = json.decode(stringData);
         return valueMap;
@@ -131,8 +132,8 @@ class ServiceCall {
         return null;
       }
     } catch (error) {
-      print("error for url #${url}");
-      print("error =   =  ${error}");
+      printCustom("error for url #${url}");
+      printCustom("error =   =  ${error}");
       return null;
     }
   }
@@ -153,7 +154,7 @@ class ServiceCall {
       StoreManager().logout();
       //html.window.location.reload();
     }
-    print("======Regene token ====== ${model.statusCode}");
+    printCustom("======Regene token ====== ${model.statusCode}");
     return;
   }
 
@@ -162,7 +163,7 @@ class ServiceCall {
     String accessToken = StoreManager().accessToken;
 
     String url = regenTokenUrl;
-    print("3url used currently is $url");
+    printCustom("3url used currently is $url");
 
     var parts = [];
     var body = {'refreshToken': refreshToken};
@@ -171,12 +172,12 @@ class ServiceCall {
           '${Uri.encodeQueryComponent(value)}');
     });
     var formData = parts.join('&');
-    print("\nformed data is \n$formData\n");
-    print("line 41");
+    printCustom("\nformed data is \n$formData\n");
+    printCustom("line 41");
 
     var request = await client.postUrl(Uri.parse(url));
 
-    print("line 45");
+    printCustom("line 45");
 
     request = await CustomHeader().settingHeader(url, request);
     request.write(formData);
@@ -191,13 +192,13 @@ class ServiceCall {
       HttpClientResponse response = await request.close();
 
       if (response.statusCode == 498 || response.statusCode == 500) {
-        print("Logut in case of regen");
+        printCustom("Logut in case of regen");
       }
       final stringData = await response.transform(utf8.decoder).join();
       Map<String, dynamic> valueMap = json.decode(stringData);
       return valueMap;
     } on Exception catch (error) {
-      print('catched ${error}');
+      printCustom('catched ${error}');
       return null;
     }
   }

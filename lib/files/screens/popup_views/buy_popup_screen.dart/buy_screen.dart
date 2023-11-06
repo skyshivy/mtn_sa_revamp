@@ -8,7 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_popup_widget.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_msisdn_text_field.dart';
-
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -167,7 +167,7 @@ class _BuyScreenState extends State<_BuyScreen> {
       await buyController.msisdnValidation(info);
     }
 
-    print("Confirm buy button tapped");
+    printCustom("Confirm buy button tapped");
   }
 
   Widget _msisdnErrorMessage() {

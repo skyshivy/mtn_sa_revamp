@@ -1,5 +1,6 @@
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 Future<void> saveCredentialHere(Map<String, dynamic> valueMap) async {
   var respMap = valueMap['responseMap'];
@@ -23,6 +24,6 @@ Future<void> saveCredentialHere(Map<String, dynamic> valueMap) async {
   StoreManager().isLoggedIn = true;
   await StoreManager().setLoggedIn(true);
 
-  print("\nGoing to Store Credentials \n");
+  printCustom("\nGoing to Store Credentials \n");
   await StoreManager().initStoreManager();
 }

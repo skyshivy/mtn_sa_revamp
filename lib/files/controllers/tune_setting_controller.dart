@@ -10,6 +10,7 @@ import 'package:mtn_sa_revamp/files/model/day_model.dart';
 import 'package:mtn_sa_revamp/files/utility/style.dart';
 import 'package:mtn_sa_revamp/files/view_model/tune_setting_all_caller_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/tune_setting_dedicated_vm.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class TuneSettingController extends GetxController {
   RxInt callerType = 0.obs;
@@ -67,12 +68,12 @@ class TuneSettingController extends GetxController {
       dialogSize: const Size(300, 350),
       borderRadius: BorderRadius.circular(15),
     );
-    print("Seelcted date is ${results?.length}");
+    printCustom("Seelcted date is ${results?.length}");
   }
 
   updateSelectedDay(String text) {
     selectedDays = text;
-    print("selected id = $selectedDays");
+    printCustom("selected id = $selectedDays");
   }
 
   fromTimeStr(String fromTime) {
@@ -103,13 +104,13 @@ class TuneSettingController extends GetxController {
 
   updateToWhom(ToWhomAction toWhomAction) {
     _toWhome = toWhomAction;
-    print("TO whom $_toWhome");
+    printCustom("TO whom $_toWhome");
   }
 
   updateTimeType(SelectTimeType type) {
     timeType = type;
     isTimeAndDate.value = (timeType == SelectTimeType.timeDate);
-    print("selected time type is $type");
+    printCustom("selected time type is $type");
   }
 
   // updateMsisdn(String msisdn) {
@@ -129,7 +130,7 @@ class TuneSettingController extends GetxController {
         _setTuneForSpecificCaller();
         break;
       // case ToWhomAction.callerGroup:
-      //   print("callerGroup is ");
+      //   customPrint("callerGroup is ");
       //   //_setTuneForCallergroup();
       //   break;
       default:
@@ -139,21 +140,21 @@ class TuneSettingController extends GetxController {
   _setTuneForAllCaller() async {
     if (isTimeAndDate.value) {
       if (RepeatYearlyViewAction.none == _repeatYearlyViewAction) {
-        print("_allCallerDateBaseNone");
+        printCustom("_allCallerDateBaseNone");
         _allCallerDateBaseNone();
       } else if (RepeatYearlyViewAction.monthly == _repeatYearlyViewAction) {
-        print("_allCallerDateBaseMonthly");
+        printCustom("_allCallerDateBaseMonthly");
         _allCallerDateBaseMonthly();
       } else if (RepeatYearlyViewAction.yearly == _repeatYearlyViewAction) {
-        print("_allCallerDateBaseYearly");
+        printCustom("_allCallerDateBaseYearly");
         _allCallerDateBaseYearly();
       }
     } else {
       if (SelectTimeType.fullday == timeType) {
-        print("_allCallerFullDay");
+        printCustom("_allCallerFullDay");
         await _allCallerFullDay();
       } else if (SelectTimeType.time == timeType) {
-        print("_allCallerTimeBase");
+        printCustom("_allCallerTimeBase");
         await _allCallerTimeBase();
       }
     }
@@ -162,21 +163,21 @@ class TuneSettingController extends GetxController {
   _setTuneForSpecificCaller() async {
     if (isTimeAndDate.value) {
       if (RepeatYearlyViewAction.none == _repeatYearlyViewAction) {
-        print("_dedicatedDateBaseNone");
+        printCustom("_dedicatedDateBaseNone");
         _dedicatedDateBaseNone();
       } else if (RepeatYearlyViewAction.monthly == _repeatYearlyViewAction) {
-        print("_dedicatedDateBaseMonthly");
+        printCustom("_dedicatedDateBaseMonthly");
         _dedicatedDateBaseMonthly();
       } else {
-        print("_dedicatedDateBaseYearly");
+        printCustom("_dedicatedDateBaseYearly");
         _dedicatedDateBaseYearly();
       }
     } else {
       if (SelectTimeType.fullday == timeType) {
-        print("_dedicatedFullDay");
+        printCustom("_dedicatedFullDay");
         _dedicatedFullDay();
       } else if (SelectTimeType.time == timeType) {
-        print("_dedicatedTimeBase");
+        printCustom("_dedicatedTimeBase");
         _dedicatedTimeBase();
       }
     }

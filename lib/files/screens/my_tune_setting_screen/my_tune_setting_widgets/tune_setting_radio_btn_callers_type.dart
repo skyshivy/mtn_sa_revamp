@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 Widget tuneSettingRadioButtonCallersType() {
   TuneSettingController cont = Get.find();
@@ -55,7 +56,7 @@ Widget _combinedWidget(int index, bool isSelected, String title) {
           //     ? ToWhomAction.specificCaller
           //     : ToWhomAction.callerGroup)
           );
-      print("tuneSettingRadioButtonCallersType tapped");
+      printCustom("tuneSettingRadioButtonCallersType tapped");
     },
     child: Row(
       children: [

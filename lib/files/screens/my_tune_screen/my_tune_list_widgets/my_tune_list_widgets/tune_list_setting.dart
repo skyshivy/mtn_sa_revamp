@@ -9,7 +9,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.da
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/my_tunel_list_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
-
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget tuneListSettingWidget(BuildContext context, ListToneApk1 info) {
@@ -40,7 +40,7 @@ Widget tuneListSettingWidget(BuildContext context, ListToneApk1 info) {
       };
 
       context.goNamed(myTuneSettingGoRoute, queryParameters: detail);
-      print("tuneListSettingWidget");
+      printCustom("tuneListSettingWidget");
     },
   );
 }

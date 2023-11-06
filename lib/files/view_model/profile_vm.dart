@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/files/model/edit_profile.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class ProfileVM {
   Future<Map<String, dynamic>?> getProfileDetail(String msisdn) async {
@@ -33,7 +34,7 @@ class ProfileVM {
     var msisdn = StoreManager().msisdn;
     Random random = Random();
     var randomNumber = random.nextInt(1000000000);
-    print(" randomNumber data is = 123");
+    printCustom(" randomNumber data is = 123");
 
     Map<String, dynamic> params = {
       'clientTxnId': '$randomNumber',
