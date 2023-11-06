@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
@@ -5,6 +6,9 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 class BannerIndicator extends StatelessWidget {
   BannerController controller = Get.find();
+  final Function(int) tapIndex;
+
+  BannerIndicator({super.key, required this.tapIndex});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,13 +31,19 @@ class BannerIndicator extends StatelessWidget {
   }
 
   Widget dotWidget(int index) {
-    return Padding(
-        padding: const EdgeInsets.all(3.0),
-        child: Container(
-          height: (controller.selectedIndex.value == index) ? 12 : 10,
-          width: (controller.selectedIndex.value == index) ? 12 : 10,
-          decoration: decoration(index),
-        ));
+    return InkWell(
+      onTap: () {
+        tapIndex(index);
+        print("Index taped is $index");
+      },
+      child: Padding(
+          padding: const EdgeInsets.all(3.0),
+          child: Container(
+            height: (controller.selectedIndex.value == index) ? 12 : 10,
+            width: (controller.selectedIndex.value == index) ? 12 : 10,
+            decoration: decoration(index),
+          )),
+    );
   }
 
   BoxDecoration decoration(int index) {

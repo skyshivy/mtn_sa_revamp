@@ -12,7 +12,9 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 
 class LandingPageBanner extends StatefulWidget {
-  const LandingPageBanner({super.key});
+  const LandingPageBanner({
+    super.key,
+  });
 
   @override
   State<LandingPageBanner> createState() => _LandingPageBannerState();
@@ -20,6 +22,7 @@ class LandingPageBanner extends StatefulWidget {
 
 class _LandingPageBannerState extends State<LandingPageBanner> {
   BannerController controller = Get.put(BannerController());
+  CarouselController carouselController = CarouselController();
   @override
   void initState() {
     super.initState();
@@ -43,7 +46,10 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
   Padding indicator() {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
-      child: BannerIndicator(),
+      child: BannerIndicator(tapIndex: (index) {
+        carouselController.jumpToPage(index);
+        print("Tapped index is $index");
+      }),
     );
   }
 
@@ -67,6 +73,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
       width: double.infinity, //currentSize.width,
       height: 200, //currentSize.height,
       child: CarouselSlider(
+        carouselController: carouselController,
         options: carousalOptionWidget(),
         items: itemsWidget(),
       ),

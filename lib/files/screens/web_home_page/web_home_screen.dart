@@ -51,7 +51,7 @@ class _WebLandingPageState extends State<WebLandingPage> {
                 //   },
                 // ),
                 homeSearchTopView(),
-                const LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
+                LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
                 const LandingRecoView(),
                 SizedBox(height: si.isMobile ? 10 : 80),
                 LandingInfoPage(),
