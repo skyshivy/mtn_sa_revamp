@@ -8,7 +8,7 @@ showSnackBar({String message = "List is empty"}) {
   Get.snackbar(
     "",
     "",
-    backgroundColor: blueLight,
+    backgroundColor: atomCryan,
     snackPosition: SnackPosition.BOTTOM,
     messageText: CustomText(
       alignment: TextAlign.center,

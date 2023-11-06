@@ -40,7 +40,7 @@ class BuyController extends GetxController {
   bool isNewUser = false;
   RxString otp = ''.obs;
   String securityCounter = '';
-  RxString msisdn = '9923964719'.obs;
+  RxString msisdn = ''.obs;
   late TuneInfo? info;
 
   customInit() {
@@ -49,7 +49,7 @@ class BuyController extends GetxController {
     isShowOtpView.value = false;
     isMsisdnVarified.value = false;
     otp.value = '';
-    msisdn.value = '9923964719';
+    msisdn.value = '';
     isBuySuccess.value = false;
     successMessage.value = '';
   }

@@ -44,7 +44,7 @@ class HomeSearchWidget extends StatelessWidget {
         children: [
           Flexible(
               child: HomeSearchTextField(
-            hintColor: blueLight,
+            hintColor: atomCryan,
             textColor: white,
             onChanged: (p0) {
               searchTuneController.searchedText.value = p0;

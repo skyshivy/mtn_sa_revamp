@@ -7,7 +7,7 @@ TextStyle calenderDateStyle() {
 }
 
 TextStyle calenderWeekDayStyle() {
-  return TextStyle(fontFamily: FontName.medium.name, color: blueLight);
+  return TextStyle(fontFamily: FontName.medium.name, color: atomCryan);
 }
 
 TextStyle calenderYearStyle() {

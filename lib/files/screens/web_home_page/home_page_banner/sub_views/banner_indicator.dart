@@ -38,7 +38,7 @@ class BannerIndicator extends StatelessWidget {
 
   BoxDecoration decoration(int index) {
     return BoxDecoration(
-      color: (controller.selectedIndex.value == index) ? blueLight : blue,
+      color: (controller.selectedIndex.value == index) ? atomCryan : blue,
       shape: BoxShape.circle,
       border: Border.all(color: white),
     );

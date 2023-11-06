@@ -72,7 +72,8 @@ class HomeTuneCell extends StatelessWidget {
   }
 
   Widget likeButton() {
-    return (info?.likeCount == null)
+    return SizedBox();
+    (info?.likeCount == null)
         ? const SizedBox()
         : CustomButton(
             height: 30,

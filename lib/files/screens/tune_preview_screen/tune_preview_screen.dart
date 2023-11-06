@@ -162,7 +162,7 @@ class _TunePreviewScreenState extends State<TunePreviewScreen> {
                 max: playCont.maxDuration.value.toDouble(),
                 value: playCont.current.value.toDouble(),
                 activeColor: blue,
-                inactiveColor: blueLight,
+                inactiveColor: atomCryan,
                 onChanged: (value) {
                   playCont.seekTo(Duration(seconds: value.toInt()));
                   print("value changed ${value.seconds}");

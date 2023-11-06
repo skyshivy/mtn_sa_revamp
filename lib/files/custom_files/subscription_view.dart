@@ -168,7 +168,7 @@ class SubscriptionView extends StatelessWidget {
           child: CustomButton(
             title: cancelStr,
             fontName: FontName.medium,
-            borderColor: blueLight,
+            borderColor: atomCryan,
             color: white,
           ),
         ),

@@ -43,7 +43,7 @@ class SeacrhHeaderTab extends StatelessWidget {
           onTap: onTap,
           child: Container(
             height: si.isMobile ? 40 : 50,
-            color: blueLight,
+            color: atomCryan,
             child: Center(
                 child: CustomText(
               textColor:

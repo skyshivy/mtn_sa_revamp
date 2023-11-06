@@ -9,7 +9,7 @@ Widget tuneSettingCancelButton() {
     titlePadding: const EdgeInsets.symmetric(horizontal: 20),
     fontName: FontName.medium,
     title: cancelStr,
-    borderColor: blueLight,
+    borderColor: atomCryan,
     onTap: () {
       print("Cancel button tapped");
     },
