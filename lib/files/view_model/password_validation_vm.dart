@@ -53,7 +53,8 @@ class PasswordValidationVm {
           '${Uri.encodeQueryComponent(value)}');
     });
     var formData = parts.join('&');
-    String url = passwordValidationUrl;
+    String url =
+        isAutoLogin ? passwordValidationAutoLoginUrl : passwordValidationUrl;
     Map<String, dynamic>? map = await ServiceCall().post(url, formData);
     return map;
   }

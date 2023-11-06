@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -33,6 +34,7 @@ void main() async {
 
   CategoryPoupupController catCont = Get.put(CategoryPoupupController());
   SearchTuneController _ = Get.put(SearchTuneController());
+  RecoController recCont = Get.put(RecoController());
   PlayerController playerController = Get.put(PlayerController());
   WebTabController tabController = Get.put(WebTabController());
   TunePreviewController preview = Get.put(TunePreviewController());
