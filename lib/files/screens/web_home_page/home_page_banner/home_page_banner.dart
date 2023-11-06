@@ -48,7 +48,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: BannerIndicator(tapIndex: (index) {
-        carouselController.jumpToPage(index);
+        carouselController.animateToPage(index);
         printCustom("Tapped index is $index");
       }),
     );
