@@ -40,6 +40,7 @@ class BuyController extends GetxController {
   bool isNewUser = false;
   RxString otp = ''.obs;
   String securityCounter = '';
+  String tuneCharge = '';
   RxString msisdn = ''.obs;
   late TuneInfo? info;
 
@@ -52,6 +53,7 @@ class BuyController extends GetxController {
     msisdn.value = '';
     isBuySuccess.value = false;
     successMessage.value = '';
+    getTuneCharge();
   }
 
   onEditAction() {
@@ -62,6 +64,17 @@ class BuyController extends GetxController {
     otp.value = '';
     isBuySuccess.value = false;
     successMessage.value = '';
+  }
+
+  getTuneCharge() {
+    tuneCharge = StoreManager()
+            .appSetting
+            .responseMap
+            ?.settings
+            ?.others
+            ?.tonePrice
+            ?.attribute ??
+        '';
   }
 
   msisdnValidation(TuneInfo? inf) async {

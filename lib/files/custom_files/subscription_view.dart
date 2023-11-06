@@ -201,8 +201,8 @@ class SubscriptionView extends StatelessWidget {
             textColor: greyDark,
           ),
           CustomButton(
-            leftWidget: Icon(Icons.close),
-            leftWidgetPadding: EdgeInsets.symmetric(horizontal: 8),
+            leftWidget: const Icon(Icons.close),
+            leftWidgetPadding: const EdgeInsets.symmetric(horizontal: 8),
             onTap: () {
               Navigator.of(context).pop();
             },

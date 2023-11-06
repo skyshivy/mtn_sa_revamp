@@ -226,10 +226,9 @@ class _BuyScreenState extends State<_BuyScreen> {
 
   Widget title() {
     return HomeCellTitleSubTilte(
-      mainAxisAlignment: isPhone(context!)
-          ? MainAxisAlignment.center
-          : MainAxisAlignment.start,
-      crossAxisAlignment: isPhone(context!)
+      mainAxisAlignment:
+          isPhone(context) ? MainAxisAlignment.center : MainAxisAlignment.start,
+      crossAxisAlignment: isPhone(context)
           ? CrossAxisAlignment.center
           : CrossAxisAlignment.start,
       info: info,
@@ -238,14 +237,13 @@ class _BuyScreenState extends State<_BuyScreen> {
 
   Widget tuneCharge() {
     return HomeCellTitleSubTilte(
-      mainAxisAlignment: isPhone(context!)
-          ? MainAxisAlignment.center
-          : MainAxisAlignment.start,
-      crossAxisAlignment: isPhone(context!)
+      mainAxisAlignment:
+          isPhone(context) ? MainAxisAlignment.center : MainAxisAlignment.start,
+      crossAxisAlignment: isPhone(context)
           ? CrossAxisAlignment.center
           : CrossAxisAlignment.start,
       title: tuneChargeStr,
-      subTitle: "10 RAND/MONTH",
+      subTitle: buyController.tuneCharge,
       titleFontName: FontName.medium,
       titleFontSize: 16,
       subTitleFontName: FontName.bold,
