@@ -75,7 +75,7 @@ class LandingInfoPage extends StatelessWidget {
   CustomText textWidget(String title) {
     return CustomText(
       title: title,
-      fontName: FontName.regular,
+      fontName: FontName.medium,
       fontSize: fontSize(14, 24),
     );
   }

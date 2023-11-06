@@ -12,7 +12,7 @@ Widget playingTuneInfo(ListToneApk item) {
         '',
     titleFontName: FontName.bold,
     titleFontSize: 16,
-    subTitleFontName: FontName.regularItalic,
+    subTitleFontName: FontName.mediumItalic,
     subTitleFontSize: 12,
     subTitleColor: subTitleColor,
   );

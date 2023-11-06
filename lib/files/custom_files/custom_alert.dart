@@ -61,7 +61,7 @@ class CustomAlertView extends StatelessWidget {
         CustomText(
           alignment: TextAlign.center,
           title: title,
-          fontName: FontName.regular,
+          fontName: FontName.medium,
         ),
         const SizedBox(height: 20),
         CustomButton(

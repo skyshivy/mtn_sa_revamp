@@ -97,40 +97,40 @@ flutter:
   fonts:
     - family: bold
       fonts:
-        - asset: assets/fonts/MTNBrighterSans-Bold.ttf
+        - asset: assets/fonts/ATOM_SANS_BOLD.OTF
     - family: boldItalic
       fonts:
-        - asset: assets/fonts/MTNBrighterSans-BoldItalic.ttf
+        - asset: assets/fonts/ATOM_SANS_BOLD_ITALIC.OTF
     - family: extraBold
       fonts:
-        - asset: assets/fonts/MTNBrighterSans-ExtraBold.ttf
+        - asset: assets/fonts/ATOM_SANS_EXTRA_BOLD.OTF
     - family: extraBoldItalic
       fonts:
-        - asset: assets/fonts/MTNBrighterSans-ExtraBoldItalic.ttf
+        - asset: assets/fonts/ATOM_SANS_EXTRA_BOLD_ITALIC.OTF
     - family: extraLight
       fonts:
-        - asset: assets/fonts/MTNBrighterSans-ExtraLight.ttf    
+        - asset: assets/fonts/ATOM_SANS_THIN.OTF
     - family: extraLightItalic
       fonts:
-        - asset: assets/fonts/MTNBrighterSans-ExtraLightItalic.ttf    
+        - asset: assets/fonts/ATOM_SANS_THIN_ITALIC.OTF
     - family: light
       fonts:
-        - asset: assets/fonts/MTNBrighterSans-Light.ttf
+        - asset: assets/fonts/ATOM_SANS_LIGHT.OTF
     - family: lightItalic
       fonts:
-        - asset: assets/fonts/MTNBrighterSans-LightItalic.ttf
+        - asset: assets/fonts/ATOM_SANS_LIGHT_ITALIC.OTF
     - family: medium
       fonts:
-        - asset: assets/fonts/MTNBrighterSans-Medium.ttf
+        - asset: assets/fonts/ATOM_SANS_MEDIUM.OTF
     - family: mediumItalic
       fonts:
-        - asset: assets/fonts/MTNBrighterSans-MediumItalic.ttf
-    - family: regular
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-Regular.ttf
-    - family: regularItalic
-      fonts:
-        - asset: assets/fonts/MTNBrighterSans-RegularItalic.ttf  
+        - asset: assets/fonts/ATOM_SANS_MEDIUM_ITALIC.OTF
+    # - family: regular
+    #   fonts:
+    #     - asset: assets/fonts/MTNBrighterSans-Regular.ttf
+    # - family: regularItalic
+    #   fonts:
+    #     - asset: assets/fonts/MTNBrighterSans-RegularItalic.ttf  
   # fonts:
   #   - family: Schyler
   #     fonts:

@@ -35,12 +35,29 @@ void parseUrl() async {
 
         return;
       } else {
+        clearData();
         print("Else condition executed");
         return;
       }
     });
   } else {
+    password = '';
+    clearData();
     print("URL does not has hasQuery");
+  }
+}
+
+clearData() {
+  if (!StoreManager().isLoggedIn) {
+    StoreManager().setMsisdn('');
+    ccid = '';
+    StoreManager().setccid(ccid);
+    userName = '';
+    StoreManager().setUserName(userName);
+    password = '';
+    StoreManager().setPassword(password);
+    channelId = '';
+    StoreManager().setChannelId(channelId);
   }
 }
 

@@ -246,7 +246,7 @@ class _BuyScreenState extends State<_BuyScreen> {
           : CrossAxisAlignment.start,
       title: tuneChargeStr,
       subTitle: "10 RAND/MONTH",
-      titleFontName: FontName.regular,
+      titleFontName: FontName.medium,
       titleFontSize: 16,
       subTitleFontName: FontName.bold,
       subTitleFontSize: 20,

@@ -69,7 +69,7 @@ Widget _dayButton(
       textColor: isSelected ? white : blue,
       borderColor: isSelected ? blue : blueLight,
       height: 35,
-      fontName: isSelected ? FontName.medium : FontName.regular,
+      fontName: isSelected ? FontName.medium : FontName.medium,
       title: title,
       onTap: () {
         cont.daysList[index].isSelected!.value =

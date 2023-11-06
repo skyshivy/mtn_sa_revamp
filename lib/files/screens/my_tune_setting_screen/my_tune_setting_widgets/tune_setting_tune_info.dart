@@ -12,7 +12,7 @@ Widget tuneSettingTuneInfo() {
     titleFontName: FontName.bold,
     titleFontSize: 16,
     subTitle: con.tuneArtist,
-    subTitleFontName: FontName.regularItalic,
+    subTitleFontName: FontName.mediumItalic,
     subTitleFontSize: 14,
     subTitleColor: subTitleColor,
   );

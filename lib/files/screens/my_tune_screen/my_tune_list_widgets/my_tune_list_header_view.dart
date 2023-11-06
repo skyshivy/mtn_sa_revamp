@@ -36,7 +36,7 @@ Widget _leftWidget() {
       ),
       CustomText(
         title: howToPlaySelectedTunesToYourCallersStr,
-        fontName: FontName.regular,
+        fontName: FontName.medium,
         maxLine: 2,
         textColor: subTitleColor,
         fontSize: 12,
@@ -66,7 +66,7 @@ Widget _titleWidget(String title, {bool isBold = false}) {
     },
     fontSize: 16,
     title: title,
-    fontName: isBold ? FontName.bold : FontName.regular,
+    fontName: isBold ? FontName.bold : FontName.medium,
   );
 }
 

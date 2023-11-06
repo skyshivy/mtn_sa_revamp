@@ -78,7 +78,7 @@ Widget _radioButton(bool isSelected) {
 Widget _titleButton(bool isSelected, String title) {
   return CustomText(
     title: title,
-    fontName: FontName.regular,
+    fontName: FontName.medium,
     fontSize: 14,
     textColor: isSelected ? black : subTitleColor,
   );

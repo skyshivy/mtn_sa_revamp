@@ -32,7 +32,7 @@ class CustomTextField extends StatelessWidget {
     this.fontSize = 14,
     this.hintText = pleaseEnterMsisdn,
     this.hintColor = textFieldPlaceHolderColor,
-    this.fontName = FontName.regular,
+    this.fontName = FontName.medium,
     this.editEnable,
   });
   @override

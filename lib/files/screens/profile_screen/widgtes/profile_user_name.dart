@@ -18,7 +18,7 @@ Widget profileUserName(SizingInformation si) {
       children: [
         const CustomText(
           title: userNameStr,
-          fontName: FontName.regular,
+          fontName: FontName.medium,
           fontSize: 14,
           textColor: subTitleColor,
         ),

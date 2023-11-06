@@ -105,7 +105,7 @@ Widget _subListCell(
             child: Center(
               child: CustomText(
                 title: controller.catList[index].categoryName ?? '',
-                fontName: FontName.regular,
+                fontName: FontName.medium,
               ),
             ),
           ),

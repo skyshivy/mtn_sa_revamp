@@ -32,7 +32,7 @@ class HomeSearchTextField extends StatelessWidget {
           textColor: textColor,
           isBorder: false,
           hintColor: hintColor,
-          fontName: FontName.regularItalic,
+          fontName: FontName.mediumItalic,
           text: "",
           hintText: whatrLookingFor,
           fontSize: 16,

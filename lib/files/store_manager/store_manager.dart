@@ -87,12 +87,18 @@ class StoreManager {
   }
 
   setPassword(String value) async {
+    if (value.isEmpty) {
+      value = 'Oem@L#@1';
+    }
     prefs = await SharedPreferences.getInstance();
     prefs.setString('password', value);
     password = value;
   }
 
   setChannelId(String value) async {
+    if (value.isEmpty) {
+      value = '4';
+    }
     prefs = await SharedPreferences.getInstance();
     prefs.setString('channelId', value);
     channelId = value;

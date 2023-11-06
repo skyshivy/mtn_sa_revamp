@@ -80,7 +80,7 @@ class CategoryPopupView extends StatelessWidget {
         Center(
           child: CustomText(
             title: "${controller.catList[index].categoryName}",
-            fontName: FontName.regular,
+            fontName: FontName.medium,
             textColor: white,
           ),
         ),

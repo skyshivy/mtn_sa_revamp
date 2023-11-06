@@ -27,7 +27,7 @@ Widget tunePreviewWishlistView(
           SvgPicture.asset(wishlistSvg),
           const CustomText(
             title: wishlistStr,
-            fontName: FontName.regular,
+            fontName: FontName.medium,
             fontSize: 12,
           ),
         ],

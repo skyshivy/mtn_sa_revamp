@@ -114,7 +114,7 @@ Widget cellTitle(MenuModel menu, bool isHover) {
   return CustomText(
     title: menu.title,
     textColor: isHover ? white : black,
-    fontName: FontName.regular,
+    fontName: FontName.medium,
   );
 }
 

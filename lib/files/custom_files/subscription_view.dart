@@ -100,7 +100,7 @@ class SubscriptionView extends StatelessWidget {
           ),
           CustomText(
             title: subTitle,
-            fontName: FontName.regular,
+            fontName: FontName.medium,
             fontSize: 14,
           )
         ],
@@ -132,7 +132,7 @@ class SubscriptionView extends StatelessWidget {
                   ),
                   CustomText(
                     title: info.albumName ?? '',
-                    fontName: FontName.regular,
+                    fontName: FontName.medium,
                     fontSize: 14,
                   ),
                 ],
@@ -143,7 +143,7 @@ class SubscriptionView extends StatelessWidget {
                 children: [
                   CustomText(
                     title: tuneChargeStr,
-                    fontName: FontName.regular,
+                    fontName: FontName.medium,
                   ),
                   CustomText(
                     title: '320/month',

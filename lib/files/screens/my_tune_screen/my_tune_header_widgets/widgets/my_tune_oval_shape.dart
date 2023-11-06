@@ -36,7 +36,7 @@ Widget _title() {
       ),
       CustomText(
         title: customiseYourTunesStr,
-        fontName: FontName.regular,
+        fontName: FontName.medium,
         fontSize: 16,
         textColor: white,
       ),

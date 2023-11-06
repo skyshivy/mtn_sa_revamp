@@ -157,7 +157,7 @@ class _FAQScreenState extends State<FAQScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 4),
                       child: CustomText(
                         title: "${info.answer?[i].header}",
-                        fontName: FontName.regular,
+                        fontName: FontName.medium,
                         fontSize: si.isMobile ? 14 : 18,
                       ),
                     ),
@@ -182,7 +182,7 @@ class _FAQScreenState extends State<FAQScreen> {
             CustomText(
               title: "${info.answer?[i].dataList?[j].data?[0].text}",
               fontName: fontStyle(info
-                  .answer?[i].dataList?[j].data?[0].style), //FontName.regular,
+                  .answer?[i].dataList?[j].data?[0].style), //FontName.medium,
               fontSize: 14,
               textColor: textColor(info.answer?[i].dataList?[j].data?[0].style),
             )
@@ -216,7 +216,7 @@ class _FAQScreenState extends State<FAQScreen> {
   FontName fontStyle(Style? style) {
     // ignore: unrelated_type_equality_checks
     if (style!.fontWeight == 300) {
-      return FontName.regular;
+      return FontName.medium;
     } else {
       return FontName.bold;
     }

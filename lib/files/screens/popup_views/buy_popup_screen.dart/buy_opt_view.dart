@@ -201,7 +201,7 @@ class BuyOtpView extends StatelessWidget {
         return CustomText(
           title: title,
           textColor: black,
-          fontName: si.isMobile ? FontName.light : FontName.regular,
+          fontName: si.isMobile ? FontName.light : FontName.medium,
           fontSize: si.isMobile ? 10 : 14,
         );
       },

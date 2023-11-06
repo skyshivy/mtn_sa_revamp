@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 builder: (context, si) {
                   return CustomText(
                     title: controller.errorMessage.value,
-                    fontName: FontName.regular,
+                    fontName: FontName.medium,
                     textColor: blueLight,
                     fontSize: si.isMobile ? 10 : 16,
                   );
@@ -198,7 +198,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   text: termsAndPolicyStr,
                   style: TextStyle(
-                    fontFamily: FontName.regular.name,
+                    fontFamily: FontName.medium.name,
                     fontSize: si.isMobile ? 10 : 14,
                     color: blue,
                   )),
@@ -310,7 +310,7 @@ class _LoginScreenState extends State<LoginScreen> {
           return CustomText(
             title: title,
             textColor: black,
-            fontName: si.isMobile ? FontName.light : FontName.regular,
+            fontName: si.isMobile ? FontName.light : FontName.medium,
             fontSize: si.isMobile ? 10 : 14,
           );
         },

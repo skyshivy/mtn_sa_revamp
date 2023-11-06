@@ -11,7 +11,7 @@ Widget profileActiveStatus() {
       return CustomText(
         title: noActivePlanStr,
         textColor: subTitleColor,
-        fontName: si.isMobile ? FontName.bold : FontName.regular,
+        fontName: si.isMobile ? FontName.bold : FontName.medium,
         fontSize: 14,
       );
     },

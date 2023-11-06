@@ -22,7 +22,7 @@ class CustomTextButton extends StatelessWidget {
     this.textColor = black,
     this.fontSize = 14,
     this.maxLine,
-    this.fontName = FontName.regular,
+    this.fontName = FontName.medium,
     this.alignment = TextAlign.start,
     this.fontWeight = FontWeight.bold,
     this.onTap,

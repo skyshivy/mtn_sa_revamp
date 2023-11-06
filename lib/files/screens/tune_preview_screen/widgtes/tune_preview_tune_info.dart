@@ -24,7 +24,7 @@ Widget tunePreviewTuneInfo(TunePreviewController cont) {
             alignment: TextAlign.center,
             title: cont.list[cont.index.value].artistName ??
                 '', //info.artistName ?? info.artist ?? '',
-            fontName: FontName.regular,
+            fontName: FontName.medium,
             fontSize: 12,
           )
         ],

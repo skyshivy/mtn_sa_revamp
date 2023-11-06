@@ -3,7 +3,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 TextStyle calenderDateStyle() {
-  return TextStyle(fontFamily: FontName.regular.name);
+  return TextStyle(fontFamily: FontName.medium.name);
 }
 
 TextStyle calenderWeekDayStyle() {

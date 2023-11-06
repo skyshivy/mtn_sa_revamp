@@ -50,7 +50,7 @@ class HomeCellTitleSubTilte extends StatelessWidget {
               info?.albumName ??
               info?.artistName ??
               ' ARtist name here',
-          fontName: subTitleFontName ?? FontName.regularItalic,
+          fontName: subTitleFontName ?? FontName.mediumItalic,
           fontSize: subTitleFontSize ?? 12,
           textColor: subTitleColor,
         ),

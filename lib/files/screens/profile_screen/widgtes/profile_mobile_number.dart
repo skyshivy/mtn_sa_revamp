@@ -18,7 +18,7 @@ Widget profileMobileNumberWidget(SizingInformation si) {
       children: [
         const CustomText(
           title: mobileNumberStr,
-          fontName: FontName.regular,
+          fontName: FontName.medium,
           fontSize: 14,
           textColor: subTitleColor,
         ),
