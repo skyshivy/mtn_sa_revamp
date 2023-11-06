@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_web_launcher.dart';
+import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
@@ -42,17 +45,50 @@ class LandingCompanyView extends StatelessWidget {
 
   void contactusTapped() {
     print("Contact us tapped");
+    Others? others = StoreManager().appSetting.responseMap?.settings?.others;
+    String url = '';
+    if (StoreManager().isEnglish) {
+      url = others?.aboutAppurlEnglish?.attribute ?? '';
+    } else {
+      url = others?.aboutAppurlEnglish?.attribute ?? '';
+    }
+    customWebLauncher(url);
   }
 
   void helpTapped() {
     print("helpTapped tapped");
+    Others? others = StoreManager().appSetting.responseMap?.settings?.others;
+    String url = '';
+    if (StoreManager().isEnglish) {
+      url = others?.helpEnglish?.attribute ?? '';
+    } else {
+      url = others?.helpBurmese?.attribute ?? '';
+    }
+    customWebLauncher(url);
   }
 
   void privacyTapped() {
     print("privacyTapped tapped");
+    Others? others = StoreManager().appSetting.responseMap?.settings?.others;
+    String url = '';
+    if (StoreManager().isEnglish) {
+      url = others?.pPolicyEnglish?.attribute ?? '';
+    } else {
+      url = others?.pPolicyBurmese?.attribute ?? '';
+    }
+    customWebLauncher(url);
   }
 
   void termsTapped() {
+    Others? others = StoreManager().appSetting.responseMap?.settings?.others;
+    String url = '';
+    if (StoreManager().isEnglish) {
+      url = others?.tndEnglish?.attribute ?? '';
+    } else {
+      url = others?.tndBurmese?.attribute ?? '';
+    }
+    print("Url is ===== $url");
+    customWebLauncher(url);
     print("termsTapped tapped");
   }
 }

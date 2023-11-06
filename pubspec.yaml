@@ -43,6 +43,7 @@ dependencies:
   basic_utils: ^4.4.3
   just_audio: ^0.9.34
   flutter_svg: ^2.0.7
+  url_launcher: ^6.1.14
   universal_io: ^2.0.4
   url_strategy: ^0.2.0  
   carousel_slider: ^4.0.0
