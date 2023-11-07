@@ -111,6 +111,7 @@ class HomeTuneCell extends StatelessWidget {
   Widget moreButton() {
     return HomeMoreButton(
       info: info,
+      index: index,
       isWishlist: isWishlist,
     );
   }

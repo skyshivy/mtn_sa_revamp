@@ -42,6 +42,8 @@ String passwordValidationAutoLoginUrl =
 String categoryListUrl =
     "${baseUrl}categories?language=${StoreManager().language}";
 String myWishListUrl = "${baseUrlSecurity}view-wishlist";
+String deleteFromWishListUrl = "${baseUrlSecurity}delete-from-wishlist";
+
 String sendGiftUrl = "${baseUrl}send-gift";
 String getCategoryDetailUrl =
     "${baseUrl}search-tone?language=${StoreManager().language}";

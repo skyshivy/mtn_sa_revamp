@@ -19,6 +19,7 @@ class StoreManager {
   }
   AppController appController = Get.find();
   double mobileWidth = 500;
+  bool isLoadWishlist = true;
   bool isEnglish = true;
   String language = "English";
   String languageCode = "1";

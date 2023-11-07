@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 showSnackBar({String message = "List is empty"}) {
   Get.snackbar("", "",
+      padding: const EdgeInsets.only(left: 12, bottom: 12, right: 12),
       backgroundColor: atomCryan,
       snackPosition: SnackPosition.BOTTOM,
       messageText: Center(

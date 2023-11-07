@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
@@ -13,11 +14,15 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+import 'package:mtn_sa_revamp/files/view_model/delete_from_wishlist_vm.dart';
 
 class HomeMoreButton extends StatefulWidget {
   final TuneInfo? info;
+  final int index;
   final bool isWishlist;
-  const HomeMoreButton({super.key, this.info, required this.isWishlist});
+
+  const HomeMoreButton(
+      {super.key, this.info, required this.isWishlist, required this.index});
 
   @override
   State<StatefulWidget> createState() {
@@ -29,8 +34,11 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
   List<MenuModel> menuItem = [
     //MenuModel(shareStr, imageName: shareSvg),
   ];
-
+  late WishlistController wishCont;
   createMenuList() {
+    if (widget.isWishlist) {
+      wishCont = Get.find();
+    }
     menuItem = [
       widget.isWishlist
           ? MenuModel(deleteStr, imageName: deleteSvg)
@@ -74,7 +82,7 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
       isSvg: true,
       width: 140,
       isLeft: true,
-      onTap: (p0) {
+      onTap: (p0) async {
         if (p0.title == wishlistStr) {
           recoController.wishlistTapped(widget.info);
         } else if (p0.title == tellFriendStr) {
@@ -87,6 +95,9 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
         } else if (p0.title == shareStr) {
           recoController.shareTapped();
         } else if (p0.title == deleteStr) {
+          wishCont.deleteFromWishlistAction(
+              widget.info ?? TuneInfo(), widget.index);
+
           printCustom("Delete from wishlis make api call here");
         } else {
           printCustom("Default tapped");

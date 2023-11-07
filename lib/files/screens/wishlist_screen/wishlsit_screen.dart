@@ -7,6 +7,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class WishlistScreen extends StatefulWidget {
@@ -43,9 +44,20 @@ class _WishlistScreenState extends State<WishlistScreen> {
           ? Center(child: loadingIndicator())
           : Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Center(child: gridView()),
+              child: Center(
+                  child: wishlistController.list.isEmpty
+                      ? checkEmptyList()
+                      : gridView()),
             );
     });
+  }
+
+  Widget checkEmptyList() {
+    return const CustomText(
+      title: tuneListEmptyStr,
+      fontName: FontName.bold,
+      fontSize: 20,
+    );
   }
 
   Widget gridView() {

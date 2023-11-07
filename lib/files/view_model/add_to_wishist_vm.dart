@@ -31,6 +31,10 @@ class AddToWishlistVm {
         await ServiceCall().post(addToWishlistUrl, formData);
     if (map != null) {
       AddToWishListModel model = AddToWishListModel.fromJson(map);
+      //isLoadWishlist
+      if (model.statusCode == 'SC0000') {
+        StoreManager().isLoadWishlist = true;
+      }
       showSnackBar(message: model.message ?? '');
     } else {
       showSnackBar(message: someThingWentWrongStr);
