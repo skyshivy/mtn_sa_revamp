@@ -41,7 +41,7 @@ String passwordValidationAutoLoginUrl =
     "${baseUrl}password-validation"; //"${baseUrl}password-validation-3pp";
 String categoryListUrl =
     "${baseUrl}categories?language=${StoreManager().language}";
-String myWishListUrl = "${baseUrl}wishlist";
+String myWishListUrl = "${baseUrlSecurity}view-wishlist";
 String sendGiftUrl = "${baseUrl}send-gift";
 String getCategoryDetailUrl =
     "${baseUrl}search-tone?language=${StoreManager().language}";
