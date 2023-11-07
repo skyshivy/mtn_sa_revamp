@@ -17,8 +17,14 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 class HomeTuneCell extends StatelessWidget {
   final int index;
   final TuneInfo? info;
+  final bool isWishlist;
   final Function()? onTap;
-  const HomeTuneCell({super.key, required this.index, this.info, this.onTap});
+  const HomeTuneCell(
+      {super.key,
+      this.isWishlist = false,
+      required this.index,
+      this.info,
+      this.onTap});
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -103,7 +109,10 @@ class HomeTuneCell extends StatelessWidget {
   }
 
   Widget moreButton() {
-    return HomeMoreButton(info: info);
+    return HomeMoreButton(
+      info: info,
+      isWishlist: isWishlist,
+    );
   }
 
   BoxDecoration decoration() {

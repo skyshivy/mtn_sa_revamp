@@ -41,13 +41,10 @@ class _WishlistScreenState extends State<WishlistScreen> {
     return Obx(() {
       return wishlistController.isLoading.value
           ? Center(child: loadingIndicator())
-          : Center(child: gridView()
-              // CustomText(
-              //   title: "_WishlistScreenState",
-              //   fontName: FontName.bold,
-              //   fontSize: 20,
-              // ),
-              );
+          : Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Center(child: gridView()),
+            );
     });
   }
 
@@ -57,10 +54,12 @@ class _WishlistScreenState extends State<WishlistScreen> {
         return Obx(() {
           return GridView.builder(
             itemCount: wishlistController.list.length,
-            gridDelegate: delegate(si),
+            gridDelegate:
+                delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
             itemBuilder: (context, index) {
               return HomeTuneCell(
                 index: index,
+                isWishlist: true,
                 info: wishlistController.list[index],
               );
             },

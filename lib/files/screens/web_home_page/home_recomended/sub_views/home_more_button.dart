@@ -16,7 +16,8 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class HomeMoreButton extends StatefulWidget {
   final TuneInfo? info;
-  const HomeMoreButton({super.key, this.info});
+  final bool isWishlist;
+  const HomeMoreButton({super.key, this.info, required this.isWishlist});
 
   @override
   State<StatefulWidget> createState() {
@@ -26,10 +27,24 @@ class HomeMoreButton extends StatefulWidget {
 
 class _HomeMoreButtonState extends State<HomeMoreButton> {
   List<MenuModel> menuItem = [
-    MenuModel(wishlistStr, imageName: wishlistSvg),
-    MenuModel(tellFriendStr, imageName: tellFriendSvg),
     //MenuModel(shareStr, imageName: shareSvg),
   ];
+
+  createMenuList() {
+    menuItem = [
+      widget.isWishlist
+          ? MenuModel(deleteStr, imageName: deleteSvg)
+          : MenuModel(wishlistStr, imageName: wishlistSvg),
+      MenuModel(tellFriendStr, imageName: tellFriendSvg),
+    ];
+  }
+
+  @override
+  void initState() {
+    createMenuList();
+    super.initState();
+  }
+
   final GlobalKey _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
@@ -64,7 +79,6 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
           recoController.wishlistTapped(widget.info);
         } else if (p0.title == tellFriendStr) {
           recoController.tellAFriendTapped();
-
           Get.dialog(Center(
             child: TellAFriendView(
               info: widget.info ?? TuneInfo(),
@@ -72,6 +86,8 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
           ));
         } else if (p0.title == shareStr) {
           recoController.shareTapped();
+        } else if (p0.title == deleteStr) {
+          printCustom("Delete from wishlis make api call here");
         } else {
           printCustom("Default tapped");
         }

@@ -78,6 +78,7 @@ const mobileNumberStr = "Mobile number";
 const subscribeStr = "Subscribe";
 const profileStr = "Profile";
 const wishlistStr = "Wishlist";
+const deleteStr = "Delete";
 const timeBaseStr = "Select time base";
 const repeatBaseStr = "Select repeat";
 const featureIsAvailableForLoggedInStr =
