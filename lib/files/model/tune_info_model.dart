@@ -49,6 +49,7 @@ class TuneInfo {
     this.price,
     this.expiryDate,
   });
+
   factory TuneInfo.fromJson(Map<String, dynamic> json) {
     return TuneInfo(
         id: json['id'],
@@ -66,10 +67,11 @@ class TuneInfo {
         downloadCount: json['downloadCount'],
         likeCount: json['likeCount'],
         previewImageUrl: json['previewImageUrl'],
-        toneId: json['toneId'],
-        toneIdStreamingUrl: json['toneIdStreamingUrl'],
-        toneIdpreviewImageUrl: json['toneIdpreviewImageUrl'],
-        toneName: json['toneName'],
+        toneId: json['toneId'] ?? json['contentId'],
+        toneIdStreamingUrl: json['toneIdStreamingUrl'] ?? json['path'],
+        toneIdpreviewImageUrl:
+            json['toneIdpreviewImageUrl'] ?? json['previewImageUrl'],
+        toneName: json['toneName'] ?? json['contentName'],
         toneUrl: json['toneUrl'],
         price: '${json['price']}',
         expiryDate: json['expiryDate']);
