@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/tell_freind_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -39,10 +38,14 @@ class _TellAFriendViewState extends State<TellAFriendView> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: transparent,
-      child: mainContaner(context),
-    );
+    return Obx(() {
+      return cont.isSendDone.value
+          ? CustomAlertView(title: cont.errorMessage.value)
+          : Material(
+              color: transparent,
+              child: mainContaner(context),
+            );
+    });
   }
 
   Widget mainContaner(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
-import 'package:mtn_sa_revamp/files/custom_files/tell_a_friend.dart';
+import 'package:mtn_sa_revamp/files/custom_files/tell_a_friend_view.dart';
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';

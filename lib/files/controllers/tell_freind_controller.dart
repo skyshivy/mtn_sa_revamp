@@ -1,7 +1,10 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+import 'package:mtn_sa_revamp/files/model/send_gift_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_price_model.dart';
@@ -9,9 +12,10 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_tune_price_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/send_gift_vm.dart';
 
 class TellFriendController extends GetxController {
-  RxBool isloading = false.obs;
+  RxBool isSendDone = false.obs;
   RxBool isVerifing = false.obs;
   RxString bPartyMsisdn = ''.obs;
   RxString errorMessage = ''.obs;
@@ -57,6 +61,7 @@ class TellFriendController extends GetxController {
   _validateMsisdn() async {
     errorMessage.value = '';
     isVerifing.value = true;
+    isSendDone.value = false;
     String stringData = await LoginVm().subscribeMsisdn(bPartyMsisdn.value);
     Map<String, dynamic> valueMap = json.decode(stringData);
     SubscriberValidationModel model =
@@ -84,6 +89,21 @@ class TellFriendController extends GetxController {
       TonePriceModel model = TonePriceModel.fromJson(map);
       packName = model.responseMap?.responseDetails?.first.packName ?? '';
       if (model.statusCode == 'SC0000') {
+        Map<String, dynamic>? map = await SendGiftVM().send(bPartyMsisdn.value,
+            info.toneId ?? '', packName, info.toneName ?? '');
+
+        if (map != null) {
+          SendGiftModel model = SendGiftModel.fromJson(map);
+          printCustom("Send gift resp is $model");
+          isVerifing.value = false;
+
+          if (model.statusCode == 'SC0000') {
+            errorMessage.value = model.message ?? '';
+            isSendDone.value = true;
+          } else {
+            errorMessage.value = model.responseMap?.responseMessage ?? '';
+          }
+        }
       } else {
         errorMessage.value = model.message ?? '';
         isVerifing.value = false;
