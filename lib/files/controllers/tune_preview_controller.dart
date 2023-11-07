@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+import 'package:mtn_sa_revamp/files/view_model/add_to_wishist_vm.dart';
 
 class TunePreviewController extends GetxController {
   PlayerController playerController = Get.find();
@@ -11,6 +12,7 @@ class TunePreviewController extends GetxController {
   RxBool hideNext = false.obs;
   RxBool hidePrevious = false.obs;
   RxBool isLoading = true.obs;
+  RxBool isAddingWishlist = false.obs;
   int current = 0;
   int maxDuration = 0;
   String maxDurationStr = '00:00';
@@ -32,6 +34,12 @@ class TunePreviewController extends GetxController {
     if (index == (list.length - 1)) {
       hideNext.value = true;
     }
+  }
+
+  addToWishlistAction(TuneInfo info) async {
+    isAddingWishlist.value = true;
+    bool _ = await AddToWishlistVm().add(info);
+    isAddingWishlist.value = false;
   }
 
   playTapped() {

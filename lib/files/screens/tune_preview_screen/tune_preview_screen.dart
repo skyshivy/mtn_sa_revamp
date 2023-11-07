@@ -12,6 +12,7 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/buy_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/tune_preview_screen/widgtes/tune_preview_controls_view.dart';
 import 'package:mtn_sa_revamp/files/screens/tune_preview_screen/widgtes/tune_preview_image.dart';
+import 'package:mtn_sa_revamp/files/screens/tune_preview_screen/widgtes/tune_preview_tell_friend_view.dart';
 import 'package:mtn_sa_revamp/files/screens/tune_preview_screen/widgtes/tune_preview_tune_info.dart';
 import 'package:mtn_sa_revamp/files/screens/tune_preview_screen/widgtes/tune_preview_wishlist_view.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -189,8 +190,35 @@ class _TunePreviewScreenState extends State<TunePreviewScreen> {
             ],
           ),
         ),
-        tunePreviewWishlistView(cont, playCont),
+        bottomButtonContaner(),
       ],
+    );
+  }
+
+  Widget bottomButtonContaner() {
+    return Container(
+      decoration: const BoxDecoration(
+          color: greyLight,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(8), topRight: Radius.circular(8))),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+              child: tunePreviewWishlistView(
+                  cont, playCont, cont.list[cont.index.value])),
+          Container(
+            color: white,
+            height: 60,
+            width: 1,
+          ),
+          Expanded(
+            child: tunePreviewTellFriendView(
+                cont, playCont, cont.list[cont.index.value]),
+          ),
+        ],
+      ),
     );
   }
 

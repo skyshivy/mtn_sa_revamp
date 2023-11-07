@@ -75,8 +75,8 @@ class RecoController extends GetxController {
     displayList?.refresh();
   }
 
-  wishlistTapped(TuneInfo? info) {
-    AddToWishlistVm().add(info);
+  wishlistTapped(TuneInfo? info) async {
+    await AddToWishlistVm().add(info);
     printCustom("Wishlist tapped in tune cell");
   }
 

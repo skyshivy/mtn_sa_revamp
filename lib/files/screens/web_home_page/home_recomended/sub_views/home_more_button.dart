@@ -67,7 +67,7 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
 
           Get.dialog(Center(
             child: TellAFriendView(
-              info: widget.info,
+              info: widget.info ?? TuneInfo(),
             ),
           ));
         } else if (p0.title == shareStr) {

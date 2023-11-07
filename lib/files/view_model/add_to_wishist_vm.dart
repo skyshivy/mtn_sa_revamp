@@ -7,7 +7,7 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class AddToWishlistVm {
-  add(TuneInfo? info) async {
+  Future<bool> add(TuneInfo? info) async {
     var myPost = {
       "identifier": "AddToWishList",
       "msisdn": StoreManager().msisdn,
@@ -35,5 +35,6 @@ class AddToWishlistVm {
     } else {
       showSnackBar(message: someThingWentWrongStr);
     }
+    return true;
   }
 }

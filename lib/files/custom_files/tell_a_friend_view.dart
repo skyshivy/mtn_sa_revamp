@@ -14,9 +14,9 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class TellAFriendView extends StatefulWidget {
-  final TuneInfo? info;
+  final TuneInfo info;
 
-  const TellAFriendView({super.key, this.info});
+  const TellAFriendView({super.key, required this.info});
 
   @override
   State<StatefulWidget> createState() => _TellAFriendViewState();
@@ -74,20 +74,22 @@ class _TellAFriendViewState extends State<TellAFriendView> {
         titleContaner(context, si),
         Padding(
           padding: const EdgeInsets.all(20.0),
-          child: bottomContainerColunm(context),
+          child: bottomContainerColunm(context, si),
         )
       ],
     );
   }
 
-  Column bottomContainerColunm(BuildContext context) {
+  Column bottomContainerColunm(BuildContext context, SizingInformation si) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment:
+          si.isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
+      crossAxisAlignment:
+          si.isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
-        tuneImageWidget(),
+        tuneImageWidget(si),
         const SizedBox(height: 15),
-        tuneDetail(),
+        tuneDetail(si),
         const SizedBox(height: 10),
         tuneCharge(),
         const SizedBox(height: 4),
@@ -146,36 +148,42 @@ class _TellAFriendViewState extends State<TellAFriendView> {
     );
   }
 
-  Widget tuneImageWidget() {
-    return CustomImage(
-      height: 150,
-      radius: 8,
-      url: widget.info?.toneIdpreviewImageUrl,
+  Widget tuneImageWidget(SizingInformation si) {
+    return SizedBox(
+      width: si.isMobile ? 150 : null,
+      child: CustomImage(
+        height: 150,
+        radius: 8,
+        url: widget.info.toneIdpreviewImageUrl,
+      ),
     );
   }
 
-  Widget tuneDetail() {
+  Widget tuneDetail(SizingInformation si) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment:
+          si.isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
-        tuneTitle(),
-        tuneSubtitle(),
+        tuneTitle(si),
+        tuneSubtitle(si),
       ],
     );
   }
 
-  CustomText tuneSubtitle() {
+  CustomText tuneSubtitle(SizingInformation si) {
     return CustomText(
-      title: widget.info?.albumName ?? '',
+      alignment: si.isMobile ? TextAlign.center : null,
+      title: widget.info.albumName ?? '',
       fontName: FontName.mediumItalic,
       fontSize: 12,
     );
   }
 
-  CustomText tuneTitle() {
+  CustomText tuneTitle(SizingInformation si) {
     return CustomText(
-      title: widget.info?.toneName ?? '',
+      alignment: si.isMobile ? TextAlign.center : null,
+      title: widget.info.toneName ?? '',
       fontName: FontName.bold,
     );
   }
@@ -191,7 +199,7 @@ class _TellAFriendViewState extends State<TellAFriendView> {
           cont.updateMsisdn(p0);
         },
         onSubmit: (p0) {
-          cont.confirmButtonAction(widget.info ?? TuneInfo());
+          cont.confirmButtonAction(widget.info);
         },
       );
     });
@@ -251,7 +259,7 @@ class _TellAFriendViewState extends State<TellAFriendView> {
               textColor: white,
               fontName: FontName.bold,
               onTap: () {
-                cont.confirmButtonAction(widget.info ?? TuneInfo());
+                cont.confirmButtonAction(widget.info);
               },
             );
     });
