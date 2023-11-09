@@ -77,6 +77,7 @@ Future<String> _getValueForTag(List<String> lst) async {
         if (newL[0] == 'msisdn') {
           printCustom("msisdn = ${newL[1]}");
           var msisdn1 = newL[1];
+
           await StoreManager().setMsisdn(msisdn1);
         }
       } catch (e) {}

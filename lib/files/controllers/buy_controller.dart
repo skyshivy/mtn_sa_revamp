@@ -161,18 +161,26 @@ class BuyController extends GetxController {
   }
 
   Future<TonePriceModel> getTunePrice() async {
+    String msisdn3 = '';
+    if (StoreManager().isLoggedIn) {
+      msisdn3 = StoreManager().msisdn;
+    } else {
+      msisdn3 = msisdn.value;
+    }
+
+    //msisdn.value.isEmpty ? StoreManager().msisdn : msisdn.value;
     Map<String, dynamic>? map =
-        await GetTunePrice().api(msisdn.value, info?.toneId ?? '', '3');
+        await GetTunePrice().api(msisdn3, info?.toneId ?? '', '3');
     if (map != null) {
-      try {
-        TonePriceModel model = TonePriceModel.fromJson(map);
-        printCustom("status code is ============== ${model.statusCode}");
-        return model;
-      } catch (e) {
-        printCustom("error is ========${e}");
-        TonePriceModel model = TonePriceModel(message: someThingWentWrongStr);
-        return model;
-      }
+      //try {
+      TonePriceModel model = TonePriceModel.fromJson(map);
+      printCustom("status code is ============== ${model.statusCode}");
+      return model;
+      // } catch (e) {
+      //   printCustom("error is ========${e}");
+      //   TonePriceModel model = TonePriceModel(message: someThingWentWrongStr);
+      //   return model;
+      // }
     } else {
       TonePriceModel model = TonePriceModel(message: someThingWentWrongStr);
       return model;

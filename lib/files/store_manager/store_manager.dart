@@ -74,6 +74,8 @@ class StoreManager {
     prefs = await SharedPreferences.getInstance();
     prefs.setString('msisdn', value);
     msisdn = value;
+
+    print("Setting msisdn = $value");
   }
 
   setccid(String value) async {
