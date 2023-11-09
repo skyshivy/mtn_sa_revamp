@@ -108,7 +108,7 @@ const timeBaseStr = "Select time base";
 const repeatBaseStr = "Select repeat";
 const featureIsAvailableForLoggedInStr =
     "This feature is availabe for logged in users";
-const tellFriendStr = "Tell a friend";
+//const tellFriendStr = "Tell a friend";
 const shareStr = "Share";
 const logoutStr = "Logout";
 const categoryStr = "Category";

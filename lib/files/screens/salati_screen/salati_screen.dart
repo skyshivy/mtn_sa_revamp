@@ -158,8 +158,8 @@ class SalatiScreen extends StatelessWidget {
           genericButton(wishlistImage, wishlistStr, action: () {
             print("genric button");
           }),
-          genericButton(tellafriendImage, tellFriendStr,
-              action: onTellAFriendButtonAction),
+          // genericButton(tellafriendImage, tellFriendStr,
+          //     action: onTellAFriendButtonAction),
           genericButton(giftImage, giftStr, action: onGiftButtonAction),
           //genericButton("shareR", 'Share', action: onShareButtonAction),
         ],

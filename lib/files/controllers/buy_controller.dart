@@ -259,13 +259,14 @@ class BuyController extends GetxController {
     } else {
       isVerifyingOtp.value = false;
       isVerifying.value = false;
-      errorMessage.value = someThingWentWrongStr;
+      errorMessage.value = model.message ?? someThingWentWrongStr;
     }
   }
 
   Future<void> setTune(TonePriceModel model) async {
     BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(),
         model.responseMap?.responseDetails?.first.packName ?? '');
+    print("setTune ========== ${res.statusCode}");
     if (res.statusCode == 'SC0000') {
       print("Success buy tune api");
       isVerifyingOtp.value = false;
@@ -274,7 +275,9 @@ class BuyController extends GetxController {
       successMessage.value = res.message ?? '';
     } else {
       isVerifyingOtp.value = false;
-      errorMessage.value = '';
+
+      errorMessage.value =
+          res.responseMap?.responseMessage ?? someThingWentWrongStr;
       isVerifying.value = false;
     }
   }

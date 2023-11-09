@@ -25,8 +25,8 @@ class HomeMoreButton extends StatefulWidget {
 class _HomeMoreButtonState extends State<HomeMoreButton> {
   List<MenuModel> menuItem = [
     MenuModel(wishlistStr, imageName: wishlistSvg),
-    MenuModel(tellFriendStr, imageName: tellFriendSvg),
-    MenuModel(shareStr, imageName: shareSvg),
+    MenuModel(giftStr, imageName: tellFriendSvg),
+    // MenuModel(shareStr, imageName: shareSvg),
   ];
   final GlobalKey _key = GlobalKey();
   @override
@@ -67,7 +67,7 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
       onTap: (p0) {
         if (p0.title == wishlistStr) {
           recoController.wishlistTapped(widget.info);
-        } else if (p0.title == tellFriendStr) {
+        } else if (p0.title == giftStr) {
           recoController.tellAFriendTapped();
         } else if (p0.title == shareStr) {
           recoController.shareTapped();
