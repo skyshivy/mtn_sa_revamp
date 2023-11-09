@@ -161,6 +161,7 @@ class BuyController extends GetxController {
   }
 
   Future<TonePriceModel> getTunePrice() async {
+    errorMessage.value = '';
     String msisdn3 = '';
     if (StoreManager().isLoggedIn) {
       msisdn3 = StoreManager().msisdn;
@@ -175,6 +176,7 @@ class BuyController extends GetxController {
       //try {
       TonePriceModel model = TonePriceModel.fromJson(map);
       printCustom("status code is ============== ${model.statusCode}");
+      printCustom("sky status code is ============== ${model.statusCode}");
       return model;
       // } catch (e) {
       //   printCustom("error is ========${e}");
@@ -281,7 +283,7 @@ class BuyController extends GetxController {
     } else {
       isVerifyingOtp.value = false;
       isVerifying.value = false;
-      errorMessage.value = someThingWentWrongStr;
+      errorMessage.value = model.message ?? someThingWentWrongStr;
     }
   }
 
