@@ -6,7 +6,7 @@ import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
-import 'package:mtn_sa_revamp/files/custom_files/tell_a_friend_view.dart';
+import 'package:mtn_sa_revamp/files/custom_files/gift_tune_view.dart';
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -43,7 +43,7 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
       widget.isWishlist
           ? MenuModel(deleteStr, imageName: deleteSvg)
           : MenuModel(wishlistStr, imageName: wishlistSvg),
-      MenuModel(tellFriendStr, imageName: tellFriendSvg),
+      MenuModel(giftStr, imageName: giftTuneSvg),
     ];
   }
 
@@ -85,10 +85,10 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
       onTap: (p0) async {
         if (p0.title == wishlistStr) {
           recoController.wishlistTapped(widget.info);
-        } else if (p0.title == tellFriendStr) {
+        } else if (p0.title == giftStr) {
           recoController.tellAFriendTapped();
           Get.dialog(Center(
-            child: TellAFriendView(
+            child: GiftTuneView(
               info: widget.info ?? TuneInfo(),
             ),
           ));

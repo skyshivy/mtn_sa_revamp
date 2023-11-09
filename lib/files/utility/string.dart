@@ -83,7 +83,7 @@ const timeBaseStr = "Select time base";
 const repeatBaseStr = "Select repeat";
 const featureIsAvailableForLoggedInStr =
     "This feature is availabe for logged in users";
-const tellFriendStr = "Tell a friend";
+const giftStr = "Gift";
 const shareStr = "Share";
 const logoutStr = "Logout";
 

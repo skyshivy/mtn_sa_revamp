@@ -13,26 +13,26 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class TellAFriendView extends StatefulWidget {
+class GiftTuneView extends StatefulWidget {
   final TuneInfo info;
 
-  const TellAFriendView({super.key, required this.info});
+  const GiftTuneView({super.key, required this.info});
 
   @override
-  State<StatefulWidget> createState() => _TellAFriendViewState();
+  State<StatefulWidget> createState() => _GiftTuneViewState();
 }
 
-class _TellAFriendViewState extends State<TellAFriendView> {
-  late TellFriendController cont;
+class _GiftTuneViewState extends State<GiftTuneView> {
+  late GiftTuneController cont;
   @override
   void initState() {
-    cont = Get.put(TellFriendController());
+    cont = Get.put(GiftTuneController());
     super.initState();
   }
 
   @override
   void dispose() {
-    Get.delete<TellFriendController>();
+    Get.delete<GiftTuneController>();
     super.dispose();
   }
 
@@ -142,7 +142,7 @@ class _TellAFriendViewState extends State<TellAFriendView> {
 
   CustomText titleWidget(SizingInformation si) {
     return CustomText(
-      title: tellFriendStr,
+      title: giftStr,
       fontName: FontName.extraBold,
       fontSize: si.isMobile ? 14 : 18,
     );

@@ -125,7 +125,10 @@ Widget cellImage(MenuModel menu, bool isSvg) {
           height: 15,
           width: 15,
           child: isSvg
-              ? SvgPicture.asset(menu.imageName ?? '')
+              ? SvgPicture.asset(
+                  menu.imageName ?? '',
+                  color: red,
+                )
               : Image.asset(menu.imageName ?? '', color: black),
         );
 }

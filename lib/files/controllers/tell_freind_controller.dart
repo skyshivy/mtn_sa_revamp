@@ -14,7 +14,7 @@ import 'package:mtn_sa_revamp/files/view_model/get_tune_price_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/send_gift_vm.dart';
 
-class TellFriendController extends GetxController {
+class GiftTuneController extends GetxController {
   RxBool isSendDone = false.obs;
   RxBool isVerifing = false.obs;
   RxString bPartyMsisdn = ''.obs;

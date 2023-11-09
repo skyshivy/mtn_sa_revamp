@@ -21,3 +21,4 @@ const tellFriendSvg = 'assets/svg/tellFriendSvg.svg';
 const shareSvg = 'assets/svg/shareSvg.svg';
 const editSvg = 'assets/svg/editSvg.svg';
 const deleteSvg = 'assets/svg/deleteSvg.svg';
+const giftTuneSvg = 'assets/svg/gift_tune.svg';

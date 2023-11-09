@@ -7,7 +7,7 @@ import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_preview_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
-import 'package:mtn_sa_revamp/files/custom_files/tell_a_friend_view.dart';
+import 'package:mtn_sa_revamp/files/custom_files/gift_tune_view.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
@@ -22,7 +22,7 @@ Widget tunePreviewTellFriendView(
       onTap: () {
         pCont.stopPlayer();
         Get.dialog(Center(
-          child: TellAFriendView(
+          child: GiftTuneView(
             info: info,
           ),
         ));
@@ -34,7 +34,7 @@ Widget tunePreviewTellFriendView(
         children: [
           SvgPicture.asset(tellFriendSvg),
           const CustomText(
-            title: tellFriendStr,
+            title: giftStr,
             fontName: FontName.medium,
             fontSize: 12,
           ),
