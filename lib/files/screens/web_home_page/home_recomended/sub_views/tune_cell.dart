@@ -54,11 +54,41 @@ class HomeTuneCell extends StatelessWidget {
           index: index,
           gradient: customGredient(blackGredient, blackGredient),
         ),
+        tuneImageTopLayer()
+      ],
+    );
+  }
+
+  Column tuneImageTopLayer() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
+      children: [
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: likeAndMoreWidget(),
         ),
+        Expanded(child: Center(child: Center(child: playButton()))),
+        const SizedBox(
+          height: 30,
+        ),
       ],
+    );
+  }
+
+  Widget playButton() {
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Visibility(
+          visible: !si.isMobile,
+          child: CustomButton(
+            height: 35,
+            width: 35,
+            color: white,
+            leftWidget: Icon(Icons.play_arrow),
+          ),
+        );
+      },
     );
   }
 
