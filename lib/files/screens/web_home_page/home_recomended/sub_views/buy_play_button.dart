@@ -81,7 +81,7 @@ class BuyAndPlayButton extends StatelessWidget {
             leftWidget: playAndPauseButtonIcon(index),
             title: playButtonTitleWidget(index),
             onTap: () {
-              playerController.playUrl(info?.toneIdStreamingUrl ?? '', index);
+              playerController.playUrl(info, index);
               info?.isPlaying = !(info?.isPlaying ?? false);
             },
           );

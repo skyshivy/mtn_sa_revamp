@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
@@ -47,6 +48,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
       title: myAccountStr,
       titlePadding: const EdgeInsets.only(right: 14),
       onTap: () {
+        MtnAudioPlayer.instance.stop();
         showPositionedPopup(_key, widget.items,
             isLeft: false, onTap: navigateTo);
         printCustom("On My Account tapped sss");

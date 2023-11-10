@@ -13,6 +13,7 @@ import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_control
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -303,6 +304,7 @@ StatefulShellBranch artistTuneScreen() {
 Widget shellRouteIndex(context, state, navigationShell) {
   printCustom("Selected index must be===== ${navigationShell.currentIndex}");
   appCont.updateIndex(navigationShell.currentIndex);
+  MtnAudioPlayer.instance.stop();
   return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "ATOM",

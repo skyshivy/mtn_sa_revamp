@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
@@ -19,7 +22,8 @@ class HomeTuneCell extends StatelessWidget {
   final TuneInfo? info;
   final bool isWishlist;
   final Function()? onTap;
-  const HomeTuneCell(
+  PlayerController pCont = Get.find();
+  HomeTuneCell(
       {super.key,
       this.isWishlist = false,
       required this.index,
@@ -80,14 +84,27 @@ class HomeTuneCell extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, si) {
         return Visibility(
-          visible: !si.isMobile,
-          child: CustomButton(
-            height: 35,
-            width: 35,
-            color: white,
-            leftWidget: Icon(Icons.play_arrow),
-          ),
-        );
+            visible: !si.isMobile,
+            child: Obx(() {
+              return CustomButton(
+                height: 35,
+                width: 35,
+                color: white,
+                leftWidget:
+                    //Icon(Icons.play_arrow),
+
+                    (info?.toneId ?? '') == pCont.toneId
+                        ? pCont.isPlaying.value
+                            ? const Icon(Icons.pause, size: 20)
+                            : const Icon(Icons.play_arrow_rounded, size: 20)
+                        : pCont.isPlaying.value
+                            ? const Icon(Icons.play_arrow_rounded, size: 20)
+                            : const Icon(Icons.play_arrow_rounded, size: 20),
+                onTap: () {
+                  pCont.playUrl(info, index);
+                },
+              );
+            }));
       },
     );
   }
