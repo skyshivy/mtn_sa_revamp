@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/localization/localizatio_service.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -74,11 +75,12 @@ class StoreManager {
     isLoggedIn = value;
   }
 
-  setLanguage(bool isEnglish) async {
+  setLanguage({required bool isEnglish}) async {
     prefs = await SharedPreferences.getInstance();
     prefs.setBool('isEnglish', isEnglish);
     this.isEnglish = isEnglish;
     appController.isEnglish.value = isEnglish;
+    LocalizationService().changeLocale(this.isEnglish);
   }
 
   setAccessToken(String value) async {

@@ -48,7 +48,7 @@ class _FAQScreenState extends State<FAQScreen> {
             ? loadingInd()
             : Column(
                 children: [
-                  CustomTopHeaderView(title: faqStr),
+                  CustomTopHeaderView(title: faqStr.tr),
                   Flexible(child: faqListView()),
                 ],
               );

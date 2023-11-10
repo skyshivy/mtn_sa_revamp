@@ -18,7 +18,7 @@ class HomefaqButton extends StatelessWidget {
       textColor: white,
       fontName: FontName.ztbold,
       fontSize: 16,
-      title: faqStr,
+      title: faqStr.tr,
       onTap: () {
         onTap();
         // controller.loadPage(2);

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -50,7 +51,7 @@ Widget _rightWidget() {
     scrollDirection: Axis.horizontal,
     shrinkWrap: true,
     children: [
-      _titleWidget(tunesStr, isBold: true),
+      _titleWidget(tunesStr.tr, isBold: true),
       _divider(),
       _titleWidget(profileTunesStr),
       _divider(),

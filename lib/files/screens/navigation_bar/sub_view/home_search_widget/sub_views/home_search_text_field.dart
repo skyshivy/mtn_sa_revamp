@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -43,7 +44,7 @@ class HomeSearchTextField extends StatelessWidget {
           hintColor: hintColor,
           fontName: FontName.ztlight,
           text: text,
-          hintText: searchStr,
+          hintText: searchStr.tr,
           fontSize: 16,
           onChanged: onChanged,
           onSubmit: onSubmit,

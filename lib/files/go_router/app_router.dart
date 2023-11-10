@@ -17,6 +17,7 @@ import 'package:mtn_sa_revamp/files/custom_files/app_bg_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/directionality.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
+import 'package:mtn_sa_revamp/files/localization/localizatio_service.dart';
 import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
@@ -36,6 +37,7 @@ import 'package:mtn_sa_revamp/files/screens/setting_screen/setting_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/home_banner_detail_page.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/wishlist_screen/wishlsit_screen.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
@@ -333,6 +335,10 @@ Widget shellRouteIndex(context, state, navigationShell) {
   print("Selected index must be===== ${navigationShell.currentIndex}");
   appCont.updateIndex(navigationShell.currentIndex);
   return GetMaterialApp(
+      locale: Locale(StoreManager().isEnglish ? 'en' : 'ar',
+          StoreManager().isEnglish ? 'US' : 'SA'),
+      fallbackLocale: const Locale('en', 'US'),
+      translations: LocalizationService(),
       debugShowCheckedModeBanner: false,
       home: ResponsiveBuilder(
         builder: (context, si) {

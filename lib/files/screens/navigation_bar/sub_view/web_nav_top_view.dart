@@ -67,7 +67,7 @@ class WebNavTopView extends StatelessWidget {
 
   Widget aboutButton() {
     return CustomButton(
-      title: aboutStr,
+      title: aboutStr.tr,
       fontName: FontName.ztbold,
       fontSize: 14,
       onTap: () {
@@ -104,7 +104,7 @@ class WebNavTopView extends StatelessWidget {
     return Obx(
       () {
         return CustomButton(
-          title: englishStr,
+          title: englishStr.tr,
           textColor: appCont.isEnglish.value ? red : black,
           fontName:
               appCont.isEnglish.value ? FontName.ztbold : FontName.ztregular,
@@ -112,7 +112,7 @@ class WebNavTopView extends StatelessWidget {
           onTap: () {
             context.go(homeGoRoute);
             print("english tapped");
-            StoreManager().setLanguage(true);
+            StoreManager().setLanguage(isEnglish: true);
           },
         );
       },
@@ -123,7 +123,7 @@ class WebNavTopView extends StatelessWidget {
     return Obx(
       () {
         return CustomButton(
-          title: arabicStr,
+          title: arabicStr.tr,
           textColor: appCont.isEnglish.value ? black : red,
           fontName:
               appCont.isEnglish.value ? FontName.ztregular : FontName.ztbold,
@@ -131,7 +131,7 @@ class WebNavTopView extends StatelessWidget {
           onTap: () {
             context.go(homeGoRoute);
             //replaceNamed(homeGoRoute);
-            StoreManager().setLanguage(false);
+            StoreManager().setLanguage(isEnglish: false);
             print("arabic tapped");
           },
         );
@@ -141,7 +141,7 @@ class WebNavTopView extends StatelessWidget {
 
   Widget faqButton(BuildContext context) {
     return CustomButton(
-      title: faqStr,
+      title: faqStr.tr,
       fontName: FontName.ztbold,
       fontSize: 14,
       onTap: () {

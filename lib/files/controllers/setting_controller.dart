@@ -7,7 +7,7 @@ class SettingController extends GetxController {
     myTuneStr,
     wishlistStr,
     historyStr,
-    faqStr,
+    faqStr.tr,
     enarStr,
     logoutStr,
   ].obs;

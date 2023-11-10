@@ -1,10 +1,10 @@
 const myTuneStr = "My Tunes";
 const aboutStr = "About";
+const faqStr = "FAQ";
 const homeStr = "Home";
 const englishStr = "English";
 const arabicStr = "Arabic";
-const faqStr = "FAQ";
-
+const testLanguageTextStr = 'TestLanguageText';
 const enarStr = "EN | AR";
 const playStr = "Play";
 const previewTuneStr = "Preview Tune";

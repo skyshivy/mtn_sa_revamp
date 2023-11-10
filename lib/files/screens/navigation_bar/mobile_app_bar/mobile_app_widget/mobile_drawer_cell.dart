@@ -146,7 +146,7 @@ _tappedOnCell(BuildContext context, String title) async {
   } else if (title == wishlistStr) {
     context.goNamed(wishlistGoRoute);
     //Get.toNamed(wishlistTapped);
-  } else if (title == faqStr) {
+  } else if (title == faqStr.tr) {
     print("FAQ tapped");
     context.pushNamed(faqGoRoute);
     //Get.toNamed(faqTapped);

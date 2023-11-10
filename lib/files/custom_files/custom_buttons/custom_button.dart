@@ -95,16 +95,23 @@ class CustomButton extends StatelessWidget {
   }
 
   Widget titleWidget() {
-    return Padding(
-      padding:
-          (titlePadding == null) ? const EdgeInsets.all(0.0) : titlePadding!,
-      child: CustomText(
-        title: title ?? '',
-        textColor: textColor,
-        fontSize: fontSize,
-        fontName: fontName ?? FontName.abook,
-        alignment: alignment,
-      ),
-    );
+    return (titlePadding == null)
+        ? CustomText(
+            title: title ?? '',
+            textColor: textColor,
+            fontSize: fontSize,
+            fontName: fontName ?? FontName.abook,
+            alignment: alignment,
+          )
+        : Padding(
+            padding: titlePadding!,
+            child: CustomText(
+              title: title ?? '',
+              textColor: textColor,
+              fontSize: fontSize,
+              fontName: fontName ?? FontName.abook,
+              alignment: alignment,
+            ),
+          );
   }
 }

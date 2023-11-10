@@ -150,7 +150,7 @@ class WebNavBarView extends StatelessWidget {
     return CustomOnHover(
       builder: (isHovered) {
         return CustomButton(
-          title: salatiStr,
+          title: salatiStr.tr,
           textColor: white,
           fontName: FontName.ztbold,
           fontSize: 18,

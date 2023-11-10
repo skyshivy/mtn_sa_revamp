@@ -48,10 +48,12 @@ class MobileAppBar extends StatelessWidget {
           showUnselectedLabels: true,
           unselectedItemColor: white,
           currentIndex: (navigationShell?.currentIndex ?? 0),
-          items: const [
+          items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: homeStr),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: searchStr),
-            BottomNavigationBarItem(icon: Icon(Icons.shop), label: salatiStr),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.search), label: searchStr.tr),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shop), label: salatiStr.tr),
             // BottomNavigationBarItem(
             //     icon: Icon(Icons.dirty_lens), label: diyStr),
             BottomNavigationBarItem(
