@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/gift_tune_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/buy_screen.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -27,10 +31,41 @@ class BuyAndPlayButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(child: playButtonWidget(index)),
+        Expanded(child: giftButton()),
         const SizedBox(width: 10),
         Expanded(child: buyButtonWidget()),
       ],
+    );
+  }
+
+  Widget giftButton() {
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return CustomButton(
+          leftWidget: SvgPicture.asset(
+            giftTuneSvg,
+            height: si.isMobile ? 15 : 18,
+            width: si.isMobile ? 15 : 18,
+          ), //Image.asset(giftTuneSvg),
+          fontSize: si.isMobile ? 13 : 15,
+          titlePadding: const EdgeInsets.only(top: 4, left: 4),
+          title: giftStr,
+          fontName: si.isMobile ? FontName.medium : FontName.bold,
+          borderColor: red,
+          onTap: () {
+            if (StoreManager().isLoggedIn) {
+              Get.dialog(Center(
+                child: GiftTuneView(
+                  info: info ?? TuneInfo(),
+                ),
+              ));
+            } else {
+              Get.dialog(
+                  CustomAlertView(title: featureIsAvailableForLoggedInStr));
+            }
+          },
+        );
+      },
     );
   }
 
@@ -85,13 +120,13 @@ class BuyAndPlayButton extends StatelessWidget {
             BuyTuneScreen().show(context, info);
           },
           color: blue,
-          titlePadding: const EdgeInsets.all(4),
+          titlePadding: const EdgeInsets.only(top: 4, left: 4),
           fontName: si.isMobile ? FontName.medium : FontName.bold,
-          fontSize: si.isMobile ? 12 : 16,
+          fontSize: si.isMobile ? 13 : 15,
           leftWidget: Image.asset(
             buyImg,
-            height: 20,
-            width: 20,
+            height: si.isMobile ? 15 : 18,
+            width: si.isMobile ? 15 : 18,
           ),
           title: buyStr,
           textColor: white,

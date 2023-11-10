@@ -43,7 +43,7 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
       widget.isWishlist
           ? MenuModel(deleteStr, imageName: deleteSvg)
           : MenuModel(wishlistStr, imageName: wishlistSvg),
-      MenuModel(giftStr, imageName: giftTuneSvg),
+      //MenuModel(giftStr, imageName: giftTuneSvg),
     ];
   }
 
@@ -87,11 +87,6 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
           recoController.wishlistTapped(widget.info);
         } else if (p0.title == giftStr) {
           recoController.tellAFriendTapped();
-          Get.dialog(Center(
-            child: GiftTuneView(
-              info: widget.info ?? TuneInfo(),
-            ),
-          ));
         } else if (p0.title == shareStr) {
           recoController.shareTapped();
         } else if (p0.title == deleteStr) {
