@@ -1,8 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
+import 'package:mtn_sa_revamp/files/model/delete_my_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/my_tunel_list_model.dart';
+import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/view_model/delete_dedicated_tune_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/delete_my_tune_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/delete_playing_tune_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/my_tune_playing_vm.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
@@ -12,6 +21,8 @@ class MyTuneController extends GetxController {
   RxBool isChangeSuffle = false.obs;
   RxBool isSuffle = false.obs;
   RxBool switchEnabled = false.obs;
+  RxString message = ''.obs;
+
   RxList<ListToneApk> playingList = <ListToneApk>[].obs;
   RxList<ListToneApk1> tuneList = <ListToneApk1>[].obs;
 
@@ -52,5 +63,58 @@ class MyTuneController extends GetxController {
     isChangeSuffle.value = false;
     switchEnabled.value = !switchEnabled.value;
     isSuffle.value = switchEnabled.value;
+  }
+
+//========================================================
+  Future<bool> deletePlayingTune(
+      String toneId, int index, BuildContext context) async {
+    Map<String, dynamic>? resp;
+    print(
+        "Delete playing tune name ${toneId} ===== ${playingList[index].msisdnB}");
+    print("Does contain msisdn ===== ${playingList[index].msisdnB}");
+    if (playingList[index].msisdnB == null) {
+      bool isFullday = playingList[index].playAt == "Full Day";
+      resp = await deletePlayingTuneApiCall(
+          toneId, playingList[index].timeType ?? '', isFullday);
+    } else {
+      print("Delete dedicate tune ");
+      resp = await deleteDedicatedTuneApiCall(toneId,
+          playingList[index].msisdnB ?? '', playingList[index].timeType ?? '');
+    }
+
+    print("Response is =========== ${resp}");
+
+    if (resp != null) {
+      DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(resp);
+      print("Delete playing tune ${result}");
+      playingList.removeAt(index);
+      message.value = result.message ?? someThingWentWrongStr;
+
+      return true;
+    }
+
+    return false;
+  }
+
+  Future<bool> deleteMyTune(String toneId, int index) async {
+    print("Delete My tune tune ");
+    PackStatusModel model = await getPackStatusApiCall();
+
+    if (model.statusCode == 'SC0000') {
+      String packName = model.responseMap?.packStatusDetails?.packName ?? '';
+      var respo = await deleteMyTuneApiCall(toneId, packName);
+      //MyTuneService().deleteMyTune(toneId, packName);
+      if (respo != null) {
+        DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(respo);
+        print("Delete My tune tune ${result}");
+        message.value = result.message ?? '';
+        showSnackBar(message: message.value);
+        tuneList.removeAt(index);
+
+        return true;
+      }
+      return false;
+    }
+    return false;
   }
 }

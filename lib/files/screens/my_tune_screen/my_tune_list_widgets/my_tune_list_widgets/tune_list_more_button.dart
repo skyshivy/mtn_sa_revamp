@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
@@ -33,6 +34,7 @@ class _TuneListMoreButtonState extends State<TuneListMoreButton> {
     //MenuModel(shareStr, imageName: shareSvg),
   ];
 
+  MyTuneController mCont = Get.find();
   createMenuList() {
     menuItem = [
       MenuModel(deleteStr, imageName: deleteSvg),
@@ -82,6 +84,8 @@ class _TuneListMoreButtonState extends State<TuneListMoreButton> {
               info: widget.info ?? TuneInfo(),
             ),
           ));
+        } else if (p0.title == deleteStr) {
+          mCont.deleteMyTune(widget.info?.toneId ?? '', widget.index);
         }
         printCustom("Item name is ${p0.title}");
       },
