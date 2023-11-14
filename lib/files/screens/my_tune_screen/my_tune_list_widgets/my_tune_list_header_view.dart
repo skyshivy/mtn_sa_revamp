@@ -16,9 +16,9 @@ Widget myTuneListHeaderView() {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _leftWidget(),
-          si.isMobile
-              ? SizedBox()
-              : SizedBox(height: 20, child: _rightWidget()),
+          // si.isMobile
+          //     ? SizedBox()
+          //     : SizedBox(height: 20, child: _rightWidget()),
         ],
       );
     },

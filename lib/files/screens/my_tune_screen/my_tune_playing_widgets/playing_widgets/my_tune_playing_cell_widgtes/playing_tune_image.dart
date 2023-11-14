@@ -16,7 +16,7 @@ Widget playingTuneImageWidget(ListToneApk? item) {
         url: item?.toneDetails?.first.toneIdpreviewImageUrl,
         gradient: customGredient(blackGredient, blackGredient),
       ),
-      _playingTuneLikeButton(),
+      //_playingTuneLikeButton(),
     ],
   );
 }

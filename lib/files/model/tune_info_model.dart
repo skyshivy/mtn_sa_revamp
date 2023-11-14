@@ -24,6 +24,9 @@ class TuneInfo {
   String? toneIdpreviewImageUrl;
   bool isLiked = false;
   bool isPlaying = false;
+  String? status;
+  String? isCopy;
+  String? isGift;
 
   TuneInfo({
     this.id,
@@ -48,33 +51,40 @@ class TuneInfo {
     this.toneUrl,
     this.price,
     this.expiryDate,
+    this.status,
+    this.isCopy,
+    this.isGift,
   });
 
   factory TuneInfo.fromJson(Map<String, dynamic> json) {
     return TuneInfo(
-        id: json['id'],
-        contentId: json['contentId'],
-        contentName: json['contentName'],
-        path: json['path'],
-        album: json['album'] ?? json['albumName'],
-        artist: json['artist'] ?? json['artistName'],
-        msisdn: json['msisdn'],
-        createdDate: json['createdDate'],
-        wishListType: json['wishListType'],
-        albumName: json['albumName'] ?? json['album'],
-        artistName: json['artistName'] ?? json['artist'],
-        categoryId: '${json['categoryId']}',
-        downloadCount: json['downloadCount'],
-        likeCount: json['likeCount'],
-        previewImageUrl: json['previewImageUrl'],
-        toneId: json['toneId'] ?? json['contentId'],
-        toneIdStreamingUrl: json['toneIdStreamingUrl'] ?? json['path'],
-        toneIdpreviewImageUrl:
-            json['toneIdpreviewImageUrl'] ?? json['previewImageUrl'],
-        toneName: json['toneName'] ?? json['contentName'],
-        toneUrl: json['toneUrl'],
-        price: '${json['price']}',
-        expiryDate: json['expiryDate']);
+      id: json['id'],
+      contentId: json['contentId'],
+      contentName: json['contentName'],
+      path: json['path'],
+      album: json['album'] ?? json['albumName'],
+      artist: json['artist'] ?? json['artistName'],
+      msisdn: json['msisdn'],
+      createdDate: json['createdDate'],
+      wishListType: json['wishListType'],
+      albumName: json['albumName'] ?? json['album'],
+      artistName: json['artistName'] ?? json['artist'],
+      categoryId: '${json['categoryId']}',
+      downloadCount: json['downloadCount'],
+      likeCount: json['likeCount'],
+      previewImageUrl: json['previewImageUrl'],
+      toneId: json['toneId'] ?? json['contentId'],
+      toneIdStreamingUrl: json['toneIdStreamingUrl'] ?? json['path'],
+      toneIdpreviewImageUrl:
+          json['toneIdpreviewImageUrl'] ?? json['previewImageUrl'],
+      toneName: json['toneName'] ?? json['contentName'],
+      toneUrl: json['toneUrl'],
+      price: '${json['price']}',
+      expiryDate: json['expiryDate'],
+      status: json["status"],
+      isCopy: json["isCopy"],
+      isGift: json["isGift"],
+    );
   }
 
   toJson() {}

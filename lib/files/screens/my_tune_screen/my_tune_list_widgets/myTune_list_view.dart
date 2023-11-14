@@ -44,7 +44,7 @@ class MyTuneListView extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(4.0),
-              child: tuneListCell(context, controller.tuneList[index]),
+              child: tuneListCell(context, controller.tuneList[index], index),
             );
           },
         );
