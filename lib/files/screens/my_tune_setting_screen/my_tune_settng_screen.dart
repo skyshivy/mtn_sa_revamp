@@ -56,15 +56,16 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
         padding: EdgeInsets.symmetric(
             horizontal: si.isMobile ? 12 : 80, vertical: 10),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
+            shrinkWrap: true,
+            // mainAxisAlignment: MainAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               topTitleWidget(),
               Wrap(
                 alignment: WrapAlignment.center,
                 children: [
-                  _leftWidget(),
+                  _leftWidget(si),
                   const SizedBox(width: 30),
                   Flexible(child: _rightWidget()),
                   const SizedBox(width: 120),
@@ -77,8 +78,12 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
     });
   }
 
-  Widget _leftWidget() {
-    return tuneSettingImage();
+  Widget _leftWidget(SizingInformation si) {
+    return Padding(
+      padding: EdgeInsets.only(
+          bottom: si.isDesktop ? 0 : 20, top: si.isDesktop ? 0 : 20),
+      child: tuneSettingImage(),
+    );
   }
 
   Widget _rightWidget() {

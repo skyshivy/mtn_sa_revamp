@@ -18,7 +18,7 @@ Widget tuneListCell(BuildContext context, ListToneApk1 info, int index) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Flexible(
-            child: tuneListImageView(info),
+            child: tuneListImageView(info, index),
           ),
           _bottomSection(context, info, index),
           const SizedBox(height: 8),

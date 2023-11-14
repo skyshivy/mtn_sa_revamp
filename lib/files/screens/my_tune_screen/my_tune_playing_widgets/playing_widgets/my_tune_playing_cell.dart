@@ -75,7 +75,7 @@ Row _playingTuneInfoRow(ListToneApk item, int index) {
         children: [
           playingTunePlayButton(inf, index),
           const SizedBox(width: 8),
-          playingTuneMoreButton(),
+          playingTuneMoreButton(index, inf),
         ],
       ),
     ],

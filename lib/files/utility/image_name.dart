@@ -15,6 +15,11 @@ const twitterImg = 'assets/pngs/twitter.png';
 const linkedInImg = 'assets/pngs/linkedIn.png';
 const placeholderImage = 'assets/pngs/placeholderImage.png';
 
+const favouriteImg = 'assets/pngs/favourite_img1.png';
+const logoutImg = 'assets/pngs/logout_img1.png';
+const profileImg = 'assets/pngs/profile_img1.png';
+const myTuneImg = 'assets/pngs/my_tune_img1.png';
+
 // svg image bottom =======================
 
 const wishlistSvg = 'assets/svg/wishlistSvg.svg';
