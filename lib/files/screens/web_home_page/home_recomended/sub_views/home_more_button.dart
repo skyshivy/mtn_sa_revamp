@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
@@ -87,6 +88,9 @@ class _MoreButtonOnCellState extends State<MoreButtonOnCell> {
           recoController.giftTapped(widget.info);
         } else if (p0.title == shareStr) {
           recoController.shareTapped();
+        } else if (p0.title == deleteStr) {
+          WishlistController cCont = Get.find();
+          cCont.deleteFromWishlist(widget.info ?? TuneInfo());
         } else {
           print("Default tapped");
         }

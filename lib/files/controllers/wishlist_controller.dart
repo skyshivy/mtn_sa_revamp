@@ -1,9 +1,13 @@
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
+import 'package:mtn_sa_revamp/files/model/delete_wishlist_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/model/wishlist_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/view_model/delete_from_wishlist_vm.dart';
 
 class WishlistController extends GetxController {
   RxBool isLoading = false.obs;
@@ -34,5 +38,15 @@ class WishlistController extends GetxController {
     }
     isLoading.value = false;
     print(" ==== wishlist $map");
+  }
+
+  deleteFromWishlist(TuneInfo info) async {
+    DeleteWishlistModel model =
+        await DeleteFromWishlistVM().delete(info.categoryId ?? '');
+    if (model.statusCode == 'SC0000') {
+      wishlist.remove(info);
+    } else {
+      showSnackBar(message: model.message ?? someThingWentWrongStr);
+    }
   }
 }

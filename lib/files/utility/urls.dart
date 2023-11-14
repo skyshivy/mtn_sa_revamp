@@ -50,8 +50,8 @@ String timeBaseTuneSetUrl =
 String addToneToSuffleUrl = '${baseUrlSecurity}add-tone-to-shuffle';
 String dedicatedTuneSetUrl =
     '${baseUrlSecurity}dedicated-user-tone-addition-with-time-setting';
-    
 
+String deleteFromWishListUrl = "${baseUrlSecurity}delete-from-wishlist";
   
 // String fulldayTuneSetUrl =
 //     '${baseUrlSecurity}time-based-setting-for-already-activated';
