@@ -93,6 +93,7 @@ const diyDescriptionStr =
 const replaceStr = "Replace";
 const submitStr = "Submit";
 const giftStr = "Gift";
+const deleteStr = "Delete";
 const buyNowStr = "Buy Now";
 const userNameStr = "User Name*";
 const preferenceStr = "Preference*";

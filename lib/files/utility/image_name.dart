@@ -21,10 +21,16 @@ const wishlistImage = 'assets/pngs/wishListR.png';
 const tellafriendImage = 'assets/pngs/tellAFriendR.png';
 const giftImage = 'assets/pngs/gift.png';
 
+const favouriteImage = 'assets/pngs/favourite_img1.png';
+const logoutImage = 'assets/pngs/logout_img1.png';
+const myTuneImage = 'assets/pngs/my_tune_img1.png';
+const profileImage = 'assets/pngs/profile_img1.png';
+
 // svg image bottom =======================
 
 const wishlistSvg = 'assets/svg/wishlistSvg.svg';
 const tellFriendSvg = 'assets/svg/tellFriendSvg.svg';
+const giftSvg = 'assets/svg/giftSvg.svg';
 const shareSvg = 'assets/svg/shareSvg.svg';
 const editSvg = 'assets/svg/editSvg.svg';
 const deleteSvg = 'assets/svg/deleteSvg.svg';

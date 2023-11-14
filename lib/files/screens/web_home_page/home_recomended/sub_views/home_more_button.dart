@@ -12,22 +12,38 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
-class HomeMoreButton extends StatefulWidget {
+class MoreButtonOnCell extends StatefulWidget {
   final TuneInfo? info;
-  const HomeMoreButton({super.key, this.info});
+  final bool isWishlist;
+  const MoreButtonOnCell({super.key, this.info, required this.isWishlist});
 
   @override
   State<StatefulWidget> createState() {
-    return _HomeMoreButtonState();
+    return _MoreButtonOnCellState();
   }
 }
 
-class _HomeMoreButtonState extends State<HomeMoreButton> {
-  List<MenuModel> menuItem = [
-    MenuModel(wishlistStr, imageName: wishlistSvg),
-    MenuModel(giftStr, imageName: tellFriendSvg),
+class _MoreButtonOnCellState extends State<MoreButtonOnCell> {
+  List<MenuModel> menuItem = [];
+  @override
+  void initState() {
+    if (widget.isWishlist) {
+      menuItem = [
+        MenuModel(deleteStr, imageName: deleteSvg),
+        MenuModel(giftStr, imageName: giftSvg),
+      ];
+    } else {
+      menuItem = [
+        MenuModel(wishlistStr, imageName: wishlistSvg),
+        MenuModel(giftStr, imageName: giftSvg),
+      ];
+    }
+
     // MenuModel(shareStr, imageName: shareSvg),
-  ];
+
+    super.initState();
+  }
+
   final GlobalKey _key = GlobalKey();
   @override
   Widget build(BuildContext context) {

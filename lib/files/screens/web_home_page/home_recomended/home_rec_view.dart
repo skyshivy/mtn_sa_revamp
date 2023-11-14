@@ -29,7 +29,7 @@ class LandingRecoView extends StatefulWidget {
 }
 
 class _LandingRecoViewState extends State<LandingRecoView> {
-  RecoController controller = Get.put(RecoController());
+  RecoController controller = Get.find();
 
   late SizingInformation si;
   @override

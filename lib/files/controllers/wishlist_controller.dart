@@ -1,10 +1,13 @@
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
+import 'package:mtn_sa_revamp/files/model/wishlist_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class WishlistController extends GetxController {
   RxBool isLoading = false.obs;
+  RxList<TuneInfo> wishlist = <TuneInfo>[].obs;
 
   getWishlist() async {
     isLoading.value = true;
@@ -25,6 +28,10 @@ class WishlistController extends GetxController {
     print("\nformed data is \n$formData\n");
     Map<String, dynamic>? map =
         await ServiceCall().post(myWishListUrl, formData);
+    if (map != null) {
+      WishlistModel model = WishlistModel.fromJson(map);
+      wishlist.value = model.responseMap?.toneDetailsList ?? [];
+    }
     isLoading.value = false;
     print(" ==== wishlist $map");
   }

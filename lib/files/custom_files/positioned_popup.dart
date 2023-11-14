@@ -96,7 +96,7 @@ Padding cell(List<MenuModel> menuList, int index, bool isSvg, bool isHover) {
     padding: const EdgeInsets.all(8.0),
     child: Row(
       children: [
-        cellImage(menuList[index], isSvg),
+        cellImage(menuList[index], isSvg, isHover),
         customSpacer(menuList, index),
         cellTitle(menuList[index], isHover),
       ],
@@ -118,14 +118,18 @@ Widget cellTitle(MenuModel menu, bool isHover) {
   );
 }
 
-Widget cellImage(MenuModel menu, bool isSvg) {
+Widget cellImage(MenuModel menu, bool isSvg, bool isHovered) {
   return (menu.imageName == null)
       ? const SizedBox()
       : SizedBox(
           height: 15,
           width: 15,
           child: isSvg
-              ? SvgPicture.asset(menu.imageName ?? '')
-              : Image.asset(menu.imageName ?? '', color: black),
+              ? SvgPicture.asset(
+                  menu.imageName ?? '',
+                  color: red,
+                )
+              : Image.asset(menu.imageName ?? '',
+                  color: isHovered ? white : black),
         );
 }

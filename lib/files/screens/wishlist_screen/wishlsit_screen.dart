@@ -4,7 +4,10 @@ import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class WishlistScreen extends StatefulWidget {
   @override
@@ -38,12 +41,29 @@ class _WishlistScreenState extends State<WishlistScreen> {
     return Obx(() {
       return wishlistController.isLoading.value
           ? Center(child: loadingIndicator())
-          : const Center(
-              child: CustomText(
-              title: "_WishlistScreenState",
-              fontName: FontName.ztbold,
-              fontSize: 20,
-            ));
+          : gridView();
     });
+  }
+
+  Widget gridView() {
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Obx(
+          () {
+            return GridView.builder(
+              itemCount: wishlistController.wishlist.length,
+              gridDelegate: delegate(si),
+              itemBuilder: (context, index) {
+                return HomeTuneCell(
+                  info: wishlistController.wishlist[index],
+                  isWishlist: true,
+                  index: index,
+                );
+              },
+            );
+          },
+        );
+      },
+    );
   }
 }

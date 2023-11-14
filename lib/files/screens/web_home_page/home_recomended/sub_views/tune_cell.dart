@@ -19,8 +19,14 @@ import 'package:responsive_builder/responsive_builder.dart';
 class HomeTuneCell extends StatelessWidget {
   final int index;
   final TuneInfo? info;
+  final bool isWishlist;
   final Function()? onTap;
-  HomeTuneCell({super.key, required this.index, this.info, this.onTap});
+  HomeTuneCell(
+      {super.key,
+      required this.index,
+      this.info,
+      this.isWishlist = false,
+      this.onTap});
   PlayerController playerController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -160,7 +166,10 @@ class HomeTuneCell extends StatelessWidget {
   }
 
   Widget moreButton() {
-    return HomeMoreButton(info: info);
+    return MoreButtonOnCell(
+      info: info,
+      isWishlist: isWishlist,
+    );
   }
 
   BoxDecoration decoration() {

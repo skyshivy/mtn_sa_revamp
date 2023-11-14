@@ -24,10 +24,10 @@ class WebMyAccountButton extends StatefulWidget {
   }
 
   List<MenuModel> items = [
-    MenuModel(profileStr),
-    MenuModel(wishlistStr),
-    MenuModel(myTuneStr, imageName: buyImg),
-    MenuModel(logoutStr, imageName: likeImg),
+    MenuModel(profileStr, imageName: profileImage),
+    MenuModel(wishlistStr, imageName: favouriteImage),
+    MenuModel(myTuneStr, imageName: myTuneImage),
+    MenuModel(logoutStr, imageName: logoutImage),
   ];
 }
 
