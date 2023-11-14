@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/gift_tune_view.dart';
 import 'package:mtn_sa_revamp/files/model/home_reco_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
@@ -91,8 +93,13 @@ class RecoController extends GetxController {
     print("Wishlist tapped in tune cell");
   }
 
-  tellAFriendTapped() {
+  giftTapped(TuneInfo? info) {
     print("Tell a friend tapped in tune cell");
+    Get.dialog(Center(
+      child: GiftTuneView(
+        info: info ?? TuneInfo(),
+      ),
+    ));
   }
 
   shareTapped() {

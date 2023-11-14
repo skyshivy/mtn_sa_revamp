@@ -5,7 +5,7 @@ String appVersion = '1.0.6';
 String channelId = '4';
 String appId = "com.sixdee.oml_rbt_portal"; //'com.sixdee.oml_rbt_portal'; //
 String os = "ios";
-
+String sendGiftUrl = "${baseUrl}send-gift";
 int perPageCount = 20;
 String baseUrl = "";
 String baseUrlSecurity = '';

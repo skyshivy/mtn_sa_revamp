@@ -84,7 +84,7 @@ class _MoreButtonOnCellState extends State<MoreButtonOnCell> {
         if (p0.title == wishlistStr) {
           recoController.wishlistTapped(widget.info);
         } else if (p0.title == giftStr) {
-          recoController.tellAFriendTapped();
+          recoController.giftTapped(widget.info);
         } else if (p0.title == shareStr) {
           recoController.shareTapped();
         } else {
