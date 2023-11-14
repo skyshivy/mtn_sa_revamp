@@ -82,8 +82,11 @@ class GiftTuneController extends GetxController {
 
   getTunePrice() async {
     Map<String, dynamic>? map = await GetTunePrice().api(
-        StoreManager().msisdn, info.toneId ?? '', '2',
-        bParty: bPartyMsisdn.value);
+        StoreManager().msisdn, info.toneId ?? '', bPartyMsisdn.value,
+        validationId: '4');
+    // api(
+    //     StoreManager().msisdn, info.toneId ?? '', '2',
+    //     bParty: bPartyMsisdn.value,);
 
     if (map != null) {
       TonePriceModel model = TonePriceModel.fromJson(map);
