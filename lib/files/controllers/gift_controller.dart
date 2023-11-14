@@ -94,7 +94,7 @@ class GiftTuneController extends GetxController {
 
         if (map != null) {
           SendGiftModel model = SendGiftModel.fromJson(map);
-          printCustom("Send gift resp is $model");
+          print("Send gift resp is $model");
           isVerifing.value = false;
 
           if (model.statusCode == 'SC0000') {
