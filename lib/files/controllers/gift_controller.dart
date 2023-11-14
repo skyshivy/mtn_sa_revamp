@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+
 import 'package:mtn_sa_revamp/files/model/send_gift_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -12,7 +12,6 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_tune_price_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
-import 'package:mtn_sa_revamp/files/view_model/send_gift_vm.dart';
 
 class GiftTuneController extends GetxController {
   RxBool isSendDone = false.obs;
@@ -77,13 +76,13 @@ class GiftTuneController extends GetxController {
     }
 
     isVerifing.value = false;
-    printCustom("confirm button tapped Tapped");
+    print("confirm button tapped Tapped");
   }
 
   getTunePrice() async {
     Map<String, dynamic>? map = await GetTunePrice().api(
-        StoreManager().msisdn, info.toneId ?? '', bPartyMsisdn.value,
-        validationId: '4');
+        StoreManager().msisdn, info.toneId ?? '',
+        bParty: bPartyMsisdn.value, validationId: '2');
     // api(
     //     StoreManager().msisdn, info.toneId ?? '', '2',
     //     bParty: bPartyMsisdn.value,);

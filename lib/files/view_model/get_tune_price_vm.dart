@@ -5,9 +5,8 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class GetTunePrice {
-  Future<Map<String, dynamic>?> api(
-      String msisdn, String toneId, String? bParty,
-      {String validationId = '3'}) async {
+  Future<Map<String, dynamic>?> api(String msisdn, String toneId,
+      {String? bParty, String validationId = '3'}) async {
     var parts = [];
     Random random = Random();
     int randomNumber = random.nextInt(1000000000);

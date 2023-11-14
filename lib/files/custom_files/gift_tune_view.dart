@@ -143,7 +143,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
   CustomText titleWidget(SizingInformation si) {
     return CustomText(
       title: giftStr,
-      fontName: FontName.extraBold,
+      fontName: FontName.ztbold,
       fontSize: si.isMobile ? 14 : 18,
     );
   }
@@ -153,7 +153,6 @@ class _GiftTuneViewState extends State<GiftTuneView> {
       width: si.isMobile ? 150 : null,
       child: CustomImage(
         height: 150,
-        radius: 8,
         url: widget.info.toneIdpreviewImageUrl,
       ),
     );
@@ -175,7 +174,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
     return CustomText(
       alignment: si.isMobile ? TextAlign.center : null,
       title: widget.info.albumName ?? '',
-      fontName: FontName.mediumItalic,
+      fontName: FontName.ztregular,
       fontSize: 12,
     );
   }
@@ -184,7 +183,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
     return CustomText(
       alignment: si.isMobile ? TextAlign.center : null,
       title: widget.info.toneName ?? '',
-      fontName: FontName.bold,
+      fontName: FontName.ztbold,
     );
   }
 
@@ -223,7 +222,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
   CustomText tuneChargeTitle() {
     return CustomText(
       title: tuneChargeStr,
-      fontName: FontName.bold,
+      fontName: FontName.ztbold,
     );
   }
 
@@ -255,9 +254,9 @@ class _GiftTuneViewState extends State<GiftTuneView> {
           ? loadingIndicator(radius: 10)
           : CustomButton(
               title: confirmStr,
-              color: blue,
+              color: darkGreen,
               textColor: white,
-              fontName: FontName.bold,
+              fontName: FontName.ztbold,
               onTap: () {
                 cont.confirmButtonAction(widget.info);
               },
@@ -268,8 +267,8 @@ class _GiftTuneViewState extends State<GiftTuneView> {
   CustomButton cancelButton(BuildContext context) {
     return CustomButton(
       title: cancelStr,
-      fontName: FontName.bold,
-      borderColor: atomCryan,
+      fontName: FontName.ztbold,
+      borderColor: lightGreen,
       onTap: () {
         Navigator.of(context).pop();
       },
