@@ -31,6 +31,7 @@ class AddToWishlistVm {
         await ServiceCall().post(addToWishlistUrl, formData);
     if (map != null) {
       AddToWishListModel model = AddToWishListModel.fromJson(map);
+      StoreManager().reloadWishlistView = true;
       showSnackBar(message: model.message ?? '');
     } else {
       showSnackBar(message: someThingWentWrongStr);

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 
@@ -86,6 +87,10 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
     } else if (item.title == wishlistStr) {
       //Get.toNamed(wishlistTapped);
       context.goNamed(wishlistGoRoute);
+      WishlistController wCont = Get.find();
+      if (StoreManager().reloadWishlistView) {
+        wCont.getWishlist();
+      }
       print("wishlistTapped tapped");
     } else if (item.title == myTuneStr) {
       context.goNamed(myTuneGoRoute);

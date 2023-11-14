@@ -35,6 +35,7 @@ class WishlistController extends GetxController {
     if (map != null) {
       WishlistModel model = WishlistModel.fromJson(map);
       wishlist.value = model.responseMap?.toneDetailsList ?? [];
+      StoreManager().reloadWishlistView = false;
     }
     isLoading.value = false;
     print(" ==== wishlist $map");
@@ -42,7 +43,7 @@ class WishlistController extends GetxController {
 
   deleteFromWishlist(TuneInfo info) async {
     DeleteWishlistModel model =
-        await DeleteFromWishlistVM().delete(info.categoryId ?? '');
+        await DeleteFromWishlistVM().delete(info.id ?? '');
     if (model.statusCode == 'SC0000') {
       wishlist.remove(info);
     } else {

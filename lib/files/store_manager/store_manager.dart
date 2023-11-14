@@ -23,6 +23,7 @@ class StoreManager {
   String languageCode = "1";
   String msisdn = '';
   String accessToken = '';
+  bool reloadWishlistView = false;
   String deviceId = '';
   String securityToken = '';
   String securityCounter = '';
