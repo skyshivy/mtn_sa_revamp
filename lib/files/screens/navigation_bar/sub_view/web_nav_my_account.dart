@@ -39,13 +39,15 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
     return CustomButton(
       key: _key,
       height: 35,
-      fontName: FontName.ztregular,
+      fontName: FontName.ztbold,
       fontSize: 16,
       borderColor: white,
       color: white,
       leftWidget: leftWidgetPadding(),
       title: myAccountStr,
-      titlePadding: const EdgeInsets.only(right: 14),
+      titlePadding: StoreManager().isEnglish
+          ? const EdgeInsets.only(right: 14)
+          : const EdgeInsets.only(left: 14),
       onTap: () {
         showPositionedPopup(_key, widget.items,
             isLeft: false, onTap: navigateTo);
@@ -57,13 +59,15 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
   webMyAccountButton() {
     return CustomButton(
       height: 50,
-      fontName: FontName.ztregular,
+      fontName: FontName.ztbold,
       fontSize: 16,
       borderColor: white,
       color: white,
       leftWidget: leftWidgetPadding(),
       title: myAccountStr,
-      titlePadding: const EdgeInsets.only(right: 14),
+      titlePadding: StoreManager().isEnglish
+          ? const EdgeInsets.only(right: 14)
+          : const EdgeInsets.only(left: 14),
       onTap: () {
         Get.dialog(Center(child: CustomAlertView(title: "check here")));
         print("On My Account tapped");
@@ -72,9 +76,11 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
   }
 
   Padding leftWidgetPadding() {
-    return const Padding(
-      padding: EdgeInsets.only(left: 14, right: 4),
-      child: Icon(Icons.person_2_outlined, size: 20),
+    return Padding(
+      padding: StoreManager().isEnglish
+          ? const EdgeInsets.only(left: 14, right: 4)
+          : const EdgeInsets.only(left: 8, right: 10),
+      child: const Icon(Icons.person_2_outlined, size: 20),
     );
   }
 
