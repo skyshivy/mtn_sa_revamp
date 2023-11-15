@@ -237,20 +237,22 @@ class _BuyScreenState extends State<_BuyScreen> {
   }
 
   Widget tuneCharge() {
-    return HomeCellTitleSubTilte(
-      mainAxisAlignment: isPhone(context!)
-          ? MainAxisAlignment.center
-          : MainAxisAlignment.start,
-      crossAxisAlignment: isPhone(context!)
-          ? CrossAxisAlignment.center
-          : CrossAxisAlignment.start,
-      title: tuneChargeStr,
-      subTitle: "10 RAND/MONTH",
-      titleFontName: FontName.abook,
-      titleFontSize: 16,
-      subTitleFontName: FontName.ztbold,
-      subTitleFontSize: 20,
-    );
+    return Obx(() {
+      return HomeCellTitleSubTilte(
+        mainAxisAlignment: isPhone(context!)
+            ? MainAxisAlignment.center
+            : MainAxisAlignment.start,
+        crossAxisAlignment: isPhone(context!)
+            ? CrossAxisAlignment.center
+            : CrossAxisAlignment.start,
+        title: tuneChargeStr,
+        subTitle: buyController.tunePrice.value,
+        titleFontName: FontName.abook,
+        titleFontSize: 16,
+        subTitleFontName: FontName.ztbold,
+        subTitleFontSize: 20,
+      );
+    });
   }
 
   Widget buttons() {

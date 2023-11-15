@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_popup_widget.dart';
 import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
+import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_existing_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
@@ -40,7 +41,8 @@ class BuyController extends GetxController {
   bool isNewUser = false;
   RxString otp = ''.obs;
   String securityCounter = '';
-  RxString msisdn = '9923964719'.obs;
+  RxString msisdn = ''.obs;
+  RxString tunePrice = ''.obs;
   late TuneInfo? info;
 
   customInit() {
@@ -49,9 +51,10 @@ class BuyController extends GetxController {
     isShowOtpView.value = false;
     isMsisdnVarified.value = false;
     otp.value = '';
-    msisdn.value = '9923964719';
+    msisdn.value = '';
     isBuySuccess.value = false;
     successMessage.value = '';
+    _getTunePrice();
   }
 
   onEditAction() {
@@ -62,6 +65,11 @@ class BuyController extends GetxController {
     otp.value = '';
     isBuySuccess.value = false;
     successMessage.value = '';
+  }
+
+  _getTunePrice() {
+    Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
+    tunePrice.value = others?.tonePrice?.attribute ?? '';
   }
 
   msisdnValidation(TuneInfo? inf) async {
