@@ -123,7 +123,7 @@ class PlayerController extends GetxController {
         print("Player is not playing");
       }
     });
-    player.positionStream.listen((position) {
+    player.positionStream.listen((position) async {
       currentSeekingStr.value = position.inSeconds > 9
           ? "00:${position.inSeconds}"
           : "00:0${position.inSeconds}";

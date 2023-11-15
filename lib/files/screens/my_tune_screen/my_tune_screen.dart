@@ -40,26 +40,33 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return Padding(
-          padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 4 : 20),
-          child: SingleChildScrollView(child: Obx(() {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                MyTuneHeaderView(),
-                const SizedBox(height: 15),
-                controller.isLoadingPlaying.value
-                    ? loadInd()
-                    : checkMyTuneEmpty(),
-                const SizedBox(height: 35),
-                controller.isLoadingTune.value
-                    ? loadInd()
-                    : checkMyTuneListEmpty(),
-                const SizedBox(height: 200),
-              ],
-            );
-          })),
-        );
+        return SingleChildScrollView(child: Obx(() {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              MyTuneHeaderView(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 4 : 20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 15),
+                    controller.isLoadingPlaying.value
+                        ? loadInd()
+                        : checkMyTuneEmpty(),
+                    const SizedBox(height: 35),
+                    controller.isLoadingTune.value
+                        ? loadInd()
+                        : checkMyTuneListEmpty(),
+                    const SizedBox(height: 200),
+                  ],
+                ),
+              ),
+            ],
+          );
+        }));
       },
     );
   }

@@ -33,6 +33,7 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
       key: _key,
       onTap: () {
         print("tuneSettingTimeTypeButton tapped");
+        return;
 
         Get.dialog(showPositionedPopup(_key, menuList, onTap: action));
       },

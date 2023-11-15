@@ -45,7 +45,7 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
 
   @override
   void dispose() {
-    Get.delete<TuneSettingController>();
+    //Get.delete<TuneSettingController>();
     super.dispose();
   }
 
@@ -56,9 +56,8 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
         padding: EdgeInsets.symmetric(
             horizontal: si.isMobile ? 12 : 80, vertical: 10),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
+            shrinkWrap: true,
             children: [
               topTitleWidget(),
               Wrap(
@@ -66,7 +65,7 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
                 children: [
                   _leftWidget(),
                   const SizedBox(width: 30),
-                  Flexible(child: _rightWidget()),
+                  Flexible(child: _rightWidget(si)),
                   const SizedBox(width: 120),
                 ],
               ),
@@ -81,14 +80,19 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
     return tuneSettingImage();
   }
 
-  Widget _rightWidget() {
+  Widget _rightWidget(SizingInformation si) {
     return SizedBox(
       width: 600,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          tuneSettingRightWidgte(),
+          Padding(
+            padding: EdgeInsets.only(
+                top: si.isDesktop ? 0 : 10, bottom: si.isDesktop ? 0 : 20),
+            child: tuneSettingRightWidgte(),
+          ),
           const SizedBox(height: 15),
           tuneSettingConfirmButton(),
         ],

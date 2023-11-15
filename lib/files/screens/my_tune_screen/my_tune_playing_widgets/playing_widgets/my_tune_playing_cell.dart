@@ -61,6 +61,7 @@ Row _playingTuneInfoRow(ListToneApk item, int index) {
       toneId: detail?.toneId,
       toneName: detail?.toneName,
       toneUrl: detail?.toneIdStreamingUrl,
+      toneIdStreamingUrl: detail?.toneIdStreamingUrl,
       previewImageUrl: detail?.toneIdpreviewImageUrl,
       albumName: detail?.albumName,
       artistName: detail?.artistName);
