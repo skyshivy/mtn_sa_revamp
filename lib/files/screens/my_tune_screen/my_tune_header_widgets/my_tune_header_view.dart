@@ -9,7 +9,7 @@ class MyTuneHeaderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 260,
       width: double.infinity,
       //color: Colors.teal,
