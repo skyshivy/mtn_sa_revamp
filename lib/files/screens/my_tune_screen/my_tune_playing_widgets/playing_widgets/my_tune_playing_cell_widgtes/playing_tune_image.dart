@@ -22,7 +22,8 @@ Widget playingTuneImageWidget(ListToneApk? item) {
 }
 
 Widget _playingTuneLikeButton() {
-  return Padding(
+  return SizedBox();
+  Padding(
     padding: const EdgeInsets.all(8.0),
     child: Row(
       children: [

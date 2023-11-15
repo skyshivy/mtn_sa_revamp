@@ -28,7 +28,8 @@ Widget tuneListImageView(ListToneApk1 info) {
 }
 
 Widget _tuneListLikeButton(ListToneApk1 info) {
-  return CustomButton(
+  return SizedBox();
+  CustomButton(
     color: whiteTrans,
     height: 30,
     title: "",
