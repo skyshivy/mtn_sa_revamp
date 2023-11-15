@@ -72,11 +72,15 @@ class MyTuneController extends GetxController {
         "Delete playing tune name ${toneId} ===== ${playingList[index].msisdnB}");
     print("Does contain msisdn ===== ${playingList[index].msisdnB}");
     if (playingList[index].msisdnB == null) {
-      bool isFullday = playingList[index].playAt == "FullDay";
+      bool isFullday = (playingList[index].playAt == "FullDay") ||
+          (playingList[index].playAt == "Full Day");
       Map<String, dynamic>? map1 = await deletePlayingTuneApiCall(
           toneId, playingList[index].timeType ?? '', isFullday);
       if (map1 != null) {
         DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(map1);
+        if (result.statusCode == 'SC0000') {
+          playingList.removeAt(index);
+        }
         showSnackBar(message: result.message ?? someThingWentWrongStr);
       }
     } else {
@@ -85,6 +89,9 @@ class MyTuneController extends GetxController {
           playingList[index].msisdnB ?? '', playingList[index].timeType ?? '');
       if (map2 != null) {
         DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(map2);
+        if (result.statusCode == 'SC0000') {
+          playingList.removeAt(index);
+        }
         showSnackBar(message: result.message ?? someThingWentWrongStr);
       }
     }
