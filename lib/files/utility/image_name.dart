@@ -31,6 +31,7 @@ const profileImage = 'assets/pngs/profile_img1.png';
 const wishlistSvg = 'assets/svg/wishlistSvg.svg';
 const tellFriendSvg = 'assets/svg/tellFriendSvg.svg';
 const giftSvg = 'assets/svg/giftSvg.svg';
+const giftTuneSvg = 'assets/svg/gift_tune.svg';
 const shareSvg = 'assets/svg/shareSvg.svg';
 const editSvg = 'assets/svg/editSvg.svg';
 const deleteSvg = 'assets/svg/deleteSvg.svg';
