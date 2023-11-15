@@ -14,13 +14,13 @@ import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class TuneListMoreButton extends StatefulWidget {
-  final TuneInfo? info;
+  final TuneInfo info;
   final int index;
 
   const TuneListMoreButton({
     super.key,
     required this.index,
-    this.info,
+    required this.info,
   });
 
   @override

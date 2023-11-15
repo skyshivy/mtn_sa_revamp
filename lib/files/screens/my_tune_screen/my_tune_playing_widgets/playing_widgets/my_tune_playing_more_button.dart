@@ -56,7 +56,7 @@ class _MyTunePlayimgMoreButtonState extends State<MyTunePlayimgMoreButton> {
       height: 40,
       width: 40,
       borderColor: grey,
-      color: Colors.red,
+      color: Colors.white,
       leftWidget: Icon(Icons.more_horiz, color: black.withOpacity(0.3)),
       onTap: () {
         print("StoreManager().isLoggedIn ====== ${StoreManager().isLoggedIn}");

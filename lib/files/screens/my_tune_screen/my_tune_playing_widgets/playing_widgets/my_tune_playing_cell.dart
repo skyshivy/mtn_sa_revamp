@@ -11,6 +11,7 @@ import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widge
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_repeat_day.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_status.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_time.dart';
+import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_more_button.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 Widget myTunePlayingCell(ListToneApk item, int index) {
@@ -74,7 +75,8 @@ Row _playingTuneInfoRow(ListToneApk item, int index) {
         children: [
           playingTunePlayButton(info, index),
           const SizedBox(width: 8),
-          TuneListMoreButton(info: info, index: index)
+          MyTunePlayimgMoreButton(index: index, info: info),
+          //TuneListMoreButton(info: info, index: index)
         ],
       ),
     ],
