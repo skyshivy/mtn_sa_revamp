@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
+
 MyTuneListModel myTuneListModelFromJson(String str) =>
     MyTuneListModel.fromJson(json.decode(str));
 
@@ -63,7 +65,7 @@ class ResponseMap {
 }
 
 class ListToneApk1 {
-  List<ToneDetail>? toneDetails;
+  List<TuneInfo>? toneDetails;
   String? serviceName;
   int? groupId;
 
@@ -76,8 +78,8 @@ class ListToneApk1 {
   factory ListToneApk1.fromJson(Map<String, dynamic> json) => ListToneApk1(
         toneDetails: json["toneDetails"] == null
             ? []
-            : List<ToneDetail>.from(
-                json["toneDetails"]!.map((x) => ToneDetail.fromJson(x))),
+            : List<TuneInfo>.from(
+                json["toneDetails"]!.map((x) => TuneInfo.fromJson(x))),
         serviceName: json["serviceName"],
         groupId: json["groupId"],
       );
@@ -90,7 +92,7 @@ class ListToneApk1 {
         "groupId": groupId,
       };
 }
-
+/*
 class ToneDetail {
   String? toneId;
   String? toneName;
@@ -154,3 +156,4 @@ class ToneDetail {
         "toneIdpreviewImageUrl": toneIdpreviewImageUrl,
       };
 }
+*/

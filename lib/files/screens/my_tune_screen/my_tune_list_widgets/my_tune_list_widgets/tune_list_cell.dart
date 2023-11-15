@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mtn_sa_revamp/files/model/my_tunel_list_model.dart';
+import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_list_widgets/my_tune_list_widgets/tune_list_image_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_list_widgets/my_tune_list_widgets/tune_list_pay_button.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_list_widgets/my_tune_list_widgets/tune_list_setting.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_list_widgets/my_tune_list_widgets/tune_list_tune_info.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
-Widget tuneListCell(BuildContext context, ListToneApk1 info) {
+Widget tuneListCell(BuildContext context, ListToneApk1 info, int index) {
   return Container(
       clipBehavior: Clip.hardEdge,
       decoration: _cellDecoration(),
@@ -17,13 +18,13 @@ Widget tuneListCell(BuildContext context, ListToneApk1 info) {
           Flexible(
             child: tuneListImageView(info),
           ),
-          _bottomSection(context, info),
+          _bottomSection(context, info, index),
           const SizedBox(height: 8),
         ],
       ));
 }
 
-Padding _bottomSection(BuildContext context, ListToneApk1 info) {
+Padding _bottomSection(BuildContext context, ListToneApk1 info, int index) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Column(
@@ -37,7 +38,9 @@ Padding _bottomSection(BuildContext context, ListToneApk1 info) {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(child: tuneListPlayButton()),
+            Expanded(
+                child: tuneListPlayButton(
+                    info.toneDetails?.first ?? TuneInfo(), index)),
             const SizedBox(width: 18),
             Expanded(child: tuneListSettingWidget(context, info))
           ],

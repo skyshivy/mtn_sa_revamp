@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
+import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_divider.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_image.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_info.dart';
@@ -11,7 +12,7 @@ import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widge
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_time.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
-Widget myTunePlayingCell(ListToneApk item) {
+Widget myTunePlayingCell(ListToneApk item, int index) {
   return Container(
     clipBehavior: Clip.hardEdge,
     decoration: _myTunePlayingCellDecoration(),
@@ -24,7 +25,7 @@ Widget myTunePlayingCell(ListToneApk item) {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _playingTuneInfoRow(item),
+              _playingTuneInfoRow(item, index),
               playingTuneDivider(),
               playingTuneStatus(item),
               playingTuneDivider(),
@@ -54,14 +55,22 @@ Widget repeatView(ListToneApk item) {
         );
 }
 
-Row _playingTuneInfoRow(ListToneApk item) {
+Row _playingTuneInfoRow(ListToneApk item, int index) {
+  ToneDetail? detail = item.toneDetails?.first;
+  TuneInfo info = TuneInfo(
+      toneId: detail?.toneId,
+      toneName: detail?.toneName,
+      toneUrl: detail?.toneIdStreamingUrl,
+      previewImageUrl: detail?.toneIdpreviewImageUrl,
+      albumName: detail?.albumName,
+      artistName: detail?.artistName);
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Expanded(child: playingTuneInfo(item)),
       Row(
         children: [
-          playingTunePlayButton(),
+          playingTunePlayButton(info, index),
           const SizedBox(width: 8),
           playingTuneMoreButton(),
         ],
