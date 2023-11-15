@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_bottom_section/sub_views/landing_company_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_bottom_section/sub_views/landing_social_meida.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -17,7 +18,9 @@ class LandingPageBottomSection extends StatelessWidget {
     return Container(
       color: bottomColor,
       child: Padding(
-        padding: EdgeInsets.only(left: isPhone(context) ? 20 : 130),
+        padding: StoreManager().isEnglish
+            ? EdgeInsets.only(left: isPhone(context) ? 20 : 130)
+            : EdgeInsets.only(right: isPhone(context) ? 20 : 130),
         child: mainColumn(context),
       ),
     );
@@ -46,7 +49,7 @@ class LandingPageBottomSection extends StatelessWidget {
                 children: [
                   LandingCompanyView(),
                   SizedBox(height: 20),
-                  const LandingSocialMedia(),
+                  //   const LandingSocialMedia(),
                 ],
               )
             : Row(
@@ -55,7 +58,7 @@ class LandingPageBottomSection extends StatelessWidget {
                 children: [
                   LandingCompanyView(),
                   SizedBox(width: 100),
-                  const LandingSocialMedia(),
+                  // const LandingSocialMedia(),
                 ],
               );
       },

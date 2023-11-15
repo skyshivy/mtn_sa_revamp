@@ -27,11 +27,36 @@ class ServiceCall {
         AppSettingModel setting = AppSettingModel.fromJson(valueMap);
         StoreManager().storeAppSettingModel(setting);
         StoreManager().appSetting = setting;
+        getAllUrls();
       }
     } catch (error) {
       print("error for url $url");
       print("error =   =  $error");
     }
+  }
+
+  getAllUrls() async {
+    await Future.delayed(const Duration(milliseconds: 200));
+    bool isEnglish = StoreManager().isEnglish;
+    Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
+
+    contactUsUrl = isEnglish
+        ? others?.aboutAppurlEnglish?.attribute ?? ''
+        : others?.aboutAppurlBurmese?.attribute ?? '';
+    helpUrl = isEnglish
+        ? others?.helpEnglish?.attribute ?? ''
+        : others?.helpBurmese?.attribute ?? '';
+    privacyUrl = isEnglish
+        ? others?.pPolicyEnglish?.attribute ?? ''
+        : others?.pPolicyBurmese?.attribute ?? '';
+    termsUrl = isEnglish
+        ? others?.tndEnglish?.attribute ?? ''
+        : others?.tndBurmese?.attribute ?? '';
+
+    print("Contact us url = $contactUsUrl");
+    print("Help  url = $helpUrl");
+    print("Privacy url = $privacyUrl");
+    print("Terms url = $termsUrl");
   }
 
   Future<HttpClientResponse> postMsisdnValidation(

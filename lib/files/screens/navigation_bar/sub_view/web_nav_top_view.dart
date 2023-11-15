@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/hover/custom_hover.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
+import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -112,7 +113,9 @@ class WebNavTopView extends StatelessWidget {
           onTap: () {
             context.go(homeGoRoute);
             print("english tapped");
+
             StoreManager().setLanguage(isEnglish: true);
+            ServiceCall().getAllUrls();
           },
         );
       },
@@ -131,7 +134,9 @@ class WebNavTopView extends StatelessWidget {
           onTap: () {
             context.go(homeGoRoute);
             //replaceNamed(homeGoRoute);
+
             StoreManager().setLanguage(isEnglish: false);
+            ServiceCall().getAllUrls();
             print("arabic tapped");
           },
         );
