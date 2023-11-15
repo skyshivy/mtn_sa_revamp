@@ -72,13 +72,21 @@ class MyTuneController extends GetxController {
         "Delete playing tune name ${toneId} ===== ${playingList[index].msisdnB}");
     print("Does contain msisdn ===== ${playingList[index].msisdnB}");
     if (playingList[index].msisdnB == null) {
-      bool isFullday = playingList[index].playAt == "Full Day";
-      resp = await deletePlayingTuneApiCall(
+      bool isFullday = playingList[index].playAt == "FullDay";
+      Map<String, dynamic>? map1 = await deletePlayingTuneApiCall(
           toneId, playingList[index].timeType ?? '', isFullday);
+      if (map1 != null) {
+        DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(map1);
+        showSnackBar(message: result.message ?? someThingWentWrongStr);
+      }
     } else {
       print("Delete dedicate tune ");
-      resp = await deleteDedicatedTuneApiCall(toneId,
+      Map<String, dynamic>? map2 = await deleteDedicatedTuneApiCall(toneId,
           playingList[index].msisdnB ?? '', playingList[index].timeType ?? '');
+      if (map2 != null) {
+        DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(map2);
+        showSnackBar(message: result.message ?? someThingWentWrongStr);
+      }
     }
 
     print("Response is =========== ${resp}");
@@ -105,10 +113,12 @@ class MyTuneController extends GetxController {
       //MyTuneService().deleteMyTune(toneId, packName);
       if (respo != null) {
         DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(respo);
-        print("Delete My tune tune ${result}");
+        print("Delete My tune tune $result");
         message.value = result.message ?? '';
         showSnackBar(message: message.value);
-        tuneList.removeAt(index);
+        if (result.statusCode == 'SC0000') {
+          tuneList.removeAt(index);
+        }
 
         return true;
       }
