@@ -51,6 +51,7 @@ Widget _tuneListMoreButton() {
     color: whiteTrans,
     height: 30,
     width: 30,
+    borderColor: grey,
     leftWidget: const Icon(
       Icons.more_horiz,
       color: grey,
