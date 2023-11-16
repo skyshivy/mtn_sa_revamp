@@ -125,7 +125,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
 
   CarouselOptions carousalOptionWidget() {
     return CarouselOptions(
-      height: 300, //currentSize.height,
+      //height: 400, //currentSize.height,
       aspectRatio: (Get.width == 600) ? 16 / 9 : 16 / 9,
       viewportFraction: (Get.width == 600) ? 1.0 : 1.0,
       initialPage: 0,

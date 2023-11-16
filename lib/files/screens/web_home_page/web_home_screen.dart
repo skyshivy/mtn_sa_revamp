@@ -40,6 +40,7 @@ class _WebLandingPageState extends State<WebLandingPage> {
         child: ResponsiveBuilder(
           builder: (context, si) {
             return Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 // CustomButton(
                 //   title: "Open",

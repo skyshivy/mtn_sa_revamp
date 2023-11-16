@@ -14,6 +14,7 @@ class CustomTextButton extends StatelessWidget {
   final FontName fontName;
   final TextAlign alignment;
   final FontWeight? fontWeight;
+  final EdgeInsets titlePadding;
   final Function()? onTap;
 
   const CustomTextButton({
@@ -22,6 +23,7 @@ class CustomTextButton extends StatelessWidget {
     this.textColor = black,
     this.fontSize = 14,
     this.maxLine,
+    this.titlePadding = const EdgeInsets.all(0),
     this.fontName = FontName.medium,
     this.alignment = TextAlign.start,
     this.fontWeight = FontWeight.bold,
@@ -32,11 +34,14 @@ class CustomTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: CustomText(
-        title: title,
-        textColor: textColor,
-        fontName: fontName,
-        fontSize: fontSize,
+      child: Padding(
+        padding: titlePadding,
+        child: CustomText(
+          title: title,
+          textColor: textColor,
+          fontName: fontName,
+          fontSize: fontSize,
+        ),
       ),
     );
   }

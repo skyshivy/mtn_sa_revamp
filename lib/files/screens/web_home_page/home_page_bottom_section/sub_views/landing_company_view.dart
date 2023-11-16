@@ -40,6 +40,7 @@ class LandingCompanyView extends StatelessWidget {
       textColor: color,
       fontName: fontName,
       fontSize: fontSize,
+      titlePadding: const EdgeInsets.symmetric(vertical: 2),
       onTap: onTap,
     );
   }
