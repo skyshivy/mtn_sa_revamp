@@ -6,6 +6,11 @@ const playStr = "Play";
 const previewTuneStr = "Preview Tune";
 const seeMoreStr = "See More";
 const playingStr = "Playing";
+const myTuneStatusStr = 'MyTune Status';
+const suspendStr = 'Suspend';
+const activeStr = 'Active';
+const unSubscribeStr = 'UNSUBSCRIBE';
+const reverseRBTStatusStr = 'Reverse RBT Status';
 const settingStr = "Setting";
 const tunesStr = "Tunes";
 const signinStr = "SignIn";
@@ -69,7 +74,7 @@ const enterNuberStr = "Enter Number";
 
 const shuffleStr = "Shuffle";
 const customStr = "Custom";
-const activeStr = "Active";
+
 const noActivePlanStr = "No Active Plan";
 const buyStr = "Buy";
 const userNameStr = "User Name*";

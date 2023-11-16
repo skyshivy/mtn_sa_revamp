@@ -12,9 +12,12 @@ import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_edit_
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_image.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_mobile_number.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_prefrence.dart';
+import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_reverse_rbt_status.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_subscribe_button.dart';
+import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_tune_status.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_user_name.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -118,9 +121,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
       mainAxisSize: MainAxisSize.min,
       children: [
         userDetailWidget(si),
-        const SizedBox(height: 35),
+        const SizedBox(height: 25),
+        statusWidgets(),
+        const SizedBox(height: 20),
         Flexible(child: profilePreferenceWidget(si, controller)),
         profileCancelEditButton(si),
+      ],
+    );
+  }
+
+  Widget statusWidgets() {
+    return const Wrap(
+      runSpacing: 10,
+      children: [
+        ProfileReverseRbtStatus(),
+        SizedBox(width: 20),
+        ProfileTuneStatus(),
       ],
     );
   }
