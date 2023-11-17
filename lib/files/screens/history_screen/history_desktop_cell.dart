@@ -18,7 +18,7 @@ class HistoryDesktopCell extends StatelessWidget {
       child: Container(
         color: white,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           child: Table(
             children: [
               TableRow(
@@ -76,9 +76,10 @@ class HistoryDesktopCell extends StatelessWidget {
           fontName: FontName.bold,
           fontSize: 14,
         ),
+        const SizedBox(height: 6),
         CustomText(
           title: time,
-          fontName: FontName.bold,
+          fontName: FontName.medium,
           fontSize: 14,
         ),
       ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
+import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
@@ -11,6 +12,7 @@ import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:mtn_sa_revamp/files/service_call/header.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -84,30 +86,43 @@ class _CategoryScreenState extends State<CategoryScreen> {
           () {
             return controller.isLoading.value
                 ? loadingIndicator()
-                : Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: si.isMobile ? 8 : 30, vertical: 8),
-                    child: GridView.builder(
-                        shrinkWrap: true,
-                        itemCount: controller.searchList.length,
-                        gridDelegate: delegate(si,
-                            mainAxisExtent: si.isMobile ? 230 : null),
-                        itemBuilder: (context, index) {
-                          return HomeTuneCell(
-                            index: index,
-                            info: controller.searchList[index],
-                            onTap: si.isMobile
-                                ? () {
-                                    pushToTunePreView(
-                                        context, controller.searchList, index);
-                                  }
-                                : null,
-                          );
-                        }),
-                  );
+                : controller.searchList.isEmpty
+                    ? emptyText()
+                    : mainGridview(si);
           },
         );
       },
+    );
+  }
+
+  Widget emptyText() {
+    return const Center(
+      child: CustomText(
+        title: tuneListEmptyStr,
+        fontName: FontName.bold,
+      ),
+    );
+  }
+
+  Padding mainGridview(SizingInformation si) {
+    return Padding(
+      padding:
+          EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30, vertical: 8),
+      child: GridView.builder(
+          shrinkWrap: true,
+          itemCount: controller.searchList.length,
+          gridDelegate: delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
+          itemBuilder: (context, index) {
+            return HomeTuneCell(
+              index: index,
+              info: controller.searchList[index],
+              onTap: si.isMobile
+                  ? () {
+                      pushToTunePreView(context, controller.searchList, index);
+                    }
+                  : null,
+            );
+          }),
     );
   }
 }
