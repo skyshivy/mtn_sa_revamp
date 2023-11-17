@@ -21,7 +21,9 @@ class ProfileTuneStatus extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 firstRowWidget(sizingInformation),
-                SizedBox(height: 20),
+                const SizedBox(height: 5),
+                const CustomText(title: expireDateStr + " : " + '12/10/23'),
+                const SizedBox(height: 15),
                 secondRowWidget(sizingInformation),
               ],
             ),

@@ -10,6 +10,7 @@ const previewTuneStr = "Preview Tune";
 const seeMoreStr = "See More";
 const playingStr = "Playing";
 const myTuneStatusStr = 'MyTune Status';
+const expireDateStr = 'Expired';
 const suspendStr = 'Suspend';
 const activeStr = 'Active';
 const unSubscribeStr = 'UNSUBSCRIBE';
