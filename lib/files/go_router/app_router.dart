@@ -23,6 +23,7 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/delete_screen/delete_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/history_screen/history_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_bar.dart';
@@ -63,6 +64,7 @@ final router = GoRouter(
         myTuneScreen(),
         tuneSettingScreen(),
         deleteScreenRoute(),
+        historyScreenRoute(),
         //openMyTuneSettingScreen(),
         //newSceen(),
       ],
@@ -157,6 +159,18 @@ StatefulShellBranch myTuneScreen() {
       builder: (context, state) {
         myTuneController.getPlayingTuneList();
         return MyTuneScreen();
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch historyScreenRoute() {
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: historyGoRoute,
+      path: historyGoRoute,
+      builder: (context, state) {
+        return HistoryScreen();
       },
     ),
   ]);

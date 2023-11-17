@@ -5,11 +5,13 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/model/edit_profile.dart';
+import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/model/profile_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/profile_vm.dart';
 
 class ProfileController extends GetxController {
@@ -17,6 +19,7 @@ class ProfileController extends GetxController {
   RxBool editEnable = false.obs;
   RxString userName = ''.obs;
   RxBool isSaving = false.obs;
+  RxString packName = ''.obs;
   RxList<String> selectedCatList = <String>[].obs;
   GetProfileDetails? profileDetails;
 
@@ -36,6 +39,12 @@ class ProfileController extends GetxController {
     isLoading.value = true;
     //await ServiceCall().regenarateTokenFromOtherClass();
     await getPref();
+    PackStatusModel? packStatusModel = await getPackStatusApiCall();
+
+    if (packStatusModel.statusCode == 'SC0000') {
+      packName.value =
+          packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
+    }
     Map<String, dynamic>? res =
         await ProfileVM().getProfileDetail(StoreManager().msisdn);
 

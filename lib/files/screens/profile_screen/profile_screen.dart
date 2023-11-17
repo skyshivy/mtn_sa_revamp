@@ -78,7 +78,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               const SizedBox(height: 20),
               leftWidget(si),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               Flexible(child: rightWidget(si, controller)),
             ],
           )
@@ -104,10 +104,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Column(
       children: [
         profileImageWidget(),
-        const SizedBox(height: 20),
+        const SizedBox(height: 30),
         profileActiveStatus(),
-        const SizedBox(height: 20),
-        profileSubscribeButtonWidget(si, () => null),
+        //const SizedBox(height: 20),
+        //profileSubscribeButtonWidget(si, () => null),
       ],
     );
   }

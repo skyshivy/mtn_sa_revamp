@@ -21,6 +21,7 @@ String faqUrl = '';
 String settingUrl = '${baseUrl}settings';
 String checkOtpNewUserUrl = "${baseUrl}otp-check";
 String buyTuneUrl = "${baseUrlSecurity}set-tone";
+String getHistoryUrl = "${baseUrlSecurity}view-transactions-scm?";
 String getTonePriceUrl = "${baseUrlSecurity}get-tone-price";
 String addToWishlistUrl = "${baseUrlSecurity}add-to-wishlist";
 String getpackStatusUrl = "${baseUrlSecurity}pack-status?";

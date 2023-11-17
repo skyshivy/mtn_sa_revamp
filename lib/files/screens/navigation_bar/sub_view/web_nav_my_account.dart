@@ -29,6 +29,7 @@ class WebMyAccountButton extends StatefulWidget {
     MenuModel(profileStr, imageName: profileImg),
     MenuModel(wishlistStr, imageName: favouriteImg),
     MenuModel(myTuneStr, imageName: myTuneImg),
+    MenuModel(historyStr, imageName: historyImg),
     MenuModel(logoutStr, imageName: logoutImg),
   ];
 }
@@ -100,6 +101,8 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
       printCustom("myTuneTapped tapped");
     } else if (item.title == logoutStr) {
       StoreManager().logout();
+    } else if (item.title == historyStr) {
+      context.goNamed(historyGoRoute);
     }
   }
 }

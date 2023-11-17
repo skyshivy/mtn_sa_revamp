@@ -1,7 +1,7 @@
 const logoBigImg = 'assets/pngs/logo_big.png';
 const atomLogoBigImg = 'assets/pngs/atom_logo.png';
 const bannerBigImg = 'assets/pngs/banner.png';
-
+const historyImg = 'assets/pngs/history.png';
 const buyImg = 'assets/pngs/buy.png';
 const likeImg = 'assets/pngs/like.png';
 const searchImg = 'assets/pngs/search.png';
