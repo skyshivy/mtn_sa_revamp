@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/model/history_model.dart';
@@ -57,17 +59,25 @@ class HistoryDesktopCell extends StatelessWidget {
   }
 
   Widget dateWidget() {
-    String date = "${info.subscriptionDate?.day}"
+    final formatter = NumberFormat('00');
+    String date = "${formatter.format(info.subscriptionDate?.day)}"
         "/"
-        "${info.subscriptionDate?.month}"
+        "${formatter.format(info.subscriptionDate?.month)}"
         "/"
         "${info.subscriptionDate?.year}";
+    String time = "${formatter.format(info.subscriptionDate?.hour)} :"
+        "${formatter.format(info.subscriptionDate?.minute)}";
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         CustomText(
           title: date,
+          fontName: FontName.bold,
+          fontSize: 14,
+        ),
+        CustomText(
+          title: time,
           fontName: FontName.bold,
           fontSize: 14,
         ),

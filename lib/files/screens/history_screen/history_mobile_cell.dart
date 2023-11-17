@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
+import 'package:intl/intl.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/history_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -21,6 +22,8 @@ class HistoryMobileCell extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               topSecion(),
               const SizedBox(height: 20),
@@ -33,40 +36,49 @@ class HistoryMobileCell extends StatelessWidget {
   }
 
   Widget topSecion() {
-    String date = "${info.subscriptionDate?.day}"
+    final formatter = NumberFormat('00');
+    String date = "${formatter.format(info.subscriptionDate?.day)}"
         "/"
-        "${info.subscriptionDate?.month}"
+        "${formatter.format(info.subscriptionDate?.month)}"
         "/"
         "${info.subscriptionDate?.year}";
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+    String time = "${formatter.format(info.subscriptionDate?.hour)} :"
+        "${formatter.format(info.subscriptionDate?.minute)}";
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        topRowTuneNameSection(),
-        CustomText(
-          title: info.callCharge ?? '',
-          fontName: FontName.bold,
-        ),
+        Flexible(child: transactionDateAndTime()),
+        callChargeWidget(date, time),
       ],
     );
   }
 
-  Row topRowTuneNameSection() {
-    String date = "${info.subscriptionDate?.day}"
-        "/"
-        "${info.subscriptionDate?.month}"
-        "/"
-        "${info.subscriptionDate?.year}";
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Widget callChargeWidget(String date, String time) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Flexible(
-          child: CustomText(
-            title: info.englishToneName ?? '',
-            fontName: FontName.bold,
-          ),
-        ),
         CustomText(title: date),
+        CustomText(title: time),
+      ],
+    );
+  }
+
+  Widget transactionDateAndTime() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        CustomText(
+          title: info.englishToneName ?? '',
+          fontName: FontName.bold,
+        ),
+        CustomText(
+          title: info.callCharge ?? '',
+          fontName: FontName.medium,
+        ),
       ],
     );
   }
