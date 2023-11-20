@@ -49,6 +49,8 @@ String categoryListUrl =
 String myWishListUrl = "${baseUrlSecurity}view-wishlist";
 String deleteFromWishListUrl = "${baseUrlSecurity}delete-from-wishlist";
 
+String suspendResumePackUrl = '${baseUrlSecurity}suspend-resume-pack';
+
 String sendGiftUrl = "${baseUrl}send-gift";
 String getCategoryDetailUrl =
     "${baseUrl}search-tone?language=${StoreManager().language}";

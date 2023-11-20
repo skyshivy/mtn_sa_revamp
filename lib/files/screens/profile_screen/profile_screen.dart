@@ -131,12 +131,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget statusWidgets() {
-    return const Wrap(
+    return Wrap(
       runSpacing: 10,
       children: [
-        ProfileReverseRbtStatus(),
-        SizedBox(width: 20),
         ProfileTuneStatus(),
+        SizedBox(width: 20),
+        ProfileReverseRbtStatus(),
       ],
     );
   }

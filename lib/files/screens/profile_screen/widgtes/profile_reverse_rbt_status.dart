@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -6,8 +9,8 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ProfileReverseRbtStatus extends StatelessWidget {
-  const ProfileReverseRbtStatus({super.key});
-
+  ProfileReverseRbtStatus({super.key});
+  ProfileController cont = Get.find();
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
@@ -22,7 +25,13 @@ class ProfileReverseRbtStatus extends StatelessWidget {
               children: [
                 firstRowWidget(si),
                 const SizedBox(height: 5),
-                const CustomText(title: expireDateStr + " : " + '12/10/23'),
+                Obx(() {
+                  return CustomText(
+                    title: expireDateStr + " : " + cont.rrbtExpire.value,
+                    fontName: FontName.medium,
+                    fontSize: 14,
+                  );
+                }),
                 const SizedBox(height: 15),
                 secondRowWidget(si),
               ],
@@ -39,8 +48,18 @@ class ProfileReverseRbtStatus extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: si.isMobile ? MainAxisSize.max : MainAxisSize.min,
       children: [
-        CustomText(title: myTuneStatusStr),
-        CustomText(title: ' : ' + suspendStr),
+        CustomText(
+          title: reverseRBTStatusStr,
+          fontName: FontName.medium,
+          fontSize: 14,
+        ),
+        Obx(() {
+          return CustomText(
+            title: ' : ' + cont.rrbtStatus.value,
+            fontName: FontName.medium,
+            fontSize: 14,
+          );
+        })
       ],
     );
   }
@@ -51,13 +70,23 @@ class ProfileReverseRbtStatus extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: si.isMobile ? MainAxisSize.max : MainAxisSize.min,
       children: [
-        CustomButton(
-          height: 35,
-          titlePadding: EdgeInsets.symmetric(horizontal: 12),
-          title: activeStr,
-          textColor: white,
-          color: blue,
-        ),
+        Obx(() {
+          return CustomButton(
+              height: 35,
+              titlePadding: const EdgeInsets.symmetric(horizontal: 12),
+              title: cont.activeRrbtButtonName.value,
+              textColor: white,
+              color: blue,
+              fontName: FontName.medium,
+              fontSize: 12,
+              onTap: () {
+                if (cont.activeRrbtButtonName.value == activeStr) {
+                  cont.activeRrbtStatusAction();
+                } else {
+                  cont.suspendRrbtStatusAction();
+                }
+              });
+        }),
         SizedBox(width: 20),
         CustomButton(
           height: 35,
@@ -65,6 +94,11 @@ class ProfileReverseRbtStatus extends StatelessWidget {
           title: unSubscribeStr,
           textColor: white,
           color: blue,
+          fontName: FontName.medium,
+          fontSize: 12,
+          onTap: () {
+            cont.unSubscribeRrbtStatusAction();
+          },
         ),
       ],
     );

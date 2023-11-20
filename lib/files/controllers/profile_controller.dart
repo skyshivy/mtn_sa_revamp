@@ -20,6 +20,12 @@ class ProfileController extends GetxController {
   RxString userName = ''.obs;
   RxBool isSaving = false.obs;
   RxString packName = ''.obs;
+  RxString tuneStatus = ''.obs;
+  RxString rrbtStatus = ''.obs;
+  RxString tuneExire = ''.obs;
+  RxString rrbtExpire = ''.obs;
+  RxString activeTuneButtonName = ''.obs;
+  RxString activeRrbtButtonName = ''.obs;
   RxList<String> selectedCatList = <String>[].obs;
   GetProfileDetails? profileDetails;
 
@@ -42,8 +48,20 @@ class ProfileController extends GetxController {
     PackStatusModel? packStatusModel = await getPackStatusApiCall();
 
     if (packStatusModel.statusCode == 'SC0000') {
-      packName.value =
-          packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
+      PackStatusDetails? details =
+          packStatusModel.responseMap?.packStatusDetails;
+      packName.value = details?.packName ?? '';
+      tuneStatus.value = ((details?.activeCrbtStatus ?? '') == '1')
+          ? activeStr
+          : suspendStr; //details?.activeCrbtStatus ?? '';
+      rrbtStatus.value =
+          ((details?.activeRrbtStatus ?? '') == '1') ? activeStr : suspendStr;
+      tuneExire.value = details?.crbtServiceExpiry ?? '';
+      rrbtExpire.value = details?.rrbtServiceExpiry ?? '';
+      activeRrbtButtonName.value =
+          ((details?.activeRrbtStatus ?? '') == '1') ? suspendStr : activeStr;
+      activeTuneButtonName.value =
+          ((details?.activeCrbtStatus ?? '') == '1') ? suspendStr : activeStr;
     }
     Map<String, dynamic>? res =
         await ProfileVM().getProfileDetail(StoreManager().msisdn);
@@ -109,5 +127,29 @@ class ProfileController extends GetxController {
   cancelButton() {
     editEnable.value = false;
     selectedCatList.value = (profileDetails?.categories ?? "").split(',');
+  }
+
+  activeTuneStatusAction() {
+    print("activeTuneStatusAction");
+  }
+
+  suspendTuneStatusAction() {
+    print("suspendTuneStatusAction");
+  }
+
+  unsubscribeTuneStatusAction() {
+    print("unsubscribeTuneStatusAction");
+  }
+
+  activeRrbtStatusAction() {
+    print("activeRrbtStatusAction");
+  }
+
+  suspendRrbtStatusAction() {
+    print("suspendRrbtStatusAction");
+  }
+
+  unSubscribeRrbtStatusAction() {
+    print("unSubscribeRrbtStatusAction");
   }
 }

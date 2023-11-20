@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -19,25 +17,32 @@ Future<PackStatusModel> getPackStatusApiCall() async {
 
   String url = "${getpackStatusUrl}msisdn=$msisdn&language=$lang";
   Map<String, dynamic>? map = await ServiceCall().get(url);
+
+  /*
+  // below for testing perpose
+  String str = """{
+   "responseMap":{
+      "packStatusDetails":{
+         "activeRRBTStatus":"1",
+         "activeCRBTStatus":"1",
+         "languageId":"1",
+         "packName":" shiv pack",
+         "rrbtServiceExpiry":"2023-11-10",
+         "crbtServiceExpiry":"2023-11-23"
+      }
+   },
+   "message":"Success",
+   "respTime":"Nov 17, 2023 9:05:50 PM",
+   "statusCode":"SC0000"
+}""";
+  Map<String, dynamic> map = json.decode(str);
+  */
+
+  print("Map is ========= $map");
   if (map != null) {
     PackStatusModel model = PackStatusModel.fromJson(map);
     return model;
   } else {
     return PackStatusModel(message: someThingWentWrongStr);
   }
-  // var request = await client.getUrl(Uri.parse(url));
-  // request = await Header().settingHeader(url, request);
-
-  // try {
-  //   var reps = await GenericServiceCall().httpServiceCall(request);
-  //   print("======_____++++++${reps}");
-  //   if (reps != null) {
-  //     PackStatusModel result = PackStatusModel.fromJson(reps!);
-  //     return result;
-  //   }
-  //   return PackStatusModel();
-  // } on Exception catch (error) {
-  //   print('never reached ${error}');
-  //   return PackStatusModel();
-  // }
 }
