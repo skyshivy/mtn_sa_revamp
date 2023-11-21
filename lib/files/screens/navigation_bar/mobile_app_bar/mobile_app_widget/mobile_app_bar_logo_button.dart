@@ -33,11 +33,13 @@ Widget mobileAppBarLogoButton(BuildContext context) {
 
               //Navigator.of(context).maybePop();
             },
-            leftWidget: Image.asset(
-              appCont.index.value != 0 ? mobileBackImg : atomLogoBigImg,
-              color: appCont.index.value != 0 ? white : transparent,
-              height: 40,
-              width: 40,
+            leftWidget: Center(
+              child: Image.asset(
+                appCont.index.value != 0 ? mobileBackImg : atomLogoBigImg,
+                color: appCont.index.value != 0 ? white : transparent,
+                height: 25,
+                width: 25,
+              ),
             ),
           );
         })),

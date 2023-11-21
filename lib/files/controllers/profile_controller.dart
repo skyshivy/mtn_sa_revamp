@@ -45,7 +45,7 @@ class ProfileController extends GetxController {
     isLoading.value = true;
     //await ServiceCall().regenarateTokenFromOtherClass();
     await getPref();
-    PackStatusModel? packStatusModel = await getPackStatusApiCall();
+    PackStatusModel? packStatusModel = await getPackStatusApiCall(isCrbt: true);
 
     if (packStatusModel.statusCode == 'SC0000') {
       PackStatusDetails? details =

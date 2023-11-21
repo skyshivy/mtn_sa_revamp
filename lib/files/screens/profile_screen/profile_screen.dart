@@ -50,18 +50,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         si = sizingInformation;
-        return Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: si.isMobile ? 20 : 60,
-              vertical: si.isMobile ? 8 : 35),
-          child: Obx(
-            () {
-              return profileController.isLoading.value
-                  ? loadInd()
-                  : SingleChildScrollView(
-                      child: rowWidget(si, profileController));
-            },
-          ),
+        return Obx(
+          () {
+            return profileController.isLoading.value
+                ? loadInd()
+                : SingleChildScrollView(
+                    child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: si.isMobile ? 20 : 60,
+                        vertical: si.isMobile ? 8 : 0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(height: si.isMobile ? 20 : 50),
+                        rowWidget(si, profileController),
+                        SizedBox(height: si.isMobile ? 20 : 50),
+                      ],
+                    ),
+                  ));
+          },
         );
       },
     );

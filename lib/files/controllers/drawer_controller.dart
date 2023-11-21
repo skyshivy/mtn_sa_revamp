@@ -24,6 +24,7 @@ class MyDrawerController extends GetxController {
         DrawerModel(myTuneStr),
         DrawerModel(wishlistStr),
         DrawerModel(tunesStr, isExpanded: true),
+        DrawerModel(historyStr),
         DrawerModel(faqStr),
         DrawerModel(logoutStr),
       ];

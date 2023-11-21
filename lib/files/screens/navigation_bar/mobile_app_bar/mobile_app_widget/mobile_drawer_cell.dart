@@ -155,6 +155,8 @@ _tappedOnCell(BuildContext context, String title) async {
     StoreManager().logout();
   } else if (title == signinStr) {
     Get.dialog(LoginScreen(), barrierDismissible: false);
+  } else if (title == historyStr) {
+    context.goNamed(historyGoRoute);
   } else {
     printCustom("=========Default tapped==============");
   }
