@@ -67,7 +67,7 @@ class HomeSearchWidget extends StatelessWidget {
             },
             onTap: () {
               controller.loadPage(3);
-              //Get.back();
+
               printCustom("text filedon tapped");
             },
           )),
@@ -79,9 +79,18 @@ class HomeSearchWidget extends StatelessWidget {
               onTap: () {
                 if (si.isMobile) {
                   printCustom("text filedon tapped");
+                  context.goNamed(searchGoRoute, queryParameters: {
+                    "key": searchTuneController.searchedText.value
+                  });
                   //Get.toNamed(searchTapped);
                 } else {
-                  controller.loadPage(3);
+                  if (searchTuneController.searchedText.isNotEmpty) {
+                    context.goNamed(searchGoRoute, queryParameters: {
+                      "key": searchTuneController.searchedText.value
+                    });
+                  }
+
+                  print("afsf");
                 }
 
                 //context.goNamed(searchRoute, queryParameters: {"key": p0});
