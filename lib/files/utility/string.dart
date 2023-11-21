@@ -13,6 +13,7 @@ const myTuneStatusStr = 'MyTune Status';
 const expireDateStr = 'Expired';
 const suspendStr = 'Suspend';
 const activeStr = 'Active';
+const packNameStr = "Pack Name";
 const unSubscribeStr = 'UNSUBSCRIBE';
 const reverseRBTStatusStr = 'Reverse RBT Status';
 const settingStr = "Setting";

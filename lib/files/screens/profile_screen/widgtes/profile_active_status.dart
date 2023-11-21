@@ -11,11 +11,32 @@ Widget profileActiveStatus() {
   ProfileController pCont = Get.find();
   return ResponsiveBuilder(
     builder: (context, si) {
-      return CustomText(
-        title: (pCont.packName.value).replaceAll("_", " "),
-        textColor: subTitleColor,
-        fontName: si.isMobile ? FontName.bold : FontName.medium,
-        fontSize: 14,
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // packNameStr +
+          //       '\n' +
+          CustomText(
+            alignment: TextAlign.center,
+            title: packNameStr,
+            textColor: subTitleColor,
+            fontName: si.isMobile ? FontName.bold : FontName.medium,
+            fontSize: si.isMobile ? 12 : 14,
+          ),
+          const SizedBox(height: 4),
+          CustomText(
+            alignment: TextAlign.center,
+            title: (pCont.packName.value)
+                .replaceAll("CRBT_", " ")
+                .replaceAll("crbt_", " ")
+                .toUpperCase(),
+            textColor: black,
+            fontName: FontName.bold,
+            fontSize: si.isMobile ? 12 : 14,
+          ),
+        ],
       );
     },
   );
