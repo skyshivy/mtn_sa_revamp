@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 
@@ -11,7 +12,7 @@ class SubscribePlanController extends GetxController {
   RxString tuneCharge = ''.obs;
   @override
   void onInit() {
-    print("init SubscribePlanController");
+    printCustom("init SubscribePlanController");
     selectedIndex.value = -1;
     Others? others = StoreManager()
         .appSetting
@@ -34,7 +35,7 @@ class SubscribePlanController extends GetxController {
 
   createPackList(String str) {
     var lst = str.split('|');
-    print("Length is ${lst.length}");
+    printCustom("Length is ${lst.length}");
     List<String> packListTemp = [];
     List<String> displayListTemp = [];
     List<String> packChargeListTemp = [];
@@ -54,8 +55,8 @@ class SubscribePlanController extends GetxController {
       } catch (e) {
         packChargeListTemp.add('');
       }
-      print("packname ${element.split(',')[0]}");
-      print("display name ${element.split(',')[1]}");
+      printCustom("packname ${element.split(',')[0]}");
+      printCustom("display name ${element.split(',')[1]}");
     }
     packList.value = packListTemp;
     displayList.value = displayListTemp;
@@ -64,7 +65,7 @@ class SubscribePlanController extends GetxController {
 
   @override
   void onClose() {
-    print("onClose SubscribePlanController");
+    printCustom("onClose SubscribePlanController");
     super.onClose();
   }
 }

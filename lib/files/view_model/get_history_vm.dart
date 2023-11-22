@@ -1,3 +1,4 @@
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/date.dart';
 import 'package:mtn_sa_revamp/files/model/history_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
@@ -12,7 +13,7 @@ Future<HistoryModel> getHistoryApi() async {
   //"https://funtone.ooredoo.com.mm/security/Middleware/api/adapter/v1/crbt/view-transactions-scm?";
   String url =
       "${baseUrl}msisdn=$msisdn&fromDate=$backDate&toDate=$currentDate";
-  print("7url used currently is $url");
+  printCustom("7url used currently is $url");
 
   Map<String, dynamic>? res = await ServiceCall().get(url);
 

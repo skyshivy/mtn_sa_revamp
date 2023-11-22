@@ -240,11 +240,11 @@ class BuyController extends GetxController {
           //   if (subscriptionStatus == "NA" || subscriptionStatus == "NA") {
           //     isShowSubscriptionPlan.value = true;
           //     isShowOtpView.value = false;
-          //     print("isShowSubscriptionPlan display here");
+          //     printCustom("isShowSubscriptionPlan display here");
           //   } else {
           //     isShowSubscriptionPlan.value = false;
           //     await getSecurityTokenForOldUser();
-          //     print("make here setTune here or uncomment below line");
+          //     printCustom("make here setTune here or uncomment below line");
           //   }
           // } else {}
           //
@@ -325,7 +325,7 @@ class BuyController extends GetxController {
   onConfirmSubscriptionPlan(String packName) async {
     isShowOtpView.value = !StoreManager().isLoggedIn;
     isShowSubscriptionPlan.value = false;
-    print("Pack name is $packName");
+    printCustom("Pack name is $packName");
     await setTune(packName);
   }
 
@@ -339,7 +339,7 @@ class BuyController extends GetxController {
       isBuySuccess.value = true;
       successMessage.value = res.message ?? '';
     } else {
-      print("set tune failed");
+      printCustom("set tune failed");
       isVerifyingOtp.value = false;
       errorMessage.value = res.responseMap?.responseMessage ??
           res.message ??

@@ -75,7 +75,7 @@ class StoreManager {
     prefs.setString('msisdn', value);
     msisdn = value;
 
-    print("Setting msisdn = $value");
+    printCustom("Setting msisdn = $value");
   }
 
   setccid(String value) async {

@@ -7,6 +7,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/buy_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/subscribe_plan_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 
@@ -30,14 +31,14 @@ class _SubscriptionViewState extends State<SubscriptionView> {
   @override
   void initState() {
     sCont = Get.put(SubscribePlanController());
-    print("initState SubscriptionView");
+    printCustom("initState SubscriptionView");
     super.initState();
   }
 
   @override
   void dispose() {
     Get.delete<SubscribePlanController>();
-    print("Dispose SubscriptionView");
+    printCustom("Dispose SubscriptionView");
     super.dispose();
   }
 
@@ -132,7 +133,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
     return InkWell(onTap: () {
       sCont.updateSelectedIndex(index);
 
-      print("cell tapped");
+      printCustom("cell tapped");
     }, child: Obx(() {
       return Container(
         decoration: BoxDecoration(

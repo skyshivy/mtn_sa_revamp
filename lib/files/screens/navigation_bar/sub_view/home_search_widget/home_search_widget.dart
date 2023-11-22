@@ -90,7 +90,7 @@ class HomeSearchWidget extends StatelessWidget {
                     });
                   }
 
-                  print("afsf");
+                  printCustom("afsf");
                 }
 
                 //context.goNamed(searchRoute, queryParameters: {"key": p0});

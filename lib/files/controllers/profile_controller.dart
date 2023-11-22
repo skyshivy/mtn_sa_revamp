@@ -130,26 +130,26 @@ class ProfileController extends GetxController {
   }
 
   activeTuneStatusAction() {
-    print("activeTuneStatusAction");
+    printCustom("activeTuneStatusAction");
   }
 
   suspendTuneStatusAction() {
-    print("suspendTuneStatusAction");
+    printCustom("suspendTuneStatusAction");
   }
 
   unsubscribeTuneStatusAction() {
-    print("unsubscribeTuneStatusAction");
+    printCustom("unsubscribeTuneStatusAction");
   }
 
   activeRrbtStatusAction() {
-    print("activeRrbtStatusAction");
+    printCustom("activeRrbtStatusAction");
   }
 
   suspendRrbtStatusAction() {
-    print("suspendRrbtStatusAction");
+    printCustom("suspendRrbtStatusAction");
   }
 
   unSubscribeRrbtStatusAction() {
-    print("unSubscribeRrbtStatusAction");
+    printCustom("unSubscribeRrbtStatusAction");
   }
 }

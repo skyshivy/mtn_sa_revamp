@@ -69,24 +69,24 @@ class MyTuneController extends GetxController {
   Future<bool> deletePlayingTune(
       String toneId, int index, BuildContext context) async {
     Map<String, dynamic>? resp;
-    print(
+    printCustom(
         "Delete playing tune name ${toneId} ===== ${playingList[index].msisdnB}");
-    print("Does contain msisdn ===== ${playingList[index].msisdnB}");
+    printCustom("Does contain msisdn ===== ${playingList[index].msisdnB}");
     if (playingList[index].msisdnB == null) {
       bool isFullday = playingList[index].playAt == "Full Day";
       resp = await deletePlayingTuneApiCall(
           toneId, playingList[index].timeType ?? '', isFullday);
     } else {
-      print("Delete dedicate tune ");
+      printCustom("Delete dedicate tune ");
       resp = await deleteDedicatedTuneApiCall(toneId,
           playingList[index].msisdnB ?? '', playingList[index].timeType ?? '');
     }
 
-    print("Response is =========== ${resp}");
+    printCustom("Response is =========== ${resp}");
 
     if (resp != null) {
       DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(resp);
-      print("Delete playing tune ${result}");
+      printCustom("Delete playing tune ${result}");
       playingList.removeAt(index);
       message.value = result.message ?? someThingWentWrongStr;
 
@@ -97,7 +97,7 @@ class MyTuneController extends GetxController {
   }
 
   Future<bool> deleteMyTune(String toneId, int index) async {
-    print("Delete My tune tune ");
+    printCustom("Delete My tune tune ");
     PackStatusModel model = await getPackStatusApiCall();
 
     if (model.statusCode == 'SC0000') {
@@ -106,7 +106,7 @@ class MyTuneController extends GetxController {
       //MyTuneService().deleteMyTune(toneId, packName);
       if (respo != null) {
         DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(respo);
-        print("Delete My tune tune ${result}");
+        printCustom("Delete My tune tune ${result}");
         message.value = result.message ?? '';
         showSnackBar(message: message.value);
         tuneList.removeAt(index);

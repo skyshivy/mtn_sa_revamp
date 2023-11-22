@@ -46,7 +46,7 @@ class GiftTuneController extends GetxController {
 
   confirmButtonAction(TuneInfo info) {
     this.info = info;
-    print("MSIDN is ${StoreManager().msisdn}");
+    printCustom("MSIDN is ${StoreManager().msisdn}");
     if (bPartyMsisdn.value.length < StoreManager().msisdnLength) {
       errorMessage.value = enterValidMsisdnStr;
       return;
@@ -66,7 +66,7 @@ class GiftTuneController extends GetxController {
     Map<String, dynamic> valueMap = json.decode(stringData);
     SubscriberValidationModel model =
         SubscriberValidationModel.fromJson(valueMap);
-    print("Status code is ${model.statusCode}");
+    printCustom("Status code is ${model.statusCode}");
     if (model.responseMap?.respCode == "SC0000" ||
         model.responseMap?.respCode == '100') {
       await getTunePrice();

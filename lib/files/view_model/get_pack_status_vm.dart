@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -32,7 +33,7 @@ Future<PackStatusModel> getPackStatusApiCall({bool isCrbt = true}) async {
 }""";
   Map<String, dynamic> map = json.decode(str);
 */
-  print("Map is ========= $map");
+  printCustom("Map is ========= $map");
   if (map != null) {
     PackStatusModel model = PackStatusModel.fromJson(map);
     return model;
