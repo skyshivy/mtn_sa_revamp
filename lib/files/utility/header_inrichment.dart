@@ -63,6 +63,7 @@ clearData() {
 }
 
 Future<String> _getValueForTag(List<String> lst) async {
+  String tempMsisdn = '';
   if (lst.isEmpty) {
     return '';
   }
@@ -76,7 +77,7 @@ Future<String> _getValueForTag(List<String> lst) async {
         if (newL[0] == 'msisdn') {
           printCustom("msisdn = ${newL[1]}");
           var msisdn1 = newL[1];
-
+          tempMsisdn = newL[1];
           await StoreManager().setMsisdn(msisdn1);
         }
       } catch (e) {}
@@ -122,8 +123,9 @@ Future<String> _getValueForTag(List<String> lst) async {
     printCustom("Some thing went wrong === $e");
   }
   if (!StoreManager().isLoggedIn) {
-    loginCont.autoLogin(StoreManager().msisdn);
-    printCustom("Make here auto login ");
+    loginCont.autoLogin(tempMsisdn);
+    printCustom("StoreManager().msisdn ==== ${StoreManager().msisdn}");
+    printCustom("Make here auto login for msisdn $tempMsisdn");
   }
   return '';
 }
