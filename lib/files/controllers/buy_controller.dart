@@ -259,6 +259,8 @@ class BuyController extends GetxController {
   }
 
   Future<void> getSecurityTokenForOldUser() async {
+    isShowOtpView.value = true;
+    isShowSubscriptionPlan.value = false;
     var map = await GetSecurityVM().token();
     if (map != null) {
       GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(map);
@@ -299,8 +301,6 @@ class BuyController extends GetxController {
     printCustom("New status code is ${model.statusCode}====");
     if (model.statusCode == 'SC0000') {
       await setTune(packName);
-
-      //await setTune(model);
     } else {
       isVerifyingOtp.value = false;
       isVerifying.value = false;
@@ -309,8 +309,6 @@ class BuyController extends GetxController {
   }
 
   Future<void> setTune(String packName) async {
-    isShowOtpView.value = true;
-    isShowSubscriptionPlan.value = false;
     BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(), packName);
     if (res.statusCode == 'SC0000') {
       printCustom("Success buy tune api");
@@ -321,6 +319,7 @@ class BuyController extends GetxController {
     } else {
       isVerifyingOtp.value = false;
       errorMessage.value = '';
+
       isVerifying.value = false;
     }
   }

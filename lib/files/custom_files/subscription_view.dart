@@ -270,8 +270,8 @@ class _SubscriptionViewState extends State<SubscriptionView> {
         onTap: () {
           if (sCont.enableSubmitButton.value) {
             bCont.updatePackName(sCont.packList[sCont.selectedIndex.value]);
-            bCont.setTune(sCont.packList[sCont.selectedIndex.value]);
-            Navigator.of(context).pop();
+            bCont
+                .getSecurityTokenForOldUser(); //setTune(sCont.packList[sCont.selectedIndex.value]);
           }
         },
       );

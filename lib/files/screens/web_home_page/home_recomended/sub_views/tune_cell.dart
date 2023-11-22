@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
 import 'package:mtn_sa_revamp/files/delete_popover.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -14,6 +15,7 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_vi
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/gredient.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
@@ -43,9 +45,10 @@ class HomeTuneCell extends StatelessWidget {
 
   Column mainList() {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Expanded(flex: 7, child: tuneImageWidget(index)),
-        Expanded(flex: 6, child: bottomSection(index)),
+        Flexible(child: tuneImageWidget(index)),
+        bottomSection(index),
       ],
     );
   }
@@ -182,20 +185,23 @@ class HomeTuneCell extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Flexible(
-                  child: HomeCellTitleSubTilte(
+              HomeCellTitleSubTilte(
                 info: info,
                 titleFontSize: si.isMobile ? 14 : null,
                 subTitleFontSize: si.isMobile ? 12 : null,
-              )),
-              Flexible(
-                child: BuyAndPlayButton(
-                  info: info,
-                  index: index,
-                ),
+              ),
+              const SizedBox(height: 3),
+              CustomText(
+                title: "$tuneCodeStr : ${info?.toneId ?? ''}",
+                fontSize: si.isMobile ? 12 : null,
+              ),
+              const SizedBox(height: 8),
+              BuyAndPlayButton(
+                info: info,
+                index: index,
               ),
             ],
           ),

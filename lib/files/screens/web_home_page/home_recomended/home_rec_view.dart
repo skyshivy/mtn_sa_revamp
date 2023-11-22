@@ -90,7 +90,7 @@ class _LandingRecoViewState extends State<LandingRecoView> {
                     itemCount: count,
                     shrinkWrap: true,
                     gridDelegate: delegate(si,
-                        mainAxisExtent: si.isMobile ? 230 : null,
+                        mainAxisExtent: si.isMobile ? 260 : null,
                         mainAxisSpacing: si.isMobile ? 8 : null,
                         crossAxisSpacing: si.isMobile ? 8 : null),
                     physics: const NeverScrollableScrollPhysics(),

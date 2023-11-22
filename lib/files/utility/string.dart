@@ -116,6 +116,7 @@ const confirmStr = "Confirm";
 const tuneChargeStr = "Tune Charge";
 const buyTuneStr = "Buy Tune";
 const tuneStr = "Tunes";
+const tuneCodeStr = "Tune Code";
 const bannerDetailStr = "Banner Detail";
 const tuneListEmptyStr = "Tune list empty";
 const searchTuneStr = "Search Tune";
