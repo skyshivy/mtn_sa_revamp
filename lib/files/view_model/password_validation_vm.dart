@@ -15,9 +15,8 @@ class PasswordValidationVm {
     var appendPassword = "$pass$securityCounter";
     Random random = Random();
     int randomNumber = random.nextInt(1000000000);
-    if (kDebugMode) {
-      printCustom("password is here $appendPassword");
-    }
+
+    printCustom("password is here $appendPassword");
     String encryptedPassword = Cryptom().text(appendPassword);
     printCustom(
         "encryptedPassword ==========================\n$encryptedPassword\n");
