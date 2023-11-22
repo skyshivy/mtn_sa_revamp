@@ -95,15 +95,15 @@ Future<String> _getValueForTag(List<String> lst) async {
           StoreManager().setUserName(userName);
         }
       } catch (e) {}
-/*
+
       try {
         if (newL[0] == 'password') {
           printCustom("password = ${newL[1]}");
-          password = newL[1];
-          StoreManager().setPassword(password);
+          //password = newL[1];
+          //StoreManager().setPassword(password);
         }
       } catch (e) {}
-      */
+
       try {
         if (newL[0] == 'channel') {
           printCustom("channel = ${newL[1]}");

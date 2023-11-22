@@ -58,7 +58,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
     var width = MediaQuery.of(context).size.width;
     return Obx(() {
       return SizedBox(
-          height: width > 700 ? 400 : (width / 2.5),
+          height: width > 700 ? (width / 3.5) : (width / 2.5),
           child:
               controller.isLoading.value ? loadingIndicator() : corosoulWidget()
           // CustomImage(
@@ -132,7 +132,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
       pauseAutoPlayOnTouch: true,
       enableInfiniteScroll: false,
       reverse: false,
-      autoPlay: true,
+      autoPlay: false,
       autoPlayInterval: const Duration(seconds: 3),
       autoPlayAnimationDuration: const Duration(milliseconds: 800),
       autoPlayCurve: Curves.fastOutSlowIn,
