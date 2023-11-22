@@ -178,7 +178,7 @@ class _BuyScreenState extends State<_BuyScreen> {
       await buyController.msisdnValidation(info);
     }
 
-    printCustom("Confirm buy button tapped");
+    printCustom("Confirm buy button tapped 234");
   }
 
   Widget _msisdnErrorMessage() {

@@ -43,7 +43,6 @@ void parseUrl() async {
       }
     });
   } else {
-    password = '';
     clearData();
     printCustom("URL does not has hasQuery");
   }
@@ -56,8 +55,8 @@ clearData() {
     StoreManager().setccid(ccid);
     userName = '';
     StoreManager().setUserName(userName);
-    password = '';
-    StoreManager().setPassword(password);
+    // password = '';
+    // StoreManager().setPassword(password);
     channelId = '';
     StoreManager().setChannelId(channelId);
   }
@@ -96,7 +95,7 @@ Future<String> _getValueForTag(List<String> lst) async {
           StoreManager().setUserName(userName);
         }
       } catch (e) {}
-
+/*
       try {
         if (newL[0] == 'password') {
           printCustom("password = ${newL[1]}");
@@ -104,6 +103,7 @@ Future<String> _getValueForTag(List<String> lst) async {
           StoreManager().setPassword(password);
         }
       } catch (e) {}
+      */
       try {
         if (newL[0] == 'channel') {
           printCustom("channel = ${newL[1]}");

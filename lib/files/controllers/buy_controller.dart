@@ -48,6 +48,8 @@ class BuyController extends GetxController {
   late TuneInfo? info;
 
   customInit() {
+    packName = '';
+    isShowSubscriptionPlan.value = false;
     isVerifying.value = false;
     errorMessage.value = '';
     isShowOtpView.value = false;
@@ -67,11 +69,6 @@ class BuyController extends GetxController {
     otp.value = '';
     isBuySuccess.value = false;
     successMessage.value = '';
-  }
-
-  updatePackName(String packName) {
-    this.packName = packName;
-    print("Pack name is $packName");
   }
 
   getTuneCharge() {
@@ -235,18 +232,23 @@ class BuyController extends GetxController {
             await ConfirmOtpVM().confirm(msisdn.value, otp.value);
         printCustom("res = ${res.statusCode}");
         if (res.statusCode == "SC0000") {
-          TonePriceModel model = await getTunePrice();
-          String subscriptionStatus =
-              model.responseMap?.responseDetails?.first.subscriberStatus ?? '';
-          if (subscriptionStatus == "NA") {
-            isShowSubscriptionPlan.value = true;
-            isShowOtpView.value = false;
-            print("isShowSubscriptionPlan display here");
-          } else {
-            isShowSubscriptionPlan.value = false;
-            print("make here setTune here or uncomment below line");
-          }
-          //await getSecurityTokenForOldUser();
+          await getSecurityTokenForOldUser();
+          // TonePriceModel model = await getTunePrice();
+          // if (model.statusCode == 'SC0000') {
+          //   String subscriptionStatus =
+          //       model.responseMap?.responseDetails?.first.subscriberStatus ??
+          //           '';
+          //   if (subscriptionStatus == "NA" || subscriptionStatus == "NA") {
+          //     isShowSubscriptionPlan.value = true;
+          //     isShowOtpView.value = false;
+          //     print("isShowSubscriptionPlan display here");
+          //   } else {
+          //     isShowSubscriptionPlan.value = false;
+          //     await getSecurityTokenForOldUser();
+          //     print("make here setTune here or uncomment below line");
+          //   }
+          // } else {}
+          //
         } else {
           isVerifyingOtp.value = false;
           errorMessage.value = res.message ?? '';
@@ -293,23 +295,40 @@ class BuyController extends GetxController {
     }
   }
 
+  onConfirmSubscriptionPlan(String packName) async {
+    this.packName = packName;
+    isShowOtpView.value = !StoreManager().isLoggedIn;
+    isShowSubscriptionPlan.value = false;
+    print("Pack name is $packName");
+    await setTune(packName);
+  }
+
   Future<void> getTunePriceAndBuyTune(TuneInfo? info) async {
+    errorMessage.value = '';
     this.info = info;
     isVerifying.value = true;
-    TonePriceModel model = await getTunePrice();
 
-    printCustom("New status code is ${model.statusCode}====");
-    if (model.statusCode == 'SC0000') {
-      await setTune(packName);
+    if (packName.isEmpty) {
+      TonePriceModel model = await getTunePrice();
+      packName = model.responseMap?.responseDetails?.first.packName ?? '';
+      print("pack name is $packName");
+      if (model.statusCode == 'SC0000') {
+        isShowOtpView.value = false;
+        isShowSubscriptionPlan.value = true;
+      } else {
+        isVerifyingOtp.value = false;
+        isVerifying.value = false;
+        errorMessage.value = model.message ?? someThingWentWrongStr;
+      }
     } else {
-      isVerifyingOtp.value = false;
-      isVerifying.value = false;
-      errorMessage.value = model.message ?? someThingWentWrongStr;
+      await setTune(packName);
     }
   }
 
   Future<void> setTune(String packName) async {
-    BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(), packName);
+    BuyTuneModel res =
+        await SetTuneVM().set(info ?? TuneInfo(), "Not sending pack name");
+    packName = '';
     if (res.statusCode == 'SC0000') {
       printCustom("Success buy tune api");
       isVerifyingOtp.value = false;
@@ -317,9 +336,11 @@ class BuyController extends GetxController {
       isBuySuccess.value = true;
       successMessage.value = res.message ?? '';
     } else {
+      print("set tune failed");
       isVerifyingOtp.value = false;
-      errorMessage.value = '';
-
+      errorMessage.value = res.responseMap?.responseMessage ??
+          res.message ??
+          someThingWentWrongStr;
       isVerifying.value = false;
     }
   }

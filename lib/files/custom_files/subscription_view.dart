@@ -269,9 +269,8 @@ class _SubscriptionViewState extends State<SubscriptionView> {
         textColor: sCont.enableSubmitButton.value ? white : black,
         onTap: () {
           if (sCont.enableSubmitButton.value) {
-            bCont.updatePackName(sCont.packList[sCont.selectedIndex.value]);
-            bCont
-                .getSecurityTokenForOldUser(); //setTune(sCont.packList[sCont.selectedIndex.value]);
+            bCont.onConfirmSubscriptionPlan(
+                sCont.packList[sCont.selectedIndex.value]);
           }
         },
       );
