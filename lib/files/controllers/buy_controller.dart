@@ -44,11 +44,10 @@ class BuyController extends GetxController {
   String securityCounter = '';
   String tuneCharge = '';
   RxString msisdn = ''.obs;
-  String packName = '';
+
   late TuneInfo? info;
 
   customInit() {
-    packName = '';
     isShowSubscriptionPlan.value = false;
     isVerifying.value = false;
     errorMessage.value = '';
@@ -83,7 +82,6 @@ class BuyController extends GetxController {
   }
 
   msisdnValidation(TuneInfo? inf) async {
-    packName = '';
     // if (StoreManager().isLoggedIn) {
     //   isVerifying.value = true;
     //   customPrint("User is already loggedin plese direct buy");
@@ -222,6 +220,7 @@ class BuyController extends GetxController {
   }
 
   Future<void> verifyingOtpCheck() async {
+    errorMessage.value = '';
     if (otp.value.length == StoreManager().otpLength) {
       isVerifyingOtp.value = true;
 
@@ -287,7 +286,7 @@ class BuyController extends GetxController {
       printCustom("save credential here ===================================");
 
       if (model.statusCode == 'SC0000') {
-        getTunePriceAndBuyTune(this.info);
+        getTunePriceAndBuyTune(info);
       } else {
         isVerifyingOtp.value = false;
         errorMessage.value = '';
@@ -295,39 +294,43 @@ class BuyController extends GetxController {
     }
   }
 
+  Future<void> getTunePriceAndBuyTune(TuneInfo? info) async {
+    errorMessage.value = '';
+    this.info = info;
+    isVerifying.value = true;
+
+    TonePriceModel model = await getTunePrice();
+
+    if (model.statusCode == 'SC0000') {
+      ResponseDetail? responseDetail =
+          model.responseMap?.responseDetails?.first;
+      String packName = responseDetail?.packName ?? '';
+      String status = responseDetail?.subscriberStatus ?? '';
+
+      if ((status == 'NA') || (status == 'D') || (status == 'd')) {
+        isShowOtpView.value = false;
+        isShowSubscriptionPlan.value = true;
+      } else {
+        await setTune(packName);
+      }
+    } else {
+      isBuySuccess.value = true;
+      successMessage.value = model.message ?? '';
+      isVerifyingOtp.value = false;
+      isVerifying.value = false;
+      errorMessage.value = model.message ?? someThingWentWrongStr;
+    }
+  }
+
   onConfirmSubscriptionPlan(String packName) async {
-    this.packName = packName;
     isShowOtpView.value = !StoreManager().isLoggedIn;
     isShowSubscriptionPlan.value = false;
     print("Pack name is $packName");
     await setTune(packName);
   }
 
-  Future<void> getTunePriceAndBuyTune(TuneInfo? info) async {
-    errorMessage.value = '';
-    this.info = info;
-    isVerifying.value = true;
-
-    if (packName.isEmpty) {
-      TonePriceModel model = await getTunePrice();
-      packName = model.responseMap?.responseDetails?.first.packName ?? '';
-      print("pack name is $packName");
-      if (model.statusCode == 'SC0000') {
-        isShowOtpView.value = false;
-        isShowSubscriptionPlan.value = true;
-      } else {
-        isVerifyingOtp.value = false;
-        isVerifying.value = false;
-        errorMessage.value = model.message ?? someThingWentWrongStr;
-      }
-    } else {
-      await setTune(packName);
-    }
-  }
-
   Future<void> setTune(String packName) async {
-    BuyTuneModel res =
-        await SetTuneVM().set(info ?? TuneInfo(), "Not sending pack name");
+    BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(), packName);
     packName = '';
     if (res.statusCode == 'SC0000') {
       printCustom("Success buy tune api");
