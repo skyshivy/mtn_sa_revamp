@@ -34,6 +34,7 @@ class BuyController extends GetxController {
   RxBool isVerifying = false.obs;
   RxBool isVerifyingOtp = false.obs;
   RxString errorMessage = ''.obs;
+  RxBool isShowSubscriptionPlan = false.obs;
   RxBool isShowOtpView = false.obs;
   RxBool isBuySuccess = false.obs;
   RxString successMessage = ''.obs;
@@ -43,6 +44,7 @@ class BuyController extends GetxController {
   String securityCounter = '';
   String tuneCharge = '';
   RxString msisdn = ''.obs;
+  String packName = '';
   late TuneInfo? info;
 
   customInit() {
@@ -67,6 +69,11 @@ class BuyController extends GetxController {
     successMessage.value = '';
   }
 
+  updatePackName(String packName) {
+    this.packName = packName;
+    print("Pack name is $packName");
+  }
+
   getTuneCharge() {
     tuneCharge = StoreManager()
             .appSetting
@@ -79,6 +86,7 @@ class BuyController extends GetxController {
   }
 
   msisdnValidation(TuneInfo? inf) async {
+    packName = '';
     // if (StoreManager().isLoggedIn) {
     //   isVerifying.value = true;
     //   customPrint("User is already loggedin plese direct buy");
@@ -169,7 +177,6 @@ class BuyController extends GetxController {
       msisdn3 = msisdn.value;
     }
 
-    //msisdn.value.isEmpty ? StoreManager().msisdn : msisdn.value;
     Map<String, dynamic>? map =
         await GetTunePrice().api(msisdn3, info?.toneId ?? '', '3');
     if (map != null) {
@@ -217,7 +224,7 @@ class BuyController extends GetxController {
     isVerifyingOtp.value = false;
   }
 
-  Future<void> verifyingNewUserOtpCheck() async {
+  Future<void> verifyingOtpCheck() async {
     if (otp.value.length == StoreManager().otpLength) {
       isVerifyingOtp.value = true;
 
@@ -228,7 +235,18 @@ class BuyController extends GetxController {
             await ConfirmOtpVM().confirm(msisdn.value, otp.value);
         printCustom("res = ${res.statusCode}");
         if (res.statusCode == "SC0000") {
-          await getSecurityTokenForOldUser();
+          TonePriceModel model = await getTunePrice();
+          String subscriptionStatus =
+              model.responseMap?.responseDetails?.first.subscriberStatus ?? '';
+          if (subscriptionStatus == "NA") {
+            isShowSubscriptionPlan.value = true;
+            isShowOtpView.value = false;
+            print("isShowSubscriptionPlan display here");
+          } else {
+            isShowSubscriptionPlan.value = false;
+            print("make here setTune here or uncomment below line");
+          }
+          //await getSecurityTokenForOldUser();
         } else {
           isVerifyingOtp.value = false;
           errorMessage.value = res.message ?? '';
@@ -277,9 +295,12 @@ class BuyController extends GetxController {
     this.info = info;
     isVerifying.value = true;
     TonePriceModel model = await getTunePrice();
+
     printCustom("New status code is ${model.statusCode}====");
     if (model.statusCode == 'SC0000') {
-      await setTune(model);
+      await setTune(packName);
+
+      //await setTune(model);
     } else {
       isVerifyingOtp.value = false;
       isVerifying.value = false;
@@ -287,9 +308,10 @@ class BuyController extends GetxController {
     }
   }
 
-  Future<void> setTune(TonePriceModel model) async {
-    BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(),
-        model.responseMap?.responseDetails?.first.packName ?? '');
+  Future<void> setTune(String packName) async {
+    isShowOtpView.value = true;
+    isShowSubscriptionPlan.value = false;
+    BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(), packName);
     if (res.statusCode == 'SC0000') {
       printCustom("Success buy tune api");
       isVerifyingOtp.value = false;

@@ -157,7 +157,7 @@ StatefulShellBranch myTuneScreen() {
       name: myTuneGoRoute,
       path: myTuneGoRoute,
       builder: (context, state) {
-        myTuneController.getPlayingTuneList();
+        // myTuneController.getPlayingTuneList();
         return MyTuneScreen();
       },
     ),

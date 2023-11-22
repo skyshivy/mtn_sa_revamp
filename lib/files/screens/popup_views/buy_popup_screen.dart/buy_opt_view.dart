@@ -125,7 +125,7 @@ class BuyOtpView extends StatelessWidget {
   }
 
   void onSubmit(String value) async {
-    buyController.verifyingNewUserOtpCheck();
+    buyController.verifyingOtpCheck();
     buyController.otp.value = value;
 
     printCustom("On submitted   ==========$value");
@@ -223,7 +223,7 @@ class BuyOtpView extends StatelessWidget {
                       return CustomButton(
                         textColor: white,
                         onTap: () async {
-                          buyController.verifyingNewUserOtpCheck();
+                          buyController.verifyingOtpCheck();
                         },
                         height: si.isMobile ? 40 : 44,
                         color: requestButtonColor(),
