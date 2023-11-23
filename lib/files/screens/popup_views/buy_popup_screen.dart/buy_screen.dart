@@ -64,7 +64,13 @@ class _BuyScreenState extends State<_BuyScreen> {
               )
             : buyController.isShowOtpView.value
                 ? BuyOtpView()
-                : mainContainer();
+                : buyController.isShowSubscriptionPlan.value
+                    ? Container(
+                        height: 200,
+                        width: 200,
+                        color: darkGreen,
+                      )
+                    : mainContainer();
       }),
     );
   }

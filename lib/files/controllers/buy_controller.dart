@@ -39,6 +39,7 @@ class BuyController extends GetxController {
   RxString successMessage = ''.obs;
   RxBool isMsisdnVarified = false.obs;
   bool isNewUser = false;
+  RxBool isShowSubscriptionPlan = false.obs;
   RxString otp = ''.obs;
   String securityCounter = '';
   RxString msisdn = ''.obs;
@@ -260,10 +261,24 @@ class BuyController extends GetxController {
   Future<void> getTunePriceAndBuyTune(TuneInfo? info) async {
     this.info = info;
     isVerifying.value = true;
+
+    errorMessage.value = '';
+
     TonePriceModel model = await getTunePrice();
     print("New status code is ${model.statusCode}====");
     if (model.statusCode == 'SC0000') {
-      await setTune(model);
+      ResponseDetail? responseDetail =
+          model.responseMap?.responseDetails?.first;
+      String packName = responseDetail?.packName ?? '';
+      String status = "D"; //responseDetail?.subscriberStatus ?? '';
+
+      if ((status == 'NA') || (status == 'D') || (status == 'd')) {
+        isShowOtpView.value = false;
+        isShowSubscriptionPlan.value = true;
+      } else {
+        await setTune(packName);
+      }
+      //await setTune(model);
     } else {
       isVerifyingOtp.value = false;
       isVerifying.value = false;
@@ -271,9 +286,9 @@ class BuyController extends GetxController {
     }
   }
 
-  Future<void> setTune(TonePriceModel model) async {
-    BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(),
-        model.responseMap?.responseDetails?.first.packName ?? '');
+  Future<void> setTune(String packName) async {
+    BuyTuneModel res = await SetTuneVM()
+        .set(info ?? TuneInfo(), "I am not sending correct pack name");
     print("setTune ========== ${res.statusCode}");
     if (res.statusCode == 'SC0000') {
       print("Success buy tune api");
@@ -283,7 +298,6 @@ class BuyController extends GetxController {
       successMessage.value = res.message ?? '';
     } else {
       isVerifyingOtp.value = false;
-
       errorMessage.value =
           res.responseMap?.responseMessage ?? someThingWentWrongStr;
       isVerifying.value = false;
