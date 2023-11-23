@@ -151,6 +151,8 @@ class LoginController extends GetxController {
     }
 
     if (resut != null) {
+      printCustom(
+          "Before  credential here ===================================");
       await saveCredentialHere(resut);
       printCustom("save credential here ===================================");
       return true;

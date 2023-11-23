@@ -35,10 +35,13 @@ class _DeleteScreenState extends State<DeleteScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Obx(() {
-            return AnimatedSwitcher(
-              duration: Duration(seconds: 1),
-              child: deCont.isCHanged.value ? firstWidget() : secondWidget(),
-            );
+            return AnimatedContainer(
+                duration: Duration(milliseconds: 200),
+                child: Container(
+                  height: deCont.isCHanged.value ? 150 : 150,
+                  width: deCont.isCHanged.value ? 100 : 200,
+                  color: blue,
+                ));
           }),
           SizedBox(height: 30),
           animateButton(),

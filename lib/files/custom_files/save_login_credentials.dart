@@ -3,11 +3,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 Future<void> saveCredentialHere(Map<String, dynamic> valueMap) async {
+  printCustom("saveCredentialHere ===================================");
   var respMap = valueMap['responseMap'];
   final prefs = await SharedPreferences.getInstance();
 
-  var loginSessionTimeStr = DateTime.now().toString();
-  prefs.setString('loginSessionTime', loginSessionTimeStr);
   prefs.setString('respDesc', respMap['respDesc']);
   prefs.setString('srvType', respMap['srvType']);
   prefs.setString('userIdEnc', respMap['userIdEnc']);
