@@ -37,13 +37,13 @@ void parseUrl() async {
 
         return;
       } else {
-        clearData();
+        // clearData();
         printCustom("Else condition executed");
         return;
       }
     });
   } else {
-    clearData();
+    // clearData();
     printCustom("URL does not has hasQuery");
   }
 }
