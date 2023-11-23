@@ -44,7 +44,7 @@ class PasswordValidationModel {
 }
 
 class ResponseMap {
-  Settings? settings;
+  //Settings? settings;
   String? respDesc;
   String? srvType;
   String? userIdEnc;
@@ -53,13 +53,13 @@ class ResponseMap {
   String? userId;
   String? deviceId;
   String? clientTxnId;
-  int? expiry;
+  String? expiry;
   String? msisdn;
   String? txnId;
   String? refreshToken;
 
   ResponseMap({
-    this.settings,
+    //this.settings,
     this.respDesc,
     this.srvType,
     this.userIdEnc,
@@ -75,9 +75,9 @@ class ResponseMap {
   });
 
   factory ResponseMap.fromJson(Map<String, dynamic> json) => ResponseMap(
-        settings: json["settings"] == null
-            ? null
-            : Settings.fromJson(json["settings"]),
+        // settings: json["settings"] == null
+        //     ? null
+        //     : Settings.fromJson(json["settings"]),
         respDesc: json["respDesc"],
         srvType: json["srvType"],
         userIdEnc: json["userIdEnc"],
@@ -86,14 +86,14 @@ class ResponseMap {
         userId: json["userId"],
         deviceId: json["deviceId"],
         clientTxnId: json["clientTxnId"],
-        expiry: json["expiry"],
+        expiry: "${json["expiry"]}",
         msisdn: json["msisdn"],
         txnId: json["txnId"],
         refreshToken: json["refreshToken"],
       );
 
   Map<String, dynamic> toJson() => {
-        "settings": settings?.toJson(),
+        //"settings": settings?.toJson(),
         "respDesc": respDesc,
         "srvType": srvType,
         "userIdEnc": userIdEnc,
