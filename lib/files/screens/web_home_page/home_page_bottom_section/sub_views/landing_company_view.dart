@@ -29,7 +29,9 @@ class LandingCompanyView extends StatelessWidget {
         customText(privacyStr, onTap: () {
           privacyTapped(context);
         }),
-        customText(termsStr, onTap: termsTapped),
+        customText(termsStr, onTap: () {
+          termsTapped(context);
+        }),
       ],
     );
   }
@@ -92,7 +94,7 @@ class LandingCompanyView extends StatelessWidget {
     customWebLauncher(url);
   }
 
-  void termsTapped() {
+  void termsTapped(BuildContext context) {
     Others? others = StoreManager().appSetting.responseMap?.settings?.others;
     String url = '';
     if (StoreManager().isEnglish) {
@@ -101,6 +103,8 @@ class LandingCompanyView extends StatelessWidget {
       url = others?.tndBurmese?.attribute ?? '';
     }
     printCustom("Url is ===== $url");
+    context.goNamed(termsGoRoute);
+    return;
     customWebLauncher(url);
     printCustom("termsTapped tapped");
   }

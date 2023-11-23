@@ -36,6 +36,10 @@ class PrivacyPolicyScreen extends StatelessWidget {
                 ),
                 SizedBox(height: si.isMobile ? 8 : 20),
                 Linkify(
+                  linkStyle: TextStyle(
+                      //color: blue,
+                      fontFamily: FontName.bold.name,
+                      fontSize: si.isMobile ? 12 : 14),
                   options: const LinkifyOptions(humanize: false),
                   onOpen: (link) {
                     customWebLauncher(link.url);

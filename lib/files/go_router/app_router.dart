@@ -34,6 +34,7 @@ import 'package:mtn_sa_revamp/files/screens/profile_screen/profile_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/see_more_screen/see_more_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/terms_condition/terms_condition_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/home_banner_detail_page.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/wishlist_screen/wishlsit_screen.dart';
@@ -69,6 +70,7 @@ final router = GoRouter(
         historyScreenRoute(),
         _privatePolicyScreen(),
         _helpScreen(),
+        _termsScreen(),
         //openMyTuneSettingScreen(),
         //newSceen(),
       ],
@@ -162,6 +164,19 @@ StatefulShellBranch _helpScreen() {
       builder: (context, state) {
         //pCont.getProfileDetail();
         return HelpScreen();
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch _termsScreen() {
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: termsGoRoute,
+      path: termsGoRoute,
+      builder: (context, state) {
+        //pCont.getProfileDetail();
+        return TermsConditionScreen();
       },
     ),
   ]);

@@ -1,18 +1,3 @@
-// String privacyPolicyResp = """{
-//    "details":{
-
-//          "header":"Privacy Policy",
-//          "subtitle":$_subTitle,
-//          "languageId":"1",
-//          "packName":"WEEKLY",
-//          "rrbtServiceExpiry":"2023-11-10",
-//          "crbtServiceExpiry":"2023-11-23"
-
-//    },
-//    "message":"Success",
-//    "respTime":"Nov 17, 2023 9:05:50 PM",
-//    "statusCode":"SC0000"
-// }""";
 String privacyHeaderString = """Privacy Policy""";
 String privacySubTitle =
     """This website is owned and operated by ATOM Myanmar Limited (hereinafter referred to as "ATOM Myanmar” "Site" "us" "we" or "our"), we are committed to safeguarding the privacy of our website visitors, this policy sets out how we will treat your personal information.""";
