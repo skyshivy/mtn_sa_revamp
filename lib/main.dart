@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/history_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
@@ -40,7 +41,7 @@ void main() async {
   TunePreviewController preview = Get.put(TunePreviewController());
   BuyController buyController = Get.put(BuyController());
   CategoryController catDetailCont = Get.put(CategoryController());
-
+  HistoryController hisCont = Get.put(HistoryController());
   runApp(MyApp());
 }
 

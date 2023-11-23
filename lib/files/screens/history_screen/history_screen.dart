@@ -24,8 +24,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
   late HistoryController hCont;
   @override
   void initState() {
-    hCont = Get.put(HistoryController());
-
+    hCont = Get.find();
+    hCont.getHistory();
     super.initState();
   }
 
