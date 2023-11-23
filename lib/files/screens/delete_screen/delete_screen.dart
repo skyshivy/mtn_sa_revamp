@@ -30,15 +30,25 @@ class _DeleteScreenState extends State<DeleteScreen> {
       color: darkGreen,
       child: Column(
         children: [
-          RotationTransition(
-              turns: Tween(begin: 0.0, end: 1.0)
-                  .animate(deCont.animationController),
-              child: Container(
-                height: 200,
-                width: 200,
-                color: white,
-              )),
+          SizedBox(height: 80),
+          Obx(() {
+            return AnimatedContainer(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(
+                  deCont.isAnimating.value ? 125 : 20,
+                ),
+                color: deCont.isAnimating.value ? red : white,
+              ),
+              duration: Duration(milliseconds: 200),
+              height: 250,
+              width: 250,
+            );
+          }),
+          SizedBox(height: 30),
           CustomButton(
+            width: 200,
+            color: white,
+            textColor: black,
             title: "Rotate",
             onTap: () {
               print("object");
