@@ -47,6 +47,7 @@ class BuyController extends GetxController {
   late TuneInfo? info;
 
   customInit() {
+    isShowSubscriptionPlan.value = false;
     isVerifying.value = false;
     errorMessage.value = '';
     isShowOtpView.value = false;
@@ -156,8 +157,11 @@ class BuyController extends GetxController {
   }
 
   Future<TonePriceModel> getTunePrice() async {
+    String msisdn1 = '';
+    msisdn1 =
+        (StoreManager().isLoggedIn) ? StoreManager().msisdn : msisdn.value;
     Map<String, dynamic>? map = await GetTunePrice()
-        .api(msisdn.value, info?.toneId ?? '', validationId: '3');
+        .api(msisdn1, info?.toneId ?? '', validationId: '3');
     if (map != null) {
       try {
         TonePriceModel model = TonePriceModel.fromJson(map);
@@ -261,7 +265,7 @@ class BuyController extends GetxController {
   Future<void> getTunePriceAndBuyTune(TuneInfo? info) async {
     this.info = info;
     isVerifying.value = true;
-
+    //isShowSubscriptionPlan.value = false;
     errorMessage.value = '';
 
     TonePriceModel model = await getTunePrice();
@@ -270,7 +274,7 @@ class BuyController extends GetxController {
       ResponseDetail? responseDetail =
           model.responseMap?.responseDetails?.first;
       String packName = responseDetail?.packName ?? '';
-      String status = "D"; //responseDetail?.subscriberStatus ?? '';
+      String status = responseDetail?.subscriberStatus ?? '';
 
       if ((status == 'NA') || (status == 'D') || (status == 'd')) {
         isShowOtpView.value = false;
@@ -286,9 +290,15 @@ class BuyController extends GetxController {
     }
   }
 
+  onConfirmSubscriptionPlan(String packName) async {
+    isShowOtpView.value = !StoreManager().isLoggedIn;
+    isShowSubscriptionPlan.value = false;
+    print("Pack name is $packName");
+    await setTune(packName);
+  }
+
   Future<void> setTune(String packName) async {
-    BuyTuneModel res = await SetTuneVM()
-        .set(info ?? TuneInfo(), "I am not sending correct pack name");
+    BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(), packName);
     print("setTune ========== ${res.statusCode}");
     if (res.statusCode == 'SC0000') {
       print("Success buy tune api");

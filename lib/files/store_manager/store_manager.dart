@@ -46,6 +46,12 @@ class StoreManager {
     appController.isLoggedIn.value = isLoggedIn;
     isEnglish = prefs.getBool("isEnglish") ?? true;
     appController.isEnglish.value = isEnglish;
+    setMsisdn(msisdn);
+    setLoggedIn(isLoggedIn);
+    setLanguage(isEnglish: isEnglish);
+    setAccessToken(accessToken);
+    setDeviceId(deviceId);
+    setRefreshToken(refreshToken);
   }
 
   storeAppSettingModel(AppSettingModel settingModel) async {

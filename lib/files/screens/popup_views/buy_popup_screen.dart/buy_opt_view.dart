@@ -140,15 +140,18 @@ class BuyOtpView extends StatelessWidget {
     return Obx(() {
       return Visibility(
         visible: buyController.errorMessage.isNotEmpty,
-        child: ResponsiveBuilder(
-          builder: (context, si) {
-            return CustomText(
-              title: buyController.errorMessage.value,
-              fontName: FontName.ztlight,
-              textColor: red,
-              fontSize: si.isMobile ? 10 : 16,
-            );
-          },
+        child: Padding(
+          padding: const EdgeInsets.only(top: 6),
+          child: ResponsiveBuilder(
+            builder: (context, si) {
+              return CustomText(
+                title: buyController.errorMessage.value,
+                fontName: FontName.ztlight,
+                textColor: red,
+                fontSize: si.isMobile ? 10 : 16,
+              );
+            },
+          ),
         ),
       );
     });

@@ -21,6 +21,7 @@ Future<void> saveCredentialHere(Map<String, dynamic> valueMap) async {
   prefs.setString('refreshToken', respMap['refreshToken']);
   prefs.setBool('isLoggedIn', true);
   StoreManager().isLoggedIn = true;
+  StoreManager().setMsisdn(respMap['msisdn'] ?? '');
   print("\nGoing to Store Credentials \n");
   await StoreManager().initStoreManager();
 }
