@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
-import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/banner_indicator.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
@@ -68,8 +66,9 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
       builder: (context, sizingInformation) {
         return Container(
           color: white,
+
           width: double.infinity, //currentSize.width,
-          height: 200, //currentSize.height,
+          //height: 200, //currentSize.height,
           child: CarouselSlider(
             options: carousalOptionWidget(),
             items: itemsWidget(sizingInformation),
@@ -119,7 +118,6 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
           },
           child: Stack(alignment: Alignment.bottomCenter, children: [
             Container(
-              color: white,
               child: FadeInImage.assetNetwork(
                 placeholder: placeholderImage,
                 image: banner.bannerPath ?? logoBigImg,
@@ -136,7 +134,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
 
   CarouselOptions carousalOptionWidget() {
     return CarouselOptions(
-      height: 300, //currentSize.height,
+      //currentSize.height,
       aspectRatio: (Get.width == 600) ? 16 / 9 : 16 / 9,
       viewportFraction: (Get.width == 600) ? 1.0 : 1.0,
       initialPage: 0,
