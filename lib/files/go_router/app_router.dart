@@ -321,7 +321,7 @@ Widget shellRouteIndex(context, state, navigationShell) {
   MtnAudioPlayer.instance.stop();
   return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "ATOM",
+      title: "Atom",
       home: ResponsiveBuilder(
         builder: (context, si) {
           keyScrollFocusNode.requestFocus();

@@ -1,11 +1,11 @@
 {
-    "name": "mtn_sa_revamp",
-    "short_name": "mtn_sa_revamp",
+    "name": "Atom",
+    "short_name": "Atom",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Atom",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
