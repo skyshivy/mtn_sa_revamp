@@ -21,6 +21,7 @@ import 'package:mtn_sa_revamp/files/localization/localizatio_service.dart';
 import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/delete_screen/delete_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/diy_screen/diy_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
@@ -70,7 +71,7 @@ final router = GoRouter(
         wishlistScreen(),
         myTuneScreen(),
         tuneSettingScreen(),
-
+        _deleteScreenRoute(),
         //_diyScreen()
         //openMyTuneSettingScreen(),
         //newSceen(),
@@ -93,6 +94,18 @@ Widget errorWidget(BuildContext context, GoRouterState state) {
       ),
     ),
   ));
+}
+
+StatefulShellBranch _deleteScreenRoute() {
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: deleteGoRoute,
+      path: deleteGoRoute,
+      builder: (context, state) {
+        return DeleteScreen();
+      },
+    ),
+  ]);
 }
 
 StatefulShellBranch artistTuneDetailScreen() {

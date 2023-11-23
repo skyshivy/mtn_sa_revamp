@@ -1,4 +1,5 @@
 const String homeGoRoute = '/';
+const String deleteGoRoute = '/delete';
 const String faqGoRoute = '/faq';
 const String tuneGoRoute = '/tune';
 const String searchGoRoute = '/search';
