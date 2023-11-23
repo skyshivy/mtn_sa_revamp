@@ -36,6 +36,21 @@ class LandingPageBottomSection extends StatelessWidget {
     );
   }
 
+  Widget contactUsWidget() {
+    return Padding(
+      padding: const EdgeInsets.only(right: 100),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          customText(myTuneLocationStr,
+              fontName: FontName.bold, color: atomCryan, fontSize: 18),
+          const SizedBox(height: 4),
+          customText(myTuneLocationValueStr, fontSize: 14),
+        ],
+      ),
+    );
+  }
+
   Widget mainRow(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, si) {
@@ -45,17 +60,26 @@ class LandingPageBottomSection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   LandingCompanyView(),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
+                  contactUsWidget(),
+                  const SizedBox(height: 20),
                   const LandingSocialMedia(),
                 ],
               )
             : Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LandingCompanyView(),
-                  SizedBox(width: 100),
-                  const LandingSocialMedia(),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      LandingCompanyView(),
+                      const SizedBox(height: 20),
+                      const LandingSocialMedia(),
+                    ],
+                  ),
+                  contactUsWidget(),
                 ],
               );
       },

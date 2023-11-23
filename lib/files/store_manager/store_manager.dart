@@ -3,9 +3,10 @@ import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/main.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class StoreManager {
   static final StoreManager _instance = StoreManager._internal();
@@ -52,8 +53,9 @@ class StoreManager {
     appController.isLoggedIn.value = isLoggedIn;
   }
 
-  storeAppSettingModel(AppSettingModel settingModel) async {
+  Future<void> storeAppSettingModel(AppSettingModel settingModel) async {
     appSetting = settingModel;
+    return;
   }
 
   Future<void> logout() async {
@@ -68,67 +70,78 @@ class StoreManager {
     setChannelId('4');
     appController.isLoggedIn.value = false;
     initStoreManager();
+    return;
   }
 
-  setMsisdn(String value) async {
-    prefs = await SharedPreferences.getInstance();
-    prefs.setString('msisdn', value);
+  Future<void> setMsisdn(String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('msisdn', value);
     msisdn = value;
 
     printCustom("Setting msisdn = $value");
+    return;
   }
 
-  setccid(String value) async {
-    prefs = await SharedPreferences.getInstance();
-    prefs.setString('ccid', value);
+  Future<void> setccid(String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('ccid', value);
     ccid = value;
+    return;
   }
 
-  setUserName(String value) async {
-    prefs = await SharedPreferences.getInstance();
-    prefs.setString('userName', value);
+  Future<void> setUserName(String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userName', value);
     userName = value;
+    return;
   }
 
-  setPassword(String value) async {
+  Future<void> setPassword(String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     if (value.isEmpty) {
       value = 'Oem@L#@1';
     }
-    prefs = await SharedPreferences.getInstance();
-    prefs.setString('password', value);
+
+    await prefs.setString('password', value);
     password = value;
+    return;
   }
 
-  setChannelId(String value) async {
+  Future<void> setChannelId(String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     if (value.isEmpty) {
       value = '4';
     }
-    prefs = await SharedPreferences.getInstance();
-    prefs.setString('channelId', value);
+    await prefs.setString('channelId', value);
     channelId = value;
+    return;
   }
 
-  setLoggedIn(bool value) async {
-    prefs = await SharedPreferences.getInstance();
-    prefs.setBool('isLoggedIn', value);
+  Future<void> setLoggedIn(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', value);
     isLoggedIn = value;
+    return;
   }
 
-  setAccessToken(String value) async {
-    prefs = await SharedPreferences.getInstance();
-    prefs.setString('accessToken', value);
+  Future<void> setAccessToken(String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('accessToken', value);
     accessToken = value;
+    return;
   }
 
-  setDeviceId(String value) async {
-    prefs = await SharedPreferences.getInstance();
-    prefs.setString('deviceId', value);
+  Future<void> setDeviceId(String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('deviceId', value);
     deviceId = value;
+    return;
   }
 
-  setRefreshToken(String value) async {
-    prefs = await SharedPreferences.getInstance();
-    prefs.setString('refreshToken', value);
+  Future<void> setRefreshToken(String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('refreshToken', value);
     refreshToken = value;
+    return;
   }
 }

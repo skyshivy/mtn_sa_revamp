@@ -173,7 +173,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void onSubmit(String value) async {
     if (controller.isMsisdnVarified.value) {
       controller.otp.value = value;
-      controller.verifyOtpButtonAction();
+      bool isVarified = await controller.verifyOtpButtonAction();
+      printCustom("Login Screen \n onSubmit method  123\n");
     } else {
       controller.varifyMsisdnButtonAction();
       controller.msisdn.value = value;
@@ -328,16 +329,19 @@ class _LoginScreenState extends State<LoginScreen> {
               width: 250,
               child: ResponsiveBuilder(
                 builder: (context, si) {
-                  return CustomButton(
-                    onTap: () async {
-                      await onRequestButtonAction();
-                    },
-                    height: si.isMobile ? 40 : 44,
-                    color: requestButtonColor(),
-                    title: requestButtonTitle(),
-                    fontName: si.isMobile ? FontName.medium : FontName.bold,
-                    fontSize: si.isMobile ? 12 : 16,
-                  );
+                  return Obx(() {
+                    return CustomButton(
+                      onTap: () async {
+                        await onRequestButtonAction();
+                      },
+                      height: si.isMobile ? 40 : 44,
+                      color: requestButtonColor(),
+                      textColor: white,
+                      title: requestButtonTitle(),
+                      fontName: si.isMobile ? FontName.medium : FontName.bold,
+                      fontSize: si.isMobile ? 12 : 16,
+                    );
+                  });
                 },
               ),
             );
@@ -361,6 +365,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> onRequestButtonAction() async {
     if (controller.isMsisdnVarified.value) {
       bool isSuccess = await controller.verifyOtpButtonAction();
+      printCustom("Login Screen \n onRequestButtonAction  135\n");
       if (isSuccess) {
         Get.back();
         Navigator.pop(context);
@@ -385,9 +390,12 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> onReqOtpAction() async {
     {
       if (controller.isMsisdnVarified.value) {
-        controller.verifyOtpButtonAction();
+        await controller.verifyOtpButtonAction();
         bool isSuccess = await controller.verifyOtpButtonAction();
+        printCustom("Login Screen \n onReqOtpAction method  135\n");
+        printCustom("Verufied l and called in Login screen");
         if (isSuccess) {
+          printCustom("Verufied l and called in Login screen is success");
           Get.back();
 
           Navigator.pop(context);

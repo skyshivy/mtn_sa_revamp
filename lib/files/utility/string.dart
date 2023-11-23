@@ -122,6 +122,8 @@ const tuneListEmptyStr = "Tune list empty";
 const searchTuneStr = "Search Tune";
 const artistListEmptyStr = "Artist list empty";
 const artistStr = "Artist";
+const myTuneLocationStr = "My Tune | Location";
+
 const searchedResultForStr = "Search result for ";
 const loginStr = "Login";
 const companyStr = "Company";
@@ -158,3 +160,5 @@ const howToPlaySelectedTunesToYourCallersStr =
 const chooseSubscriptionPlanStr = "Choose your Subscription Plan";
 const youShouldSubscribeAPlanStr =
     "You should subscribe a plan before you buy or gift tunes";
+const myTuneLocationValueStr =
+    "No.221, Level 17-22-23,\nSule Pagoda Road,\nKyauktada Township,\nYangon, 11182 Myanmar";

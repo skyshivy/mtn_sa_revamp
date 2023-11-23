@@ -1,7 +1,7 @@
 // To parse this JSON data, do
 //
 //     final passwordValidationModel = passwordValidationModelFromJson(jsonString);
-
+/*
 import 'dart:convert';
 
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
@@ -57,7 +57,7 @@ class ResponseMap {
   String? userId;
   String? deviceId;
   String? clientTxnId;
-  int? expiry;
+  String? expiry;
   String? msisdn;
   String? txnId;
   String? refreshToken;
@@ -78,18 +78,18 @@ class ResponseMap {
   });
 
   factory ResponseMap.fromJson(Map<String, dynamic> json) => ResponseMap(
-        respDesc: json["respDesc"],
-        srvType: json["srvType"],
-        userIdEnc: json["userIdEnc"],
-        userName: json["userName"],
-        accessToken: json["accessToken"],
-        userId: json["userId"],
-        deviceId: json["deviceId"],
-        clientTxnId: json["clientTxnId"],
-        expiry: json["expiry"],
-        msisdn: json["msisdn"],
-        txnId: json["txnId"],
-        refreshToken: json["refreshToken"],
+        respDesc: "${json["respDesc"]}",
+        srvType: "${json["srvType"]}",
+        userIdEnc: "${json["userIdEnc"]}",
+        userName: "${json["userName"]}",
+        accessToken: "${json["accessToken"]}",
+        userId: "${json["userId"]}",
+        deviceId: "${json["deviceId"]}",
+        clientTxnId: "${json["clientTxnId"]}",
+        expiry: "${json["expiry"]}",
+        msisdn: "${json["msisdn"]}",
+        txnId: "${json["txnId"]}",
+        refreshToken: "${json["refreshToken"]}",
       );
 
   Map<String, dynamic> toJson() => {
@@ -107,8 +107,12 @@ class ResponseMap {
         "refreshToken": refreshToken,
       };
 }
+*/
 
-/*
+import 'dart:convert';
+
+import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
+
 PasswordValidationModel passwordValidationModelFromJson(String str) =>
     PasswordValidationModel.fromJson(json.decode(str));
 
@@ -147,7 +151,7 @@ class PasswordValidationModel {
 }
 
 class ResponseMap {
-  //Settings? settings;
+  Settings? settings;
   String? respDesc;
   String? srvType;
   String? userIdEnc;
@@ -162,7 +166,7 @@ class ResponseMap {
   String? refreshToken;
 
   ResponseMap({
-    //this.settings,
+    this.settings,
     this.respDesc,
     this.srvType,
     this.userIdEnc,
@@ -178,9 +182,9 @@ class ResponseMap {
   });
 
   factory ResponseMap.fromJson(Map<String, dynamic> json) => ResponseMap(
-        // settings: json["settings"] == null
-        //     ? null
-        //     : Settings.fromJson(json["settings"]),
+        settings: json["settings"] == null
+            ? null
+            : Settings.fromJson(json["settings"]),
         respDesc: json["respDesc"],
         srvType: json["srvType"],
         userIdEnc: json["userIdEnc"],
@@ -196,7 +200,7 @@ class ResponseMap {
       );
 
   Map<String, dynamic> toJson() => {
-        //"settings": settings?.toJson(),
+        "settings": settings?.toJson(),
         "respDesc": respDesc,
         "srvType": srvType,
         "userIdEnc": userIdEnc,
@@ -211,4 +215,3 @@ class ResponseMap {
         "refreshToken": refreshToken,
       };
 }
-*/

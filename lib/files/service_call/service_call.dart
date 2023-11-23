@@ -143,8 +143,10 @@ class ServiceCall {
     RegenTokenModel model = RegenTokenModel.fromJson(res);
     if (model.statusCode == 'SC0000') {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString("accessToken", model.responseMap?.accessToken ?? '');
-      prefs.setString("refreshToken", model.responseMap?.refreshToken ?? '');
+      await prefs.setString(
+          "accessToken", model.responseMap?.accessToken ?? '');
+      await prefs.setString(
+          "refreshToken", model.responseMap?.refreshToken ?? '');
       StoreManager().accessToken = model.responseMap?.accessToken ?? '';
       StoreManager().refreshToken = model.responseMap?.refreshToken ?? "";
       await Future.delayed(const Duration(milliseconds: 300));
