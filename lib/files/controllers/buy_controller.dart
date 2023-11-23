@@ -282,7 +282,7 @@ class BuyController extends GetxController {
         .validatePassword(msisdn.value, securityCounter, false);
     if (map != null) {
       PasswordValidationModel model = PasswordValidationModel.fromJson(map);
-      await saveCredentialHere(map);
+      await saveCredentialHere(model);
       printCustom("save credential here ===================================");
 
       if (model.statusCode == 'SC0000') {

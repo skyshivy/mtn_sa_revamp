@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_web_launcher.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -11,18 +13,22 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 class LandingCompanyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return companyList();
+    return companyList(context);
   }
 
-  Widget companyList() {
+  Widget companyList(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         customText(companyStr,
             fontName: FontName.bold, color: atomCryan, fontSize: 18),
         customText(contactusStr, onTap: contactusTapped),
-        customText(helpStr, onTap: helpTapped),
-        customText(privacyStr, onTap: privacyTapped),
+        customText(helpStr, onTap: () {
+          helpTapped(context);
+        }),
+        customText(privacyStr, onTap: () {
+          privacyTapped(context);
+        }),
         customText(termsStr, onTap: termsTapped),
       ],
     );
@@ -57,8 +63,11 @@ class LandingCompanyView extends StatelessWidget {
     customWebLauncher(url);
   }
 
-  void helpTapped() {
+  void helpTapped(BuildContext context) {
+    context.goNamed(helpGoRoute);
     printCustom("helpTapped tapped");
+    return;
+
     Others? others = StoreManager().appSetting.responseMap?.settings?.others;
     String url = '';
     if (StoreManager().isEnglish) {
@@ -69,8 +78,10 @@ class LandingCompanyView extends StatelessWidget {
     customWebLauncher(url);
   }
 
-  void privacyTapped() {
+  void privacyTapped(BuildContext context) {
     printCustom("privacyTapped tapped");
+    context.goNamed(policyGoRoute);
+    return;
     Others? others = StoreManager().appSetting.responseMap?.settings?.others;
     String url = '';
     if (StoreManager().isEnglish) {

@@ -151,11 +151,16 @@ class LoginController extends GetxController {
     }
 
     if (resut != null) {
-      printCustom(
-          "Before  credential here ===================================");
-      await saveCredentialHere(resut);
-      printCustom("save credential here ===================================");
-      return true;
+      PasswordValidationModel model = PasswordValidationModel.fromJson(resut);
+      if (model.statusCode == "SC0000") {
+        printCustom(
+            "Before  credential here ===================================");
+        await saveCredentialHere(model);
+        printCustom("save credential here ===================================");
+        return true;
+      } else {
+        return false;
+      }
     } else {
       errorMessage.value = someThingWentWrongStr;
       return false;

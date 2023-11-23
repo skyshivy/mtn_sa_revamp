@@ -23,11 +23,13 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/delete_screen/delete_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/help_screen/help_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/history_screen/history_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_bar.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/web_nav_bar_view.dart';
+import 'package:mtn_sa_revamp/files/screens/privacy_policy_screen/privacy_policy_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/profile_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
@@ -65,6 +67,8 @@ final router = GoRouter(
         tuneSettingScreen(),
         deleteScreenRoute(),
         historyScreenRoute(),
+        _privatePolicyScreen(),
+        _helpScreen(),
         //openMyTuneSettingScreen(),
         //newSceen(),
       ],
@@ -132,6 +136,32 @@ StatefulShellBranch profileScreen() {
       builder: (context, state) {
         //pCont.getProfileDetail();
         return ProfileScreen();
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch _privatePolicyScreen() {
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: policyGoRoute,
+      path: policyGoRoute,
+      builder: (context, state) {
+        //pCont.getProfileDetail();
+        return PrivacyPolicyScreen();
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch _helpScreen() {
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: helpGoRoute,
+      path: helpGoRoute,
+      builder: (context, state) {
+        //pCont.getProfileDetail();
+        return HelpScreen();
       },
     ),
   ]);

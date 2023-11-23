@@ -1,5 +1,9 @@
 const String homeGoRoute = '/';
 const String faqGoRoute = '/faq';
+
+const String helpGoRoute = '/help';
+const String policyGoRoute = '/privacyPolicy';
+
 const String tuneGoRoute = '/tune';
 const String searchGoRoute = '/search';
 const String artistGoRoute = '/artistTunes';
