@@ -155,7 +155,25 @@ class LoginController extends GetxController {
       if (model.statusCode == "SC0000") {
         printCustom(
             "Before  credential here ===================================");
-        await saveCredentialHere(model);
+        //await saveCredentialHere(model);
+        print("model = $model");
+        print("model.responseMap = ${model.responseMap}");
+        print("model.responseMap?.msisdn = ${model.responseMap?.msisdn}");
+        StoreManager().msisdn = model.responseMap?.msisdn ?? "";
+        StoreManager().setAccessToken(model.responseMap?.accessToken ?? "");
+        print("set 1 ${model.responseMap?.accessToken ?? ""}");
+        StoreManager().setDeviceId(model.responseMap?.deviceId ?? "");
+        print("set 2 ${model.responseMap?.deviceId ?? ""}");
+        StoreManager().setMsisdn(model.responseMap?.msisdn ?? "");
+        print("set 3 ${model.responseMap?.msisdn ?? ""}");
+        StoreManager().setRefreshToken(model.responseMap?.refreshToken ?? "");
+        print("set 4 ${model.responseMap?.refreshToken ?? ""}");
+        StoreManager().setUserName(model.responseMap?.userName ?? "");
+        print("set 5 ${model.responseMap?.userName ?? ""}");
+        StoreManager().setLoggedIn(true);
+        print("set 6");
+        StoreManager().initStoreManager();
+        print("set 7");
         printCustom("save credential here ===================================");
         return true;
       } else {

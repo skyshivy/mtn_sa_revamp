@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/files/model/artist_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/utility/constants.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
@@ -21,7 +22,7 @@ class ArtistController extends GetxController {
     }
     this.isLoadMore.value = true;
     var url =
-        "$getArtistSearchTuneUrl${StoreManager().isEnglish ? "English" : "Arabic"}&artistKey=$artist&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=${StoreManager().isEnglish ? "English" : "Arabic"}&perPageCount=20";
+        "$getArtistSearchTuneUrl${StoreManager().isEnglish ? "English" : "Arabic"}&artistKey=$artist&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=${StoreManager().isEnglish ? "English" : "Arabic"}&perPageCount=$pagePerCount";
     Map<String, dynamic>? res = await ServiceCall().get(url);
 
     if (res != null) {

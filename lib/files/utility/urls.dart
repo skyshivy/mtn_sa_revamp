@@ -1,4 +1,5 @@
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/utility/constants.dart';
 
 String versionCode = '7.0';
 String appVersion = '1.0.6';
@@ -14,7 +15,6 @@ String instagram_url = '';
 String twitter_url = '';
 String linkedin_url = '';
 
-int perPageCount = 20;
 String baseUrl = "";
 String baseUrlSecurity = '';
 String faqUrl = '';
@@ -34,7 +34,7 @@ String homeBannerurl = "${baseUrl}banner?language=";
 String newUserRegistrationUrl = "${baseUrl}registration";
 String searchSpecificToneUrl = '${baseUrl}specific-search-tones?language';
 String searchByTuneIdUrl =
-    '${baseUrl}search-tone?language=English&pageNo=0&perPageCount=20&toneId=';
+    '${baseUrl}search-tone?language=English&pageNo=0&perPageCount=$pagePerCount&toneId=';
 String getArtistSearchTuneUrl = "${baseUrl}search-tone?language=";
 String subscriberValidationUrl = "${baseUrl}subscriber-validation";
 String generateOtpUrl = "${baseUrl}generate-otp";
@@ -50,7 +50,7 @@ String myWishListUrl = "${baseUrlSecurity}view-wishlist";
 String deleteFromWishListUrl = "${baseUrlSecurity}delete-from-wishlist";
 
 String suspendResumePackUrl = '${baseUrlSecurity}suspend-resume-pack';
-
+String searchToneIdUrl = "${baseUrl}search-tone";
 String sendGiftUrl = "${baseUrl}send-gift";
 String getCategoryDetailUrl =
     "${baseUrl}search-tone?language=${StoreManager().language}";

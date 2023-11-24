@@ -48,14 +48,14 @@ class _SearchScreenState extends State<SearchScreen> {
                 return Column(
                   children: [
                     SearchHeader(),
-                    SeacrhHeaderTab(),
+                    //SeacrhHeaderTab(),
                     const SizedBox(height: 20),
                     Expanded(
                       child: SingleChildScrollView(
                         controller: _controller,
-                        child: controller.isTuneSelected.value == 0
-                            ? gridView()
-                            : artistList(),
+                        child: controller.searchType.value == 1
+                            ? artistList()
+                            : gridView(),
                       ),
                     ),
 

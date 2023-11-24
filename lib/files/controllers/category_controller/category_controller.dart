@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/model/category_detail_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
+import 'package:mtn_sa_revamp/files/utility/constants.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
@@ -34,7 +35,7 @@ class CategoryController extends GetxController {
     }
 
     var url =
-        "$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=English&perPageCount=$perPageCount";
+        "$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=English&perPageCount=$pagePerCount}";
 
     Map<String, dynamic>? result = await ServiceCall().get(url);
     isLoading.value = false;
@@ -48,7 +49,7 @@ class CategoryController extends GetxController {
       }
       searchList += list;
     }
-    if (searchList.length < perPageCount) {
+    if (searchList.length < pagePerCount) {
       isHideLoadMore.value = true;
     }
     printCustom("Rsult is ============ $result");

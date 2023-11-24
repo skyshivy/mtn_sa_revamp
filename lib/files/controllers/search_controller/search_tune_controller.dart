@@ -2,7 +2,9 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/model/search_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
+import 'package:mtn_sa_revamp/files/utility/constants.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/view_model/search_tone_id_api.dart';
 import 'package:mtn_sa_revamp/main.dart';
 
 import '../../store_manager/store_manager.dart';
@@ -22,8 +24,10 @@ class SearchTuneController extends GetxController {
 
   getSearchedResult(String searchedTxt, int p,
       {bool isloadMore = false}) async {
+    searchedText.value = searchedTxt;
     if (searchType.value == 2) {
       print("Search Tune code here");
+      _getSearchResultByTuneId(searchedTxt);
       return;
     } else if (searchType.value == 1) {
       print("Search Singer list here");
@@ -32,7 +36,6 @@ class SearchTuneController extends GetxController {
       print("Search narmal tune herr");
     }
 
-    searchedText.value = searchedTxt;
     keyScrollFocusNode.requestFocus();
     if (!isloadMore) {
       toneList.clear();
@@ -40,11 +43,11 @@ class SearchTuneController extends GetxController {
       artistList.clear();
     }
 
-    if (isNumericUsingRegularExpression(searchedTxt)) {
-      _getSearchResultByTuneId(searchedTxt);
+    // if (isNumericUsingRegularExpression(searchedTxt)) {
+    //   _getSearchResultByTuneId(searchedTxt);
 
-      return;
-    }
+    //   return;
+    // }
 
     String s = searchedTxt.trim();
     if (s != null) {
@@ -56,7 +59,7 @@ class SearchTuneController extends GetxController {
     }
     isLoadMore.value = true;
     var url =
-        '$searchSpecificToneUrl=${StoreManager().language}&sortBy=Order_By&perPageCount=20&searchLanguage=${StoreManager().language}&searchKey=$s&pageNo=$p';
+        '$searchSpecificToneUrl=${StoreManager().language}&sortBy=Order_By&perPageCount=$pagePerCount&searchLanguage=${StoreManager().language}&searchKey=$s&pageNo=$p';
     Map<String, dynamic>? result = await ServiceCall().get(url);
 
     if (result != null) {
@@ -84,21 +87,21 @@ class SearchTuneController extends GetxController {
   }
 
   _getSearchResultByTuneId(String tuneId) async {
-    printCustom("Tune is searched $tuneId");
+    printCustom("Tune is id $tuneId");
     String s = tuneId.trim();
     if (s != null) {
       s = s.replaceAll(' ', '+');
     }
-    // isLoading = true;
-    // notifyListeners();
+    isLoading.value = true;
+
+    await searchToneIdApi(tuneId);
     // var result = await SearchVM.searchTunesById(tuneId);
     // customPrint("search result by tune id is ${result}");
     // recomList = await Convertmodel().toneInfoModelToRecomended(
     //     result.responseMap?.searchList ?? result.responseMap?.searchList);
 
-    // artistList = <ArtistDetailList>[];
-    // isLoading = false;
-    // notifyListeners();
+    artistList.value = <ArtistDetailList>[];
+    isLoading.value = false;
   }
 
   loadMoreData() async {

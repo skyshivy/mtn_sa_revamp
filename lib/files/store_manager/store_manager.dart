@@ -71,75 +71,110 @@ class StoreManager {
     return;
   }
 
-  Future<void> setMsisdn(String value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('msisdn', value);
+  setMsisdn(String value) async {
     msisdn = value;
+    print("Storing msisdn = $msisdn");
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('msisdn', value);
+    } catch (e) {
+      print("Error saving msisdn = ${e.toString()}");
+    }
 
     printCustom("Setting msisdn = $value");
-    return;
   }
 
-  Future<void> setccid(String value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('ccid', value);
+  setccid(String value) async {
     ccid = value;
-    return;
+    print("Storing ccid = $value");
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('ccid', value);
+    } on Exception catch (e) {
+      print("Error saving ccid = ${e.toString()}");
+    }
   }
 
-  Future<void> setUserName(String value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('userName', value);
+  setUserName(String value) async {
     userName = value;
-    return;
+    print("Storing userName = $value");
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('userName', value);
+    } on Exception catch (e) {
+      print("Error saving msuserName is = ${e.toString()}");
+    }
   }
 
-  Future<void> setPassword(String value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  setPassword(String value) async {
     if (value.isEmpty) {
       value = 'Oem@L#@1';
     }
-
-    await prefs.setString('password', value);
     password = value;
-    return;
+    print("Storing password = $value");
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('password', value);
+    } on Exception catch (e) {
+      print("Error saving password = ${e.toString()}");
+    }
   }
 
-  Future<void> setChannelId(String value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  setChannelId(String value) async {
     if (value.isEmpty) {
       value = '4';
     }
-    await prefs.setString('channelId', value);
     channelId = value;
-    return;
+    print("Storing channelid = $value");
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('channelId', value);
+    } on Exception catch (e) {
+      print("Error saving channelId = ${e.toString()}");
+    }
   }
 
-  Future<void> setLoggedIn(bool value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isLoggedIn', value);
+  setLoggedIn(bool value) async {
     isLoggedIn = value;
-    return;
+    print("Storing isLoggedin = $value");
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('isLoggedIn', value);
+    } on Exception catch (e) {
+      print("Error saving isLoogedin = ${e.toString()}");
+    }
   }
 
-  Future<void> setAccessToken(String value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('accessToken', value);
+  setAccessToken(String value) async {
     accessToken = value;
-    return;
+    print("Storing accessToken = $value");
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('accessToken', value);
+    } on Exception catch (e) {
+      print("Error saving accessToken = ${e.toString()}");
+    }
   }
 
-  Future<void> setDeviceId(String value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('deviceId', value);
+  setDeviceId(String value) async {
     deviceId = value;
-    return;
+    print("Storing device id = $value");
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('deviceId', value);
+    } on Exception catch (e) {
+      print("Error saving deviceId = ${e.toString()}");
+    }
   }
 
-  Future<void> setRefreshToken(String value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('refreshToken', value);
+  setRefreshToken(String value) async {
     refreshToken = value;
-    return;
+    print("Storing refresh token = $value");
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('refreshToken', value);
+    } on Exception catch (e) {
+      print("Error saving refreshToken = ${e.toString()}");
+    }
   }
 }
