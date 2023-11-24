@@ -8,7 +8,7 @@ import 'package:mtn_sa_revamp/files/model/regenerate_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/header.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:universal_io/io.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
@@ -142,11 +142,11 @@ class ServiceCall {
     Map<String, dynamic> res = await reGeneratToken();
     RegenTokenModel model = RegenTokenModel.fromJson(res);
     if (model.statusCode == 'SC0000') {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString(
-          "accessToken", model.responseMap?.accessToken ?? '');
-      await prefs.setString(
-          "refreshToken", model.responseMap?.refreshToken ?? '');
+      //SharedPreferences prefs = await SharedPreferences.getInstance();
+      StoreManager().setAccessToken(model.responseMap?.accessToken ?? '');
+      StoreManager().setRefreshToken(model.responseMap?.refreshToken ?? '');
+      // await prefs.setString(
+      //     "refreshToken", model.responseMap?.refreshToken ?? '');
       StoreManager().accessToken = model.responseMap?.accessToken ?? '';
       StoreManager().refreshToken = model.responseMap?.refreshToken ?? "";
       await Future.delayed(const Duration(milliseconds: 300));

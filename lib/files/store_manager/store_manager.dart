@@ -1,10 +1,10 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class StoreManager {
   static final StoreManager _instance = StoreManager._internal();
@@ -33,20 +33,40 @@ class StoreManager {
   int otpLength = 6;
   int msisdnLength = 10;
   int timeOutDuration = 15;
-  late SharedPreferences prefs;
+  final storage = FlutterSecureStorage();
+  //late SharedPreferences prefs;
   late AppSettingModel appSetting;
 
   initStoreManager() async {
-    prefs = await SharedPreferences.getInstance();
-    isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
-    accessToken = prefs.getString("accessToken") ?? '';
-    deviceId = prefs.getString("deviceId") ?? '';
-    msisdn = prefs.getString("msisdn") ?? '';
-    refreshToken = prefs.getString("refreshToken") ?? '';
-    ccid = prefs.getString('ccid') ?? '';
-    userName = prefs.getString('userName') ?? '';
-    password = prefs.getString('password') ?? 'Oem@L#@1';
-    channelId = prefs.getString('channelId') ?? '4';
+    //prefs = await SharedPreferences.getInstance();
+    String v = await storage.read(key: "isLoggedIn") ?? '';
+    isLoggedIn = (v == "yes") ? true : false;
+    //isLoggedIn = isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
+
+    accessToken = await storage.read(key: "accessToken") ?? '';
+    //accessToken = prefs.getString("accessToken") ?? '';
+
+    deviceId = await storage.read(key: "deviceId") ?? '';
+
+    ///deviceId = prefs.getString("deviceId") ?? '';
+
+    msisdn = await storage.read(key: "msisdn") ?? '';
+    //msisdn = prefs.getString("msisdn") ?? '';
+
+    refreshToken = await storage.read(key: "refreshToken") ?? '';
+    //refreshToken = prefs.getString("refreshToken") ?? '';
+
+    ccid = await storage.read(key: "ccid") ?? '';
+    //ccid = prefs.getString('ccid') ?? '';
+
+    userName = await storage.read(key: "userName") ?? '';
+    //userName = prefs.getString('userName') ?? '';
+
+    password = await storage.read(key: "password") ?? '';
+    //password = prefs.getString('password') ?? 'Oem@L#@1';
+
+    channelId = await storage.read(key: "channelId") ?? '';
+    //channelId = prefs.getString('channelId') ?? '4';
 
     appController.isLoggedIn.value = isLoggedIn;
   }
@@ -75,8 +95,10 @@ class StoreManager {
     msisdn = value;
     print("Storing msisdn = $msisdn");
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('msisdn', value);
+      //SharedPreferences prefs = await SharedPreferences.getInstance();
+      //prefs.setString('msisdn', value);
+
+      storage.write(key: 'msisdn', value: value);
     } catch (e) {
       print("Print Error only  = $e");
       print("Error saving msisdn = ${e.toString()}");
@@ -89,8 +111,10 @@ class StoreManager {
     ccid = value;
     print("Storing ccid = $value");
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('ccid', value);
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // prefs.setString('ccid', value);
+
+      storage.write(key: 'ccid', value: value);
     } on Exception catch (e) {
       print("Error saving ccid = ${e.toString()}");
     }
@@ -100,8 +124,10 @@ class StoreManager {
     userName = value;
     print("Storing userName = $value");
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('userName', value);
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // prefs.setString('userName', value);
+
+      storage.write(key: 'userName', value: value);
     } on Exception catch (e) {
       print("Error saving msuserName is = ${e.toString()}");
     }
@@ -114,8 +140,10 @@ class StoreManager {
     password = value;
     print("Storing password = $value");
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('password', value);
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // prefs.setString('password', value);
+
+      storage.write(key: 'password', value: value);
     } on Exception catch (e) {
       print("Error saving password = ${e.toString()}");
     }
@@ -128,8 +156,9 @@ class StoreManager {
     channelId = value;
     print("Storing channelid = $value");
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('channelId', value);
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // prefs.setString('channelId', value);
+      storage.write(key: 'channelId', value: value);
     } on Exception catch (e) {
       print("Error saving channelId = ${e.toString()}");
     }
@@ -139,19 +168,23 @@ class StoreManager {
     isLoggedIn = value;
     print("Storing isLoggedin = $value");
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setBool('isLoggedIn', value);
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // prefs.setBool('isLoggedIn', value);
+
+      storage.write(key: 'isLoggedIn', value: value ? 'yes' : 'no');
     } on Exception catch (e) {
       print("Error saving isLoogedin = ${e.toString()}");
     }
+    appController.isLoggedIn.value = value;
   }
 
   setAccessToken(String value) async {
     accessToken = value;
     print("Storing accessToken = $value");
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('accessToken', value);
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // prefs.setString('accessToken', value);
+      storage.write(key: 'accessToken', value: value);
     } on Exception catch (e) {
       print("Error saving accessToken = ${e.toString()}");
     }
@@ -161,8 +194,9 @@ class StoreManager {
     deviceId = value;
     print("Storing device id = $value");
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('deviceId', value);
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // prefs.setString('deviceId', value);
+      storage.write(key: 'deviceId', value: value);
     } on Exception catch (e) {
       print("Error saving deviceId = ${e.toString()}");
     }
@@ -172,8 +206,9 @@ class StoreManager {
     refreshToken = value;
     print("Storing refresh token = $value");
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('refreshToken', value);
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // prefs.setString('refreshToken', value);
+      storage.write(key: 'refreshToken', value: value);
     } on Exception catch (e) {
       print("Error saving refreshToken = ${e.toString()}");
     }
