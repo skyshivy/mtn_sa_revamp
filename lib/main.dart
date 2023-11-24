@@ -61,6 +61,7 @@ Future<String> getJson() async {
     instagram_url = data['INSTAGRAM_URL'];
     twitter_url = data['TWITTER_URL'];
     linkedin_url = data['LINKEDIN_URL'];
+    defaultImageUrl = data["DEFAULT_IMAGE_URL"];
 
     parseUrl();
     return value;

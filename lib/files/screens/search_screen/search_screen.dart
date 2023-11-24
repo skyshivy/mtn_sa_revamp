@@ -20,6 +20,7 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_vi
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
@@ -121,8 +122,7 @@ class _SearchScreenState extends State<SearchScreen> {
               Expanded(
                 child: CustomImage(
                   radius: 4,
-                  url:
-                      "https://funtone.ooredoo.com.mm/stream-media/get-preview-image?fileId\u003d7a2tERYFM1U\u003d",
+                  url: defaultImageUrl,
                   index: index,
                 ),
               ),

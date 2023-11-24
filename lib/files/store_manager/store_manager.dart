@@ -78,6 +78,7 @@ class StoreManager {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('msisdn', value);
     } catch (e) {
+      print("Print Error only  = $e");
       print("Error saving msisdn = ${e.toString()}");
     }
 

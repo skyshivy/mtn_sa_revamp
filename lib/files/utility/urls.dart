@@ -14,7 +14,7 @@ String facebook_url = '';
 String instagram_url = '';
 String twitter_url = '';
 String linkedin_url = '';
-
+String defaultImageUrl = ''; //DEFAULT_IMAGE_URL
 String baseUrl = "";
 String baseUrlSecurity = '';
 String faqUrl = '';
