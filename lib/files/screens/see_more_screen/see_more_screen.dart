@@ -36,7 +36,10 @@ class _SeeMoreScreenState extends State<SeeMoreScreen> {
           padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
           child: GridView.builder(
             itemCount: recCont.displayList?.length,
-            gridDelegate: delegate(si),
+            gridDelegate: delegate(si,
+                mainAxisExtent: si.isMobile ? 260 : null,
+                mainAxisSpacing: si.isMobile ? 8 : null,
+                crossAxisSpacing: si.isMobile ? 8 : null),
             itemBuilder: (context, index) {
               return HomeTuneCell(
                 index: index,

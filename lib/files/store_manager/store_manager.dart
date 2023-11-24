@@ -37,9 +37,9 @@ class StoreManager {
   //late SharedPreferences prefs;
   late AppSettingModel appSetting;
 
-  initStoreManager() async {
+  Future<void> initStoreManager() async {
     //prefs = await SharedPreferences.getInstance();
-    String v = await storage.read(key: "isLoggedIn") ?? '';
+    String v = await storage.read(key: "isLoggedIn") ?? 'no';
     isLoggedIn = (v == "yes") ? true : false;
     //isLoggedIn = isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
 
@@ -69,6 +69,7 @@ class StoreManager {
     //channelId = prefs.getString('channelId') ?? '4';
 
     appController.isLoggedIn.value = isLoggedIn;
+    return;
   }
 
   Future<void> storeAppSettingModel(AppSettingModel settingModel) async {
@@ -87,7 +88,7 @@ class StoreManager {
     setPassword('');
     setChannelId('4');
     appController.isLoggedIn.value = false;
-    initStoreManager();
+    //initStoreManager();
     return;
   }
 
@@ -165,8 +166,6 @@ class StoreManager {
   }
 
   setLoggedIn(bool value) async {
-    isLoggedIn = value;
-    print("Storing isLoggedin = $value");
     try {
       // SharedPreferences prefs = await SharedPreferences.getInstance();
       // prefs.setBool('isLoggedIn', value);
@@ -175,6 +174,8 @@ class StoreManager {
     } on Exception catch (e) {
       print("Error saving isLoogedin = ${e.toString()}");
     }
+    isLoggedIn = value;
+    print("Storing isLoggedin = $value");
     appController.isLoggedIn.value = value;
   }
 

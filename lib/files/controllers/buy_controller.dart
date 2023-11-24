@@ -299,7 +299,8 @@ class BuyController extends GetxController {
       print("set 5 ${model.responseMap?.userName ?? ""}");
       StoreManager().setLoggedIn(true);
       print("set 6");
-      StoreManager().initStoreManager();
+      await StoreManager().initStoreManager();
+      StoreManager().setLoggedIn(true);
       print("set 7");
       printCustom("save credential here ===================================");
 

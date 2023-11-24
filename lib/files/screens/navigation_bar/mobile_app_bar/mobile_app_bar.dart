@@ -8,7 +8,7 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 class MobileAppBar extends StatelessWidget {
   final Widget widget;
-  MyDrawerController drawerController = Get.put(MyDrawerController());
+  MyDrawerController drawerController = Get.find();
 
   MobileAppBar({super.key, required this.widget});
   @override

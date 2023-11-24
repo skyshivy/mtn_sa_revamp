@@ -169,9 +169,10 @@ class LoginController extends GetxController {
         print("set 4 ${model.responseMap?.refreshToken ?? ""}");
         StoreManager().setUserName(model.responseMap?.userName ?? "");
         print("set 5 ${model.responseMap?.userName ?? ""}");
-        StoreManager().setLoggedIn(true);
+
         print("set 6");
-        StoreManager().initStoreManager();
+        await StoreManager().initStoreManager();
+        StoreManager().setLoggedIn(true);
         print("set 7");
         printCustom("save credential here ===================================");
         return true;
