@@ -1,4 +1,8 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
+import 'package:mtn_sa_revamp/files/model/search_toneid_model.dart';
 import 'package:mtn_sa_revamp/files/model/search_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
@@ -13,6 +17,8 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 class SearchTuneController extends GetxController {
   RxString searchedText = ''.obs;
   RxBool isLoading = false.obs;
+  RxBool isLoadingArtist = false.obs;
+  RxBool isLoadingCode = false.obs;
   RxBool isLoaded = false.obs;
   RxInt searchType = 0.obs;
 
@@ -23,7 +29,10 @@ class SearchTuneController extends GetxController {
   RxList<ArtistDetailList> artistList = <ArtistDetailList>[].obs;
 
   getSearchedResult(String searchedTxt, int p,
-      {bool isloadMore = false}) async {
+      {bool isloadMore = false, int? searchTypeIndex}) async {
+    if (searchTypeIndex != null) {
+      searchType.value = searchTypeIndex;
+    }
     searchedText.value = searchedTxt;
     if (searchType.value == 2) {
       print("Search Tune code here");
@@ -31,7 +40,7 @@ class SearchTuneController extends GetxController {
       return;
     } else if (searchType.value == 1) {
       print("Search Singer list here");
-      return;
+      isLoadingArtist.value = true;
     } else {
       print("Search narmal tune herr");
     }
@@ -70,10 +79,11 @@ class SearchTuneController extends GetxController {
       printCustom(
           "Tune list length is ${toneList.length} Tune list length ${songList.length}");
     }
-    ;
+
     isLoading.value = false;
     isLoaded.value = true;
     isLoadMore.value = false;
+    isLoadingArtist.value = false;
   }
 
   updateSearchType(int index) {
@@ -88,20 +98,30 @@ class SearchTuneController extends GetxController {
 
   _getSearchResultByTuneId(String tuneId) async {
     printCustom("Tune is id $tuneId");
+
+    toneList.value = [];
+    songList.value = [];
+    artistList.value = [];
+
     String s = tuneId.trim();
     if (s != null) {
       s = s.replaceAll(' ', '+');
     }
     isLoading.value = true;
-
-    await searchToneIdApi(tuneId);
-    // var result = await SearchVM.searchTunesById(tuneId);
-    // customPrint("search result by tune id is ${result}");
-    // recomList = await Convertmodel().toneInfoModelToRecomended(
-    //     result.responseMap?.searchList ?? result.responseMap?.searchList);
-
-    artistList.value = <ArtistDetailList>[];
+    isLoadingCode.value = true;
+    //await Future.delayed(Duration(seconds: 3));
+    SearchToneidModel mode = await searchToneIdApi(tuneId);
     isLoading.value = false;
+    isLoaded.value = true;
+    if (mode.statusCode == "SC0000") {
+      toneList.value = mode.responseMap?.toneList ?? [];
+      songList.value = mode.responseMap?.songList ?? [];
+    } else {
+      toneList.value = [];
+      songList.value = [];
+    }
+
+    isLoadingCode.value = false;
   }
 
   loadMoreData() async {

@@ -63,7 +63,12 @@ class HomeSearchWidget extends StatelessWidget {
             },
             onSubmit: (p0) {
               if (p0.isNotEmpty) {
-                context.goNamed(searchGoRoute, queryParameters: {"key": p0});
+                context.goNamed(searchGoRoute, queryParameters: {
+                  "key": p0,
+                  "index": "${searchTuneController.searchType.value}",
+                });
+                searchTuneController.getSearchedResult(
+                    searchTuneController.searchedText.value, 0);
               }
               // if (si.isMobile) {
               //   printCustom("onChanged====asdas==$p0");
@@ -109,7 +114,8 @@ class HomeSearchWidget extends StatelessWidget {
                 //context.goNamed(searchRoute, queryParameters: {"key": p0});
                 if (searchTuneController.searchedText.isNotEmpty) {
                   context.goNamed(searchGoRoute, queryParameters: {
-                    "key": searchTuneController.searchedText.value
+                    "key": searchTuneController.searchedText.value,
+                    "index": "${searchTuneController.searchType.value}",
                   });
                   searchTuneController.getSearchedResult(
                       searchTuneController.searchedText.value, 0);

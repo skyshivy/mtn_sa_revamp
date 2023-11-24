@@ -9,7 +9,6 @@ class HistoryController extends GetxController {
 
   @override
   void onInit() {
-    getHistory();
     super.onInit();
   }
 

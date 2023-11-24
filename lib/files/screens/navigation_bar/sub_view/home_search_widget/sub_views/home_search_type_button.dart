@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -22,18 +24,19 @@ class HomeSearchTypeButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            radioButton(songStr, 0, si),
+            radioButton(context, songStr, 0, si),
             const SizedBox(width: 40),
-            radioButton(singerStr, 1, si),
+            radioButton(context, singerStr, 1, si),
             const SizedBox(width: 40),
-            radioButton(codeStr, 2, si),
+            radioButton(context, codeStr, 2, si),
           ],
         );
       },
     );
   }
 
-  Widget radioButton(String title, int index, SizingInformation si) {
+  Widget radioButton(
+      BuildContext context, String title, int index, SizingInformation si) {
     return InkWell(
       onTap: () {
         print("object");

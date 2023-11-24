@@ -307,7 +307,9 @@ StatefulShellBranch searchScreen() {
       path: searchGoRoute,
       builder: (context, state) {
         String searchkey = state.uri.queryParameters['key'] ?? '';
-        sCOnt.getSearchedResult(searchkey, 0);
+        String index = state.uri.queryParameters['index'] ?? "0";
+        sCOnt.getSearchedResult(searchkey, 0,
+            searchTypeIndex: int.parse(index));
 
         return const SearchScreen(); //CustomText(title: "title  $searchkey");
       },

@@ -113,6 +113,7 @@ const myAccountStr = "My Account";
 const cancelStr = "Cancel";
 const editStr = "Edit";
 const saveStr = "Save";
+const viewStr = "View";
 const selectAtleastOneCatStr = "Select at least one category.";
 const confirmStr = "Confirm";
 const tuneChargeStr = "Tune Charge";

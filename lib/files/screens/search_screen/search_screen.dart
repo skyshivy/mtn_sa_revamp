@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
@@ -15,6 +17,7 @@ import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/searc
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_header_tab.dart';
 
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -49,7 +52,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   children: [
                     SearchHeader(),
                     //SeacrhHeaderTab(),
-                    const SizedBox(height: 20),
+                    //const SizedBox(height: 20),
                     Expanded(
                       child: SingleChildScrollView(
                         controller: _controller,
@@ -78,18 +81,26 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget artistList() {
-    return controller.artistList.isEmpty
-        ? emptyWidget(artistListEmptyStr)
-        : ListView.builder(
-            shrinkWrap: true,
-            controller: _controller,
-            itemCount: controller.artistList.length,
-            itemBuilder: (context, index) {
-              return artistCell(index);
-            });
+    return controller.isLoadingArtist.value
+        ? loadingIndicator(height: 300)
+        : controller.artistList.isEmpty
+            ? emptyWidget(artistListEmptyStr)
+            : ResponsiveBuilder(
+                builder: (context, si) {
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.artistList.length,
+                    gridDelegate:
+                        delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
+                    itemBuilder: (context, index) {
+                      return artistCell(index, si);
+                    },
+                  );
+                },
+              );
   }
 
-  Widget artistCell(int index) {
+  Widget artistCell(int index, SizingInformation si) {
     return InkWell(
       onTap: () {
         context.goNamed(artistGoRoute, queryParameters: {
@@ -102,41 +113,80 @@ class _SearchScreenState extends State<SearchScreen> {
             "Tapped artist is ${controller.artistList[index].matchedParam ?? ''}");
       },
       child: Container(
-        height: 50,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomText(
-              title: (controller.artistList[index].matchedParam ?? '')
-                  .toUpperCase(),
-              fontName: FontName.medium,
-              fontSize: 16,
-            ),
-            const Icon(
-              Icons.arrow_forward_ios,
-              size: 15,
-            )
-          ],
-        ),
-      ),
+          height: 150,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: CustomImage(
+                  radius: 4,
+                  url:
+                      "https://funtone.ooredoo.com.mm/stream-media/get-preview-image?fileId\u003d7a2tERYFM1U\u003d",
+                  index: index,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                    title: (controller.artistList[index].matchedParam ?? '')
+                        .toUpperCase(),
+                    fontName: si.isMobile ? FontName.medium : FontName.bold,
+                    fontSize: si.isMobile ? 12 : 14,
+                  ),
+                  const SizedBox(height: 4),
+                  CustomButton(
+                    fontName: si.isMobile ? FontName.medium : FontName.bold,
+                    fontSize: si.isMobile ? 12 : 14,
+                    width: 80,
+                    height: 35,
+                    color: blue,
+                    title: viewStr,
+                    textColor: white,
+                  )
+                ],
+              )
+            ],
+          )
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     // CustomText(
+          //     //   title: (controller.artistList[index].matchedParam ?? '')
+          //     //       .toUpperCase(),
+          //     //   fontName: FontName.medium,
+          //     //   fontSize: 16,
+          //     // ),
+          //     // const Icon(
+          //     //   Icons.arrow_forward_ios,
+          //     //   size: 15,
+          //     // )
+          //   ],
+          // ),
+          ),
     );
   }
 
   Widget gridView() {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return controller.isLoading.value
-            ? loading()
-            : controller.songList.isEmpty
-                ? emptyWidget(tuneListEmptyStr)
-                : GridView.builder(
-                    itemCount: controller.songList.length,
-                    shrinkWrap: true,
-                    gridDelegate:
-                        delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
-                    itemBuilder: (context, index) {
-                      return homeCell(index, si);
-                    });
+        return Obx(() {
+          return controller.isLoading.value
+              ? loading()
+              : controller.songList.isEmpty
+                  ? emptyWidget(tuneListEmptyStr)
+                  : GridView.builder(
+                      itemCount: controller.songList.length,
+                      shrinkWrap: true,
+                      gridDelegate: delegate(si,
+                          mainAxisExtent: si.isMobile ? 230 : null),
+                      itemBuilder: (context, index) {
+                        return homeCell(index, si);
+                      });
+        });
       },
     );
   }
