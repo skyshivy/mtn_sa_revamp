@@ -3,8 +3,6 @@ import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
-import 'package:mtn_sa_revamp/main.dart';
-
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

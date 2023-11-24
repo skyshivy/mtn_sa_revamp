@@ -10,7 +10,7 @@ Future<void> saveCredentialHere(PasswordValidationModel model) async {
   //var respMap = valueMap['responseMap'];
 
   ResponseMap? resp = model.responseMap;
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
   printCustom("saveCredentialHere 1");
   await prefs.setString('respDesc', resp?.respDesc ?? '');
   printCustom("saveCredentialHere 2");
@@ -27,7 +27,7 @@ Future<void> saveCredentialHere(PasswordValidationModel model) async {
   await prefs.setString('deviceId', resp?.deviceId ?? '');
   printCustom("saveCredentialHere 8");
   await prefs.setString('clientTxnId', resp?.clientTxnId ?? '');
-  printCustom("saveCredentialHere 9");
+  printCustom("saveCredentialHere 9 msisdn is ${resp?.msisdn ?? ''}");
   //prefs.setInt('expiry', respMap['expiry']);
   await prefs.setString('msisdn', resp?.msisdn ?? '');
   printCustom("saveCredentialHere 10");
@@ -38,6 +38,7 @@ Future<void> saveCredentialHere(PasswordValidationModel model) async {
   await prefs.setBool('isLoggedIn', true);
   printCustom("saveCredentialHere 13");
   StoreManager().isLoggedIn = true;
+  StoreManager().msisdn = resp?.msisdn ?? '';
   printCustom("saveCredentialHere 14");
   await StoreManager().setLoggedIn(true);
   printCustom("saveCredentialHere 15");
