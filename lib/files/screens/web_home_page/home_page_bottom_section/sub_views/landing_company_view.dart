@@ -22,7 +22,7 @@ class LandingCompanyView extends StatelessWidget {
       children: [
         customText(companyStr,
             fontName: FontName.bold, color: atomCryan, fontSize: 18),
-        customText(contactusStr, onTap: contactusTapped),
+        //customText(contactusStr, onTap: contactusTapped),
         customText(helpStr, onTap: () {
           helpTapped(context);
         }),

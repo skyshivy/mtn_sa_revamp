@@ -63,11 +63,11 @@ class WebNavBarView extends StatelessWidget {
         // leftSpacing(),
         // HomeAboutButton(),
         leftSpacing(),
-        HomefaqButton(
-          onTap: () {
-            _onTap(1);
-          },
-        ),
+        // HomefaqButton(
+        //   onTap: () {
+        //     _onTap(1);
+        //   },
+        // ),
         leftSpacing(),
         // CustomButton(
         //   title: "Remove this",

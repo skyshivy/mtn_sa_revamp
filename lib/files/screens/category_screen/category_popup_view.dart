@@ -24,13 +24,23 @@ class CategoryPopupView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 100),
+        const SizedBox(height: 70),
         Material(
-          child: Container(
+          color: transparent,
+          child: SizedBox(
             height: 200,
             width: MediaQuery.of(context).size.width,
-            color: white,
-            child: categoryListView(),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: white,
+                    ),
+                    child: categoryListView()),
+              ],
+            ),
           ),
         ),
       ],

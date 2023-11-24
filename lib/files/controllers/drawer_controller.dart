@@ -25,14 +25,14 @@ class MyDrawerController extends GetxController {
         DrawerModel(wishlistStr),
         DrawerModel(tunesStr, isExpanded: true),
         DrawerModel(historyStr),
-        DrawerModel(faqStr),
+        //DrawerModel(faqStr),
         DrawerModel(logoutStr),
       ];
     } else {
       menuList.value = [
         DrawerModel(tunesStr, isExpanded: true),
         DrawerModel(signinStr),
-        DrawerModel(faqStr),
+        //DrawerModel(faqStr),
       ];
     }
   }
