@@ -63,7 +63,9 @@ const wStr = "W";
 const tStr = "T";
 const fStr = "F";
 const saStr = "S";
-
+const songStr = "Song";
+const singerStr = "Singer";
+const codeStr = "Code";
 const allCallerStr = "All Callers";
 const specificCallerStr = "Callers Group";
 const callerGroupStr = "Specific Caller";

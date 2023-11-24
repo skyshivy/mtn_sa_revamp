@@ -51,8 +51,11 @@ class _WebLandingPageState extends State<WebLandingPage> {
                 //     ));
                 //   },
                 // ),
-                homeSearchTopView(),
+
                 LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
+                SizedBox(height: 20),
+                homeSearchTopView(),
+                SizedBox(height: 20),
                 const LandingRecoView(),
                 SizedBox(height: si.isMobile ? 10 : 80),
                 LandingInfoPage(),
@@ -68,18 +71,15 @@ class _WebLandingPageState extends State<WebLandingPage> {
   Widget homeSearchTopView() {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return Visibility(
-          visible: si.isMobile,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 1.2),
-            child: Container(
-                color: blue,
-                height: 60,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Center(child: HomeSearchWidget()),
-                )),
-          ),
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 1.2),
+          child: Container(
+              color: blue,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 40),
+                child: Center(child: HomeSearchWidget()),
+              )),
         );
       },
     );

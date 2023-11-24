@@ -132,7 +132,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
       pauseAutoPlayOnTouch: true,
       enableInfiniteScroll: false,
       reverse: false,
-      autoPlay: false,
+      autoPlay: true,
       autoPlayInterval: const Duration(seconds: 3),
       autoPlayAnimationDuration: const Duration(milliseconds: 800),
       autoPlayCurve: Curves.fastOutSlowIn,

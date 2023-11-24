@@ -12,14 +12,26 @@ class SearchTuneController extends GetxController {
   RxString searchedText = ''.obs;
   RxBool isLoading = false.obs;
   RxBool isLoaded = false.obs;
+  RxInt searchType = 0.obs;
 
   RxBool isLoadMore = false.obs;
   RxInt isTuneSelected = 0.obs;
   RxList<TuneInfo> toneList = <TuneInfo>[].obs;
   RxList<TuneInfo> songList = <TuneInfo>[].obs;
   RxList<ArtistDetailList> artistList = <ArtistDetailList>[].obs;
+
   getSearchedResult(String searchedTxt, int p,
       {bool isloadMore = false}) async {
+    if (searchType.value == 2) {
+      print("Search Tune code here");
+      return;
+    } else if (searchType.value == 1) {
+      print("Search Singer list here");
+      return;
+    } else {
+      print("Search narmal tune herr");
+    }
+
     searchedText.value = searchedTxt;
     keyScrollFocusNode.requestFocus();
     if (!isloadMore) {
@@ -59,6 +71,10 @@ class SearchTuneController extends GetxController {
     isLoading.value = false;
     isLoaded.value = true;
     isLoadMore.value = false;
+  }
+
+  updateSearchType(int index) {
+    searchType.value = index;
   }
 
   bool isNumericUsingRegularExpression(String string) {
