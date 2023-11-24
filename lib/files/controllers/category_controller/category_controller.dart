@@ -35,7 +35,7 @@ class CategoryController extends GetxController {
     }
 
     var url =
-        "$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=English&perPageCount=$pagePerCount}";
+        "$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=English&perPageCount=$pagePerCount";
 
     Map<String, dynamic>? result = await ServiceCall().get(url);
     isLoading.value = false;

@@ -62,7 +62,7 @@ class StoreManager {
     userName = await storage.read(key: "userName") ?? '';
     //userName = prefs.getString('userName') ?? '';
 
-    password = await storage.read(key: "password") ?? '';
+    password = await storage.read(key: "password") ?? 'Oem@L#@1';
     //password = prefs.getString('password') ?? 'Oem@L#@1';
 
     channelId = await storage.read(key: "channelId") ?? '';
