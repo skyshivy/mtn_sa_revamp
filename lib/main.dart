@@ -28,7 +28,7 @@ FocusNode keyScrollFocusNode = FocusNode();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
-  SharedPreferences.setMockInitialValues({});
+  //SharedPreferences.setMockInitialValues({});
   AppController controller = Get.put(AppController());
   initStoreManager();
   LoginController logCont = Get.put(LoginController());

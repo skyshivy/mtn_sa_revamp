@@ -154,26 +154,7 @@ class LoginController extends GetxController {
       if (model.statusCode == "SC0000") {
         printCustom(
             "Before  credential here ===================================");
-        //await saveCredentialHere(model);
-        print("model = $model");
-        print("model.responseMap = ${model.responseMap}");
-        print("model.responseMap?.msisdn = ${model.responseMap?.msisdn}");
-        StoreManager().msisdn = model.responseMap?.msisdn ?? "";
-        StoreManager().setAccessToken(model.responseMap?.accessToken ?? "");
-        print("set 1 ${model.responseMap?.accessToken ?? ""}");
-        StoreManager().setDeviceId(model.responseMap?.deviceId ?? "");
-        print("set 2 ${model.responseMap?.deviceId ?? ""}");
-        StoreManager().setMsisdn(model.responseMap?.msisdn ?? "");
-        print("set 3 ${model.responseMap?.msisdn ?? ""}");
-        StoreManager().setRefreshToken(model.responseMap?.refreshToken ?? "");
-        print("set 4 ${model.responseMap?.refreshToken ?? ""}");
-        StoreManager().setUserName(model.responseMap?.userName ?? "");
-        print("set 5 ${model.responseMap?.userName ?? ""}");
-
-        print("set 6");
-        await StoreManager().initStoreManager();
-        StoreManager().setLoggedIn(true);
-        print("set 7");
+        await saveCredentialHere(model);
         printCustom("save credential here ===================================");
         return true;
       } else {
@@ -185,29 +166,6 @@ class LoginController extends GetxController {
     }
   }
 
-  // saveCredentialHere(Map<String, dynamic> valueMap) async {
-  //   var respMap = valueMap['responseMap'];
-  //   final prefs = await SharedPreferences.getInstance();
-
-  //   var loginSessionTimeStr = DateTime.now().toString();
-  //   prefs.setString('loginSessionTime', loginSessionTimeStr);
-  //   prefs.setString('respDesc', respMap['respDesc']);
-  //   prefs.setString('srvType', respMap['srvType']);
-  //   prefs.setString('userIdEnc', respMap['userIdEnc']);
-  //   prefs.setString('userName', respMap['userName']);
-  //   prefs.setString('accessToken', respMap['accessToken']);
-  //   prefs.setString('userId', respMap['userId']);
-  //   prefs.setString('deviceId', respMap['deviceId']);
-  //   prefs.setString('clientTxnId', respMap['clientTxnId']);
-  //   //prefs.setInt('expiry', respMap['expiry']);
-  //   prefs.setString('msisdn', respMap['msisdn']);
-  //   prefs.setString('txnId', respMap['txnId']);
-  //   prefs.setString('refreshToken', respMap['refreshToken']);
-  //   prefs.setBool('isLoggedIn', true);
-  //   StoreManager().isLoggedIn = true;
-  //   customPrint("\nGoing to Store Credentials \n");
-  //   await StoreManager().initStoreManager();
-  // }
   Future<void> autoLogin(String msisdn1) async {
     msisdn.value = msisdn1;
     String stringData = await LoginVm().subscribeMsisdn(msisdn1);

@@ -282,48 +282,13 @@ class BuyController extends GetxController {
         .validatePassword(msisdn.value, securityCounter, false);
     if (map != null) {
       PasswordValidationModel model = PasswordValidationModel.fromJson(map);
-      //await saveCredentialHere(model);
-      print("model = $model");
-      print("model.responseMap = ${model.responseMap}");
-      print("model.responseMap?.msisdn = ${model.responseMap?.msisdn}");
-      StoreManager().msisdn = model.responseMap?.msisdn ?? "";
-      StoreManager().setAccessToken(model.responseMap?.accessToken ?? "");
-      print("set 1 ${model.responseMap?.accessToken ?? ""}");
-      StoreManager().setDeviceId(model.responseMap?.deviceId ?? "");
-      print("set 2 ${model.responseMap?.deviceId ?? ""}");
-      StoreManager().setMsisdn(model.responseMap?.msisdn ?? "");
-      print("set 3 ${model.responseMap?.msisdn ?? ""}");
-      StoreManager().setRefreshToken(model.responseMap?.refreshToken ?? "");
-      print("set 4 ${model.responseMap?.refreshToken ?? ""}");
-      StoreManager().setUserName(model.responseMap?.userName ?? "");
-      print("set 5 ${model.responseMap?.userName ?? ""}");
-      StoreManager().setLoggedIn(true);
-      print("set 6");
-      await StoreManager().initStoreManager();
-      StoreManager().setLoggedIn(true);
-      print("set 7");
-      printCustom("save credential here ===================================");
-
-      // StoreManager().msisdn = model.responseMap?.msisdn ?? "";
-      // StoreManager().setAccessToken(model.responseMap?.accessToken ?? "");
-      // print("set 1");
-      // StoreManager().setDeviceId(model.responseMap?.deviceId ?? "");
-      // print("set 2");
-      // StoreManager().setMsisdn(model.responseMap?.msisdn ?? "");
-      // print("set 3");
-      // StoreManager().setRefreshToken(model.responseMap?.refreshToken ?? "");
-      // print("set 4");
-      // StoreManager().setUserName(model.responseMap?.userName ?? "");
-      // print("set 5");
-      // StoreManager().setLoggedIn(true);
-      // print("set 6");
-      // StoreManager().initStoreManager();
-      // print("set 7");
-      // printCustom("save credential here ===================================");
 
       if (model.statusCode == 'SC0000') {
+        printCustom("save credential here ===================================");
+        await saveCredentialHere(model);
         getTunePriceAndBuyTune(info);
       } else {
+        print("password validation failed");
         isVerifyingOtp.value = false;
         errorMessage.value = '';
       }

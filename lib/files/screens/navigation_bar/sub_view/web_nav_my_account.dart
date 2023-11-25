@@ -100,6 +100,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
       context.goNamed(myTuneGoRoute);
       printCustom("myTuneTapped tapped");
     } else if (item.title == logoutStr) {
+      context.go(homeGoRoute);
       StoreManager().logout();
     } else if (item.title == historyStr) {
       context.goNamed(historyGoRoute);

@@ -1,60 +1,28 @@
-import 'package:get/get.dart';
-import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
-
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 Future<void> saveCredentialHere(PasswordValidationModel model) async {
   printCustom("1 saveCredentialHere ===================================");
-  //var respMap = valueMap['responseMap'];
-
-  ResponseMap? resp = model.responseMap;
-  //final SharedPreferences prefs = await SharedPreferences.getInstance();
-  printCustom("saveCredentialHere 1");
-
-  //await prefs.setString('respDesc', resp?.respDesc ?? '');
-  printCustom("saveCredentialHere 2");
-  //await prefs.setString('srvType', resp?.srvType ?? '');
-  printCustom("saveCredentialHere 3");
-  //await prefs.setString('userIdEnc', resp?.userIdEnc ?? '');
-  printCustom("saveCredentialHere 4");
-  StoreManager().setUserName(resp?.userName ?? '');
-  //await prefs.setString('userName', resp?.userName ?? '');
-  printCustom("saveCredentialHere 5");
-  StoreManager().setAccessToken(resp?.accessToken ?? '');
-  //await prefs.setString('accessToken', resp?.accessToken ?? '');
-  printCustom("saveCredentialHere 6");
-  //await prefs.setString('userId', resp?.userId ?? '');
-
-  printCustom("saveCredentialHere 7");
-  //await prefs.setString('deviceId', resp?.deviceId ?? '');
-  StoreManager().setDeviceId(resp?.deviceId ?? '');
-  printCustom("saveCredentialHere 8");
-  //await prefs.setString('clientTxnId', resp?.clientTxnId ?? '');
-  printCustom("saveCredentialHere 9 msisdn is ${resp?.msisdn ?? ''}");
-  //prefs.setInt('expiry', respMap['expiry']);
-  //await prefs.setString('msisdn', resp?.msisdn ?? '');
-  StoreManager().setMsisdn(resp?.msisdn ?? '');
-  printCustom("saveCredentialHere 10");
-  //await prefs.setString('txnId', resp?.txnId ?? '');
-
-  printCustom("saveCredentialHere 11");
-  //await prefs.setString('refreshToken', resp?.refreshToken ?? '');
-  StoreManager().setRefreshToken(resp?.refreshToken ?? '');
-  printCustom("saveCredentialHere 12");
-  //await prefs.setBool('isLoggedIn', true);
+  printCustom("model = $model");
+  printCustom("model.responseMap = ${model.responseMap}");
+  printCustom("model.responseMap?.msisdn = ${model.responseMap?.msisdn}");
+  StoreManager().msisdn = model.responseMap?.msisdn ?? "";
+  StoreManager().setAccessToken((model.responseMap?.accessToken) ?? "");
+  printCustom("set 1 ${model.responseMap?.accessToken ?? ""}");
+  StoreManager().setDeviceId((model.responseMap?.deviceId) ?? "");
+  printCustom("set 2 ${(model.responseMap?.deviceId) ?? ""}");
+  StoreManager().setMsisdn((model.responseMap?.msisdn) ?? "");
+  printCustom("set 3 ${model.responseMap?.msisdn ?? ""}");
+  StoreManager().setRefreshToken((model.responseMap?.refreshToken) ?? "");
+  printCustom("set 4 ${model.responseMap?.refreshToken ?? ""}");
+  StoreManager().setUserName((model.responseMap?.userName) ?? "");
+  printCustom("set 5 ${model.responseMap?.userName ?? ""}");
   StoreManager().setLoggedIn(true);
-  printCustom("saveCredentialHere 13");
-  StoreManager().isLoggedIn = true;
-  StoreManager().msisdn = resp?.msisdn ?? '';
-  printCustom("saveCredentialHere 14");
-  await StoreManager().setLoggedIn(true);
-  printCustom("saveCredentialHere 15");
-
-  printCustom("\nGoing to Store Credentials \n");
+  printCustom("set 6");
   await StoreManager().initStoreManager();
+  StoreManager().setLoggedIn(true);
+  printCustom("set 7");
   printCustom("saveCredentialHere 16");
-
   return;
 }

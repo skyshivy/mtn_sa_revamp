@@ -120,6 +120,7 @@ const tuneChargeStr = "Tune Charge";
 const buyTuneStr = "Buy Tune";
 const tuneStr = "Tunes";
 const tuneCodeStr = "Tone Code";
+const noTransactionFoundStr = "No Transaction found";
 const bannerDetailStr = "Banner Detail";
 const tuneListEmptyStr = "Tune list empty";
 const searchTuneStr = "Search Tune";

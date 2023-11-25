@@ -14,6 +14,7 @@ import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_co
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -25,6 +26,7 @@ import 'package:mtn_sa_revamp/files/screens/delete_screen/delete_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/help_screen/help_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/history_screen/history_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_bar.dart';
@@ -38,6 +40,7 @@ import 'package:mtn_sa_revamp/files/screens/terms_condition/terms_condition_scre
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/home_banner_detail_page.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/wishlist_screen/wishlsit_screen.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
@@ -329,6 +332,37 @@ StatefulShellBranch deleteScreenRoute() {
   ]);
 }
 
+Widget askForLoginScreen() {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 80),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CustomText(
+            alignment: TextAlign.center,
+            title: featureIsAvailableForLoggedInStr,
+            fontName: FontName.bold,
+            fontSize: 20,
+          ),
+          SizedBox(height: 20),
+          CustomButton(
+            textColor: white,
+            title: loginStr,
+            color: blue,
+            fontName: FontName.bold,
+            fontSize: 16,
+            width: 200,
+            onTap: () {
+              Get.dialog(LoginScreen(), barrierDismissible: false);
+            },
+          )
+        ],
+      ),
+    ),
+  );
+}
+
 StatefulShellBranch homeScreen() {
   return StatefulShellBranch(
     navigatorKey: _sectionNavigatorKey,
@@ -342,48 +376,54 @@ StatefulShellBranch homeScreen() {
   );
 }
 
-StatefulShellBranch artistTuneScreen() {
-  return StatefulShellBranch(
-    navigatorKey: _sectionNavigatorKey,
-    routes: <RouteBase>[
-      GoRoute(
-          name: artistGoRoute,
-          path: artistGoRoute,
-          builder: (context, state) {
-            String artist = state.uri.queryParameters['artist'] ?? '';
-            printCustom("we are ate $artist");
-            //
-            return CustomText(title: "sdfsdfsdfsdfs");
-            // ArtistTuneScreen(
-            //   artistName: artist,
-            // );
-          }),
-    ],
-  );
-}
-
-Widget shellRouteIndex(context, state, navigationShell) {
+Widget shellRouteIndex(BuildContext context, GoRouterState state,
+    StatefulNavigationShell navigationShell) {
   printCustom("Selected index must be===== ${navigationShell.currentIndex}");
+  printCustom("SKY state.name  = ${state.fullPath}");
+  var pat = state.fullPath;
+  var pat1 = historyGoRoute;
+  var pat2 = profileGoRoute;
+  var pat3 = wishlistGoRoute;
+  var pat4 = myTuneGoRoute;
+  var pat5 = myTuneSettingGoRoute;
+
+  print("is this transaction ${pat == pat1} ");
+
   appCont.updateIndex(navigationShell.currentIndex);
+  bool isLoad = true;
+
+  if ((pat == pat1) ||
+      (pat == pat2) ||
+      (pat == pat3) ||
+      (pat == pat4) ||
+      (pat == pat5)) {
+    isLoad = StoreManager().isLoggedIn;
+  }
   MtnAudioPlayer.instance.stop();
+
   return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Atom",
-      home: ResponsiveBuilder(
-        builder: (context, si) {
-          keyScrollFocusNode.requestFocus();
-          return Material(
-            child: Column(
-              children: [
-                si.isMobile
-                    ? const SizedBox()
-                    : WebNavBarView(navigationShell: navigationShell),
-                si.isMobile
-                    ? Expanded(child: MobileAppBar(widget: navigationShell))
-                    : Expanded(child: navigationShell)
-              ],
-            ),
-          );
-        },
-      ));
+    debugShowCheckedModeBanner: false,
+    title: "Atom",
+    home: ResponsiveBuilder(
+      builder: (context, si) {
+        keyScrollFocusNode.requestFocus();
+        return Material(
+          child: Column(
+            children: [
+              si.isMobile
+                  ? const SizedBox()
+                  : WebNavBarView(navigationShell: navigationShell),
+              si.isMobile
+                  ? Expanded(
+                      child: MobileAppBar(
+                          widget:
+                              isLoad ? navigationShell : askForLoginScreen()))
+                  : Expanded(
+                      child: isLoad ? navigationShell : askForLoginScreen())
+            ],
+          ),
+        );
+      },
+    ),
+  );
 }

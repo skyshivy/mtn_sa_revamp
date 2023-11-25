@@ -37,12 +37,25 @@ class _HistoryScreenState extends State<HistoryScreen> {
         builder: (context, si) {
           return Obx(
             () {
-              return hCont.isLoading.value ? loadingIndicator() : listView(si);
+              return hCont.isLoading.value
+                  ? loadingIndicator()
+                  : hCont.transactions.isEmpty
+                      ? emptyHistory()
+                      : listView(si);
             },
           );
         },
       )),
     );
+  }
+
+  Widget emptyHistory() {
+    return const Center(
+        child: CustomText(
+      title: noTransactionFoundStr,
+      fontName: FontName.bold,
+      fontSize: 20,
+    ));
   }
 
   Widget listView(SizingInformation si) {
