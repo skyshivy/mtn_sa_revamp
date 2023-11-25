@@ -339,13 +339,13 @@ Widget askForLoginScreen() {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          CustomText(
+          const CustomText(
             alignment: TextAlign.center,
             title: featureIsAvailableForLoggedInStr,
             fontName: FontName.bold,
             fontSize: 20,
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           CustomButton(
             textColor: white,
             title: loginStr,
@@ -354,7 +354,7 @@ Widget askForLoginScreen() {
             fontSize: 16,
             width: 200,
             onTap: () {
-              Get.dialog(LoginScreen(), barrierDismissible: false);
+              Get.dialog(const LoginScreen(), barrierDismissible: false);
             },
           )
         ],
