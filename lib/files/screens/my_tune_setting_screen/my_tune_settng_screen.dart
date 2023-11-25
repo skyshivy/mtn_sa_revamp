@@ -52,27 +52,34 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(builder: (contex, si) {
-      return Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: si.isMobile ? 12 : 80, vertical: 10),
-        child: Center(
-          child: ListView(
-            shrinkWrap: true,
-            // mainAxisAlignment: MainAxisAlignment.start,
-            // crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              topTitleWidget(),
-              Wrap(
-                alignment: WrapAlignment.center,
+      return Center(
+        child: ListView(
+          shrinkWrap: true,
+          // mainAxisAlignment: MainAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: si.isMobile ? 12 : 80, vertical: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _leftWidget(si),
-                  const SizedBox(width: 30),
-                  Flexible(child: _rightWidget()),
-                  const SizedBox(width: 120),
+                  topTitleWidget(),
+                  Wrap(
+                    runSpacing: 50,
+                    alignment: WrapAlignment.center,
+                    children: [
+                      _leftWidget(si),
+                      const SizedBox(width: 30),
+                      _rightWidget(),
+                      const SizedBox(width: 120),
+                    ],
+                  ),
                 ],
               ),
-            ],
-          ),
+            )
+          ],
         ),
       );
     });
