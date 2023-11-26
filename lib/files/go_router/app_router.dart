@@ -348,7 +348,7 @@ Widget askForLoginScreen() {
           const SizedBox(height: 20),
           CustomButton(
             textColor: white,
-            title: loginStr,
+            title: loginStr.tr,
             color: blue,
             fontName: FontName.bold,
             fontSize: 16,

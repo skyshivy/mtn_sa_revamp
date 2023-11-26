@@ -31,7 +31,7 @@ class MyDrawerController extends GetxController {
     } else {
       menuList.value = [
         DrawerModel(tunesStr, isExpanded: true),
-        DrawerModel(signinStr),
+        DrawerModel(signinStr.tr),
         //DrawerModel(faqStr),
       ];
     }

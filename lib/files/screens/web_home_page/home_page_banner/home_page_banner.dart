@@ -22,12 +22,11 @@ class LandingPageBanner extends StatefulWidget {
 }
 
 class _LandingPageBannerState extends State<LandingPageBanner> {
-  BannerController controller = Get.put(BannerController());
+  BannerController controller = Get.find();
   CarouselController carouselController = CarouselController();
   @override
   void initState() {
     super.initState();
-
     controller.getBanner();
   }
 

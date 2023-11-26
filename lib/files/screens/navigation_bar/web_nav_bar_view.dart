@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
@@ -28,6 +29,7 @@ class WebNavBarView extends StatelessWidget {
   AppController appController = Get.find();
   final StatefulNavigationShell navigationShell;
   final RecoController recCont = Get.find();
+  final BannerController banCont = Get.find();
   WebNavBarView({super.key, required this.navigationShell});
   late BuildContext context;
   @override
@@ -130,6 +132,7 @@ class WebNavBarView extends StatelessWidget {
           context.go(homeGoRoute);
 
           await Future.delayed(Duration(milliseconds: 300));
+          banCont.getBanner();
           recCont.getTabList();
           printCustom(
               "is selected languagage is English ${StoreManager().isEnglish}");

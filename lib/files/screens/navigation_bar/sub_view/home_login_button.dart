@@ -18,7 +18,7 @@ class HomeLoginButton extends StatelessWidget {
       leftWidget: loaginLeftWidgetPadding(),
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       titlePadding: const EdgeInsets.only(right: 15, left: 5),
-      title: loginStr,
+      title: loginStr.tr,
       fontSize: 16,
       fontName: FontName.medium,
       color: white,

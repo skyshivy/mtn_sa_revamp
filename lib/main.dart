@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/drawer_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/history_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
@@ -46,6 +47,7 @@ void main() async {
   CategoryController catDetailCont = Get.put(CategoryController());
   HistoryController hisCont = Get.put(HistoryController());
   MyDrawerController myDCont = Get.put(MyDrawerController());
+  BannerController banCont = Get.put(BannerController());
   runApp(MyApp());
 }
 

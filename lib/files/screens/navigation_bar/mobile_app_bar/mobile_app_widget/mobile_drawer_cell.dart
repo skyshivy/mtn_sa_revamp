@@ -153,7 +153,7 @@ _tappedOnCell(BuildContext context, String title) async {
   } else if (title == logoutStr) {
     printCustom("Logout btapped");
     StoreManager().logout();
-  } else if (title == signinStr) {
+  } else if (title == signinStr.tr) {
     Get.dialog(LoginScreen(), barrierDismissible: false);
   } else if (title == historyStr) {
     context.goNamed(historyGoRoute);
