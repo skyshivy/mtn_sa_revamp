@@ -9,7 +9,7 @@ class HomeAboutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextButton(
-      title: about,
+      title: aboutStr,
       fontSize: 16,
       fontName: FontName.bold,
       onTap: () {

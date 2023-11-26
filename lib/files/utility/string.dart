@@ -1,5 +1,5 @@
 const myTuneStr = "My Tunes";
-const about = "About";
+const aboutStr = "About";
 const homeStr = "Home";
 const faqStr = "FAQ";
 const englishStr = "EN";
