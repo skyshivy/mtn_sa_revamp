@@ -254,7 +254,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
       return cont.isVerifing.value
           ? loadingIndicator(radius: 10)
           : CustomButton(
-              title: confirmStr,
+              title: confirmStr.tr,
               color: blue,
               textColor: white,
               fontName: FontName.bold,

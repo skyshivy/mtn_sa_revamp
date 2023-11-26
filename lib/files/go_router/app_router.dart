@@ -19,6 +19,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
+import 'package:mtn_sa_revamp/files/localization/localizatio_service.dart';
 import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
@@ -401,6 +402,10 @@ Widget shellRouteIndex(BuildContext context, GoRouterState state,
   MtnAudioPlayer.instance.stop();
 
   return GetMaterialApp(
+    locale: Locale(StoreManager().isEnglish ? 'en' : 'br',
+        StoreManager().isEnglish ? 'US' : 'BR'),
+    fallbackLocale: const Locale('en', 'US'),
+    translations: LocalizationService(),
     debugShowCheckedModeBanner: false,
     title: "Atom",
     home: ResponsiveBuilder(

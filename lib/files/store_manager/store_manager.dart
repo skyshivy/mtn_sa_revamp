@@ -71,6 +71,8 @@ class StoreManager {
     //channelId = await storage.read(key: "channelId") ?? '4';
     channelId = prefs.getString('channelId') ?? '4';
     appController.isEnglish.value = isEnglish;
+    languageCode = isEnglish ? "1" : "0";
+    language = isEnglish ? "English" : "Burmese";
     appController.isLoggedIn.value = isLoggedIn;
     return;
   }
@@ -98,6 +100,8 @@ class StoreManager {
 
   setLanguageEnglish(bool english) async {
     isEnglish = english;
+    language = isEnglish ? "English" : "Burmese";
+    languageCode = isEnglish ? "1" : "0";
     appController.isEnglish.value = english;
     LocalizationService().changeLocale(isEnglish);
     try {

@@ -24,11 +24,11 @@ class HomeSearchTypeButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            radioButton(context, songStr, 0, si),
+            radioButton(context, songStr.tr, 0, si),
             const SizedBox(width: 40),
-            radioButton(context, singerStr, 1, si),
+            radioButton(context, singerStr.tr, 1, si),
             const SizedBox(width: 40),
-            radioButton(context, codeStr, 2, si),
+            radioButton(context, codeStr.tr, 2, si),
           ],
         );
       },

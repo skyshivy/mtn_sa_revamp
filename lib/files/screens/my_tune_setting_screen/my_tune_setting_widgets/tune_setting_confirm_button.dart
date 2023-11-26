@@ -26,7 +26,7 @@ Widget tuneSettingConfirmButton() {
                   titlePadding: const EdgeInsets.symmetric(horizontal: 20),
                   fontName: FontName.medium,
                   color: blue,
-                  title: confirmStr,
+                  title: confirmStr.tr,
                   onTap: () {
                     tuneController.setTune(context);
                     //customPrint("Confirm button tapped");

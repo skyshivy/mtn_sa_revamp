@@ -264,7 +264,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
   Widget confirmButton() {
     return Obx(() {
       return CustomButton(
-        title: confirmStr,
+        title: confirmStr.tr,
         fontName: FontName.medium,
         color: sCont.enableSubmitButton.value ? blue : grey,
         textColor: sCont.enableSubmitButton.value ? white : black,

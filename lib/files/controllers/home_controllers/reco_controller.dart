@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/model/home_reco_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
@@ -14,7 +15,7 @@ class RecoController extends GetxController {
   List<String> tabValue = [];
   List<String> tabId = [];
   RxInt selectedIndex = 0.obs;
-  RxInt items = 2.obs;
+  //RxInt items = 2.obs;
   RxList<String> featureCatList = <String>[].obs;
   List<bool> isLoadedList = <bool>[].obs;
   List<List<TuneInfo>?> tuneList = <List<TuneInfo>?>[].obs;
@@ -22,12 +23,24 @@ class RecoController extends GetxController {
   RxBool isLoading = false.obs;
 
   getTabList() async {
+    tabTitle.value = [];
+    tabTitle.value = [];
+    tuneList.clear();
+    displayList?.clear();
+    selectedIndex.value = 0;
+    tabId = [];
+    featureCatList.clear();
+    isLoadedList.clear();
+
     isLoading.value = true;
+
     var _ = await ServiceCall().getSetting(settingUrl);
     var abc = StoreManager().appSetting;
+    Others? others = abc.responseMap?.settings?.others;
+    var featureCatSrt = StoreManager().isEnglish
+        ? others?.featuredCategoryEnglish?.attribute
+        : others?.featuredCategoryBurmese?.attribute;
 
-    var featureCatSrt =
-        abc.responseMap?.settings?.others?.featuredCategoryEnglish?.attribute;
     if (featureCatSrt != null) {
       featureCatList.value = featureCatSrt.split("|");
       for (String item in featureCatList) {

@@ -1,11 +1,10 @@
-const Map<String, String> enUS = {
-  "TestLanguageText": "English 23 Language need to dislplay here",
-  "English": "English",
-  "Arabic": "عربي",
-  "About": "About",
-  "FAQ": "FAQ",
-  'Tunes': "Tunes",
-  'Login': 'Login',
-  "Search": "Search",
-  "Salati": "Salati",
+import 'package:mtn_sa_revamp/files/utility/string.dart';
+
+Map<String, String> enUS = {
+  codeStr: "Code",
+  "Song": "Song",
+  "Singer": "Singer",
+  whatrLookingForStr: "What are you looking for?",
+  confirmStr: "Confirm",
+  myTuneStr: 'My Tunes',
 };

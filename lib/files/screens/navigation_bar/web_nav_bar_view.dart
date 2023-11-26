@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
@@ -26,7 +27,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 class WebNavBarView extends StatelessWidget {
   AppController appController = Get.find();
   final StatefulNavigationShell navigationShell;
-
+  final RecoController recCont = Get.find();
   WebNavBarView({super.key, required this.navigationShell});
   late BuildContext context;
   @override
@@ -39,7 +40,7 @@ class WebNavBarView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           leftWidget(),
-          rightWidget(),
+          rightWidget(context),
         ],
       ),
     );
@@ -92,11 +93,11 @@ class WebNavBarView extends StatelessWidget {
     return SizedBox(width: width);
   }
 
-  Widget rightWidget() {
+  Widget rightWidget(BuildContext context) {
     return Row(
       children: [
         //HomeSearchWidget(),
-        langugaeButton(),
+        langugaeButton(context),
         leftSpacing(),
         Obx(() {
           return appController.isLoggedIn.value
@@ -108,7 +109,7 @@ class WebNavBarView extends StatelessWidget {
     );
   }
 
-  Widget langugaeButton() {
+  Widget langugaeButton(BuildContext context) {
     return Obx(() {
       return CustomButton(
         mainPadding: const EdgeInsets.symmetric(horizontal: 20),
@@ -123,8 +124,13 @@ class WebNavBarView extends StatelessWidget {
         fontName: FontName.medium,
         textColor: white,
         title: appController.isEnglish.value ? burmeseStr : englishStr,
-        onTap: () {
+        onTap: () async {
           StoreManager().setLanguageEnglish(!StoreManager().isEnglish);
+          await Future.delayed(Duration(milliseconds: 300));
+          context.go(homeGoRoute);
+
+          await Future.delayed(Duration(milliseconds: 300));
+          recCont.getTabList();
           printCustom(
               "is selected languagage is English ${StoreManager().isEnglish}");
         },

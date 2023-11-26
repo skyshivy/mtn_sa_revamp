@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:mtn_sa_revamp/files/localization/ar_sa.dart';
+import 'package:mtn_sa_revamp/files/localization/br_sa.dart';
 import 'package:mtn_sa_revamp/files/localization/en_us.dart';
 
 class LocalizationService extends Translations {
@@ -9,7 +9,7 @@ class LocalizationService extends Translations {
   static final locale = Locale('en', 'US');
 
   // fallbackLocale saves the day when the locale gets in trouble
-  static final fallbackLocale = Locale('ar', 'SA');
+  static final fallbackLocale = Locale('ar', 'BR');
 
   // Your supported language here
   static final langs = [
@@ -20,7 +20,7 @@ class LocalizationService extends Translations {
   // Supported locales (same order as above)
   static final locales = [
     Locale('en', 'US'),
-    Locale('ar', 'SA'),
+    Locale('br', 'BR'),
   ];
 
   // Keys and their translations
@@ -28,7 +28,7 @@ class LocalizationService extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': enUS,
-        'ar_SA': arSA,
+        'br_BR': brBR,
       };
 
   // Use the following method to update your locale

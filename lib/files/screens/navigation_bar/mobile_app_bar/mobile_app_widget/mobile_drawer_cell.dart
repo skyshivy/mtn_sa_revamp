@@ -140,7 +140,7 @@ _tappedOnCell(BuildContext context, String title) async {
   if (title == profileStr) {
     context.goNamed(profileGoRoute);
     //Get.toNamed(profileTapped);
-  } else if (title == myTuneStr) {
+  } else if (title == myTuneStr.tr) {
     context.goNamed(myTuneGoRoute);
     //Get.toNamed(myTuneTapped);
   } else if (title == wishlistStr) {

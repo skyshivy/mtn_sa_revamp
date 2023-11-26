@@ -309,7 +309,7 @@ class _BuyScreenState extends State<_BuyScreen> {
                     validateMsisdnAction(context, info ?? TuneInfo());
                   },
                   fontName: FontName.bold,
-                  title: confirmStr,
+                  title: confirmStr.tr,
                   color: blue,
                   textColor: white,
                 );
