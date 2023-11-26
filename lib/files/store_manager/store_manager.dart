@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/localization/localizatio_service.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
@@ -98,6 +99,7 @@ class StoreManager {
   setLanguageEnglish(bool english) async {
     isEnglish = english;
     appController.isEnglish.value = english;
+    LocalizationService().changeLocale(isEnglish);
     try {
       prefs.setBool('isEnglish', english);
       //storage.write(key: 'isLoggedIn', value: value ? 'yes' : 'no');
