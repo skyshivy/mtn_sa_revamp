@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 class AppController extends GetxController {
   RxBool isLoggedIn = false.obs;
   RxInt index = 0.obs;
+  RxBool isEnglish = true.obs;
   String tunePrice = '';
   settinApiCall() async {
     printCustom("Setting api calling");

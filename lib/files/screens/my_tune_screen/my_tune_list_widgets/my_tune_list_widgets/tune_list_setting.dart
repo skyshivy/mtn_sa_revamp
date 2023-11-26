@@ -39,7 +39,7 @@ Widget tuneListSettingWidget(BuildContext context, ListToneApk1 info) {
         'toneImage': inf?.toneIdpreviewImageUrl ?? '',
       };
 
-      context.goNamed(myTuneSettingGoRoute, queryParameters: detail);
+      context.pushNamed(myTuneSettingGoRoute, queryParameters: detail);
       printCustom("tuneListSettingWidget");
     },
   );

@@ -279,7 +279,6 @@ StatefulShellBranch faqScreen() {
 }
 
 StatefulShellBranch tuneSettingScreen() {
-  TuneSettingController cont = Get.put(TuneSettingController());
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: myTuneSettingGoRoute,

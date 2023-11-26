@@ -42,6 +42,8 @@ class StoreManager {
     prefs = await SharedPreferences.getInstance();
     //String v = await storage.read(key: "isLoggedIn") ?? 'no';
     //isLoggedIn = (v == "yes") ? true : false;
+    isEnglish = prefs.getBool("isEnglish") ?? true;
+
     isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
 
     //accessToken = await storage.read(key: "accessToken") ?? '';
@@ -67,7 +69,7 @@ class StoreManager {
 
     //channelId = await storage.read(key: "channelId") ?? '4';
     channelId = prefs.getString('channelId') ?? '4';
-
+    appController.isEnglish.value = isEnglish;
     appController.isLoggedIn.value = isLoggedIn;
     return;
   }
@@ -87,9 +89,23 @@ class StoreManager {
     setUserName('');
     setPassword('');
     setChannelId('4');
+
     appController.isLoggedIn.value = false;
     //initStoreManager();
     return;
+  }
+
+  setLanguageEnglish(bool english) async {
+    isEnglish = english;
+    appController.isEnglish.value = english;
+    try {
+      prefs.setBool('isEnglish', english);
+      //storage.write(key: 'isLoggedIn', value: value ? 'yes' : 'no');
+    } on Exception catch (e) {
+      print("Error saving isEnglish = ${e.toString()}");
+    }
+
+    print("Storing isLoggedin = $english");
   }
 
   setMsisdn(String value) async {
@@ -160,16 +176,16 @@ class StoreManager {
   }
 
   setLoggedIn(bool value) async {
+    isLoggedIn = value;
+    appController.isLoggedIn.value = value;
     try {
       prefs.setBool('isLoggedIn', value);
-
       //storage.write(key: 'isLoggedIn', value: value ? 'yes' : 'no');
     } on Exception catch (e) {
       print("Error saving isLoogedin = ${e.toString()}");
     }
-    isLoggedIn = value;
+
     print("Storing isLoggedin = $value");
-    appController.isLoggedIn.value = value;
   }
 
   setAccessToken(String value) async {

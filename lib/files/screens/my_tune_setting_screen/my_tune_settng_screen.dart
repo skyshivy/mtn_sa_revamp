@@ -35,12 +35,18 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
 
   @override
   void initState() {
-    controller = Get.find();
+    controller = Get.put(TuneSettingController());
     controller.tuneName = widget.toneName;
     controller.tuneArtist = widget.toneArtist;
     controller.tuneId = widget.toneId;
     controller.tuneImage = widget.toneImage;
+    _getPackStatus();
     super.initState();
+  }
+
+  _getPackStatus() async {
+    await Future.delayed(const Duration(milliseconds: 300));
+    controller.getPackName();
   }
 
   @override

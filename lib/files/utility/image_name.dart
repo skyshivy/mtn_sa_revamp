@@ -8,6 +8,7 @@ const searchImg = 'assets/pngs/search.png';
 const tuneMoodImg = 'assets/pngs/tuneMood.png';
 const mobileBackImg = 'assets/pngs/mobile_back.png';
 const myTunesHeaderImg = 'assets/pngs/my_tunes_header_img.png';
+const languageImg = 'assets/pngs/language.png';
 
 const facebookImg = 'assets/pngs/facebook.png';
 const instagramImg = 'assets/pngs/instagram.png';

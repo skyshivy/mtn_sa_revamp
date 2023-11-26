@@ -1,11 +1,13 @@
 import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_about_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_faq_button.dart';
@@ -14,8 +16,12 @@ import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_logo_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/my_tune_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/web_nav_my_account.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class WebNavBarView extends StatelessWidget {
   AppController appController = Get.find();
@@ -90,6 +96,7 @@ class WebNavBarView extends StatelessWidget {
     return Row(
       children: [
         //HomeSearchWidget(),
+        langugaeButton(),
         leftSpacing(),
         Obx(() {
           return appController.isLoggedIn.value
@@ -99,6 +106,30 @@ class WebNavBarView extends StatelessWidget {
         leftSpacing(),
       ],
     );
+  }
+
+  Widget langugaeButton() {
+    return Obx(() {
+      return CustomButton(
+        mainPadding: const EdgeInsets.symmetric(horizontal: 20),
+        borderColor: white,
+        leftWidget: Image.asset(
+          languageImg,
+          height: 20,
+          width: 20,
+          color: white,
+        ),
+        titlePadding: const EdgeInsets.only(left: 3),
+        fontName: FontName.medium,
+        textColor: white,
+        title: appController.isEnglish.value ? burmeseStr : englishStr,
+        onTap: () {
+          StoreManager().setLanguageEnglish(!StoreManager().isEnglish);
+          printCustom(
+              "is selected languagage is English ${StoreManager().isEnglish}");
+        },
+      );
+    });
   }
 
   void _onTap(index) {

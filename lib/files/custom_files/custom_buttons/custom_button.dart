@@ -13,6 +13,7 @@ class CustomButton extends StatelessWidget {
   final double? radius;
   final EdgeInsetsGeometry? titlePadding;
   final EdgeInsetsGeometry? leftWidgetPadding;
+  final EdgeInsetsGeometry mainPadding;
   final Color? color;
   final Color? borderColor;
 
@@ -36,6 +37,7 @@ class CustomButton extends StatelessWidget {
     this.color = transparent,
     this.title,
     this.textColor,
+    this.mainPadding = const EdgeInsets.all(0),
     this.fontSize,
     this.maxLine,
     this.fontName,
@@ -60,7 +62,10 @@ class CustomButton extends StatelessWidget {
         height: height,
         width: width,
         decoration: decoration(),
-        child: buttonRow(),
+        child: Padding(
+          padding: mainPadding,
+          child: buttonRow(),
+        ),
       ),
     );
   }

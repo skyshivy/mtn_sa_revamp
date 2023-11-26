@@ -1,13 +1,19 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
+import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
+import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/model/set_tune_model.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/model/day_model.dart';
 import 'package:mtn_sa_revamp/files/utility/style.dart';
+import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/tune_setting_all_caller_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/tune_setting_dedicated_vm.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
@@ -16,6 +22,7 @@ class TuneSettingController extends GetxController {
   RxInt callerType = 0.obs;
   RxInt repeatYear = 0.obs;
   RxString msisdn = ''.obs;
+  RxBool isLoading = false.obs;
   String tuneName = '';
   String tuneId = '';
   DateTime? _fromTD;
@@ -24,8 +31,10 @@ class TuneSettingController extends GetxController {
   String _toTimeStr = '';
   String tuneImage = '';
   String tuneArtist = '';
+
   String _dedicatedMsisdn = '';
   String packName = '';
+  late BuildContext context;
   RxBool isTimeAndDate = false.obs;
   RxBool isTime = false.obs;
   RxString timeTypeBtm = fullDay24HourStr.obs;
@@ -71,6 +80,13 @@ class TuneSettingController extends GetxController {
     printCustom("Seelcted date is ${results?.length}");
   }
 
+  getPackName() async {
+    PackStatusModel packStatusModel = await getPackStatusApiCall();
+    if (packStatusModel.statusCode == 'SC0000') {
+      packName = packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
+    }
+  }
+
   updateSelectedDay(String text) {
     selectedDays = text;
     printCustom("selected id = $selectedDays");
@@ -100,6 +116,7 @@ class TuneSettingController extends GetxController {
 
   updateDedictedUser(String text) {
     _dedicatedMsisdn = text;
+    msisdn.value = text;
   }
 
   updateToWhom(ToWhomAction toWhomAction) {
@@ -113,11 +130,12 @@ class TuneSettingController extends GetxController {
     printCustom("selected time type is $type");
   }
 
-  // updateMsisdn(String msisdn) {
-  //   this.msisdn.value = msisdn;
-  // }
+  updatebPartyMsisdn(String msisdn) {
+    this.msisdn.value = msisdn;
+  }
 
-  setTune() {
+  setTune(BuildContext context) {
+    this.context = context;
     _checkToWhom(_toWhome);
   }
 
@@ -127,6 +145,11 @@ class TuneSettingController extends GetxController {
         _setTuneForAllCaller();
         break;
       case ToWhomAction.specificCaller:
+        if (msisdn.isEmpty ||
+            (msisdn.value.length < StoreManager().msisdnLength)) {
+          showSnackBar(message: pleaseEnterValidMsisdnStr);
+          return;
+        }
         _setTuneForSpecificCaller();
         break;
       // case ToWhomAction.callerGroup:
@@ -184,11 +207,15 @@ class TuneSettingController extends GetxController {
   }
 
   _result(Map<String, dynamic>? map) {
+    isLoading.value = false;
     if (map != null) {
       SetToneModel model = SetToneModel.fromJson(map);
       if (model.statusCode == "SC0000") {
+        context.go(myTuneGoRoute);
+        showSnackBar(message: model.message ?? '');
         return;
       } else {
+        context.go(myTuneGoRoute);
         showSnackBar(message: model.message ?? '');
         return;
       }
@@ -197,60 +224,70 @@ class TuneSettingController extends GetxController {
   }
 
   _allCallerFullDay() async {
+    isLoading.value = true;
     var map = await TuneSettingAllCallerVM()
         .setAllCallerFullDay(tuneId, selectedDays);
     _result(map);
   }
 
   _allCallerTimeBase() async {
+    isLoading.value = true;
     var map = await TuneSettingAllCallerVM()
         .allCallerTimeBase(tuneId, selectedDays, _fromTimeStr, endTimeStr);
     _result(map);
   }
 
   _allCallerDateBaseNone() async {
+    isLoading.value = true;
     var map = await TuneSettingAllCallerVM()
         .allCallerNone(tuneId, _fromTD, _toTD, _fromTimeStr, _toTimeStr);
     _result(map);
   }
 
   _allCallerDateBaseMonthly() async {
+    isLoading.value = true;
     var map = await TuneSettingAllCallerVM()
         .allCallerMonthly(tuneId, _fromTD, _toTD, _fromTimeStr, _toTimeStr);
     _result(map);
   }
 
   _allCallerDateBaseYearly() async {
+    isLoading.value = true;
     var map = await TuneSettingAllCallerVM()
         .allDayYearly(tuneId, _fromTD, _toTD, _fromTimeStr, _toTimeStr);
     _result(map);
   }
 
   _dedicatedFullDay() async {
+    isLoading.value = true;
     var map = await TuneSettingDedicatedVM()
         .dedicatedFullday(tuneId, _dedicatedMsisdn, packName, selectedDays);
     _result(map);
   }
 
   _dedicatedTimeBase() async {
+    isLoading.value = true;
     var map = await TuneSettingDedicatedVM().dedicatedTimeBase(tuneId,
         _dedicatedMsisdn, packName, selectedDays, _fromTimeStr, _toTimeStr);
     _result(map);
   }
 
   void _dedicatedDateBaseNone() async {
+    isLoading.value = true;
     var map = await TuneSettingDedicatedVM().dedicatedNone(tuneId,
         _dedicatedMsisdn, packName, _fromTD, _toTD, _fromTimeStr, _toTimeStr);
     _result(map);
   }
 
   void _dedicatedDateBaseMonthly() async {
+    isLoading.value = true;
     var map = await TuneSettingDedicatedVM().dedicatedMonthly(tuneId,
         _dedicatedMsisdn, packName, _fromTD, _toTD, _fromTimeStr, _toTimeStr);
     _result(map);
   }
 
   void _dedicatedDateBaseYearly() async {
+    isLoading.value = true;
     var map = await TuneSettingDedicatedVM().dedicatedYearly(tuneId,
         _dedicatedMsisdn, packName, _fromTD, _toTD, _fromTimeStr, _toTimeStr);
     _result(map);
