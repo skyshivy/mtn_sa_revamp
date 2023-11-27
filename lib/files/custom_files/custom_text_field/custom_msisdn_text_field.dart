@@ -73,7 +73,7 @@ class CustomMsisdnTextField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: addCountryCode
           ? CustomText(
-              title: countryCodeStr,
+              title: countryCodeStr.tr,
               fontName: FontName.medium,
               textColor: countryCodeColor,
               fontSize: fontSiz ?? fontSize(12, 16),
@@ -128,7 +128,7 @@ class CustomMsisdnTextField extends StatelessWidget {
 
   InputDecoration inputDecoration(SizingInformation si) {
     return InputDecoration(
-      hintText: hintText,
+      hintText: hintText?.tr,
       isDense: true,
       hintStyle: TextStyle(
           fontFamily: FontName.medium.name,

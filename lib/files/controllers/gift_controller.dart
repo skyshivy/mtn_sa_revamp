@@ -48,11 +48,11 @@ class GiftTuneController extends GetxController {
     this.info = info;
     printCustom("MSIDN is ${StoreManager().msisdn}");
     if (bPartyMsisdn.value.length < StoreManager().msisdnLength) {
-      errorMessage.value = enterValidMsisdnStr;
+      errorMessage.value = enterValidMsisdnStr.tr;
       return;
     }
     if (bPartyMsisdn.value == StoreManager().msisdn) {
-      errorMessage.value = bothMsisdnCanBeSameStr;
+      errorMessage.value = bothMsisdnCanBeSameStr.tr;
       return;
     }
     _validateMsisdn();

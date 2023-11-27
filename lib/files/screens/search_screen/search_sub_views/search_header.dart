@@ -35,8 +35,8 @@ class SearchHeader extends StatelessWidget {
   Row row() {
     return Row(
       children: [
-        const CustomText(
-          title: searchedResultForStr,
+        CustomText(
+          title: searchedResultForStr.tr,
           textColor: grey,
         ),
         CustomText(

@@ -221,7 +221,7 @@ class _BuyScreenState extends State<_BuyScreen> {
 
   CustomText heaerTitle() {
     return CustomText(
-      title: buyTuneStr,
+      title: buyTuneStr.tr,
       fontName: fontName(FontName.medium, FontName.bold),
       fontSize: fontSize(18, 20),
     );
@@ -253,7 +253,7 @@ class _BuyScreenState extends State<_BuyScreen> {
       crossAxisAlignment: isPhone(context)
           ? CrossAxisAlignment.center
           : CrossAxisAlignment.start,
-      title: tuneChargeStr,
+      title: tuneChargeStr.tr,
       subTitle: buyController.tuneCharge,
       titleFontName: FontName.medium,
       titleFontSize: 16,
@@ -324,7 +324,7 @@ class _BuyScreenState extends State<_BuyScreen> {
         Navigator.pop(context!);
       },
       fontName: FontName.bold,
-      title: cancelStr,
+      title: cancelStr.tr,
       borderColor: atomCryan,
       color: white,
     );

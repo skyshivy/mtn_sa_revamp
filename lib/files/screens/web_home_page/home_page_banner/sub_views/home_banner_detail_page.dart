@@ -57,7 +57,7 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const CustomTopHeaderView(title: bannerDetailStr),
+                        CustomTopHeaderView(title: bannerDetailStr.tr),
                         Expanded(child: gridView()),
                       ],
                     );
@@ -67,9 +67,9 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
   }
 
   Widget emptyWidget() {
-    return const Center(
+    return Center(
         child: CustomText(
-      title: tuneListEmptyStr,
+      title: tuneListEmptyStr.tr,
       fontName: FontName.bold,
     ));
   }

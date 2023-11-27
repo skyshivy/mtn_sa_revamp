@@ -195,7 +195,7 @@ class HomeTuneCell extends StatelessWidget {
               ),
               const SizedBox(height: 3),
               CustomText(
-                title: "$tuneCodeStr : ${info?.toneId ?? ''}",
+                title: "${tuneCodeStr.tr} : ${info?.toneId ?? ''}",
                 fontSize: si.isMobile ? 12 : null,
               ),
               const SizedBox(height: 8),

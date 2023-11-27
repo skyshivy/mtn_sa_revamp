@@ -47,7 +47,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
       borderColor: white,
       color: white,
       leftWidget: leftWidgetPadding(),
-      title: myAccountStr,
+      title: myAccountStr.tr,
       titlePadding: const EdgeInsets.only(right: 14),
       onTap: () {
         MtnAudioPlayer.instance.stop();
@@ -66,7 +66,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
       borderColor: white,
       color: white,
       leftWidget: leftWidgetPadding(),
-      title: myAccountStr,
+      title: myAccountStr.tr,
       titlePadding: const EdgeInsets.only(right: 14),
       onTap: () {
         Get.dialog(Center(child: CustomAlertView(title: "check here")));

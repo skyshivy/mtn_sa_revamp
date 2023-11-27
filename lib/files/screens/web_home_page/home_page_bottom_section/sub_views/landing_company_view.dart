@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
@@ -20,16 +21,16 @@ class LandingCompanyView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        customText(companyStr,
+        customText(companyStr.tr,
             fontName: FontName.bold, color: atomCryan, fontSize: 18),
         //customText(contactusStr, onTap: contactusTapped),
-        customText(helpStr, onTap: () {
+        customText(helpStr.tr, onTap: () {
           helpTapped(context);
         }),
-        customText(privacyStr, onTap: () {
+        customText(privacyStr.tr, onTap: () {
           privacyTapped(context);
         }),
-        customText(termsStr, onTap: () {
+        customText(termsStr.tr, onTap: () {
           termsTapped(context);
         }),
       ],

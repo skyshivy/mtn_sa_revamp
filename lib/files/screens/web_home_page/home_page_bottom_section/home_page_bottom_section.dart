@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
@@ -42,10 +43,10 @@ class LandingPageBottomSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          customText(myTuneLocationStr,
+          customText(myTuneLocationStr.tr,
               fontName: FontName.bold, color: atomCryan, fontSize: 18),
           const SizedBox(height: 4),
-          customText(myTuneLocationValueStr, fontSize: 14),
+          customText(myTuneLocationValueStr.tr, fontSize: 14),
         ],
       ),
     );
@@ -118,7 +119,8 @@ class LandingPageBottomSection extends StatelessWidget {
   Widget copyRight() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: customText(copyRightStr, fontSize: 12, fontName: FontName.light),
+      child:
+          customText(copyRightStr.tr, fontSize: 12, fontName: FontName.light),
     );
   }
 }

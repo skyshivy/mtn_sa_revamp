@@ -85,7 +85,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return controller.isLoadingArtist.value
         ? loadingIndicator(height: 300)
         : controller.artistList.isEmpty
-            ? emptyWidget(artistListEmptyStr)
+            ? emptyWidget(artistListEmptyStr.tr)
             : ResponsiveBuilder(
                 builder: (context, si) {
                   return GridView.builder(
@@ -144,7 +144,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     width: 80,
                     height: 35,
                     color: blue,
-                    title: viewStr,
+                    title: viewStr.tr,
                     textColor: white,
                   )
                 ],
@@ -177,7 +177,7 @@ class _SearchScreenState extends State<SearchScreen> {
           return controller.isLoading.value
               ? loading()
               : controller.songList.isEmpty
-                  ? emptyWidget(tuneListEmptyStr)
+                  ? emptyWidget(tuneListEmptyStr.tr)
                   : GridView.builder(
                       itemCount: controller.songList.length,
                       shrinkWrap: true,
@@ -197,7 +197,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget emptyWidget(String title) {
     return Center(
       child: CustomText(
-        title: controller.isLoaded.value ? title : searchTuneStr,
+        title: controller.isLoaded.value ? title : searchTuneStr.tr,
         fontName: FontName.medium,
         fontSize: 16,
       ),

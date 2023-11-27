@@ -20,13 +20,13 @@ class SeacrhHeaderTab extends StatelessWidget {
               : Row(
                   children: [
                     Expanded(
-                        child: customButton(tuneStr, 0, () {
+                        child: customButton(tuneStr.tr, 0, () {
                       controller.isTuneSelected.value = 0;
                     })),
                     Container(
                         height: si.isMobile ? 40 : 50, width: 1, color: white),
                     Expanded(
-                        child: customButton(artistStr, 1, () {
+                        child: customButton(artistStr.tr, 1, () {
                       controller.isTuneSelected.value = 1;
                     })),
                   ],

@@ -40,7 +40,7 @@ class StoreManager {
   late AppSettingModel appSetting;
 
   Future<void> initStoreManager() async {
-    prefs = await SharedPreferences.getInstance();
+    //prefs = await SharedPreferences.getInstance();
     //String v = await storage.read(key: "isLoggedIn") ?? 'no';
     //isLoggedIn = (v == "yes") ? true : false;
     isEnglish = prefs.getBool("isEnglish") ?? true;

@@ -96,9 +96,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   Widget emptyText() {
-    return const Center(
+    return Center(
       child: CustomText(
-        title: tuneListEmptyStr,
+        title: tuneListEmptyStr.tr,
         fontName: FontName.bold,
       ),
     );

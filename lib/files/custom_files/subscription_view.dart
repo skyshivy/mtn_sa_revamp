@@ -93,7 +93,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: CustomText(
         alignment: TextAlign.center,
-        title: youShouldSubscribeAPlanStr,
+        title: youShouldSubscribeAPlanStr.tr,
         fontName: FontName.medium,
         textColor: subTitleColor,
         fontSize: si.isMobile ? 13 : 14,
@@ -207,7 +207,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    title: tuneChargeStr,
+                    title: tuneChargeStr.tr,
                     fontName: FontName.medium,
                     fontSize: si.isMobile ? 13 : 16,
                   ),
@@ -280,7 +280,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
 
   CustomButton cancelButton() {
     return CustomButton(
-      title: cancelStr,
+      title: cancelStr.tr,
       fontName: FontName.medium,
       borderColor: atomCryan,
       color: white,
@@ -303,7 +303,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
               ),
               Flexible(
                 child: CustomText(
-                  title: chooseSubscriptionPlanStr,
+                  title: chooseSubscriptionPlanStr.tr,
                   fontName: si.isMobile ? FontName.bold : FontName.bold,
                   textColor: black,
                   fontSize: si.isMobile ? 14 : null,

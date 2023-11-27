@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -76,7 +77,7 @@ class CustomButton extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
       children: [
         Padding(
-          padding: leftWidgetPadding ?? EdgeInsets.all(0),
+          padding: leftWidgetPadding ?? const EdgeInsets.all(0),
           child: leftWidget ?? const SizedBox(),
         ),
         (title == null)
@@ -100,7 +101,7 @@ class CustomButton extends StatelessWidget {
       padding:
           (titlePadding == null) ? const EdgeInsets.all(0.0) : titlePadding!,
       child: CustomText(
-        title: title ?? '',
+        title: (title ?? '').tr,
         textColor: textColor,
         fontSize: fontSize,
         fontName: fontName ?? FontName.medium,

@@ -26,7 +26,7 @@ class LoginController extends GetxController {
     errorMessage.value = '';
     int len = StoreManager().msisdnLength;
     if (msisdn.value.length < (len)) {
-      errorMessage.value = enterValidMsisdnStr;
+      errorMessage.value = enterValidMsisdnStr.tr;
       return;
     }
     printCustom("varifying Msisdn");
@@ -51,7 +51,7 @@ class LoginController extends GetxController {
     errorMessage.value = '';
     int len = StoreManager().otpLength;
     if (otp.value.length < (len)) {
-      errorMessage.value = enterValidOtpStr;
+      errorMessage.value = enterValidOtpStr.tr;
       return false;
     }
 
@@ -130,7 +130,7 @@ class LoginController extends GetxController {
         return false;
       }
     }
-    errorMessage.value = someThingWentWrongStr;
+    errorMessage.value = someThingWentWrongStr.tr;
     return false;
   }
 
@@ -161,7 +161,7 @@ class LoginController extends GetxController {
         return false;
       }
     } else {
-      errorMessage.value = someThingWentWrongStr;
+      errorMessage.value = someThingWentWrongStr.tr;
       return false;
     }
   }

@@ -111,7 +111,7 @@ class ProfileController extends GetxController {
     printCustom("Save api call ======== ${selectedCatList} ");
     if (selectedCatList.isEmpty) {
       editEnable.value = true;
-      showSnackBar(message: selectAtleastOneCatStr);
+      showSnackBar(message: selectAtleastOneCatStr.tr);
       return;
     }
     printCustom(

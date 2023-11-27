@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
@@ -15,7 +16,7 @@ profileEditButton() {
           color: blue,
           textColor: white,
           fontName: FontName.medium,
-          title: controller.editEnable.value ? saveStr : editStr,
+          title: controller.editEnable.value ? saveStr.tr : editStr.tr,
           onTap: () {
             controller.editButtonAction();
           },
