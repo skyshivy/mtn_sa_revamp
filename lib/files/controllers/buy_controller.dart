@@ -182,7 +182,7 @@ class BuyController extends GetxController {
       return model;
       // } catch (e) {
       //   printCustom("error is ========${e}");
-      //   TonePriceModel model = TonePriceModel(message: someThingWentWrongStr);
+      //   TonePriceModel model = TonePriceModel(message: someThingWentWrongStr.tr);
       //   return model;
       // }
     } else {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
@@ -38,6 +39,6 @@ Future<PackStatusModel> getPackStatusApiCall({bool isCrbt = true}) async {
     PackStatusModel model = PackStatusModel.fromJson(map);
     return model;
   } else {
-    return PackStatusModel(message: someThingWentWrongStr);
+    return PackStatusModel(message: someThingWentWrongStr.tr);
   }
 }

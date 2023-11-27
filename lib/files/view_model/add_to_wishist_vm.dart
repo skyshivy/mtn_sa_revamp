@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
 import 'package:mtn_sa_revamp/files/model/add_to_wishlist_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -37,7 +38,7 @@ class AddToWishlistVm {
       }
       showSnackBar(message: model.message ?? '');
     } else {
-      showSnackBar(message: someThingWentWrongStr);
+      showSnackBar(message: someThingWentWrongStr.tr);
     }
     return true;
   }

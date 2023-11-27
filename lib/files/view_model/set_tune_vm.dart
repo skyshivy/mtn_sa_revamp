@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
@@ -36,7 +37,7 @@ class SetTuneVM {
       return model;
     } else {
       BuyTuneModel? model =
-          BuyTuneModel(message: someThingWentWrongStr, statusCode: '');
+          BuyTuneModel(message: someThingWentWrongStr.tr, statusCode: '');
       return model;
     }
   }

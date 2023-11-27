@@ -82,7 +82,7 @@ class LoginVm {
     }
     // } else {
     //   return ConfirmOtpModel(
-    //       message: someThingWentWrongStr, statusCode: "FL0000");
+    //       message: someThingWentWrongStr.tr, statusCode: "FL0000");
     // }
   }
 

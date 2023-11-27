@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/model/delete_wishlist_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -32,6 +33,7 @@ class DeleteFromWishlistVM {
       DeleteWishlistModel model = DeleteWishlistModel.fromJson(map);
       return model;
     }
-    return DeleteWishlistModel(message: someThingWentWrongStr, statusCode: '');
+    return DeleteWishlistModel(
+        message: someThingWentWrongStr.tr, statusCode: '');
   }
 }
