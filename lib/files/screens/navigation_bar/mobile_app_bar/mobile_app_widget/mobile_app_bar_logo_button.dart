@@ -1,9 +1,8 @@
 import 'dart:html';
-import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';

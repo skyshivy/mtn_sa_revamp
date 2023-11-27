@@ -86,8 +86,8 @@ class MyTunePlayingVM {
     };
     var parts = [];
     params.forEach((key, value) {
-      parts.add('${key}='
-          '${value}');
+      parts.add('$key='
+          '$value');
     });
     var formData = parts.join('&');
     Map<String, dynamic>? res =
@@ -117,6 +117,8 @@ Future<void> _fulldayCheck(bool isFullDay, ListToneApk info, ToneDetail? tD,
       playingList.add(await newDetail(
           info, TimeType.fullDay, "", info.sTime!, info.eTime!,
           isFullday: true));
+    } else {
+      print("Staus is pending = ${info.status}");
     }
     printCustom("_fulldayCheck");
   }
@@ -133,6 +135,8 @@ Future<void> _weeklyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
     if (info.status != "P") {
       playingList.add(await newDetail(
           info, TimeType.weekDay, "2", info.sTime!, info.eTime!));
+    } else {
+      print("Staus is pending = ${info.status}");
     }
     printCustom("_weeklyCheck");
   }
@@ -149,6 +153,8 @@ Future<void> _noneCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
     if (info.status != "P") {
       playingList.add(
           await newDetail(info, TimeType.none, "7", info.sTime!, info.eTime!));
+    } else {
+      print("Staus is pending = ${info.status}");
     }
     printCustom("_noneCheck");
   }
@@ -166,6 +172,8 @@ Future<void> _monthlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
     if (info.status != "P") {
       playingList.add(await newDetail(
           info, TimeType.monthly, "3", info.sTime!, info.eTime!));
+    } else {
+      print("Staus is pending = ${info.status}");
     }
     printCustom("_monthlyCheck");
   }
@@ -182,6 +190,8 @@ Future<void> _yearlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
     if (info.status != "P") {
       playingList.add(await newDetail(
           info, TimeType.yearly, "4", info.sTime!, info.eTime!));
+    } else {
+      print("Staus is pending = ${info.status}");
     }
 
     printCustom("_yearlyCheck");
