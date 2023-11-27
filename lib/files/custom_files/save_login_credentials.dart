@@ -8,17 +8,20 @@ Future<void> saveCredentialHere(PasswordValidationModel model) async {
   printCustom("model.responseMap = ${model.responseMap}");
   printCustom("model.responseMap?.msisdn = ${model.responseMap?.msisdn}");
   StoreManager().msisdn = model.responseMap?.msisdn ?? "";
-  StoreManager()
-      .setAccessToken((model.responseMap?.accessToken) ?? "accessToken");
+  StoreManager().setAccessToken(
+      "accessToken default"); //(model.responseMap?.accessToken) ?? "accessToken");
   printCustom("set 1 ${model.responseMap?.accessToken ?? ""}");
-  StoreManager().setDeviceId((model.responseMap?.deviceId) ?? "deviceId");
+  StoreManager().setDeviceId(
+      " deviceId default"); //(model.responseMap?.deviceId) ?? "deviceId");
   printCustom("set 2 ${(model.responseMap?.deviceId) ?? ""}");
-  StoreManager().setMsisdn((model.responseMap?.msisdn) ?? "msisdn");
+  StoreManager().setMsisdn(
+      "353453535 default"); //(model.responseMap?.msisdn) ?? "msisdn");
   printCustom("set 3 ${model.responseMap?.msisdn ?? ""}");
-  StoreManager()
-      .setRefreshToken((model.responseMap?.refreshToken) ?? "refreshToken");
+  StoreManager().setRefreshToken(
+      'refreshToken default'); //(model.responseMap?.refreshToken) ?? "refreshToken");
   printCustom("set 4 ${model.responseMap?.refreshToken ?? ""}");
-  StoreManager().setUserName((model.responseMap?.userName) ?? "userName");
+  StoreManager().setUserName(
+      "userName default"); //(model.responseMap?.userName) ?? "userName");
   printCustom("set 5 ${model.responseMap?.userName ?? ""}");
   StoreManager().setLoggedIn(true);
   printCustom("set 6");

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
+import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -13,6 +15,7 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/home_info_page/home_in
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/home_page_banner.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_bottom_section/home_page_bottom_section.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/home_rec_view.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -25,7 +28,7 @@ class WebLandingPage extends StatefulWidget {
 
 class _WebLandingPageState extends State<WebLandingPage> {
   final ScrollController _controller = ScrollController();
-
+  AppController appController = Get.find();
   @override
   void initState() {
     super.initState();
@@ -42,6 +45,24 @@ class _WebLandingPageState extends State<WebLandingPage> {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                const SizedBox(height: 20),
+                Obx(() {
+                  return CustomButton(
+                    height: 100,
+                    width: 300,
+                    color: appController.testBool.value ? red : blue,
+                    textColor: appController.testBool.value ? blue : red,
+                    radius: 10,
+                    fontName: FontName.bold,
+                    fontSize: 20,
+                    title:
+                        "Change Color ${!(appController.testBool.value) ? "red" : "blue"}",
+                    onTap: () {
+                      StoreManager().setTestBool(!StoreManager().testBool);
+                    },
+                  );
+                }),
+
                 // CustomButton(
                 //   title: "Open",
                 //   onTap: () {

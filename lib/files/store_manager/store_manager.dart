@@ -32,6 +32,7 @@ class StoreManager {
   String refreshToken = '';
 
   bool isLoggedIn = false;
+  bool testBool = false;
   int otpLength = 6;
   int msisdnLength = 10;
   int timeOutDuration = 15;
@@ -46,6 +47,7 @@ class StoreManager {
     isEnglish = prefs.getBool("isEnglish") ?? true;
 
     isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
+    testBool = prefs.getBool("TestBool") ?? false;
 
     //accessToken = await storage.read(key: "accessToken") ?? '';
     accessToken = prefs.getString("accessToken") ?? '';
@@ -74,6 +76,7 @@ class StoreManager {
     languageCode = isEnglish ? "1" : "0";
     language = isEnglish ? "English" : "Burmese";
     appController.isLoggedIn.value = isLoggedIn;
+    appController.testBool.value = testBool;
     return;
   }
 
@@ -96,6 +99,19 @@ class StoreManager {
     appController.isLoggedIn.value = false;
     //initStoreManager();
     return;
+  }
+
+  setTestBool(bool value) async {
+    testBool = value;
+    appController.testBool.value = value;
+    try {
+      prefs.setBool('TestBool', value);
+      //storage.write(key: 'isLoggedIn', value: value ? 'yes' : 'no');
+    } on Exception catch (e) {
+      print("Error saving isLoogedin = ${e.toString()}");
+    }
+
+    print("Storing isLoggedin = $value");
   }
 
   setLanguageEnglish(bool english) async {
