@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
+import 'package:hive/hive.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/localization/localizatio_service.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 
 class StoreManager {
   static final StoreManager _instance = StoreManager._internal();
@@ -32,51 +33,71 @@ class StoreManager {
   String refreshToken = '';
 
   bool isLoggedIn = false;
-  bool testBool = false;
+  //bool testBool = false;
   int otpLength = 6;
   int msisdnLength = 10;
   int timeOutDuration = 15;
+  late Box<dynamic> prefs;
+
   //final storage = FlutterSecureStorage();
-  late SharedPreferences prefs;
+  //late SharedPreferences prefs;
   late AppSettingModel appSetting;
 
   Future<void> initStoreManager() async {
+    print("before init manager initialized");
+    prefs = await Hive.openBox('StoreManager');
+    prefs = Hive.box("StoreManager");
+    print("Store manager initialized");
     //prefs = await SharedPreferences.getInstance();
     //String v = await storage.read(key: "isLoggedIn") ?? 'no';
     //isLoggedIn = (v == "yes") ? true : false;
-    isEnglish = prefs.getBool("isEnglish") ?? true;
 
-    isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
-    testBool = prefs.getBool("TestBool") ?? false;
+    isEnglish = prefs.get("isEnglish") ?? true;
+    //isEnglish = prefs.getBool("isEnglish") ?? true;
+
+    isLoggedIn = prefs.get("isLoggedIn") ?? false;
+    //isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
+
+    //testBool = prefs.get(isLoggedIn) ?? false;
+    //testBool = prefs.getBool("TestBool") ?? false;
 
     //accessToken = await storage.read(key: "accessToken") ?? '';
-    accessToken = prefs.getString("accessToken") ?? '';
+    //accessToken = prefs.getString("accessToken") ?? '';
+    accessToken = prefs.get("accessToken") ?? '';
 
     //deviceId = await storage.read(key: "deviceId") ?? '';
-    deviceId = prefs.getString("deviceId") ?? '';
+    //deviceId = prefs.getString("deviceId") ?? '';
+    deviceId = prefs.get("deviceId") ?? '';
 
     //msisdn = await storage.read(key: "msisdn") ?? '';
-    msisdn = prefs.getString("msisdn") ?? '';
+    //msisdn = prefs.getString("msisdn") ?? '';
+    msisdn = prefs.get("msisdn") ?? '';
 
     //refreshToken = await storage.read(key: "refreshToken") ?? '';
-    refreshToken = prefs.getString("refreshToken") ?? '';
+    //refreshToken = prefs.getString("refreshToken") ?? '';
+    refreshToken = prefs.get("refreshToken") ?? '';
 
     //ccid = await storage.read(key: "ccid") ?? '';
-    ccid = prefs.getString('ccid') ?? '';
+    //ccid = prefs.getString('ccid') ?? '';
+    ccid = prefs.get('ccid') ?? '';
 
     //userName = await storage.read(key: "userName") ?? '';
-    userName = prefs.getString('userName') ?? '';
+    //userName = prefs.getString('userName') ?? '';
+    userName = prefs.get('userName') ?? '';
 
     //password = await storage.read(key: "password") ?? 'Oem@L#@1';
-    password = prefs.getString('password') ?? 'Oem@L#@1';
+    //password = prefs.getString('password') ?? 'Oem@L#@1';
+    password = prefs.get('password') ?? 'Oem@L#@1';
 
     //channelId = await storage.read(key: "channelId") ?? '4';
-    channelId = prefs.getString('channelId') ?? '4';
+    //channelId = prefs.getString('channelId') ?? '4';
+    channelId = prefs.get('channelId') ?? '4';
+
     appController.isEnglish.value = isEnglish;
     languageCode = isEnglish ? "1" : "0";
     language = isEnglish ? "English" : "Burmese";
     appController.isLoggedIn.value = isLoggedIn;
-    appController.testBool.value = testBool;
+    //appController.testBool.value = testBool;
     return;
   }
 
@@ -102,11 +123,12 @@ class StoreManager {
   }
 
   setTestBool(bool value) async {
-    testBool = value;
+    //testBool = value;
     appController.testBool.value = value;
     try {
-      prefs.setBool('TestBool', value);
-      //storage.write(key: 'isLoggedIn', value: value ? 'yes' : 'no');
+      //prefs.setBool('TestBool', value);
+      prefs.put('TestBool', value);
+      //storage.write(key: 'TestBool', value: value ? 'yes' : 'no');
     } on Exception catch (e) {
       print("Error saving isLoogedin = ${e.toString()}");
     }
@@ -121,7 +143,8 @@ class StoreManager {
     appController.isEnglish.value = english;
     LocalizationService().changeLocale(isEnglish);
     try {
-      prefs.setBool('isEnglish', english);
+      prefs.put('isEnglish', english);
+      //prefs.setBool('isEnglish', english);
       //storage.write(key: 'isLoggedIn', value: value ? 'yes' : 'no');
     } on Exception catch (e) {
       print("Error saving isEnglish = ${e.toString()}");
@@ -134,7 +157,8 @@ class StoreManager {
     msisdn = value;
     print("Storing msisdn = $msisdn");
     try {
-      prefs.setString('msisdn', value);
+      prefs.put('msisdn', value);
+      //prefs.setString('msisdn', value);
       //storage.write(key: 'msisdn', value: value);
     } catch (e) {
       print("Print Error only  = $e");
@@ -148,7 +172,8 @@ class StoreManager {
     ccid = value;
     print("Storing ccid = $value");
     try {
-      prefs.setString('ccid', value);
+      prefs.put('ccid', value);
+      //prefs.setString('ccid', value);
 
       //storage.write(key: 'ccid', value: value);
     } on Exception catch (e) {
@@ -160,7 +185,8 @@ class StoreManager {
     userName = value;
     print("Storing userName = $value");
     try {
-      prefs.setString('userName', value);
+      prefs.put('userName', value);
+      //prefs.setString('userName', value);
 
       //storage.write(key: 'userName', value: value);
     } on Exception catch (e) {
@@ -175,7 +201,8 @@ class StoreManager {
     password = value;
     print("Storing password = $value");
     try {
-      prefs.setString('password', value);
+      prefs.put('password', value);
+      //prefs.setString('password', value);
 
       //storage.write(key: 'password', value: value);
     } on Exception catch (e) {
@@ -190,7 +217,8 @@ class StoreManager {
     channelId = value;
     print("Storing channelid = $value");
     try {
-      prefs.setString('channelId', value);
+      prefs.put('channelId', value);
+      //prefs.setString('channelId', value);
       //storage.write(key: 'channelId', value: value);
     } on Exception catch (e) {
       print("Error saving channelId = ${e.toString()}");
@@ -201,7 +229,8 @@ class StoreManager {
     isLoggedIn = value;
     appController.isLoggedIn.value = value;
     try {
-      prefs.setBool('isLoggedIn', value);
+      prefs.put('isLoggedIn', value);
+      //prefs.setBool('isLoggedIn', value);
       //storage.write(key: 'isLoggedIn', value: value ? 'yes' : 'no');
     } on Exception catch (e) {
       print("Error saving isLoogedin = ${e.toString()}");
@@ -214,7 +243,8 @@ class StoreManager {
     accessToken = value;
     print("Storing accessToken = $value");
     try {
-      prefs.setString('accessToken', value);
+      prefs.put('accessToken', value);
+      //prefs.setString('accessToken', value);
       //storage.write(key: 'accessToken', value: value);
     } on Exception catch (e) {
       print("Error saving accessToken = ${e.toString()}");
@@ -225,7 +255,8 @@ class StoreManager {
     deviceId = value;
     print("Storing device id = $value");
     try {
-      prefs.setString('deviceId', value);
+      prefs.put('deviceId', value);
+      //prefs.setString('deviceId', value);
       //storage.write(key: 'deviceId', value: value);
     } on Exception catch (e) {
       print("Error saving deviceId = ${e.toString()}");
@@ -236,7 +267,8 @@ class StoreManager {
     refreshToken = value;
     print("Storing refresh token = $value");
     try {
-      prefs.setString('refreshToken', value);
+      prefs.put('refreshToken', value);
+      //prefs.setString('refreshToken', value);
       //storage.write(key: 'refreshToken', value: value);
     } on Exception catch (e) {
       print("Error saving refreshToken = ${e.toString()}");

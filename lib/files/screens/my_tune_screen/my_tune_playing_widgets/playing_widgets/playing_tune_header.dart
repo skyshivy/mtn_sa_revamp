@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -62,7 +64,20 @@ Widget _toggleButton() {
               activeColor: atomCryan,
               activeTrackColor: blue,
               onChanged: (value) {
-                controller.suffleTune();
+                Get.dialog(CustomConfirmAlertView(
+                  fontName: FontName.medium,
+                  message: controller.isSuffle.value
+                      ? tuneSuffleOnMessageStr.tr
+                      : tuneSuffleOffMessageStr.tr,
+                  cancelTitle: cancelStr.tr,
+                  okTitle: confirmStr.tr,
+                  onOk: () {
+                    controller.suffleTune();
+                    print("Relaod data");
+                  },
+                ));
+
+                //
                 //controller.isSuffle.value = !controller.isSuffle.value;
                 printCustom("On change swith");
               },

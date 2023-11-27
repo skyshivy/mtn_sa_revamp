@@ -155,4 +155,7 @@ Map<String, String> enUS = {
       "You should subscribe a plan before you buy or gift tunes",
   myTuneLocationValueStr:
       "No.221, Level 17-22-23,\nSule Pagoda Road,\nKyauktada Township,\nYangon, 11182 Myanmar",
+  tuneSuffleOnMessageStr:
+      "Your suffle will be disabled and your callers will only listen to the latest tune. Your advance settings will remain unaffected.",
+  tuneSuffleOffMessageStr: "Do you want to enable suffle?",
 };

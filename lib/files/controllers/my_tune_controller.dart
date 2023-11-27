@@ -30,6 +30,11 @@ class MyTuneController extends GetxController {
     isLoadingPlaying.value = true;
     playingList.value = <ListToneApk>[];
     getTuneList();
+    _getMyPlayingList();
+    isLoadingPlaying.value = false;
+  }
+
+  _getMyPlayingList() async {
     PlayingTuneModel? playingTune =
         await MyTunePlayingVM().getPlayingTuneListApiCall();
 
@@ -39,7 +44,6 @@ class MyTuneController extends GetxController {
       switchEnabled.value = playingTune.isSuffle!;
       playingList.value = playingTune.responseMap?.listToneApk ?? [];
     }
-    isLoadingPlaying.value = false;
   }
 
   getTuneList() async {
@@ -61,8 +65,20 @@ class MyTuneController extends GetxController {
     isChangeSuffle.value = true;
     var result = await MyTunePlayingVM().suffleTune(!switchEnabled.value);
     isChangeSuffle.value = false;
-    switchEnabled.value = !switchEnabled.value;
-    isSuffle.value = switchEnabled.value;
+
+    if (result != null) {
+      MyTuneListModel model = MyTuneListModel.fromJson(result);
+      if (model.statusCode == "SC0000") {
+        isLoadingPlaying.value = true;
+        isChangeSuffle.value = false;
+        switchEnabled.value = !switchEnabled.value;
+        isSuffle.value = switchEnabled.value;
+        await _getMyPlayingList();
+        isLoadingPlaying.value = false;
+      } else {
+        showSnackBar(message: model.message ?? someThingWentWrongStr.tr);
+      }
+    }
   }
 
 //========================================================

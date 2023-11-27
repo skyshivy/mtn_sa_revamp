@@ -169,3 +169,6 @@ const youShouldSubscribeAPlanStr =
     "You should subscribe a plan before you buy or gift tunes";
 const myTuneLocationValueStr =
     "No.221, Level 17-22-23,\nSule Pagoda Road,\nKyauktada Township,\nYangon, 11182 Myanmar";
+const tuneSuffleOnMessageStr =
+    "Your suffle will be disabled and your callers will only listen to the latest tune. Your advance settings will remain unaffected.";
+const tuneSuffleOffMessageStr = "Do you want to enable suffle?";

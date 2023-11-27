@@ -18,6 +18,8 @@ class MyTunePlayingVM {
 
     if (result != null) {
       PlayingTuneModel? playing = PlayingTuneModel.fromJson(result);
+      print("check sky = ${playing.responseMap?.listToneApk?.length}");
+      //playingList = playing.responseMap?.listToneApk ?? [];
 
       var tempPlayingList = <ListToneApk>[];
       if (playing.responseMap?.listToneApk != null ||
@@ -64,10 +66,12 @@ class MyTunePlayingVM {
     playingList.clear();
     printCustom("Test 2");
     for (ListToneApk info in tempPlayingList) {
-      printCustom("createPlayingList ++++++++++");
-      ToneDetail? tD = info.toneDetails?.first;
-      bool isFullDay = true;
-      await createPlayingList1(isFullDay, info, tD, playingList);
+      printCustom("createPlayingList ++++++++++ ${info.toneDetails?.first} ");
+      if (info.toneDetails?.first != null) {
+        ToneDetail? tD = info.toneDetails?.first;
+        bool isFullDay = true;
+        await createPlayingList1(isFullDay, info, tD, playingList);
+      }
     }
     printCustom("Test 3  items are ${playingList.length}");
     await Future.delayed(const Duration(milliseconds: 300));
@@ -103,7 +107,7 @@ Future<void> createPlayingList1(bool isFullDay, ListToneApk info,
   await _yearlyCheck(tD, isFullDay, info, playingList);
   await _monthlyCheck(tD, isFullDay, info, playingList);
   await _noneCheck(tD, isFullDay, info, playingList);
-  await _weeklyCheck(tD, isFullDay, info, playingList);
+  //await _weeklyCheck(tD, isFullDay, info, playingList);
 }
 
 Future<void> _fulldayCheck(bool isFullDay, ListToneApk info, ToneDetail? tD,
@@ -115,9 +119,10 @@ Future<void> _fulldayCheck(bool isFullDay, ListToneApk info, ToneDetail? tD,
     info.eTime =
         "${tD?.customiseEndTime?.substring(0, tD.customiseEndTime!.length - 3)}";
     if (info.status != "P") {
+      bool isFlDay = ((tD?.weeklyDays ?? "0") == "0") ? true : false;
       playingList.add(await newDetail(
           info, TimeType.fullDay, "", info.sTime!, info.eTime!,
-          isFullday: true));
+          isFullday: isFlDay));
     } else {
       print("Staus is pending = ${info.status}");
     }
@@ -125,6 +130,7 @@ Future<void> _fulldayCheck(bool isFullDay, ListToneApk info, ToneDetail? tD,
   }
 }
 
+/*
 Future<void> _weeklyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
     List<ListToneApk> playingList) async {
   if (tD?.weeklyDays != "0") {
@@ -134,6 +140,7 @@ Future<void> _weeklyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
     info.eTime =
         "${tD?.endTimeWeekly?.substring(0, tD.endTimeWeekly!.length - 3)}";
     if (info.status != "P") {
+      
       playingList.add(await newDetail(
           info, TimeType.weekDay, "2", info.sTime!, info.eTime!));
     } else {
@@ -142,7 +149,7 @@ Future<void> _weeklyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
     printCustom("_weeklyCheck");
   }
 }
-
+*/
 Future<void> _noneCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
     List<ListToneApk> playingList) async {
   if ((!(tD?.customiseStartDate == '0')) || (!(tD?.customiseEndDate == '0'))) {

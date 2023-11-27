@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/drawer_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/history_controller.dart';
@@ -22,7 +23,7 @@ import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_preview_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:url_strategy/url_strategy.dart';
 
 FocusNode keyScrollFocusNode = FocusNode();
@@ -32,6 +33,11 @@ void main() async {
   //SharedPreferences.setMockInitialValues({});
   AppController controller = Get.put(AppController());
   initStoreManager();
+
+// below line added to for dalay so can store manager can initialized
+  await Future.delayed(const Duration(milliseconds: 500));
+// above line added to for dalay so can store manager can initialized
+
   LoginController logCont = Get.put(LoginController());
   await getJson();
 
@@ -51,10 +57,15 @@ void main() async {
   runApp(MyApp());
 }
 
-initStoreManager() async {
-  StoreManager().prefs = await SharedPreferences.getInstance();
+Future<void> initStoreManager() async {
+  var box = await Hive.openBox('StoreManager');
+  box = Hive.box("StoreManager");
+  StoreManager().prefs = box;
+
+  //StoreManager().prefs = await SharedPreferences.getInstance();
   await StoreManager().initStoreManager();
-  StoreManager().prefs = await SharedPreferences.getInstance();
+  return;
+  //StoreManager().prefs = await SharedPreferences.getInstance();
 }
 
 Future<String> getJson() async {

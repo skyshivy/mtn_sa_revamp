@@ -50,15 +50,16 @@ class _WebLandingPageState extends State<WebLandingPage> {
                   return CustomButton(
                     height: 100,
                     width: 300,
-                    color: appController.testBool.value ? red : blue,
-                    textColor: appController.testBool.value ? blue : red,
+                    color: appController.isLoggedIn.value ? red : blue,
+                    textColor: appController.isLoggedIn.value ? blue : red,
                     radius: 10,
                     fontName: FontName.bold,
                     fontSize: 20,
                     title:
-                        "Change Color ${!(appController.testBool.value) ? "red" : "blue"}",
+                        "Change Color ${!(appController.isLoggedIn.value) ? "red" : "blue"}",
                     onTap: () {
-                      StoreManager().setTestBool(!StoreManager().testBool);
+                      StoreManager().setLoggedIn(!StoreManager()
+                          .isLoggedIn); //setTestBool(!StoreManager().isLoggedIn);
                     },
                   );
                 }),

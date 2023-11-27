@@ -141,7 +141,7 @@ StatefulShellBranch profileScreen() {
       path: profileGoRoute,
       builder: (context, state) {
         //pCont.getProfileDetail();
-        return ProfileScreen();
+        return const ProfileScreen();
       },
     ),
   ]);
@@ -154,7 +154,7 @@ StatefulShellBranch _privatePolicyScreen() {
       path: policyGoRoute,
       builder: (context, state) {
         //pCont.getProfileDetail();
-        return PrivacyPolicyScreen();
+        return const PrivacyPolicyScreen();
       },
     ),
   ]);
@@ -380,6 +380,8 @@ Widget shellRouteIndex(BuildContext context, GoRouterState state,
     StatefulNavigationShell navigationShell) {
   printCustom("Selected index must be===== ${navigationShell.currentIndex}");
   printCustom("SKY state.name  = ${state.fullPath}");
+  printCustom("SKY StoreManager().isLoggedIn  = ${StoreManager().isLoggedIn}");
+
   var pat = state.fullPath;
   var pat1 = historyGoRoute;
   var pat2 = profileGoRoute;
