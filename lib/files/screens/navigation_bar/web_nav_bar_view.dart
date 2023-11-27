@@ -128,10 +128,10 @@ class WebNavBarView extends StatelessWidget {
         title: appController.isEnglish.value ? burmeseStr : englishStr,
         onTap: () async {
           StoreManager().setLanguageEnglish(!StoreManager().isEnglish);
-          await Future.delayed(Duration(milliseconds: 300));
+          await Future.delayed(const Duration(milliseconds: 300));
           context.go(homeGoRoute);
 
-          await Future.delayed(Duration(milliseconds: 300));
+          await Future.delayed(const Duration(milliseconds: 300));
           banCont.getBanner();
           recCont.getTabList();
           printCustom(
