@@ -2,6 +2,7 @@ import 'dart:js';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
@@ -28,7 +29,7 @@ Widget tuneListSettingWidget(BuildContext context, ListToneApk1 info) {
       ),
     ),
     height: 40,
-    title: settingStr,
+    title: settingStr.tr,
     onTap: () {
       var inf = info.toneDetails?.first;
 

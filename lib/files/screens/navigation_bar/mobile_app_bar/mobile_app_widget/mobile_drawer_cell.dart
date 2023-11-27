@@ -137,25 +137,25 @@ _tappedOnCell(BuildContext context, String title) async {
   printCustom("=========_tappedOnCell==============");
   Navigator.pop(context);
   await Future.delayed(const Duration(milliseconds: 100));
-  if (title == profileStr) {
+  if (title == profileStr.tr) {
     context.goNamed(profileGoRoute);
     //Get.toNamed(profileTapped);
   } else if (title == myTuneStr.tr) {
     context.goNamed(myTuneGoRoute);
     //Get.toNamed(myTuneTapped);
-  } else if (title == wishlistStr) {
+  } else if (title == wishlistStr.tr) {
     context.goNamed(wishlistGoRoute);
     //Get.toNamed(wishlistTapped);
-  } else if (title == faqStr) {
+  } else if (title == faqStr.tr) {
     printCustom("FAQ tapped");
     context.goNamed(faqGoRoute);
     //Get.toNamed(faqTapped);
-  } else if (title == logoutStr) {
+  } else if (title == logoutStr.tr) {
     printCustom("Logout btapped");
     StoreManager().logout();
   } else if (title == signinStr.tr) {
     Get.dialog(LoginScreen(), barrierDismissible: false);
-  } else if (title == historyStr) {
+  } else if (title == historyStr.tr) {
     context.goNamed(historyGoRoute);
   } else {
     printCustom("=========Default tapped==============");

@@ -31,14 +31,14 @@ class MyTunePlayimgMoreButton extends StatefulWidget {
 
 class _MyTunePlayimgMoreButtonState extends State<MyTunePlayimgMoreButton> {
   List<MenuModel> menuItem = [
-    //MenuModel(shareStr, imageName: shareSvg),
+    //MenuModel(shareStr.tr, imageName: shareSvg),
   ];
   MyTuneController mCont = Get.find();
   createMenuList() {
     menuItem = [
-      MenuModel(deleteStr, imageName: deleteSvg),
-      //MenuModel(giftStr, imageName: giftTuneSvg),
-      //MenuModel(giftStr, imageName: giftTuneSvg),
+      MenuModel(deleteStr.tr, imageName: deleteSvg),
+      //MenuModel(giftStr.tr, imageName: giftTuneSvg),
+      //MenuModel(giftStr.tr, imageName: giftTuneSvg),
     ];
   }
 
@@ -64,7 +64,8 @@ class _MyTunePlayimgMoreButtonState extends State<MyTunePlayimgMoreButton> {
         if (StoreManager().isLoggedIn) {
           _showPopupMenu();
         } else {
-          Get.dialog(CustomAlertView(title: featureIsAvailableForLoggedInStr));
+          Get.dialog(
+              CustomAlertView(title: featureIsAvailableForLoggedInStr.tr));
         }
       },
     );
@@ -78,13 +79,13 @@ class _MyTunePlayimgMoreButtonState extends State<MyTunePlayimgMoreButton> {
       width: 140,
       isLeft: true,
       onTap: (p0) async {
-        if (p0.title == giftStr) {
+        if (p0.title == giftStr.tr) {
           Get.dialog(Center(
             child: GiftTuneView(
               info: widget.info ?? TuneInfo(),
             ),
           ));
-        } else if (p0.title == deleteStr) {
+        } else if (p0.title == deleteStr.tr) {
           mCont.deletePlayingTune(
               widget.info.toneId ?? '', widget.index, context);
         }

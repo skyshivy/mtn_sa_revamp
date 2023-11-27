@@ -45,22 +45,22 @@ class TuneSettingController extends GetxController {
   RxString error = ''.obs;
 
   List<DayModel> daysList = [
-    DayModel(sunStr),
-    DayModel(monStr),
-    DayModel(tueStr),
-    DayModel(wedStr),
-    DayModel(thusStr),
-    DayModel(friStr),
-    DayModel(satStr)
+    DayModel(sunStr.tr),
+    DayModel(monStr.tr),
+    DayModel(tueStr.tr),
+    DayModel(wedStr.tr),
+    DayModel(thusStr.tr),
+    DayModel(friStr.tr),
+    DayModel(satStr.tr)
   ];
   List<DayModel> sortDaysList = [
-    DayModel(sStr),
-    DayModel(mStr),
-    DayModel(tStr),
-    DayModel(wStr),
-    DayModel(tStr),
-    DayModel(fStr),
-    DayModel(saStr)
+    DayModel(sStr.tr),
+    DayModel(mStr.tr),
+    DayModel(tStr.tr),
+    DayModel(wStr.tr),
+    DayModel(tStr.tr),
+    DayModel(fStr.tr),
+    DayModel(saStr.tr)
   ];
   openCalenderView(BuildContext context) async {
     var results = await showCalendarDatePicker2Dialog(
@@ -233,7 +233,7 @@ class TuneSettingController extends GetxController {
   _allCallerTimeBase() async {
     isLoading.value = true;
     var map = await TuneSettingAllCallerVM()
-        .allCallerTimeBase(tuneId, selectedDays, _fromTimeStr, endTimeStr);
+        .allCallerTimeBase(tuneId, selectedDays, _fromTimeStr, endTimeStr.tr);
     _result(map);
   }
 

@@ -32,7 +32,7 @@ class HomeMoreButton extends StatefulWidget {
 
 class _HomeMoreButtonState extends State<HomeMoreButton> {
   List<MenuModel> menuItem = [
-    //MenuModel(shareStr, imageName: shareSvg),
+    //MenuModel(shareStr.tr, imageName: shareSvg),
   ];
   late WishlistController wishCont;
   createMenuList() {
@@ -41,9 +41,9 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
     }
     menuItem = [
       widget.isWishlist
-          ? MenuModel(deleteStr, imageName: deleteSvg)
-          : MenuModel(wishlistStr, imageName: wishlistSvg),
-      //MenuModel(giftStr, imageName: giftTuneSvg),
+          ? MenuModel(deleteStr.tr, imageName: deleteSvg)
+          : MenuModel(wishlistStr.tr, imageName: wishlistSvg),
+      //MenuModel(giftStr.tr, imageName: giftTuneSvg),
     ];
   }
 
@@ -68,7 +68,8 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
         if (StoreManager().isLoggedIn) {
           showPopupMenu();
         } else {
-          Get.dialog(CustomAlertView(title: featureIsAvailableForLoggedInStr));
+          Get.dialog(
+              CustomAlertView(title: featureIsAvailableForLoggedInStr.tr));
         }
       },
     );
@@ -83,13 +84,13 @@ class _HomeMoreButtonState extends State<HomeMoreButton> {
       width: 140,
       isLeft: true,
       onTap: (p0) async {
-        if (p0.title == wishlistStr) {
+        if (p0.title == wishlistStr.tr) {
           recoController.wishlistTapped(widget.info);
-        } else if (p0.title == giftStr) {
+        } else if (p0.title == giftStr.tr) {
           recoController.tellAFriendTapped();
-        } else if (p0.title == shareStr) {
+        } else if (p0.title == shareStr.tr) {
           recoController.shareTapped();
-        } else if (p0.title == deleteStr) {
+        } else if (p0.title == deleteStr.tr) {
           wishCont.deleteFromWishlistAction(
               widget.info ?? TuneInfo(), widget.index);
 

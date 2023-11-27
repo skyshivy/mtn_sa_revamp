@@ -145,8 +145,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String textFieldHint() {
     return controller.isMsisdnVarified.value
-        ? enter6DigitOtpStr
-        : enterMobileNumberStr;
+        ? enter6DigitOtpStr.tr
+        : enterMobileNumberStr.tr;
   }
 
   Color textFieldBorderColorChange() {
@@ -189,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
           text: TextSpan(
             children: <TextSpan>[
               TextSpan(
-                text: signupAgreementStr,
+                text: signupAgreementStr.tr,
                 style: richTextStyle(si),
               ),
               TextSpan(
@@ -199,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onExit: (event) {
                     printCustom("You just exit from hovered");
                   },
-                  text: termsAndPolicyStr,
+                  text: termsAndPolicyStr.tr,
                   style: TextStyle(
                     fontFamily: FontName.medium.name,
                     fontSize: si.isMobile ? 10 : 14,
@@ -261,8 +261,8 @@ class _LoginScreenState extends State<LoginScreen> {
       builder: (context, si) {
         return Obx(() {
           String title = controller.isMsisdnVarified.value
-              ? enter6DigitOtpStr
-              : signInToYourAccountStr;
+              ? enter6DigitOtpStr.tr
+              : signInToYourAccountStr.tr;
           return Row(
             children: [
               controller.isMsisdnVarified.value
@@ -302,12 +302,12 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget subTitleWidget() {
     return Obx(() {
       var title = controller.isMsisdnVarified.value
-          ? oneTimePasswordHasBeenSentStr +
+          ? oneTimePasswordHasBeenSentStr.tr +
               ' ' +
-              countryCodeStr +
+              countryCodeStr.tr +
               "-" +
               "${controller.msisdn}"
-          : pleaseEnterYourMobileNumberInOrderToAuthenticateStr;
+          : pleaseEnterYourMobileNumberInOrderToAuthenticateStr.tr;
       return ResponsiveBuilder(
         builder: (context, si) {
           return CustomText(
@@ -349,7 +349,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   String requestButtonTitle() {
-    return controller.isMsisdnVarified.value ? verifyOTPStr : requestOTPStr;
+    return controller.isMsisdnVarified.value
+        ? verifyOTPStr.tr
+        : requestOTPStr.tr;
   }
 
   Color requestButtonColor() {
@@ -376,7 +378,7 @@ class _LoginScreenState extends State<LoginScreen> {
               builder: (context, sizingInformation) {
                 return CustomAlertView(
                     width: sizingInformation.isMobile ? 200 : 400,
-                    title: successFullyLoggedInStr);
+                    title: successFullyLoggedInStr.tr);
               },
             ),
           ),
@@ -402,7 +404,7 @@ class _LoginScreenState extends State<LoginScreen> {
           await Future.delayed(const Duration(milliseconds: 200));
           Get.dialog(
             Center(
-              child: CustomAlertView(title: successFullyLoggedInStr),
+              child: CustomAlertView(title: successFullyLoggedInStr.tr),
             ),
           );
         }

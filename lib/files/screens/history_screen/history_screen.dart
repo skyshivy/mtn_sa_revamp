@@ -50,9 +50,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   Widget emptyHistory() {
-    return const Center(
+    return Center(
         child: CustomText(
-      title: noTransactionFoundStr,
+      title: noTransactionFoundStr.tr,
       fontName: FontName.bold,
       fontSize: 20,
     ));
@@ -61,7 +61,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   Widget listView(SizingInformation si) {
     return Column(
       children: [
-        const CustomTopHeaderView(title: historyStr),
+        CustomTopHeaderView(title: historyStr.tr),
         Expanded(
           child: ListView.builder(
             shrinkWrap: true,

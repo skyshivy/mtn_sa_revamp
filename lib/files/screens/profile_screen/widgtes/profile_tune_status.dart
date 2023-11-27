@@ -28,10 +28,10 @@ class ProfileTuneStatus extends StatelessWidget {
                 const SizedBox(height: 5),
                 Obx(() {
                   return CustomText(
-                    title: expireDateStr + " : " + cont.tuneExire.value,
+                    title: expireDateStr.tr + " : " + cont.tuneExire.value,
                     fontName: FontName.medium,
                     fontSize: 14,
-                  ); //expireDateStr + " : " + '12/10/23'),
+                  ); //expireDateStr.tr + " : " + '12/10/23'),
                 }),
                 const SizedBox(height: 15),
                 secondRowWidget(sizingInformation),
@@ -49,8 +49,8 @@ class ProfileTuneStatus extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: si.isMobile ? MainAxisSize.max : MainAxisSize.min,
       children: [
-        const CustomText(
-          title: myTuneStatusStr,
+        CustomText(
+          title: myTuneStatusStr.tr,
           fontName: FontName.medium,
           fontSize: 14,
         ),
@@ -81,7 +81,7 @@ class ProfileTuneStatus extends StatelessWidget {
             textColor: white,
             color: blue,
             onTap: () {
-              if (cont.activeTuneButtonName.value == activeStr) {
+              if (cont.activeTuneButtonName.value == activeStr.tr) {
                 cont.activeTuneStatusAction();
               } else {
                 cont.suspendTuneStatusAction();
@@ -95,7 +95,7 @@ class ProfileTuneStatus extends StatelessWidget {
           fontSize: 12,
           height: 35,
           titlePadding: EdgeInsets.symmetric(horizontal: 12),
-          title: unSubscribeStr,
+          title: unSubscribeStr.tr,
           textColor: white,
           color: blue,
           onTap: () {

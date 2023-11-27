@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -12,7 +13,7 @@ Widget profileSubscribeButtonWidget(SizingInformation si, Function()? onTap) {
       padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 100 : 0),
       child: CustomButton(
         color: blue,
-        title: subscribeStr,
+        title: subscribeStr.tr,
         textColor: white,
         fontName: FontName.bold,
         fontSize: si.isMobile ? 12 : 16,

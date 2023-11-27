@@ -1,6 +1,7 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
@@ -36,13 +37,14 @@ class TuneSettingTimeDateView extends StatelessWidget {
                       onTap: () async {
                         await fromDateTapped(context);
                       },
-                      child:
-                          titleSubtitleWidget(fromDateStr, "05-10-23, 10:20")),
+                      child: titleSubtitleWidget(
+                          fromDateStr.tr, "05-10-23, 10:20")),
                   InkWell(
                       onTap: () async {
                         await toDateTapped(context);
                       },
-                      child: titleSubtitleWidget(toDateStr, "16-12-26, 16:50")),
+                      child:
+                          titleSubtitleWidget(toDateStr.tr, "16-12-26, 16:50")),
                 ],
               ),
             ],

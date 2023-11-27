@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
@@ -16,8 +17,8 @@ Widget profileUserName(SizingInformation si) {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CustomText(
-          title: userNameStr,
+        CustomText(
+          title: userNameStr.tr,
           fontName: FontName.medium,
           fontSize: 14,
           textColor: subTitleColor,
@@ -28,7 +29,7 @@ Widget profileUserName(SizingInformation si) {
           fontSize: 18,
           editEnable: controller.editEnable.value,
           text: controller.profileDetails?.userName ?? '',
-          hintText: userNameStr,
+          hintText: userNameStr.tr,
           onChanged: (p0) {
             controller.updateUserName(p0);
           },

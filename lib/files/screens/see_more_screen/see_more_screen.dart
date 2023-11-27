@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -21,7 +22,7 @@ class _SeeMoreScreenState extends State<SeeMoreScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomTopHeaderView(title: seeMoreStr),
+        CustomTopHeaderView(title: seeMoreStr.tr),
         Expanded(
           child: gridView(),
         ),

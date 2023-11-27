@@ -20,19 +20,19 @@ class MyDrawerController extends GetxController {
   createMenuList() {
     if (StoreManager().isLoggedIn) {
       menuList.value = [
-        DrawerModel(profileStr),
+        DrawerModel(profileStr.tr),
         DrawerModel(myTuneStr.tr),
-        DrawerModel(wishlistStr),
-        DrawerModel(tunesStr, isExpanded: true),
-        DrawerModel(historyStr),
-        //DrawerModel(faqStr),
-        DrawerModel(logoutStr),
+        DrawerModel(wishlistStr.tr),
+        DrawerModel(tunesStr.tr, isExpanded: true),
+        DrawerModel(historyStr.tr),
+        //DrawerModel(faqStr.tr),
+        DrawerModel(logoutStr.tr),
       ];
     } else {
       menuList.value = [
-        DrawerModel(tunesStr, isExpanded: true),
+        DrawerModel(tunesStr.tr, isExpanded: true),
         DrawerModel(signinStr.tr),
-        //DrawerModel(faqStr),
+        //DrawerModel(faqStr.tr),
       ];
     }
   }

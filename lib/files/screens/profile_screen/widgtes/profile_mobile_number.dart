@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
@@ -16,8 +17,8 @@ Widget profileMobileNumberWidget(SizingInformation si) {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CustomText(
-          title: mobileNumberStr,
+        CustomText(
+          title: mobileNumberStr.tr,
           fontName: FontName.medium,
           fontSize: 14,
           textColor: subTitleColor,
@@ -30,7 +31,7 @@ Widget profileMobileNumberWidget(SizingInformation si) {
           bgColor: grey,
           editEnable: false,
           text: profileController.profileDetails?.msisdn ?? '',
-          hintText: mobileNumberStr,
+          hintText: mobileNumberStr.tr,
         ),
       ],
     ),

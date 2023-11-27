@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
@@ -20,7 +21,7 @@ Widget profileActiveStatus() {
           //       '\n' +
           CustomText(
             alignment: TextAlign.center,
-            title: packNameStr,
+            title: packNameStr.tr,
             textColor: subTitleColor,
             fontName: si.isMobile ? FontName.bold : FontName.medium,
             fontSize: si.isMobile ? 12 : 14,

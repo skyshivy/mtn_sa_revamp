@@ -15,7 +15,7 @@ Widget tuneSettingDedicatedMsisdnView() {
       () {
         return CustomMsisdnTextField(
           countryCodeColor: black,
-          hintText: enterNuberStr,
+          hintText: enterNuberStr.tr,
           borderColor: borderColor,
           cornerRadius: 4,
           onChanged: (p0) {

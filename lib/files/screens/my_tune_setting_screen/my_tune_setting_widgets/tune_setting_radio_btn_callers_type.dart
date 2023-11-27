@@ -22,12 +22,13 @@ Widget tuneSettingRadioButtonCallersType() {
           Obx(() {
             return Row(
               children: [
-                _combinedWidget(0, cont.callerType.value == 0, allCallerStr),
+                _combinedWidget(0, cont.callerType.value == 0, allCallerStr.tr),
                 const SizedBox(width: 20),
-                _combinedWidget(1, cont.callerType.value == 1, callerGroupStr),
+                _combinedWidget(
+                    1, cont.callerType.value == 1, callerGroupStr.tr),
                 // const SizedBox(width: 20),
                 // _combinedWidget(
-                //     2, cont.callerType.value == 2, specificCallerStr),
+                //     2, cont.callerType.value == 2, specificCallerStr.tr),
               ],
             );
           })
@@ -38,8 +39,8 @@ Widget tuneSettingRadioButtonCallersType() {
 }
 
 Widget titleWidget() {
-  return const CustomText(
-    title: whomYouWantToPlayItStr,
+  return CustomText(
+    title: whomYouWantToPlayItStr.tr,
     fontName: FontName.bold,
     fontSize: 18,
   );

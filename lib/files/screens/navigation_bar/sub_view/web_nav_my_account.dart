@@ -26,11 +26,11 @@ class WebMyAccountButton extends StatefulWidget {
   }
 
   final List<MenuModel> items = [
-    MenuModel(profileStr, imageName: profileImg),
-    MenuModel(wishlistStr, imageName: favouriteImg),
+    MenuModel(profileStr.tr, imageName: profileImg),
+    MenuModel(wishlistStr.tr, imageName: favouriteImg),
     MenuModel(myTuneStr.tr, imageName: myTuneImg),
-    MenuModel(historyStr, imageName: historyImg),
-    MenuModel(logoutStr, imageName: logoutImg),
+    MenuModel(historyStr.tr, imageName: historyImg),
+    MenuModel(logoutStr.tr, imageName: logoutImg),
   ];
 }
 
@@ -83,11 +83,11 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
 
   void navigateTo(MenuModel item) {
     printCustom("Items tapped is ====== $item");
-    if (item.title == profileStr) {
+    if (item.title == profileStr.tr) {
       context.goNamed(profileGoRoute);
       //Get.toNamed(profileTapped);
       printCustom("profileTapped tapped");
-    } else if (item.title == wishlistStr) {
+    } else if (item.title == wishlistStr.tr) {
       //Get.toNamed(wishlistTapped);
 
       context.goNamed(wishlistGoRoute);
@@ -99,10 +99,10 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
     } else if (item.title == myTuneStr.tr) {
       context.goNamed(myTuneGoRoute);
       printCustom("myTuneTapped tapped");
-    } else if (item.title == logoutStr) {
+    } else if (item.title == logoutStr.tr) {
       context.go(homeGoRoute);
       StoreManager().logout();
-    } else if (item.title == historyStr) {
+    } else if (item.title == historyStr.tr) {
       context.goNamed(historyGoRoute);
     }
   }

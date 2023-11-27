@@ -27,7 +27,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
                 const SizedBox(height: 5),
                 Obx(() {
                   return CustomText(
-                    title: expireDateStr + " : " + cont.rrbtExpire.value,
+                    title: expireDateStr.tr + " : " + cont.rrbtExpire.value,
                     fontName: FontName.medium,
                     fontSize: 14,
                   );
@@ -49,7 +49,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
       mainAxisSize: si.isMobile ? MainAxisSize.max : MainAxisSize.min,
       children: [
         CustomText(
-          title: reverseRBTStatusStr,
+          title: reverseRBTStatusStr.tr,
           fontName: FontName.medium,
           fontSize: 14,
         ),
@@ -80,7 +80,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
               fontName: FontName.medium,
               fontSize: 12,
               onTap: () {
-                if (cont.activeRrbtButtonName.value == activeStr) {
+                if (cont.activeRrbtButtonName.value == activeStr.tr) {
                   cont.activeRrbtStatusAction();
                 } else {
                   cont.suspendRrbtStatusAction();
@@ -91,7 +91,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
         CustomButton(
           height: 35,
           titlePadding: EdgeInsets.symmetric(horizontal: 12),
-          title: unSubscribeStr,
+          title: unSubscribeStr.tr,
           textColor: white,
           color: blue,
           fontName: FontName.medium,

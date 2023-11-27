@@ -52,16 +52,19 @@ class ProfileController extends GetxController {
           packStatusModel.responseMap?.packStatusDetails;
       packName.value = details?.packName ?? '';
       tuneStatus.value = ((details?.activeCrbtStatus ?? '') == '1')
-          ? activeStr
-          : suspendStr; //details?.activeCrbtStatus ?? '';
-      rrbtStatus.value =
-          ((details?.activeRrbtStatus ?? '') == '1') ? activeStr : suspendStr;
+          ? activeStr.tr
+          : suspendStr.tr; //details?.activeCrbtStatus ?? '';
+      rrbtStatus.value = ((details?.activeRrbtStatus ?? '') == '1')
+          ? activeStr.tr
+          : suspendStr.tr;
       tuneExire.value = details?.crbtServiceExpiry ?? '';
       rrbtExpire.value = details?.rrbtServiceExpiry ?? '';
-      activeRrbtButtonName.value =
-          ((details?.activeRrbtStatus ?? '') == '1') ? suspendStr : activeStr;
-      activeTuneButtonName.value =
-          ((details?.activeCrbtStatus ?? '') == '1') ? suspendStr : activeStr;
+      activeRrbtButtonName.value = ((details?.activeRrbtStatus ?? '') == '1')
+          ? suspendStr.tr
+          : activeStr.tr;
+      activeTuneButtonName.value = ((details?.activeCrbtStatus ?? '') == '1')
+          ? suspendStr.tr
+          : activeStr.tr;
     }
     Map<String, dynamic>? res =
         await ProfileVM().getProfileDetail(StoreManager().msisdn);

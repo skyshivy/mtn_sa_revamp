@@ -114,10 +114,10 @@ Widget _dedicatedUserTextField() {
 }
 
 Widget _whenWantToPlayText() {
-  return const Padding(
+  return Padding(
     padding: EdgeInsets.symmetric(horizontal: 2),
     child: CustomText(
-      title: whenYouWantToPlayItStr,
+      title: whenYouWantToPlayItStr.tr,
       fontName: FontName.medium,
       fontSize: 16,
     ),
@@ -125,10 +125,10 @@ Widget _whenWantToPlayText() {
 }
 
 Widget _addNumberText() {
-  return const Padding(
+  return Padding(
     padding: EdgeInsets.symmetric(horizontal: 2),
     child: CustomText(
-      title: addNuberStr,
+      title: addNuberStr.tr,
       fontName: FontName.medium,
       fontSize: 16,
     ),

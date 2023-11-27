@@ -122,7 +122,7 @@ class BuyController extends GetxController {
         printCustom("Invalid number*******");
       }
     } else {
-      errorMessage.value = pleaseEnterValidMsisdnStr;
+      errorMessage.value = pleaseEnterValidMsisdnStr.tr;
     }
   }
 
@@ -153,7 +153,7 @@ class BuyController extends GetxController {
         await _generateOtp(msisdn, true);
         return;
       } else {
-        errorMessage.value = someThingWentWrongStr;
+        errorMessage.value = someThingWentWrongStr.tr;
         isVerifying.value = false;
       }
       printCustom("NewRegistrartionVm status $isRegistered");
@@ -186,7 +186,7 @@ class BuyController extends GetxController {
       //   return model;
       // }
     } else {
-      TonePriceModel model = TonePriceModel(message: someThingWentWrongStr);
+      TonePriceModel model = TonePriceModel(message: someThingWentWrongStr.tr);
       return model;
     }
   }
@@ -214,7 +214,7 @@ class BuyController extends GetxController {
         errorMessage.value = model.message ?? '';
       }
     } else {
-      errorMessage.value = someThingWentWrongStr;
+      errorMessage.value = someThingWentWrongStr.tr;
     }
     isVerifyingOtp.value = false;
   }
@@ -256,7 +256,7 @@ class BuyController extends GetxController {
 
       return;
     }
-    errorMessage.value = pleaseEnterAValidOtpStr;
+    errorMessage.value = pleaseEnterAValidOtpStr.tr;
   }
 
   Future<void> getSecurityTokenForOldUser() async {
@@ -319,7 +319,7 @@ class BuyController extends GetxController {
       successMessage.value = model.message ?? '';
       isVerifyingOtp.value = false;
       isVerifying.value = false;
-      errorMessage.value = model.message ?? someThingWentWrongStr;
+      errorMessage.value = model.message ?? someThingWentWrongStr.tr;
     }
   }
 
@@ -344,7 +344,7 @@ class BuyController extends GetxController {
       isVerifyingOtp.value = false;
       errorMessage.value = res.responseMap?.responseMessage ??
           res.message ??
-          someThingWentWrongStr;
+          someThingWentWrongStr.tr;
       isVerifying.value = false;
     }
   }

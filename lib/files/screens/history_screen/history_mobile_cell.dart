@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
@@ -88,13 +89,13 @@ class HistoryMobileCell extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         bottomTitleSubTitle(
-          transactionTypeStr,
+          transactionTypeStr.tr,
           info.transactionType ?? '',
           txtColor: ((info.transactionType ?? '') == "Activated")
               ? Colors.green
               : red,
         ),
-        bottomTitleSubTitle(channelStr, info.channel ?? '',
+        bottomTitleSubTitle(channelStr.tr, info.channel ?? '',
             crossAxisAlignment: CrossAxisAlignment.end),
       ],
     );

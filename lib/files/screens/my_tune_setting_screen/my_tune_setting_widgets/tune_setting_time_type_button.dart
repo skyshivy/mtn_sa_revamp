@@ -23,9 +23,9 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
   TuneSettingController con = Get.find();
   GlobalKey _key = GlobalKey();
   List<MenuModel> menuList = [
-    MenuModel(fullDay24HourStr),
-    MenuModel(selecteTimeStr),
-    MenuModel(selectRepeatStr)
+    MenuModel(fullDay24HourStr.tr),
+    MenuModel(selecteTimeStr.tr),
+    MenuModel(selectRepeatStr.tr)
   ];
   @override
   Widget build(BuildContext context) {
@@ -70,8 +70,8 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
   }
 
   Widget _titleWidget() {
-    return const CustomText(
-      title: selectTimeTypeStr,
+    return CustomText(
+      title: selectTimeTypeStr.tr,
       fontName: FontName.light,
       fontSize: 12,
       textColor: subTitleColor,
@@ -96,15 +96,15 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
   void action(MenuModel model) {
     con.isTime.value = false;
     printCustom("Model is name ${model.title}");
-    if (model.title == fullDay24HourStr) {
-      con.timeTypeBtm.value = fullDay24HourStr;
+    if (model.title == fullDay24HourStr.tr) {
+      con.timeTypeBtm.value = fullDay24HourStr.tr;
       con.updateTimeType(SelectTimeType.fullday);
-    } else if (model.title == selecteTimeStr) {
+    } else if (model.title == selecteTimeStr.tr) {
       con.isTime.value = true;
-      con.timeTypeBtm.value = selecteTimeStr;
+      con.timeTypeBtm.value = selecteTimeStr.tr;
       con.updateTimeType(SelectTimeType.time);
-    } else if (model.title == selectRepeatStr) {
-      con.timeTypeBtm.value = selectRepeatStr;
+    } else if (model.title == selectRepeatStr.tr) {
+      con.timeTypeBtm.value = selectRepeatStr.tr;
       con.updateTimeType(SelectTimeType.timeDate);
     }
   }

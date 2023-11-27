@@ -72,7 +72,7 @@ class GiftTuneController extends GetxController {
       await getTunePrice();
       return;
     } else {
-      errorMessage.value = model.message ?? someThingWentWrongStr;
+      errorMessage.value = model.message ?? someThingWentWrongStr.tr;
       isVerifing.value = false;
     }
 

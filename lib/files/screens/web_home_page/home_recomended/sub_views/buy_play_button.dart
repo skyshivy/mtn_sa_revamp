@@ -49,7 +49,7 @@ class BuyAndPlayButton extends StatelessWidget {
           ), //Image.asset(giftTuneSvg),
           fontSize: si.isMobile ? 13 : 15,
           titlePadding: const EdgeInsets.only(top: 4, left: 4),
-          title: giftStr,
+          title: giftStr.tr,
           fontName: si.isMobile ? FontName.medium : FontName.bold,
           borderColor: red,
           onTap: () {
@@ -61,7 +61,7 @@ class BuyAndPlayButton extends StatelessWidget {
               ));
             } else {
               Get.dialog(
-                  CustomAlertView(title: featureIsAvailableForLoggedInStr));
+                  CustomAlertView(title: featureIsAvailableForLoggedInStr.tr));
             }
           },
         );
@@ -93,9 +93,9 @@ class BuyAndPlayButton extends StatelessWidget {
   String playButtonTitleWidget(int index) {
     return (playerController.playingIndex.value == index)
         ? (playerController.isPlaying.value
-            ? (playerController.isBuffering.value ? "" : playingStr)
-            : playStr)
-        : playStr;
+            ? (playerController.isBuffering.value ? "" : playingStr.tr)
+            : playStr.tr)
+        : playStr.tr;
   }
 
   Widget playAndPauseButtonIcon(int index) {
@@ -128,7 +128,7 @@ class BuyAndPlayButton extends StatelessWidget {
             height: si.isMobile ? 15 : 18,
             width: si.isMobile ? 15 : 18,
           ),
-          title: buyStr,
+          title: buyStr.tr,
           textColor: white,
         );
       },

@@ -24,7 +24,7 @@ Widget tuneListPlayButton(TuneInfo info, int index) {
           borderColor: atomCryan,
           titlePadding: const EdgeInsets.symmetric(horizontal: 4),
           //color: yellow,
-          title: playStr,
+          title: playStr.tr,
           fontName: FontName.medium,
           fontSize: 16,
           leftWidget: _playAndPauseButtonIcon(pCont, index)

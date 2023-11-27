@@ -67,7 +67,7 @@ class CustomAlertView extends StatelessWidget {
         CustomButton(
             borderColor: greyDark,
             width: 120,
-            title: okStr,
+            title: okStr.tr,
             fontName: FontName.medium,
             onTap: () {
               //Get.back();

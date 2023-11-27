@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
@@ -205,8 +206,8 @@ Future<ListToneApk> newDetail(ListToneApk info, TimeType toneDetailTimeType,
 
   listToneApk.callerType = info.msisdnB ?? info.serviceName;
   listToneApk.status =
-      info.toneDetails?.first.isShuffle != null ? shuffleStr : activeStr;
-  listToneApk.playAt = isFullday ? fulldayStr : customStr;
+      info.toneDetails?.first.isShuffle != null ? shuffleStr.tr : activeStr.tr;
+  listToneApk.playAt = isFullday ? fulldayStr.tr : customStr.tr;
   listToneApk.packUserDetailsCrbt = info.packUserDetailsCrbt;
   listToneApk.serviceName = info.serviceName;
   listToneApk.groupId = info.groupId;

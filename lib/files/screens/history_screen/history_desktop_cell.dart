@@ -93,7 +93,7 @@ class HistoryDesktopCell extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CustomText(
-          title: transactionTypeStr,
+          title: transactionTypeStr.tr,
           fontName: FontName.bold,
           fontSize: 14,
         ),
@@ -116,7 +116,7 @@ class HistoryDesktopCell extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CustomText(
-          title: channelStr,
+          title: channelStr.tr,
           fontName: FontName.bold,
           fontSize: 14,
         ),

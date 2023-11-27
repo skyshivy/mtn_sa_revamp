@@ -105,7 +105,7 @@ class BuyOtpView extends StatelessWidget {
           enabled: !buyController.isVerifyingOtp.value,
           height: si.isMobile ? 40 : 44,
           cornerRadius: si.isMobile ? 20 : 22,
-          hintText: enter6DigitOtpStr,
+          hintText: enter6DigitOtpStr.tr,
           borderColor: textFieldBorderColorChange(),
           text: buyController.otp.value,
           addCountryCode: false,
@@ -170,7 +170,7 @@ class BuyOtpView extends StatelessWidget {
   }
 
   Widget titleWidget() {
-    String title = enter6DigitOtpStr;
+    String title = enter6DigitOtpStr.tr;
     return ResponsiveBuilder(
       builder: (context, si) {
         return Row(
@@ -194,9 +194,9 @@ class BuyOtpView extends StatelessWidget {
 
   Widget subTitleWidget() {
     // ignore: prefer_interpolation_to_compose_strings
-    var title = oneTimePasswordHasBeenSentStr +
+    var title = oneTimePasswordHasBeenSentStr.tr +
         ' ' +
-        countryCodeStr +
+        countryCodeStr.tr +
         "-" +
         "${buyController.msisdn}";
 
@@ -243,7 +243,7 @@ class BuyOtpView extends StatelessWidget {
   }
 
   String requestButtonTitle() {
-    return verifyOTPStr;
+    return verifyOTPStr.tr;
   }
 
   Color requestButtonColor() {

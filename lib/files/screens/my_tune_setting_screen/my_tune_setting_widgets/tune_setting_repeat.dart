@@ -15,8 +15,8 @@ Widget tuneSettingRepeatView() {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       SizedBox(height: 20),
-      const CustomText(
-        title: repeatStr,
+      CustomText(
+        title: repeatStr.tr,
         fontName: FontName.medium,
         fontSize: 14,
       ),
@@ -40,7 +40,7 @@ Widget _noneButton(TuneSettingController con) {
       height: 35,
       fontName: FontName.medium,
       textColor: (con.repeatYear.value == 0) ? white : black,
-      title: noneStr,
+      title: noneStr.tr,
       borderColor: (con.repeatYear.value == 0) ? null : atomCryan,
       color: (con.repeatYear.value == 0) ? blue : white,
       titlePadding: const EdgeInsets.symmetric(horizontal: 16),
@@ -56,7 +56,7 @@ Widget _monthlyButton(TuneSettingController con) {
     return CustomButton(
       height: 35,
       fontName: FontName.medium,
-      title: monthlyStr,
+      title: monthlyStr.tr,
       textColor: (con.repeatYear.value == 1) ? white : black,
       borderColor: (con.repeatYear.value == 1) ? null : atomCryan,
       color: (con.repeatYear.value == 1) ? blue : white,
@@ -73,7 +73,7 @@ Widget _yearlyButton(TuneSettingController con) {
     return CustomButton(
       height: 35,
       fontName: FontName.medium,
-      title: yearlyStr,
+      title: yearlyStr.tr,
       textColor: (con.repeatYear.value == 2) ? white : black,
       borderColor: (con.repeatYear.value == 2) ? null : atomCryan,
       color: (con.repeatYear.value == 2) ? blue : white,

@@ -142,7 +142,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
 
   CustomText titleWidget(SizingInformation si) {
     return CustomText(
-      title: giftStr,
+      title: giftStr.tr,
       fontName: FontName.extraBold,
       fontSize: si.isMobile ? 14 : 18,
     );
@@ -191,7 +191,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
   Widget friendNumber() {
     return Obx(() {
       return CustomMsisdnTextField(
-        hintText: pleaseEnterFriendNumberStr,
+        hintText: pleaseEnterFriendNumberStr.tr,
         enabled: !cont.isVerifing.value,
         height: 40,
         text: cont.bPartyMsisdn.value,
@@ -222,7 +222,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
 
   CustomText tuneChargeTitle() {
     return CustomText(
-      title: tuneChargeStr,
+      title: tuneChargeStr.tr,
       fontName: FontName.bold,
     );
   }
@@ -267,7 +267,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
 
   CustomButton cancelButton(BuildContext context) {
     return CustomButton(
-      title: cancelStr,
+      title: cancelStr.tr,
       fontName: FontName.bold,
       borderColor: atomCryan,
       onTap: () {

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -24,18 +25,18 @@ Widget myTuneOvalShapre() {
 }
 
 Widget _title() {
-  return const Column(
+  return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       CustomText(
-        title: setYourTunesStr,
+        title: setYourTunesStr.tr,
         fontName: FontName.bold,
         fontSize: 20,
         textColor: white,
       ),
       CustomText(
-        title: customiseYourTunesStr,
+        title: customiseYourTunesStr.tr,
         fontName: FontName.medium,
         fontSize: 16,
         textColor: white,

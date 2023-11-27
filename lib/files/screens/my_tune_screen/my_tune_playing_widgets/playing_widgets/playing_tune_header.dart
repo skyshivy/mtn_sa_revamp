@@ -35,7 +35,7 @@ Widget myTuneplayingHeaderView() {
 
 Widget _leftWidget(SizingInformation si) {
   return CustomText(
-    title: currentlyPlayingToMyCallerStr,
+    title: currentlyPlayingToMyCallerStr.tr,
     fontName: FontName.light,
     fontSize: si.isMobile ? 18 : 30,
   );
@@ -43,7 +43,7 @@ Widget _leftWidget(SizingInformation si) {
 
 Widget _suffleText(SizingInformation si) {
   return CustomText(
-    title: shuffleStr,
+    title: shuffleStr.tr,
     fontName: FontName.light,
     fontSize: si.isMobile ? 14 : 18,
     textColor: subTitleColor,

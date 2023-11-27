@@ -40,8 +40,8 @@ InkWell buttonWidget(TunePreviewController pCont, TuneInfo info) {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SvgPicture.asset(wishlistSvg),
-        const CustomText(
-          title: wishlistStr,
+        CustomText(
+          title: wishlistStr.tr,
           fontName: FontName.medium,
           fontSize: 12,
         ),

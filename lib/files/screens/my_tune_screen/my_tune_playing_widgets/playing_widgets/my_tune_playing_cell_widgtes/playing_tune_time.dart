@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/home_cell_title_sub_title.dart';
@@ -16,11 +17,11 @@ Widget playingTuneTimeView(ListToneApk item) {
 }
 
 Widget _startTime(ListToneApk item) {
-  return _titleSubTitleWidget(startTimeStr, item.sTime ?? '');
+  return _titleSubTitleWidget(startTimeStr.tr, item.sTime ?? '');
 }
 
 Widget _endTime(ListToneApk item) {
-  return _titleSubTitleWidget(startTimeStr, item.eTime ?? '');
+  return _titleSubTitleWidget(startTimeStr.tr, item.eTime ?? '');
 }
 
 Widget _titleSubTitleWidget(String title, String subTitle) {

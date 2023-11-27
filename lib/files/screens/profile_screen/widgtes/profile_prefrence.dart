@@ -23,8 +23,8 @@ Widget profilePreferenceWidget(
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisSize: MainAxisSize.min,
     children: [
-      const CustomText(
-          title: preferenceStr, fontName: FontName.medium, fontSize: 14),
+      CustomText(
+          title: preferenceStr.tr, fontName: FontName.medium, fontSize: 14),
       const SizedBox(height: 6),
       si.isMobile ? alignedGrid(si, controller) : Flexible(child: gridView(si))
     ],

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
@@ -33,12 +34,12 @@ class TuneSettingTimeView extends StatelessWidget {
                       onTap: () {
                         fromTapped(context);
                       },
-                      child: titleSubtitleWidget(fromTimeStr, "10:20")),
+                      child: titleSubtitleWidget(fromTimeStr.tr, "10:20")),
                   InkWell(
                       onTap: () {
                         toTapped(context);
                       },
-                      child: titleSubtitleWidget(toTimeStr, "16:50")),
+                      child: titleSubtitleWidget(toTimeStr.tr, "16:50")),
                 ],
               ),
             ],

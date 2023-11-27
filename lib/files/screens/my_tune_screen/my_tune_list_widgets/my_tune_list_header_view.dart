@@ -36,8 +36,8 @@ Widget _leftWidget() {
         fontName: FontName.bold,
         fontSize: 24,
       ),
-      const CustomText(
-        title: howToPlaySelectedTunesToYourCallersStr,
+      CustomText(
+        title: howToPlaySelectedTunesToYourCallersStr.tr,
         fontName: FontName.medium,
         maxLine: 2,
         textColor: subTitleColor,
@@ -52,11 +52,11 @@ Widget _rightWidget() {
     scrollDirection: Axis.horizontal,
     shrinkWrap: true,
     children: [
-      _titleWidget(tunesStr, isBold: true),
+      _titleWidget(tunesStr.tr, isBold: true),
       _divider(),
-      _titleWidget(profileTunesStr),
+      _titleWidget(profileTunesStr.tr),
       _divider(),
-      _titleWidget(musicBundleStr),
+      _titleWidget(musicBundleStr.tr),
     ],
   );
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -21,8 +22,8 @@ Widget playingTuneRepeatDays(ListToneApk item) {
 }
 
 Widget _repeat() {
-  return const CustomText(
-    title: repeatStr,
+  return CustomText(
+    title: repeatStr.tr,
     fontName: FontName.light,
     fontSize: 13,
     textColor: subTitleColor,
@@ -36,13 +37,13 @@ Widget _dayListView(ListToneApk item) {
       scrollDirection: Axis.horizontal,
       shrinkWrap: true,
       children: [
-        _dayButton("S", item, 1),
-        _dayButton("M", item, 2),
-        _dayButton("T", item, 3),
-        _dayButton("W", item, 4),
-        _dayButton("T", item, 5),
-        _dayButton("F", item, 6),
-        _dayButton("S", item, 7),
+        _dayButton(sStr.tr, item, 1),
+        _dayButton(mStr.tr, item, 2),
+        _dayButton(tuStr.tr, item, 3),
+        _dayButton(wStr.tr, item, 4),
+        _dayButton(tStr.tr, item, 5),
+        _dayButton(fStr.tr, item, 6),
+        _dayButton(saStr.tr, item, 7),
       ],
     ),
   );

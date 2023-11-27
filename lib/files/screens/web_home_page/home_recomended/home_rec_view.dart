@@ -68,7 +68,7 @@ class _LandingRecoViewState extends State<LandingRecoView> {
               context.goNamed(moreGoRoute, extra: list);
               printCustom("See more tapped");
             },
-            title: seeMoreStr,
+            title: seeMoreStr.tr,
             fontName: FontName.bold,
             fontSize: si.isMobile ? 12 : 18,
           ),

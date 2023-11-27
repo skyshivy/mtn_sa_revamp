@@ -33,8 +33,8 @@ Widget tunePreviewTellFriendView(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset(tellFriendSvg),
-          const CustomText(
-            title: giftStr,
+          CustomText(
+            title: giftStr.tr,
             fontName: FontName.medium,
             fontSize: 12,
           ),
