@@ -52,7 +52,9 @@ void main() async {
 }
 
 initStoreManager() async {
+  StoreManager().prefs = await SharedPreferences.getInstance();
   await StoreManager().initStoreManager();
+  StoreManager().prefs = await SharedPreferences.getInstance();
 }
 
 Future<String> getJson() async {
