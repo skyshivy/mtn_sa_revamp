@@ -99,7 +99,7 @@ class WebNavBarView extends StatelessWidget {
     return Row(
       children: [
         //HomeSearchWidget(),
-        langugaeButton(context),
+        //langugaeButton(context),
         leftSpacing(),
         Obx(() {
           return appController.isLoggedIn.value

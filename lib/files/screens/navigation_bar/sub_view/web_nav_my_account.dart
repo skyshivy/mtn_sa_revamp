@@ -25,7 +25,7 @@ class WebMyAccountButton extends StatefulWidget {
     return _WebMyAccountButtonState();
   }
 
-  List<MenuModel> items = [
+  final List<MenuModel> items = [
     MenuModel(profileStr, imageName: profileImg),
     MenuModel(wishlistStr, imageName: favouriteImg),
     MenuModel(myTuneStr.tr, imageName: myTuneImg),
