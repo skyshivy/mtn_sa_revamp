@@ -12,6 +12,7 @@ import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/view_model/active_suspend_api.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/profile_vm.dart';
 
@@ -184,11 +185,13 @@ class ProfileController extends GetxController {
   }
 
   activeTuneStatusAction() {
+    activeSuspendApi(packName.value, true, true);
     printCustom("activeTuneStatusAction");
   }
 
   suspendTuneStatusAction() {
     printCustom("suspendTuneStatusAction");
+    activeSuspendApi(packName.value, false, true);
   }
 
   unsubscribeTuneStatusAction() {
@@ -197,10 +200,12 @@ class ProfileController extends GetxController {
 
   activeRrbtStatusAction() {
     printCustom("activeRrbtStatusAction");
+    activeSuspendApi(packName.value, true, false);
   }
 
   suspendRrbtStatusAction() {
     printCustom("suspendRrbtStatusAction");
+    activeSuspendApi(packName.value, false, false);
   }
 
   unSubscribeRrbtStatusAction() {
