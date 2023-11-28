@@ -32,8 +32,8 @@ Map<String, String> brBR = {
   loginStr: "ဝင်ရောက်မည်",
   //===============
 
-  englishStr: "EN",
-  burmeseStr: "BR",
+  englishStr: "English",
+  burmeseStr: "Burmese",
 
   channelStr: "Channel",
 
