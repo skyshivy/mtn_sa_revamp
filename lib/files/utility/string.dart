@@ -1,3 +1,4 @@
+const testStr = "Testing string";
 const myTuneStr = "My Tunes";
 const aboutStr = "About";
 const homeStr = "Home";
@@ -172,3 +173,5 @@ const myTuneLocationValueStr =
 const tuneSuffleOnMessageStr =
     "Your suffle will be disabled and your callers will only listen to the latest tune. Your advance settings will remain unaffected.";
 const tuneSuffleOffMessageStr = "Do you want to enable suffle?";
+const languageChangeConfirmMessageStr =
+    "Are you sure you want to change language?";

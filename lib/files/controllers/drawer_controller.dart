@@ -26,6 +26,7 @@ class MyDrawerController extends GetxController {
         DrawerModel(tunesStr.tr, isExpanded: true),
         DrawerModel(historyStr.tr),
         //DrawerModel(faqStr.tr),
+        DrawerModel(StoreManager().isEnglish ? burmeseStr : englishStr),
         DrawerModel(logoutStr.tr),
       ];
     } else {
@@ -33,6 +34,7 @@ class MyDrawerController extends GetxController {
         DrawerModel(tunesStr.tr, isExpanded: true),
         DrawerModel(signinStr.tr),
         //DrawerModel(faqStr.tr),
+        DrawerModel(StoreManager().isEnglish ? burmeseStr : englishStr),
       ];
     }
   }

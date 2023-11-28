@@ -6,6 +6,9 @@ import 'package:get/instance_manager.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/drawer_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
@@ -135,7 +138,11 @@ _tappedOnSubCell(BuildContext context, AppCategory cat) async {
 
 _tappedOnCell(BuildContext context, String title) async {
   printCustom("=========_tappedOnCell==============");
-  Navigator.pop(context);
+  if ((title == englishStr.tr) || (title == burmeseStr.tr)) {
+  } else {
+    Navigator.pop(context);
+  }
+
   await Future.delayed(const Duration(milliseconds: 100));
   if (title == profileStr.tr) {
     context.goNamed(profileGoRoute);
@@ -154,9 +161,30 @@ _tappedOnCell(BuildContext context, String title) async {
     printCustom("Logout btapped");
     StoreManager().logout();
   } else if (title == signinStr.tr) {
-    Get.dialog(LoginScreen(), barrierDismissible: false);
+    Get.dialog(const LoginScreen(), barrierDismissible: false);
   } else if (title == historyStr.tr) {
     context.goNamed(historyGoRoute);
+  } else if ((title == englishStr.tr) || (title == burmeseStr.tr)) {
+    Get.dialog(CustomConfirmAlertView(
+      message: languageChangeConfirmMessageStr,
+      okTitle: confirmStr,
+      cancelTitle: cancelStr,
+      onOk: () async {
+        print("Change langugage here");
+        BannerController banCont = Get.find();
+        RecoController recCont = Get.find();
+        StoreManager().setLanguageEnglish(!StoreManager().isEnglish);
+        await Future.delayed(const Duration(milliseconds: 300));
+        context.go(homeGoRoute);
+
+        await Future.delayed(const Duration(milliseconds: 300));
+        banCont.getBanner();
+        recCont.getTabList();
+        Navigator.pop(context);
+        printCustom(
+            "is selected languagage is English ${StoreManager().isEnglish}");
+      },
+    ));
   } else {
     printCustom("=========Default tapped==============");
   }

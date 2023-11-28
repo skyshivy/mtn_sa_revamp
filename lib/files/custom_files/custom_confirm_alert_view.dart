@@ -103,7 +103,7 @@ class CustomConfirmAlertView extends StatelessWidget {
                 child: CustomButton(
                   fontSize: si.isMobile ? null : 16,
                   color: white,
-                  title: okTitle,
+                  title: okTitle ?? okStr,
                   //fontName: si.isMobile ? FontName.medium : FontName.bold,
                   onTap: () {
                     Navigator.of(context).pop();

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 class CustomText extends StatelessWidget {
@@ -29,7 +30,9 @@ class CustomText extends StatelessWidget {
       maxLines: maxLine,
       style: TextStyle(
         fontFamily: fontName!.name,
-        fontSize: fontSize,
+        fontSize: (fontSize == null)
+            ? fontSize
+            : (fontSize! * (StoreManager().isEnglish ? 1 : 0.95)),
         color: textColor,
       ),
     );

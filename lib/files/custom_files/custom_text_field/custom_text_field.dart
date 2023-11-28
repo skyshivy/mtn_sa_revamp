@@ -80,7 +80,7 @@ class CustomTextField extends StatelessWidget {
   TextEditingController textEditingController() {
     return TextEditingController.fromValue(
       TextEditingValue(
-          text: text,
+          text: text.tr,
           selection: TextSelection(
             baseOffset: text.length,
             extentOffset: text.length,

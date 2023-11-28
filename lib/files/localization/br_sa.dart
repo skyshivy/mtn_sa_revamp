@@ -1,6 +1,7 @@
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Map<String, String> brBR = {
+  testStr: "ကုဒ်နံပါတ်",
   codeStr: "ကုဒ်နံပါတ်",
   songStr: "သီချင်း",
   singerStr: "အဆိုတော်",
@@ -171,4 +172,5 @@ Map<String, String> brBR = {
   tuneSuffleOnMessageStr:
       "Your suffle will be disabled and your callers will only listen to the latest tune. Your advance settings will remain unaffected.",
   tuneSuffleOffMessageStr: "Do you want to enable suffle?",
+  languageChangeConfirmMessageStr: "Are you sure you want to change language?",
 };

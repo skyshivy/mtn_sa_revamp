@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -37,7 +38,7 @@ class CustomTextButton extends StatelessWidget {
       child: Padding(
         padding: titlePadding,
         child: CustomText(
-          title: title,
+          title: title.tr,
           textColor: textColor,
           fontName: fontName,
           fontSize: fontSize,

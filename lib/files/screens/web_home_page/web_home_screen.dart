@@ -17,6 +17,7 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_bottom_secti
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/home_rec_view.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class WebLandingPage extends StatefulWidget {

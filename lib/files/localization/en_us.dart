@@ -1,6 +1,7 @@
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Map<String, String> enUS = {
+  testStr: "Testing string",
   myTuneStr: "My Tunes",
   aboutStr: "About",
   homeStr: "Home",
@@ -158,4 +159,5 @@ Map<String, String> enUS = {
   tuneSuffleOnMessageStr:
       "Your suffle will be disabled and your callers will only listen to the latest tune. Your advance settings will remain unaffected.",
   tuneSuffleOffMessageStr: "Do you want to enable suffle?",
+  languageChangeConfirmMessageStr: "Are you sure you want to change language?",
 };
