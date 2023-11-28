@@ -147,7 +147,7 @@ class TuneSettingController extends GetxController {
       case ToWhomAction.specificCaller:
         if (msisdn.isEmpty ||
             (msisdn.value.length < StoreManager().msisdnLength)) {
-          showSnackBar(message: pleaseEnterValidMsisdnStr);
+          showSnackBar(message: pleaseEnterValidMsisdnStr.tr);
           return;
         }
         _setTuneForSpecificCaller();
@@ -220,7 +220,7 @@ class TuneSettingController extends GetxController {
         return;
       }
     }
-    showSnackBar(message: someThingWentWrongStr);
+    showSnackBar(message: someThingWentWrongStr.tr);
   }
 
   _allCallerFullDay() async {

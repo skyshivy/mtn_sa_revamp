@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
@@ -28,12 +29,12 @@ class LandingInfoPage extends StatelessWidget {
             children: [
               const SizedBox(height: 30),
               expressWidget(),
-              infoDot(homeInfo1),
-              infoDot(homeInfo2),
-              infoDot(homeInfo3),
-              infoDot(homeInfo4),
-              infoDot(homeInfo5),
-              infoDot(homeInfo6),
+              infoDot(homeInfo1.tr),
+              infoDot(homeInfo2.tr),
+              infoDot(homeInfo3.tr),
+              infoDot(homeInfo4.tr),
+              infoDot(homeInfo5.tr),
+              infoDot(homeInfo6.tr),
             ],
           )),
         ],
@@ -43,7 +44,7 @@ class LandingInfoPage extends StatelessWidget {
 
   CustomText expressWidget() {
     return CustomText(
-      title: express,
+      title: express.tr,
       fontName: FontName.bold,
       fontSize: fontSize(20, 50),
     );
