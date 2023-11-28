@@ -176,3 +176,7 @@ const tuneSuffleOffMessageStr = "Do you want to enable suffle?";
 const languageChangeConfirmMessageStr =
     "Are you sure you want to change language?";
 const resumeStr = "Resume";
+const yourServiceIsCurrentlyRunningStr = "Your service is currently running.";
+const yourServiceIsNotCurrentlyRunningStr =
+    "You have temporarily suspended your  service.";
+const notSubscribedToAnyService = "You are not subscribed to mytune service.";

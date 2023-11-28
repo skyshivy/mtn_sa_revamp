@@ -13,29 +13,43 @@ class ProfileReverseRbtStatus extends StatelessWidget {
   ProfileController cont = Get.find();
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
-      builder: (context, si) {
-        return Container(
-          decoration: contanerDecoration(),
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                firstRowWidget(si),
-                const SizedBox(height: 5),
-                Obx(() {
-                  return CustomText(
-                    title: expireDateStr.tr + " : " + cont.rrbtExpire.value,
-                    fontName: FontName.medium,
-                    fontSize: 14,
-                  );
-                }),
-                const SizedBox(height: 15),
-                secondRowWidget(si),
-              ],
-            ),
+    return Obx(
+      () {
+        return Visibility(
+          visible: cont.isHideRRBTStatus.value,
+          child: ResponsiveBuilder(
+            builder: (context, si) {
+              return Container(
+                decoration: contanerDecoration(),
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      firstRowWidget(si),
+                      const SizedBox(height: 5),
+                      Obx(() {
+                        return CustomText(
+                          title:
+                              expireDateStr.tr + " : " + cont.rrbtExpire.value,
+                          fontName: FontName.medium,
+                          fontSize: 14,
+                        );
+                      }),
+                      const SizedBox(height: 4),
+                      CustomText(
+                        title: cont.rrbtStatusMessage,
+                        fontName: FontName.medium,
+                        fontSize: 14,
+                      ),
+                      const SizedBox(height: 15),
+                      secondRowWidget(si),
+                    ],
+                  ),
+                ),
+              );
+            },
           ),
         );
       },

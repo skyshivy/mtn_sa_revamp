@@ -112,6 +112,7 @@ class ServiceCall {
 
       stringData = await response1.transform(utf8.decoder).join();
       printCustom(stringData);
+
       printCustom("resp code is ${response1.statusCode}");
       if (response1.statusCode == 200) {
         Map<String, dynamic> valueMap = json.decode(stringData);

@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/model/edit_profile.dart';
 import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
+import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/profile_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -17,10 +18,15 @@ import 'package:mtn_sa_revamp/files/view_model/profile_vm.dart';
 class ProfileController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool editEnable = false.obs;
+  RxBool isHideCRBTStatus = true.obs;
+  RxBool isHideRRBTStatus = true.obs;
   RxString userName = ''.obs;
   RxBool isSaving = false.obs;
   RxString packName = ''.obs;
   RxString tuneStatus = ''.obs;
+  String tuneStatusMessage = '';
+  String rrbtStatusMessage = '';
+  RxBool isBothStatusHidden = true.obs;
   RxString rrbtStatus = ''.obs;
   RxString tuneExire = ''.obs;
   RxString rrbtExpire = ''.obs;
@@ -37,7 +43,66 @@ class ProfileController extends GetxController {
     if (result != null) {
       CategoryModel model = CategoryModel.fromJson(result);
       catList.value = model.responseMap?.categories ?? [];
+      print("category is ${catList.length}");
     }
+  }
+
+  Future<void> getCrbtPackStatus() async {
+    PackStatusModel? packStatusModel = await getPackStatusApiCall(isCrbt: true);
+
+    if (packStatusModel.statusCode == 'SC0000') {
+      isHideCRBTStatus.value =
+          (packStatusModel.responseMap?.packStatusDetails?.packName != null);
+
+      return;
+    }
+    isHideCRBTStatus.value = true;
+  }
+
+  Future<void> getRrbtPackStatus() async {
+    PackStatusModel? packStatusModel =
+        await getPackStatusApiCall(isCrbt: false);
+    if (packStatusModel.statusCode == 'SC0000') {
+      isHideRRBTStatus.value =
+          (packStatusModel.responseMap?.packStatusDetails?.packName != null);
+      return;
+    }
+    isHideRRBTStatus.value = true;
+  }
+
+  Future<PlayingTuneModel?> getMyTunes() async {
+    PlayingTuneModel? playing;
+    Map<String, dynamic>? result = await ServiceCall().get(getPlayingTunesUrl);
+    print("result si ");
+    if (result != null) {
+      PlayingTuneModel? mod = PlayingTuneModel.fromJson(result);
+      playing = PlayingTuneModel.fromJson(result);
+      if (mod.statusCode == "SC0000") {
+        PackUserDetailsCrbt? detail =
+            mod.responseMap?.listToneApk?.first.packUserDetailsCrbt;
+        String suspendStatus = detail?.isSuspend ?? '';
+        String suspendStatus1 = detail?.isSuspend ?? '';
+        tuneExire.value = detail?.packExpiry ?? '';
+        packName.value = detail?.packName ?? '';
+        activeRrbtButtonName.value =
+            (suspendStatus == "T") ? resumeStr : suspendStr;
+        activeTuneButtonName.value =
+            (suspendStatus1 == "T") ? resumeStr : suspendStr;
+        rrbtStatusMessage = (suspendStatus1 == "T")
+            ? yourServiceIsNotCurrentlyRunningStr
+            : yourServiceIsCurrentlyRunningStr;
+        tuneStatusMessage = (suspendStatus1 == "T")
+            ? yourServiceIsNotCurrentlyRunningStr
+            : yourServiceIsCurrentlyRunningStr;
+        rrbtStatus.value = (suspendStatus == "T") ? suspendStr : activeStr;
+        tuneStatus.value = (suspendStatus == "T") ? suspendStr : activeStr;
+
+        return playing;
+      } else {
+        return playing;
+      }
+    }
+    return playing;
   }
 
   getProfileDetail() async {
@@ -45,27 +110,13 @@ class ProfileController extends GetxController {
     isLoading.value = true;
     //await ServiceCall().regenarateTokenFromOtherClass();
     await getPref();
-    PackStatusModel? packStatusModel = await getPackStatusApiCall(isCrbt: true);
+    await getCrbtPackStatus();
+    await getRrbtPackStatus();
+    await getMyTunes();
+//isBothStatusHidden.value = isHideCRBTStatus.value;
+    isBothStatusHidden.value =
+        (isHideCRBTStatus.value || isHideRRBTStatus.value);
 
-    if (packStatusModel.statusCode == 'SC0000') {
-      PackStatusDetails? details =
-          packStatusModel.responseMap?.packStatusDetails;
-      packName.value = details?.packName ?? '';
-      tuneStatus.value = ((details?.activeCrbtStatus ?? '') == '1')
-          ? activeStr.tr
-          : suspendStr.tr; //details?.activeCrbtStatus ?? '';
-      rrbtStatus.value = ((details?.activeRrbtStatus ?? '') == '1')
-          ? activeStr.tr
-          : suspendStr.tr;
-      tuneExire.value = details?.crbtServiceExpiry ?? '';
-      rrbtExpire.value = details?.rrbtServiceExpiry ?? '';
-      activeRrbtButtonName.value = ((details?.activeRrbtStatus ?? '') == '1')
-          ? suspendStr.tr
-          : activeStr.tr;
-      activeTuneButtonName.value = ((details?.activeCrbtStatus ?? '') == '1')
-          ? suspendStr.tr
-          : activeStr.tr;
-    }
     Map<String, dynamic>? res =
         await ProfileVM().getProfileDetail(StoreManager().msisdn);
 

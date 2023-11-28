@@ -17,6 +17,7 @@ import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_subsc
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_tune_status.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_user_name.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -128,6 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       mainAxisSize: MainAxisSize.min,
       children: [
         userDetailWidget(si),
+        inCaseOfBothCardHidden(si),
         const SizedBox(height: 25),
         statusWidgets(),
         const SizedBox(height: 20),
@@ -137,11 +139,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  Widget inCaseOfBothCardHidden(SizingInformation si) {
+    return Obx(() {
+      return Visibility(
+        visible: !profileController.isBothStatusHidden.value,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 25),
+          child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4), color: grey),
+              child: Center(
+                  child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 20, vertical: si.isMobile ? 20 : 30),
+                child: CustomText(
+                  title: notSubscribedToAnyService,
+                  alignment: TextAlign.center,
+                  fontName: FontName.medium,
+                  fontSize: si.isMobile ? 13 : 16,
+                ),
+              ))),
+        ),
+      );
+    });
+  }
+
   Widget statusWidgets() {
     return Wrap(
       runSpacing: 10,
       children: [
-        ProfileTuneStatus(),
+        ProfileCrbtTuneStatus(),
         SizedBox(width: 20),
         ProfileReverseRbtStatus(),
       ],

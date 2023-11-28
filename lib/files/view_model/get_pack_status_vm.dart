@@ -14,7 +14,31 @@ Future<PackStatusModel> getPackStatusApiCall({bool isCrbt = true}) async {
   String priority = isCrbt ? "0" : "1";
   String url =
       "${getpackStatusUrl}msisdn=$msisdn&language=$lang&priority=$priority";
-  Map<String, dynamic>? map = await ServiceCall().get(url);
+  //Map<String, dynamic>? map = await ServiceCall().get(url);
+
+  String str = """{
+    "responseMap": {
+        "packStatusDetails": {
+            "languageId": "1",
+            "packName": "CRBT_DAILY"
+          
+        }
+    },
+    "message": "Success",
+    "respTime": "Nov 28, 2023 4:14:26 PM",
+    "statusCode": "SC0000"
+}""";
+  String str1 = """{
+    "responseMap": {
+        "packStatusDetails": {
+            "languageId": "1",
+            "packName": "CRBT_DAILY"
+        }
+    },
+    "message": "Success",
+    "respTime": "Nov 28, 2023 4:14:26 PM",
+    "statusCode": "SC0000"
+}""";
 /*
   // below for testing perpose
   String str = """{
@@ -23,7 +47,7 @@ Future<PackStatusModel> getPackStatusApiCall({bool isCrbt = true}) async {
          "activeRRBTStatus":"1",
          "activeCRBTStatus":"1",
          "languageId":"1",
-         "packName":"WEEKLY",
+         "packName": "CRBT_DAILY",
          "rrbtServiceExpiry":"2023-11-10",
          "crbtServiceExpiry":"2023-11-23"
       }
@@ -34,6 +58,7 @@ Future<PackStatusModel> getPackStatusApiCall({bool isCrbt = true}) async {
 }""";
   Map<String, dynamic> map = json.decode(str);
 */
+  Map<String, dynamic> map = json.decode(isCrbt ? str : str1);
   printCustom("Map is ========= $map");
   if (map != null) {
     PackStatusModel model = PackStatusModel.fromJson(map);

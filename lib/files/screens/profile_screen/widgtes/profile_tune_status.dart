@@ -8,35 +8,49 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class ProfileTuneStatus extends StatelessWidget {
+class ProfileCrbtTuneStatus extends StatelessWidget {
   ProfileController cont = Get.find();
-  ProfileTuneStatus({super.key});
+  ProfileCrbtTuneStatus({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
-      builder: (context, sizingInformation) {
-        return Container(
-          decoration: contanerDecoration(),
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                firstRowWidget(sizingInformation),
-                const SizedBox(height: 5),
-                Obx(() {
-                  return CustomText(
-                    title: expireDateStr.tr + " : " + cont.tuneExire.value,
-                    fontName: FontName.medium,
-                    fontSize: 14,
-                  ); //expireDateStr.tr + " : " + '12/10/23'),
-                }),
-                const SizedBox(height: 15),
-                secondRowWidget(sizingInformation),
-              ],
-            ),
+    return Obx(
+      () {
+        return Visibility(
+          visible: cont.isHideCRBTStatus.value,
+          child: ResponsiveBuilder(
+            builder: (context, sizingInformation) {
+              return Container(
+                decoration: contanerDecoration(),
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      firstRowWidget(sizingInformation),
+                      const SizedBox(height: 5),
+                      Obx(() {
+                        return CustomText(
+                          title:
+                              "${expireDateStr.tr} : ${cont.tuneExire.value}",
+                          fontName: FontName.medium,
+                          fontSize: 14,
+                        ); //expireDateStr.tr + " : " + '12/10/23'),
+                      }),
+                      const SizedBox(height: 4),
+                      CustomText(
+                        title: cont.tuneStatusMessage,
+                        fontName: FontName.medium,
+                        fontSize: 14,
+                      ),
+                      const SizedBox(height: 15),
+                      secondRowWidget(sizingInformation),
+                    ],
+                  ),
+                ),
+              );
+            },
           ),
         );
       },

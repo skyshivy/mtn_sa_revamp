@@ -180,4 +180,8 @@ Map<String, String> brBR = {
   tuneSuffleOffMessageStr: "Do you want to enable suffle?",
   languageChangeConfirmMessageStr: "Are you sure you want to change language?",
   resumeStr: "Resume",
+  yourServiceIsCurrentlyRunningStr: "Your service is currently running.",
+  yourServiceIsNotCurrentlyRunningStr:
+      "You have temporarily suspended your  service.",
+  notSubscribedToAnyService: "You are not subscribed to mytune service.",
 };
