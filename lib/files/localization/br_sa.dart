@@ -18,6 +18,18 @@ Map<String, String> brBR = {
   unSubscribeStr: 'ဝန်ဆောင်မှုကို ပယ်ဖျက်မည်',
   settingStr: "ချိန်ညှိချက်မျာ:",
   signinStr: "အကောင့်သို့ဝင်မည်",
+  activeStr: 'ဝန်ဆောင်မှု ရယူထားသည်',
+  tunesStr: "တေးသွားများ",
+  callersStr: "ခေါ်ဆိုသူများ",
+  allStr: "အားလုံး",
+  sunStr: "တနင်္ဂနွေနေ့",
+  monStr: "တနင်္လာနေ့",
+  tueStr: "အင်္ဂါနေ့",
+  wedStr: "ဗုဒ္ဓဟူးနေ့",
+  thusStr: "ကြာသပတေးနေ့",
+  friStr: "သောကြာနေ့",
+  satStr: "စနေနေ့",
+  loginStr: "ဝင်ရောက်မည်",
   //===============
 
   englishStr: "EN",
@@ -32,22 +44,20 @@ Map<String, String> brBR = {
   myTuneStatusStr: 'MyTune Status',
   expireDateStr: 'Expired',
   suspendStr: 'Suspend',
-  activeStr: 'Active',
+
   packNameStr: "Pack Name",
 
   reverseRBTStatusStr: 'Reverse RBT Status',
-
-  tunesStr: "Tunes",
 
   setYourTunesStr: "Set your tunes",
   musicBundleStr: "Music Bundle",
   customiseYourTunesStr: "Customise your tunes",
   profileTunesStr: "Profile Tunes",
   statusStr: "Status",
-  callersStr: "Callers",
+
   playAtStr: "Play at",
   fulldayStr: "FullDay",
-  allStr: "All",
+
   noneStr: "None",
   monthlyStr: "Monthly",
   yearlyStr: "Yearly",
@@ -60,16 +70,10 @@ Map<String, String> brBR = {
   fullDay24HourStr: "Full Day - 24 hr",
   selecteTimeStr: "Select Time",
   selectRepeatStr: "Select Repeat",
-  sunStr: "Sun",
-  monStr: "Mon",
-  tueStr: "Tue",
-  wedStr: "Wed",
-  thusStr: "Thus",
-  friStr: "Fri",
-  satStr: "Sat",
-  sStr: "S",
+
+  sStr: "Su",
   mStr: "M",
-  tuStr: "T",
+  tuStr: "Tu",
   wStr: "W",
   tStr: "T",
   fStr: "F",
@@ -132,7 +136,7 @@ Map<String, String> brBR = {
   artistStr: "Artist",
   myTuneLocationStr: "My Tune | Location",
   searchedResultForStr: "Search result for ",
-  loginStr: "ဝင်ရောက်မည်",
+
   companyStr: "Company",
   contactusStr: "Contact Us",
   fallowUsStr: "Follow Us On",
@@ -166,11 +170,14 @@ Map<String, String> brBR = {
   chooseSubscriptionPlanStr: "Choose your Subscription Plan",
   youShouldSubscribeAPlanStr:
       "You should subscribe a plan before you buy or gift tunes",
-  myTuneLocationValueStr:
-      "No.221, Level 17-22-23,\nSule Pagoda Road,\nKyauktada Township,\nYangon, 11182 Myanmar",
+  myTuneLocationValueStr: """No.221, Level 17-22-23,
+      Sule Pagoda Road,
+      Kyauktada Township,
+      Yangon, 11182 Myanmar""",
 
   tuneSuffleOnMessageStr:
       "Your suffle will be disabled and your callers will only listen to the latest tune. Your advance settings will remain unaffected.",
   tuneSuffleOffMessageStr: "Do you want to enable suffle?",
   languageChangeConfirmMessageStr: "Are you sure you want to change language?",
+  resumeStr: "Resume",
 };

@@ -160,4 +160,5 @@ Map<String, String> enUS = {
       "Your suffle will be disabled and your callers will only listen to the latest tune. Your advance settings will remain unaffected.",
   tuneSuffleOffMessageStr: "Do you want to enable suffle?",
   languageChangeConfirmMessageStr: "Are you sure you want to change language?",
+  resumeStr: "Resume",
 };

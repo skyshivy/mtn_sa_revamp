@@ -175,3 +175,4 @@ const tuneSuffleOnMessageStr =
 const tuneSuffleOffMessageStr = "Do you want to enable suffle?";
 const languageChangeConfirmMessageStr =
     "Are you sure you want to change language?";
+const resumeStr = "Resume";
