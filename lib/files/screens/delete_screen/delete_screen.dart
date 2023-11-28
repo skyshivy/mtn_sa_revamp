@@ -46,9 +46,9 @@ class _DeleteScreenState extends State<DeleteScreen> {
                   color: blue,
                 ));
           }),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           animateButton(),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Obx(() {
             return CustomButton(
               height: 100,
