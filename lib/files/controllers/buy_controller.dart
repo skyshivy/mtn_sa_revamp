@@ -99,30 +99,35 @@ class BuyController extends GetxController {
       isVerifying.value = true;
       SubscriberValidationModel model =
           SubscriberValidationModel.fromJson(valueMap);
-      if (model.responseMap?.respCode == 'SC0000') {
-        var resu = await _generateOtp(msisdn.value, false);
-        isNewUser = false;
-        isShowOtpView.value = true;
-        isVerifying.value = false;
-        //Get.dialog(BuyOtpView());
+      if (model.statusCode == "SC0000") {
+        if (model.responseMap?.respCode == 'SC0000') {
+          var resu = await _generateOtp(msisdn.value, false);
+          isNewUser = false;
+          isShowOtpView.value = true;
+          isVerifying.value = false;
+          //Get.dialog(BuyOtpView());
 
-        printCustom("Existing user******");
-      } else if (model.responseMap?.respCode == '100') {
-        printCustom("New User*******");
-        isNewUser = true;
-        await getSecurityTokenForNew(msisdn.value);
-        //getTunePrice();
-        isShowOtpView.value = true;
-        //Get.dialog(BuyOtpView());
-      } else if (model.responseMap?.respCode == '101') {
-        errorMessage.value = model.responseMap?.respDesc ?? '';
-        printCustom("Invalid number*******");
+          printCustom("Existing user******");
+        } else if (model.responseMap?.respCode == '100') {
+          printCustom("New User*******");
+          isNewUser = true;
+          await getSecurityTokenForNew(msisdn.value);
+          //getTunePrice();
+          isShowOtpView.value = true;
+          //Get.dialog(BuyOtpView());
+        } else if (model.responseMap?.respCode == '101') {
+          errorMessage.value = model.responseMap?.respDesc ?? '';
+          isVerifying.value = false;
+          printCustom("Invalid number*******");
+        } else {
+          errorMessage.value = model.responseMap?.respDesc ?? '';
+          isVerifying.value = false;
+          printCustom("Invalid number*******");
+        }
       } else {
-        errorMessage.value = model.responseMap?.respDesc ?? '';
-        printCustom("Invalid number*******");
+        errorMessage.value = pleaseEnterValidMsisdnStr.tr;
+        isVerifying.value = false;
       }
-    } else {
-      errorMessage.value = pleaseEnterValidMsisdnStr.tr;
     }
   }
 
