@@ -82,7 +82,7 @@ Future<String> getJson() async {
     baseUrl = data['BASE_URL'];
     faqUrl = data["FAQ_URL"];
     baseUrlSecurity = data['BASE_URL_SECURITY'];
-    timeOut = data['TIME_OUT'];
+    timeOut = data['SESSION_TIME_OUT'];
     facebook_url = data['FACEBOOK_URL'];
     instagram_url = data['INSTAGRAM_URL'];
     twitter_url = data['TWITTER_URL'];
@@ -108,30 +108,9 @@ class MyApp extends StatelessWidget {
 
     sessionConfig.stream.listen((SessionTimeoutState timeoutEvent) {
       if (timeoutEvent == SessionTimeoutState.userInactivityTimeout) {
-        if (StoreManager().isLoggedIn) {
-          Get.dialog(CustomConfirmAlertView(
-            message: sessionExpiredStr,
-            onOk: () {
-              goRouterContext?.go(homeGoRoute);
-              StoreManager().logout();
-            },
-          ));
-        }
-
-        // handle user  inactive timeout
-        // Navigator.of(context).pushNamed("/auth");
+        sessionLogoutTime();
       } else if (timeoutEvent == SessionTimeoutState.appFocusTimeout) {
-        if (StoreManager().isLoggedIn) {
-          Get.dialog(CustomConfirmAlertView(
-            message: sessionExpiredStr,
-            onOk: () {
-              goRouterContext?.go(homeGoRoute);
-              StoreManager().logout();
-            },
-          ));
-        }
-        // handle user  app lost focus timeout
-        // Navigator.of(context).pushNamed("/auth");
+        sessionLogoutTime();
       }
     });
     return SessionTimeoutManager(
@@ -145,6 +124,18 @@ class MyApp extends StatelessWidget {
         routerConfig: router,
       ),
     );
+  }
+
+  void sessionLogoutTime() {
+    if (StoreManager().isLoggedIn) {
+      Get.dialog(CustomConfirmAlertView(
+        message: sessionExpiredStr,
+        onOk: () {
+          goRouterContext?.go(homeGoRoute);
+          StoreManager().logout();
+        },
+      ));
+    }
   }
 }
 

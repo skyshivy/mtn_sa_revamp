@@ -382,7 +382,7 @@ Widget shellRouteIndex(BuildContext context, GoRouterState state,
   printCustom("Selected index must be===== ${navigationShell.currentIndex}");
   printCustom("SKY state.name  = ${state.fullPath}");
   printCustom("SKY StoreManager().isLoggedIn  = ${StoreManager().isLoggedIn}");
-
+  goRouterContext = context;
   var pat = state.fullPath;
   var pat1 = historyGoRoute;
   var pat2 = profileGoRoute;
@@ -413,7 +413,6 @@ Widget shellRouteIndex(BuildContext context, GoRouterState state,
     title: "Atom",
     home: ResponsiveBuilder(
       builder: (context, si) {
-        goRouterContext = context;
         keyScrollFocusNode.requestFocus();
         return Material(
           child: Column(
