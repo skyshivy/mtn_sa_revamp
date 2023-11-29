@@ -70,7 +70,7 @@ class MyTunePlayingVM {
         printCustom("SKY info.toneDetails ");
         ToneDetail? tD = info.toneDetails?.first;
         bool isFullDay = true;
-        await createPlayingList1(isFullDay, info, tD, playingList);
+        await _createPlayingList1(isFullDay, info, tD, playingList);
       } else {
         print("this item has not ToneDetail = ${info.toneDetails?.first}");
       }
@@ -103,7 +103,7 @@ class MyTunePlayingVM {
   }
 }
 
-Future<void> createPlayingList1(bool isFullDay, ListToneApk info,
+Future<void> _createPlayingList1(bool isFullDay, ListToneApk info,
     ToneDetail? tD, List<ListToneApk> playingList) async {
   await _fulldayCheck(isFullDay, info, tD, playingList);
   await _yearlyCheck(tD, isFullDay, info, playingList);
@@ -122,7 +122,7 @@ Future<void> _fulldayCheck(bool isFullDay, ListToneApk info, ToneDetail? tD,
         "${tD?.customiseEndTime?.substring(0, tD.customiseEndTime!.length - 3)}";
     if (info.status != "P") {
       bool isFlDay = ((tD?.weeklyDays ?? "0") == "0") ? true : false;
-      playingList.add(await newDetail(
+      playingList.add(await _newDetail(
           info, TimeType.fullDay, "", info.sTime!, info.eTime!,
           isFullday: isFlDay));
     } else {
@@ -162,7 +162,7 @@ Future<void> _noneCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
         "${tD?.customiseEndDate}\n${tD?.customiseEndTime?.substring(0, tD.customiseEndTime!.length - 3)}";
     if (info.status != "P") {
       playingList.add(
-          await newDetail(info, TimeType.none, "7", info.sTime!, info.eTime!));
+          await _newDetail(info, TimeType.none, "7", info.sTime!, info.eTime!));
     } else {
       print("Staus is pending = ${info.status}");
     }
@@ -180,7 +180,7 @@ Future<void> _monthlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
     info.eTime =
         "${tD?.endDayMonthly}th Day\n${tD?.endTimeMonthly?.substring(0, tD.endTimeMonthly!.length - 3)}"; //${tD?.endTimeMonthly}";
     if (info.status != "P") {
-      playingList.add(await newDetail(
+      playingList.add(await _newDetail(
           info, TimeType.monthly, "3", info.sTime!, info.eTime!));
     } else {
       print("Staus is pending = ${info.status}");
@@ -198,7 +198,7 @@ Future<void> _yearlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
     info.eTime =
         "${tD?.yearlyEndDay}/${tD?.yearlyEndMonth}\n${tD?.yearlyEndTime?.substring(0, tD.yearlyEndTime!.length - 3)}"; //${tD?.yearlyEndTime}";
     if (info.status != "P") {
-      playingList.add(await newDetail(
+      playingList.add(await _newDetail(
           info, TimeType.yearly, "4", info.sTime!, info.eTime!));
     } else {
       print("Staus is pending = ${info.status}");
@@ -208,7 +208,7 @@ Future<void> _yearlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
   }
 }
 
-Future<ListToneApk> newDetail(ListToneApk info, TimeType toneDetailTimeType,
+Future<ListToneApk> _newDetail(ListToneApk info, TimeType toneDetailTimeType,
     String timeType, String sTime, String eTime,
     {bool isFullday = false}) async {
   ListToneApk listToneApk = ListToneApk();
