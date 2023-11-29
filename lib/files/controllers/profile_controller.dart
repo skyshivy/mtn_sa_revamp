@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/model/edit_profile.dart';
 import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/profile_model.dart';
+import 'package:mtn_sa_revamp/files/model/suspend_resume_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -24,14 +25,16 @@ class ProfileController extends GetxController {
   RxString userName = ''.obs;
   RxBool isSaving = false.obs;
   RxString packName = ''.obs;
-  RxString tuneStatus = ''.obs;
-  String tuneStatusMessage = '';
+  RxString crbtTuneStatus = ''.obs;
+  String crbtTuneStatusMessage = '';
   String rrbtStatusMessage = '';
   RxBool isBothStatusHidden = true.obs;
   RxString rrbtStatus = ''.obs;
+  RxBool isUpdatingCrbtStatus = false.obs;
+  RxBool isUpdatingRrbtStatus = false.obs;
   RxString tuneExire = ''.obs;
   RxString rrbtExpire = ''.obs;
-  RxString activeTuneButtonName = ''.obs;
+  RxString activeCrbtButtonName = ''.obs;
   RxString activeRrbtButtonName = ''.obs;
   RxList<String> selectedCatList = <String>[].obs;
   GetProfileDetails? profileDetails;
@@ -85,18 +88,20 @@ class ProfileController extends GetxController {
         String suspendStatus1 = detail?.isSuspend ?? '';
         tuneExire.value = detail?.packExpiry ?? '';
         packName.value = detail?.packName ?? '';
+
         activeRrbtButtonName.value =
             (suspendStatus == "T") ? resumeStr : suspendStr;
-        activeTuneButtonName.value =
-            (suspendStatus1 == "T") ? resumeStr : suspendStr;
+        rrbtStatus.value = (suspendStatus == "T") ? suspendStr : activeStr;
         rrbtStatusMessage = (suspendStatus1 == "T")
             ? yourServiceIsNotCurrentlyRunningStr
             : yourServiceIsCurrentlyRunningStr;
-        tuneStatusMessage = (suspendStatus1 == "T")
+
+        activeCrbtButtonName.value =
+            (suspendStatus1 == "T") ? resumeStr : suspendStr;
+        crbtTuneStatus.value = (suspendStatus == "T") ? suspendStr : activeStr;
+        crbtTuneStatusMessage = (suspendStatus1 == "T")
             ? yourServiceIsNotCurrentlyRunningStr
             : yourServiceIsCurrentlyRunningStr;
-        rrbtStatus.value = (suspendStatus == "T") ? suspendStr : activeStr;
-        tuneStatus.value = (suspendStatus == "T") ? suspendStr : activeStr;
 
         return playing;
       } else {
@@ -184,31 +189,99 @@ class ProfileController extends GetxController {
     selectedCatList.value = (profileDetails?.categories ?? "").split(',');
   }
 
-  activeTuneStatusAction() {
-    activeSuspendApi(packName.value, true, true);
+  activeCrbtStatusAction() async {
+    isUpdatingCrbtStatus.value = true;
+    SuspendResumeModel res = await activeSuspendApi(packName.value, true, true);
+    isUpdatingCrbtStatus.value = false;
+    if (res.statusCode == 'SC0000') {
+      activeCrbtButtonName.value =
+          (activeCrbtButtonName.value == suspendStr) ? resumeStr : suspendStr;
+      crbtTuneStatus.value =
+          (crbtTuneStatus.value == activeStr) ? suspendStr : activeStr;
+      crbtTuneStatusMessage =
+          (crbtTuneStatusMessage == yourServiceIsCurrentlyRunningStr)
+              ? yourServiceIsNotCurrentlyRunningStr
+              : yourServiceIsCurrentlyRunningStr;
+    } else {
+      showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
+    }
+
     printCustom("activeTuneStatusAction");
   }
 
-  suspendTuneStatusAction() {
+  suspendCrbtStatusAction() async {
     printCustom("suspendTuneStatusAction");
-    activeSuspendApi(packName.value, false, true);
+    isUpdatingCrbtStatus.value = true;
+    SuspendResumeModel res =
+        await activeSuspendApi(packName.value, false, true);
+    isUpdatingCrbtStatus.value = false;
+
+    if (res.statusCode == 'SC0000') {
+      activeCrbtButtonName.value =
+          (activeCrbtButtonName.value == suspendStr) ? resumeStr : suspendStr;
+      crbtTuneStatus.value =
+          (crbtTuneStatus.value == activeStr) ? suspendStr : activeStr;
+      crbtTuneStatusMessage =
+          (crbtTuneStatusMessage == yourServiceIsCurrentlyRunningStr)
+              ? yourServiceIsNotCurrentlyRunningStr
+              : yourServiceIsCurrentlyRunningStr;
+    } else {
+      showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
+    }
+    printCustom("activeTuneStatusAction");
   }
 
-  unsubscribeTuneStatusAction() {
-    printCustom("unsubscribeTuneStatusAction");
+  unsubscribeCrbtTuneStatusAction() async {
+    printCustom("unsubscribeCrbtTuneStatusAction");
+    isUpdatingCrbtStatus.value = true;
+    await Future.delayed(const Duration(seconds: 2));
+    isUpdatingCrbtStatus.value = false;
   }
 
-  activeRrbtStatusAction() {
+  activeRrbtStatusAction() async {
     printCustom("activeRrbtStatusAction");
-    activeSuspendApi(packName.value, true, false);
+    isUpdatingRrbtStatus.value = true;
+    SuspendResumeModel res =
+        await activeSuspendApi(packName.value, true, false);
+    isUpdatingRrbtStatus.value = false;
+    if (res.statusCode == 'SC0000') {
+      activeRrbtButtonName.value =
+          (activeRrbtButtonName.value == suspendStr) ? resumeStr : suspendStr;
+      rrbtStatus.value =
+          (rrbtStatus.value == activeStr) ? suspendStr : activeStr;
+      rrbtStatusMessage =
+          (rrbtStatusMessage == yourServiceIsCurrentlyRunningStr)
+              ? yourServiceIsNotCurrentlyRunningStr
+              : yourServiceIsCurrentlyRunningStr;
+    } else {
+      showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
+    }
   }
 
-  suspendRrbtStatusAction() {
+  suspendRrbtStatusAction() async {
     printCustom("suspendRrbtStatusAction");
-    activeSuspendApi(packName.value, false, false);
+    isUpdatingRrbtStatus.value = true;
+    SuspendResumeModel res =
+        await activeSuspendApi(packName.value, false, false);
+    isUpdatingRrbtStatus.value = false;
+    if (res.statusCode == 'SC0000') {
+      activeRrbtButtonName.value =
+          (activeRrbtButtonName.value == suspendStr) ? resumeStr : suspendStr;
+      rrbtStatus.value =
+          (rrbtStatus.value == activeStr) ? suspendStr : activeStr;
+      rrbtStatusMessage =
+          (rrbtStatusMessage == yourServiceIsCurrentlyRunningStr)
+              ? yourServiceIsNotCurrentlyRunningStr
+              : yourServiceIsCurrentlyRunningStr;
+    } else {
+      showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
+    }
   }
 
-  unSubscribeRrbtStatusAction() {
+  unSubscribeRrbtStatusAction() async {
     printCustom("unSubscribeRrbtStatusAction");
+    isUpdatingRrbtStatus.value = true;
+    await Future.delayed(const Duration(seconds: 2));
+    isUpdatingRrbtStatus.value = false;
   }
 }

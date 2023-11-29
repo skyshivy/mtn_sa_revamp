@@ -68,11 +68,17 @@ class ServiceCall {
     return stringData;
   }
 
-  Future<Map<String, dynamic>?> post(String url, String? formData) async {
+  Future<Map<String, dynamic>?> post(String url, String? formData,
+      {Map<String, dynamic>? jsonData}) async {
     var request = await client
         .postUrl(Uri.parse(url))
         .timeout(Duration(seconds: StoreManager().timeOutDuration));
     request = await CustomHeader().settingHeader(url, request);
+    if (jsonData != null) {
+      String jsonstringmap = json.encode(jsonData);
+      print("print formed data $jsonstringmap");
+      request.write(jsonstringmap);
+    }
     if (formData != null) {
       request.write(formData);
     }

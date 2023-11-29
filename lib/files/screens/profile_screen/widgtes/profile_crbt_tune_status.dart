@@ -9,7 +9,7 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ProfileCrbtTuneStatus extends StatelessWidget {
-  ProfileController cont = Get.find();
+  final ProfileController cont = Get.find();
   ProfileCrbtTuneStatus({super.key});
 
   @override
@@ -40,7 +40,7 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
                       }),
                       const SizedBox(height: 4),
                       CustomText(
-                        title: cont.tuneStatusMessage,
+                        title: cont.crbtTuneStatusMessage,
                         fontName: FontName.medium,
                         fontSize: 14,
                       ),
@@ -70,7 +70,7 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
         ),
         Obx(() {
           return CustomText(
-            title: " : " + cont.tuneStatus.value,
+            title: " : " + cont.crbtTuneStatus.value,
             fontName: FontName.medium,
             fontSize: 14,
           );
@@ -91,14 +91,14 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
             fontName: FontName.medium,
             fontSize: 12,
             titlePadding: const EdgeInsets.symmetric(horizontal: 12),
-            title: cont.activeTuneButtonName.value,
+            title: cont.activeCrbtButtonName.value,
             textColor: white,
             color: blue,
             onTap: () {
-              if (cont.activeTuneButtonName.value == activeStr.tr) {
-                cont.activeTuneStatusAction();
+              if (cont.activeCrbtButtonName.value == suspendStr.tr) {
+                cont.activeCrbtStatusAction();
               } else {
-                cont.suspendTuneStatusAction();
+                cont.suspendCrbtStatusAction();
               }
             },
           );
@@ -113,7 +113,7 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
           textColor: white,
           color: blue,
           onTap: () {
-            cont.unsubscribeTuneStatusAction();
+            cont.unsubscribeCrbtTuneStatusAction();
           },
         ),
       ],

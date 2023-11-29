@@ -94,7 +94,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
               fontName: FontName.medium,
               fontSize: 12,
               onTap: () {
-                if (cont.activeRrbtButtonName.value == activeStr.tr) {
+                if (cont.activeRrbtButtonName.value == resumeStr.tr) {
                   cont.activeRrbtStatusAction();
                 } else {
                   cont.suspendRrbtStatusAction();

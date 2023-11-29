@@ -14,7 +14,7 @@ import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_mobil
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_prefrence.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_reverse_rbt_status.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_subscribe_button.dart';
-import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_tune_status.dart';
+import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_crbt_tune_status.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_user_name.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
