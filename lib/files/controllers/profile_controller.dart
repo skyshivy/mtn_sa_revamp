@@ -53,25 +53,32 @@ class ProfileController extends GetxController {
 
   Future<void> getCrbtPackStatus() async {
     PackStatusModel? packStatusModel = await getPackStatusApiCall(isCrbt: true);
-
+    print("getCrbtPackStatus resp message is = ${packStatusModel.message}");
+    print("getCrbtPackStatus resp message is = ${packStatusModel.statusCode}");
     if (packStatusModel.statusCode == 'SC0000') {
       isHideCRBTStatus.value =
-          (packStatusModel.responseMap?.packStatusDetails?.packName != null);
+          !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
 
       return;
+    } else {
+      isHideCRBTStatus.value = true;
+      return;
     }
-    isHideCRBTStatus.value = true;
   }
 
   Future<void> getRrbtPackStatus() async {
     PackStatusModel? packStatusModel =
         await getPackStatusApiCall(isCrbt: false);
+    print("getCrbtPackStatus resp message is = ${packStatusModel.message}");
+    print("getCrbtPackStatus resp message is = ${packStatusModel.statusCode}");
     if (packStatusModel.statusCode == 'SC0000') {
       isHideRRBTStatus.value =
-          (packStatusModel.responseMap?.packStatusDetails?.packName != null);
+          !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
+      return;
+    } else {
+      isHideRRBTStatus.value = true;
       return;
     }
-    isHideRRBTStatus.value = true;
   }
 
   Future<PlayingTuneModel?> getMyTunes() async {
@@ -87,6 +94,7 @@ class ProfileController extends GetxController {
         String suspendStatus = detail?.isSuspend ?? '';
         String suspendStatus1 = detail?.isSuspend ?? '';
         tuneExire.value = detail?.packExpiry ?? '';
+        rrbtExpire.value = detail?.packExpiry ?? '';
         packName.value = detail?.packName ?? '';
 
         activeRrbtButtonName.value =
@@ -119,10 +127,9 @@ class ProfileController extends GetxController {
     await getCrbtPackStatus();
     await getRrbtPackStatus();
     await getMyTunes();
-//isBothStatusHidden.value = isHideCRBTStatus.value;
-    isBothStatusHidden.value =
-        (isHideCRBTStatus.value || isHideRRBTStatus.value);
-
+    checkHideAndUnhide();
+    print(
+        "Status is = ${isHideCRBTStatus.value}  \n ${isHideRRBTStatus.value}");
     Map<String, dynamic>? res =
         await ProfileVM().getProfileDetail(StoreManager().msisdn);
 
@@ -138,6 +145,19 @@ class ProfileController extends GetxController {
 
       printCustom("Selected selectedCatList  ${selectedCatList.length}");
     }
+  }
+
+  checkHideAndUnhide() {
+    if (isHideCRBTStatus.value) {
+      if (isHideRRBTStatus.value) {
+        isBothStatusHidden.value = true;
+      } else {
+        isBothStatusHidden.value = false;
+      }
+    } else {
+      isBothStatusHidden.value = false;
+    }
+    print("Should hide Status both ${isBothStatusHidden.value}");
   }
 
   updateSelection(int index) {

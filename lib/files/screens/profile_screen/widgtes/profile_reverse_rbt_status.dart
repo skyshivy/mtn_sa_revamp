@@ -4,6 +4,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -16,7 +17,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
     return Obx(
       () {
         return Visibility(
-          visible: cont.isHideRRBTStatus.value,
+          visible: !cont.isHideRRBTStatus.value,
           child: ResponsiveBuilder(
             builder: (context, si) {
               return Container(
@@ -32,7 +33,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
                       Obx(() {
                         return CustomText(
                           title:
-                              expireDateStr.tr + " : " + cont.rrbtExpire.value,
+                              "${expireDateStr.tr} : ${cont.rrbtExpire.value}",
                           fontName: FontName.medium,
                           fontSize: 14,
                         );
@@ -44,7 +45,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
                         fontSize: 14,
                       ),
                       const SizedBox(height: 15),
-                      secondRowWidget(si),
+                      buttonsRow(si),
                     ],
                   ),
                 ),
@@ -78,44 +79,63 @@ class ProfileReverseRbtStatus extends StatelessWidget {
     );
   }
 
-  Widget secondRowWidget(SizingInformation si) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: si.isMobile ? MainAxisSize.max : MainAxisSize.min,
-      children: [
-        Obx(() {
-          return CustomButton(
-              height: 35,
-              titlePadding: const EdgeInsets.symmetric(horizontal: 12),
-              title: cont.activeRrbtButtonName.value,
-              textColor: white,
-              color: blue,
-              fontName: FontName.medium,
-              fontSize: 12,
-              onTap: () {
-                if (cont.activeRrbtButtonName.value == resumeStr.tr) {
-                  cont.activeRrbtStatusAction();
-                } else {
-                  cont.suspendRrbtStatusAction();
-                }
-              });
-        }),
-        SizedBox(width: 20),
-        CustomButton(
-          height: 35,
-          titlePadding: EdgeInsets.symmetric(horizontal: 12),
-          title: unSubscribeStr.tr,
-          textColor: white,
-          color: blue,
-          fontName: FontName.medium,
-          fontSize: 12,
-          onTap: () {
-            cont.unSubscribeRrbtStatusAction();
-          },
-        ),
-      ],
+  Widget buttonsRow(SizingInformation si) {
+    return Obx(() {
+      return cont.isUpdatingRrbtStatus.value
+          ? loadingInd()
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: si.isMobile ? MainAxisSize.max : MainAxisSize.min,
+              children: [
+                Obx(() {
+                  return resumeSuspendButton();
+                }),
+                const SizedBox(width: 20),
+                unSubscribeButton(),
+              ],
+            );
+    });
+  }
+
+  Widget loadingInd() {
+    return SizedBox(
+      width: 200,
+      child: loadingIndicator(height: 35, radius: 10),
     );
+  }
+
+  CustomButton unSubscribeButton() {
+    return CustomButton(
+      height: 35,
+      titlePadding: EdgeInsets.symmetric(horizontal: 12),
+      title: unSubscribeStr.tr,
+      textColor: white,
+      color: blue,
+      fontName: FontName.medium,
+      fontSize: 12,
+      onTap: () {
+        cont.unSubscribeRrbtStatusAction();
+      },
+    );
+  }
+
+  CustomButton resumeSuspendButton() {
+    return CustomButton(
+        height: 35,
+        titlePadding: const EdgeInsets.symmetric(horizontal: 12),
+        title: cont.activeRrbtButtonName.value,
+        textColor: white,
+        color: blue,
+        fontName: FontName.medium,
+        fontSize: 12,
+        onTap: () {
+          if (cont.activeRrbtButtonName.value == resumeStr.tr) {
+            cont.activeRrbtStatusAction();
+          } else {
+            cont.suspendRrbtStatusAction();
+          }
+        });
   }
 
   BoxDecoration contanerDecoration() {

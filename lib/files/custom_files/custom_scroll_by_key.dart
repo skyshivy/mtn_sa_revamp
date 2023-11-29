@@ -8,7 +8,7 @@ Widget customScroll(ScrollController controller, Widget widget) {
   int inde = 0;
   void handleKeyEvent(RawKeyEvent event) {
     var offset = controller.offset;
-    printCustom("Key is pressiing");
+    printCustom("Key is pressiing $event");
     // if (inde == 2) {
     //   inde = 0;
     // } else {

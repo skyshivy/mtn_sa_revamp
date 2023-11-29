@@ -4,6 +4,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -17,7 +18,7 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
     return Obx(
       () {
         return Visibility(
-          visible: cont.isHideCRBTStatus.value,
+          visible: !cont.isHideCRBTStatus.value,
           child: ResponsiveBuilder(
             builder: (context, sizingInformation) {
               return Container(
@@ -45,7 +46,7 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
                         fontSize: 14,
                       ),
                       const SizedBox(height: 15),
-                      secondRowWidget(sizingInformation),
+                      buttonaRow(sizingInformation),
                     ],
                   ),
                 ),
@@ -79,45 +80,66 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
     );
   }
 
-  Widget secondRowWidget(SizingInformation si) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: si.isMobile ? MainAxisSize.max : MainAxisSize.min,
-      children: [
-        Obx(() {
-          return CustomButton(
-            height: 35,
-            fontName: FontName.medium,
-            fontSize: 12,
-            titlePadding: const EdgeInsets.symmetric(horizontal: 12),
-            title: cont.activeCrbtButtonName.value,
-            textColor: white,
-            color: blue,
-            onTap: () {
-              if (cont.activeCrbtButtonName.value == suspendStr.tr) {
-                cont.activeCrbtStatusAction();
-              } else {
-                cont.suspendCrbtStatusAction();
-              }
-            },
-          );
-        }),
-        SizedBox(width: 20),
-        CustomButton(
-          fontName: FontName.medium,
-          fontSize: 12,
-          height: 35,
-          titlePadding: EdgeInsets.symmetric(horizontal: 12),
-          title: unSubscribeStr.tr,
-          textColor: white,
-          color: blue,
-          onTap: () {
-            cont.unsubscribeCrbtTuneStatusAction();
-          },
-        ),
-      ],
+  Widget buttonaRow(SizingInformation si) {
+    return Obx(() {
+      return cont.isUpdatingCrbtStatus.value
+          ? loadingInd()
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: si.isMobile ? MainAxisSize.max : MainAxisSize.min,
+              children: [
+                Obx(() {
+                  return activeSuspendButton();
+                }),
+                SizedBox(width: 20),
+                unsubscribeButton(),
+              ],
+            );
+    });
+  }
+
+  Widget unsubscribeButton() {
+    return Obx(() {
+      return cont.isUpdatingCrbtStatus.value
+          ? loadingInd()
+          : CustomButton(
+              fontName: FontName.medium,
+              fontSize: 12,
+              height: 35,
+              titlePadding: EdgeInsets.symmetric(horizontal: 12),
+              title: unSubscribeStr.tr,
+              textColor: white,
+              color: blue,
+              onTap: () {
+                cont.unsubscribeCrbtTuneStatusAction();
+              },
+            );
+    });
+  }
+
+  CustomButton activeSuspendButton() {
+    return CustomButton(
+      height: 35,
+      fontName: FontName.medium,
+      fontSize: 12,
+      titlePadding: const EdgeInsets.symmetric(horizontal: 12),
+      title: cont.activeCrbtButtonName.value,
+      textColor: white,
+      color: blue,
+      onTap: () {
+        if (cont.activeCrbtButtonName.value == suspendStr.tr) {
+          cont.activeCrbtStatusAction();
+        } else {
+          cont.suspendCrbtStatusAction();
+        }
+      },
     );
+  }
+
+  Widget loadingInd() {
+    return SizedBox(
+        width: 200, child: loadingIndicator(height: 35, radius: 10));
   }
 
   BoxDecoration contanerDecoration() {
