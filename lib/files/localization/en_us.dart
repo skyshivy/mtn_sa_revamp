@@ -165,4 +165,5 @@ Map<String, String> enUS = {
   yourServiceIsNotCurrentlyRunningStr:
       "You have temporarily suspended your  service.",
   notSubscribedToAnyService: "You are not subscribed to mytune service.",
+  inActiveStr: 'InActive',
 };

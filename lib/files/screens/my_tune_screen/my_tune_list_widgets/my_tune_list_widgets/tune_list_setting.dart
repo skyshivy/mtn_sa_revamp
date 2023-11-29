@@ -15,7 +15,7 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget tuneListSettingWidget(BuildContext context, ListToneApk1 info) {
   return CustomButton(
-    color: blue,
+    color: (info.toneDetails?.first.status == "A") ? blue : grey,
     titlePadding: const EdgeInsets.symmetric(horizontal: 4),
     fontName: FontName.medium,
     fontSize: 16,
@@ -32,15 +32,20 @@ Widget tuneListSettingWidget(BuildContext context, ListToneApk1 info) {
     title: settingStr.tr,
     onTap: () {
       var inf = info.toneDetails?.first;
+      if (info.toneDetails?.first.status == "A") {
+        Map<String, dynamic> detail = {
+          'toneId': inf?.toneId ?? '',
+          'toneName': inf?.toneName ?? '',
+          'toneArtist': inf?.artistName ?? '',
+          'toneImage': inf?.toneIdpreviewImageUrl ?? '',
+        };
 
-      Map<String, dynamic> detail = {
-        'toneId': inf?.toneId ?? '',
-        'toneName': inf?.toneName ?? '',
-        'toneArtist': inf?.artistName ?? '',
-        'toneImage': inf?.toneIdpreviewImageUrl ?? '',
-      };
+        context.pushNamed(myTuneSettingGoRoute, queryParameters: detail);
+      } else {
+        printCustom(
+            "Tune status is not active so not moving to setting screen");
+      }
 
-      context.pushNamed(myTuneSettingGoRoute, queryParameters: detail);
       printCustom("tuneListSettingWidget");
     },
   );

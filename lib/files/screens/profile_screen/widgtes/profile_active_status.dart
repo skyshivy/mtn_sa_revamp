@@ -29,7 +29,7 @@ Widget profileActiveStatus() {
           const SizedBox(height: 4),
           CustomText(
             alignment: TextAlign.center,
-            title: (pCont.packName.value)
+            title: (pCont.crbtPackName)
                 .replaceAll("CRBT_", " ")
                 .replaceAll("crbt_", " ")
                 .toUpperCase(),

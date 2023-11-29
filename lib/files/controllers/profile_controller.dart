@@ -24,7 +24,9 @@ class ProfileController extends GetxController {
   RxBool isHideRRBTStatus = true.obs;
   RxString userName = ''.obs;
   RxBool isSaving = false.obs;
-  RxString packName = ''.obs;
+  //RxString packName = ''.obs;
+  String crbtPackName = '';
+  String rrbtPackName = '';
   RxString crbtTuneStatus = ''.obs;
   String crbtTuneStatusMessage = '';
   String rrbtStatusMessage = '';
@@ -58,9 +60,11 @@ class ProfileController extends GetxController {
     if (packStatusModel.statusCode == 'SC0000') {
       isHideCRBTStatus.value =
           !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
-
+      crbtPackName =
+          packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
       return;
     } else {
+      crbtPackName = '';
       isHideCRBTStatus.value = true;
       return;
     }
@@ -74,13 +78,18 @@ class ProfileController extends GetxController {
     if (packStatusModel.statusCode == 'SC0000') {
       isHideRRBTStatus.value =
           !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
+      //packName
+      rrbtPackName =
+          packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
       return;
     } else {
+      rrbtPackName = '';
       isHideRRBTStatus.value = true;
       return;
     }
   }
 
+/*
   Future<PlayingTuneModel?> getMyTunes() async {
     PlayingTuneModel? playing;
     Map<String, dynamic>? result = await ServiceCall().get(getPlayingTunesUrl);
@@ -95,7 +104,7 @@ class ProfileController extends GetxController {
         String suspendStatus1 = detail?.isSuspend ?? '';
         tuneExire.value = detail?.packExpiry ?? '';
         rrbtExpire.value = detail?.packExpiry ?? '';
-        packName.value = detail?.packName ?? '';
+        //packName.value = detail?.packName ?? '';
 
         activeRrbtButtonName.value =
             (suspendStatus == "T") ? resumeStr : suspendStr;
@@ -118,7 +127,7 @@ class ProfileController extends GetxController {
     }
     return playing;
   }
-
+*/
   getProfileDetail() async {
     selectedCatList.clear();
     isLoading.value = true;
@@ -126,7 +135,7 @@ class ProfileController extends GetxController {
     await getPref();
     await getCrbtPackStatus();
     await getRrbtPackStatus();
-    await getMyTunes();
+    //await getMyTunes();
     checkHideAndUnhide();
     print(
         "Status is = ${isHideCRBTStatus.value}  \n ${isHideRRBTStatus.value}");
@@ -211,7 +220,7 @@ class ProfileController extends GetxController {
 
   activeCrbtStatusAction() async {
     isUpdatingCrbtStatus.value = true;
-    SuspendResumeModel res = await activeSuspendApi(packName.value, true, true);
+    SuspendResumeModel res = await activeSuspendApi(crbtPackName, true, true);
     isUpdatingCrbtStatus.value = false;
     if (res.statusCode == 'SC0000') {
       activeCrbtButtonName.value =
@@ -232,8 +241,7 @@ class ProfileController extends GetxController {
   suspendCrbtStatusAction() async {
     printCustom("suspendTuneStatusAction");
     isUpdatingCrbtStatus.value = true;
-    SuspendResumeModel res =
-        await activeSuspendApi(packName.value, false, true);
+    SuspendResumeModel res = await activeSuspendApi(crbtPackName, false, true);
     isUpdatingCrbtStatus.value = false;
 
     if (res.statusCode == 'SC0000') {
@@ -261,8 +269,7 @@ class ProfileController extends GetxController {
   activeRrbtStatusAction() async {
     printCustom("activeRrbtStatusAction");
     isUpdatingRrbtStatus.value = true;
-    SuspendResumeModel res =
-        await activeSuspendApi(packName.value, true, false);
+    SuspendResumeModel res = await activeSuspendApi(rrbtPackName, true, false);
     isUpdatingRrbtStatus.value = false;
     if (res.statusCode == 'SC0000') {
       activeRrbtButtonName.value =
@@ -281,8 +288,7 @@ class ProfileController extends GetxController {
   suspendRrbtStatusAction() async {
     printCustom("suspendRrbtStatusAction");
     isUpdatingRrbtStatus.value = true;
-    SuspendResumeModel res =
-        await activeSuspendApi(packName.value, false, false);
+    SuspendResumeModel res = await activeSuspendApi(rrbtPackName, false, false);
     isUpdatingRrbtStatus.value = false;
     if (res.statusCode == 'SC0000') {
       activeRrbtButtonName.value =

@@ -184,4 +184,5 @@ Map<String, String> brBR = {
   yourServiceIsNotCurrentlyRunningStr:
       "You have temporarily suspended your  service.",
   notSubscribedToAnyService: "You are not subscribed to mytune service.",
+  inActiveStr: 'InActive',
 };
