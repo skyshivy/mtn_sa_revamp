@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: si.isMobile ? 15 : 40,
             )
           : Padding(
-              padding: EdgeInsets.only(bottom: si.isMobile ? 15 : 30, top: 5),
+              padding: EdgeInsets.only(bottom: si.isMobile ? 15 : 30, top: 12),
               child: ResponsiveBuilder(
                 builder: (context, si) {
                   return CustomText(

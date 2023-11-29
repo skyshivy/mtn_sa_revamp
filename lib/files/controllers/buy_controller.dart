@@ -209,7 +209,7 @@ class BuyController extends GetxController {
     if (map != null) {
       NewUserCheckOtpModel model = NewUserCheckOtpModel.fromJson(map);
       if (model.statusCode == 'SCOOOO') {
-        StoreManager().setMsisdn(model.responseMap?.msisdn ?? '');
+        StoreManager().setMsisdn(model.responseMap?.msisdn ?? '0');
       } else {
         errorMessage.value = model.message ?? '';
       }

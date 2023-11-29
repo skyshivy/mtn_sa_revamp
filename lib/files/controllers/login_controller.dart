@@ -70,18 +70,25 @@ class LoginController extends GetxController {
     Map<String, dynamic> valueMap = json.decode(stringData);
     SubscriberValidationModel model =
         SubscriberValidationModel.fromJson(valueMap);
-    if (model.responseMap?.respCode == 'SC0000') {
-      await _generateOtp();
-      printCustom("Existing user******");
-    } else if (model.responseMap?.respCode == '100') {
-      isMsisdnVarified.value = true;
-      printCustom("New user*****");
-    } else if (model.responseMap?.respCode == '101') {
-      errorMessage.value = model.responseMap?.respDesc ?? '';
-      printCustom("Invalid number*******");
+    if (model.statusCode == "SC0000") {
+      if (model.responseMap?.respCode == 'SC0000') {
+        await _generateOtp();
+        printCustom("Existing user******");
+      } else if (model.responseMap?.respCode == '100') {
+        isMsisdnVarified.value = true;
+        printCustom("New user*****");
+      } else if (model.responseMap?.respCode == '101') {
+        errorMessage.value = model.responseMap?.respDesc ?? '';
+        isVerifying.value = false;
+        printCustom("Invalid number*******");
+      } else {
+        errorMessage.value = model.responseMap?.respDesc ?? '';
+        isVerifying.value = false;
+        printCustom("Invalid number*******");
+      }
     } else {
       errorMessage.value = model.responseMap?.respDesc ?? '';
-      printCustom("Invalid number*******");
+      isVerifying.value = false;
     }
     return "";
   }

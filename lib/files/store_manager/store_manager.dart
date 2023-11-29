@@ -71,7 +71,7 @@ class StoreManager {
 
     //msisdn = await storage.read(key: "msisdn") ?? '';
     //msisdn = prefs.getString("msisdn") ?? '';
-    msisdn = prefs.get("msisdn") ?? '';
+    msisdn = prefs.get("msisdn") ?? '0';
 
     //refreshToken = await storage.read(key: "refreshToken") ?? '';
     //refreshToken = prefs.getString("refreshToken") ?? '';
@@ -109,7 +109,7 @@ class StoreManager {
   Future<void> logout() async {
     setAccessToken('');
     setDeviceId('');
-    setMsisdn('');
+    setMsisdn('0');
     setRefreshToken('');
     setLoggedIn(false);
     setccid('');

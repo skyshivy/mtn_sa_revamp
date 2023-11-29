@@ -50,7 +50,7 @@ void parseUrl() async {
 
 clearData() {
   if (!StoreManager().isLoggedIn) {
-    StoreManager().setMsisdn('');
+    StoreManager().setMsisdn('0');
     ccid = '';
     StoreManager().setccid(ccid);
     userName = '';

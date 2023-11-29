@@ -103,8 +103,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sessionConfig = SessionConfig(
-        invalidateSessionForAppLostFocus: Duration(seconds: timeOut),
-        invalidateSessionForUserInactivity: Duration(seconds: timeOut));
+        invalidateSessionForAppLostFocus: Duration(minutes: timeOut),
+        invalidateSessionForUserInactivity: Duration(minutes: timeOut));
 
     sessionConfig.stream.listen((SessionTimeoutState timeoutEvent) {
       if (timeoutEvent == SessionTimeoutState.userInactivityTimeout) {
