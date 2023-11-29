@@ -70,7 +70,7 @@ final router = GoRouter(
         wishlistScreen(),
         myTuneScreen(),
         tuneSettingScreen(),
-        deleteScreenRoute(),
+        //deleteScreenRoute(),
         historyScreenRoute(),
         _privatePolicyScreen(),
         _helpScreen(),

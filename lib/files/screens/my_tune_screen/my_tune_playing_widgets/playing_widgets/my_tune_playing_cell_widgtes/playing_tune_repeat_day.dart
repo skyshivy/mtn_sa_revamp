@@ -53,7 +53,7 @@ Widget _dayButton(String title, ListToneApk item, int index) {
   var str = item.toneDetails?.first.weeklyDays ?? "";
   var arr = str.split(",");
   bool isSelected = arr.contains("$index");
-  printCustom("Is selected is $isSelected");
+  //printCustom("Is selected is $isSelected");
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 2),
     child: CustomButton(

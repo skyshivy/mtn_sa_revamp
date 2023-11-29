@@ -38,12 +38,12 @@ class MyTunePlayingVM {
           }
         }
         tempPlayingList = playing.responseMap!.listToneApk ?? [];
-        tempPlayingList.removeAt(0);
+        //tempPlayingList.removeAt(0);
         printCustom("Total get in list ${tempPlayingList.length}");
-        printCustom("Test 1");
+
         List<ListToneApk> list =
             await createPlayingList(tempPlayingList, playingList);
-        printCustom("Test 11");
+
         PlayingTuneModel model = PlayingTuneModel(
             isSuffle: switchEnabled,
             responseMap: ResponseMap(listToneApk: list));
@@ -64,18 +64,20 @@ class MyTunePlayingVM {
   Future<List<ListToneApk>> createPlayingList(
       List<ListToneApk> tempPlayingList, List<ListToneApk> playingList) async {
     playingList.clear();
-    printCustom("Test 2");
+
     for (ListToneApk info in tempPlayingList) {
-      printCustom("createPlayingList ++++++++++ ${info.toneDetails?.first} ");
       if (info.toneDetails?.first != null) {
+        printCustom("SKY info.toneDetails ");
         ToneDetail? tD = info.toneDetails?.first;
         bool isFullDay = true;
         await createPlayingList1(isFullDay, info, tD, playingList);
+      } else {
+        print("this item has not ToneDetail = ${info.toneDetails?.first}");
       }
     }
-    printCustom("Test 3  items are ${playingList.length}");
+
     await Future.delayed(const Duration(milliseconds: 300));
-    printCustom("Test 4");
+
     return playingList;
   }
 
@@ -126,7 +128,7 @@ Future<void> _fulldayCheck(bool isFullDay, ListToneApk info, ToneDetail? tD,
     } else {
       print("Staus is pending = ${info.status}");
     }
-    printCustom("_fulldayCheck");
+    //printCustom("_fulldayCheck");
   }
 }
 
@@ -164,7 +166,7 @@ Future<void> _noneCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
     } else {
       print("Staus is pending = ${info.status}");
     }
-    printCustom("_noneCheck");
+    // printCustom("_noneCheck");
   }
 }
 
@@ -183,7 +185,7 @@ Future<void> _monthlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
     } else {
       print("Staus is pending = ${info.status}");
     }
-    printCustom("_monthlyCheck");
+    //printCustom("_monthlyCheck");
   }
 }
 
@@ -202,7 +204,7 @@ Future<void> _yearlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
       print("Staus is pending = ${info.status}");
     }
 
-    printCustom("_yearlyCheck");
+    //printCustom("_yearlyCheck");
   }
 }
 
