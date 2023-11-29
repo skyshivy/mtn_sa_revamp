@@ -36,7 +36,7 @@ class RecoController extends GetxController {
 
     var _ = await ServiceCall().getSetting(settingUrl);
     var abc = StoreManager().appSetting;
-    Others? others = abc.responseMap?.settings?.others;
+    Others? others = abc?.responseMap?.settings?.others;
     var featureCatSrt = StoreManager().isEnglish
         ? others?.featuredCategoryEnglish?.attribute
         : others?.featuredCategoryBurmese?.attribute;

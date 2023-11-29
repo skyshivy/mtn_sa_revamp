@@ -16,7 +16,7 @@ class SubscribePlanController extends GetxController {
     selectedIndex.value = -1;
     Others? others = StoreManager()
         .appSetting
-        .responseMap
+        ?.responseMap
         ?.settings
         ?.others; //.packnameEnglish
     String arra = (StoreManager().isEnglish

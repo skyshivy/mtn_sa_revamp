@@ -31,7 +31,7 @@ class GiftTuneController extends GetxController {
   getTuneCharge() {
     tuneCharge = StoreManager()
             .appSetting
-            .responseMap
+            ?.responseMap
             ?.settings
             ?.others
             ?.tonePrice

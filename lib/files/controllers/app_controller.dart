@@ -19,8 +19,8 @@ class AppController extends GetxController {
   }
 
   getTunePrice() {
-    AppSettingModel setting = StoreManager().appSetting;
-    var items = setting.responseMap!.settings!.others!.tonePrice;
+    AppSettingModel? setting = StoreManager().appSetting;
+    var items = setting?.responseMap!.settings!.others!.tonePrice;
     printCustom("Tune price is =======================${items}");
   }
 

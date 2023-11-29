@@ -9,7 +9,7 @@ String os = "ios";
 String ccid = '';
 String userName = '';
 String password = 'Oem@L#@1';
-
+int timeOut = 60;
 String facebook_url = '';
 String instagram_url = '';
 String twitter_url = '';

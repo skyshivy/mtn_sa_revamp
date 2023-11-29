@@ -182,3 +182,5 @@ const yourServiceIsNotCurrentlyRunningStr =
 const notSubscribedToAnyService = "You are not subscribed to mytune service.";
 //=====================================================
 const inActiveStr = 'InActive';
+const sessionExpiredStr =
+    'Session expired.\n You will be logged out and redirected to Home page.';

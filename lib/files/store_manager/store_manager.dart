@@ -41,7 +41,7 @@ class StoreManager {
 
   //final storage = FlutterSecureStorage();
   //late SharedPreferences prefs;
-  late AppSettingModel appSetting;
+  AppSettingModel? appSetting;
 
   Future<void> initStoreManager() async {
     print("before init manager initialized");

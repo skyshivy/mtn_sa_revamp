@@ -3,7 +3,7 @@
     "BASE_URL_SECURITY":"https://funtone.ooredoo.com.mm/security/Middleware/api/adapter/v1/crbt/",
     "FAQ_URL":"https://callertunez.mtn.co.za/callertunez/assets/FAQ.json",
     "DEFAULT_IMAGE_URL":"https://funtone.ooredoo.com.mm/stream-media/get-preview-image?fileId\u003d7a2tERYFM1U\u003d",
-
+     "TIME_OUT":6,   
     "FACEBOOK_URL":"https://m.facebook.com/ATOMOfficialPage/",
     "INSTAGRAM_URL":"https://www.instagram.com/atom_officialpage/",
     "TWITTER_URL":"https://twitter.com/atommyanmar?lang=en",

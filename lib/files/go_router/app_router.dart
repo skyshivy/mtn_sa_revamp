@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:local_session_timeout/local_session_timeout.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/banner_detail_controller/banner_detail_controller.dart';
@@ -412,6 +413,7 @@ Widget shellRouteIndex(BuildContext context, GoRouterState state,
     title: "Atom",
     home: ResponsiveBuilder(
       builder: (context, si) {
+        goRouterContext = context;
         keyScrollFocusNode.requestFocus();
         return Material(
           child: Column(

@@ -56,7 +56,7 @@ class LandingCompanyView extends StatelessWidget {
 
   void contactusTapped() {
     printCustom("Contact us tapped");
-    Others? others = StoreManager().appSetting.responseMap?.settings?.others;
+    Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
     String url = '';
     if (StoreManager().isEnglish) {
       url = others?.aboutAppurlEnglish?.attribute ?? '';
@@ -71,7 +71,7 @@ class LandingCompanyView extends StatelessWidget {
     printCustom("helpTapped tapped");
     return;
 
-    Others? others = StoreManager().appSetting.responseMap?.settings?.others;
+    Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
     String url = '';
     if (StoreManager().isEnglish) {
       url = others?.helpEnglish?.attribute ?? '';
@@ -85,7 +85,7 @@ class LandingCompanyView extends StatelessWidget {
     printCustom("privacyTapped tapped");
     context.goNamed(policyGoRoute);
     return;
-    Others? others = StoreManager().appSetting.responseMap?.settings?.others;
+    Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
     String url = '';
     if (StoreManager().isEnglish) {
       url = others?.pPolicyEnglish?.attribute ?? '';
@@ -96,7 +96,7 @@ class LandingCompanyView extends StatelessWidget {
   }
 
   void termsTapped(BuildContext context) {
-    Others? others = StoreManager().appSetting.responseMap?.settings?.others;
+    Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
     String url = '';
     if (StoreManager().isEnglish) {
       url = others?.tndEnglish?.attribute ?? '';
