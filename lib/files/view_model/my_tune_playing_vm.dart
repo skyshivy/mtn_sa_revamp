@@ -15,7 +15,11 @@ class MyTunePlayingVM {
     List<ListToneApk> playingList = <ListToneApk>[];
     bool switchEnabled = false;
     Map<String, dynamic>? result = await ServiceCall().get(getPlayingTunesUrl);
-
+    //===========================================================================
+    // to display only Fullday all caller and specific caller added below line
+    return await _displayTune(result);
+    // to Display for time base, all caller , and specific caller  , comment above line line
+//===========================================================================
     if (result != null) {
       PlayingTuneModel? playing = PlayingTuneModel.fromJson(result);
       print("check sky = ${playing.responseMap?.listToneApk?.length}");
@@ -228,4 +232,63 @@ Future<ListToneApk> _newDetail(ListToneApk info, TimeType toneDetailTimeType,
   listToneApk.eTime = eTime;
   listToneApk.customServiceName = info.customServiceName;
   return listToneApk;
+}
+
+//========================================================
+Future<PlayingTuneModel?> _displayTune(Map<String, dynamic>? result) async {
+  List<ListToneApk> lst = [];
+  bool switchEnabled = false;
+  if (result != null) {
+    PlayingTuneModel? playing = PlayingTuneModel.fromJson(result);
+    if (playing.statusCode == "SC0000") {
+      List<ListToneApk> tempListToneApkList =
+          playing.responseMap?.listToneApk ?? [];
+      for (ListToneApk element in tempListToneApkList) {
+        if ((element.serviceName == "SpecialCallerSetting") ||
+            (element.serviceName == "RAllCaller") ||
+            (element.serviceName == "AllCaller")) {
+          if (element.toneDetails != null) {
+            print("===========It is not null");
+            ToneDetail? tD = element.toneDetails?.first;
+
+            bool isFlDay = ((tD?.weeklyDays ?? "0") == "0") ? true : false;
+            lst.add(await _newDetail(element, TimeType.fullDay, "",
+                element.sTime ?? '', element.eTime ?? '',
+                isFullday: isFlDay));
+          } else {
+            print("It is  null");
+          }
+        } else {}
+      }
+      print("Total list =========== ${lst.length}");
+
+      if (playing.responseMap?.listToneApk != null ||
+          (playing.responseMap?.listToneApk?.isNotEmpty ?? true)) {
+        if ((playing.responseMap?.listToneApk!.length)! > 1) {
+          for (ListToneApk ind in playing.responseMap?.listToneApk ?? []) {
+            printCustom("AllCaller=== ${ind.serviceName}");
+            if (ind.serviceName == "AllCaller") {
+              printCustom("Suffle is enabled");
+              printCustom(
+                  "Is suffle status 3 ${ind.toneDetails?[0].isShuffle}");
+              switchEnabled =
+                  (ind.toneDetails?[0].isShuffle) == "T" ? true : false;
+            }
+          }
+        }
+        PlayingTuneModel model = PlayingTuneModel(
+            isSuffle: switchEnabled,
+            responseMap: ResponseMap(listToneApk: lst));
+        printCustom("Total get in list sorted new ${lst.length}");
+        //for (var element in listToneApkList) {
+        printCustom(
+            "Total item in model ${model.responseMap?.listToneApk?.length}");
+        //print("elements in ${listToneApkList?.packUserDetailsCrbt}");
+        return model;
+      }
+    }
+  }
+
+  printCustom("SKY info.toneDetails 52");
+  return null;
 }
