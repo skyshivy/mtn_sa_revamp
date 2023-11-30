@@ -133,7 +133,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         const SizedBox(height: 25),
         statusWidgets(),
         const SizedBox(height: 20),
-        Flexible(child: profilePreferenceWidget(si, controller)),
+// uncomment below line to show prefrences
+        //Flexible(child: profilePreferenceWidget(si, controller)),
         profileCancelEditButton(si),
       ],
     );
