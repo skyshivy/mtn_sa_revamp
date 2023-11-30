@@ -245,15 +245,29 @@ class BuyController extends GetxController {
     printCustom("newUserOtpCheck ========== ${map}");
     if (map != null) {
       NewUserCheckOtpModel model = NewUserCheckOtpModel.fromJson(map);
-      if (model.statusCode == 'SCOOOO') {
+      if (model.statusCode == 'SC0000') {
         StoreManager().setMsisdn(model.responseMap?.msisdn ?? '0');
+
+        var map = await GetSecurityVM().token();
+        if (map != null) {
+          GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(map);
+          StoreManager().securityCounter = model.responseMap.securityCounter;
+          securityCounter = model.responseMap.securityCounter;
+
+          if (model.statusCode == "SC0000") {
+            passwordValidation();
+          } else {
+            isVerifyingOtp.value = false;
+            errorMessage.value = '';
+          }
+        }
       } else {
         errorMessage.value = model.message ?? '';
       }
     } else {
       errorMessage.value = someThingWentWrongStr.tr;
     }
-    isVerifyingOtp.value = false;
+    isVerifyingOtp.value = true;
   }
 
   Future<void> verifyingOtpCheck() async {
