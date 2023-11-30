@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
+import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
 import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
 
@@ -16,6 +17,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_security_token_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/new_registration_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/new_user_otp_check_vm.dart';
 
 class LoginController extends GetxController {
   RxBool isVerifying = false.obs;
@@ -25,6 +27,7 @@ class LoginController extends GetxController {
   String securityCounter = '';
   RxString errorMessage = ''.obs;
   RxString otp = ''.obs;
+  bool isNewUser = false;
   varifyMsisdnButtonAction() async {
     errorMessage.value = '';
     int len = StoreManager().msisdnLength;
@@ -71,6 +74,7 @@ class LoginController extends GetxController {
   Future<String> _validationMsisdn() async {
     String stringData = await LoginVm().subscribeMsisdn(msisdn.value);
     Map<String, dynamic> valueMap = json.decode(stringData);
+    isNewUser = false;
     SubscriberValidationModel model =
         SubscriberValidationModel.fromJson(valueMap);
     if (model.statusCode == "SC0000") {
@@ -79,7 +83,9 @@ class LoginController extends GetxController {
         printCustom("Existing user******");
       } else if (model.responseMap?.respCode == '100') {
         isMsisdnVarified.value = true;
+        isNewUser = true;
         printCustom("New user*****");
+        await getSecurityTokenForNew(msisdn.value);
       } else if (model.responseMap?.respCode == '101') {
         errorMessage.value = model.responseMap?.respDesc ?? '';
         isVerifying.value = false;
@@ -98,6 +104,9 @@ class LoginController extends GetxController {
 
   Future<void> _generateOtp() async {
     isVerifying.value = true;
+    // if (isNewUser) {
+    //   newUserOtpCheck();
+    // } else {
     GenerateOtpModel result = await LoginVm().generateOtp(msisdn.value);
     isVerifying.value = false;
     if (result.statusCode == "SC0000") {
@@ -106,23 +115,56 @@ class LoginController extends GetxController {
       errorMessage.value = result.message;
       isMsisdnVarified.value = false;
     }
+    //}
 
     printCustom("Generate otp api call here");
+  }
+
+  Future<bool> newUserOtpCheck() async {
+    isVerifying.value = true;
+    Map<String, dynamic>? map = await NewUserOtpCheckVm()
+        .check(otp.value, msisdn.value, StoreManager().securityToken);
+    printCustom("newUserOtpCheck ========== ${map}");
+    isVerifying.value = false;
+    if (map != null) {
+      NewUserCheckOtpModel model = NewUserCheckOtpModel.fromJson(map);
+      if (model.statusCode == 'SCOOOO') {
+        isMsisdnVarified.value = true;
+        return true;
+        //StoreManager().setMsisdn(model.responseMap?.msisdn ?? '0');
+      } else {
+        errorMessage.value = model.message ?? '';
+
+        isMsisdnVarified.value = true;
+        isVerifying.value = false;
+        return false;
+      }
+    } else {
+      errorMessage.value = someThingWentWrongStr.tr;
+      isMsisdnVarified.value = false;
+      isVerifying.value = false;
+      return false;
+    }
   }
 
   Future<bool> _confirmOtpApi() async {
     printCustom("Resu =Sky========");
     isVerifying.value = true;
-    ConfirmOtpModel? model =
-        await LoginVm().confirmOtp(msisdn.value, otp.value);
-    printCustom(
-        "Resu =Sky====model?.statusCode ${model?.statusCode}==model?.message ${model?.message}=");
-    isVerifying.value = false;
-    if (model?.statusCode == "SC0000") {
-      return true;
-    } else {
-      errorMessage.value = model?.message ?? '';
+    if (isNewUser) {
+      await newUserOtpCheck();
       return false;
+    } else {
+      ConfirmOtpModel? model =
+          await LoginVm().confirmOtp(msisdn.value, otp.value);
+      printCustom(
+          "Resu =Sky====model?.statusCode ${model?.statusCode}==model?.message ${model?.message}=");
+      isVerifying.value = false;
+      if (model?.statusCode == "SC0000") {
+        return true;
+      } else {
+        errorMessage.value = model?.message ?? '';
+        return false;
+      }
     }
   }
 
