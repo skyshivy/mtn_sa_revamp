@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   return CustomText(
                     title: controller.errorMessage.value,
                     fontName: FontName.medium,
-                    textColor: atomCryan,
+                    textColor: red,
                     fontSize: si.isMobile ? 10 : 16,
                   );
                 },
