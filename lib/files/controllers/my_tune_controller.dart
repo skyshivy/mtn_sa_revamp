@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/delete_my_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/my_tunel_list_model.dart';
 import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
@@ -14,6 +17,7 @@ import 'package:mtn_sa_revamp/files/view_model/delete_playing_tune_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/my_tune_playing_vm.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+import 'package:mtn_sa_revamp/main.dart';
 
 class MyTuneController extends GetxController {
   RxBool isLoadingPlaying = false.obs;
@@ -28,25 +32,56 @@ class MyTuneController extends GetxController {
 
   getPlayingTuneList() async {
     isLoadingPlaying.value = true;
+    isLoadingTune.value = true;
     playingList.value = <ListToneApk>[];
-    getTuneList();
-    _getMyPlayingList();
+    bool status = await getPackStatus();
+    if (status) {
+      getTuneList();
+      getMyPlayingList();
+    } else {
+      isLoadingPlaying.value = false;
+      isLoadingTune.value = false;
+      notActiveSubscriberPopup();
+    }
     isLoadingPlaying.value = false;
   }
 
-  _getMyPlayingList() async {
+  void notActiveSubscriberPopup() {
+    ;
+    if (!(Get.isDialogOpen ?? true)) {
+      Get.dialog(CustomAlertView(
+        title: notActiveSubscriberMessageStr,
+        onConfirm: () {
+          goRouterContext?.go(homeGoRoute);
+        },
+      ));
+    }
+  }
+
+  Future<bool> getPackStatus() async {
+    PackStatusModel mo = await getPackStatusApiCall(isCrbt: true);
+    if (mo.statusCode == "SC0000") {
+      return (mo.responseMap?.packStatusDetails?.packName != null);
+    } else {
+      return false;
+    }
+  }
+
+  Future<void> getMyPlayingList() async {
+    isLoadingPlaying.value = true;
     PlayingTuneModel? playingTune =
         await MyTunePlayingVM().getPlayingTuneListApiCall();
-
+    isLoadingPlaying.value = false;
     if (playingTune != null) {
       printCustom("Is suffle status 1 ${playingTune.isSuffle!}");
       isSuffle.value = playingTune.isSuffle!;
       switchEnabled.value = playingTune.isSuffle!;
       playingList.value = playingTune.responseMap?.listToneApk ?? [];
     }
+    return;
   }
 
-  getTuneList() async {
+  Future<void> getTuneList() async {
     tuneList.value = <ListToneApk1>[];
     isLoadingTune.value = true;
     Map<String, dynamic>? re = await ServiceCall().get(getMyTuneListUrl);
@@ -59,6 +94,7 @@ class MyTuneController extends GetxController {
 
     printCustom("getTuneList  ${tuneList.length}");
     isLoadingTune.value = false;
+    return;
   }
 
   Future<void> suffleTune() async {
@@ -73,7 +109,7 @@ class MyTuneController extends GetxController {
         isChangeSuffle.value = false;
         switchEnabled.value = !switchEnabled.value;
         isSuffle.value = switchEnabled.value;
-        await _getMyPlayingList();
+        await getMyPlayingList();
         isLoadingPlaying.value = false;
       } else {
         showSnackBar(message: model.message ?? someThingWentWrongStr.tr);

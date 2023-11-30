@@ -44,7 +44,7 @@ class CustomAlertView extends StatelessWidget {
           decoration: mainContainerDecoration(),
           child: Padding(
             padding:
-                const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 20),
+                const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 15),
             child: mainColumn(),
           ),
         );
@@ -65,7 +65,9 @@ class CustomAlertView extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         CustomButton(
-            borderColor: greyDark,
+            //borderColor: greyDark,
+            color: blue,
+            textColor: white,
             width: 120,
             title: okStr.tr,
             fontName: FontName.medium,

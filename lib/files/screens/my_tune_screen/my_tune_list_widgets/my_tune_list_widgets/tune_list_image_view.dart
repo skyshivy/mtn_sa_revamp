@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
@@ -13,10 +14,11 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/gredient.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 Widget tuneListImageView(ListToneApk1 info, int index) {
   return Stack(
-    alignment: Alignment.center,
+    alignment: Alignment.bottomLeft,
     children: [
       Stack(
         alignment: Alignment.topCenter,
@@ -44,28 +46,41 @@ Widget tuneListImageView(ListToneApk1 info, int index) {
 
 Widget inActiveStatus(ListToneApk1 info) {
   bool isActive = (info.toneDetails?.first.status == "A");
-  return Visibility(
-    visible: !isActive,
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            color: grey,
-          ),
-          height: 40,
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Center(
-                child: CustomText(
-              title: inActiveStr,
-              fontName: FontName.bold,
-            )),
+  return ResponsiveBuilder(
+    builder: (context, si) {
+      return Visibility(
+        visible: !isActive,
+        child: Padding(
+          padding: EdgeInsets.only(bottom: si.isMobile ? 20 : 40),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Image.asset(
+                    ribbonImg,
+                    fit: BoxFit.fill,
+                    color: grey,
+                    height: si.isMobile ? 40 : 50,
+                    width: si.isMobile ? 120 : 150,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: CustomText(
+                      title: inActiveStr.tr,
+                      fontName: FontName.medium,
+                    ),
+                  ),
+                ],
+              )
+            ],
           ),
         ),
-      ],
-    ),
+      );
+    },
   );
 }
 

@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
@@ -19,6 +20,7 @@ import 'package:mtn_sa_revamp/files/view_model/tune_setting_dedicated_vm.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class TuneSettingController extends GetxController {
+  MyTuneController tuneCont = Get.find();
   RxInt callerType = 0.obs;
   RxInt repeatYear = 0.obs;
   RxString msisdn = ''.obs;
@@ -212,6 +214,7 @@ class TuneSettingController extends GetxController {
       SetToneModel model = SetToneModel.fromJson(map);
       if (model.statusCode == "SC0000") {
         context.go(myTuneGoRoute);
+        tuneCont.getMyPlayingList();
         showSnackBar(message: model.message ?? '');
         return;
       } else {

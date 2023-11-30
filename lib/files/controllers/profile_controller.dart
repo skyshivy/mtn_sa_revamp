@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
@@ -219,95 +220,155 @@ class ProfileController extends GetxController {
   }
 
   activeCrbtStatusAction() async {
-    isUpdatingCrbtStatus.value = true;
-    SuspendResumeModel res = await activeSuspendApi(crbtPackName, true, true);
-    isUpdatingCrbtStatus.value = false;
-    if (res.statusCode == 'SC0000') {
-      activeCrbtButtonName.value =
-          (activeCrbtButtonName.value == suspendStr) ? resumeStr : suspendStr;
-      crbtTuneStatus.value =
-          (crbtTuneStatus.value == activeStr) ? suspendStr : activeStr;
-      crbtTuneStatusMessage =
-          (crbtTuneStatusMessage == yourServiceIsCurrentlyRunningStr)
-              ? yourServiceIsNotCurrentlyRunningStr
-              : yourServiceIsCurrentlyRunningStr;
-    } else {
-      showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
-    }
+    Get.dialog(
+      CustomConfirmAlertView(
+        message: changeStatusConfirmMessageStr.tr,
+        cancelTitle: cancelStr.tr,
+        onOk: () async {
+          isUpdatingCrbtStatus.value = true;
+          SuspendResumeModel res =
+              await activeSuspendApi(crbtPackName, true, true);
+          isUpdatingCrbtStatus.value = false;
+          if (res.statusCode == 'SC0000') {
+            activeCrbtButtonName.value =
+                (activeCrbtButtonName.value == suspendStr)
+                    ? resumeStr
+                    : suspendStr;
+            crbtTuneStatus.value =
+                (crbtTuneStatus.value == activeStr) ? suspendStr : activeStr;
+            crbtTuneStatusMessage =
+                (crbtTuneStatusMessage == yourServiceIsCurrentlyRunningStr)
+                    ? yourServiceIsNotCurrentlyRunningStr
+                    : yourServiceIsCurrentlyRunningStr;
+          } else {
+            showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
+          }
+        },
+      ),
+    );
 
     printCustom("activeTuneStatusAction");
   }
 
   suspendCrbtStatusAction() async {
     printCustom("suspendTuneStatusAction");
-    isUpdatingCrbtStatus.value = true;
-    SuspendResumeModel res = await activeSuspendApi(crbtPackName, false, true);
-    isUpdatingCrbtStatus.value = false;
+    Get.dialog(
+      CustomConfirmAlertView(
+        message: changeStatusConfirmMessageStr.tr,
+        cancelTitle: cancelStr.tr,
+        onOk: () async {
+          isUpdatingCrbtStatus.value = true;
+          SuspendResumeModel res =
+              await activeSuspendApi(crbtPackName, false, true);
+          isUpdatingCrbtStatus.value = false;
 
-    if (res.statusCode == 'SC0000') {
-      activeCrbtButtonName.value =
-          (activeCrbtButtonName.value == suspendStr) ? resumeStr : suspendStr;
-      crbtTuneStatus.value =
-          (crbtTuneStatus.value == activeStr) ? suspendStr : activeStr;
-      crbtTuneStatusMessage =
-          (crbtTuneStatusMessage == yourServiceIsCurrentlyRunningStr)
-              ? yourServiceIsNotCurrentlyRunningStr
-              : yourServiceIsCurrentlyRunningStr;
-    } else {
-      showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
-    }
+          if (res.statusCode == 'SC0000') {
+            activeCrbtButtonName.value =
+                (activeCrbtButtonName.value == suspendStr)
+                    ? resumeStr
+                    : suspendStr;
+            crbtTuneStatus.value =
+                (crbtTuneStatus.value == activeStr) ? suspendStr : activeStr;
+            crbtTuneStatusMessage =
+                (crbtTuneStatusMessage == yourServiceIsCurrentlyRunningStr)
+                    ? yourServiceIsNotCurrentlyRunningStr
+                    : yourServiceIsCurrentlyRunningStr;
+          } else {
+            showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
+          }
+        },
+      ),
+    );
     printCustom("activeTuneStatusAction");
   }
 
   unsubscribeCrbtTuneStatusAction() async {
     printCustom("unsubscribeCrbtTuneStatusAction");
-    isUpdatingCrbtStatus.value = true;
-    await Future.delayed(const Duration(seconds: 2));
-    isUpdatingCrbtStatus.value = false;
+    Get.dialog(
+      CustomConfirmAlertView(
+        message: unSubscribeConfirmMessageStr.tr,
+        cancelTitle: cancelStr.tr,
+        onOk: () async {
+          isUpdatingCrbtStatus.value = true;
+          await Future.delayed(const Duration(seconds: 2));
+          isUpdatingCrbtStatus.value = false;
+        },
+      ),
+    );
   }
 
   activeRrbtStatusAction() async {
     printCustom("activeRrbtStatusAction");
-    isUpdatingRrbtStatus.value = true;
-    SuspendResumeModel res = await activeSuspendApi(rrbtPackName, true, false);
-    isUpdatingRrbtStatus.value = false;
-    if (res.statusCode == 'SC0000') {
-      activeRrbtButtonName.value =
-          (activeRrbtButtonName.value == suspendStr) ? resumeStr : suspendStr;
-      rrbtStatus.value =
-          (rrbtStatus.value == activeStr) ? suspendStr : activeStr;
-      rrbtStatusMessage =
-          (rrbtStatusMessage == yourServiceIsCurrentlyRunningStr)
-              ? yourServiceIsNotCurrentlyRunningStr
-              : yourServiceIsCurrentlyRunningStr;
-    } else {
-      showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
-    }
+    Get.dialog(
+      CustomConfirmAlertView(
+        message: changeStatusConfirmMessageStr.tr,
+        cancelTitle: cancelStr.tr,
+        onOk: () async {
+          isUpdatingRrbtStatus.value = true;
+          SuspendResumeModel res =
+              await activeSuspendApi(rrbtPackName, true, false);
+          isUpdatingRrbtStatus.value = false;
+          if (res.statusCode == 'SC0000') {
+            activeRrbtButtonName.value =
+                (activeRrbtButtonName.value == suspendStr)
+                    ? resumeStr
+                    : suspendStr;
+            rrbtStatus.value =
+                (rrbtStatus.value == activeStr) ? suspendStr : activeStr;
+            rrbtStatusMessage =
+                (rrbtStatusMessage == yourServiceIsCurrentlyRunningStr)
+                    ? yourServiceIsNotCurrentlyRunningStr
+                    : yourServiceIsCurrentlyRunningStr;
+          } else {
+            showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
+          }
+        },
+      ),
+    );
   }
 
   suspendRrbtStatusAction() async {
     printCustom("suspendRrbtStatusAction");
-    isUpdatingRrbtStatus.value = true;
-    SuspendResumeModel res = await activeSuspendApi(rrbtPackName, false, false);
-    isUpdatingRrbtStatus.value = false;
-    if (res.statusCode == 'SC0000') {
-      activeRrbtButtonName.value =
-          (activeRrbtButtonName.value == suspendStr) ? resumeStr : suspendStr;
-      rrbtStatus.value =
-          (rrbtStatus.value == activeStr) ? suspendStr : activeStr;
-      rrbtStatusMessage =
-          (rrbtStatusMessage == yourServiceIsCurrentlyRunningStr)
-              ? yourServiceIsNotCurrentlyRunningStr
-              : yourServiceIsCurrentlyRunningStr;
-    } else {
-      showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
-    }
+    Get.dialog(
+      CustomConfirmAlertView(
+        message: changeStatusConfirmMessageStr.tr,
+        cancelTitle: cancelStr.tr,
+        onOk: () async {
+          isUpdatingRrbtStatus.value = true;
+          SuspendResumeModel res =
+              await activeSuspendApi(rrbtPackName, false, false);
+          isUpdatingRrbtStatus.value = false;
+          if (res.statusCode == 'SC0000') {
+            activeRrbtButtonName.value =
+                (activeRrbtButtonName.value == suspendStr)
+                    ? resumeStr
+                    : suspendStr;
+            rrbtStatus.value =
+                (rrbtStatus.value == activeStr) ? suspendStr : activeStr;
+            rrbtStatusMessage =
+                (rrbtStatusMessage == yourServiceIsCurrentlyRunningStr)
+                    ? yourServiceIsNotCurrentlyRunningStr
+                    : yourServiceIsCurrentlyRunningStr;
+          } else {
+            showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
+          }
+        },
+      ),
+    );
   }
 
   unSubscribeRrbtStatusAction() async {
     printCustom("unSubscribeRrbtStatusAction");
-    isUpdatingRrbtStatus.value = true;
-    await Future.delayed(const Duration(seconds: 2));
-    isUpdatingRrbtStatus.value = false;
+    Get.dialog(
+      CustomConfirmAlertView(
+        message: unSubscribeConfirmMessageStr.tr,
+        cancelTitle: cancelStr.tr,
+        onOk: () async {
+          isUpdatingRrbtStatus.value = true;
+          await Future.delayed(const Duration(seconds: 2));
+          isUpdatingRrbtStatus.value = false;
+        },
+      ),
+    );
   }
 }

@@ -13,13 +13,16 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+import 'package:mtn_sa_revamp/files/view_model/get_security_token_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/new_registration_vm.dart';
 
 class LoginController extends GetxController {
   RxBool isVerifying = false.obs;
   RxBool isMsisdnVarified = false.obs;
   RxString msisdn = ''.obs;
   String securityToken = '';
+  String securityCounter = '';
   RxString errorMessage = ''.obs;
   RxString otp = ''.obs;
   varifyMsisdnButtonAction() async {
@@ -201,6 +204,30 @@ class LoginController extends GetxController {
       await _passwordValidationToken(isAutoLogin: true);
     }
   }
+//=======================New user==================
 
-  _autoLoginSecurityToken(bool isNewUser) {}
+  Future<void> getSecurityTokenForNew(String msisdn) async {
+    var map = await GetSecurityVM().token();
+    if (map != null) {
+      GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(map);
+      StoreManager().securityCounter = model.responseMap.securityCounter;
+      securityCounter = model.responseMap.securityCounter;
+      bool isRegistered =
+          await NewRegistrartionVm().register(msisdn, securityCounter);
+      isVerifying.value = false;
+      if (isRegistered) {
+        await _generateOtp();
+        return;
+      } else {
+        errorMessage.value = someThingWentWrongStr.tr;
+        isVerifying.value = false;
+      }
+      printCustom("NewRegistrartionVm status $isRegistered");
+      return;
+    }
+    isVerifying.value = false;
+    return;
+  }
+
+  //_autoLoginSecurityToken(bool isNewUser) {}
 }

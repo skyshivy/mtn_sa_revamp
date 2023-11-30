@@ -132,11 +132,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         inCaseOfBothCardHidden(si),
         const SizedBox(height: 25),
         statusWidgets(),
-        // Obx(() {
-        //   return profileController.isBothStatusHidden.value
-        //       ?
-        //       : statusWidgets();
-        // }),
         const SizedBox(height: 20),
         Flexible(child: profilePreferenceWidget(si, controller)),
         profileCancelEditButton(si),
