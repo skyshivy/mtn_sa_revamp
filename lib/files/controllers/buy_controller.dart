@@ -161,9 +161,11 @@ class BuyController extends GetxController {
       } else {
         errorMessage.value = newUserModel.message ?? someThingWentWrongStr.tr;
         isVerifying.value = false;
+        isShowOtpView.value = false;
       }
     } else {
       isVerifying.value = false;
+      isShowOtpView.value = false;
       errorMessage.value = someThingWentWrongStr.tr;
       return;
     }

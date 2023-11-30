@@ -25,6 +25,7 @@ class LoginController extends GetxController {
   RxBool isMsisdnVarified = false.obs;
   RxString msisdn = ''.obs;
   String securityToken = '';
+
   String securityCounter = '';
   RxString errorMessage = ''.obs;
   RxString otp = ''.obs;
@@ -275,9 +276,11 @@ class LoginController extends GetxController {
       } else {
         errorMessage.value = newUserModel.message ?? someThingWentWrongStr.tr;
         isVerifying.value = false;
+        isMsisdnVarified.value = false;
       }
     } else {
       isVerifying.value = false;
+      isMsisdnVarified.value = false;
       errorMessage.value = someThingWentWrongStr.tr;
       return;
     }
