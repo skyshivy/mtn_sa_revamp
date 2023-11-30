@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
+import 'package:mtn_sa_revamp/files/model/new_user_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
 import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
@@ -120,10 +121,10 @@ class LoginController extends GetxController {
     printCustom("Generate otp api call here");
   }
 
-  Future<bool> newUserOtpCheck() async {
+  Future<bool> newUserOtpCheck(String securityCounter) async {
     isVerifying.value = true;
     Map<String, dynamic>? map = await NewUserOtpCheckVm()
-        .check(otp.value, msisdn.value, StoreManager().securityToken);
+        .check(otp.value, msisdn.value, securityCounter);
     printCustom("newUserOtpCheck ========== ${map}");
     isVerifying.value = false;
     if (map != null) {
@@ -131,10 +132,8 @@ class LoginController extends GetxController {
       if (model.statusCode == 'SCOOOO') {
         isMsisdnVarified.value = true;
         return true;
-        //StoreManager().setMsisdn(model.responseMap?.msisdn ?? '0');
       } else {
         errorMessage.value = model.message ?? '';
-
         isMsisdnVarified.value = true;
         isVerifying.value = false;
         return false;
@@ -151,8 +150,8 @@ class LoginController extends GetxController {
     printCustom("Resu =Sky========");
     isVerifying.value = true;
     if (isNewUser) {
-      await newUserOtpCheck();
-      return false;
+      bool isLoggedInSuccess = await newUserOtpCheck(securityCounter);
+      return isLoggedInSuccess;
     } else {
       ConfirmOtpModel? model =
           await LoginVm().confirmOtp(msisdn.value, otp.value);
@@ -254,21 +253,21 @@ class LoginController extends GetxController {
       GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(map);
       StoreManager().securityCounter = model.responseMap.securityCounter;
       securityCounter = model.responseMap.securityCounter;
-      bool isRegistered =
+      NewUserRegistrationModel newUserModel =
           await NewRegistrartionVm().register(msisdn, securityCounter);
-      isVerifying.value = false;
-      if (isRegistered) {
-        await _generateOtp();
-        return;
+      if (newUserModel.statusCode == 'SC0000') {
+        securityCounter = newUserModel.responseMap?.secToc ?? '';
+        isVerifying.value = false;
+        isMsisdnVarified.value = true;
       } else {
-        errorMessage.value = someThingWentWrongStr.tr;
+        errorMessage.value = newUserModel.message ?? someThingWentWrongStr.tr;
         isVerifying.value = false;
       }
-      printCustom("NewRegistrartionVm status $isRegistered");
+    } else {
+      isVerifying.value = false;
+      errorMessage.value = someThingWentWrongStr.tr;
       return;
     }
-    isVerifying.value = false;
-    return;
   }
 
   //_autoLoginSecurityToken(bool isNewUser) {}

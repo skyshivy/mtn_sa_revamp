@@ -7,6 +7,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_popup_widget.dart';
 import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
 import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_existing_model.dart';
+import 'package:mtn_sa_revamp/files/model/new_user_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
 import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_price_model.dart';
@@ -151,11 +152,42 @@ class BuyController extends GetxController {
       GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(map);
       StoreManager().securityCounter = model.responseMap.securityCounter;
       securityCounter = model.responseMap.securityCounter;
-      bool isRegistered =
+      NewUserRegistrationModel newUserModel =
           await NewRegistrartionVm().register(msisdn, securityCounter);
+      if (newUserModel.statusCode == 'SC0000') {
+        securityCounter = newUserModel.responseMap?.secToc ?? '';
+        isVerifying.value = false;
+        isShowOtpView.value = true;
+      } else {
+        errorMessage.value = newUserModel.message ?? someThingWentWrongStr.tr;
+        isVerifying.value = false;
+      }
+    } else {
+      isVerifying.value = false;
+      errorMessage.value = someThingWentWrongStr.tr;
+      return;
+    }
+  }
+
+/*
+  Future<void> getSecurityTokenForNew(String msisdn) async {
+    var map = await GetSecurityVM().token();
+    if (map != null) {
+      GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(map);
+      StoreManager().securityCounter = model.responseMap.securityCounter;
+      securityCounter = model.responseMap.securityCounter;
+      bool isRegistered = false;
+      NewUserRegistrationModel newUserModel =
+          await NewRegistrartionVm().register(msisdn, securityCounter);
+      if (newUserModel.statusCode == "SC0000") {
+        isRegistered = true;
+        StoreManager().securityCounter = newUserModel.responseMap?.secToc ?? '';
+        securityCounter = newUserModel.responseMap?.secToc ?? '';
+      }
       isVerifying.value = false;
       if (isRegistered) {
-        await _generateOtp(msisdn, true);
+        //await _generateOtp(msisdn, true);
+        isVerifying.value = true;
         return;
       } else {
         errorMessage.value = someThingWentWrongStr.tr;
@@ -167,7 +199,7 @@ class BuyController extends GetxController {
     isVerifying.value = false;
     return;
   }
-
+*/
   Future<TonePriceModel> getTunePrice() async {
     errorMessage.value = '';
     String msisdn3 = '';
@@ -237,28 +269,11 @@ class BuyController extends GetxController {
         printCustom("res = ${res.statusCode}");
         if (res.statusCode == "SC0000") {
           await getSecurityTokenForOldUser();
-          // TonePriceModel model = await getTunePrice();
-          // if (model.statusCode == 'SC0000') {
-          //   String subscriptionStatus =
-          //       model.responseMap?.responseDetails?.first.subscriberStatus ??
-          //           '';
-          //   if (subscriptionStatus == "NA" || subscriptionStatus == "NA") {
-          //     isShowSubscriptionPlan.value = true;
-          //     isShowOtpView.value = false;
-          //     printCustom("isShowSubscriptionPlan display here");
-          //   } else {
-          //     isShowSubscriptionPlan.value = false;
-          //     await getSecurityTokenForOldUser();
-          //     printCustom("make here setTune here or uncomment below line");
-          //   }
-          // } else {}
-          //
         } else {
           isVerifyingOtp.value = false;
           errorMessage.value = res.message ?? '';
         }
       }
-
       return;
     }
     errorMessage.value = pleaseEnterAValidOtpStr.tr;

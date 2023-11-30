@@ -8,7 +8,8 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class NewRegistrartionVm {
-  Future<bool> register(String msisdn, String secCounter) async {
+  Future<NewUserRegistrationModel> register(
+      String msisdn, String secCounter) async {
     String encryptedPassword = Cryptom().text("Oem@L#@1");
 
     Random random = Random();
@@ -37,9 +38,9 @@ class NewRegistrartionVm {
     if (map != null) {
       NewUserRegistrationModel model = NewUserRegistrationModel.fromJson(map);
       StoreManager().securityToken = model.responseMap?.secToc ?? '';
-      return true;
+      return model;
     } else {
-      return false;
+      return NewUserRegistrationModel();
     }
   }
 }
