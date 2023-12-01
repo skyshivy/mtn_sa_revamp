@@ -30,8 +30,13 @@ class MyTuneController extends GetxController {
 
   RxList<ListToneApk> playingList = <ListToneApk>[].obs;
   RxList<ListToneApk1> tuneList = <ListToneApk1>[].obs;
-
+  bool loadingData = false;
   getPlayingTuneList() async {
+    if (loadingData) {
+      return;
+    }
+    delay();
+    loadingData = true;
     isLoadingPlaying.value = true;
     isLoadingTune.value = true;
     playingList.value = <ListToneApk>[];
@@ -45,6 +50,12 @@ class MyTuneController extends GetxController {
       notActiveSubscriberPopup();
     }
     isLoadingPlaying.value = false;
+  }
+
+  Future<void> delay() async {
+    await Future.delayed(const Duration(milliseconds: 600));
+    loadingData = false;
+    return;
   }
 
   void notActiveSubscriberPopup() {

@@ -8,7 +8,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 class MyTunePlayingView extends StatelessWidget {
   MyTunePlayingView({super.key});
-  MyTuneController controller = Get.find();
+  final MyTuneController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
