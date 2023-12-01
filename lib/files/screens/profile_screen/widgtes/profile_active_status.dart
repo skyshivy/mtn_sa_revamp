@@ -10,35 +10,40 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 Widget profileActiveStatus() {
   ProfileController pCont = Get.find();
-  return ResponsiveBuilder(
-    builder: (context, si) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // packNameStr +
-          //       '\n' +
-          CustomText(
-            alignment: TextAlign.center,
-            title: packNameStr.tr,
-            textColor: subTitleColor,
-            fontName: si.isMobile ? FontName.bold : FontName.medium,
-            fontSize: si.isMobile ? 12 : 14,
-          ),
-          const SizedBox(height: 4),
-          CustomText(
-            alignment: TextAlign.center,
-            title: (pCont.crbtPackName)
-                .replaceAll("CRBT_", " ")
-                .replaceAll("crbt_", " ")
-                .toUpperCase(),
-            textColor: black,
-            fontName: FontName.bold,
-            fontSize: si.isMobile ? 12 : 14,
-          ),
-        ],
-      );
-    },
-  );
+  return Obx(() {
+    return Visibility(
+      visible: pCont.crbtPackName.isNotEmpty,
+      child: ResponsiveBuilder(
+        builder: (context, si) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // packNameStr +
+              //       '\n' +
+              CustomText(
+                alignment: TextAlign.center,
+                title: packNameStr.tr,
+                textColor: subTitleColor,
+                fontName: si.isMobile ? FontName.bold : FontName.medium,
+                fontSize: si.isMobile ? 12 : 14,
+              ),
+              const SizedBox(height: 4),
+              CustomText(
+                alignment: TextAlign.center,
+                title: (pCont.crbtPackName.value)
+                    .replaceAll("CRBT_", " ")
+                    .replaceAll("crbt_", " ")
+                    .toUpperCase(),
+                textColor: black,
+                fontName: FontName.bold,
+                fontSize: si.isMobile ? 12 : 14,
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  });
 }

@@ -39,11 +39,13 @@ class ProfileReverseRbtStatus extends StatelessWidget {
                         );
                       }),
                       const SizedBox(height: 4),
-                      CustomText(
-                        title: cont.rrbtStatusMessage,
-                        fontName: FontName.medium,
-                        fontSize: 14,
-                      ),
+                      Obx(() {
+                        return CustomText(
+                          title: cont.rrbtStatusMessage.value,
+                          fontName: FontName.medium,
+                          fontSize: 14,
+                        );
+                      }),
                       const SizedBox(height: 15),
                       buttonsRow(si),
                     ],

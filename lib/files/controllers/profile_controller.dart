@@ -26,11 +26,11 @@ class ProfileController extends GetxController {
   RxString userName = ''.obs;
   RxBool isSaving = false.obs;
   //RxString packName = ''.obs;
-  String crbtPackName = '';
+  RxString crbtPackName = ''.obs;
   String rrbtPackName = '';
   RxString crbtTuneStatus = ''.obs;
-  String crbtTuneStatusMessage = '';
-  String rrbtStatusMessage = '';
+  RxString crbtTuneStatusMessage = ''.obs;
+  RxString rrbtStatusMessage = ''.obs;
   RxBool isBothStatusHidden = true.obs;
   RxString rrbtStatus = ''.obs;
   RxBool isUpdatingCrbtStatus = false.obs;
@@ -61,11 +61,25 @@ class ProfileController extends GetxController {
     if (packStatusModel.statusCode == 'SC0000') {
       isHideCRBTStatus.value =
           !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
-      crbtPackName =
+      crbtPackName.value =
           packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
+      activeCrbtButtonName.value =
+          (packStatusModel.responseMap?.packStatusDetails == null)
+              ? activeStr.tr
+              : suspendStr.tr;
+      crbtTuneStatusMessage.value =
+          (packStatusModel.responseMap?.packStatusDetails == null)
+              ? yourServiceIsNotCurrentlyRunningStr
+              : yourServiceIsCurrentlyRunningStr;
       return;
+    } else if (packStatusModel.statusCode == 'FL0014') {
+      crbtPackName.value =
+          packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
+      activeCrbtButtonName.value = activeStr.tr;
+      crbtTuneStatusMessage.value = yourServiceIsNotCurrentlyRunningStr;
+      isHideCRBTStatus.value = false;
     } else {
-      crbtPackName = '';
+      crbtPackName.value = '';
       isHideCRBTStatus.value = true;
       return;
     }
@@ -82,7 +96,22 @@ class ProfileController extends GetxController {
       //packName
       rrbtPackName =
           packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
+      activeRrbtButtonName.value =
+          (packStatusModel.responseMap?.packStatusDetails == null)
+              ? activeStr.tr
+              : suspendStr.tr;
+      rrbtStatusMessage.value =
+          (packStatusModel.responseMap?.packStatusDetails == null)
+              ? yourServiceIsNotCurrentlyRunningStr
+              : yourServiceIsCurrentlyRunningStr;
       return;
+    } else if (packStatusModel.statusCode == 'FL0014') {
+      rrbtPackName =
+          packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
+      activeRrbtButtonName.value = activeStr.tr;
+
+      rrbtStatusMessage.value = yourServiceIsNotCurrentlyRunningStr;
+      isHideRRBTStatus.value = false;
     } else {
       rrbtPackName = '';
       isHideRRBTStatus.value = true;
@@ -231,7 +260,7 @@ class ProfileController extends GetxController {
         onOk: () async {
           isUpdatingCrbtStatus.value = true;
           SuspendResumeModel res =
-              await activeSuspendApi(crbtPackName, true, true);
+              await activeSuspendApi(crbtPackName.value, true, true);
           isUpdatingCrbtStatus.value = false;
           if (res.statusCode == 'SC0000') {
             activeCrbtButtonName.value =
@@ -240,10 +269,10 @@ class ProfileController extends GetxController {
                     : suspendStr;
             crbtTuneStatus.value =
                 (crbtTuneStatus.value == activeStr) ? suspendStr : activeStr;
-            crbtTuneStatusMessage =
-                (crbtTuneStatusMessage == yourServiceIsCurrentlyRunningStr)
-                    ? yourServiceIsNotCurrentlyRunningStr
-                    : yourServiceIsCurrentlyRunningStr;
+            crbtTuneStatusMessage.value = (crbtTuneStatusMessage.value ==
+                    yourServiceIsCurrentlyRunningStr)
+                ? yourServiceIsNotCurrentlyRunningStr
+                : yourServiceIsCurrentlyRunningStr;
           } else {
             showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
           }
@@ -263,7 +292,7 @@ class ProfileController extends GetxController {
         onOk: () async {
           isUpdatingCrbtStatus.value = true;
           SuspendResumeModel res =
-              await activeSuspendApi(crbtPackName, false, true);
+              await activeSuspendApi(crbtPackName.value, false, true);
           isUpdatingCrbtStatus.value = false;
 
           if (res.statusCode == 'SC0000') {
@@ -273,10 +302,10 @@ class ProfileController extends GetxController {
                     : suspendStr;
             crbtTuneStatus.value =
                 (crbtTuneStatus.value == activeStr) ? suspendStr : activeStr;
-            crbtTuneStatusMessage =
-                (crbtTuneStatusMessage == yourServiceIsCurrentlyRunningStr)
-                    ? yourServiceIsNotCurrentlyRunningStr
-                    : yourServiceIsCurrentlyRunningStr;
+            crbtTuneStatusMessage.value = (crbtTuneStatusMessage.value ==
+                    yourServiceIsCurrentlyRunningStr)
+                ? yourServiceIsNotCurrentlyRunningStr
+                : yourServiceIsCurrentlyRunningStr;
           } else {
             showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
           }
@@ -319,8 +348,8 @@ class ProfileController extends GetxController {
                     : suspendStr;
             rrbtStatus.value =
                 (rrbtStatus.value == activeStr) ? suspendStr : activeStr;
-            rrbtStatusMessage =
-                (rrbtStatusMessage == yourServiceIsCurrentlyRunningStr)
+            rrbtStatusMessage.value =
+                (rrbtStatusMessage.value == yourServiceIsCurrentlyRunningStr)
                     ? yourServiceIsNotCurrentlyRunningStr
                     : yourServiceIsCurrentlyRunningStr;
           } else {
@@ -349,8 +378,8 @@ class ProfileController extends GetxController {
                     : suspendStr;
             rrbtStatus.value =
                 (rrbtStatus.value == activeStr) ? suspendStr : activeStr;
-            rrbtStatusMessage =
-                (rrbtStatusMessage == yourServiceIsCurrentlyRunningStr)
+            rrbtStatusMessage.value =
+                (rrbtStatusMessage.value == yourServiceIsCurrentlyRunningStr)
                     ? yourServiceIsNotCurrentlyRunningStr
                     : yourServiceIsCurrentlyRunningStr;
           } else {

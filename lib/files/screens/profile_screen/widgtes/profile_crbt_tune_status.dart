@@ -40,11 +40,13 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
                         ); //expireDateStr.tr + " : " + '12/10/23'),
                       }),
                       const SizedBox(height: 4),
-                      CustomText(
-                        title: cont.crbtTuneStatusMessage,
-                        fontName: FontName.medium,
-                        fontSize: 14,
-                      ),
+                      Obx(() {
+                        return CustomText(
+                          title: cont.crbtTuneStatusMessage.value,
+                          fontName: FontName.medium,
+                          fontSize: 14,
+                        );
+                      }),
                       const SizedBox(height: 15),
                       buttonaRow(sizingInformation),
                     ],
