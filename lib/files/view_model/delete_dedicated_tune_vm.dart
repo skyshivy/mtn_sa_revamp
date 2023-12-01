@@ -16,23 +16,10 @@ Future<Map<String, dynamic>?> deleteDedicatedTuneApiCall(
   };
   var parts = [];
   params.forEach((key, value) {
-    parts.add('${key}='
-        '${value}');
+    parts.add('$key='
+        '$value');
   });
   var formData = parts.join('&');
   Map<String, dynamic>? map = await ServiceCall().post(url, formData);
   return map;
-  // var request = await client.postUrl(Uri.parse(url));
-  // request = await Header().settingHeader(url, request);
-  // request.write(formData);
-  // try {
-  //   HttpClientResponse response = await request.close();
-  //   var reps = await GenericServiceCall().httpServiceCall(request);
-
-  //   printCustom("======__Delete___++++++${reps}");
-  //   return reps;
-  // } on Exception catch (error) {
-  //   printCustom('never reached ${error}');
-  //   return null;
-  // }
 }

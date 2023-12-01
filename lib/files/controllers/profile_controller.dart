@@ -15,6 +15,8 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/active_suspend_api.dart';
+import 'package:mtn_sa_revamp/files/view_model/deactivate_pack_api.dart';
+import 'package:mtn_sa_revamp/files/view_model/delete_my_tune_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/profile_vm.dart';
 
@@ -323,7 +325,14 @@ class ProfileController extends GetxController {
         cancelTitle: cancelStr.tr,
         onOk: () async {
           isUpdatingCrbtStatus.value = true;
-          await Future.delayed(const Duration(seconds: 2));
+          //await deleteMyTuneApiCall("0", crbtPackName.value);
+          PackStatusModel mod =
+              await deactivatePackApi(crbtPackName.value, true);
+          if (mod.statusCode == "SC0000") {
+          } else {
+            showSnackBar(message: mod.message ?? someThingWentWrongStr.tr);
+          }
+          //await Future.delayed(const Duration(seconds: 2));
           isUpdatingCrbtStatus.value = false;
         },
       ),
@@ -398,7 +407,13 @@ class ProfileController extends GetxController {
         cancelTitle: cancelStr.tr,
         onOk: () async {
           isUpdatingRrbtStatus.value = true;
-          await Future.delayed(const Duration(seconds: 2));
+          PackStatusModel mod = await deactivatePackApi(rrbtPackName, false);
+          if (mod.statusCode == 'SC0000') {
+          } else {
+            showSnackBar(message: mod.message ?? someThingWentWrongStr.tr);
+          }
+          //deleteMyTuneApiCall("0", rrbtPackName);
+          //await Future.delayed(const Duration(seconds: 2));
           isUpdatingRrbtStatus.value = false;
         },
       ),

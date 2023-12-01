@@ -28,6 +28,8 @@ String getpackStatusUrl = "${baseUrlSecurity}pack-status?";
 String deleteDedicatedTuneUrl = "${baseUrlSecurity}delete-dedication";
 String deletePlayingTuneUrl = "${baseUrlSecurity}delete-from-shuffle";
 String deleteTuneUrl = "${baseUrlSecurity}delete-tone";
+String deActivatePackUrl = "${baseUrlSecurity}deactivate-pack";
+
 String regenTokenUrl = "${baseUrlSecurity}regen-token";
 String recomurl = "${baseUrl}get-recommendation-songs?";
 String homeBannerurl = "${baseUrl}banner?language=";
