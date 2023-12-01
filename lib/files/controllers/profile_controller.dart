@@ -71,13 +71,13 @@ class ProfileController extends GetxController {
           (packStatusModel.responseMap?.packStatusDetails == null)
               ? yourServiceIsNotCurrentlyRunningStr
               : yourServiceIsCurrentlyRunningStr;
+      crbtTuneStatus.value = activeStr.tr;
       return;
     } else if (packStatusModel.statusCode == 'FL0014') {
-      crbtPackName.value =
-          packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
       activeCrbtButtonName.value = activeStr.tr;
       crbtTuneStatusMessage.value = yourServiceIsNotCurrentlyRunningStr;
       isHideCRBTStatus.value = false;
+      crbtTuneStatus.value = suspendStr.tr;
     } else {
       crbtPackName.value = '';
       isHideCRBTStatus.value = true;
@@ -93,7 +93,7 @@ class ProfileController extends GetxController {
     if (packStatusModel.statusCode == 'SC0000') {
       isHideRRBTStatus.value =
           !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
-      //packName
+
       rrbtPackName =
           packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
       activeRrbtButtonName.value =
@@ -104,10 +104,10 @@ class ProfileController extends GetxController {
           (packStatusModel.responseMap?.packStatusDetails == null)
               ? yourServiceIsNotCurrentlyRunningStr
               : yourServiceIsCurrentlyRunningStr;
+      rrbtStatus.value = activeStr.tr;
       return;
     } else if (packStatusModel.statusCode == 'FL0014') {
-      rrbtPackName =
-          packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
+      rrbtStatus.value = suspendStr.tr;
       activeRrbtButtonName.value = activeStr.tr;
 
       rrbtStatusMessage.value = yourServiceIsNotCurrentlyRunningStr;
