@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/delete_my_tune_model.dart';
@@ -150,23 +151,31 @@ class MyTuneController extends GetxController {
 
   Future<bool> deleteMyTune(String toneId, int index) async {
     printCustom("Delete My tune tune ");
-    PackStatusModel model = await getPackStatusApiCall();
 
-    if (model.statusCode == 'SC0000') {
-      String packName = model.responseMap?.packStatusDetails?.packName ?? '';
-      var respo = await deleteMyTuneApiCall(toneId, packName);
-      //MyTuneService().deleteMyTune(toneId, packName);
-      if (respo != null) {
-        DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(respo);
-        printCustom("Delete My tune tune ${result}");
-        message.value = result.message ?? '';
-        showSnackBar(message: message.value);
-        tuneList.removeAt(index);
+    Get.dialog(CustomConfirmAlertView(
+      message: areYouSureYouWantToDeleteStr.tr,
+      cancelTitle: callersStr.tr,
+      onOk: () async {
+        PackStatusModel model = await getPackStatusApiCall();
 
-        return true;
-      }
-      return false;
-    }
+        if (model.statusCode == 'SC0000') {
+          String packName =
+              model.responseMap?.packStatusDetails?.packName ?? '';
+          var respo = await deleteMyTuneApiCall(toneId, packName);
+          //MyTuneService().deleteMyTune(toneId, packName);
+          if (respo != null) {
+            DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(respo);
+            printCustom("Delete My tune tune ${result}");
+            message.value = result.message ?? '';
+            showSnackBar(message: message.value);
+            tuneList.removeAt(index);
+
+            return true;
+          }
+          return false;
+        }
+      },
+    ));
     return false;
   }
 }
