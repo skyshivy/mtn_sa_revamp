@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class CustomImage extends StatelessWidget {
   final int index;
@@ -27,10 +28,13 @@ class CustomImage extends StatelessWidget {
             fit: BoxFit.cover,
             height: height ?? size.height,
             width: size.width,
-            imageUrl: url ?? "https://picsum.photos/id/1${index}/400/500",
+            imageUrl: url ?? defaultImageUrl,
             placeholder: (context, url) =>
                 const Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
+            errorWidget: (context, url, error) {
+              return CachedNetworkImage(imageUrl: defaultImageUrl);
+              // const Icon(Icons.error);
+            },
           ),
           gradient == null
               ? const SizedBox()
