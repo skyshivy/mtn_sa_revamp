@@ -32,7 +32,12 @@ class CustomImage extends StatelessWidget {
             placeholder: (context, url) =>
                 const Center(child: CircularProgressIndicator()),
             errorWidget: (context, url, error) {
-              return CachedNetworkImage(imageUrl: defaultImageUrl);
+              return CachedNetworkImage(
+                imageUrl: defaultImageUrl,
+                height: height ?? size.height,
+                width: size.width,
+                fit: BoxFit.cover,
+              );
               // const Icon(Icons.error);
             },
           ),
