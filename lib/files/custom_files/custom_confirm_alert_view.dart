@@ -14,14 +14,15 @@ class CustomConfirmAlertView extends StatelessWidget {
   final FontName fontName;
   final double? fontSize;
   final Function()? onOk;
-  const CustomConfirmAlertView(
-      {super.key,
-      this.cancelTitle,
-      this.fontName = FontName.medium,
-      this.fontSize,
-      this.okTitle,
-      required this.message,
-      this.onOk});
+  const CustomConfirmAlertView({
+    super.key,
+    this.cancelTitle,
+    this.fontName = FontName.medium,
+    this.fontSize,
+    this.okTitle,
+    required this.message,
+    this.onOk,
+  });
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -46,7 +47,7 @@ class CustomConfirmAlertView extends StatelessWidget {
                       return CustomText(
                         fontSize: fontSize ?? (si.isMobile ? null : 18),
                         alignment: TextAlign.center,
-                        title: message,
+                        title: message.tr,
                         fontName: fontName,
                       );
                     },
@@ -103,7 +104,7 @@ class CustomConfirmAlertView extends StatelessWidget {
                 child: CustomButton(
                   fontSize: si.isMobile ? null : 16,
                   color: white,
-                  title: okTitle ?? okStr,
+                  title: okTitle ?? okStr.tr,
                   //fontName: si.isMobile ? FontName.medium : FontName.bold,
                   onTap: () {
                     Navigator.of(context).pop();
