@@ -28,7 +28,7 @@ Widget profileUserName(SizingInformation si) {
           fontName: FontName.medium,
           fontSize: 18,
           editEnable: controller.editEnable.value,
-          text: controller.profileDetails?.userName ?? '',
+          text: controller.userName.value,
           hintText: userNameStr.tr,
           onChanged: (p0) {
             controller.updateUserName(p0);

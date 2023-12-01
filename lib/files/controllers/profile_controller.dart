@@ -207,6 +207,10 @@ class ProfileController extends GetxController {
     if (profileDetails?.userName != userName.value) {
       EditProfileModel? result1 =
           await ProfileVM().editProfile(false, userName: userName.value);
+      if (result1?.statusCode == "SC0000") {
+      } else {
+        userName.value = profileDetails?.userName ?? '';
+      }
     }
     EditProfileModel? result =
         await ProfileVM().editProfile(true, catIs: selectedCatList.join(','));
