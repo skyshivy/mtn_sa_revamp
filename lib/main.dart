@@ -81,6 +81,8 @@ Future<String> getJson() async {
     final data = await json.decode(value);
     baseUrl = data['BASE_URL'];
     faqUrl = data["FAQ_URL"];
+    channelId = data['CHANNEL_ID'];
+
     baseUrlSecurity = data['BASE_URL_SECURITY'];
     timeOut = data['SESSION_TIME_OUT'];
     facebook_url = data['FACEBOOK_URL'];
@@ -88,7 +90,7 @@ Future<String> getJson() async {
     twitter_url = data['TWITTER_URL'];
     linkedin_url = data['LINKEDIN_URL'];
     defaultImageUrl = data["DEFAULT_IMAGE_URL"];
-
+    StoreManager().setChannelId(value);
     parseUrl();
     return value;
   } catch (e) {

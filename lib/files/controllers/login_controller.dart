@@ -223,6 +223,7 @@ class LoginController extends GetxController {
         printCustom("save credential here ===================================");
         return true;
       } else {
+        errorMessage.value = someThingWentWrongStr.tr;
         return false;
       }
     } else {

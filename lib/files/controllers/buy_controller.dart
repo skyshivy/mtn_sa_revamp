@@ -326,7 +326,7 @@ class BuyController extends GetxController {
       } else {
         print("password validation failed");
         isVerifyingOtp.value = false;
-        errorMessage.value = '';
+        errorMessage.value = someThingWentWrongStr.tr;
       }
     }
   }
