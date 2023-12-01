@@ -12,7 +12,14 @@ import 'package:mtn_sa_revamp/files/view_model/delete_from_wishlist_vm.dart';
 class WishlistController extends GetxController {
   RxBool isLoading = false.obs;
   RxList<TuneInfo> list = <TuneInfo>[].obs;
+  bool loadingData = false;
   getWishlist() async {
+    if (loadingData) {
+      return;
+    }
+    delay();
+    loadingData = true;
+
     isLoading.value = true;
     var myPost = {
       "msisdn": StoreManager().msisdn,
@@ -38,6 +45,12 @@ class WishlistController extends GetxController {
     StoreManager().isLoadWishlist = false;
     isLoading.value = false;
     printCustom(" ==== wishlist $map");
+  }
+
+  Future<void> delay() async {
+    await Future.delayed(const Duration(milliseconds: 600));
+    loadingData = false;
+    return;
   }
 
   deleteFromWishlistAction(TuneInfo info, int index) async {
