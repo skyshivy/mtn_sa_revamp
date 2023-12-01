@@ -144,7 +144,9 @@ _tappedOnCell(BuildContext context, String title) async {
   }
 
   await Future.delayed(const Duration(milliseconds: 100));
-  if (title == profileStr.tr) {
+  if (title == homeStr.tr) {
+    context.go(homeGoRoute);
+  } else if (title == profileStr.tr) {
     context.goNamed(profileGoRoute);
     //Get.toNamed(profileTapped);
   } else if (title == myTuneStr.tr) {

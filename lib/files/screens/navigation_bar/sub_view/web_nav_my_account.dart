@@ -42,7 +42,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
     return CustomButton(
       key: _key,
       height: 40,
-      fontName: FontName.medium,
+      fontName: FontName.bold,
       fontSize: 16,
       borderColor: white,
       color: white,

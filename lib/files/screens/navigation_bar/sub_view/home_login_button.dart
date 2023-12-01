@@ -20,7 +20,7 @@ class HomeLoginButton extends StatelessWidget {
       titlePadding: const EdgeInsets.only(right: 15, left: 5),
       title: loginStr.tr,
       fontSize: 16,
-      fontName: FontName.medium,
+      fontName: FontName.bold,
       color: white,
     );
   }

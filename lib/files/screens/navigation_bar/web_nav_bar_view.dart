@@ -8,8 +8,10 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_about_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_faq_button.dart';
@@ -98,8 +100,9 @@ class WebNavBarView extends StatelessWidget {
   Widget rightWidget(BuildContext context) {
     return Row(
       children: [
+        homeButtonWidget(),
         //HomeSearchWidget(),
-        //langugaeButton(context),
+        langugaeButton(context),
         leftSpacing(),
         Obx(() {
           return appController.isLoggedIn.value
@@ -108,6 +111,23 @@ class WebNavBarView extends StatelessWidget {
         }),
         leftSpacing(),
       ],
+    );
+  }
+
+  Widget homeButtonWidget() {
+    return CustomButton(
+      height: 60,
+      width: 60,
+      textColor: white,
+      fontName: FontName.bold,
+      //title: homeStr.tr,
+      leftWidget: const Icon(
+        Icons.home,
+        color: white,
+      ),
+      onTap: () {
+        context.go(homeGoRoute);
+      },
     );
   }
 
@@ -127,13 +147,20 @@ class WebNavBarView extends StatelessWidget {
         textColor: white,
         title: appController.isEnglish.value ? burmeseStr : englishStr,
         onTap: () async {
-          StoreManager().setLanguageEnglish(!StoreManager().isEnglish);
-          await Future.delayed(const Duration(milliseconds: 300));
-          context.go(homeGoRoute);
+          Get.dialog(CustomConfirmAlertView(
+            message: languageChangeConfirmMessageStr.tr,
+            cancelTitle: cancelStr,
+            onOk: () async {
+              StoreManager().setLanguageEnglish(!StoreManager().isEnglish);
+              await Future.delayed(const Duration(milliseconds: 300));
+              context.go(homeGoRoute);
 
-          await Future.delayed(const Duration(milliseconds: 300));
-          banCont.getBanner();
-          recCont.getTabList();
+              await Future.delayed(const Duration(milliseconds: 300));
+              banCont.getBanner();
+              recCont.getTabList();
+            },
+          )); //CustomAlertView(title: languageChangeConfirmMessageStr));
+
           printCustom(
               "is selected languagage is English ${StoreManager().isEnglish}");
         },
