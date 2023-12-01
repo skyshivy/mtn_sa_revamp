@@ -68,7 +68,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
             primary: true,
             itemCount: hCont.transactions.length,
             itemBuilder: (context, index) {
-              return listCell(si, index);
+              return Padding(
+                padding: EdgeInsets.only(
+                    top: index == 0 ? 8 : 0,
+                    bottom: index == (hCont.transactions.length - 1) ? 8 : 0),
+                child: listCell(si, index),
+              );
             },
           ),
         ),
