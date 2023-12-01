@@ -31,12 +31,14 @@ class ProfileReverseRbtStatus extends StatelessWidget {
                       firstRowWidget(si),
                       const SizedBox(height: 5),
                       Obx(() {
-                        return CustomText(
-                          title:
-                              "${expireDateStr.tr} : ${cont.rrbtExpire.value}",
-                          fontName: FontName.medium,
-                          fontSize: 14,
-                        );
+                        return cont.tuneExire.isEmpty
+                            ? const SizedBox()
+                            : CustomText(
+                                title:
+                                    "${expireDateStr.tr} : ${cont.rrbtExpire.value}",
+                                fontName: FontName.medium,
+                                fontSize: 14,
+                              );
                       }),
                       const SizedBox(height: 4),
                       Obx(() {

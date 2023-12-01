@@ -91,7 +91,7 @@ class StoreManager {
 
     //channelId = await storage.read(key: "channelId") ?? '4';
     //channelId = prefs.getString('channelId') ?? '4';
-    channelId = prefs.get('channelId') ?? '4';
+    channelId = prefs.get('channelId') ?? channelId;
 
     appController.isEnglish.value = isEnglish;
     languageCode = isEnglish ? "1" : "0";
@@ -212,10 +212,11 @@ class StoreManager {
 
   setChannelId(String value) async {
     if (value.isEmpty) {
-      value = '4';
+      value = channelId;
     }
     channelId = value;
     print("Storing channelid = $value");
+
     try {
       prefs.put('channelId', value);
       //prefs.setString('channelId', value);

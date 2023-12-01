@@ -90,7 +90,7 @@ Future<String> getJson() async {
     twitter_url = data['TWITTER_URL'];
     linkedin_url = data['LINKEDIN_URL'];
     defaultImageUrl = data["DEFAULT_IMAGE_URL"];
-    StoreManager().setChannelId(value);
+
     parseUrl();
     return value;
   } catch (e) {

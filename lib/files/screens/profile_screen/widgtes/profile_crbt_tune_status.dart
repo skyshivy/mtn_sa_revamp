@@ -32,12 +32,14 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
                       firstRowWidget(sizingInformation),
                       const SizedBox(height: 5),
                       Obx(() {
-                        return CustomText(
-                          title:
-                              "${expireDateStr.tr} : ${cont.tuneExire.value}",
-                          fontName: FontName.medium,
-                          fontSize: 14,
-                        ); //expireDateStr.tr + " : " + '12/10/23'),
+                        return cont.tuneExire.isEmpty
+                            ? const SizedBox()
+                            : CustomText(
+                                title:
+                                    "${expireDateStr.tr} : ${cont.tuneExire.value}",
+                                fontName: FontName.medium,
+                                fontSize: 14,
+                              ); //expireDateStr.tr + " : " + '12/10/23'),
                       }),
                       const SizedBox(height: 4),
                       Obx(() {
