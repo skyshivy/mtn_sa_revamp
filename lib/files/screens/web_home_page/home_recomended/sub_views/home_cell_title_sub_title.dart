@@ -37,17 +37,24 @@ class HomeCellTitleSubTilte extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
       crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
       children: [
-        Tooltip(
-          message: title ?? info?.toneName ?? info?.contentName ?? "",
-          child: CustomText(
-            textColor: titleColor,
-            maxLine: 1,
-            title: title ??
-                info?.toneName ??
-                info?.contentName ??
-                "Tune name here",
-            fontName: titleFontName ?? FontName.bold,
-            fontSize: titleFontSize ?? 18,
+        InkWell(
+          onTap: () {
+            print(
+                "Tapped== ${title ?? info?.toneName ?? info?.contentName ?? ""}");
+          },
+          child: Tooltip(
+            waitDuration: const Duration(milliseconds: 600),
+            message: title ?? info?.toneName ?? info?.contentName ?? "",
+            child: CustomText(
+              textColor: titleColor,
+              maxLine: 1,
+              title: title ??
+                  info?.toneName ??
+                  info?.contentName ??
+                  "Tune name here",
+              fontName: titleFontName ?? FontName.bold,
+              fontSize: titleFontSize ?? 18,
+            ),
           ),
         ),
         CustomText(
