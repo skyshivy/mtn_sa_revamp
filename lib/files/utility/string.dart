@@ -188,3 +188,5 @@ const changeStatusConfirmMessageStr = "Are you sure you want to change Status?";
 const unSubscribeConfirmMessageStr = "Are you sure you want to unsubscribe?";
 const notActiveSubscriberMessageStr = "You are not an active subscriber";
 const areYouSureYouWantToDeleteStr = "Are you sure you want to delete?";
+const sentOtpInTimeStr = "Resent Otp in ";
+const sentOtpStr = "Resent Otp";

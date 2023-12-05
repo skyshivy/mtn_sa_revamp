@@ -46,15 +46,12 @@ class _WebLandingPageState extends State<WebLandingPage> {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // CustomButton(
-                //   title: "Open",
-                //   onTap: () {
-                //     Get.dialog(SubscriptionView(
-                //       info: TuneInfo(
-                //           toneName: "Yone Kyi Yar", albumName: "Diary"),
-                //     ));
-                //   },
-                // ),
+                CustomButton(
+                  title: "Open",
+                  onTap: () {
+                    Get.dialog(BuyOtpView());
+                  },
+                ),
 
                 LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
                 SizedBox(height: 20),

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/buy_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/otp_timer_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_msisdn_text_field.dart';
 
@@ -15,8 +17,26 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
-class BuyOtpView extends StatelessWidget {
+class BuyOtpView extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _BuyOtpViewState();
+}
+
+class _BuyOtpViewState extends State<BuyOtpView> {
   BuyController buyController = Get.find();
+  late OtpTimerController timerCont;
+  @override
+  void initState() {
+    timerCont = Get.put(OtpTimerController());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    Get.delete<OtpTimerController>();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(color: transparent, child: popupContainer());
@@ -88,12 +108,39 @@ class BuyOtpView extends StatelessWidget {
               subTitleWidget(),
               textfieldWidget(si),
               errorWidget(si),
+              resentOtpButton(),
               requestOtpButton(si),
               vSpacing(height: si.isMobile ? 10 : 50),
             ],
           );
         },
       ),
+    );
+  }
+
+  Widget resentOtpButton() {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Obx(() {
+            return timerCont.isLoading.value
+                ? SizedBox(
+                    width: 100, child: loadingIndicator(height: 40, radius: 10))
+                : CustomButton(
+                    textColor: atomCryan,
+                    fontName: FontName.medium,
+                    title:
+                        "${timerCont.isRunning.value ? sentOtpInTimeStr.tr : sentOtpStr.tr} "
+                        " ${timerCont.timeLeft.value}",
+                    onTap: () {
+                      timerCont.startTimer();
+                      print("resent otp ");
+                    },
+                  );
+          }),
+        ),
+      ],
     );
   }
 

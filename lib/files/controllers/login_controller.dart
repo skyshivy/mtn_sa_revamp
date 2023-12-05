@@ -87,7 +87,7 @@ class LoginController extends GetxController {
         SubscriberValidationModel.fromJson(valueMap);
     if (model.statusCode == "SC0000") {
       if (model.responseMap?.respCode == 'SC0000') {
-        await _generateOtp();
+        await generateOtp();
         printCustom("Existing user******");
       } else if (model.responseMap?.respCode == '100') {
         isMsisdnVarified.value = true;
@@ -110,11 +110,12 @@ class LoginController extends GetxController {
     return "";
   }
 
-  Future<void> _generateOtp() async {
+  Future<bool> generateOtp() async {
     isVerifying.value = true;
     // if (isNewUser) {
     //   newUserOtpCheck();
     // } else {
+
     GenerateOtpModel result = await LoginVm().generateOtp(msisdn.value);
     isVerifying.value = false;
     if (result.statusCode == "SC0000") {
@@ -123,9 +124,11 @@ class LoginController extends GetxController {
       errorMessage.value = result.message;
       isMsisdnVarified.value = false;
     }
+
     //}
 
     printCustom("Generate otp api call here");
+    return true;
   }
 
   Future<bool> newUserOtpCheck(String securityCounter) async {

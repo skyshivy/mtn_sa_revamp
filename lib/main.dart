@@ -82,7 +82,7 @@ Future<String> getJson() async {
     baseUrl = data['BASE_URL'];
     faqUrl = data["FAQ_URL"];
     channelId = data['CHANNEL_ID'];
-
+    resendOtpDuration = data['RESEND_OTP_DURATION'];
     baseUrlSecurity = data['BASE_URL_SECURITY'];
     timeOut = data['SESSION_TIME_OUT'];
     facebook_url = data['FACEBOOK_URL'];

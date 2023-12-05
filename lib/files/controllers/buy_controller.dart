@@ -45,7 +45,6 @@ class BuyController extends GetxController {
   String securityCounter = '';
   String tuneCharge = '';
   RxString msisdn = ''.obs;
-
   late TuneInfo? info;
 
   customInit() {

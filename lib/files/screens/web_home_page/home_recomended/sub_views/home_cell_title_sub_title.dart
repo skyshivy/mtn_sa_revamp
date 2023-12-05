@@ -57,15 +57,27 @@ class HomeCellTitleSubTilte extends StatelessWidget {
             ),
           ),
         ),
-        CustomText(
-          maxLine: 1,
-          title: subTitle ??
-              info?.albumName ??
-              info?.artistName ??
-              ' ARtist name here',
-          fontName: subTitleFontName ?? FontName.mediumItalic,
-          fontSize: subTitleFontSize ?? 12,
-          textColor: subTitleColor,
+        InkWell(
+          onTap: () {
+            print("on artist tap");
+          },
+          child: Tooltip(
+            waitDuration: const Duration(milliseconds: 600),
+            message: subTitle ??
+                info?.albumName ??
+                info?.artistName ??
+                ' ARtist name here',
+            child: CustomText(
+              maxLine: 1,
+              title: subTitle ??
+                  info?.albumName ??
+                  info?.artistName ??
+                  ' ARtist name here',
+              fontName: subTitleFontName ?? FontName.mediumItalic,
+              fontSize: subTitleFontSize ?? 12,
+              textColor: subTitleColor,
+            ),
+          ),
         ),
       ],
     );

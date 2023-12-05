@@ -10,6 +10,7 @@ String ccid = '';
 String userName = '';
 String password = 'Oem@L#@1';
 int timeOut = 30;
+int resendOtpDuration = 90;
 String facebook_url = '';
 String instagram_url = '';
 String twitter_url = '';
