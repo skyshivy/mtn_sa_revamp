@@ -60,6 +60,7 @@ class CustomAlertView extends StatelessWidget {
       children: [
         CustomText(
           alignment: TextAlign.center,
+          maxLine: 30,
           title: title,
           fontName: FontName.medium,
         ),

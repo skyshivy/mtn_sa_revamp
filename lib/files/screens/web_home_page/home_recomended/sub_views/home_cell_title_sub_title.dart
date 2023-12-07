@@ -46,6 +46,7 @@ class HomeCellTitleSubTilte extends StatelessWidget {
             waitDuration: const Duration(milliseconds: 600),
             message: title ?? info?.toneName ?? info?.contentName ?? "",
             child: CustomText(
+              overFlow: TextOverflow.ellipsis,
               textColor: titleColor,
               maxLine: 1,
               title: title ??
@@ -69,6 +70,7 @@ class HomeCellTitleSubTilte extends StatelessWidget {
                 ' ARtist name here',
             child: CustomText(
               maxLine: 1,
+              overFlow: TextOverflow.ellipsis,
               title: subTitle ??
                   info?.albumName ??
                   info?.artistName ??

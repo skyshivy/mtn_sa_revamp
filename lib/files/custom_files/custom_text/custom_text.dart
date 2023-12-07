@@ -9,6 +9,7 @@ class CustomText extends StatelessWidget {
   final Color? textColor;
   final double? fontSize;
   final int? maxLine;
+  final TextOverflow? overFlow;
   final FontName? fontName;
   final TextAlign? alignment;
 
@@ -18,6 +19,7 @@ class CustomText extends StatelessWidget {
     this.textColor = black,
     this.fontSize = 16,
     this.maxLine,
+    this.overFlow,
     this.fontName = FontName.medium,
     this.alignment = TextAlign.start,
   });
@@ -29,7 +31,7 @@ class CustomText extends StatelessWidget {
       textAlign: alignment,
       maxLines: maxLine,
       style: TextStyle(
-        overflow: TextOverflow.ellipsis,
+        overflow: overFlow,
         fontFamily: fontName!.name,
         fontSize: (fontSize == null)
             ? fontSize

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/cryptor/decryptor.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -46,12 +47,15 @@ class _WebLandingPageState extends State<WebLandingPage> {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CustomButton(
-                  title: "Open",
-                  onTap: () {
-                    Get.dialog(BuyOtpView());
-                  },
-                ),
+                // CustomButton(
+                //   title: "Open",
+                //   onTap: () {
+                //     Decryptor().aesEnc("sampleTextToEncode");
+                //     // Decryptor().decryptWithAES(
+                //     //     "U2FsdGVkX19cs092M9hqJnx/pGcYbuvKiSVXI+npyEAITk5mdFo1f1UGzyyxOlZy");
+                //     //Get.dialog(BuyOtpView());
+                //   },
+                // ),
 
                 LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
                 SizedBox(height: 20),
