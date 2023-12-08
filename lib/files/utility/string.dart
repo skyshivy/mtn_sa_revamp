@@ -16,6 +16,7 @@ const myTuneStatusStr = 'MyTune Status';
 const expireDateStr = 'Expired';
 const suspendStr = 'Suspend';
 const activeStr = 'Active';
+const activateStr = 'Activate';
 const packNameStr = "Pack Name";
 const unSubscribeStr = 'UNSUBSCRIBE';
 const reverseRBTStatusStr = 'Reverse RBT Status';
@@ -190,3 +191,5 @@ const notActiveSubscriberMessageStr = "You are not an active subscriber";
 const areYouSureYouWantToDeleteStr = "Are you sure you want to delete?";
 const sentOtpInTimeStr = "Resent Otp in ";
 const sentOtpStr = "Resent Otp";
+const pleaseActivateToUnsubscribeStr =
+    "Please activate your pack before unsubscribing.";

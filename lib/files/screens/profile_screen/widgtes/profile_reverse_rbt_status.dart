@@ -113,7 +113,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
     return CustomButton(
       height: 35,
       titlePadding: EdgeInsets.symmetric(horizontal: 12),
-      title: unSubscribeStr.tr,
+      title: cont.rrbtSubscriptionButtonName.value, //unSubscribeStr.tr,
       textColor: white,
       color: blue,
       fontName: FontName.medium,
@@ -134,10 +134,10 @@ class ProfileReverseRbtStatus extends StatelessWidget {
         fontName: FontName.medium,
         fontSize: 12,
         onTap: () {
-          if (cont.activeRrbtButtonName.value == resumeStr.tr) {
-            cont.activeRrbtStatusAction();
-          } else {
+          if (cont.activeRrbtButtonName.value == suspendStr.tr) {
             cont.suspendRrbtStatusAction();
+          } else {
+            cont.activeRrbtStatusAction();
           }
         });
   }

@@ -19,6 +19,7 @@ Map<String, String> brBR = {
   settingStr: "ချိန်ညှိချက်မျာ:",
   signinStr: "အကောင့်သို့ဝင်မည်",
   activeStr: 'ဝန်ဆောင်မှု ရယူထားသည်',
+  activateStr: 'Activate',
   tunesStr: "တေးသွားများ",
   callersStr: "ခေါ်ဆိုသူများ",
   allStr: "အားလုံး",

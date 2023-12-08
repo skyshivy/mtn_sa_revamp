@@ -19,6 +19,7 @@ Map<String, String> enUS = {
   expireDateStr: 'Expired',
   suspendStr: 'Suspend',
   activeStr: 'Active',
+  activateStr: 'Activate',
   packNameStr: "Pack Name",
   unSubscribeStr: 'UNSUBSCRIBE',
   reverseRBTStatusStr: 'Reverse RBT Status',

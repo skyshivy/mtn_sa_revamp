@@ -1,17 +1,22 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
+import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/model/edit_profile.dart';
 import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/profile_model.dart';
 import 'package:mtn_sa_revamp/files/model/suspend_resume_model.dart';
+import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/active_suspend_api.dart';
@@ -19,14 +24,20 @@ import 'package:mtn_sa_revamp/files/view_model/deactivate_pack_api.dart';
 import 'package:mtn_sa_revamp/files/view_model/delete_my_tune_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/profile_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/set_tune_vm.dart';
 
 class ProfileController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool editEnable = false.obs;
-  RxBool isHideCRBTStatus = true.obs;
-  RxBool isHideRRBTStatus = true.obs;
+  RxBool isHideCRBTStatus = false.obs;
+  RxBool isHideRRBTStatus = false.obs;
   RxString userName = ''.obs;
   RxBool isSaving = false.obs;
+  RxBool unsubscribeCrbtLoading = false.obs;
+  RxBool unsubscribeRrbtLoading = false.obs;
+
+  RxString rrbtSubscriptionButtonName = ''.obs;
+  RxString crbtSubscriptionButtonName = ''.obs;
   //RxString packName = ''.obs;
   RxString crbtPackName = ''.obs;
   String rrbtPackName = '';
@@ -61,30 +72,49 @@ class ProfileController extends GetxController {
     print("getCrbtPackStatus resp message is = ${packStatusModel.message}");
     print("getCrbtPackStatus resp message is = ${packStatusModel.statusCode}");
     if (packStatusModel.statusCode == 'SC0000') {
-      isHideCRBTStatus.value =
-          !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
+      // isHideCRBTStatus.value =
+      //     !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
       crbtPackName.value =
           packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
       activeCrbtButtonName.value =
           (packStatusModel.responseMap?.packStatusDetails == null)
-              ? activeStr.tr
+              ? activateStr.tr
               : suspendStr.tr;
       crbtTuneStatusMessage.value =
           (packStatusModel.responseMap?.packStatusDetails == null)
               ? yourServiceIsNotCurrentlyRunningStr
               : yourServiceIsCurrentlyRunningStr;
       crbtTuneStatus.value = activeStr.tr;
+      crbtSubscriptionButtonName.value = unSubscribeStr.tr;
       return;
     } else if (packStatusModel.statusCode == 'FL0014') {
-      activeCrbtButtonName.value = activeStr.tr;
+      activeCrbtButtonName.value = activateStr.tr;
       crbtTuneStatusMessage.value = yourServiceIsNotCurrentlyRunningStr;
       isHideCRBTStatus.value = false;
       crbtTuneStatus.value = suspendStr.tr;
+      crbtSubscriptionButtonName.value = unSubscribeStr.tr;
     } else {
       crbtPackName.value = '';
-      isHideCRBTStatus.value = true;
+      crbtSubscriptionButtonName.value = subscribeStr.tr;
+      //isHideCRBTStatus.value = true;
       return;
     }
+  }
+
+  Future<BuyTuneModel> setCrbtTune() async {
+    unsubscribeCrbtLoading.value = true;
+    TuneInfo info = TuneInfo(toneId: '100231');
+    BuyTuneModel model = await SetTuneVM().set(info, 'CRBT_WEEKLY');
+    unsubscribeCrbtLoading.value = false;
+    return model;
+  }
+
+  Future<BuyTuneModel> setRrbtTune() async {
+    unsubscribeRrbtLoading.value = true;
+    TuneInfo info = TuneInfo(toneId: '100231');
+    BuyTuneModel model = await SetTuneVM().set(info, "RRBT_WEEKLY");
+    unsubscribeRrbtLoading.value = false;
+    return model;
   }
 
   Future<void> getRrbtPackStatus() async {
@@ -93,30 +123,32 @@ class ProfileController extends GetxController {
     print("getCrbtPackStatus resp message is = ${packStatusModel.message}");
     print("getCrbtPackStatus resp message is = ${packStatusModel.statusCode}");
     if (packStatusModel.statusCode == 'SC0000') {
-      isHideRRBTStatus.value =
-          !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
+      // isHideRRBTStatus.value =
+      //     !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
 
       rrbtPackName =
           packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
       activeRrbtButtonName.value =
           (packStatusModel.responseMap?.packStatusDetails == null)
-              ? activeStr.tr
+              ? activateStr.tr
               : suspendStr.tr;
       rrbtStatusMessage.value =
           (packStatusModel.responseMap?.packStatusDetails == null)
               ? yourServiceIsNotCurrentlyRunningStr
               : yourServiceIsCurrentlyRunningStr;
       rrbtStatus.value = activeStr.tr;
+      rrbtSubscriptionButtonName.value = unSubscribeStr.tr;
       return;
     } else if (packStatusModel.statusCode == 'FL0014') {
       rrbtStatus.value = suspendStr.tr;
-      activeRrbtButtonName.value = activeStr.tr;
-
+      activeRrbtButtonName.value = activateStr.tr;
+      rrbtSubscriptionButtonName.value = unSubscribeStr.tr;
       rrbtStatusMessage.value = yourServiceIsNotCurrentlyRunningStr;
       isHideRRBTStatus.value = false;
     } else {
       rrbtPackName = '';
-      isHideRRBTStatus.value = true;
+      rrbtSubscriptionButtonName.value = subscribeStr.tr;
+      //isHideRRBTStatus.value = true;
       return;
     }
   }
@@ -267,7 +299,7 @@ class ProfileController extends GetxController {
           if (res.statusCode == 'SC0000') {
             activeCrbtButtonName.value =
                 (activeCrbtButtonName.value == suspendStr)
-                    ? resumeStr
+                    ? activateStr
                     : suspendStr;
             crbtTuneStatus.value =
                 (crbtTuneStatus.value == activeStr) ? suspendStr : activeStr;
@@ -300,7 +332,7 @@ class ProfileController extends GetxController {
           if (res.statusCode == 'SC0000') {
             activeCrbtButtonName.value =
                 (activeCrbtButtonName.value == suspendStr)
-                    ? resumeStr
+                    ? activateStr
                     : suspendStr;
             crbtTuneStatus.value =
                 (crbtTuneStatus.value == activeStr) ? suspendStr : activeStr;
@@ -318,25 +350,38 @@ class ProfileController extends GetxController {
   }
 
   unsubscribeCrbtTuneStatusAction() async {
+    if (crbtPackName.isEmpty) {
+      Get.dialog(
+        CustomAlertView(title: pleaseActivateToUnsubscribeStr.tr),
+      );
+      return;
+    }
     printCustom("unsubscribeCrbtTuneStatusAction");
-    Get.dialog(
-      CustomConfirmAlertView(
-        message: unSubscribeConfirmMessageStr.tr,
-        cancelTitle: cancelStr.tr,
-        onOk: () async {
-          isUpdatingCrbtStatus.value = true;
-          //await deleteMyTuneApiCall("0", crbtPackName.value);
-          PackStatusModel mod =
-              await deactivatePackApi(crbtPackName.value, true);
-          if (mod.statusCode == "SC0000") {
-          } else {
-            showSnackBar(message: mod.message ?? someThingWentWrongStr.tr);
-          }
-          //await Future.delayed(const Duration(seconds: 2));
-          isUpdatingCrbtStatus.value = false;
-        },
-      ),
-    );
+    if (crbtSubscriptionButtonName.value == subscribeStr.tr) {
+      BuyTuneModel model = await setRrbtTune();
+      if (model.statusCode == "SC0000") {
+        rrbtSubscriptionButtonName.value = unSubscribeStr.tr;
+      }
+    } else {
+      Get.dialog(
+        CustomConfirmAlertView(
+          message: unSubscribeConfirmMessageStr.tr,
+          cancelTitle: cancelStr.tr,
+          onOk: () async {
+            isUpdatingCrbtStatus.value = true;
+            //await deleteMyTuneApiCall("0", crbtPackName.value);
+            PackStatusModel mod =
+                await deactivatePackApi(crbtPackName.value, true);
+            if (mod.statusCode == "SC0000") {
+            } else {
+              showSnackBar(message: mod.message ?? someThingWentWrongStr.tr);
+            }
+            //await Future.delayed(const Duration(seconds: 2));
+            isUpdatingCrbtStatus.value = false;
+          },
+        ),
+      );
+    }
   }
 
   activeRrbtStatusAction() async {
@@ -353,7 +398,7 @@ class ProfileController extends GetxController {
           if (res.statusCode == 'SC0000') {
             activeRrbtButtonName.value =
                 (activeRrbtButtonName.value == suspendStr)
-                    ? resumeStr
+                    ? activateStr
                     : suspendStr;
             rrbtStatus.value =
                 (rrbtStatus.value == activeStr) ? suspendStr : activeStr;
@@ -383,7 +428,7 @@ class ProfileController extends GetxController {
           if (res.statusCode == 'SC0000') {
             activeRrbtButtonName.value =
                 (activeRrbtButtonName.value == suspendStr)
-                    ? resumeStr
+                    ? activateStr
                     : suspendStr;
             rrbtStatus.value =
                 (rrbtStatus.value == activeStr) ? suspendStr : activeStr;
@@ -401,22 +446,35 @@ class ProfileController extends GetxController {
 
   unSubscribeRrbtStatusAction() async {
     printCustom("unSubscribeRrbtStatusAction");
-    Get.dialog(
-      CustomConfirmAlertView(
-        message: unSubscribeConfirmMessageStr.tr,
-        cancelTitle: cancelStr.tr,
-        onOk: () async {
-          isUpdatingRrbtStatus.value = true;
-          PackStatusModel mod = await deactivatePackApi(rrbtPackName, false);
-          if (mod.statusCode == 'SC0000') {
-          } else {
-            showSnackBar(message: mod.message ?? someThingWentWrongStr.tr);
-          }
-          //deleteMyTuneApiCall("0", rrbtPackName);
-          //await Future.delayed(const Duration(seconds: 2));
-          isUpdatingRrbtStatus.value = false;
-        },
-      ),
-    );
+    if (rrbtPackName.isEmpty) {
+      Get.dialog(Center(
+        child: CustomAlertView(title: pleaseActivateToUnsubscribeStr.tr),
+      ));
+      return;
+    }
+    if (rrbtSubscriptionButtonName.value == subscribeStr.tr) {
+      BuyTuneModel model = await setRrbtTune();
+      if (model.statusCode == "SC0000") {
+        rrbtSubscriptionButtonName.value = unSubscribeStr.tr;
+      }
+    } else {
+      Get.dialog(
+        CustomConfirmAlertView(
+          message: unSubscribeConfirmMessageStr.tr,
+          cancelTitle: cancelStr.tr,
+          onOk: () async {
+            isUpdatingRrbtStatus.value = true;
+            PackStatusModel mod = await deactivatePackApi(rrbtPackName, false);
+            if (mod.statusCode == 'SC0000') {
+            } else {
+              showSnackBar(message: mod.message ?? someThingWentWrongStr.tr);
+            }
+            //deleteMyTuneApiCall("0", rrbtPackName);
+            //await Future.delayed(const Duration(seconds: 2));
+            isUpdatingRrbtStatus.value = false;
+          },
+        ),
+      );
+    }
   }
 }

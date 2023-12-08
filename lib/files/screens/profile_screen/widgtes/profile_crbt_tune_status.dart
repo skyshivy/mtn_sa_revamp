@@ -112,7 +112,7 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
               fontSize: 12,
               height: 35,
               titlePadding: EdgeInsets.symmetric(horizontal: 12),
-              title: unSubscribeStr.tr,
+              title: cont.crbtSubscriptionButtonName.value,
               textColor: white,
               color: blue,
               onTap: () {
