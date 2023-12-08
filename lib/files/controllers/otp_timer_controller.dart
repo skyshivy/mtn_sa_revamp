@@ -15,7 +15,7 @@ class OtpTimerController extends GetxController {
   void onInit() {
     super.onInit();
     print("OtpTimerController initialized");
-    initTimer();
+    //initTimer();
   }
 
   @override
@@ -27,12 +27,14 @@ class OtpTimerController extends GetxController {
 
   cancelTimer() {
     _timer?.cancel();
+    _timer = null;
   }
 
   startTimer() async {
     if (isRunning.value) {
       return;
     }
+    print("tapped start timer");
     _start = resendOtpDuration;
     isLoading.value = true;
     await logCont.generateOtp();

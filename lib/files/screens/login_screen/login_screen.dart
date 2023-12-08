@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/otp_timer_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -18,6 +19,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../custom_files/custom_print.dart';
 
+late OtpTimerController otpController; // = Get.put(OtpTimerController());
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -28,15 +31,18 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   late BuildContext context;
   late LoginController controller;
+
   @override
   void initState() {
     controller = Get.put(LoginController());
+    otpController = Get.put(OtpTimerController());
     super.initState();
   }
 
   @override
   void dispose() {
     Get.delete<LoginController>();
+    Get.delete<OtpTimerController>();
     super.dispose();
   }
 
@@ -86,11 +92,17 @@ class _LoginScreenState extends State<LoginScreen> {
               subTitleWidget(),
               vSpacing(height: si.isMobile ? 10 : 40),
               textfieldWidget(si),
+
               errorWidget(si),
+              Obx(() {
+                return controller.isMsisdnVarified.value
+                    ? resentOtpButton()
+                    : const SizedBox();
+              }),
               //vSpacing(height: 40),
               requestOtpButton(si),
               vSpacing(height: si.isMobile ? 10 : 20),
-              termsAndConditionAgreement(),
+              //termsAndConditionAgreement(),
               vSpacing(height: si.isMobile ? 10 : 50),
             ],
           );
@@ -99,14 +111,40 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Widget resentOtpButton() {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 0),
+          child: Obx(() {
+            return otpController.isLoading.value
+                ? SizedBox(
+                    width: 100, child: loadingIndicator(height: 40, radius: 10))
+                : CustomButton(
+                    textColor: atomCryan,
+                    fontName: FontName.medium,
+                    title:
+                        "${otpController.isRunning.value ? sentOtpInTimeStr.tr : sentOtpStr.tr} "
+                        " ${otpController.timeLeft.value}",
+                    onTap: () {
+                      otpController.startTimer();
+                      print("resent otp ");
+                    },
+                  );
+          }),
+        ),
+      ],
+    );
+  }
+
   Widget errorWidget(SizingInformation si) {
     return Obx(() {
       return controller.errorMessage.isEmpty
           ? SizedBox(
-              height: si.isMobile ? 15 : 40,
+              height: si.isMobile ? 15 : 10,
             )
           : Padding(
-              padding: EdgeInsets.only(bottom: si.isMobile ? 15 : 30, top: 12),
+              padding: EdgeInsets.only(top: 12),
               child: ResponsiveBuilder(
                 builder: (context, si) {
                   return CustomText(

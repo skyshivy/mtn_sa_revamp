@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/buy_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_popup_widget.dart';
@@ -42,10 +43,17 @@ class _BuyScreen extends StatefulWidget {
 
 class _BuyScreenState extends State<_BuyScreen> {
   BuyController buyController = Get.find();
+  LoginController loginCont = Get.put(LoginController());
   @override
   void initState() {
     buyController.customInit();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    Get.delete<LoginController>();
+    super.dispose();
   }
 
   late BuildContext context;
@@ -158,6 +166,7 @@ class _BuyScreenState extends State<_BuyScreen> {
                 enabled: !buyController.isVerifying.value,
                 text: buyController.msisdn.value,
                 onChanged: (p0) {
+                  loginCont.msisdn.value = p0;
                   buyController.msisdn.value = p0;
                   buyController.updateMsisdn(p0);
                 },

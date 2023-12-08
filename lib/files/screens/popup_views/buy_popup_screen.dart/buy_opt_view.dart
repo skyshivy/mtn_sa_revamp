@@ -10,6 +10,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_msisdn_text_field.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
@@ -24,10 +25,11 @@ class BuyOtpView extends StatefulWidget {
 
 class _BuyOtpViewState extends State<BuyOtpView> {
   BuyController buyController = Get.find();
-  late OtpTimerController timerCont;
+
   @override
   void initState() {
-    timerCont = Get.put(OtpTimerController());
+    otpController = Get.put(OtpTimerController());
+    otpController.initTimer();
     super.initState();
   }
 
@@ -124,17 +126,17 @@ class _BuyOtpViewState extends State<BuyOtpView> {
         Padding(
           padding: const EdgeInsets.only(top: 10),
           child: Obx(() {
-            return timerCont.isLoading.value
+            return otpController.isLoading.value
                 ? SizedBox(
                     width: 100, child: loadingIndicator(height: 40, radius: 10))
                 : CustomButton(
                     textColor: atomCryan,
                     fontName: FontName.medium,
                     title:
-                        "${timerCont.isRunning.value ? sentOtpInTimeStr.tr : sentOtpStr.tr} "
-                        " ${timerCont.timeLeft.value}",
+                        "${otpController.isRunning.value ? sentOtpInTimeStr.tr : sentOtpStr.tr} "
+                        " ${otpController.timeLeft.value}",
                     onTap: () {
-                      timerCont.startTimer();
+                      otpController.startTimer();
                       print("resent otp ");
                     },
                   );

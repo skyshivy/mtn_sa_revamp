@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/controllers/otp_timer_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
@@ -10,6 +11,7 @@ import 'package:mtn_sa_revamp/files/model/new_user_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
 import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
+import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 
@@ -30,6 +32,7 @@ class LoginController extends GetxController {
   RxString errorMessage = ''.obs;
   RxString otp = ''.obs;
   bool isNewUser = false;
+  //OtpTimerController timerCont = Get.find();
   varifyMsisdnButtonAction() async {
     errorMessage.value = '';
     int len = StoreManager().msisdnLength;
@@ -88,6 +91,7 @@ class LoginController extends GetxController {
     if (model.statusCode == "SC0000") {
       if (model.responseMap?.respCode == 'SC0000') {
         await generateOtp();
+        otpController.initTimer();
         printCustom("Existing user******");
       } else if (model.responseMap?.respCode == '100') {
         isMsisdnVarified.value = true;
@@ -273,7 +277,9 @@ class LoginController extends GetxController {
       securityCounter = model.responseMap.securityCounter;
       NewUserRegistrationModel newUserModel =
           await NewRegistrartionVm().register(msisdn, securityCounter);
+
       if (newUserModel.statusCode == 'SC0000') {
+        //otpController.startTimer();
         securityCounter = newUserModel.responseMap?.secToc ?? '';
         isVerifying.value = false;
         isMsisdnVarified.value = true;
