@@ -93,9 +93,12 @@ class ProfileReverseRbtStatus extends StatelessWidget {
               mainAxisSize: si.isMobile ? MainAxisSize.max : MainAxisSize.min,
               children: [
                 Obx(() {
-                  return resumeSuspendButton();
+                  return cont.isHideRrbtActiveSuspendButton.value
+                      ? SizedBox()
+                      : resumeSuspendButton();
                 }),
-                const SizedBox(width: 20),
+                SizedBox(
+                    width: cont.isHideRrbtActiveSuspendButton.value ? 0 : 20),
                 unSubscribeButton(),
               ],
             );
@@ -124,7 +127,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
     );
   }
 
-  CustomButton resumeSuspendButton() {
+  Widget resumeSuspendButton() {
     return CustomButton(
         height: 35,
         titlePadding: const EdgeInsets.symmetric(horizontal: 12),

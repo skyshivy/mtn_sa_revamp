@@ -94,9 +94,12 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
               mainAxisSize: si.isMobile ? MainAxisSize.max : MainAxisSize.min,
               children: [
                 Obx(() {
-                  return activeSuspendButton();
+                  return cont.isHideCrbtActiveSuspendButton.value
+                      ? const SizedBox()
+                      : activeSuspendButton();
                 }),
-                SizedBox(width: 20),
+                SizedBox(
+                    width: cont.isHideCrbtActiveSuspendButton.value ? 0 : 20),
                 unsubscribeButton(),
               ],
             );
@@ -122,7 +125,7 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
     });
   }
 
-  CustomButton activeSuspendButton() {
+  Widget activeSuspendButton() {
     return CustomButton(
       height: 35,
       fontName: FontName.medium,

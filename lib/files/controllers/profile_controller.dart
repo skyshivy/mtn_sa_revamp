@@ -33,14 +33,17 @@ class ProfileController extends GetxController {
   RxBool isHideRRBTStatus = false.obs;
   RxString userName = ''.obs;
   RxBool isSaving = false.obs;
-  RxBool unsubscribeCrbtLoading = false.obs;
-  RxBool unsubscribeRrbtLoading = false.obs;
 
   RxString rrbtSubscriptionButtonName = ''.obs;
   RxString crbtSubscriptionButtonName = ''.obs;
   //RxString packName = ''.obs;
+
+  RxBool isHideCrbtActiveSuspendButton = false.obs;
+  RxBool isHideRrbtActiveSuspendButton = false.obs;
   RxString crbtPackName = ''.obs;
   String rrbtPackName = '';
+  bool _isCrbtSuspendMode = false;
+  bool _isRrbtSuspendMode = false;
   RxString crbtTuneStatus = ''.obs;
   RxString crbtTuneStatusMessage = ''.obs;
   RxString rrbtStatusMessage = ''.obs;
@@ -74,6 +77,10 @@ class ProfileController extends GetxController {
     if (packStatusModel.statusCode == 'SC0000') {
       // isHideCRBTStatus.value =
       //     !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
+      bool isPackName =
+          packStatusModel.responseMap?.packStatusDetails?.packName == null;
+      isHideCrbtActiveSuspendButton.value =
+          (packStatusModel.responseMap?.packStatusDetails?.packName == null);
       crbtPackName.value =
           packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
       activeCrbtButtonName.value =
@@ -86,14 +93,23 @@ class ProfileController extends GetxController {
               : yourServiceIsCurrentlyRunningStr;
       crbtTuneStatus.value = activeStr.tr;
       crbtSubscriptionButtonName.value = unSubscribeStr.tr;
+      _isRrbtSuspendMode = false;
+      if (isPackName) {
+        crbtTuneStatus.value = '';
+        crbtTuneStatusMessage.value = '';
+        crbtTuneStatus.value = inActiveStr.tr;
+        crbtSubscriptionButtonName.value = subscribeStr.tr;
+      }
       return;
     } else if (packStatusModel.statusCode == 'FL0014') {
+      _isRrbtSuspendMode = true;
       activeCrbtButtonName.value = activateStr.tr;
       crbtTuneStatusMessage.value = yourServiceIsNotCurrentlyRunningStr;
       isHideCRBTStatus.value = false;
       crbtTuneStatus.value = suspendStr.tr;
       crbtSubscriptionButtonName.value = unSubscribeStr.tr;
     } else {
+      _isRrbtSuspendMode = false;
       crbtPackName.value = '';
       crbtSubscriptionButtonName.value = subscribeStr.tr;
       //isHideCRBTStatus.value = true;
@@ -102,18 +118,16 @@ class ProfileController extends GetxController {
   }
 
   Future<BuyTuneModel> setCrbtTune() async {
-    unsubscribeCrbtLoading.value = true;
-    TuneInfo info = TuneInfo(toneId: '100231');
+    TuneInfo info = TuneInfo(toneId: '100231', toneName: 'DEFAULT');
     BuyTuneModel model = await SetTuneVM().set(info, 'CRBT_WEEKLY');
-    unsubscribeCrbtLoading.value = false;
+
     return model;
   }
 
   Future<BuyTuneModel> setRrbtTune() async {
-    unsubscribeRrbtLoading.value = true;
-    TuneInfo info = TuneInfo(toneId: '100231');
+    TuneInfo info = TuneInfo(toneId: '100231', toneName: "DEFAULT");
     BuyTuneModel model = await SetTuneVM().set(info, "RRBT_WEEKLY");
-    unsubscribeRrbtLoading.value = false;
+
     return model;
   }
 
@@ -125,6 +139,8 @@ class ProfileController extends GetxController {
     if (packStatusModel.statusCode == 'SC0000') {
       // isHideRRBTStatus.value =
       //     !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
+      bool isPackName =
+          packStatusModel.responseMap?.packStatusDetails?.packName == null;
 
       rrbtPackName =
           packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
@@ -138,14 +154,25 @@ class ProfileController extends GetxController {
               : yourServiceIsCurrentlyRunningStr;
       rrbtStatus.value = activeStr.tr;
       rrbtSubscriptionButtonName.value = unSubscribeStr.tr;
+      isHideRrbtActiveSuspendButton.value =
+          (packStatusModel.responseMap?.packStatusDetails?.packName == null);
+      _isCrbtSuspendMode = false;
+      if (isPackName) {
+        rrbtStatusMessage.value = '';
+        rrbtStatus.value = '';
+        rrbtStatus.value = inActiveStr.tr;
+        rrbtSubscriptionButtonName.value = subscribeStr.tr;
+      }
       return;
     } else if (packStatusModel.statusCode == 'FL0014') {
+      _isCrbtSuspendMode = true;
       rrbtStatus.value = suspendStr.tr;
       activeRrbtButtonName.value = activateStr.tr;
       rrbtSubscriptionButtonName.value = unSubscribeStr.tr;
       rrbtStatusMessage.value = yourServiceIsNotCurrentlyRunningStr;
       isHideRRBTStatus.value = false;
     } else {
+      _isCrbtSuspendMode = false;
       rrbtPackName = '';
       rrbtSubscriptionButtonName.value = subscribeStr.tr;
       //isHideRRBTStatus.value = true;
@@ -197,10 +224,11 @@ class ProfileController extends GetxController {
     isLoading.value = true;
     //await ServiceCall().regenarateTokenFromOtherClass();
     await getPref();
-    await getCrbtPackStatus();
-    await getRrbtPackStatus();
-    //await getMyTunes();
-    checkHideAndUnhide();
+    await _packApiCalls();
+    // await getCrbtPackStatus();
+    // await getRrbtPackStatus();
+
+    // checkHideAndUnhide();
     print(
         "Status is = ${isHideCRBTStatus.value}  \n ${isHideRRBTStatus.value}");
     Map<String, dynamic>? res =
@@ -218,6 +246,18 @@ class ProfileController extends GetxController {
 
       printCustom("Selected selectedCatList  ${selectedCatList.length}");
     }
+  }
+
+  Future<void> _packApiCalls() async {
+    // isUpdatingCrbtStatus.value = true;
+    // isUpdatingRrbtStatus.value = true;
+    await getCrbtPackStatus();
+    await getRrbtPackStatus();
+    //await getMyTunes();
+    checkHideAndUnhide();
+    // isUpdatingCrbtStatus.value = false;
+    // isUpdatingRrbtStatus.value = false;
+    return;
   }
 
   checkHideAndUnhide() {
@@ -307,6 +347,7 @@ class ProfileController extends GetxController {
                     yourServiceIsCurrentlyRunningStr)
                 ? yourServiceIsNotCurrentlyRunningStr
                 : yourServiceIsCurrentlyRunningStr;
+            _packApiCalls();
           } else {
             showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
           }
@@ -340,6 +381,7 @@ class ProfileController extends GetxController {
                     yourServiceIsCurrentlyRunningStr)
                 ? yourServiceIsNotCurrentlyRunningStr
                 : yourServiceIsCurrentlyRunningStr;
+            _packApiCalls();
           } else {
             showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
           }
@@ -350,7 +392,7 @@ class ProfileController extends GetxController {
   }
 
   unsubscribeCrbtTuneStatusAction() async {
-    if (crbtPackName.isEmpty) {
+    if (_isCrbtSuspendMode) {
       Get.dialog(
         CustomAlertView(title: pleaseActivateToUnsubscribeStr.tr),
       );
@@ -358,10 +400,13 @@ class ProfileController extends GetxController {
     }
     printCustom("unsubscribeCrbtTuneStatusAction");
     if (crbtSubscriptionButtonName.value == subscribeStr.tr) {
-      BuyTuneModel model = await setRrbtTune();
+      isUpdatingCrbtStatus.value = true;
+      BuyTuneModel model = await setCrbtTune();
       if (model.statusCode == "SC0000") {
         rrbtSubscriptionButtonName.value = unSubscribeStr.tr;
+        _packApiCalls();
       }
+      isUpdatingCrbtStatus.value = false;
     } else {
       Get.dialog(
         CustomConfirmAlertView(
@@ -406,6 +451,7 @@ class ProfileController extends GetxController {
                 (rrbtStatusMessage.value == yourServiceIsCurrentlyRunningStr)
                     ? yourServiceIsNotCurrentlyRunningStr
                     : yourServiceIsCurrentlyRunningStr;
+            _packApiCalls();
           } else {
             showSnackBar(message: res.message ?? someThingWentWrongStr.tr);
           }
@@ -426,6 +472,7 @@ class ProfileController extends GetxController {
               await activeSuspendApi(rrbtPackName, false, false);
           isUpdatingRrbtStatus.value = false;
           if (res.statusCode == 'SC0000') {
+            _packApiCalls();
             activeRrbtButtonName.value =
                 (activeRrbtButtonName.value == suspendStr)
                     ? activateStr
@@ -446,17 +493,19 @@ class ProfileController extends GetxController {
 
   unSubscribeRrbtStatusAction() async {
     printCustom("unSubscribeRrbtStatusAction");
-    if (rrbtPackName.isEmpty) {
+    if (_isRrbtSuspendMode) {
       Get.dialog(Center(
         child: CustomAlertView(title: pleaseActivateToUnsubscribeStr.tr),
       ));
       return;
     }
     if (rrbtSubscriptionButtonName.value == subscribeStr.tr) {
+      isUpdatingRrbtStatus.value = true;
       BuyTuneModel model = await setRrbtTune();
       if (model.statusCode == "SC0000") {
         rrbtSubscriptionButtonName.value = unSubscribeStr.tr;
       }
+      isUpdatingRrbtStatus.value = false;
     } else {
       Get.dialog(
         CustomConfirmAlertView(
@@ -466,6 +515,7 @@ class ProfileController extends GetxController {
             isUpdatingRrbtStatus.value = true;
             PackStatusModel mod = await deactivatePackApi(rrbtPackName, false);
             if (mod.statusCode == 'SC0000') {
+              _packApiCalls();
             } else {
               showSnackBar(message: mod.message ?? someThingWentWrongStr.tr);
             }
