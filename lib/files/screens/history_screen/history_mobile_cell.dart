@@ -88,13 +88,14 @@ class HistoryMobileCell extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        bottomTitleSubTitle(
-          transactionTypeStr.tr,
-          info.transactionType ?? '',
-          txtColor: ((info.transactionType ?? '') == "Activated")
-              ? Colors.green
-              : red,
-        ),
+        SizedBox(),
+        // bottomTitleSubTitle(
+        //   transactionTypeStr.tr,
+        //   info.transactionType ?? '',
+        //   txtColor: ((info.transactionType ?? '') == "Activated")
+        //       ? Colors.green
+        //       : red,
+        // ),
         bottomTitleSubTitle(channelStr.tr, info.channel ?? '',
             crossAxisAlignment: CrossAxisAlignment.end),
       ],

@@ -24,7 +24,7 @@ class HistoryDesktopCell extends StatelessWidget {
               TableRow(
                 children: [
                   tuneNameAndPriceWidget(),
-                  transactionTypeWidget(),
+                  //transactionTypeWidget(),
                   channelWidget(),
                   dateWidget()
                 ],

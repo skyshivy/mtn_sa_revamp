@@ -11,6 +11,7 @@ import 'package:mtn_sa_revamp/files/model/new_user_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
 import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_price_model.dart';
+import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
@@ -154,6 +155,7 @@ class BuyController extends GetxController {
       NewUserRegistrationModel newUserModel =
           await NewRegistrartionVm().register(msisdn, securityCounter);
       if (newUserModel.statusCode == 'SC0000') {
+        otpController.initTimer();
         securityCounter = newUserModel.responseMap?.secToc ?? '';
         isVerifying.value = false;
         isShowOtpView.value = true;

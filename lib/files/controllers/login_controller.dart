@@ -279,7 +279,7 @@ class LoginController extends GetxController {
           await NewRegistrartionVm().register(msisdn, securityCounter);
 
       if (newUserModel.statusCode == 'SC0000') {
-        //otpController.startTimer();
+        otpController.initTimer();
         securityCounter = newUserModel.responseMap?.secToc ?? '';
         isVerifying.value = false;
         isMsisdnVarified.value = true;
