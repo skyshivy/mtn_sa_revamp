@@ -167,4 +167,14 @@ Map<String, String> enUS = {
       "You have temporarily suspended your  service.",
   notSubscribedToAnyService: "You are not subscribed to mytune service.",
   inActiveStr: 'InActive',
+  sessionExpiredStr:
+      'Session expired.\n You will be logged out and redirected to Home page.',
+  changeStatusConfirmMessageStr: "Are you sure you want to change Status?",
+  unSubscribeConfirmMessageStr: "Are you sure you want to unsubscribe?",
+  notActiveSubscriberMessageStr: "You are not an active subscriber",
+  areYouSureYouWantToDeleteStr: "Are you sure you want to delete?",
+  sentOtpInTimeStr: "Resent Otp in ",
+  sentOtpStr: "Resent Otp",
+  pleaseActivateToUnsubscribeStr:
+      "Please activate your pack before unsubscribing.",
 };

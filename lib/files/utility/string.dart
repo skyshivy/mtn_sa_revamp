@@ -181,7 +181,7 @@ const yourServiceIsCurrentlyRunningStr = "Your service is currently running.";
 const yourServiceIsNotCurrentlyRunningStr =
     "You have temporarily suspended your  service.";
 const notSubscribedToAnyService = "You are not subscribed to mytune service.";
-//=====================================================
+//-------------------------------------
 const inActiveStr = 'InActive';
 const sessionExpiredStr =
     'Session expired.\n You will be logged out and redirected to Home page.';
@@ -193,3 +193,5 @@ const sentOtpInTimeStr = "Resent Otp in ";
 const sentOtpStr = "Resent Otp";
 const pleaseActivateToUnsubscribeStr =
     "Please activate your pack before unsubscribing.";
+
+    //=====================================================
