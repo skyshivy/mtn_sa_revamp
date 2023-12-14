@@ -38,7 +38,7 @@ void parseUrl() async {
         return;
       } else {
         // clearData();
-        printCustom("Else condition executed");
+        printCustom("No such value found Else condition executed");
         return;
       }
     });
