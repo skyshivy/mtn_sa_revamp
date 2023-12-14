@@ -35,14 +35,15 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     controller = Get.put(LoginController());
-    otpController = Get.put(OtpTimerController());
+    //otpController = Get.find(); //(OtpTimerController());
     super.initState();
   }
 
   @override
   void dispose() {
     Get.delete<LoginController>();
-    Get.delete<OtpTimerController>();
+    otpController.cancelTimer();
+    //Get.delete<OtpTimerController>();
     super.dispose();
   }
 

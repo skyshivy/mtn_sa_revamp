@@ -28,14 +28,15 @@ class _BuyOtpViewState extends State<BuyOtpView> {
 
   @override
   void initState() {
-    otpController = Get.put(OtpTimerController());
+    //otpController = Get.put(OtpTimerController());
     otpController.initTimer();
     super.initState();
   }
 
   @override
   void dispose() {
-    Get.delete<OtpTimerController>();
+    //Get.delete<OtpTimerController>();
+    otpController.cancelTimer();
     super.dispose();
   }
 

@@ -12,10 +12,12 @@ import 'package:mtn_sa_revamp/files/controllers/history_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/otp_timer_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
+import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/header_inrichment.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -61,6 +63,7 @@ void main() async {
   HistoryController hisCont = Get.put(HistoryController());
   MyDrawerController myDCont = Get.put(MyDrawerController());
   BannerController banCont = Get.put(BannerController());
+  otpController = Get.put(OtpTimerController());
   runApp(MyApp());
 }
 

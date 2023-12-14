@@ -28,6 +28,7 @@ class OtpTimerController extends GetxController {
   cancelTimer() {
     _timer?.cancel();
     _timer = null;
+    _start = resendOtpDuration;
   }
 
   startTimer() async {
