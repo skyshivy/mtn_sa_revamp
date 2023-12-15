@@ -6,39 +6,52 @@ import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class LandingInfoPage extends StatelessWidget {
+  const LandingInfoPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: isPhone(context) ? 250 : 500,
-      color: atomCryan,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          isPhone(context)
-              ? const SizedBox(
-                  width: 20,
-                )
-              : Flexible(child: leftImageWidget()),
-          Flexible(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 30),
-              expressWidget(),
-              infoDot(homeInfo1.tr),
-              infoDot(homeInfo2.tr),
-              infoDot(homeInfo3.tr),
-              infoDot(homeInfo4.tr),
-              infoDot(homeInfo5.tr),
-              infoDot(homeInfo6.tr),
-            ],
-          )),
-        ],
-      ),
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Container(
+          //  height: isPhone(context) ? 250 : 500,
+          color: atomCryan,
+          child: Image.asset(si.isMobile
+              ? bottomBannerMobilePng
+              : bottomBannerWebPng), //mainRow(context),
+        );
+      },
+    );
+  }
+
+  Row mainRow(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        isPhone(context)
+            ? const SizedBox(
+                width: 20,
+              )
+            : Flexible(child: leftImageWidget()),
+        Flexible(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 30),
+            expressWidget(),
+            infoDot(homeInfo1.tr),
+            infoDot(homeInfo2.tr),
+            infoDot(homeInfo3.tr),
+            infoDot(homeInfo4.tr),
+            infoDot(homeInfo5.tr),
+            infoDot(homeInfo6.tr),
+          ],
+        )),
+      ],
     );
   }
 

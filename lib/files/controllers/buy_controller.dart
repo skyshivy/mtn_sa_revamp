@@ -368,7 +368,7 @@ class BuyController extends GetxController {
   }
 
   Future<void> setTune(String packName) async {
-    BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(), packName);
+    BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(), packName, '0');
     packName = '';
     if (res.statusCode == 'SC0000') {
       printCustom("Success buy tune api");

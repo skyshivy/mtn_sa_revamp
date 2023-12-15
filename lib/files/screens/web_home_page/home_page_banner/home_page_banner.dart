@@ -107,15 +107,23 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
           },
           child: Stack(alignment: Alignment.bottomCenter, children: [
             Container(
-              color: white,
-              child: FadeInImage.assetNetwork(
-                placeholder: placeholderImage,
-                image: banner.bannerPath ?? logoBigImg,
-                fit: BoxFit.fill,
-                height: double.infinity,
-                width: double.infinity,
-              ),
-            ),
+                color: white,
+                child: CustomImage(url: banner.bannerPath ?? logoBigImg)
+                // FadeInImage.assetNetwork(
+                //   placeholder: placeholderImage,
+                //   image: banner.bannerPath ?? logoBigImg,
+                //   fit: BoxFit.fill,
+                //   height: double.infinity,
+                //   width: double.infinity,
+                //   imageErrorBuilder: (context, error, stackTrace) {
+                //     return Image.asset(
+                //       defaultTuneImagePng,
+                //       width: double.infinity,
+                //       fit: BoxFit.cover,
+                //     );
+                //   },
+                // ),
+                ),
           ]),
         ),
       );

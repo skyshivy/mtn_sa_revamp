@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class CustomImage extends StatelessWidget {
@@ -24,23 +26,25 @@ class CustomImage extends StatelessWidget {
       borderRadius: BorderRadius.circular(radius),
       child: Stack(
         children: [
-          CachedNetworkImage(
-            fit: BoxFit.cover,
-            height: height ?? size.height,
-            width: size.width,
-            imageUrl: url ?? defaultImageUrl,
-            placeholder: (context, url) =>
-                const Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) {
-              return CachedNetworkImage(
-                imageUrl: defaultImageUrl,
-                height: height ?? size.height,
-                width: size.width,
-                fit: BoxFit.cover,
-              );
-              // const Icon(Icons.error);
-            },
-          ),
+          (url == null)
+              ? Image.asset(
+                  defaultTuneImagePng,
+                  fit: BoxFit.cover,
+                )
+              : CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  height: height ?? size.height,
+                  width: size.width,
+                  imageUrl: url ?? defaultImageUrl,
+                  placeholder: (context, url) =>
+                      const Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) {
+                    return Image.asset(
+                      defaultTuneImagePng,
+                      fit: BoxFit.cover,
+                    );
+                  },
+                ),
           gradient == null
               ? const SizedBox()
               : Container(

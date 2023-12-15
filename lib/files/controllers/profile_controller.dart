@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart'
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
+import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/model/edit_profile.dart';
@@ -118,15 +119,21 @@ class ProfileController extends GetxController {
   }
 
   Future<BuyTuneModel> setCrbtTune() async {
-    TuneInfo info = TuneInfo(toneId: '100231', toneName: 'DEFAULT');
-    BuyTuneModel model = await SetTuneVM().set(info, 'CRBT_WEEKLY');
+    Others? other = StoreManager().appSetting?.responseMap?.settings?.others;
+    String toneid = other?.defaultTone?.attribute ?? '';
+    TuneInfo info = TuneInfo(toneId: toneid, toneName: 'DEFAULT');
+    BuyTuneModel model = await SetTuneVM().set(info, 'CRBT_WEEKLY', '0');
 
     return model;
   }
 
   Future<BuyTuneModel> setRrbtTune() async {
-    TuneInfo info = TuneInfo(toneId: '100231', toneName: "DEFAULT");
-    BuyTuneModel model = await SetTuneVM().set(info, "RRBT_WEEKLY");
+    //offer code
+    // default tone id
+    Others? other = StoreManager().appSetting?.responseMap?.settings?.others;
+    String toneid = other?.defaultTone?.attribute ?? '';
+    TuneInfo info = TuneInfo(toneId: toneid, toneName: "DEFAULT");
+    BuyTuneModel model = await SetTuneVM().set(info, 'RRBT_WEEKLY', '1');
 
     return model;
   }

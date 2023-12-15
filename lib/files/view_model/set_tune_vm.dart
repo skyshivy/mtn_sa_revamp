@@ -9,7 +9,8 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class SetTuneVM {
-  Future<BuyTuneModel> set(TuneInfo info, String packName) async {
+  Future<BuyTuneModel> set(
+      TuneInfo info, String packName, String priority) async {
     var parts = [];
     Random random = Random();
     int randomNumber = random.nextInt(1000000000);
@@ -23,6 +24,7 @@ class SetTuneVM {
       'packName': packName,
       'username': StoreManager().msisdn,
       'channelId': channelId,
+      'priority': priority
     };
 
     body.forEach((key, value) {
