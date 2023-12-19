@@ -70,7 +70,7 @@ class SalatiScreen extends StatelessWidget {
           children: [
             CustomText(
               title: aReminderFullOfBenStr,
-              fontName: FontName.ztbold,
+              fontName: FontName.aheavy,
               fontSize: si.isMobile ? 18 : 22,
             ),
             const SizedBox(
@@ -79,7 +79,7 @@ class SalatiScreen extends StatelessWidget {
             CustomText(
               alignment: TextAlign.center,
               title: salatiDescriptionStr,
-              fontName: FontName.ztbold,
+              fontName: FontName.aheavy,
               fontSize: si.isMobile ? 12 : 16,
             ),
           ],
@@ -139,7 +139,7 @@ class SalatiScreen extends StatelessWidget {
           child: Center(
             child: CustomText(
               title: subscribeStr,
-              fontName: FontName.ztbold,
+              fontName: FontName.aheavy,
               textColor: Colors.white,
             ),
           ),

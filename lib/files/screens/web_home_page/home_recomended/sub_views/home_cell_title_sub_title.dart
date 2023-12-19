@@ -41,7 +41,7 @@ class HomeCellTitleSubTilte extends StatelessWidget {
           maxLine: 1,
           title:
               title ?? info?.toneName ?? info?.contentName ?? "Tune name here",
-          fontName: titleFontName ?? FontName.ztbold,
+          fontName: titleFontName ?? FontName.aheavy,
           fontSize: titleFontSize ?? 18,
         ),
         CustomText(

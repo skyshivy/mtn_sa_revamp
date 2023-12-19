@@ -38,7 +38,7 @@ class MobileAppBar extends StatelessWidget {
         decoration: BoxDecoration(gradient: customGredient()),
         child: BottomNavigationBar(
           selectedLabelStyle:
-              TextStyle(fontFamily: FontName.ztblack.name, fontSize: 14),
+              TextStyle(fontFamily: FontName.ablack.name, fontSize: 14),
           unselectedLabelStyle:
               TextStyle(fontFamily: FontName.ztlight.name, fontSize: 12),
           type: BottomNavigationBarType.fixed,

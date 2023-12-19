@@ -9,7 +9,7 @@ Widget tuneSettingTuneInfo() {
   TuneSettingController con = Get.find();
   return HomeCellTitleSubTilte(
     title: con.tuneName,
-    titleFontName: FontName.ztbold,
+    titleFontName: FontName.aheavy,
     titleFontSize: 16,
     subTitle: con.tuneArtist,
     subTitleFontName: FontName.ztlight,

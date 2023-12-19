@@ -17,7 +17,7 @@ Widget tunePreviewTuneInfo(TunePreviewController cont) {
             alignment: TextAlign.center,
             title:
                 cont.list[cont.index.value].toneName ?? '', //.toneName ?? '',
-            fontName: FontName.ztbold,
+            fontName: FontName.aheavy,
             fontSize: 18,
           ),
           CustomText(

@@ -32,7 +32,7 @@ Widget _leftWidget() {
     children: [
       CustomText(
         title: myTuneStr,
-        fontName: FontName.ztbold,
+        fontName: FontName.aheavy,
         fontSize: 24,
       ),
       CustomText(
@@ -67,7 +67,7 @@ Widget _titleWidget(String title, {bool isBold = false}) {
     },
     fontSize: 16,
     title: title,
-    fontName: isBold ? FontName.ztbold : FontName.abook,
+    fontName: isBold ? FontName.aheavy : FontName.abook,
   );
 }
 

@@ -39,7 +39,7 @@ Widget tuneSettingRadioButtonCallersType() {
 Widget titleWidget() {
   return const CustomText(
     title: whomYouWantToPlayItStr,
-    fontName: FontName.ztbold,
+    fontName: FontName.aheavy,
     fontSize: 18,
   );
 }

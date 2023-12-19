@@ -127,7 +127,7 @@ class _FAQScreenState extends State<FAQScreen> {
       builder: (context, si) {
         return CustomText(
           title: info.question ?? '',
-          fontName: FontName.ztbold,
+          fontName: FontName.aheavy,
           fontSize: si.isMobile ? 14 : 18,
         );
       },
@@ -218,7 +218,7 @@ class _FAQScreenState extends State<FAQScreen> {
     if (style!.fontWeight == 300) {
       return FontName.abook;
     } else {
-      return FontName.ztbold;
+      return FontName.aheavy;
     }
   }
 

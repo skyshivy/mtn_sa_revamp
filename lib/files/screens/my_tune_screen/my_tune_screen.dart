@@ -87,7 +87,7 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
       child: Center(
         child: CustomText(
           title: tuneListEmptyStr,
-          fontName: FontName.ztbold,
+          fontName: FontName.aheavy,
           fontSize: 20,
         ),
       ),

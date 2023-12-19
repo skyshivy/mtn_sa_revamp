@@ -12,7 +12,7 @@ class HomeAboutButton extends StatelessWidget {
     return CustomTextButton(
       title: aboutStr.tr,
       fontSize: 16,
-      fontName: FontName.ztbold,
+      fontName: FontName.aheavy,
       onTap: () {
         //Get.toNamed(faqTapped);
         print("HomefaqButton");

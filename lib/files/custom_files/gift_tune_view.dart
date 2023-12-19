@@ -143,7 +143,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
   CustomText titleWidget(SizingInformation si) {
     return CustomText(
       title: giftStr,
-      fontName: FontName.ztbold,
+      fontName: FontName.aheavy,
       fontSize: si.isMobile ? 14 : 18,
     );
   }
@@ -183,7 +183,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
     return CustomText(
       alignment: si.isMobile ? TextAlign.center : null,
       title: widget.info.toneName ?? '',
-      fontName: FontName.ztbold,
+      fontName: FontName.aheavy,
     );
   }
 
@@ -222,7 +222,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
   CustomText tuneChargeTitle() {
     return CustomText(
       title: tuneChargeStr,
-      fontName: FontName.ztbold,
+      fontName: FontName.aheavy,
     );
   }
 
@@ -256,7 +256,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
               title: confirmStr,
               color: darkGreen,
               textColor: white,
-              fontName: FontName.ztbold,
+              fontName: FontName.aheavy,
               onTap: () {
                 cont.confirmButtonAction(widget.info);
               },
@@ -267,7 +267,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
   CustomButton cancelButton(BuildContext context) {
     return CustomButton(
       title: cancelStr,
-      fontName: FontName.ztbold,
+      fontName: FontName.aheavy,
       borderColor: lightGreen,
       onTap: () {
         Navigator.of(context).pop();

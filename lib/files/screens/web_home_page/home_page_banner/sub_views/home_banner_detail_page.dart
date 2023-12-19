@@ -70,7 +70,7 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
     return const Center(
         child: CustomText(
       title: tuneListEmptyStr,
-      fontName: FontName.ztbold,
+      fontName: FontName.aheavy,
     ));
   }
 

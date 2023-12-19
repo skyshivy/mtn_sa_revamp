@@ -71,7 +71,7 @@ class DIYMobileView extends StatelessWidget {
         ),
         CustomText(
           title: listningStr,
-          fontName: FontName.ztbold,
+          fontName: FontName.aheavy,
         )
       ],
     );
@@ -151,7 +151,7 @@ class DIYMobileView extends StatelessWidget {
                   ? afterRecordWidget()
                   : CustomText(
                       title: tapToRecordStr,
-                      fontName: FontName.ztbold,
+                      fontName: FontName.aheavy,
                       textColor: darkGreen,
                     )
             ],
@@ -195,7 +195,7 @@ class DIYMobileView extends StatelessWidget {
                 TextSpan(
                   text: iHaveReadtermsStr,
                   style: TextStyle(
-                      fontFamily: FontName.ztbold.name,
+                      fontFamily: FontName.aheavy.name,
                       fontSize: 10,
                       color: Colors.grey,
                       fontWeight: FontWeight.normal),
@@ -209,7 +209,7 @@ class DIYMobileView extends StatelessWidget {
                     },
                   style: TextStyle(
                       decoration: TextDecoration.underline,
-                      fontFamily: FontName.ztbold.name,
+                      fontFamily: FontName.aheavy.name,
                       fontSize: 10,
                       color: Colors.grey,
                       fontWeight: FontWeight.normal),
@@ -239,7 +239,7 @@ class DIYMobileView extends StatelessWidget {
               isDense: true,
               hintText: 'Enter tune name',
               hintStyle: TextStyle(
-                fontFamily: FontName.ztbold.name,
+                fontFamily: FontName.aheavy.name,
               )),
         ),
         Container(

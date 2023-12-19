@@ -94,7 +94,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
       child: CustomText(
         alignment: TextAlign.center,
         title: youShouldSubscribeAPlanStr,
-        fontName: FontName.ztbold,
+        fontName: FontName.aheavy,
         textColor: subTitleColor,
         fontSize: si.isMobile ? 13 : 14,
       ),
@@ -158,14 +158,14 @@ class _SubscriptionViewState extends State<SubscriptionView> {
           CustomText(
             alignment: TextAlign.center,
             title: title,
-            fontName: FontName.ztbold,
+            fontName: FontName.aheavy,
             fontSize: 14,
           ),
           const SizedBox(height: 4),
           CustomText(
             alignment: TextAlign.center,
             title: subTitle,
-            fontName: FontName.ztbold,
+            fontName: FontName.aheavy,
             fontSize: 14,
           )
         ],
@@ -192,12 +192,12 @@ class _SubscriptionViewState extends State<SubscriptionView> {
                 children: [
                   CustomText(
                     title: widget.info.toneName ?? '',
-                    fontName: FontName.ztbold,
+                    fontName: FontName.aheavy,
                     fontSize: si.isMobile ? 13 : 16,
                   ),
                   CustomText(
                     title: widget.info.albumName ?? '',
-                    fontName: FontName.ztbold,
+                    fontName: FontName.aheavy,
                     fontSize: si.isMobile ? 12 : 14,
                   ),
                 ],
@@ -208,13 +208,13 @@ class _SubscriptionViewState extends State<SubscriptionView> {
                 children: [
                   CustomText(
                     title: tuneChargeStr,
-                    fontName: FontName.ztbold,
+                    fontName: FontName.aheavy,
                     fontSize: si.isMobile ? 13 : 16,
                   ),
                   Obx(() {
                     return CustomText(
                       title: sCont.tuneCharge.value,
-                      fontName: FontName.ztbold,
+                      fontName: FontName.aheavy,
                       fontSize: si.isMobile ? 13 : 16,
                     );
                   }),
@@ -265,7 +265,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
     return Obx(() {
       return CustomButton(
         title: confirmStr,
-        fontName: FontName.ztbold,
+        fontName: FontName.aheavy,
         color: sCont.enableSubmitButton.value ? darkGreen : grey,
         textColor: sCont.enableSubmitButton.value ? white : black,
         onTap: () {
@@ -281,7 +281,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
   CustomButton cancelButton() {
     return CustomButton(
       title: cancelStr,
-      fontName: FontName.ztbold,
+      fontName: FontName.aheavy,
       borderColor: lightGreen,
       color: white,
       onTap: () {
@@ -304,7 +304,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
               Flexible(
                 child: CustomText(
                   title: chooseSubscriptionPlanStr,
-                  fontName: si.isMobile ? FontName.ztbold : FontName.ztbold,
+                  fontName: si.isMobile ? FontName.aheavy : FontName.aheavy,
                   textColor: black,
                   fontSize: si.isMobile ? 14 : null,
                 ),

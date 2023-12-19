@@ -44,7 +44,7 @@ class LandingInfoPage extends StatelessWidget {
   CustomText expressWidget() {
     return CustomText(
       title: express,
-      fontName: FontName.ztbold,
+      fontName: FontName.aheavy,
       fontSize: fontSize(20, 50),
     );
   }

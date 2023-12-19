@@ -1,4 +1,4 @@
-enum FontName { abook, aheavy, ablack, ztblack, ztbold, ztlight, ztregular }
+enum FontName { abook, aheavy, ablack, ztlight, ztregular }
 
 enum TimeType {
   none,

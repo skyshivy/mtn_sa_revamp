@@ -10,7 +10,7 @@ Widget tuneListTuneInfo(ListToneApk1 info) {
     subTitle: info.toneDetails?.first.artistName ??
         info.toneDetails?.first.albumName ??
         "",
-    titleFontName: FontName.ztbold,
+    titleFontName: FontName.aheavy,
     titleFontSize: 16,
     subTitleFontName: FontName.ztlight,
     subTitleFontSize: 12,

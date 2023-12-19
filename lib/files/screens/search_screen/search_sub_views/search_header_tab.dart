@@ -52,7 +52,7 @@ class SeacrhHeaderTab extends StatelessWidget {
                   index == controller.isTuneSelected.value ? white : white,
               title: title,
               fontName: index == controller.isTuneSelected.value
-                  ? FontName.ztbold
+                  ? FontName.aheavy
                   : FontName.abook,
               fontSize: 16,
             )),

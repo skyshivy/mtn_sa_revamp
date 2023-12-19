@@ -30,7 +30,7 @@ Widget _title() {
     children: [
       CustomText(
         title: setYourTunesStr,
-        fontName: FontName.ztbold,
+        fontName: FontName.aheavy,
         fontSize: 20,
         textColor: white,
       ),

@@ -385,7 +385,7 @@ class DIYUploadSection extends StatelessWidget {
                       },
                     style: TextStyle(
                         decoration: TextDecoration.underline,
-                        fontFamily: FontName.ztbold.name,
+                        fontFamily: FontName.aheavy.name,
                         fontSize: si.isMobile ? 11 : 14,
                         color: Colors.black,
                         fontWeight: FontWeight.normal),

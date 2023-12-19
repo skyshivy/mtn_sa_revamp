@@ -69,7 +69,7 @@ class _LandingRecoViewState extends State<LandingRecoView> {
               print("See more tapped");
             },
             title: seeMoreStr,
-            fontName: FontName.ztbold,
+            fontName: FontName.aheavy,
             fontSize: si.isMobile ? 12 : 18,
           ),
         ),

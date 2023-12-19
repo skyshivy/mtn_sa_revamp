@@ -86,7 +86,7 @@ class _HomeRecoTabViewState extends State<HomeRecoTabView> {
               CustomText(
                 title: controller.tabTitle[index],
                 fontName: (controller.selectedIndex.value == index)
-                    ? FontName.ztbold
+                    ? FontName.aheavy
                     : FontName.abook,
                 fontSize: si.isMobile ? 14 : 20,
                 textColor: (controller.selectedIndex.value == index)

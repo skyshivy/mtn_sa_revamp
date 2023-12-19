@@ -152,7 +152,7 @@ class WebNavBarView extends StatelessWidget {
         return CustomButton(
           title: salatiStr.tr,
           textColor: white,
-          fontName: FontName.ztbold,
+          fontName: FontName.aheavy,
           fontSize: 18,
           onTap: () {
             context.goNamed(salatiGoRoute);
@@ -170,7 +170,7 @@ class WebNavBarView extends StatelessWidget {
     return CustomButton(
       title: doItYourStr,
       textColor: white,
-      fontName: FontName.ztbold,
+      fontName: FontName.aheavy,
       fontSize: 16,
       onTap: () {
         context.goNamed(diyGoRoute);

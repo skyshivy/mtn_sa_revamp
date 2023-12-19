@@ -33,11 +33,11 @@ class SearchTuneController extends GetxController {
       // artistList.clear();
     }
 
-    if (isNumericUsingRegularExpression(searchedTxt)) {
-      _getSearchResultByTuneId(searchedTxt);
+    // if (isNumericUsingRegularExpression(searchedTxt)) {
+    //   _getSearchResultByTuneId(searchedTxt);
 
-      return;
-    }
+    //   return;
+    // }
 
     String s = searchedTxt.trim();
     if (s != null) {

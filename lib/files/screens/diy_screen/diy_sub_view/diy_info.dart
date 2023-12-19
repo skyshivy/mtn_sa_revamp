@@ -22,7 +22,7 @@ class DiyInfo extends StatelessWidget {
               CustomText(
                 title: doItYourStr,
                 fontSize: sizeInfo.isMobile ? 18 : 38,
-                fontName: FontName.ztbold,
+                fontName: FontName.aheavy,
               ),
               const SizedBox(
                 height: 10,
@@ -33,7 +33,7 @@ class DiyInfo extends StatelessWidget {
                 title:
                     'Share your own song or audio message with your callers before you pick up the phone.${sizeInfo.isMobile ? '' : "\n"} This is Caller Tunes Karaoke. Record, Upload & Play',
                 fontSize: sizeInfo.isMobile ? 14 : 14,
-                fontName: FontName.ztbold,
+                fontName: FontName.aheavy,
               ),
             ],
           ),

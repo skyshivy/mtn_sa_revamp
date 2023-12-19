@@ -65,7 +65,7 @@ class DIYNameTextField extends StatelessWidget {
       },
       controller: cont,
       style: TextStyle(
-        fontFamily: FontName.ztbold.name,
+        fontFamily: FontName.aheavy.name,
         fontSize: si.isMobile ? 14 : 18,
         color: Colors.black,
       ),

@@ -44,7 +44,7 @@ class DIYHeaderView extends StatelessWidget {
           child: CustomText(
             alignment: TextAlign.left,
             title: shareYourOwnSongStr,
-            fontName: FontName.ztbold,
+            fontName: FontName.aheavy,
             fontSize: sizeInfo.isMobile ? 16 : 28,
           ),
         ),
@@ -102,7 +102,7 @@ class DIYHeaderView extends StatelessWidget {
           CustomText(
             title: doItYourStr,
             textColor: Colors.white,
-            fontName: FontName.ztbold,
+            fontName: FontName.aheavy,
             fontSize: sizeInfo.isMobile ? 14 : 28,
           ),
           CustomText(

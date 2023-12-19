@@ -43,7 +43,7 @@ class WebNavTopView extends StatelessWidget {
     return const CustomText(
       title: la7innaStr,
       textColor: red,
-      fontName: FontName.ztbold,
+      fontName: FontName.aheavy,
       fontSize: 18,
     );
   }
@@ -69,7 +69,7 @@ class WebNavTopView extends StatelessWidget {
   Widget aboutButton() {
     return CustomButton(
       title: aboutStr.tr,
-      fontName: FontName.ztbold,
+      fontName: FontName.aheavy,
       fontSize: 14,
       onTap: () {
         print("About tapped");
@@ -108,7 +108,7 @@ class WebNavTopView extends StatelessWidget {
           title: englishStr.tr,
           textColor: appCont.isEnglish.value ? red : black,
           fontName:
-              appCont.isEnglish.value ? FontName.ztbold : FontName.ztregular,
+              appCont.isEnglish.value ? FontName.aheavy : FontName.ztregular,
           fontSize: 14,
           onTap: () {
             context.go(homeGoRoute);
@@ -129,7 +129,7 @@ class WebNavTopView extends StatelessWidget {
           title: arabicStr.tr,
           textColor: appCont.isEnglish.value ? black : red,
           fontName:
-              appCont.isEnglish.value ? FontName.ztregular : FontName.ztbold,
+              appCont.isEnglish.value ? FontName.ztregular : FontName.aheavy,
           fontSize: 14,
           onTap: () {
             context.go(homeGoRoute);
@@ -147,7 +147,7 @@ class WebNavTopView extends StatelessWidget {
   Widget faqButton(BuildContext context) {
     return CustomButton(
       title: faqStr.tr,
-      fontName: FontName.ztbold,
+      fontName: FontName.aheavy,
       fontSize: 14,
       onTap: () {
         context.goNamed(faqGoRoute);

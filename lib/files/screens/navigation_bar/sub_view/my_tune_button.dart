@@ -123,7 +123,7 @@ class _HomeMyTuneButtonState extends State<HomeMyTuneButton> {
                   child: CustomText(
                     title: controller.catList[index].categoryName ?? '',
                     textColor: white,
-                    fontName: FontName.ztbold,
+                    fontName: FontName.aheavy,
                     fontSize: 18,
                     alignment: TextAlign.center,
                   ),
@@ -141,7 +141,7 @@ class _HomeMyTuneButtonState extends State<HomeMyTuneButton> {
       rightWidget: rightWidget(),
       title: tuneStr,
       textColor: white,
-      fontName: FontName.ztbold,
+      fontName: FontName.aheavy,
       fontSize: 18,
       onTap: () async {
         print("tune tapped");

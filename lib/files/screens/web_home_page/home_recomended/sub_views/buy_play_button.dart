@@ -93,7 +93,7 @@ class BuyButton extends StatelessWidget {
           //borderColor: red,
 
           titlePadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-          fontName: si.isMobile ? FontName.abook : FontName.ztbold,
+          fontName: si.isMobile ? FontName.abook : FontName.aheavy,
           fontSize: si.isMobile ? 12 : 16,
           // leftWidget: Image.asset(
           //   buyImg,

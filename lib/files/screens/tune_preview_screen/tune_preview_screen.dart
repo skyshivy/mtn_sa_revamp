@@ -139,7 +139,7 @@ class _TunePreviewScreenState extends State<TunePreviewScreen> {
     return Container(
       decoration: textShadow(),
       child: const CustomText(
-          title: previewTuneStr, fontName: FontName.ztbold, textColor: white),
+          title: previewTuneStr, fontName: FontName.aheavy, textColor: white),
     );
   }
 
@@ -202,7 +202,7 @@ class _TunePreviewScreenState extends State<TunePreviewScreen> {
           BuyTuneScreen().show(context, cont.list[cont.index.value]);
         },
         textColor: white,
-        fontName: FontName.ztbold,
+        fontName: FontName.aheavy,
         fontSize: 14,
         color: darkGreen,
         title: buyStr,

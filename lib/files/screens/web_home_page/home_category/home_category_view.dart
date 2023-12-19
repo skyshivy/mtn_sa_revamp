@@ -109,7 +109,7 @@ class HomeCategoryView extends StatelessWidget {
             title: (info.categoryName ?? ''),
             textColor: white,
             fontSize: si.isMobile ? 18 : 20,
-            fontName: FontName.ztbold,
+            fontName: FontName.aheavy,
           )),
         );
       },

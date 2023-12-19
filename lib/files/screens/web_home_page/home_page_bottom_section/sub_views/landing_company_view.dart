@@ -31,7 +31,7 @@ class _LandingCompanyViewState extends State<LandingCompanyView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         customText(companyStr,
-            fontName: FontName.ztbold, color: lightGreen, fontSize: 18),
+            fontName: FontName.aheavy, color: lightGreen, fontSize: 18),
         customText(contactusStr, onTap: contactusTapped),
         customText(helpStr, onTap: helpTapped),
         customText(privacyStr, onTap: privacyTapped),

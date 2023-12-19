@@ -14,7 +14,7 @@ Widget profileSubscribeButtonWidget(SizingInformation si, Function()? onTap) {
         color: darkGreen,
         title: subscribeStr,
         textColor: white,
-        fontName: FontName.ztbold,
+        fontName: FontName.aheavy,
         fontSize: si.isMobile ? 12 : 16,
         onTap: onTap,
       ),

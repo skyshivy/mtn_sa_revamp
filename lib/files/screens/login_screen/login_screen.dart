@@ -267,7 +267,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   : const SizedBox(),
               CustomText(
                 title: title,
-                fontName: FontName.ztbold,
+                fontName: FontName.aheavy,
                 fontSize: si.isMobile ? 14 : 24,
               ),
             ],
@@ -334,7 +334,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: requestButtonColor(),
                     title: requestButtonTitle(),
                     fontName:
-                        si.isMobile ? FontName.ztregular : FontName.ztbold,
+                        si.isMobile ? FontName.ztregular : FontName.aheavy,
                     fontSize: si.isMobile ? 12 : 16,
                   );
                 },

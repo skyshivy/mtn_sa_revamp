@@ -25,7 +25,7 @@ class HomeLoginButton extends StatelessWidget {
             : const EdgeInsets.only(right: 5, left: 15),
         title: loginStr.tr,
         fontSize: 16,
-        fontName: FontName.ztbold,
+        fontName: FontName.aheavy,
         color: white,
       );
     });
