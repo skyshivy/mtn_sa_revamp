@@ -194,4 +194,6 @@ const sentOtpStr = "Resent Otp";
 const pleaseActivateToUnsubscribeStr =
     "Please activate your pack before unsubscribing.";
 
-    //=====================================================
+//=====================================================
+
+const nameTuneStr = "Name Tunes";

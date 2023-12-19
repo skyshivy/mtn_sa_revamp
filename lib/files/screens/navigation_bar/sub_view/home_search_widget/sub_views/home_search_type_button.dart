@@ -29,6 +29,8 @@ class HomeSearchTypeButton extends StatelessWidget {
             radioButton(context, singerStr.tr, 1, si),
             const SizedBox(width: 40),
             radioButton(context, codeStr.tr, 2, si),
+            const SizedBox(width: 40),
+            radioButton(context, nameTuneStr.tr, 3, si),
           ],
         );
       },

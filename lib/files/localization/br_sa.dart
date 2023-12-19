@@ -196,4 +196,5 @@ Map<String, String> brBR = {
   sentOtpStr: "Resent Otp",
   pleaseActivateToUnsubscribeStr:
       "Please activate your pack before unsubscribing.",
+  nameTuneStr: "Name Tunes",
 };

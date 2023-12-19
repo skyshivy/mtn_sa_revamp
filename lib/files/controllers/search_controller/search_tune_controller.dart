@@ -2,6 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
+import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
+import 'package:mtn_sa_revamp/files/model/category_detail_model.dart';
 import 'package:mtn_sa_revamp/files/model/search_toneid_model.dart';
 import 'package:mtn_sa_revamp/files/model/search_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -34,7 +36,11 @@ class SearchTuneController extends GetxController {
       searchType.value = searchTypeIndex;
     }
     searchedText.value = searchedTxt;
-    if (searchType.value == 2) {
+    if (searchType.value == 3) {
+      print("name tune search here");
+      _searchNameTune(searchedTxt);
+      return;
+    } else if (searchType.value == 2) {
       print("Search Tune code here");
       _getSearchResultByTuneId(searchedTxt);
       return;
@@ -125,7 +131,42 @@ class SearchTuneController extends GetxController {
   }
 
   loadMoreData() async {
+    if (searchType.value == 3) {
+      print("name tune search here");
+      _searchNameTune(searchedText.value, isloadMore: true);
+      return;
+    }
     getSearchedResult(searchedText.value, toneList.length, isloadMore: true);
     printCustom("load more data search");
+  }
+
+  _searchNameTune(String searchKey, {bool isloadMore = false}) async {
+    if (!isloadMore) {
+      toneList.clear();
+      songList.clear();
+      artistList.clear();
+    }
+    isLoadMore.value = isloadMore;
+    searchedText.value = searchKey;
+    Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
+    String catId = others?.nameTuneCategoryid?.attribute ?? '0';
+    if (!isloadMore) {
+      isLoading.value = true;
+    }
+
+    isLoaded.value = false;
+    var url =
+        "$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=${songList.length}&searchLanguage=English&perPageCount=$pagePerCount";
+    Map<String, dynamic>? result = await ServiceCall().get(url);
+    print("result is $result");
+    if (result != null) {
+      CategoryDetailModel model = CategoryDetailModel.fromJson(result);
+      print("list length is  ${model.responseMap?.searchList?.length}");
+
+      songList.value += model.responseMap?.searchList ?? [];
+    }
+    isLoading.value = false;
+    isLoaded.value = true;
+    isLoadMore.value = false;
   }
 }
