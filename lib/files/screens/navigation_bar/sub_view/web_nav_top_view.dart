@@ -5,9 +5,11 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_web_launcher.dart';
 import 'package:mtn_sa_revamp/files/custom_files/hover/custom_hover.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
+import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -72,6 +74,12 @@ class WebNavTopView extends StatelessWidget {
       fontName: FontName.aheavy,
       fontSize: 14,
       onTap: () {
+        Others? others =
+            StoreManager().appSetting?.responseMap?.settings?.others;
+        String url = StoreManager().isEnglish
+            ? (others?.aboutAppurlEnglish?.attribute ?? '')
+            : (others?.aboutAppurlEnglish?.attribute ?? '');
+        customWebLauncher(url);
         print("About tapped");
       },
     );

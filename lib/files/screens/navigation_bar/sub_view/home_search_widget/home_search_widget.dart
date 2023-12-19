@@ -79,10 +79,16 @@ class HomeSearchWidget extends StatelessWidget {
             onTap: () {
               if (si.isMobile) {
                 print("text filedon tapped");
+                context.goNamed(searchGoRoute, queryParameters: {
+                  "key": searchTuneController.searchedText.value
+                });
                 //Get.toNamed(searchTapped);
               } else {}
-              searchTuneController.clearSearchData();
+              //searchTuneController.clearSearchData();
               //context.goNamed(searchRoute, queryParameters: {"key": p0});
+              context.goNamed(searchGoRoute, queryParameters: {
+                "key": searchTuneController.searchedText.value
+              });
               searchTuneController.getSearchedResult(
                   searchTuneController.searchedText.value, 0);
             },

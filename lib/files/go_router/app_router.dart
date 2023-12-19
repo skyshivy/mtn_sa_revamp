@@ -280,6 +280,7 @@ StatefulShellBranch searchScreen() {
       path: searchGoRoute,
       builder: (context, state) {
         String searchkey = state.uri.queryParameters['key'] ?? '';
+        print("search key is ${searchkey}");
         sCOnt.getSearchedResult(searchkey, 0);
         return const SearchScreen(); //CustomText(title: "title  $searchkey");
       },
