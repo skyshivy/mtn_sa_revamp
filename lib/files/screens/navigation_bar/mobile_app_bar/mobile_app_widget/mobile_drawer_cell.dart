@@ -38,7 +38,7 @@ Widget mobileDrawerCell(BuildContext context, DrawerModel info) {
             children: [
               CustomText(
                 title: info.title,
-                fontName: FontName.ztregular,
+                fontName: FontName.abook,
                 fontSize: 16,
               ),
               info.isExpandable!.value ? _expandedIcon(info) : const SizedBox()

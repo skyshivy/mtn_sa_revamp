@@ -40,7 +40,7 @@ class MobileAppBar extends StatelessWidget {
           selectedLabelStyle:
               TextStyle(fontFamily: FontName.ablack.name, fontSize: 14),
           unselectedLabelStyle:
-              TextStyle(fontFamily: FontName.ztlight.name, fontSize: 12),
+              TextStyle(fontFamily: FontName.abook.name, fontSize: 12),
           type: BottomNavigationBarType.fixed,
           iconSize: 20,
           backgroundColor: Colors.transparent,

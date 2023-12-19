@@ -60,7 +60,7 @@ Widget _playAndPauseButtonIcon(PlayerController pCont, int index) {
 //     titlePadding: const EdgeInsets.symmetric(horizontal: 4),
 //     //color: yellow,
 //     title: playStr,
-//     fontName: FontName.ztregular,
+//     fontName: FontName.abook,
 //     fontSize: 16,
 //     leftWidget: const Icon(
 //       Icons.play_arrow,

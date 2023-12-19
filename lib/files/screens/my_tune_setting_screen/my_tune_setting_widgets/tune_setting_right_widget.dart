@@ -118,7 +118,7 @@ Widget _whenWantToPlayText() {
     padding: EdgeInsets.symmetric(horizontal: 2),
     child: CustomText(
       title: whenYouWantToPlayItStr,
-      fontName: FontName.ztregular,
+      fontName: FontName.abook,
       fontSize: 16,
     ),
   );
@@ -129,7 +129,7 @@ Widget _addNumberText() {
     padding: EdgeInsets.symmetric(horizontal: 2),
     child: CustomText(
       title: addNuberStr,
-      fontName: FontName.ztregular,
+      fontName: FontName.abook,
       fontSize: 16,
     ),
   );

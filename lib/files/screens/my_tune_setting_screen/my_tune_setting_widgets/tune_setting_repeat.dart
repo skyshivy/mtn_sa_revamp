@@ -17,7 +17,7 @@ Widget tuneSettingRepeatView() {
       SizedBox(height: 20),
       const CustomText(
         title: repeatStr,
-        fontName: FontName.ztregular,
+        fontName: FontName.abook,
         fontSize: 14,
       ),
       const SizedBox(height: 8),
@@ -38,7 +38,7 @@ Widget _noneButton(TuneSettingController con) {
   return Obx(() {
     return CustomButton(
       height: 35,
-      fontName: FontName.ztregular,
+      fontName: FontName.abook,
       textColor: (con.repeatYear.value == 0) ? white : black,
       title: noneStr,
       borderColor: (con.repeatYear.value == 0) ? null : lightGreen,
@@ -55,7 +55,7 @@ Widget _monthlyButton(TuneSettingController con) {
   return Obx(() {
     return CustomButton(
       height: 35,
-      fontName: FontName.ztregular,
+      fontName: FontName.abook,
       title: monthlyStr,
       textColor: (con.repeatYear.value == 1) ? white : black,
       borderColor: (con.repeatYear.value == 1) ? null : lightGreen,
@@ -72,7 +72,7 @@ Widget _yearlyButton(TuneSettingController con) {
   return Obx(() {
     return CustomButton(
       height: 35,
-      fontName: FontName.ztregular,
+      fontName: FontName.abook,
       title: yearlyStr,
       textColor: (con.repeatYear.value == 2) ? white : black,
       borderColor: (con.repeatYear.value == 2) ? null : lightGreen,

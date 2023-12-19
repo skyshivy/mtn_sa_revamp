@@ -40,7 +40,7 @@ Widget _playingTuneLikeButton() {
             ),
           ),
           title: "23",
-          fontName: FontName.ztregular,
+          fontName: FontName.abook,
         ),
       ],
     ),

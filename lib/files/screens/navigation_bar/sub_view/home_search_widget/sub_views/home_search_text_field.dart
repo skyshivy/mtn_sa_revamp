@@ -42,7 +42,7 @@ class HomeSearchTextField extends StatelessWidget {
           textColor: textColor,
           isBorder: false,
           hintColor: hintColor,
-          fontName: FontName.ztlight,
+          fontName: FontName.abook,
           text: text,
           hintText: searchStr.tr,
           fontSize: 16,

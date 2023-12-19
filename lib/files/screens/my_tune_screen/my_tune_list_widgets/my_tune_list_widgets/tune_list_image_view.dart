@@ -38,7 +38,7 @@ Widget _tuneListLikeButton(ListToneApk1 info) {
     color: whiteTrans,
     height: 30,
     title: "",
-    fontName: FontName.ztregular,
+    fontName: FontName.abook,
     titlePadding: const EdgeInsets.only(left: 4, right: 12),
     leftWidget: Padding(
       padding: const EdgeInsets.only(left: 12),

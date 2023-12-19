@@ -109,18 +109,18 @@ flutter:
      - family: aheavy
        fonts:
          - asset: assets/fonts/avenir_heavy.ttf  
-     - family: ztblack
-       fonts:
-         - asset: assets/fonts/avenir_black.ttf
-     - family: ztbold
-       fonts:
-         - asset: assets/fonts/avenir_heavy.ttf 
-     - family: ztlight
-       fonts:
-         - asset: assets/fonts/avenir_book.ttf  
-     - family: ztregular
-       fonts:
-         - asset: assets/fonts/avenir_book.ttf
+    #  - family: ztblack
+    #    fonts:
+    #      - asset: assets/fonts/avenir_black.ttf
+    #  - family: ztbold
+    #    fonts:
+    #      - asset: assets/fonts/avenir_heavy.ttf 
+    #  - family: ztlight
+    #    fonts:
+    #      - asset: assets/fonts/avenir_book.ttf  
+    #  - family: ztregular
+    #    fonts:
+    #      - asset: assets/fonts/avenir_book.ttf
     
   # fonts:
   #   - family: bold

@@ -22,7 +22,7 @@ Widget playingTuneRepeatDays(ListToneApk item) {
 Widget _repeat() {
   return const CustomText(
     title: repeatStr,
-    fontName: FontName.ztlight,
+    fontName: FontName.abook,
     fontSize: 13,
     textColor: subTitleColor,
   );

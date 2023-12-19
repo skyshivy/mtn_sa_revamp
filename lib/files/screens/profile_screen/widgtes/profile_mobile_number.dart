@@ -24,7 +24,7 @@ Widget profileMobileNumberWidget(SizingInformation si) {
         ),
         const SizedBox(height: 6),
         CustomTextField(
-          fontName: FontName.ztregular,
+          fontName: FontName.abook,
           fontSize: 18,
           isBorder: false,
           bgColor: grey,

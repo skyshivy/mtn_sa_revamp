@@ -211,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextStyle richTextStyle(SizingInformation si) {
     return TextStyle(
-      fontFamily: FontName.ztlight.name,
+      fontFamily: FontName.abook.name,
       fontSize: si.isMobile ? 10 : 14,
       color: black,
     );
@@ -310,7 +310,7 @@ class _LoginScreenState extends State<LoginScreen> {
           return CustomText(
             title: title,
             textColor: black,
-            fontName: si.isMobile ? FontName.ztlight : FontName.abook,
+            fontName: si.isMobile ? FontName.abook : FontName.abook,
             fontSize: si.isMobile ? 10 : 14,
           );
         },
@@ -333,8 +333,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: si.isMobile ? 40 : 44,
                     color: requestButtonColor(),
                     title: requestButtonTitle(),
-                    fontName:
-                        si.isMobile ? FontName.ztregular : FontName.aheavy,
+                    fontName: si.isMobile ? FontName.abook : FontName.aheavy,
                     fontSize: si.isMobile ? 12 : 16,
                   );
                 },

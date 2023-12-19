@@ -40,7 +40,7 @@ class BuyButton extends StatelessWidget {
       builder: (context, si) {
         return Obx(() {
           return CustomButton(
-            fontName: si.isMobile ? FontName.abook : FontName.ztregular,
+            fontName: si.isMobile ? FontName.abook : FontName.abook,
             fontSize: si.isMobile ? 12 : 16,
             titlePadding: const EdgeInsets.all(4),
             borderColor: red,

@@ -33,7 +33,7 @@ class SettingCell extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: CustomText(
                 title: name,
-                fontName: FontName.ztregular,
+                fontName: FontName.abook,
               ),
             ),
           ],

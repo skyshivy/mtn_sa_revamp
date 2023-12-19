@@ -44,7 +44,7 @@ class _LandingCompanyViewState extends State<LandingCompanyView> {
     String title, {
     Function()? onTap,
     Color color = white,
-    FontName fontName = FontName.ztlight,
+    FontName fontName = FontName.abook,
     double fontSize = 14,
   }) {
     return CustomTextButton(

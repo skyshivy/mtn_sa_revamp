@@ -68,7 +68,7 @@ class CustomAlertView extends StatelessWidget {
             borderColor: greyDark,
             width: 120,
             title: okStr,
-            fontName: FontName.ztregular,
+            fontName: FontName.abook,
             onTap: () {
               //Get.back();
 

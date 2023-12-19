@@ -214,7 +214,7 @@ class _BuyScreenState extends State<_BuyScreen> {
   CustomText heaerTitle() {
     return CustomText(
       title: buyTuneStr,
-      fontName: fontName(FontName.ztregular, FontName.aheavy),
+      fontName: fontName(FontName.abook, FontName.aheavy),
       fontSize: fontSize(18, 20),
     );
   }

@@ -146,7 +146,7 @@ class HomeTuneCell extends StatelessWidget {
             title: info?.likeCount ?? '0',
             titlePadding: const EdgeInsets.only(right: 8, left: 4),
             fontSize: 16,
-            fontName: FontName.ztregular,
+            fontName: FontName.abook,
             textColor: white,
             onTap: () {
               print("likeButton tapped");

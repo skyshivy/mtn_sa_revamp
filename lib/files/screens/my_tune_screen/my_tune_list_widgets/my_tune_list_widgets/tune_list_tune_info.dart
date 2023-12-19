@@ -12,7 +12,7 @@ Widget tuneListTuneInfo(ListToneApk1 info) {
         "",
     titleFontName: FontName.aheavy,
     titleFontSize: 16,
-    subTitleFontName: FontName.ztlight,
+    subTitleFontName: FontName.abook,
     subTitleFontSize: 12,
     subTitleColor: subTitleColor,
   );

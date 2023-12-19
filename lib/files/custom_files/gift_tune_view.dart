@@ -174,7 +174,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
     return CustomText(
       alignment: si.isMobile ? TextAlign.center : null,
       title: widget.info.albumName ?? '',
-      fontName: FontName.ztregular,
+      fontName: FontName.abook,
       fontSize: 12,
     );
   }

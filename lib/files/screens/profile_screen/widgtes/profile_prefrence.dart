@@ -139,7 +139,7 @@ Widget _preferenceGridCell(ProfileController controller, int index) {
         CustomText(
           title: controller.catList[index].categoryName ?? '',
           maxLine: 1,
-          fontName: FontName.ztregular,
+          fontName: FontName.abook,
           fontSize: 15,
         )
       ],

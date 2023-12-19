@@ -73,7 +73,7 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
   Widget _titleWidget() {
     return const CustomText(
       title: selectTimeTypeStr,
-      fontName: FontName.ztlight,
+      fontName: FontName.abook,
       fontSize: 12,
       textColor: subTitleColor,
     );
@@ -84,7 +84,7 @@ class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
       return CustomText(
         title: con.timeTypeBtm.value,
         textColor: lightGreen,
-        fontName: FontName.ztregular,
+        fontName: FontName.abook,
         fontSize: 14,
       );
     });

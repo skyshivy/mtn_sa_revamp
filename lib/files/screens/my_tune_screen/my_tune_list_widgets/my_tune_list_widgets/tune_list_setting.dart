@@ -14,7 +14,7 @@ Widget tuneListSettingWidget(BuildContext context, ListToneApk1 info) {
   return CustomButton(
     color: darkGreen,
     titlePadding: const EdgeInsets.symmetric(horizontal: 4),
-    fontName: FontName.ztregular,
+    fontName: FontName.abook,
     fontSize: 16,
     textColor: white,
     leftWidget: const Padding(

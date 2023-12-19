@@ -12,7 +12,7 @@ Widget tuneSettingTuneInfo() {
     titleFontName: FontName.aheavy,
     titleFontSize: 16,
     subTitle: con.tuneArtist,
-    subTitleFontName: FontName.ztlight,
+    subTitleFontName: FontName.abook,
     subTitleFontSize: 14,
     subTitleColor: subTitleColor,
   );

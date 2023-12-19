@@ -107,8 +107,7 @@ class WebNavTopView extends StatelessWidget {
         return CustomButton(
           title: englishStr.tr,
           textColor: appCont.isEnglish.value ? red : black,
-          fontName:
-              appCont.isEnglish.value ? FontName.aheavy : FontName.ztregular,
+          fontName: appCont.isEnglish.value ? FontName.aheavy : FontName.abook,
           fontSize: 14,
           onTap: () {
             context.go(homeGoRoute);
@@ -128,8 +127,7 @@ class WebNavTopView extends StatelessWidget {
         return CustomButton(
           title: arabicStr.tr,
           textColor: appCont.isEnglish.value ? black : red,
-          fontName:
-              appCont.isEnglish.value ? FontName.ztregular : FontName.aheavy,
+          fontName: appCont.isEnglish.value ? FontName.abook : FontName.aheavy,
           fontSize: 14,
           onTap: () {
             context.go(homeGoRoute);

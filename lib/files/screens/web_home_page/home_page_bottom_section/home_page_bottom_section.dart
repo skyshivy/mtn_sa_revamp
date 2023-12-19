@@ -82,7 +82,7 @@ class LandingPageBottomSection extends StatelessWidget {
     String title, {
     Function()? onTap,
     Color color = white,
-    FontName fontName = FontName.ztlight,
+    FontName fontName = FontName.abook,
     double fontSize = 14,
   }) {
     return CustomTextButton(
@@ -97,7 +97,7 @@ class LandingPageBottomSection extends StatelessWidget {
   Widget copyRight() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: customText(copyRightStr, fontSize: 12, fontName: FontName.ztlight),
+      child: customText(copyRightStr, fontSize: 12, fontName: FontName.abook),
     );
   }
 }

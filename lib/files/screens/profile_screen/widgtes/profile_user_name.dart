@@ -24,7 +24,7 @@ Widget profileUserName(SizingInformation si) {
         ),
         const SizedBox(height: 6),
         CustomTextField(
-          fontName: FontName.ztregular,
+          fontName: FontName.abook,
           fontSize: 18,
           editEnable: controller.editEnable.value,
           text: controller.profileDetails?.userName ?? '',

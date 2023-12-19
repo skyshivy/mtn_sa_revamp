@@ -29,7 +29,7 @@ Widget _titleSubTitleWidget(String title, String subTitle) {
     subTitle: subTitle,
     titleColor: subTitleColor,
     titleFontSize: 13,
-    titleFontName: FontName.ztlight,
+    titleFontName: FontName.abook,
     subTitleFontName: FontName.abook,
     subTitleFontSize: 13,
   );
