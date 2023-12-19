@@ -111,16 +111,16 @@ flutter:
          - asset: assets/fonts/avenir_heavy.ttf  
      - family: ztblack
        fonts:
-         - asset: assets/fonts/QTZainTextBlack.otf
+         - asset: assets/fonts/avenir_black.ttf
      - family: ztbold
        fonts:
-         - asset: assets/fonts/QTZainTextBold.otf 
+         - asset: assets/fonts/avenir_heavy.ttf 
      - family: ztlight
        fonts:
-         - asset: assets/fonts/QTZainTextLight.otf  
+         - asset: assets/fonts/avenir_book.ttf  
      - family: ztregular
        fonts:
-         - asset: assets/fonts/QTZainTextRegular.otf
+         - asset: assets/fonts/avenir_book.ttf
     
   # fonts:
   #   - family: bold

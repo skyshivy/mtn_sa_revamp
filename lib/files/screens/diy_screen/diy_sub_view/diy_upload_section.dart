@@ -154,14 +154,14 @@ class DIYUploadSection extends StatelessWidget {
               title:
                   "${TimeFormate.formatDuration(cont.curTime)}", //"${value.curTime}",
               fontSize: si.isMobile ? 10 : 12,
-              fontName: FontName.ztregular,
+              fontName: FontName.abook,
               textColor: Colors.grey,
             ),
             CustomText(
               title:
                   "${TimeFormate.formatDuration(cont.maxime)}", //"${value.maxime}",
               fontSize: si.isMobile ? 10 : 12,
-              fontName: si.isMobile ? FontName.ztlight : FontName.ztbold,
+              fontName: si.isMobile ? FontName.abook : FontName.aheavy,
               textColor: Colors.grey,
             ),
           ],
@@ -218,7 +218,7 @@ class DIYUploadSection extends StatelessWidget {
           child: CustomText(
             title: replaceStr,
             fontSize: si.isMobile ? 12 : 14,
-            fontName: si.isMobile ? FontName.ztregular : FontName.ztbold,
+            fontName: si.isMobile ? FontName.abook : FontName.aheavy,
           ),
         ),
       ),
@@ -280,7 +280,7 @@ class DIYUploadSection extends StatelessWidget {
             title: supportMp3Str,
             fontSize: si.isMobile ? 10 : 14,
             textColor: subTitleColor,
-            fontName: FontName.ztregular,
+            fontName: FontName.abook,
           ),
         ],
       );
@@ -293,7 +293,7 @@ class DIYUploadSection extends StatelessWidget {
       children: [
         CustomText(
           title: "Uploading...".tr,
-          fontName: FontName.ztbold,
+          fontName: FontName.aheavy,
           fontSize: si.isMobile ? 12 : 16,
           textColor: red,
         ),
@@ -371,7 +371,7 @@ class DIYUploadSection extends StatelessWidget {
                   TextSpan(
                     text: "I have read and agree to the".tr,
                     style: TextStyle(
-                        fontFamily: FontName.ztbold.name,
+                        fontFamily: FontName.aheavy.name,
                         fontSize: si.isMobile ? 11 : 14,
                         color: Colors.grey,
                         fontWeight: FontWeight.normal),
