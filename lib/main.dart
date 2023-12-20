@@ -90,6 +90,8 @@ Future<String> getJson() async {
     timeOut = data['SESSION_TIME_OUT'];
     facebook_url = data['FACEBOOK_URL'];
     instagram_url = data['INSTAGRAM_URL'];
+    messanger_url = data['MESSANGER_URL'];
+    youtube_url = data['YOUTUBE_URL'];
     twitter_url = data['TWITTER_URL'];
     linkedin_url = data['LINKEDIN_URL'];
     defaultImageUrl = data["DEFAULT_IMAGE_URL"];

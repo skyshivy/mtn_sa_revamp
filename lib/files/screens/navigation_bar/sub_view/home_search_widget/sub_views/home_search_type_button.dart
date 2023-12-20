@@ -19,19 +19,24 @@ class HomeSearchTypeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            radioButton(context, songStr.tr, 0, si),
-            const SizedBox(width: 40),
-            radioButton(context, singerStr.tr, 1, si),
-            const SizedBox(width: 40),
-            radioButton(context, codeStr.tr, 2, si),
-            const SizedBox(width: 40),
-            radioButton(context, nameTuneStr.tr, 3, si),
-          ],
+        return SizedBox(
+          height: 50,
+          child: ListView(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            // mainAxisSize: MainAxisSize.min,
+            children: [
+              radioButton(context, songStr.tr, 0, si),
+              const SizedBox(width: 40),
+              radioButton(context, singerStr.tr, 1, si),
+              const SizedBox(width: 40),
+              radioButton(context, codeStr.tr, 2, si),
+              const SizedBox(width: 40),
+              radioButton(context, nameTuneStr.tr, 3, si),
+            ],
+          ),
         );
       },
     );

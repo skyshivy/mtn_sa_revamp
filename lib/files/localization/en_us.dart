@@ -126,7 +126,7 @@ Map<String, String> enUS = {
   contactusStr: "Contact Us",
   fallowUsStr: "Follow Us On",
   helpStr: "Help",
-  copyRightStr: "© 2020 Copyright. All Rights Reserved",
+  copyRightStr: "© 2023 Copyright. All Rights Reserved",
   privacyStr: "Privacy Policy",
   termsStr: "Terms and conditions",
   pleaseEnterMsisdn: "Please enter msisdn",

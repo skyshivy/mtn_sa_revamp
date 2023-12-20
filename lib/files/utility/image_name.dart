@@ -14,6 +14,8 @@ const facebookImg = 'assets/pngs/facebook.png';
 const instagramImg = 'assets/pngs/instagram.png';
 const twitterImg = 'assets/pngs/twitter.png';
 const linkedInImg = 'assets/pngs/linkedIn.png';
+const youtubeImg = 'assets/pngs/youtube.png';
+const messangerImg = 'assets/pngs/messanger.png';
 const placeholderImage = 'assets/pngs/placeholderImage.png';
 
 const bottomBannerMobilePng = 'assets/pngs/bottom_banner_mobile.png';

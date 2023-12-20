@@ -17,21 +17,38 @@ class LandingSocialMedia extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         titleWidget(),
-        Row(
-          children: [
-            mediaButton(facebookImg, () {
-              customWebLauncher(facebook_url);
-            }),
-            mediaButton(instagramImg, () {
-              customWebLauncher(instagram_url);
-            }),
-            mediaButton(twitterImg, () {
-              customWebLauncher(twitter_url);
-            }),
-            mediaButton(linkedInImg, () {
-              customWebLauncher(linkedin_url);
-            }),
-          ],
+        const SizedBox(height: 4),
+        SizedBox(
+          height: 40,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            children: [
+              mediaButton(facebookImg, () {
+                customWebLauncher(facebook_url);
+              }),
+              const SizedBox(width: 12),
+              mediaButton(instagramImg, () {
+                customWebLauncher(instagram_url);
+              }),
+              const SizedBox(width: 12),
+              mediaButton(twitterImg, () {
+                customWebLauncher(twitter_url);
+              }),
+              const SizedBox(width: 12),
+              mediaButton(linkedInImg, () {
+                customWebLauncher(linkedin_url);
+              }),
+              const SizedBox(width: 12),
+              mediaButton(youtubeImg, () {
+                customWebLauncher(youtube_url);
+              }),
+              const SizedBox(width: 12),
+              mediaButton(messangerImg, () {
+                customWebLauncher(messanger_url);
+              }),
+            ],
+          ),
         ),
       ],
     );
@@ -48,13 +65,19 @@ class LandingSocialMedia extends StatelessWidget {
 
   Widget mediaButton(String name, Function() onTap) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       child: CustomButton(
         color: white,
         height: 40,
         width: 40,
         radius: 20,
-        leftWidget: Image.asset(name),
+        leftWidget: Center(
+          child: Image.asset(
+            name,
+            height: 25,
+            width: 25,
+          ),
+        ),
         onTap: onTap,
       ),
     );
