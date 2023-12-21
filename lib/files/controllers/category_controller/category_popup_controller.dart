@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
@@ -14,7 +15,10 @@ class CategoryPoupupController extends GetxController {
 
   getCatList() async {
     isLoading.value = true;
-    var result = await ServiceCall().get(categoryListUrl);
+    print("making category api call");
+
+    var result = await ServiceCall()
+        .get('$categoryListUrl1?language=${StoreManager().language}');
     isLoading.value = false;
     if (result != null) {
       CategoryModel model = CategoryModel.fromJson(result);

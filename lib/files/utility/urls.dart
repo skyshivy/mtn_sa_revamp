@@ -49,8 +49,7 @@ String editProfileUrl = "${baseUrlSecurity}edit-profile";
 String passwordValidationUrl = "${baseUrl}password-validation";
 String passwordValidationAutoLoginUrl =
     "${baseUrl}password-validation"; //"${baseUrl}password-validation-3pp";
-String categoryListUrl =
-    "${baseUrl}categories?language=${StoreManager().language}";
+String categoryListUrl1 = "${baseUrl}categories";
 String myWishListUrl = "${baseUrlSecurity}view-wishlist";
 String deleteFromWishListUrl = "${baseUrlSecurity}delete-from-wishlist";
 

@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +11,7 @@ import 'package:mtn_sa_revamp/files/controllers/category_controller/category_pop
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/gredient.dart';
 
@@ -82,6 +85,9 @@ class CategoryPopupView extends StatelessWidget {
   }
 
   Stack cellStack(int index) {
+    String name = controller.catList[index].categoryName ?? '';
+    List<int> bytes = name.toString().codeUnits;
+    String abc = utf8.decode(bytes);
     return Stack(
       clipBehavior: Clip.hardEdge,
       children: [
@@ -91,7 +97,7 @@ class CategoryPopupView extends StatelessWidget {
         ),
         Center(
           child: CustomText(
-            title: "${controller.catList[index].categoryName}",
+            title: abc, //StoreManager().isEnglish ? name : abc,
             fontName: FontName.medium,
             textColor: white,
           ),

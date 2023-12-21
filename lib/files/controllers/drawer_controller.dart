@@ -42,7 +42,8 @@ class MyDrawerController extends GetxController {
   }
 
   getPref() async {
-    var result = await ServiceCall().get(categoryListUrl);
+    var result = await ServiceCall()
+        .get('$categoryListUrl1?language=${StoreManager().language}');
 
     if (result != null) {
       CategoryModel model = CategoryModel.fromJson(result);

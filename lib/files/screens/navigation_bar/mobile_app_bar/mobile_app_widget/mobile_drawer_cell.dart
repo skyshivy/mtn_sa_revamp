@@ -185,8 +185,9 @@ _tappedOnCell(BuildContext context, String title) async {
         context.go(homeGoRoute);
 
         await Future.delayed(const Duration(milliseconds: 300));
-        cont.getCatList();
+
         banCont.getBanner();
+        cont.getCatList();
         recCont.getTabList();
 
         Navigator.pop(context);

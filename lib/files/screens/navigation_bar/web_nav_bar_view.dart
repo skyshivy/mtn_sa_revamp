@@ -158,8 +158,9 @@ class WebNavBarView extends StatelessWidget {
               context.go(homeGoRoute);
 
               await Future.delayed(const Duration(milliseconds: 300));
-              cont.getCatList();
+
               banCont.getBanner();
+              cont.getCatList();
               recCont.getTabList();
             },
           )); //CustomAlertView(title: languageChangeConfirmMessageStr));
