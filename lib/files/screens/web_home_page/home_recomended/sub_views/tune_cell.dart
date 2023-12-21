@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_imag
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
 import 'package:mtn_sa_revamp/files/delete_popover.dart';
+import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/buy_play_button.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/home_cell_title_sub_title.dart';
@@ -113,18 +114,21 @@ class HomeTuneCell extends StatelessWidget {
   }
 
   Widget likeAndMoreWidget() {
-    return ResponsiveBuilder(
-      builder: (context, si) {
-        return si.isMobile
-            ? const SizedBox()
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  likeButton(),
-                  moreButton(),
-                ],
-              );
-      },
+    return Visibility(
+      visible: appCont.tuneCategoryid != info?.contentId,
+      child: ResponsiveBuilder(
+        builder: (context, si) {
+          return si.isMobile
+              ? const SizedBox()
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    likeButton(),
+                    moreButton(),
+                  ],
+                );
+        },
+      ),
     );
   }
 

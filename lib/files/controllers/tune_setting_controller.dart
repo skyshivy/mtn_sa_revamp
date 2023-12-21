@@ -218,7 +218,7 @@ class TuneSettingController extends GetxController {
         showSnackBar(message: model.message ?? '');
         return;
       } else {
-        context.go(myTuneGoRoute);
+        //context.go(myTuneGoRoute);
         showSnackBar(message: model.message ?? '');
         return;
       }

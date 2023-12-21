@@ -33,12 +33,14 @@ class CategoryPopupView extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: white,
-                    ),
-                    child: categoryListView()),
+                Flexible(
+                  child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        color: white,
+                      ),
+                      child: categoryListView()),
+                ),
               ],
             ),
           ),

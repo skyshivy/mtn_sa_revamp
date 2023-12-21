@@ -10,10 +10,11 @@ class AppController extends GetxController {
   RxInt index = 0.obs;
   RxBool testBool = false.obs;
   RxBool isEnglish = true.obs;
+  String tuneCategoryid = '';
   String tunePrice = '';
   settinApiCall() async {
     printCustom("Setting api calling");
-    var abc = await ServiceCall().getSetting(settingUrl);
+    var _ = await ServiceCall().getSetting(settingUrl);
     getTunePrice();
     printCustom("=======================}");
   }
@@ -21,6 +22,9 @@ class AppController extends GetxController {
   getTunePrice() {
     AppSettingModel? setting = StoreManager().appSetting;
     var items = setting?.responseMap!.settings!.others!.tonePrice;
+    tuneCategoryid =
+        setting?.responseMap?.settings?.others?.nameTuneCategoryid?.attribute ??
+            '';
     printCustom("Tune price is =======================${items}");
   }
 

@@ -1,8 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_cancel_button.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_confirm_button.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_image.dart';
@@ -58,34 +62,36 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(builder: (contex, si) {
-      return Center(
-        child: ListView(
-          shrinkWrap: true,
-          // mainAxisAlignment: MainAxisAlignment.start,
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: si.isMobile ? 12 : 80, vertical: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  topTitleWidget(),
-                  Wrap(
-                    runSpacing: 50,
-                    alignment: WrapAlignment.center,
-                    children: [
-                      _leftWidget(si),
-                      const SizedBox(width: 30),
-                      _rightWidget(),
-                      const SizedBox(width: 120),
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
+      return Scaffold(
+        body: Center(
+          child: ListView(
+            shrinkWrap: true,
+            // mainAxisAlignment: MainAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: si.isMobile ? 12 : 80, vertical: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    topTitleWidget(),
+                    Wrap(
+                      runSpacing: 50,
+                      alignment: WrapAlignment.center,
+                      children: [
+                        _leftWidget(si),
+                        const SizedBox(width: 30),
+                        _rightWidget(),
+                        const SizedBox(width: 120),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       );
     });
@@ -117,10 +123,28 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
   Widget topTitleWidget() {
     return Padding(
       padding: EdgeInsets.only(top: 20, bottom: 20),
-      child: CustomText(
-        title: advancedSettingsStr.tr,
-        fontName: FontName.medium,
-        fontSize: 25,
+      child: ResponsiveBuilder(
+        builder: (context, si) {
+          return Row(
+            children: [
+              Visibility(
+                visible: !si.isMobile,
+                child: CustomButton(
+                  width: 50,
+                  onTap: () {
+                    context.goNamed(myTuneGoRoute);
+                  },
+                  leftWidget: const Icon(Icons.arrow_back),
+                ),
+              ),
+              CustomText(
+                title: advancedSettingsStr.tr,
+                fontName: FontName.medium,
+                fontSize: 25,
+              ),
+            ],
+          );
+        },
       ),
     );
   }

@@ -11,6 +11,10 @@ void parseUrl() async {
       "========== Uri parser ============ ${Uri.parse(Uri.base.toString())}");
   var uri = Uri.parse(Uri.base.toString());
   printCustom("++++++++++++++${uri}");
+  printCustom("hasPort++++++++++++++ ${uri.hasPort}");
+  printCustom("host++++++++++++++ ${uri.host}");
+  printCustom("origin++++++++++++++ ${uri.origin}");
+  printCustom("port++++++++++++++ ${uri.port}");
   printCustom("queryParameters++++++++++++++${uri.hasQuery}");
   if (uri.hasQuery) {
     uri.queryParameters.forEach((k, v) {

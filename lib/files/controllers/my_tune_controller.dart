@@ -137,7 +137,11 @@ class MyTuneController extends GetxController {
         "Delete playing tune name ${toneId} ===== ${playingList[index].msisdnB}");
     printCustom("Does contain msisdn ===== ${playingList[index].msisdnB}");
     if (playingList[index].msisdnB == null) {
-      bool isFullday = playingList[index].playAt == "Full Day";
+      bool isFullday =
+          !(playingList[index].toneDetails?.first.weeklyDays == "0");
+
+      print(
+          "toneDetails?.first.weeklyDays ${playingList[index].toneDetails?.first.weeklyDays}");
       resp = await deletePlayingTuneApiCall(
           toneId, playingList[index].timeType ?? '', isFullday);
     } else {
