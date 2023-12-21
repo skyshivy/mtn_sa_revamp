@@ -57,6 +57,8 @@ String deleteFromWishListUrl = "${baseUrlSecurity}delete-from-wishlist";
 String suspendResumePackUrl = '${baseUrlSecurity}suspend-resume-pack';
 String searchToneIdUrl = "${baseUrl}search-tone";
 String sendGiftUrl = "${baseUrl}send-gift";
+String nameTuneSearchUrl = "${baseUrl}specific-search-tones";
+
 String getCategoryDetailUrl =
     "${baseUrl}search-tone?language=${StoreManager().language}";
 String bannerDetailUrl =

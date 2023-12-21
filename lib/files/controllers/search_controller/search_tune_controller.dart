@@ -156,14 +156,18 @@ class SearchTuneController extends GetxController {
 
     isLoaded.value = false;
     var url =
-        "$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=${songList.length}&searchLanguage=English&perPageCount=$pagePerCount";
-    Map<String, dynamic>? result = await ServiceCall().get(url);
+        "$nameTuneSearchUrl?language=${StoreManager().language}&categoryId=$catId&pageNo=${songList.length}&perPageCount=$pagePerCount&searchLanguage=${StoreManager().language}";
+
+    //"$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=${songList.length}&searchLanguage=English&perPageCount=$pagePerCount";
+    Map<String, dynamic>? result =
+        await ServiceCall().get(url, params: {'Searchkey': searchKey});
     print("result is $result");
     if (result != null) {
-      CategoryDetailModel model = CategoryDetailModel.fromJson(result);
-      print("list length is  ${model.responseMap?.searchList?.length}");
+      SearchTuneModel model = SearchTuneModel.fromJson(result);
+      print("list length is  ${model.responseMap?.songList?.length}");
 
-      songList.value += model.responseMap?.searchList ?? [];
+      songList.value +=
+          model.responseMap?.songList ?? model.responseMap?.toneList ?? [];
     }
     isLoading.value = false;
     isLoaded.value = true;

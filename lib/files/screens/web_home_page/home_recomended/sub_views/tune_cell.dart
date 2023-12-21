@@ -115,7 +115,7 @@ class HomeTuneCell extends StatelessWidget {
 
   Widget likeAndMoreWidget() {
     return Visibility(
-      visible: appCont.tuneCategoryid != info?.contentId,
+      visible: appCont.tuneCategoryid != info?.categoryId,
       child: ResponsiveBuilder(
         builder: (context, si) {
           return si.isMobile

@@ -107,12 +107,20 @@ class ServiceCall {
     // }
   }
 
-  Future<Map<String, dynamic>?> get(String url) async {
+  Future<Map<String, dynamic>?> get(String url,
+      {Map<String, String>? params}) async {
     try {
       var request = await client
           .getUrl(Uri.parse(url))
           .timeout(Duration(seconds: StoreManager().timeOutDuration));
       request = await CustomHeader().settingHeader(url, request);
+      if (params != null) {
+        for (var entry in params.entries) {
+          print(entry.key);
+          print(entry.value);
+          request.headers.set(entry.key, entry.value, preserveHeaderCase: true);
+        }
+      }
       String stringData = '';
       HttpClientResponse response1 = await request.close();
 
