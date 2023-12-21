@@ -14,25 +14,34 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class ServiceCall {
   final client = HttpClient();
-
+  bool stopMultiple = true;
   Future<void> getSetting(String url) async {
-    try {
-      var request = await client
-          .getUrl(Uri.parse(url))
-          .timeout(Duration(seconds: StoreManager().timeOutDuration));
-      HttpClientResponse response1 = await request.close();
-      final stringData = await response1.transform(utf8.decoder).join();
-      printCustom("Url is $url");
-      printCustom("App Setting resp code is ${response1.statusCode}");
-      if (response1.statusCode == 200) {
-        Map<String, dynamic> valueMap = json.decode(stringData);
-        AppSettingModel setting = AppSettingModel.fromJson(valueMap);
-        StoreManager().storeAppSettingModel(setting);
-        StoreManager().appSetting = setting;
+    if (!stopMultiple) {
+      await Future.delayed(const Duration(milliseconds: 100));
+      stopMultiple = true;
+      return;
+    }
+    stopMultiple = false;
+
+    if (StoreManager().appSetting == null) {
+      try {
+        var request = await client
+            .getUrl(Uri.parse(url))
+            .timeout(Duration(seconds: StoreManager().timeOutDuration));
+        HttpClientResponse response1 = await request.close();
+        final stringData = await response1.transform(utf8.decoder).join();
+        printCustom("Url is $url");
+        printCustom("App Setting resp code is ${response1.statusCode}");
+        if (response1.statusCode == 200) {
+          Map<String, dynamic> valueMap = json.decode(stringData);
+          AppSettingModel setting = AppSettingModel.fromJson(valueMap);
+          StoreManager().storeAppSettingModel(setting);
+          StoreManager().appSetting = setting;
+        }
+      } catch (error) {
+        printCustom("error for url $url");
+        printCustom("error =   =  $error");
       }
-    } catch (error) {
-      printCustom("error for url $url");
-      printCustom("error =   =  $error");
     }
   }
 

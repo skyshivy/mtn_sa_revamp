@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
@@ -151,11 +152,13 @@ class WebNavBarView extends StatelessWidget {
             message: languageChangeConfirmMessageStr.tr,
             cancelTitle: cancelStr,
             onOk: () async {
+              CategoryPoupupController cont = Get.find();
               StoreManager().setLanguageEnglish(!StoreManager().isEnglish);
               await Future.delayed(const Duration(milliseconds: 300));
               context.go(homeGoRoute);
 
               await Future.delayed(const Duration(milliseconds: 300));
+              cont.getCatList();
               banCont.getBanner();
               recCont.getTabList();
             },

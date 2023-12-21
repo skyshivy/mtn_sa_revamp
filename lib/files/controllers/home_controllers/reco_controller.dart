@@ -19,22 +19,22 @@ class RecoController extends GetxController {
   RxList<String> featureCatList = <String>[].obs;
   List<bool> isLoadedList = <bool>[].obs;
   List<List<TuneInfo>?> tuneList = <List<TuneInfo>?>[].obs;
-  RxList<TuneInfo>? displayList = <TuneInfo>[].obs;
+  RxList<TuneInfo> displayList = <TuneInfo>[].obs;
   RxBool isLoading = false.obs;
 
   getTabList() async {
     tabTitle.value = [];
     tabTitle.value = [];
     tuneList.clear();
-    displayList?.clear();
+    displayList.clear();
     selectedIndex.value = 0;
     tabId = [];
     featureCatList.clear();
     isLoadedList.clear();
 
     isLoading.value = true;
-
-    var _ = await ServiceCall().getSetting(settingUrl);
+    await Future.delayed(const Duration(milliseconds: 200));
+    await ServiceCall().getSetting(settingUrl);
     var abc = StoreManager().appSetting;
     Others? others = abc?.responseMap?.settings?.others;
     var featureCatSrt = StoreManager().isEnglish
@@ -77,9 +77,14 @@ class RecoController extends GetxController {
     if (result != null) {
       isLoadedList[index] = true;
       HomeRecomModel model = HomeRecomModel.fromJson(result);
-      var tuneInfo = model.responseMap?.recommendationSongsList;
-      tuneList[index] = tuneInfo;
-      displayList?.value = tuneInfo!;
+      if (model.statusCode == "SC0000") {
+        var tuneInfo = model.responseMap?.recommendationSongsList;
+        tuneList[index] = tuneInfo;
+        displayList.value = tuneInfo!;
+      } else {
+        tuneList[index] = [];
+        displayList.value = [];
+      }
     }
   }
 

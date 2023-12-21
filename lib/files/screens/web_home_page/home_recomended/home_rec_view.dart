@@ -62,7 +62,7 @@ class _LandingRecoViewState extends State<LandingRecoView> {
           child: CustomButton(
             onTap: () {
               //Get.toNamed(seeMoreTapped);
-              List<TuneInfo>? list = controller.displayList?.value;
+              List<TuneInfo>? list = controller.displayList.value;
 
               printCustom("List is $list");
               context.goNamed(moreGoRoute, extra: list);
@@ -79,33 +79,50 @@ class _LandingRecoViewState extends State<LandingRecoView> {
 
   Widget gridView() {
     return Obx(() {
-      int? count = ((controller.displayList?.length ?? 0) > 8)
+      int? count = ((controller.displayList.length) > 8)
           ? 8
-          : controller.displayList?.length;
+          : controller.displayList.length;
       return controller.isLoading.value
           ? loadingIndicator()
-          : ResponsiveBuilder(
-              builder: (context, si) {
-                return GridView.builder(
-                    itemCount: count,
-                    shrinkWrap: true,
-                    gridDelegate: delegate(si,
-                        mainAxisExtent: si.isMobile ? 260 : null,
-                        mainAxisSpacing: si.isMobile ? 8 : null,
-                        crossAxisSpacing: si.isMobile ? 8 : null),
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return homeCell(index);
-                    });
-              },
-            );
+          : controller.displayList.isEmpty
+              ? listIsEmpty()
+              : responsiveBuilder(count);
     });
+  }
+
+  Widget listIsEmpty() {
+    return SizedBox(
+        height: 100,
+        child: Center(
+            child: CustomText(
+          title: tuneListEmptyStr.tr,
+          fontName: FontName.bold,
+          fontSize: 18,
+        )));
+  }
+
+  ResponsiveBuilder responsiveBuilder(int? count) {
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return GridView.builder(
+            itemCount: count,
+            shrinkWrap: true,
+            gridDelegate: delegate(si,
+                mainAxisExtent: si.isMobile ? 260 : null,
+                mainAxisSpacing: si.isMobile ? 8 : null,
+                crossAxisSpacing: si.isMobile ? 8 : null),
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return homeCell(index);
+            });
+      },
+    );
   }
 
   Widget homeCell(int index) {
     return ResponsiveBuilder(builder: (context, si) {
       return HomeTuneCell(
-        info: controller.displayList?[index],
+        info: controller.displayList[index],
         index: index,
         onTap: si.isMobile
             ? () {

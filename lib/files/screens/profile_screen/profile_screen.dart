@@ -37,11 +37,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     profileController = Get.find();
     profileController.getProfileDetail();
+    print("init profile page");
     super.initState();
   }
 
   @override
   void dispose() {
+    print("deinit profile page");
     Get.delete<ProfileController>();
     super.dispose();
   }
@@ -63,6 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        updatingPageLoadingIndicator(),
                         SizedBox(height: si.isMobile ? 20 : 50),
                         rowWidget(si, profileController),
                         SizedBox(height: si.isMobile ? 20 : 50),
@@ -73,6 +76,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
         );
       },
     );
+  }
+
+  Widget updatingPageLoadingIndicator() {
+    return Obx(() {
+      return Visibility(
+          visible: profileController.updatingProfilePage.value,
+          child: ResponsiveBuilder(
+            builder: (context, si) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: loadingIndicator(radius: si.isMobile ? 15 : 20),
+              );
+            },
+          ));
+    });
   }
 
   Widget loadInd() {

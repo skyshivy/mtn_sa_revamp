@@ -58,17 +58,18 @@ class ProfileController extends GetxController {
   RxString activeRrbtButtonName = ''.obs;
   RxList<String> selectedCatList = <String>[].obs;
   GetProfileDetails? profileDetails;
-
+  bool stopMultipleApiCall = true;
+  RxBool updatingProfilePage = false.obs;
   RxList<AppCategory> catList = <AppCategory>[].obs;
 
   getPref() async {
-    var result = await ServiceCall().get(categoryListUrl);
+    // var result = await ServiceCall().get(categoryListUrl);
 
-    if (result != null) {
-      CategoryModel model = CategoryModel.fromJson(result);
-      catList.value = model.responseMap?.categories ?? [];
-      print("category is ${catList.length}");
-    }
+    // if (result != null) {
+    //   CategoryModel model = CategoryModel.fromJson(result);
+    //   catList.value = model.responseMap?.categories ?? [];
+    //   print("category is ${catList.length}");
+    // }
   }
 
   Future<void> getCrbtPackStatus() async {
@@ -227,6 +228,14 @@ class ProfileController extends GetxController {
   }
 */
   getProfileDetail() async {
+    if (!stopMultipleApiCall) {
+      await Future.delayed(const Duration(milliseconds: 100));
+      stopMultipleApiCall = true;
+      print("prevented getProfileDetail called multiple");
+      return;
+    }
+    print("prevented getProfileDetail called multiple");
+    stopMultipleApiCall = false;
     selectedCatList.clear();
     isLoading.value = true;
     //await ServiceCall().regenarateTokenFromOtherClass();
@@ -256,12 +265,16 @@ class ProfileController extends GetxController {
   }
 
   Future<void> _packApiCalls() async {
+    updatingProfilePage.value = true;
     // isUpdatingCrbtStatus.value = true;
     // isUpdatingRrbtStatus.value = true;
     await getCrbtPackStatus();
     await getRrbtPackStatus();
+
     //await getMyTunes();
     checkHideAndUnhide();
+    updatingProfilePage.value = false;
+
     // isUpdatingCrbtStatus.value = false;
     // isUpdatingRrbtStatus.value = false;
     return;
@@ -425,6 +438,7 @@ class ProfileController extends GetxController {
             PackStatusModel mod =
                 await deactivatePackApi(crbtPackName.value, true);
             if (mod.statusCode == "SC0000") {
+              _packApiCalls();
             } else {
               showSnackBar(message: mod.message ?? someThingWentWrongStr.tr);
             }
@@ -511,6 +525,7 @@ class ProfileController extends GetxController {
       BuyTuneModel model = await setRrbtTune();
       if (model.statusCode == "SC0000") {
         rrbtSubscriptionButtonName.value = unSubscribeStr.tr;
+        _packApiCalls();
       }
       isUpdatingRrbtStatus.value = false;
     } else {

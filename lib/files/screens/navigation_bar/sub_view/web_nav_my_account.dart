@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
@@ -84,8 +85,10 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
 
   void navigateTo(MenuModel item) {
     printCustom("Items tapped is ====== $item");
+    ProfileController profileController = Get.find();
     if (item.title == profileStr.tr) {
       context.goNamed(profileGoRoute);
+      profileController.getProfileDetail();
       //Get.toNamed(profileTapped);
       printCustom("profileTapped tapped");
     } else if (item.title == wishlistStr.tr) {
