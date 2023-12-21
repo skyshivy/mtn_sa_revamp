@@ -18,6 +18,7 @@ import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/searc
 
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
@@ -114,17 +115,23 @@ class _SearchScreenState extends State<SearchScreen> {
             "Tapped artist is ${controller.artistList[index].matchedParam ?? ''}");
       },
       child: Container(
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(4)),
           height: 150,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: CustomImage(
-                  radius: 4,
-                  url: defaultImageUrl,
-                  index: index,
+                child: Image.asset(
+                  defaultTuneImagePng,
+                  fit: BoxFit.cover,
                 ),
+                // CustomImage(
+                //   radius: 4,
+                //   url: defaultImageUrl,
+                //   index: index,
+                // ),
               ),
               const SizedBox(height: 8),
               Column(

@@ -29,9 +29,15 @@ class SearchTuneController extends GetxController {
   RxList<TuneInfo> toneList = <TuneInfo>[].obs;
   RxList<TuneInfo> songList = <TuneInfo>[].obs;
   RxList<ArtistDetailList> artistList = <ArtistDetailList>[].obs;
-
+  bool stopMultipleApiCall = true;
   getSearchedResult(String searchedTxt, int p,
       {bool isloadMore = false, int? searchTypeIndex}) async {
+    if (!stopMultipleApiCall) {
+      await Future.delayed(Duration(milliseconds: 300));
+      stopMultipleApiCall = true;
+      return;
+    }
+    stopMultipleApiCall = false;
     if (searchTypeIndex != null) {
       searchType.value = searchTypeIndex;
     }
