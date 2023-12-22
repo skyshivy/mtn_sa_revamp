@@ -63,8 +63,8 @@ class RecoController extends GetxController {
 
   getTabItems(String identifier, int index) async {
     if (isLoadedList[index]) {
-      displayList?.value = tuneList[index]!;
-      printCustom("Tune na e is ${displayList?[0].toneName}");
+      displayList.value = tuneList[index]!;
+      printCustom("Tune na e is ${displayList[0].toneName}");
       return;
     }
     Random random = Random();
@@ -75,16 +75,22 @@ class RecoController extends GetxController {
     var result = await ServiceCall().get(recomurl + trailUrl);
     isLoading.value = false;
     if (result != null) {
-      isLoadedList[index] = true;
-      HomeRecomModel model = HomeRecomModel.fromJson(result);
-      if (model.statusCode == "SC0000") {
-        var tuneInfo = model.responseMap?.recommendationSongsList;
-        tuneList[index] = tuneInfo;
-        displayList.value = tuneInfo!;
-      } else {
+      try {
+        HomeRecomModel model = HomeRecomModel.fromJson(result);
+        if (model.statusCode == "SC0000") {
+          var tuneInfo = model.responseMap?.recommendationSongsList;
+          tuneList[index] = tuneInfo;
+          displayList.value = tuneInfo!;
+        } else {
+          tuneList[index] = [];
+          displayList.value = [];
+        }
+      } catch (e) {
         tuneList[index] = [];
         displayList.value = [];
+        printCustom("Errro in model decode $e");
       }
+      isLoadedList[index] = true;
     }
   }
 

@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:html_unescape/html_unescape.dart';
 
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
@@ -86,8 +87,16 @@ class CategoryPopupView extends StatelessWidget {
 
   Stack cellStack(int index) {
     String name = controller.catList[index].categoryName ?? '';
-    List<int> bytes = name.toString().codeUnits;
-    String abc = utf8.decode(bytes);
+    String myString = '';
+    try {
+      var unescape = HtmlUnescape();
+
+      myString = unescape.convert(name);
+    } catch (e) {
+      print("error decode $e");
+    }
+
+    print("decoded text is ${myString}");
     return Stack(
       clipBehavior: Clip.hardEdge,
       children: [
@@ -97,7 +106,7 @@ class CategoryPopupView extends StatelessWidget {
         ),
         Center(
           child: CustomText(
-            title: abc, //StoreManager().isEnglish ? name : abc,
+            title: myString, //StoreManager().isEnglish ? name : abc,
             fontName: FontName.medium,
             textColor: white,
           ),
