@@ -141,6 +141,7 @@ class MyApp extends StatelessWidget {
         message: sessionExpiredStr,
         onOk: () {
           goRouterContext?.go(homeGoRoute);
+          print("Logout called from main");
           StoreManager().logout();
         },
       ));

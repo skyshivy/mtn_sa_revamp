@@ -98,8 +98,8 @@ class RecoController extends GetxController {
   }
 
   updatePlaying(int index) {
-    displayList?[index].isPlaying = displayList![index].isPlaying;
-    displayList?.refresh();
+    displayList[index].isPlaying = displayList[index].isPlaying;
+    displayList.refresh();
   }
 
   wishlistTapped(TuneInfo? info) async {

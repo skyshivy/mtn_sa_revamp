@@ -179,6 +179,7 @@ class ServiceCall {
       AppController appCont = Get.find();
       appCont.isLoggedIn.value = false;
       StoreManager().logout();
+      print("Logout called from sercice call if reGeneratToken fails");
       //html.window.location.reload();
     }
     printCustom("======Regene token ====== ${model.statusCode}");

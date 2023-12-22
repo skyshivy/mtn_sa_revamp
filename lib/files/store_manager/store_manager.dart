@@ -107,6 +107,28 @@ class StoreManager {
     return;
   }
 
+  checkStoredValue() {
+    isEnglish = prefs.get("isEnglish") ?? true;
+    isLoggedIn = prefs.get("isLoggedIn") ?? false;
+    accessToken = prefs.get("accessToken") ?? '';
+    deviceId = prefs.get("deviceId") ?? '';
+    msisdn = prefs.get("msisdn") ?? '0';
+    refreshToken = prefs.get("refreshToken") ?? '';
+    ccid = prefs.get('ccid') ?? '';
+    userName = prefs.get('userName') ?? '';
+    password = prefs.get('password') ?? 'Oem@L#@1';
+    channelId = prefs.get('channelId') ?? channelId;
+    printCustom(
+        "Stored value in pref is \nisEnglish = $isEnglish\nisLoggedIn=$isLoggedIn\naccessToken= $accessToken\ndeviceId=$deviceId\nmsisdn=$msisdn\nrefreshToken=$refreshToken");
+
+    printCustom(
+        "appController.isLoggedIn.value = ${appController.isLoggedIn.value}");
+    appController.isEnglish.value = isEnglish;
+    languageCode = isEnglish ? "1" : "2";
+    language = isEnglish ? "English" : "Burmese";
+    appController.isLoggedIn.value = isLoggedIn;
+  }
+
   Future<void> logout() async {
     setAccessToken('');
     setDeviceId('');
@@ -117,8 +139,7 @@ class StoreManager {
     setUserName('');
     setPassword('');
     setChannelId('4');
-
-    //goRouterContext
+    print("Logout called from StoreManager");
     appController.isLoggedIn.value = false;
     //initStoreManager();
     return;

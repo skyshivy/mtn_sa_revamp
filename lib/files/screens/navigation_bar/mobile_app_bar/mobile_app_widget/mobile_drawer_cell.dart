@@ -165,8 +165,10 @@ _tappedOnCell(BuildContext context, String title) async {
     //Get.toNamed(faqTapped);
   } else if (title == logoutStr.tr) {
     printCustom("Logout btapped");
+    print("Logout called from mobile drawer");
     StoreManager().logout();
   } else if (title == signinStr.tr) {
+    StoreManager().checkStoredValue();
     Get.dialog(const LoginScreen(), barrierDismissible: false);
   } else if (title == historyStr.tr) {
     context.goNamed(historyGoRoute);

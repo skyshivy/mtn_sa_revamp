@@ -353,6 +353,7 @@ Widget askForLoginScreen() {
             fontSize: 16,
             width: 200,
             onTap: () {
+              StoreManager().checkStoredValue();
               Get.dialog(const LoginScreen(), barrierDismissible: false);
             },
           )
