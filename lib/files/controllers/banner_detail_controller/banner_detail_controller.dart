@@ -3,6 +3,7 @@ import 'package:mtn_sa_revamp/files/model/banner_detail_manual_model.dart';
 import 'package:mtn_sa_revamp/files/model/banner_detail_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/constants.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_banner_detail_manual_vm.dart';
@@ -27,7 +28,7 @@ class BannerDetailController extends GetxController {
       list.value = mode.responseMap?.bannerDetailsList ?? [];
     } else {
       url =
-          "$bannerDetailUrl&pageNo=$page&pagePerCount=$pagePerCount&type=$bannerOrder&searchKey=$searchKey";
+          "$bannerDetailUrl?language=${StoreManager().language}&pageNo=$page&pagePerCount=$pagePerCount&type=$bannerOrder&searchKey=$searchKey";
       res = await ServiceCall().get(url);
     }
 

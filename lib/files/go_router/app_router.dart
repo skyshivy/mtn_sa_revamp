@@ -383,15 +383,8 @@ Widget shellRouteIndex(BuildContext context, GoRouterState state,
     con.getProfileDetail();
   }
   if (state.fullPath == myTuneGoRoute) {
-    try {
-      Get.lazyPut(() => MyTuneController());
-      MyTuneController con = Get.find();
-      con.getPlayingTuneList();
-    } catch (e) {
-      print("error $e MyTuneController not initialized");
-      MyTuneController con = Get.put(MyTuneController());
-      con.getPlayingTuneList();
-    }
+    MyTuneController con = Get.find();
+    con.getPlayingTuneList();
   }
   printCustom("SKY state.name  = ${state.fullPath}");
 

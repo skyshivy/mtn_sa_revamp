@@ -14,7 +14,8 @@ class MyTunePlayingVM {
   Future<PlayingTuneModel?> getPlayingTuneListApiCall() async {
     List<ListToneApk> playingList = <ListToneApk>[];
     bool switchEnabled = false;
-    Map<String, dynamic>? result = await ServiceCall().get(getPlayingTunesUrl);
+    Map<String, dynamic>? result = await ServiceCall()
+        .get("$getPlayingTunesUrl&msisdn=${StoreManager().msisdn}");
     //===========================================================================
     // to display only Fullday all caller and specific caller added below line
     return await _displayTune(result);

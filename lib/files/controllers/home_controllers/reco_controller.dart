@@ -91,6 +91,9 @@ class RecoController extends GetxController {
         printCustom("Errro in model decode $e");
       }
       isLoadedList[index] = true;
+    } else {
+      tuneList[index] = [];
+      displayList.value = [];
     }
   }
 

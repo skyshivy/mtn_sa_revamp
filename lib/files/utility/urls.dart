@@ -58,17 +58,15 @@ String searchToneIdUrl = "${baseUrl}search-tone";
 String sendGiftUrl = "${baseUrl}send-gift";
 String nameTuneSearchUrl = "${baseUrl}specific-search-tones";
 
-String getCategoryDetailUrl =
-    "${baseUrl}search-tone?language=${StoreManager().language}";
-String bannerDetailUrl =
-    "${baseUrl}banner-search?language=${StoreManager().language}";
+String getCategoryDetailUrl = "${baseUrl}search-tone";
+String bannerDetailUrl = "${baseUrl}banner-search";
 String bannerDetailManualUrl = "${baseUrl}get-banner-details";
 String tuneSuffleUrl = '${baseUrlSecurity}shuffle-activation-deactivation';
 String getprofileDetailUrl = "${baseUrlSecurity}get-profile-details";
 String getPlayingTunesUrl =
-    '${baseUrl}list-tones?language=0&msisdn=${StoreManager().msisdn}&startIndex=0&endIndex=40&rbtMode=0';
+    '${baseUrl}list-tones?language=0&startIndex=0&endIndex=40&rbtMode=0';
 String getMyTuneListUrl =
-    '${baseUrl}list-tones?language=0&msisdn=${StoreManager().msisdn}&startIndex=0&endIndex=40&rbtMode=400';
+    '${baseUrl}list-tones?language=0&startIndex=0&endIndex=40&rbtMode=400';
 
 //====================================
 

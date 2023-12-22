@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/model/category_detail_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/constants.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
@@ -35,7 +36,7 @@ class CategoryController extends GetxController {
     }
 
     var url =
-        "$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=English&perPageCount=$pagePerCount";
+        "$getCategoryDetailUrl?language=${StoreManager().language}&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=English&perPageCount=$pagePerCount";
 
     Map<String, dynamic>? result = await ServiceCall().get(url);
     isLoading.value = false;

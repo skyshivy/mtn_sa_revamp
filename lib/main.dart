@@ -12,6 +12,7 @@ import 'package:mtn_sa_revamp/files/controllers/history_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/otp_timer_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
@@ -64,6 +65,7 @@ void main() async {
   MyDrawerController myDCont = Get.put(MyDrawerController());
   BannerController banCont = Get.put(BannerController());
   otpController = Get.put(OtpTimerController());
+  MyTuneController myTuneCon = Get.put(MyTuneController());
   runApp(MyApp());
 }
 
