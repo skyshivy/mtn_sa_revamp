@@ -188,7 +188,6 @@ StatefulShellBranch _termsScreen() {
 }
 
 StatefulShellBranch wishlistScreen() {
-  WishlistController wCont = Get.put(WishlistController());
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: wishlistGoRoute,
@@ -201,7 +200,6 @@ StatefulShellBranch wishlistScreen() {
 }
 
 StatefulShellBranch myTuneScreen() {
-  MyTuneController myTuneController = Get.put(MyTuneController());
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: myTuneGoRoute,
@@ -380,7 +378,12 @@ StatefulShellBranch homeScreen() {
 Widget shellRouteIndex(BuildContext context, GoRouterState state,
     StatefulNavigationShell navigationShell) {
   printCustom("Selected index must be===== ${navigationShell.currentIndex}");
+  if (state.fullPath == profileGoRoute) {
+    ProfileController con = Get.find();
+    con.getProfileDetail();
+  }
   printCustom("SKY state.name  = ${state.fullPath}");
+
   printCustom("SKY StoreManager().isLoggedIn  = ${StoreManager().isLoggedIn}");
   goRouterContext = context;
   var pat = state.fullPath;

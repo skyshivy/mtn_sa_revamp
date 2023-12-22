@@ -266,17 +266,11 @@ class ProfileController extends GetxController {
 
   Future<void> _packApiCalls() async {
     updatingProfilePage.value = true;
-    // isUpdatingCrbtStatus.value = true;
-    // isUpdatingRrbtStatus.value = true;
+    await Future.delayed(const Duration(seconds: 2));
     await getCrbtPackStatus();
     await getRrbtPackStatus();
-
-    //await getMyTunes();
     checkHideAndUnhide();
     updatingProfilePage.value = false;
-
-    // isUpdatingCrbtStatus.value = false;
-    // isUpdatingRrbtStatus.value = false;
     return;
   }
 

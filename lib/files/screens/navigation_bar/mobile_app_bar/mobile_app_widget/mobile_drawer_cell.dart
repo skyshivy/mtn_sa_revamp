@@ -151,7 +151,7 @@ _tappedOnCell(BuildContext context, String title) async {
   } else if (title == profileStr.tr) {
     ProfileController profileController = Get.find();
     context.goNamed(profileGoRoute);
-    profileController.getProfileDetail();
+    //profileController.getProfileDetail();
     //Get.toNamed(profileTapped);
   } else if (title == myTuneStr.tr) {
     context.goNamed(myTuneGoRoute);

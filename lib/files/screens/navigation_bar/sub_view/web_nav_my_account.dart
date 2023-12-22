@@ -88,7 +88,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
     ProfileController profileController = Get.find();
     if (item.title == profileStr.tr) {
       context.goNamed(profileGoRoute);
-      profileController.getProfileDetail();
+      //profileController.getProfileDetail();
       //Get.toNamed(profileTapped);
       printCustom("profileTapped tapped");
     } else if (item.title == wishlistStr.tr) {

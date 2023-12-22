@@ -87,16 +87,14 @@ class CategoryPopupView extends StatelessWidget {
 
   Stack cellStack(int index) {
     String name = controller.catList[index].categoryName ?? '';
-    String myString = '';
+    String decodedText = '';
     try {
       var unescape = HtmlUnescape();
-
-      myString = unescape.convert(name);
+      decodedText = unescape.convert(name);
     } catch (e) {
       print("error decode $e");
     }
 
-    print("decoded text is ${myString}");
     return Stack(
       clipBehavior: Clip.hardEdge,
       children: [
@@ -106,7 +104,7 @@ class CategoryPopupView extends StatelessWidget {
         ),
         Center(
           child: CustomText(
-            title: myString, //StoreManager().isEnglish ? name : abc,
+            title: StoreManager().isEnglish ? name : decodedText,
             fontName: FontName.medium,
             textColor: white,
           ),
