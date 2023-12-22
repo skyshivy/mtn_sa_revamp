@@ -5,13 +5,16 @@ import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
+import 'package:mtn_sa_revamp/files/model/new_user_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
 
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/view_model/get_security_token_vm.dart';
 
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/new_registration_vm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
@@ -74,6 +77,7 @@ class LoginController extends GetxController {
       print("Existing user******");
     } else if (model.responseMap?.respCode == '100') {
       isMsisdnVarified.value = true;
+      getSecurityTokenForNew();
       print("New user*****");
     } else if (model.responseMap?.respCode == '101') {
       errorMessage.value = model.responseMap?.respDesc ?? '';
@@ -131,6 +135,33 @@ class LoginController extends GetxController {
     }
     errorMessage.value = someThingWentWrongStr;
     return false;
+  }
+
+  Future<void> getSecurityTokenForNew() async {
+    var map = await GetSecurityVM().token();
+    if (map != null) {
+      GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(map);
+      StoreManager().securityCounter = model.responseMap.securityCounter;
+      var securityCounter = model.responseMap.securityCounter;
+      StoreManager().securityCounter = securityCounter;
+      NewUserRegistrationModel newUserModel =
+          await NewRegistrartionVm().register(msisdn.value, securityCounter);
+
+      if (newUserModel.statusCode == 'SC0000') {
+        securityCounter = newUserModel.responseMap?.secToc ?? '';
+        isVerifying.value = false;
+        isMsisdnVarified.value = true;
+      } else {
+        errorMessage.value = newUserModel.message ?? someThingWentWrongStr.tr;
+        isVerifying.value = false;
+        isMsisdnVarified.value = false;
+      }
+    } else {
+      isVerifying.value = false;
+      isMsisdnVarified.value = false;
+      errorMessage.value = someThingWentWrongStr.tr;
+      return;
+    }
   }
 
   Future<bool> _passwordValidationToken() async {

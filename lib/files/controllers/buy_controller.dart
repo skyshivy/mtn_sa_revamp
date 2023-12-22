@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_existing_model.dart';
+import 'package:mtn_sa_revamp/files/model/new_user_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
 import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_price_model.dart';
@@ -139,17 +140,18 @@ class BuyController extends GetxController {
       GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(map);
       StoreManager().securityCounter = model.responseMap.securityCounter;
       securityCounter = model.responseMap.securityCounter;
-      bool isRegistered =
+      //bool isRegistered =
+      NewUserRegistrationModel newUserModel =
           await NewRegistrartionVm().register(msisdn, securityCounter);
       isVerifying.value = false;
-      if (isRegistered) {
+      if (newUserModel.statusCode == "SC0000") {
         await _generateOtp(msisdn, true);
         return;
       } else {
         errorMessage.value = someThingWentWrongStr;
         isVerifying.value = false;
       }
-      print("NewRegistrartionVm status $isRegistered");
+      print("NewRegistrartionVm status $newUserModel.statusCode");
       return;
     }
     isVerifying.value = false;
@@ -282,7 +284,6 @@ class BuyController extends GetxController {
       } else {
         await setTune(packName);
       }
-      //await setTune(model);
     } else {
       isVerifyingOtp.value = false;
       isVerifying.value = false;
