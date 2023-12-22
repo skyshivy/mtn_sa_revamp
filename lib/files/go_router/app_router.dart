@@ -124,9 +124,9 @@ StatefulShellBranch bannerDetailScreen() {
       path: bannerGoRoute,
       builder: (context, state) {
         String bannerOrder = state.uri.queryParameters['bannerOrder'] ?? '';
-        String type = state.pathParameters['type'] ?? '';
+        String type = state.uri.queryParameters['type'] ?? '';
         String searchKey = state.uri.queryParameters['searchKey'] ?? '';
-        bannerCont.getDetail(bannerOrder, searchKey);
+        bannerCont.getDetail(type, bannerOrder, searchKey);
         return HomeBannerDetailPage(
             type: type, bannerOrder: bannerOrder, searchKey: searchKey);
       },

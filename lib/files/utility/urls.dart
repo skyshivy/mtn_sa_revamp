@@ -62,6 +62,7 @@ String getCategoryDetailUrl =
     "${baseUrl}search-tone?language=${StoreManager().language}";
 String bannerDetailUrl =
     "${baseUrl}banner-search?language=${StoreManager().language}";
+String bannerDetailManualUrl = "${baseUrl}get-banner-details";
 String tuneSuffleUrl = '${baseUrlSecurity}shuffle-activation-deactivation';
 String getprofileDetailUrl = "${baseUrlSecurity}get-profile-details";
 String getPlayingTunesUrl =

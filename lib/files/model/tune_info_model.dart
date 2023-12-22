@@ -1,3 +1,5 @@
+import 'package:html_unescape/html_unescape.dart';
+
 class TuneInfo {
   String? id;
   String? contentId;
@@ -57,6 +59,12 @@ class TuneInfo {
   });
 
   factory TuneInfo.fromJson(Map<String, dynamic> json) {
+    HtmlUnescape? unescape;
+    try {
+      unescape = HtmlUnescape();
+    } catch (e) {
+      print("error decode $e");
+    }
     return TuneInfo(
       id: json['id'],
       contentId: json['contentId'],
@@ -67,8 +75,8 @@ class TuneInfo {
       msisdn: json['msisdn'],
       createdDate: json['createdDate'],
       wishListType: json['wishListType'],
-      albumName: json['albumName'] ?? json['album'],
-      artistName: json['artistName'] ?? json['artist'],
+      albumName: unescape?.convert(json['albumName'] ?? json['album']),
+      artistName: unescape?.convert(json['artistName'] ?? json['artist']),
       categoryId: '${json['categoryId']}',
       downloadCount: json['downloadCount'],
       likeCount: json['likeCount'],
@@ -77,7 +85,7 @@ class TuneInfo {
       toneIdStreamingUrl: json['toneIdStreamingUrl'] ?? json['path'],
       toneIdpreviewImageUrl:
           json['toneIdpreviewImageUrl'] ?? json['previewImageUrl'],
-      toneName: json['toneName'] ?? json['contentName'],
+      toneName: unescape?.convert(json['toneName'] ?? json['contentName']),
       toneUrl: json['toneUrl'],
       price: '${json['price']}',
       expiryDate: json['expiryDate'],

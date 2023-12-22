@@ -5,6 +5,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:html_unescape/html_unescape.dart';
 
 CategoryModel categoryModelFromJson(String str) =>
     CategoryModel.fromJson(json.decode(str));
@@ -76,12 +77,16 @@ class AppCategory {
     this.language,
   });
 
-  factory AppCategory.fromJson(Map<String, dynamic> json) => AppCategory(
-        categoryId: json["categoryId"],
-        categoryName: json["categoryName"],
-        menuImagePath: json["menuImagePath"],
-        language: json["language"],
-      );
+  factory AppCategory.fromJson(Map<String, dynamic> json) {
+    var unescape = HtmlUnescape();
+
+    return AppCategory(
+      categoryId: json["categoryId"],
+      categoryName: unescape.convert(json["categoryName"]),
+      menuImagePath: json["menuImagePath"],
+      language: json["language"],
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "categoryId": categoryId,
