@@ -59,7 +59,6 @@ class MyTuneController extends GetxController {
   }
 
   void notActiveSubscriberPopup() {
-    ;
     if (!(Get.isDialogOpen ?? true)) {
       Get.dialog(CustomAlertView(
         title: notActiveSubscriberMessageStr,
@@ -143,7 +142,7 @@ class MyTuneController extends GetxController {
       print(
           "toneDetails?.first.weeklyDays ${playingList[index].toneDetails?.first.weeklyDays}");
       resp = await deletePlayingTuneApiCall(
-          toneId, playingList[index].timeType ?? '', isFullday);
+          toneId, isFullday ? "2" : '0', isFullday);
     } else {
       printCustom("Delete dedicate tune ");
       resp = await deleteDedicatedTuneApiCall(toneId,
