@@ -30,7 +30,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   void initState() {
     super.initState();
 
-    getCatList();
+    //getCatList();
     printCustom("on init state");
   }
 

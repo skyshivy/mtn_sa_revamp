@@ -25,7 +25,12 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
   @override
   void initState() {
     printCustom("initState");
-    controller = Get.put(MyTuneController());
+    try {
+      controller = Get.find();
+    } catch (e) {
+      controller = Get.put(MyTuneController());
+    }
+
     controller.getPlayingTuneList();
     super.initState();
   }
