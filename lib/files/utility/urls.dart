@@ -51,7 +51,7 @@ String getPlayingTunesUrl =
     '${baseUrlSecurity}list-tones?language=0&msisdn=${StoreManager().msisdn}&startIndex=0&endIndex=40&rbtMode=0';
 String getMyTuneListUrl =
     '${baseUrlSecurity}list-tones?language=0&msisdn=${StoreManager().msisdn}&startIndex=0&endIndex=40&rbtMode=400';
-
+String statusToneUrl = "${baseUrl}search-tone?";
 //====================================
 
 String timeBaseTuneSetUrl =

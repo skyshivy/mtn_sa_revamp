@@ -14,6 +14,7 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/home_category/home_cat
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/home_page_banner.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_bottom_section/home_page_bottom_section.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/home_rec_view.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/home_status_tone_screen/home_status_tone_screen.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -49,7 +50,7 @@ class WebLandingPage extends StatelessWidget {
                       const LandingRecoView(),
                       SizedBox(height: si.isMobile ? 10 : 20),
                       //LandingInfoPage(),
-
+                      HomeStatusToneScreen(),
                       HomeCategoryView(),
                       SizedBox(height: si.isMobile ? 10 : 30),
                     ],
