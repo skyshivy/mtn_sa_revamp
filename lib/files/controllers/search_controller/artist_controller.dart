@@ -22,7 +22,7 @@ class ArtistController extends GetxController {
     }
     this.isLoadMore.value = true;
     var url =
-        "$getArtistSearchTuneUrl${StoreManager().isEnglish ? "English" : "Arabic"}&artistKey=$artist&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=${StoreManager().isEnglish ? "English" : "Arabic"}&perPageCount=$pagePerCount";
+        "$getArtistSearchTuneUrl${StoreManager().language}&artistKey=$artist&sortBy=Order_By&alignBy=ASC&pageNo=$page&searchLanguage=${StoreManager().language}&perPageCount=$pagePerCount";
     Map<String, dynamic>? res = await ServiceCall().get(url);
 
     if (res != null) {

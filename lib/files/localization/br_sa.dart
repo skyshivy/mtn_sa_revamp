@@ -7,7 +7,7 @@ Map<String, String> brBR = {
   singerStr: "အဆိုတော်",
   whatrLookingForStr: "ဘာကိုရှာနေတာလဲ ?",
   confirmStr: "အတည်ပြုမည်",
-  myTuneStr: 'My Tunes BR',
+  myTuneStr: 'My Tunes',
   cancelStr: "ပယ်ဖျက်မည်",
   myAccountStr: "ကိုယ်ပိုင်အကောင့်",
   transactionTypeStr: "ငွေပေးချေမှု အမျိုးအစား",

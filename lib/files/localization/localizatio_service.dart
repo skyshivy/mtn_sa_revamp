@@ -14,7 +14,7 @@ class LocalizationService extends Translations {
   // Your supported language here
   static final langs = [
     'English',
-    'Arabic',
+    'Burmese',
   ];
 
   // Supported locales (same order as above)
