@@ -115,13 +115,14 @@ class ServiceCall {
         request.write(formData);
       }
       HttpClientResponse response = await request.close();
+      if (response.statusCode != 200) {
+        print("Regenrate token failled ${response.statusCode}");
+        print("Need to logout here");
+      }
       stringData = await response.transform(utf8.decoder).join();
     }
     Map<String, dynamic> valueMap = json.decode(stringData);
     return valueMap;
-    // } else {
-    //   return null;
-    // }
   }
 
   Future<Map<String, dynamic>?> get(String url) async {
@@ -149,6 +150,10 @@ class ServiceCall {
         HttpClientResponse response1 = await request.close();
 
         stringData = await response1.transform(utf8.decoder).join();
+        if (response1.statusCode != 200) {
+          print("Regenrate token failled ${response1.statusCode}");
+          print("Need to logout here");
+        }
         Map<String, dynamic> valueMap = json.decode(stringData);
         return valueMap;
       } else {
