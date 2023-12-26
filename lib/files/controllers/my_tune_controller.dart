@@ -145,7 +145,7 @@ class MyTuneController extends GetxController {
       print(
           "toneDetails?.first.weeklyDays ${playingList[index].toneDetails?.first.weeklyDays}");
       resp = await deletePlayingTuneApiCall(
-          toneId, isFullday ? "2" : '0', isFullday);
+          toneId, isFullday ? "2" : '2', isFullday);
     } else {
       printCustom("Delete dedicate tune ");
       resp = await deleteDedicatedTuneApiCall(toneId,
@@ -157,7 +157,10 @@ class MyTuneController extends GetxController {
     if (resp != null) {
       DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(resp);
       printCustom("Delete playing tune ${result}");
-      playingList.removeAt(index);
+      if (result.statusCode == "SC0000") {
+        playingList.removeAt(index);
+      }
+
       message.value = result.message ?? someThingWentWrongStr;
 
       return true;
@@ -185,7 +188,9 @@ class MyTuneController extends GetxController {
             printCustom("Delete My tune tune ${result}");
             message.value = result.message ?? '';
             showSnackBar(message: message.value);
-            tuneList.removeAt(index);
+            if (result.statusCode == "SC0000") {
+              tuneList.removeAt(index);
+            }
 
             return true;
           }
