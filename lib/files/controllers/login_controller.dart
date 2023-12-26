@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
 import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_model.dart';
+import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
 
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -15,6 +16,7 @@ import 'package:mtn_sa_revamp/files/view_model/get_security_token_vm.dart';
 
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/new_registration_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/new_user_otp_check_vm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
@@ -22,8 +24,10 @@ class LoginController extends GetxController {
   RxBool isMsisdnVarified = false.obs;
   RxString msisdn = ''.obs;
   String securityToken = '';
+  String securityCounter = '';
   RxString errorMessage = ''.obs;
   RxString otp = ''.obs;
+  bool isNewUser = false;
   varifyMsisdnButtonAction() async {
     errorMessage.value = '';
     int len = StoreManager().msisdnLength;
@@ -49,33 +53,17 @@ class LoginController extends GetxController {
     otp.value = '';
   }
 
-  Future<bool> verifyOtpButtonAction() async {
-    errorMessage.value = '';
-    int len = StoreManager().otpLength;
-    if (otp.value.length < (len)) {
-      errorMessage.value = enterValidOtpStr;
-      return false;
-    }
-
-    var isConfirmed = await _confirmOtpApi();
-    if (isConfirmed) {
-      bool isGotSecurityToekn = await _securityToken();
-      if (isGotSecurityToekn) {
-        return await _passwordValidationToken();
-      }
-    }
-    return false;
-  }
-
   Future<String> _validationMsisdn() async {
     String stringData = await LoginVm().subscribeMsisdn(msisdn.value);
     Map<String, dynamic> valueMap = json.decode(stringData);
     SubscriberValidationModel model =
         SubscriberValidationModel.fromJson(valueMap);
     if (model.responseMap?.respCode == 'SC0000') {
+      isNewUser = false;
       await _generateOtp();
       print("Existing user******");
     } else if (model.responseMap?.respCode == '100') {
+      isNewUser = true;
       isMsisdnVarified.value = true;
       getSecurityTokenForNew();
       print("New user*****");
@@ -87,6 +75,48 @@ class LoginController extends GetxController {
       print("Invalid number*******");
     }
     return "";
+  }
+
+  Future<bool> verifyOtpButtonAction() async {
+    errorMessage.value = '';
+    int len = StoreManager().otpLength;
+    if (otp.value.length < (len)) {
+      errorMessage.value = enterValidOtpStr;
+      return false;
+    }
+
+    if (isNewUser) {
+      NewUserCheckOtpModel mod = await _newUserOtpCheck();
+      if (mod.statusCode == "SC0000") {
+        bool isGotSecurityToekn = await _securityToken();
+        if (isGotSecurityToekn) {
+          return await _passwordValidationToken();
+        }
+      } else {
+        errorMessage.value = mod.message ?? someThingWentWrongStr.tr;
+      }
+    } else {
+      var isConfirmed = await _confirmOtpApi();
+      if (isConfirmed) {
+        bool isGotSecurityToekn = await _securityToken();
+        if (isGotSecurityToekn) {
+          return await _passwordValidationToken();
+        }
+      }
+    }
+
+    return false;
+  }
+
+  Future<NewUserCheckOtpModel> _newUserOtpCheck() async {
+    Map<String, dynamic>? map = await NewUserOtpCheckVm()
+        .check(otp.value, msisdn.value, securityCounter);
+    if (map != null) {
+      NewUserCheckOtpModel mode = NewUserCheckOtpModel.fromJson(map);
+      return mode;
+    } else {
+      return NewUserCheckOtpModel(statusCode: "FL0000");
+    }
   }
 
   Future<void> _generateOtp() async {
@@ -142,15 +172,17 @@ class LoginController extends GetxController {
     if (map != null) {
       GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(map);
       StoreManager().securityCounter = model.responseMap.securityCounter;
-      var securityCounter = model.responseMap.securityCounter;
+      securityCounter = model.responseMap.securityCounter;
       StoreManager().securityCounter = securityCounter;
       NewUserRegistrationModel newUserModel =
           await NewRegistrartionVm().register(msisdn.value, securityCounter);
 
       if (newUserModel.statusCode == 'SC0000') {
+        isNewUser = true;
         securityCounter = newUserModel.responseMap?.secToc ?? '';
         isVerifying.value = false;
         isMsisdnVarified.value = true;
+        print("security token for new user is $securityToken");
       } else {
         errorMessage.value = newUserModel.message ?? someThingWentWrongStr.tr;
         isVerifying.value = false;

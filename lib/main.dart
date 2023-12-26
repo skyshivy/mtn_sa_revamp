@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
@@ -38,6 +39,11 @@ void main() async {
   DiyController diyCont = Get.put(DiyController());
   RecoController rec = Get.put(RecoController());
   controller.settinApiCall();
+  if (kDebugMode) {
+    StoreManager().msisdnLength = 10;
+  } else {
+    StoreManager().msisdnLength = 9;
+  }
   runApp(MyApp());
 }
 
