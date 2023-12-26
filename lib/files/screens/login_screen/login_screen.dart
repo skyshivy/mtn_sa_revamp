@@ -326,20 +326,33 @@ class _LoginScreenState extends State<LoginScreen> {
               width: 250,
               child: ResponsiveBuilder(
                 builder: (context, si) {
-                  return CustomButton(
-                    onTap: () async {
-                      await onRequestButtonAction();
-                    },
-                    height: si.isMobile ? 40 : 44,
-                    color: requestButtonColor(),
-                    title: requestButtonTitle(),
-                    fontName: si.isMobile ? FontName.abook : FontName.aheavy,
-                    fontSize: si.isMobile ? 12 : 16,
-                  );
+                  return Obx(() {
+                    return CustomButton(
+                      onTap: () async {
+                        await onRequestButtonAction();
+                      },
+                      height: si.isMobile ? 40 : 44,
+                      color: requestButtonColor(),
+                      title: requestButtonTitle(),
+                      textColor: textButtonColor(),
+                      fontName: si.isMobile ? FontName.abook : FontName.aheavy,
+                      fontSize: si.isMobile ? 12 : 16,
+                    );
+                  });
                 },
               ),
             );
     });
+  }
+
+  Color textButtonColor() {
+    return controller.isMsisdnVarified.value
+        ? ((controller.otp.value.length == StoreManager().otpLength)
+            ? white
+            : black)
+        : ((controller.msisdn.value.length == StoreManager().msisdnLength)
+            ? white
+            : black);
   }
 
   String requestButtonTitle() {
