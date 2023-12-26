@@ -101,7 +101,10 @@ class MyTuneController extends GetxController {
     if (resp != null) {
       DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(resp);
       print("Delete playing tune ${result}");
-      playingList.removeAt(index);
+      if (result.statusCode == "SC0000") {
+        playingList.removeAt(index);
+      }
+
       message.value = result.message ?? someThingWentWrongStr;
 
       return true;
