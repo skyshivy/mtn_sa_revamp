@@ -34,6 +34,7 @@ import 'package:mtn_sa_revamp/files/screens/salati_screen/salati_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/see_more_screen/see_more_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/see_more_screen/see_more_status_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/setting_screen/setting_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/home_banner_detail_page.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
@@ -72,6 +73,7 @@ final router = GoRouter(
         myTuneScreen(),
         tuneSettingScreen(),
         _deleteScreenRoute(),
+        seeMoreStatusTuneScreen(),
         //_diyScreen()
         //openMyTuneSettingScreen(),
         //newSceen(),
@@ -189,8 +191,8 @@ StatefulShellBranch seeMoreScreen() {
   BannerDetailController bannerCont = Get.put(BannerDetailController());
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
-      name: moreGoRoute,
-      path: moreGoRoute,
+      name: moreRecoGoRoute,
+      path: moreRecoGoRoute,
       builder: (context, state) {
         List<TuneInfo>? list = state.extra as List<TuneInfo>;
         //print("List is =========== $list");
@@ -199,6 +201,25 @@ StatefulShellBranch seeMoreScreen() {
           return WebLandingPage();
         }
         return SeeMoreScreen();
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch seeMoreStatusTuneScreen() {
+  //
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: moreStatusTuneGoRoute,
+      path: moreStatusTuneGoRoute,
+      builder: (context, state) {
+        List<TuneInfo>? list = state.extra as List<TuneInfo>;
+        //print("List is =========== $list");
+        if (list.isEmpty) {
+          context.go(homeGoRoute);
+          return WebLandingPage();
+        }
+        return SeeMoreStatusTuneScreen();
       },
     ),
   ]);

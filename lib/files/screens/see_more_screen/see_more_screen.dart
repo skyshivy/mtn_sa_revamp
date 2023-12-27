@@ -12,6 +12,8 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SeeMoreScreen extends StatefulWidget {
+  const SeeMoreScreen({super.key});
+
   @override
   State<StatefulWidget> createState() => _SeeMoreScreenState();
 }

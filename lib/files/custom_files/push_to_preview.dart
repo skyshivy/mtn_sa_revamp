@@ -7,9 +7,10 @@ pushToTunePreView(BuildContext context, List<TuneInfo>? list, int index) {
   Navigator.push(
     context,
     MaterialPageRoute(
-        builder: (context) => TunePreviewScreen(
-              tuneList: list ?? [],
-              index: index,
-            )),
+      builder: (context) => TunePreviewScreen(
+        tuneList: list ?? [],
+        index: index,
+      ),
+    ),
   );
 }

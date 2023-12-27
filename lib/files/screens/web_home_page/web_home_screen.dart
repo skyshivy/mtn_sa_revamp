@@ -51,6 +51,7 @@ class WebLandingPage extends StatelessWidget {
                       SizedBox(height: si.isMobile ? 10 : 20),
                       //LandingInfoPage(),
                       HomeStatusToneScreen(),
+                      SizedBox(height: si.isMobile ? 10 : 20),
                       HomeCategoryView(),
                       SizedBox(height: si.isMobile ? 10 : 30),
                     ],

@@ -63,7 +63,7 @@ class _LandingRecoViewState extends State<LandingRecoView> {
 
               print("List is $list");
 
-              context.pushNamed(moreGoRoute, extra: list, queryParameters: {
+              context.pushNamed(moreRecoGoRoute, extra: list, queryParameters: {
                 '': controller.tabTitle[controller.selectedIndex.value]
               });
               print("See more tapped");

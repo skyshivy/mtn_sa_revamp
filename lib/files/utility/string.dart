@@ -21,6 +21,7 @@ const customiseYourTunesStr = "Customise your tunes";
 const profileTunesStr = "Profile Tunes";
 
 const statusStr = "Status";
+const statusTuneStr = "Status Tune";
 const callersStr = "Callers";
 const playAtStr = "Play at";
 const fulldayStr = "FullDay";
