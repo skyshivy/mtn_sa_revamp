@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/banner_indicator.dart';
@@ -117,15 +118,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
             // });
           },
           child: Stack(alignment: Alignment.bottomCenter, children: [
-            Container(
-              child: FadeInImage.assetNetwork(
-                placeholder: placeholderImage,
-                image: banner.bannerPath ?? logoBigImg,
-                fit: BoxFit.fill,
-                height: double.infinity,
-                width: double.infinity,
-              ),
-            ),
+            CustomImage(url: banner.bannerPath),
           ]),
         ),
       );

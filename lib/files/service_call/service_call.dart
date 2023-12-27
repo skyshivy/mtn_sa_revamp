@@ -14,6 +14,10 @@ class ServiceCall {
   final client = HttpClient();
 
   getSetting(String url) async {
+    if (StoreManager().appSetting != null) {
+      print("settin api not called ");
+      return;
+    }
     try {
       var request = await client
           .getUrl(Uri.parse(url))

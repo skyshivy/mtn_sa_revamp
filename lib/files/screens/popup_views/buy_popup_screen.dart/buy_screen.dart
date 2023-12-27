@@ -221,8 +221,8 @@ class _BuyScreenState extends State<_BuyScreen> {
 
   Widget imageWidget() {
     return SizedBox(
-      width: isPhone(context!) ? 200 : double.infinity,
-      height: isPhone(context!) ? 200 : 200,
+      width: isPhone(context) ? 200 : double.infinity,
+      height: isPhone(context) ? 200 : 200,
       child: remoteImageContainer(info),
     );
   }
