@@ -8,7 +8,7 @@ class DeleteController extends GetxController
   @override
   void onInit() {
     animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
     super.onInit();
   }
 

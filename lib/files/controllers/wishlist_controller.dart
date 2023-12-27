@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/model/wishlist_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/view_model/delete_from_wishlist_vm.dart';
@@ -57,6 +58,10 @@ class WishlistController extends GetxController {
     DeleteWishlistModel model =
         await DeleteFromWishlistVM().delete(info.id ?? '');
     if (model.statusCode == 'SC0000') {
+      showSnackBar(
+          message: model.responseMap?.descriptiion ??
+              model.message ??
+              someThingWentWrongStr.tr);
       list.removeAt(index);
     } else {
       showSnackBar(message: model.message ?? '');

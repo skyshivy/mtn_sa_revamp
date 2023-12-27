@@ -96,7 +96,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
 
       context.goNamed(wishlistGoRoute);
       if (StoreManager().isLoadWishlist) {
-        WishlistController con = Get.put(WishlistController());
+        WishlistController con = Get.find();
         con.getWishlist();
       }
       printCustom("wishlistTapped tapped ${StoreManager().isLoadWishlist}");

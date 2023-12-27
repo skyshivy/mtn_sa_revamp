@@ -34,8 +34,9 @@ class _DeleteScreenState extends State<DeleteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: buttonsColumn() //customColumn(),
-        );
+    return Center(
+      child: customColumn(), //buttonsColumn() //customColumn(),
+    );
   }
 
   Widget buttonsColumn() {

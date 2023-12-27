@@ -21,7 +21,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
   late WishlistController wishlistController;
   @override
   void initState() {
-    wishlistController = Get.put(WishlistController());
+    wishlistController = Get.find();
     getWishlist();
     super.initState();
   }
