@@ -26,7 +26,10 @@ class CategoryController extends GetxController {
 
   getCategroyDetail(String searchKey, String catId,
       {int page = 0, bool isLoadMoreData = false}) async {
-    resetValue();
+    if (!isLoadMoreData) {
+      resetValue();
+    }
+
     key = searchKey;
     id = catId;
     if (!isLoadMoreData) {
@@ -41,6 +44,7 @@ class CategoryController extends GetxController {
     Map<String, dynamic>? result = await ServiceCall().get(url);
     isLoading.value = false;
     isLoadMore.value = false;
+    isHideLoadMore.value = false;
     if (result != null) {
       CategoryDetailModel categoryDetailModel =
           CategoryDetailModel.fromJson(result);
