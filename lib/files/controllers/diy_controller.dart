@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class DiyController extends GetxController {
@@ -13,9 +13,28 @@ class DiyController extends GetxController {
   bool isReadyForUpload = false;
   RxBool isRecordStopped = false.obs;
   int maxime = 0;
+  Uint8List? audioData;
   String fileName = 'file name here';
+
+  filePicked() {
+    checkSubmitButton();
+  }
+
+  filePicking() {
+    isPicked.value = false;
+  }
+
   checkSubmitButton() {
-    print("Check submit button method");
+    if ((checkBox.value) && (tuneName.isNotEmpty) && (fileName.isNotEmpty)) {
+      enableSubmitButton.value = true;
+      print("checkSubmitButton  == ${enableSubmitButton.value}");
+    } else {
+      enableSubmitButton.value = false;
+    }
+  }
+
+  playPause(bool value) {
+    isPlaying.value = value;
   }
 
   recordAgainTapped() {
@@ -23,14 +42,24 @@ class DiyController extends GetxController {
   }
 
   updateCheckBox() {
-    print("Update check box");
+    checkBox.value = !checkBox.value;
+    checkSubmitButton();
   }
 
   audioRecordStopped() {
     print("audioRecordStopped");
   }
 
+  updateTuneName(String name) {
+    tuneName.value = name;
+    checkSubmitButton();
+  }
+
   initialState() {
-    print("initialState me");
+    isPicked.value = false;
+    checkBox.value = false;
+    fileName = '';
+    isPlaying.value = false;
+    checkSubmitButton();
   }
 }

@@ -8,6 +8,7 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/diy_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -114,17 +115,17 @@ class DIYUploadSection extends StatelessWidget {
     return InkWell(
       hoverColor: transparent,
       onTap: () {
-        // if (!value.isPlaying) {
-        //   print("Data ==1 ");
-        //   //Player.getInstance().playByte(value.audioData!, ((p0),(v,s) {}));
-        //   playFromData();
+        if (!cont.isPlaying.value) {
+          print("Data ==1 ");
+          //Player.getInstance().playByte(value.audioData!, ((p0),(v,s) {}));
+          playFromData();
 
-        //   value.playPause(true);
-        // } else {
-        //   print("Data ==2 ");
+          cont.playPause(true);
+        } else {
+          print("Data ==2 ");
 
-        //   value.playPause(false);
-        // }
+          cont.playPause(false);
+        }
       },
       child: Container(
         height: 40,
@@ -320,10 +321,11 @@ class DIYUploadSection extends StatelessWidget {
           switch (p0) {
             case FilePickerStatus.picking:
               print("value.filePicking()");
-              //value.filePicking();
+              cont.filePicking();
               break;
             case FilePickerStatus.done:
               cont.isPicked.value = true;
+              print(" FilePickerStatus.done ");
               break;
             default:
           }
@@ -333,21 +335,28 @@ class DIYUploadSection extends StatelessWidget {
     if (result == null) {
       print("value.filePicking();");
     } else {
-      // value.fileName = result.files.first.name;
-      // value.filePicked();
-      // value.audioData = result.files.first.bytes;
+      cont.fileName = result.files.first.name;
+      cont.filePicked();
+      cont.audioData = result.files.first.bytes;
       playFromData();
     }
     print("uploaded ${result?.names}");
   }
 
   playFromData() {
-    print("Play from data");
-    // Player.getInstance().playByte(value.audioData!, (p0) => null, (p0, p1) {
-    //   value.maxime = p0;
-    //   value.curTime = p1.toInt();
-    //   value.maxAndMinUpdate();
-    // });
+    print("Play from data ${cont.audioData}");
+    //MtnAudioPlayer.instance.playByte(_buffer, (p0) => null, (p0, p1) => null)
+    MtnAudioPlayer.instance.playByte(cont.audioData!, (p0) => null, (p0, p1) {
+      cont.maxime = p0;
+      try {
+        print("P1 value is $p1");
+        cont.curTime = p1.toInt();
+      } catch (e) {
+        print("erro at setting value for  cont.curTime");
+      }
+
+      //cont.maxAndMinUpdate();
+    });
   }
 
   Widget termsAndCondition(SizingInformation si) {
