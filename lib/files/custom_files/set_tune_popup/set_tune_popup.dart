@@ -195,19 +195,21 @@ class _SettunePopupState extends State<SettunePopup> {
       title: confirmStr,
       fontName: si.isMobile ? FontName.abook : FontName.aheavy,
       onTap: () async {
-        if (!StoreManager().isLoggedIn) {
-          Navigator.of(context).pop();
-          await Future.delayed(const Duration(milliseconds: 200));
-          Get.dialog(CustomAlertView(
-            title: featureIsAvailableForLoggedInStr.tr,
-            onConfirm: () async {
-              await Future.delayed(const Duration(milliseconds: 200));
-              Get.dialog(const LoginScreen(), barrierDismissible: false);
-            },
-          ));
-        } else {
-          print("Set tune tapped");
-        }
+        // if (!StoreManager().isLoggedIn) {
+        //   Navigator.of(context).pop();
+        //   Get.dialog(
+        //       CustomAlertView(title: featureIsAvailableForLoggedInStr.tr));
+        //   // await Future.delayed(const Duration(milliseconds: 200));
+        //   // Get.dialog(CustomAlertView(
+        //   //   title: featureIsAvailableForLoggedInStr.tr,
+        //   //   onConfirm: () async {
+        //   //     await Future.delayed(const Duration(milliseconds: 200));
+        //   //     Get.dialog(const LoginScreen(), barrierDismissible: false);
+        //   //   },
+        //   // ));
+        // } else {
+        print("Set tune tapped");
+        //}
         print("Tapped ${StoreManager().isLoggedIn}");
       },
     );
