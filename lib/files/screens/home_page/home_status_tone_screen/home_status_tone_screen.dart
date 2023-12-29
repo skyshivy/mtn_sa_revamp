@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
@@ -10,6 +11,8 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
+import 'package:mtn_sa_revamp/files/custom_files/set_tune_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/set_tune_popup/set_tune_popup.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
@@ -128,7 +131,7 @@ class _HomeStatusToneScreen extends State<HomeStatusToneScreen> {
                     return HomeTuneCell(
                       info: statusCont.tuneList[index],
                       index: index,
-                      button: setButton(),
+                      button: setButton(statusCont.tuneList[index]),
                       onTap: () {
                         print("Tapped index");
                         si.isMobile
@@ -149,7 +152,7 @@ class _HomeStatusToneScreen extends State<HomeStatusToneScreen> {
                       child: HomeTuneCell(
                         info: statusCont.tuneList[index],
                         index: index,
-                        button: setButton(),
+                        button: setButton(statusCont.tuneList[index]),
                         onTap: () {
                           print("Tapped index");
                           si.isMobile
@@ -166,19 +169,6 @@ class _HomeStatusToneScreen extends State<HomeStatusToneScreen> {
     });
   }
 
-  Widget setButton() {
-    return CustomButton(
-      height: 30,
-      color: red,
-      textColor: white,
-      titlePadding: EdgeInsets.symmetric(horizontal: 20),
-      fontName: FontName.aheavy,
-      title: setStr,
-      onTap: () {
-        print("Open set tune pupup");
-      },
-    );
-  }
   // Widget gridViewBuilder(SizingInformation si) {
   //   return GridView.builder(
   //     itemCount:

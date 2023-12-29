@@ -48,7 +48,7 @@ dependencies:
   url_launcher: ^6.1.14
   universal_io: ^2.0.4
   url_strategy: ^0.2.0  
-  
+  numberpicker: ^2.1.2
   dotted_border: ^2.0.0+2
   carousel_slider: ^4.0.0
   cupertino_icons: ^1.0.2

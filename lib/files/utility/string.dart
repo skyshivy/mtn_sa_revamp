@@ -45,7 +45,11 @@ const fullDay24HourStr = "Full Day - 24 hr";
 
 const selecteTimeStr = "Select Time";
 const selectRepeatStr = "Select Repeat";
-
+const dayStr = "Day";
+const hourStr = "Hour";
+const minuteStr = "Minute";
+const setTuneMessageStr =
+    "*Note This will override all other tones in your account";
 const sunStr = "Sun";
 const monStr = "Mon";
 const tueStr = "Tue";
