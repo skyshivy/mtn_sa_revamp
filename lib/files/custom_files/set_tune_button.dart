@@ -19,6 +19,7 @@ Widget setButton(TuneInfo info) {
         color: red,
         textColor: white,
         titlePadding: const EdgeInsets.symmetric(horizontal: 20),
+        fontSize: si.isMobile ? 12 : 14,
         fontName: si.isMobile ? FontName.abook : FontName.aheavy,
         title: setStr,
         onTap: () {
