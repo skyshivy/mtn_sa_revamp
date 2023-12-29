@@ -128,6 +128,7 @@ class _HomeStatusToneScreen extends State<HomeStatusToneScreen> {
                     return HomeTuneCell(
                       info: statusCont.tuneList[index],
                       index: index,
+                      button: setButton(),
                       onTap: () {
                         print("Tapped index");
                         si.isMobile
@@ -148,6 +149,7 @@ class _HomeStatusToneScreen extends State<HomeStatusToneScreen> {
                       child: HomeTuneCell(
                         info: statusCont.tuneList[index],
                         index: index,
+                        button: setButton(),
                         onTap: () {
                           print("Tapped index");
                           si.isMobile
@@ -164,6 +166,19 @@ class _HomeStatusToneScreen extends State<HomeStatusToneScreen> {
     });
   }
 
+  Widget setButton() {
+    return CustomButton(
+      height: 30,
+      color: red,
+      textColor: white,
+      titlePadding: EdgeInsets.symmetric(horizontal: 20),
+      fontName: FontName.aheavy,
+      title: setStr,
+      onTap: () {
+        print("Open set tune pupup");
+      },
+    );
+  }
   // Widget gridViewBuilder(SizingInformation si) {
   //   return GridView.builder(
   //     itemCount:

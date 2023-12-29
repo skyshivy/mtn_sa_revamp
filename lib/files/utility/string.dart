@@ -13,6 +13,7 @@ const previewTuneStr = "Preview Tune";
 const seeMoreStr = "See More";
 const playingStr = "Playing";
 const settingStr = "Setting";
+const setStr = "Set";
 const tunesStr = "Tunes";
 const signinStr = "SignIn";
 const setYourTunesStr = "Set your tunes";
