@@ -82,7 +82,7 @@ class WebNavBarView extends StatelessWidget {
             salatiButton(context),
 
             leftSpacing(),
-            //diyButton(context),
+            diyButton(context),
             // HomefaqButton(
             //   onTap: () {
             //     _onTap(1);
@@ -168,7 +168,7 @@ class WebNavBarView extends StatelessWidget {
 
   Widget diyButton(BuildContext context) {
     return CustomButton(
-      title: doItYourStr,
+      title: diyStr,
       textColor: white,
       fontName: FontName.aheavy,
       fontSize: 16,

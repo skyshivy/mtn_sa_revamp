@@ -323,7 +323,7 @@ class DIYUploadSection extends StatelessWidget {
               //value.filePicking();
               break;
             case FilePickerStatus.done:
-              //value.filePicked();
+              cont.isPicked.value = true;
               break;
             default:
           }
