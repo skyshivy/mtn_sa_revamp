@@ -20,12 +20,14 @@ class HomeTuneCell extends StatelessWidget {
   final int index;
   final TuneInfo? info;
   final bool isWishlist;
+  final Widget? button;
   final Function()? onTap;
   HomeTuneCell(
       {super.key,
       required this.index,
       this.info,
       this.isWishlist = false,
+      this.button,
       this.onTap});
   PlayerController playerController = Get.find();
   @override
@@ -202,10 +204,11 @@ class HomeTuneCell extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 20),
-              BuyButton(
-                info: info,
-                index: index,
-              ),
+              button ??
+                  BuyButton(
+                    info: info,
+                    index: index,
+                  ),
             ],
           ),
         );

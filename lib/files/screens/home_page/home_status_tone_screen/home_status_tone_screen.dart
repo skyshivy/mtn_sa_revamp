@@ -55,14 +55,18 @@ class _HomeStatusToneScreen extends State<HomeStatusToneScreen> {
     return ResponsiveBuilder(
       builder: (context, si) {
         return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            header(si),
+            Row(
+              children: [
+                header(si),
+              ],
+            ),
             const SizedBox(height: 8),
             Obx(() {
               return statusCont.message.isNotEmpty
                   ? CustomText(title: statusCont.message.value)
-                  : gridViewBuilder(si);
+                  : gridView();
             }),
             seeMoreWidget(si),
           ],
@@ -99,24 +103,85 @@ class _HomeStatusToneScreen extends State<HomeStatusToneScreen> {
     );
   }
 
-  Widget gridViewBuilder(SizingInformation si) {
-    return GridView.builder(
-      itemCount:
-          statusCont.tuneList.length > 8 ? 8 : statusCont.tuneList.length,
-      shrinkWrap: true,
-      gridDelegate: delegate(si),
-      itemBuilder: (context, index) {
-        return HomeTuneCell(
-          info: statusCont.tuneList[index],
-          index: index,
-          onTap: () {
-            print("Tapped index");
-            si.isMobile
-                ? pushToTunePreView(context, statusCont.tuneList, index)
-                : Null;
-          },
-        );
-      },
-    );
+  Widget gridView() {
+    const double runSpacing = 8;
+    const double spacing = 8;
+
+    double w = 240;
+    double h = 250;
+    return Obx(() {
+      int listSize =
+          (statusCont.tuneList.length > 8 ? 8 : statusCont.tuneList.length);
+
+      return ResponsiveBuilder(
+        builder: (context, si) {
+          return si.isMobile
+              ? GridView.builder(
+                  itemCount: listSize,
+                  shrinkWrap: true,
+                  gridDelegate: delegate(si,
+                      mainAxisExtent: si.isMobile ? 230 : null,
+                      mainAxisSpacing: si.isMobile ? 8 : null,
+                      crossAxisSpacing: si.isMobile ? 8 : null),
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return HomeTuneCell(
+                      info: statusCont.tuneList[index],
+                      index: index,
+                      onTap: () {
+                        print("Tapped index");
+                        si.isMobile
+                            ? pushToTunePreView(
+                                context, statusCont.tuneList, index)
+                            : Null;
+                      },
+                    );
+                  })
+              : Wrap(
+                  runSpacing: runSpacing,
+                  spacing: spacing,
+                  alignment: WrapAlignment.center,
+                  children: List.generate(listSize, (index) {
+                    return SizedBox(
+                      height: h,
+                      width: w,
+                      child: HomeTuneCell(
+                        info: statusCont.tuneList[index],
+                        index: index,
+                        onTap: () {
+                          print("Tapped index");
+                          si.isMobile
+                              ? pushToTunePreView(
+                                  context, statusCont.tuneList, index)
+                              : Null;
+                        },
+                      ),
+                    );
+                  }),
+                );
+        },
+      );
+    });
   }
+
+  // Widget gridViewBuilder(SizingInformation si) {
+  //   return GridView.builder(
+  //     itemCount:
+  //         statusCont.tuneList.length > 8 ? 8 : statusCont.tuneList.length,
+  //     shrinkWrap: true,
+  //     gridDelegate: delegate(si),
+  //     itemBuilder: (context, index) {
+  //       return HomeTuneCell(
+  //         info: statusCont.tuneList[index],
+  //         index: index,
+  //         onTap: () {
+  //           print("Tapped index");
+  //           si.isMobile
+  //               ? pushToTunePreView(context, statusCont.tuneList, index)
+  //               : Null;
+  //         },
+  //       );
+  //     },
+  //   );
+  //}
 }
