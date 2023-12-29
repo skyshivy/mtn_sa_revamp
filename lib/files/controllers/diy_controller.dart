@@ -8,13 +8,13 @@ class DiyController extends GetxController {
   RxBool isPlaying = false.obs;
   RxBool isRecordTapped = false.obs;
   RxString tuneName = ''.obs;
-  int curTime = 0;
+  RxInt curTime = 0.obs;
   double opacity = 10.3;
   bool isReadyForUpload = false;
   RxBool isRecordStopped = false.obs;
-  int maxime = 0;
+  RxInt maxime = 0.obs;
   Uint8List? audioData;
-  String fileName = 'file name here';
+  String fileName = '';
 
   filePicked() {
     checkSubmitButton();
@@ -25,6 +25,10 @@ class DiyController extends GetxController {
   }
 
   checkSubmitButton() {
+    print("checkBox.value = ${checkBox.value} ");
+    print("tuneName.isNotEmpty = ${tuneName.isNotEmpty} =$tuneName ");
+    print("fileName.isNotEmpty = ${fileName.isNotEmpty}  = $fileName");
+
     if ((checkBox.value) && (tuneName.isNotEmpty) && (fileName.isNotEmpty)) {
       enableSubmitButton.value = true;
       print("checkSubmitButton  == ${enableSubmitButton.value}");
@@ -59,6 +63,7 @@ class DiyController extends GetxController {
     isPicked.value = false;
     checkBox.value = false;
     fileName = '';
+    tuneName.value = '';
     isPlaying.value = false;
     checkSubmitButton();
   }

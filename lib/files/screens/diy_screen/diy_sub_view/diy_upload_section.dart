@@ -145,59 +145,62 @@ class DIYUploadSection extends StatelessWidget {
   }
 
   Widget progressBarWidget(SizingInformation si, BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CustomText(
-              title:
-                  "${TimeFormate.formatDuration(cont.curTime)}", //"${value.curTime}",
-              fontSize: si.isMobile ? 10 : 12,
-              fontName: FontName.abook,
-              textColor: Colors.grey,
-            ),
-            CustomText(
-              title:
-                  "${TimeFormate.formatDuration(cont.maxime)}", //"${value.maxime}",
-              fontSize: si.isMobile ? 10 : 12,
-              fontName: si.isMobile ? FontName.abook : FontName.aheavy,
-              textColor: Colors.grey,
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 2,
-        ),
-        Row(
-          children: [
-            Expanded(
-                child: Container(
-              height: 10,
-              child: Center(
-                child: SliderTheme(
-                  child: Slider(
-                    value: cont.curTime.toDouble(),
-                    max: cont.maxime.toDouble(),
-                    min: 0,
-                    activeColor: red,
-                    inactiveColor: darkGreen.withOpacity(0.3),
-                    onChanged: (double value) {},
-                  ),
-                  data: SliderTheme.of(context).copyWith(
-                    overlayShape: SliderComponentShape.noThumb,
-                    trackHeight: 4,
-                    thumbColor: Colors.transparent,
-                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
+    return Obx(() {
+      return Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CustomText(
+                title:
+                    "${TimeFormate.formatDuration(cont.curTime.value)}", //"${value.curTime}",
+                fontSize: si.isMobile ? 10 : 12,
+                fontName: FontName.abook,
+                textColor: Colors.grey,
+              ),
+              CustomText(
+                title:
+                    "${TimeFormate.formatDuration(cont.maxime.value)}", //"${value.maxime}",
+                fontSize: si.isMobile ? 10 : 12,
+                fontName: si.isMobile ? FontName.abook : FontName.aheavy,
+                textColor: Colors.grey,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 2,
+          ),
+          Row(
+            children: [
+              Expanded(
+                  child: Container(
+                height: 10,
+                child: Center(
+                  child: SliderTheme(
+                    child: Slider(
+                      value: cont.curTime.toDouble(),
+                      max: cont.maxime.toDouble(),
+                      min: 0,
+                      activeColor: red,
+                      inactiveColor: darkGreen.withOpacity(0.3),
+                      onChanged: (double value) {},
+                    ),
+                    data: SliderTheme.of(context).copyWith(
+                      overlayShape: SliderComponentShape.noThumb,
+                      trackHeight: 4,
+                      thumbColor: Colors.transparent,
+                      thumbShape:
+                          RoundSliderThumbShape(enabledThumbRadius: 0.0),
+                    ),
                   ),
                 ),
-              ),
-            )),
-          ],
-        ),
-      ],
-    );
+              )),
+            ],
+          ),
+        ],
+      );
+    });
   }
 
   Widget replaceButtonWidget(
@@ -347,10 +350,9 @@ class DIYUploadSection extends StatelessWidget {
     print("Play from data ${cont.audioData}");
     //MtnAudioPlayer.instance.playByte(_buffer, (p0) => null, (p0, p1) => null)
     MtnAudioPlayer.instance.playByte(cont.audioData!, (p0) => null, (p0, p1) {
-      cont.maxime = p0;
+      cont.maxime.value = p0;
       try {
-        print("P1 value is $p1");
-        cont.curTime = p1.toInt();
+        cont.curTime.value = p1.toInt();
       } catch (e) {
         print("erro at setting value for  cont.curTime");
       }
@@ -366,14 +368,16 @@ class DIYUploadSection extends StatelessWidget {
         width: si.isMobile ? null : 400,
         child: Row(
           children: [
-            Checkbox(
-              checkColor: Colors.black,
-              value: cont.checkBox.value,
-              onChanged: (v) {
-                print(" ${v}");
-                cont.updateCheckBox();
-              },
-            ),
+            Obx(() {
+              return Checkbox(
+                checkColor: Colors.black,
+                value: cont.checkBox.value,
+                onChanged: (v) {
+                  print(" ${v}");
+                  cont.updateCheckBox();
+                },
+              );
+            }),
             Expanded(
               child: RichText(
                 text: TextSpan(children: [
@@ -413,18 +417,21 @@ class DIYUploadSection extends StatelessWidget {
       width: si.isMobile ? null : 350,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-        child: CustomButton(
-          title: submitStr,
-          color: cont.enableSubmitButton.value
-              ? darkGreen
-              : Colors.grey.withOpacity(0.5),
-          onTap: () {
-            //Player.getInstance().stop();
+        child: Obx(() {
+          return CustomButton(
+            title: submitStr,
+            textColor: cont.enableSubmitButton.value ? white : black,
+            color: cont.enableSubmitButton.value
+                ? darkGreen
+                : Colors.grey.withOpacity(0.5),
+            onTap: () {
+              //Player.getInstance().stop();
 
-            print("Submit ==== ${cont.enableSubmitButton}");
-            cont.checkSubmitButton();
-          },
-        ),
+              print("Submit ==== ${cont.enableSubmitButton}");
+              cont.checkSubmitButton();
+            },
+          );
+        }),
       ),
     );
   }

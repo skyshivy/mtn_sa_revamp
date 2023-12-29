@@ -61,7 +61,7 @@ class DIYNameTextField extends StatelessWidget {
         TextSelection.fromPosition(TextPosition(offset: cont.text.length));
     return TextField(
       onChanged: (str) {
-        //value.updateTuneName(str);
+        con.updateTuneName(str);
       },
       controller: cont,
       style: TextStyle(

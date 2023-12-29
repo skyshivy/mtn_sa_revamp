@@ -64,7 +64,7 @@ class MtnAudioPlayer {
     print("Play this1");
     await _player.setAudioSource(MyJABytesSource(_buffer));
     print("Play this2");
-
+    _player.play();
     print("Play this3");
     _player.processingStateStream.listen((state) {
       if (state == ProcessingState.ready) {
