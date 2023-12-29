@@ -13,8 +13,8 @@ import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/tune_preview_screen/tune_preview_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/home_reco_tab_view.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/home_reco_tab_view.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -78,6 +78,11 @@ class _LandingRecoViewState extends State<LandingRecoView> {
   }
 
   Widget gridView() {
+    const double runSpacing = 4;
+    const double spacing = 4;
+    int listSize = controller.displayList?.length ?? 0;
+    double w = 270;
+    double h = 280;
     return Obx(() {
       int? count = ((controller.displayList?.length ?? 0) > 8)
           ? 8
@@ -86,17 +91,29 @@ class _LandingRecoViewState extends State<LandingRecoView> {
           ? SizedBox(height: 200, child: loadingIndicator())
           : ResponsiveBuilder(
               builder: (context, si) {
-                return GridView.builder(
-                    itemCount: count,
-                    shrinkWrap: true,
-                    gridDelegate: delegate(si,
-                        mainAxisExtent: si.isMobile ? 230 : null,
-                        mainAxisSpacing: si.isMobile ? 8 : null,
-                        crossAxisSpacing: si.isMobile ? 8 : null),
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return homeCell(index);
-                    });
+                return Wrap(
+                  runSpacing: runSpacing,
+                  spacing: spacing,
+                  alignment: WrapAlignment.center,
+                  children: List.generate(listSize, (index) {
+                    return SizedBox(
+                        height: h,
+                        width: w,
+                        child: Container() //cellWidget(index, value, sizeInfo),
+                        );
+                  }),
+                );
+                // GridView.builder(
+                //     itemCount: count,
+                //     shrinkWrap: true,
+                //     gridDelegate: delegate(si,
+                //         mainAxisExtent: si.isMobile ? 230 : null,
+                //         mainAxisSpacing: si.isMobile ? 8 : null,
+                //         crossAxisSpacing: si.isMobile ? 8 : null),
+                //     physics: const NeverScrollableScrollPhysics(),
+                //     itemBuilder: (context, index) {
+                //       return homeCell(index);
+                //     });
               },
             );
     });

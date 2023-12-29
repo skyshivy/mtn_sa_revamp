@@ -12,6 +12,7 @@ import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.d
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:provider/provider.dart';
 
@@ -118,7 +119,7 @@ class DIYUploadSection extends StatelessWidget {
         if (!cont.isPlaying.value) {
           print("Data ==1 ");
           //Player.getInstance().playByte(value.audioData!, ((p0),(v,s) {}));
-          playFromData();
+          //cont.playFromData();
 
           cont.playPause(true);
         } else {
@@ -135,10 +136,7 @@ class DIYUploadSection extends StatelessWidget {
           color: Colors.transparent,
         ),
         child: Center(
-          child: Image.asset(
-            'images/playGreen.png',
-            color: darkGreen,
-          ),
+          child: Icon(cont.isPlaying.value ? Icons.play_arrow : Icons.pause),
         ),
       ),
     );
@@ -222,7 +220,7 @@ class DIYUploadSection extends StatelessWidget {
           child: CustomText(
             title: replaceStr,
             fontSize: si.isMobile ? 12 : 14,
-            fontName: si.isMobile ? FontName.abook : FontName.aheavy,
+            fontName: si.isMobile ? FontName.abook : FontName.abook,
           ),
         ),
       ),
@@ -241,7 +239,7 @@ class DIYUploadSection extends StatelessWidget {
             }),
             const SizedBox(width: 10),
             Obx(() {
-              return cont.isPicked.value
+              return cont.fileUploading.value
                   ? afterFilePicktitleSubTitle(si)
                   : beforeFilePicktitleSubTitle();
             })
@@ -261,7 +259,7 @@ class DIYUploadSection extends StatelessWidget {
       ),
       child: Center(
           child: Image.asset(
-        'images/diyMusic.png',
+        diyMusicImg,
         color: si.isMobile ? Colors.white : Colors.black,
         height: 20,
         width: 20,
@@ -305,7 +303,7 @@ class DIYUploadSection extends StatelessWidget {
           height: 2,
         ),
         CustomText(
-          title: "25%",
+          title: "",
           textColor: Colors.grey.withOpacity(0.5),
           fontSize: si.isMobile ? 10 : 14,
         ),
@@ -341,24 +339,10 @@ class DIYUploadSection extends StatelessWidget {
       cont.fileName = result.files.first.name;
       cont.filePicked();
       cont.audioData = result.files.first.bytes;
-      playFromData();
+      cont.playFromData();
     }
+    cont.fileUploading.value = false;
     print("uploaded ${result?.names}");
-  }
-
-  playFromData() {
-    print("Play from data ${cont.audioData}");
-    //MtnAudioPlayer.instance.playByte(_buffer, (p0) => null, (p0, p1) => null)
-    MtnAudioPlayer.instance.playByte(cont.audioData!, (p0) => null, (p0, p1) {
-      cont.maxime.value = p0;
-      try {
-        cont.curTime.value = p1.toInt();
-      } catch (e) {
-        print("erro at setting value for  cont.curTime");
-      }
-
-      //cont.maxAndMinUpdate();
-    });
   }
 
   Widget termsAndCondition(SizingInformation si) {
@@ -451,10 +435,10 @@ class DIYUploadSection extends StatelessWidget {
             browseButtonTape();
           },
           child: Image.asset(
-            'images/browse.png',
-            color: si.isMobile ? Colors.white : Colors.black,
-            height: 20,
-            width: 20,
+            browseImg,
+            //color: si.isMobile ? Colors.white : Colors.black,
+            height: 30,
+            width: 30,
           ),
         ),
       ),

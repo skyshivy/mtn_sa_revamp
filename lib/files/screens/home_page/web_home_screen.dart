@@ -9,12 +9,12 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/home_search_widget.dart';
 
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_category/home_category_view.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_category/home_category_view.dart';
 
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/home_page_banner.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_bottom_section/home_page_bottom_section.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/home_rec_view.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_status_tone_screen/home_status_tone_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_page_banner/home_page_banner.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_page_bottom_section/home_page_bottom_section.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/home_rec_view.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_status_tone_screen/home_status_tone_screen.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';

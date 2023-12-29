@@ -18,6 +18,9 @@ const salatiHeaderImage = 'assets/pngs/salati1.png';
 const diyBgImage = 'assets/pngs/diyBg.png';
 const defaultZainImg = 'assets/pngs/default_zain_img.png';
 
+const diyMusicImg = 'assets/pngs/diyMusic.png';
+const browseImg = 'assets/pngs/browse.png';
+
 const wishlistImage = 'assets/pngs/wishListR.png';
 const tellafriendImage = 'assets/pngs/tellAFriendR.png';
 const giftImage = 'assets/pngs/gift.png';

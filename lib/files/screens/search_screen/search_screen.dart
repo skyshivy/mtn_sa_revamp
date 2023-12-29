@@ -17,8 +17,8 @@ import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/searc
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_header_tab.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_text_field.dart';
 
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/tune_cell.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/web_home_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';

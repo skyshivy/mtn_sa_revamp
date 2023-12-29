@@ -14,6 +14,7 @@ import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_co
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/app_bg_image.dart';
+import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/directionality.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
@@ -36,8 +37,8 @@ import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/see_more_screen/see_more_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/see_more_screen/see_more_status_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/setting_screen/setting_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/sub_views/home_banner_detail_page.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_page_banner/sub_views/home_banner_detail_page.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/web_home_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/wishlist_screen/wishlsit_screen.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 
@@ -368,6 +369,7 @@ StatefulShellBranch artistTuneScreen() {
 
 Widget shellRouteIndex(context, state, navigationShell) {
   print("Selected index must be===== ${navigationShell.currentIndex}");
+  MtnAudioPlayer.instance.pause();
   appCont.updateIndex(navigationShell.currentIndex);
   return GetMaterialApp(
       locale: Locale(StoreManager().isEnglish ? 'en' : 'ar',

@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 
 class DiyController extends GetxController {
   RxBool enableSubmitButton = false.obs;
@@ -15,13 +17,16 @@ class DiyController extends GetxController {
   RxInt maxime = 0.obs;
   Uint8List? audioData;
   String fileName = '';
-
+  RxBool fileUploading = false.obs;
   filePicked() {
+    isPicked.value = true;
+    fileUploading.value = false;
     checkSubmitButton();
   }
 
   filePicking() {
     isPicked.value = false;
+    fileUploading.value = true;
   }
 
   checkSubmitButton() {
@@ -37,8 +42,35 @@ class DiyController extends GetxController {
     }
   }
 
+  playFromData() {
+    print("Play from data ${audioData}");
+    //MtnAudioPlayer.instance.playByte(_buffer, (p0) => null, (p0, p1) => null)
+    MtnAudioPlayer.instance.playByte(audioData!, (p0) {
+      if (p0 == PlayerAction.paused) {
+        isPlaying.value = false;
+      } else {
+        isPlaying.value = true;
+      }
+      print("= p0 = $p0");
+    }, (p0, p1) {
+      maxime.value = p0;
+      try {
+        curTime.value = p1.toInt();
+      } catch (e) {
+        print("erro at setting value for  cont.curTime");
+      }
+
+      //cont.maxAndMinUpdate();
+    });
+  }
+
   playPause(bool value) {
     isPlaying.value = value;
+    if (value) {
+      MtnAudioPlayer.instance.pause();
+    } else {
+      MtnAudioPlayer.instance.resume();
+    }
   }
 
   recordAgainTapped() {
@@ -64,7 +96,9 @@ class DiyController extends GetxController {
     checkBox.value = false;
     fileName = '';
     tuneName.value = '';
+    fileUploading.value = false;
     isPlaying.value = false;
+    MtnAudioPlayer.instance.stop();
     checkSubmitButton();
   }
 }
