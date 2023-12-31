@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
-import 'package:mtn_sa_revamp/files/controllers/buy_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/subscribe_plan_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 
@@ -17,8 +14,9 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 class SubscriptionView extends StatefulWidget {
   final TuneInfo info;
-
-  const SubscriptionView({super.key, required this.info});
+  final Function(String) onSelect;
+  const SubscriptionView(
+      {super.key, required this.info, required this.onSelect});
   @override
   State<StatefulWidget> createState() => _SubscriptionViewState();
 }
@@ -26,7 +24,7 @@ class SubscriptionView extends StatefulWidget {
 class _SubscriptionViewState extends State<SubscriptionView> {
   //SubscriptionView({super.key, required this.info});
   late BuildContext context;
-  BuyController bCont = Get.find();
+  //BuyController bCont = Get.find();
   late SubscribePlanController sCont; // = Get.put(SubscribePlanController());
   @override
   void initState() {
@@ -270,8 +268,11 @@ class _SubscriptionViewState extends State<SubscriptionView> {
         textColor: sCont.enableSubmitButton.value ? white : black,
         onTap: () {
           if (sCont.enableSubmitButton.value) {
-            bCont.onConfirmSubscriptionPlan(
-                sCont.packList[sCont.selectedIndex.value]);
+            String plan = sCont.packList[sCont.selectedIndex.value];
+            widget.onSelect(plan);
+            Navigator.of(context).pop();
+            // bCont.onConfirmSubscriptionPlan(
+            //     sCont.packList[sCont.selectedIndex.value]);
           }
         },
       );

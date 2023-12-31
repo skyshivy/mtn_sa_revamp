@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/subscription_view.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -195,6 +196,12 @@ class _SettunePopupState extends State<SettunePopup> {
       title: confirmStr,
       fontName: si.isMobile ? FontName.abook : FontName.aheavy,
       onTap: () async {
+        Get.dialog(SubscriptionView(
+          info: widget.info ?? TuneInfo(),
+          onSelect: (p0) {
+            print("Selected pack name = $p0");
+          },
+        ));
         print("Set tune tapped");
         //}
         print("Tapped ${StoreManager().isLoggedIn}");
