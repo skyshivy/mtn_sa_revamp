@@ -77,6 +77,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
           const SizedBox(height: 10),
           subscriptionInfo(si),
           const SizedBox(height: 20),
+          //specialOfferWidget(),
           subscriptionListView(),
           const SizedBox(height: 20),
           tuneCharge(si),
@@ -84,6 +85,26 @@ class _SubscriptionViewState extends State<SubscriptionView> {
           buttonsWidget(),
           const SizedBox(height: 20),
         ],
+      ),
+    );
+  }
+
+  Widget specialOfferWidget() {
+    return Visibility(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(60), color: red),
+          height: 120,
+          width: 120,
+          child: subscriptionCell(
+            greyLight,
+            "150",
+            "special",
+            0,
+          ),
+        ),
       ),
     );
   }

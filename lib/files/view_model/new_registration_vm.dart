@@ -8,8 +8,8 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class NewRegistrartionVm {
-  Future<NewUserRegistrationModel> register(
-      String msisdn, String secCounter) async {
+  Future<NewUserRegistrationModel> register(String msisdn, String secCounter,
+      {bool sendOtp = true}) async {
     String encryptedPassword = Cryptom().text("Oem@L#@1");
 
     Random random = Random();
@@ -24,6 +24,7 @@ class NewRegistrartionVm {
       "email": "",
       "categoryId": "137",
       "securityCounter": secCounter,
+      "sendOtp": sendOtp ? 'yes' : 'no'
     };
 
     var parts = [];

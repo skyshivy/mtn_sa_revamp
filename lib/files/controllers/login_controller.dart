@@ -252,6 +252,7 @@ class LoginController extends GetxController {
     } else if (model.responseMap?.respCode == '100') {
       isMsisdnVarified.value = true;
       printCustom("New user*****");
+      await autoLoginSecurityTokenForNewUser(msisdn.value);
     } else if (model.responseMap?.respCode == '101') {
       errorMessage.value = model.responseMap?.respDesc ?? '';
       printCustom("Invalid number*******");
@@ -267,6 +268,31 @@ class LoginController extends GetxController {
       await _passwordValidationToken(isAutoLogin: true);
     }
   }
+
+  autoLoginSecurityTokenForNewUser(String msisdn) async {
+    var map = await GetSecurityVM().token();
+    if (map != null) {
+      GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(map);
+      StoreManager().securityCounter = model.responseMap.securityCounter;
+      securityCounter = model.responseMap.securityCounter;
+      NewUserRegistrationModel newUserModel = await NewRegistrartionVm()
+          .register(msisdn, securityCounter, sendOtp: false);
+
+      if (newUserModel.statusCode == 'SC0000') {
+        _autoLoginPassowrdValidation();
+      } else {
+        errorMessage.value = newUserModel.message ?? someThingWentWrongStr.tr;
+        isVerifying.value = false;
+        isMsisdnVarified.value = false;
+      }
+    } else {
+      isVerifying.value = false;
+      isMsisdnVarified.value = false;
+      errorMessage.value = someThingWentWrongStr.tr;
+      return;
+    }
+  }
+
 //=======================New user==================
 
   Future<void> getSecurityTokenForNew(String msisdn) async {

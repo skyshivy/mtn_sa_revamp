@@ -50,6 +50,12 @@ class _WebLandingPageState extends State<WebLandingPage> {
                 // CustomButton(
                 //   title: "Open",
                 //   onTap: () {
+                //     Get.dialog(SubscriptionView(info: TuneInfo()));
+                //   },
+                // ),
+                // CustomButton(
+                //   title: "Open",
+                //   onTap: () {
                 //     Decryptor().aesEnc("sampleTextToEncode");
                 //     // Decryptor().decryptWithAES(
                 //     //     "U2FsdGVkX19cs092M9hqJnx/pGcYbuvKiSVXI+npyEAITk5mdFo1f1UGzyyxOlZy");
