@@ -87,7 +87,8 @@ Future<String> _getValueForTag(List<String> lst) async {
       } catch (e) {}
 
       try {
-        if (newL[0] == 'ccid') {
+        if (newL[0] == 'ccusername') {
+          //ccusername
           printCustom("ccid = ${newL[1]}");
           ccid = newL[1];
           StoreManager().setccid(ccid);

@@ -14,18 +14,31 @@ class SetTuneVM {
     var parts = [];
     Random random = Random();
     int randomNumber = random.nextInt(1000000000);
-
-    var body = {
-      'clientTxnId': randomNumber.toString(),
-      'language': StoreManager().languageCode,
-      'msisdn': StoreManager().msisdn,
-      'toneId': info.toneId,
-      'toneName': info.toneName,
-      'packName': packName,
-      'username': StoreManager().msisdn,
-      'channelId': channelId,
-      'priority': priority
-    };
+    Map<String, String?> body = {};
+    body = ccid.isEmpty
+        ? {
+            'clientTxnId': randomNumber.toString(),
+            'language': StoreManager().languageCode,
+            'msisdn': StoreManager().msisdn,
+            'toneId': info.toneId,
+            'toneName': info.toneName,
+            'packName': packName,
+            'username': StoreManager().msisdn,
+            'channelId': channelId,
+            'priority': priority,
+          }
+        : {
+            'clientTxnId': randomNumber.toString(),
+            'language': StoreManager().languageCode,
+            'msisdn': StoreManager().msisdn,
+            'toneId': info.toneId,
+            'toneName': info.toneName,
+            'packName': packName,
+            'username': StoreManager().msisdn,
+            'channelId': channelId,
+            'priority': priority,
+            'ccid': ccid,
+          };
 
     body.forEach((key, value) {
       parts.add('${Uri.encodeQueryComponent(key)}='

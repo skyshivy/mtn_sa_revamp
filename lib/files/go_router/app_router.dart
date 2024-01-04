@@ -47,6 +47,7 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/main.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -411,7 +412,7 @@ Widget shellRouteIndex(BuildContext context, GoRouterState state,
     isLoad = StoreManager().isLoggedIn;
   }
   MtnAudioPlayer.instance.stop();
-
+  printCustom("ccid = $ccid");
   return GetMaterialApp(
     locale: Locale(StoreManager().isEnglish ? 'en' : 'br',
         StoreManager().isEnglish ? 'US' : 'BR'),

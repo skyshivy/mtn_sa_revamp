@@ -154,19 +154,24 @@ class SearchTuneController extends GetxController {
     }
     isLoadMore.value = isloadMore;
     searchedText.value = searchKey;
-    Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
-    String catId = others?.nameTuneCategoryid?.attribute ?? '0';
+
     if (!isloadMore) {
       isLoading.value = true;
     }
 
     isLoaded.value = false;
+    if (StoreManager().appSetting == null) {
+      await Future.delayed(Duration(seconds: 2));
+    }
+    Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
+
+    String catId = others?.nameTuneCategoryid?.attribute ?? '0';
     var url =
         "$nameTuneSearchUrl?language=${StoreManager().language}&categoryId=$catId&pageNo=${songList.length}&perPageCount=$pagePerCount&searchLanguage=${StoreManager().language}";
 
     //"$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=${songList.length}&searchLanguage=English&perPageCount=$pagePerCount";
     Map<String, dynamic>? result =
-        await ServiceCall().get(url, params: {'Searchkey': searchKey});
+        await ServiceCall().get(url, params: {'searchKey': searchKey});
     print("result is $result");
     if (result != null) {
       SearchTuneModel model = SearchTuneModel.fromJson(result);

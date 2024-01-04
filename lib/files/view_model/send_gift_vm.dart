@@ -12,16 +12,29 @@ class SendGiftVM {
     // Random random = Random();
     // int randomNumber = random.nextInt(1000000000);
 
-    Map<String, dynamic> body = {
-      'msisdnA': StoreManager().msisdn,
-      'msisdnB': bParty,
-      'toneId': toneId,
-      'channel': channelId,
-      'username': StoreManager().msisdn,
-      'language': StoreManager().languageCode,
-      'packName': packName, //'3',
-      'toneName': toneName,
-    };
+    Map<String, dynamic> body = {};
+    body = ccid.isEmpty
+        ? {
+            'msisdnA': StoreManager().msisdn,
+            'msisdnB': bParty,
+            'toneId': toneId,
+            'channel': channelId,
+            'username': StoreManager().msisdn,
+            'language': StoreManager().languageCode,
+            'packName': packName, //'3',
+            'toneName': toneName,
+          }
+        : {
+            'msisdnA': StoreManager().msisdn,
+            'msisdnB': bParty,
+            'toneId': toneId,
+            'channel': channelId,
+            'username': StoreManager().msisdn,
+            'language': StoreManager().languageCode,
+            'packName': packName, //'3',
+            'toneName': toneName,
+            'ccid': ccid,
+          };
     body.forEach((key, value) {
       parts.add('${Uri.encodeQueryComponent(key)}='
           '${Uri.encodeQueryComponent(value.toString())}');
