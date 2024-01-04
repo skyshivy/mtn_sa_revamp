@@ -210,10 +210,19 @@ class _SettunePopupState extends State<SettunePopup> {
           print("print nothing is selected");
           return;
         }
+
         Get.dialog(SubscriptionView(
           info: widget.info ?? TuneInfo(),
-          onSelect: (p0) {
-            con.setStatusTune();
+          onSelect: (p0, cotext) {
+            con.onSuccess = () async {
+              print("On fail");
+              Navigator.of(context).pop();
+              await Future.delayed(Duration(milliseconds: 200));
+              Get.dialog(Center(
+                child: CustomAlertView(title: con.errorMessage.value),
+              ));
+            };
+            con.setStatusTune(p0, widget.info?.toneId ?? '');
             print("Selected pack name = $p0");
           },
         ));
@@ -231,7 +240,6 @@ class _SettunePopupState extends State<SettunePopup> {
         child: Padding(
           padding: const EdgeInsets.only(top: 15, bottom: 10),
           child: CustomText(
-            fontName: FontName.ablack,
             title: con.errorMessage.value,
             textColor: red,
             fontSize: si.isMobile ? 14 : 16,

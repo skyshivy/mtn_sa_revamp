@@ -28,11 +28,11 @@ class CustomImage extends StatelessWidget {
                 placeholder: (context, url) =>
                     const Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) {
-                  print("\n Image url is $url \n");
-                  print(
-                      "\n Image error string loading===== ${error.toString()}\n");
+                  //print("\n Image url is $url \n");
+                  // print(
+                  //     "\n Image error string loading===== ${error.toString()}\n");
 
-                  print("\n Image error loading===== $error\n");
+                  // print("\n Image error loading===== $error\n");
                   return Image.asset(
                     defaultZainImg,
                     fit: BoxFit.fill,

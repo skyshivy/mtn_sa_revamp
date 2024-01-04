@@ -68,7 +68,7 @@ class _BuyScreenState extends State<_BuyScreen> {
                 : buyController.isShowSubscriptionPlan.value
                     ? SubscriptionView(
                         info: info ?? TuneInfo(),
-                        onSelect: (p0) {
+                        onSelect: (p0, context) {
                           buyController.onConfirmSubscriptionPlan(p0);
                         },
                       )

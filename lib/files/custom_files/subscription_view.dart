@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/controllers/subscribe_plan_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -14,7 +15,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 class SubscriptionView extends StatefulWidget {
   final TuneInfo info;
-  final Function(String) onSelect;
+  final Function(String, BuildContext context) onSelect;
   const SubscriptionView(
       {super.key, required this.info, required this.onSelect});
   @override
@@ -104,23 +105,25 @@ class _SubscriptionViewState extends State<SubscriptionView> {
       height: 120,
       child: Obx(
         () {
-          return ListView.builder(
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            itemCount: sCont.displayList.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding:
-                    EdgeInsets.only(right: 16, left: (index == 0) ? 20 : 0),
-                child: subscriptionCell(
-                  greyLight,
-                  sCont.packChargeList[index],
-                  sCont.displayList[index],
-                  index,
-                ),
-              );
-            },
-          );
+          return sCont.displayList.isEmpty
+              ? loadingIndicator(radius: 15)
+              : ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: sCont.displayList.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.only(
+                          right: 16, left: (index == 0) ? 20 : 0),
+                      child: subscriptionCell(
+                        greyLight,
+                        sCont.packChargeList[index],
+                        sCont.displayList[index],
+                        index,
+                      ),
+                    );
+                  },
+                );
         },
       ),
     );
@@ -269,7 +272,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
         onTap: () {
           if (sCont.enableSubmitButton.value) {
             String plan = sCont.packList[sCont.selectedIndex.value];
-            widget.onSelect(plan);
+            widget.onSelect(plan, context);
             Navigator.of(context).pop();
             // bCont.onConfirmSubscriptionPlan(
             //     sCont.packList[sCont.selectedIndex.value]);

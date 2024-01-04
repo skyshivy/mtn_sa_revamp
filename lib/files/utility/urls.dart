@@ -29,6 +29,7 @@ String searchByTuneIdUrl =
     '${baseUrl}search-tone?language=English&pageNo=0&perPageCount=20&toneId=';
 String deleteTuneUrl = "${baseUrlSecurity}delete-tone";
 String getpackStatusUrl = "${baseUrlSecurity}pack-status?";
+String setStatusTuneUrl = '${baseUrlSecurity}status-pack-activation';
 String deletePlayingTuneUrl = "${baseUrlSecurity}delete-from-shuffle";
 String deleteDedicatedTuneUrl = "${baseUrlSecurity}delete-dedication";
 String getArtistSearchTuneUrl = "${baseUrl}search-tone?language=";
