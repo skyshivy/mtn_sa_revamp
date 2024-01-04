@@ -92,6 +92,7 @@ const shareYourOwnSongStr =
     'Share your own song or audio message with your callers.';
 const tuneNameHereStr = 'Enter Tune name';
 const listningStr = 'Listening...';
+const minutesShouldBeOneStr = 'Minutes should be atleast one';
 const iHaveReadtermsStr = "I have read and agree to the";
 const noActivePlanStr = "No Active Plan";
 const buyStr = "Buy";

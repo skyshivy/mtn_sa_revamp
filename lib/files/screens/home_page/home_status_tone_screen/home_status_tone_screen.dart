@@ -81,7 +81,7 @@ class _HomeStatusToneScreen extends State<HomeStatusToneScreen> {
   Widget seeMoreWidget(SizingInformation si) {
     return Obx(() {
       return Visibility(
-        visible: statusCont.tuneList.length > 8,
+        visible: statusCont.tuneList.length > 10,
         child: CustomButton(
           title: seeMoreStr.tr,
           fontName: FontName.aheavy,
@@ -114,7 +114,7 @@ class _HomeStatusToneScreen extends State<HomeStatusToneScreen> {
     double h = 250;
     return Obx(() {
       int listSize =
-          (statusCont.tuneList.length > 8 ? 8 : statusCont.tuneList.length);
+          (statusCont.tuneList.length > 10 ? 10 : statusCont.tuneList.length);
 
       return ResponsiveBuilder(
         builder: (context, si) {

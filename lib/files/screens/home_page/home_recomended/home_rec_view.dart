@@ -85,8 +85,8 @@ class _LandingRecoViewState extends State<LandingRecoView> {
     double w = 240;
     double h = 250;
     return Obx(() {
-      int listSize = (((controller.displayList?.length ?? 0) > 8)
-              ? 8
+      int listSize = (((controller.displayList?.length ?? 0) > 10)
+              ? 10
               : controller.displayList?.length) ??
           0;
 

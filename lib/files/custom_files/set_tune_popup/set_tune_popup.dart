@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/subscription_view.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
@@ -61,7 +62,12 @@ class _SettunePopupState extends State<SettunePopup> {
                   child: tuneImage(),
                 )),
                 pickerView(),
-                veryfyButton(context, si),
+                errorMessageWidget(si),
+                Obx(() {
+                  return con.isSetting.value
+                      ? loadingIndicator(radius: 15)
+                      : veryfyButton(context, si);
+                }),
                 infoMessage(si),
                 const SizedBox(height: 20),
               ],
@@ -177,6 +183,7 @@ class _SettunePopupState extends State<SettunePopup> {
               value: value,
               onChanged: (value) {
                 onChange(value);
+                con.errorMessage.value = '';
                 print("selected day");
               },
             ),
@@ -196,9 +203,17 @@ class _SettunePopupState extends State<SettunePopup> {
       title: confirmStr,
       fontName: si.isMobile ? FontName.abook : FontName.aheavy,
       onTap: () async {
+        if ((con.selectedDay.value == 0) &&
+            (con.selectedHour.value == 0) &&
+            (con.selectedMinute.value == 0)) {
+          con.errorMessage.value = minutesShouldBeOneStr.tr;
+          print("print nothing is selected");
+          return;
+        }
         Get.dialog(SubscriptionView(
           info: widget.info ?? TuneInfo(),
           onSelect: (p0) {
+            con.setStatusTune();
             print("Selected pack name = $p0");
           },
         ));
@@ -207,6 +222,24 @@ class _SettunePopupState extends State<SettunePopup> {
         print("Tapped ${StoreManager().isLoggedIn}");
       },
     );
+  }
+
+  Widget errorMessageWidget(SizingInformation si) {
+    return Obx(() {
+      return Visibility(
+        visible: con.errorMessage.isNotEmpty,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 15, bottom: 10),
+          child: CustomText(
+            fontName: FontName.ablack,
+            title: con.errorMessage.value,
+            textColor: red,
+            fontSize: si.isMobile ? 14 : 16,
+            alignment: TextAlign.center,
+          ),
+        ),
+      );
+    });
   }
 
   Widget infoMessage(SizingInformation si) {

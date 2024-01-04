@@ -53,14 +53,14 @@ class WebNavBarView extends StatelessWidget {
   }
 
   BoxDecoration decorationBottomSection() {
-    return const BoxDecoration(
-      gradient: LinearGradient(
-        colors: [
-          darkGreen,
-          lightGreen,
-        ],
-      ),
-    );
+    return const BoxDecoration(color: darkGreen
+        // gradient: LinearGradient(
+        //   colors: [
+        //     darkGreen,
+        //     lightGreen,
+        //   ],
+        // ),
+        );
   }
 
   Widget bottomLeftWidget(BuildContext context) {
