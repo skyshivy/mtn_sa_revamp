@@ -210,22 +210,8 @@ class _SettunePopupState extends State<SettunePopup> {
           print("print nothing is selected");
           return;
         }
+        con.setStatusTune(widget.info ?? TuneInfo());
 
-        Get.dialog(SubscriptionView(
-          info: widget.info ?? TuneInfo(),
-          onSelect: (p0, cotext) {
-            con.onSuccess = () async {
-              print("On fail");
-              Navigator.of(context).pop();
-              await Future.delayed(Duration(milliseconds: 200));
-              Get.dialog(Center(
-                child: CustomAlertView(title: con.errorMessage.value),
-              ));
-            };
-            con.setStatusTune(p0, widget.info?.toneId ?? '');
-            print("Selected pack name = $p0");
-          },
-        ));
         print("Set tune tapped");
         //}
         print("Tapped ${StoreManager().isLoggedIn}");
