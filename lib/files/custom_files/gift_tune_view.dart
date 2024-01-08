@@ -136,7 +136,9 @@ class _GiftTuneViewState extends State<GiftTuneView> {
       onTap: () {
         Navigator.of(context).pop();
       },
-      leftWidget: Icon(Icons.close),
+      leftWidget: Icon(
+        Icons.close,
+      ),
     );
   }
 

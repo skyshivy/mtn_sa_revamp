@@ -99,11 +99,18 @@ class HomeTuneCell extends StatelessWidget {
 
                     (info?.toneId ?? '') == pCont.toneId
                         ? pCont.isPlaying.value
-                            ? const Icon(Icons.pause, size: 20)
-                            : const Icon(Icons.play_arrow_rounded, size: 20)
+                            ? Image.asset(pauseImg,
+                                height: 20) //const Icon(Icons.pause, size: 20)
+                            : Image.asset(playImg,
+                                height:
+                                    20) //const Icon(Icons.play_arrow_rounded, size: 20)
                         : pCont.isPlaying.value
-                            ? const Icon(Icons.play_arrow_rounded, size: 20)
-                            : const Icon(Icons.play_arrow_rounded, size: 20),
+                            ? Image.asset(playImg,
+                                height:
+                                    20) //const Icon(Icons.play_arrow_rounded, size: 20)
+                            : Image.asset(playImg,
+                                height:
+                                    20), //const Icon(Icons.play_arrow_rounded, size: 20),
                 onTap: () {
                   pCont.playUrl(info, index);
                 },

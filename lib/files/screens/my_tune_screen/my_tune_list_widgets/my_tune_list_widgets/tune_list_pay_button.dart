@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.da
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
@@ -41,11 +42,22 @@ Widget _playAndPauseButtonIcon(PlayerController pCont, int index) {
   return (pCont.playingIndex.value == index)
       ? (pCont.isPlaying.value
           ? (pCont.isBuffering.value
-              ? loadingIndicator(color: red, radius: 10)
-              : const Icon(
-                  Icons.pause,
-                  size: 20,
-                ))
-          : const Icon(Icons.play_arrow))
-      : const Icon(Icons.play_arrow);
+                  ? loadingIndicator(color: red, radius: 10)
+                  : Image.asset(
+                      pauseImg,
+                      width: 16,
+                    )
+              // Icon(
+              //     Icons.pause,
+              //     size: 20,
+              //   ),
+              )
+          : Image.asset(
+              playImg,
+              width: 20,
+            )) //const Icon(Icons.play_arrow))
+      : Image.asset(
+          playImg,
+          width: 20,
+        );
 }

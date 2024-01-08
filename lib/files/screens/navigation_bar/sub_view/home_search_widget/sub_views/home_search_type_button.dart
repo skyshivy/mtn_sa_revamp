@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
-import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -44,41 +43,7 @@ class HomeSearchTypeButton extends StatelessWidget {
 
   Widget radioButton(
       BuildContext context, String title, int index, SizingInformation si) {
-    return ElevatedButton.icon(
-      onPressed: () {
-        sCont.updateSearchType(index);
-      },
-      icon: SizedBox(
-        height: 40,
-        child: Obx(() {
-          return Icon(
-            (index == sCont.searchType.value)
-                ? Icons.radio_button_checked
-                : Icons.radio_button_unchecked,
-            color: (index == sCont.searchType.value) ? red : white,
-            size: si.isMobile ? 18 : 20,
-          );
-        }),
-      ),
-      label: Obx(() {
-        return CustomText(
-          title: title,
-          textColor: (index == sCont.searchType.value) ? red : white,
-          fontName: si.isMobile
-              ? FontName.medium
-              : FontName.bold, //si.isMobile ?  18:20,
-          fontSize: si.isMobile ? 14 : 16,
-        );
-      }),
-      style: ButtonStyle(
-        overlayColor: MaterialStateProperty.all<Color>(transparent),
-        backgroundColor: MaterialStateProperty.all<Color>(transparent),
-        foregroundColor: MaterialStateProperty.all<Color>(transparent),
-        shadowColor: MaterialStateProperty.all<Color>(transparent),
-      ),
-    );
-/*
-    InkWell(
+    return InkWell(
       onTap: () {
         print("object");
         sCont.updateSearchType(index);
@@ -89,11 +54,18 @@ class HomeSearchTypeButton extends StatelessWidget {
             return Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.radio_button_unchecked,
+                Image.asset(
+                  (index == sCont.searchType.value)
+                      ? radioButtonSelectedImg
+                      : radioButtonUnSelectedImg,
                   color: (index == sCont.searchType.value) ? red : white,
-                  size: si.isMobile ? 18 : 20,
+                  width: si.isMobile ? 18 : 20,
                 ),
+                // Icon(
+                //   ,
+                //   color: (index == sCont.searchType.value) ? red : white,
+                //   size: si.isMobile ? 18 : 20,
+                // ),
                 const SizedBox(width: 4),
                 CustomText(
                   title: title,
@@ -107,6 +79,5 @@ class HomeSearchTypeButton extends StatelessWidget {
             );
           })),
     );
-    */
   }
 }

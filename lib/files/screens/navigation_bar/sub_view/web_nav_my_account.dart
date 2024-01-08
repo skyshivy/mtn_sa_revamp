@@ -77,9 +77,12 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
   }
 
   Padding leftWidgetPadding() {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.only(left: 14, right: 4),
-      child: Icon(Icons.person_2_outlined, size: 20),
+      child: Image.asset(
+        personImg,
+        height: 20,
+      ), //Icon(Icons.person_2_outlined, size: 20),
     );
   }
 

@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.da
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class HomeLoginButton extends StatelessWidget {
@@ -38,9 +39,12 @@ class HomeLoginButton extends StatelessWidget {
   }
 
   Padding loaginLeftWidgetPadding() {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.only(left: 12),
-      child: Icon(Icons.person_2_outlined, size: 20),
+      child: Image.asset(
+        personImg,
+        height: 20,
+      ), //Icon(Icons.person_2_outlined, size: 20),
     );
   }
 }

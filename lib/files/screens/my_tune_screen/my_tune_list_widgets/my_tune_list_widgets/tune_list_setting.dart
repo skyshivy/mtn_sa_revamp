@@ -11,6 +11,7 @@ import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/my_tunel_list_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget tuneListSettingWidget(BuildContext context, ListToneApk1 info) {
@@ -20,13 +21,18 @@ Widget tuneListSettingWidget(BuildContext context, ListToneApk1 info) {
     fontName: FontName.medium,
     fontSize: 16,
     textColor: white,
-    leftWidget: const Padding(
+    leftWidget: Padding(
       padding: EdgeInsets.only(left: 6),
-      child: Icon(
-        Icons.settings,
-        size: 23,
+      child: Image.asset(
+        settingImg,
+        width: 20,
         color: white,
       ),
+      // Icon(
+      //   Icons.settings,
+      //   size: 23,
+      //   color: white,
+      // ),
     ),
     height: 40,
     title: settingStr.tr,

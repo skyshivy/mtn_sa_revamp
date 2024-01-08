@@ -57,7 +57,10 @@ class _TuneListMoreButtonState extends State<TuneListMoreButton> {
       height: 30,
       width: 30,
       color: Colors.white38,
-      leftWidget: const Icon(Icons.more_horiz, color: white),
+      leftWidget: Image.asset(
+        moreHorzontalImg,
+        width: 20,
+      ), //const Icon(Icons.more_horiz, color: white),
       onTap: () {
         printCustom(
             "StoreManager().isLoggedIn ====== ${StoreManager().isLoggedIn}");

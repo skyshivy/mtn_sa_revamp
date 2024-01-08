@@ -27,6 +27,17 @@ const logoutImg = 'assets/pngs/logout_img1.png';
 const profileImg = 'assets/pngs/profile_img1.png';
 const myTuneImg = 'assets/pngs/my_tune_img1.png';
 
+const radioButtonUnSelectedImg = 'assets/pngs/radio_button_unselected.png';
+const radioButtonSelectedImg = 'assets/pngs/radio_button_selected.png';
+
+const moreHorzontalImg = 'assets/pngs/more_horiz.png';
+const settingImg = 'assets/pngs/settingImage.png';
+
+const playImg = 'assets/pngs/playImg.png';
+const pauseImg = 'assets/pngs/pauseImg.png';
+const personImg = 'assets/pngs/personImg.png';
+const arrowBackImg = 'assets/pngs/arrowBack.png';
+
 // svg image bottom =======================
 
 const wishlistSvg = 'assets/svg/wishlistSvg.svg';

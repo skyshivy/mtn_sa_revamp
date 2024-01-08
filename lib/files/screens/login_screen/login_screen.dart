@@ -323,17 +323,21 @@ class _LoginScreenState extends State<LoginScreen> {
     return ResponsiveBuilder(
       builder: (context, si) {
         return CustomButton(
-          alignment: TextAlign.left,
-          width: si.isMobile ? 30 : 40,
-          onTap: () {
-            controller.resetValue();
-            printCustom("Tapped back");
-          },
-          leftWidget: Icon(
-            Icons.arrow_back,
-            size: si.isMobile ? 18 : 25,
-          ),
-        );
+            alignment: TextAlign.left,
+            width: si.isMobile ? 30 : 40,
+            onTap: () {
+              controller.resetValue();
+              printCustom("Tapped back");
+            },
+            leftWidget: Image.asset(
+              arrowBackImg,
+              width: si.isMobile ? 18 : 25,
+            )
+            // Icon(
+            //   Icons.arrow_back,
+            //   size: si.isMobile ? 18 : 25,
+            // ),
+            );
       },
     );
   }

@@ -106,12 +106,22 @@ class BuyAndPlayButton extends StatelessWidget {
         ? (playerController.isPlaying.value
             ? (playerController.isBuffering.value
                 ? loadingIndicator(color: red, radius: 10)
-                : const Icon(
-                    Icons.pause,
-                    size: 20,
+                : Image.asset(
+                    pauseImg,
+                    width: 18,
                   ))
-            : const Icon(Icons.play_arrow))
-        : const Icon(Icons.play_arrow);
+            // const Icon(
+            //     Icons.pause,
+            //     size: 20,
+            //   ))
+            : Image.asset(
+                playImg,
+                width: 18,
+              )) //const Icon(Icons.play_arrow))
+        : Image.asset(
+            playImg,
+            width: 18,
+          ); //const Icon(Icons.play_arrow);
   }
 
   Widget buyButtonWidget() {
