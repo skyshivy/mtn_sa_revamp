@@ -43,8 +43,8 @@ class MyTuneController extends GetxController {
     playingList.value = <ListToneApk>[];
     bool status = await getPackStatus();
     if (status) {
-      getTuneList();
       getMyPlayingList();
+      getTuneList();
     } else {
       isLoadingPlaying.value = false;
       isLoadingTune.value = false;
@@ -80,22 +80,21 @@ class MyTuneController extends GetxController {
   }
 
   Future<void> getMyPlayingList() async {
-    isLoadingPlaying.value = true;
     PlayingTuneModel? playingTune =
         await MyTunePlayingVM().getPlayingTuneListApiCall();
-    isLoadingPlaying.value = false;
+    print("called shiv");
     if (playingTune != null) {
       printCustom("Is suffle status 1 ${playingTune.isSuffle!}");
       isSuffle.value = playingTune.isSuffle!;
       switchEnabled.value = playingTune.isSuffle!;
       playingList.value = playingTune.responseMap?.listToneApk ?? [];
     }
+    isLoadingPlaying.value = false;
     return;
   }
 
   Future<void> getTuneList() async {
     tuneList.value = <ListToneApk1>[];
-    isLoadingTune.value = true;
 
     Map<String, dynamic>? re = await ServiceCall()
         .get('$getMyTuneListUrl&msisdn=${StoreManager().msisdn}');
@@ -138,6 +137,7 @@ class MyTuneController extends GetxController {
     printCustom(
         "Delete playing tune name ${toneId} ===== ${playingList[index].msisdnB}");
     printCustom("Does contain msisdn ===== ${playingList[index].msisdnB}");
+
     if (playingList[index].msisdnB == null) {
       bool isFullday =
           !(playingList[index].toneDetails?.first.weeklyDays == "0");

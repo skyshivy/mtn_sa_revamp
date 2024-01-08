@@ -42,47 +42,51 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
     return ResponsiveBuilder(
       builder: (context, si) {
         return SingleChildScrollView(
-          child: Obx(
-            () {
-              return Column(
+            child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const MyTuneHeaderView(),
+            const SizedBox(height: 15),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 4 : 20),
+              child: Column(
                 mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const MyTuneHeaderView(),
-                  const SizedBox(height: 15),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: si.isMobile ? 4 : 20),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        controller.isLoadingPlaying.value
-                            ? loadInd()
-                            : checkMyTuneEmpty(),
-                        const SizedBox(height: 35),
-                        controller.isLoadingTune.value
-                            ? loadInd()
-                            : checkMyTuneListEmpty(),
-                        const SizedBox(height: 200),
-                      ],
-                    ),
-                  ),
+                  Obx(() {
+                    return controller.isLoadingPlaying.value
+                        ? loadInd()
+                        : checkMyPlayingTuneEmpty();
+                  }),
+                  const SizedBox(height: 35),
+                  Obx(() {
+                    return controller.isLoadingTune.value
+                        ? loadInd()
+                        : checkMyTuneListEmpty();
+                  }),
+                  const SizedBox(height: 200),
                 ],
-              );
-            },
-          ),
-        );
+              ),
+            ),
+          ],
+        ));
       },
     );
   }
 
   Widget checkMyTuneListEmpty() {
-    return controller.playingList.isEmpty ? listIsEmpty() : MyTuneListView();
+    return Obx(() {
+      return controller.tuneList.isEmpty ? listIsEmpty() : MyTuneListView();
+    });
   }
 
-  Widget checkMyTuneEmpty() {
-    return controller.playingList.isEmpty ? listIsEmpty() : MyTunePlayingView();
+  Widget checkMyPlayingTuneEmpty() {
+    return Obx(() {
+      return controller.playingList.isEmpty
+          ? listIsEmpty()
+          : MyTunePlayingView();
+    });
   }
 
   Widget listIsEmpty() {
