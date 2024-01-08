@@ -36,6 +36,7 @@ Widget _playAndPauseButtonIcon(PlayerController pCont, int index) {
               ? loadingIndicator(color: white, radius: 10)
               : Image.asset(
                   pauseImg,
+                  color: white,
                   width: 20,
                 ))
           // const Icon(
@@ -45,6 +46,7 @@ Widget _playAndPauseButtonIcon(PlayerController pCont, int index) {
           //   ))
           : Image.asset(
               playImg,
+              color: white,
               width: 20,
             ))
       // const Icon(
@@ -53,6 +55,7 @@ Widget _playAndPauseButtonIcon(PlayerController pCont, int index) {
       //   ))
       : Image.asset(
           playImg,
+          color: white,
           width: 20,
         );
   // const Icon(

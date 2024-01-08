@@ -154,11 +154,11 @@ class PlayerController extends GetxController {
           : "00:0${position.inSeconds}";
       ;
       current.value = position.inSeconds;
-      maxDuration.value = player.duration!.inSeconds;
+      maxDuration.value = player.duration?.inSeconds ?? 0;
 
-      maxDurationStr.value = player.duration!.inSeconds > 9
-          ? "00:${player.duration!.inSeconds}"
-          : "00:0${player.duration!.inSeconds}";
+      maxDurationStr.value = (player.duration?.inSeconds ?? 0) > 9
+          ? "00:${player.duration?.inSeconds}"
+          : "00:0${player.duration?.inSeconds}";
     });
   }
 
