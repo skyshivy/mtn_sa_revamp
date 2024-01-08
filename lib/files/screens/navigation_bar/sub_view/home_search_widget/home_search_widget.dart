@@ -65,6 +65,7 @@ class HomeSearchWidget extends StatelessWidget {
                   "key": p0,
                   "index": "${searchTuneController.searchType.value}",
                 });
+                searchTuneController.stopMultipleApiCall = true;
                 searchTuneController.getSearchedResult(
                     searchTuneController.searchedText.value, 0);
               }

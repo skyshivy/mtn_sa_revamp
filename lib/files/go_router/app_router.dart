@@ -311,6 +311,7 @@ StatefulShellBranch searchScreen() {
       builder: (context, state) {
         String searchkey = state.uri.queryParameters['key'] ?? '';
         String index = state.uri.queryParameters['index'] ?? "0";
+        sCOnt.stopMultipleApiCall = true;
         sCOnt.getSearchedResult(searchkey, 0,
             searchTypeIndex: int.parse(index));
 

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -34,13 +35,14 @@ class SearchTuneController extends GetxController {
   getSearchedResult(String searchedTxt, int p,
       {bool isloadMore = false, int? searchTypeIndex}) async {
     print("called getSearchedResult");
+
     if (!stopMultipleApiCall) {
       print("object  not searching here");
-      await Future.delayed(Duration(milliseconds: 200));
+      await Future.delayed(const Duration(milliseconds: 80));
       stopMultipleApiCall = true;
       return;
     }
-    //stopMultipleApiCall = false;
+    stopMultipleApiCall = false;
     if (searchTypeIndex != null) {
       searchType.value = searchTypeIndex;
     }
