@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:html_unescape/html_unescape.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/model/category_detail_model.dart';
@@ -32,16 +33,19 @@ class SearchTuneController extends GetxController {
   bool stopMultipleApiCall = true;
   getSearchedResult(String searchedTxt, int p,
       {bool isloadMore = false, int? searchTypeIndex}) async {
+    print("called getSearchedResult");
     if (!stopMultipleApiCall) {
-      await Future.delayed(Duration(milliseconds: 300));
+      print("object  not searching here");
+      await Future.delayed(Duration(milliseconds: 200));
       stopMultipleApiCall = true;
       return;
     }
-    stopMultipleApiCall = false;
+    //stopMultipleApiCall = false;
     if (searchTypeIndex != null) {
       searchType.value = searchTypeIndex;
     }
     searchedText.value = searchedTxt;
+
     if (searchType.value == 3) {
       print("name tune search here");
       _searchNameTune(searchedTxt);
@@ -70,7 +74,7 @@ class SearchTuneController extends GetxController {
     //   return;
     // }
 
-    String s = searchedTxt.trim();
+    String s = searchedText.value.trim();
     if (s != null) {
       s = s.replaceAll(' ', '+');
     }
@@ -79,6 +83,7 @@ class SearchTuneController extends GetxController {
       isLoaded.value = false;
     }
     isLoadMore.value = true;
+
     var url =
         '$searchSpecificToneUrl=${StoreManager().language}&sortBy=Order_By&perPageCount=$pagePerCount&searchLanguage=${StoreManager().language}&searchKey=$s&pageNo=$p';
     Map<String, dynamic>? result = await ServiceCall().get(url);
@@ -90,6 +95,8 @@ class SearchTuneController extends GetxController {
       artistList.value += model.responseMap?.countList?.artistDetailList ?? [];
       printCustom(
           "Tune list length is ${toneList.length} Tune list length ${songList.length}");
+    } else {
+      print("some thing went wrong  in search");
     }
 
     isLoading.value = false;
@@ -179,7 +186,10 @@ class SearchTuneController extends GetxController {
 
       songList.value +=
           model.responseMap?.songList ?? model.responseMap?.toneList ?? [];
+    } else {
+      print("some thing went wrong  in search");
     }
+
     isLoading.value = false;
     isLoaded.value = true;
     isLoadMore.value = false;

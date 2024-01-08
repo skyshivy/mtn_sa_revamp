@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 SliverGridDelegateWithMaxCrossAxisExtent delegate(SizingInformation si,
@@ -9,7 +10,8 @@ SliverGridDelegateWithMaxCrossAxisExtent delegate(SizingInformation si,
   return SliverGridDelegateWithMaxCrossAxisExtent(
     childAspectRatio: 0.8,
     mainAxisExtent: mainAxisExtent,
-    maxCrossAxisExtent: maxCrossAxisExtent!,
+    maxCrossAxisExtent:
+        maxCrossAxisExtent! + (StoreManager().isEnglish ? 0 : 70),
     mainAxisSpacing: si.isMobile ? 8 : mainAxisSpacing ?? 20,
     crossAxisSpacing: si.isMobile ? 8 : crossAxisSpacing ?? 20,
   );

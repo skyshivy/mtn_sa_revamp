@@ -34,9 +34,8 @@ class _DeleteScreenState extends State<DeleteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: customColumn(), //buttonsColumn() //customColumn(),
-    );
+    return Center(child: buttonsColumn() //customColumn(),
+        );
   }
 
   Widget buttonsColumn() {
@@ -45,6 +44,8 @@ class _DeleteScreenState extends State<DeleteScreen> {
         buttonOne(),
         SizedBox(height: 10),
         buttonTwo(),
+        SizedBox(height: 10),
+        customButtonTwo(),
         SizedBox(height: 10),
         buttonThree()
       ],
@@ -64,10 +65,16 @@ class _DeleteScreenState extends State<DeleteScreen> {
             height: 40,
             child: Icon(
               Icons.radio_button_checked,
+              color: blue,
               size: 20.0,
             ),
           ),
-          label: CustomText(title: 'ElevatedButton Radio'),
+          label: CustomText(title: 'custom text ElevatedButton Radio'),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(transparent),
+            foregroundColor: MaterialStateProperty.all<Color>(transparent),
+            shadowColor: MaterialStateProperty.all<Color>(transparent),
+          ),
         ),
         SizedBox(height: 8),
         ElevatedButton.icon(
@@ -80,7 +87,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
               size: 20.0,
             ),
           ),
-          label: CustomText(title: 'ElevatedButton'),
+          label: CustomText(title: 'custom text ElevatedButton'),
         ),
         TextButton.icon(
           // <-- TextButton
@@ -127,6 +134,35 @@ class _DeleteScreenState extends State<DeleteScreen> {
             Icon(
               // <-- Icon
               Icons.download,
+              size: 20.0,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget customButtonTwo() {
+    return ElevatedButton(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(transparent),
+        foregroundColor: MaterialStateProperty.all<Color>(transparent),
+        shadowColor: MaterialStateProperty.all<Color>(transparent),
+      ),
+      onPressed: () {},
+      child: SizedBox(
+        height: 40,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomText(title: 'Custom ElevatedButton row'), // <-- Text
+            SizedBox(
+              width: 5,
+            ),
+            Icon(
+              // <-- Icon
+              Icons.download,
+              color: red,
               size: 20.0,
             ),
           ],

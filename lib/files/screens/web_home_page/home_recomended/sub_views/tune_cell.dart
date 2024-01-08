@@ -48,7 +48,7 @@ class HomeTuneCell extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Flexible(child: tuneImageWidget(index)),
+        Expanded(child: tuneImageWidget(index)),
         bottomSection(index),
       ],
     );

@@ -44,7 +44,41 @@ class HomeSearchTypeButton extends StatelessWidget {
 
   Widget radioButton(
       BuildContext context, String title, int index, SizingInformation si) {
-    return InkWell(
+    return ElevatedButton.icon(
+      onPressed: () {
+        sCont.updateSearchType(index);
+      },
+      icon: SizedBox(
+        height: 40,
+        child: Obx(() {
+          return Icon(
+            (index == sCont.searchType.value)
+                ? Icons.radio_button_checked
+                : Icons.radio_button_unchecked,
+            color: (index == sCont.searchType.value) ? red : white,
+            size: si.isMobile ? 18 : 20,
+          );
+        }),
+      ),
+      label: Obx(() {
+        return CustomText(
+          title: title,
+          textColor: (index == sCont.searchType.value) ? red : white,
+          fontName: si.isMobile
+              ? FontName.medium
+              : FontName.bold, //si.isMobile ?  18:20,
+          fontSize: si.isMobile ? 14 : 16,
+        );
+      }),
+      style: ButtonStyle(
+        overlayColor: MaterialStateProperty.all<Color>(transparent),
+        backgroundColor: MaterialStateProperty.all<Color>(transparent),
+        foregroundColor: MaterialStateProperty.all<Color>(transparent),
+        shadowColor: MaterialStateProperty.all<Color>(transparent),
+      ),
+    );
+/*
+    InkWell(
       onTap: () {
         print("object");
         sCont.updateSearchType(index);
@@ -73,5 +107,6 @@ class HomeSearchTypeButton extends StatelessWidget {
             );
           })),
     );
+    */
   }
 }
