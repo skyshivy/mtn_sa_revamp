@@ -4,6 +4,7 @@
 
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 
 SearchTuneModel searchTuneModelFromJson(String str) =>
@@ -62,7 +63,7 @@ class ResponseMap {
 
   factory ResponseMap.fromJson(Map<String, dynamic> json) => ResponseMap(
         countList: json["countList"] == null
-            ? null
+            ? CountList()
             : CountList.fromJson(json["countList"]),
         toneList: json["toneList"] == null
             ? []
@@ -74,7 +75,7 @@ class ResponseMap {
             ? []
             : List<TuneInfo>.from(
                 json["songList"]!.map((x) => TuneInfo.fromJson(x))),
-        albumTotalCount: json["albumTotalCount"],
+        albumTotalCount: json["albumTotalCount"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {
@@ -92,7 +93,7 @@ class ResponseMap {
 }
 
 class CountList {
-  List<ArtistDetailList>? artistDetailList;
+  List<ArtistDetailList?>? artistDetailList;
 
   CountList({
     this.artistDetailList,
@@ -108,7 +109,7 @@ class CountList {
   Map<String, dynamic> toJson() => {
         "artistDetailList": artistDetailList == null
             ? []
-            : List<dynamic>.from(artistDetailList!.map((x) => x.toJson())),
+            : List<dynamic>.from(artistDetailList!.map((x) => x?.toJson())),
       };
 }
 

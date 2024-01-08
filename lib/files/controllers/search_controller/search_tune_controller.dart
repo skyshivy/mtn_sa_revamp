@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -30,7 +32,7 @@ class SearchTuneController extends GetxController {
   RxInt isTuneSelected = 0.obs;
   RxList<TuneInfo> toneList = <TuneInfo>[].obs;
   RxList<TuneInfo> songList = <TuneInfo>[].obs;
-  RxList<ArtistDetailList> artistList = <ArtistDetailList>[].obs;
+  RxList<ArtistDetailList?> artistList = <ArtistDetailList>[].obs;
   bool stopMultipleApiCall = true;
   getSearchedResult(String searchedTxt, int p,
       {bool isloadMore = false, int? searchTypeIndex}) async {
@@ -91,16 +93,21 @@ class SearchTuneController extends GetxController {
     Map<String, dynamic>? result = await ServiceCall().get(url);
 
     if (result != null) {
-      SearchTuneModel model = SearchTuneModel.fromJson(result);
-      toneList.value += model.responseMap?.toneList ?? [];
-      songList.value += model.responseMap?.songList ?? [];
-      artistList.value += model.responseMap?.countList?.artistDetailList ?? [];
-      printCustom(
-          "Tune list length is ${toneList.length} Tune list length ${songList.length}");
+      try {
+        SearchTuneModel model = SearchTuneModel.fromJson(result);
+        toneList.value += model.responseMap?.toneList ?? [];
+        songList.value += model.responseMap?.songList ?? [];
+
+        artistList.value +=
+            (model.responseMap?.countList?.artistDetailList ?? []);
+        printCustom(
+            "Tune list length is ${toneList.length} Tune list length ${songList.length}");
+      } catch (e) {
+        print("decoding issue = $e");
+      }
     } else {
       print("some thing went wrong  in search");
     }
-
     isLoading.value = false;
     isLoaded.value = true;
     isLoadMore.value = false;
@@ -197,3 +204,90 @@ class SearchTuneController extends GetxController {
     isLoadMore.value = false;
   }
 }
+/*
+const newVal = """{
+   "responseMap":{
+      "toneList":[
+         {
+            "toneId":"5665613",
+            "previewImageUrl":"http://10.84.75.128:9000/stream-media/get-preview-image?fileId\u003dY7z3CuJFgvvXXw3HzbvBhRADARCeQHW1P8gzE2ZlQy0ugp0/kVFhOB5xVuAWj6sbjDnrTyrnh4h5oTigfJlg01SVN8hOWyu7nLfBTKPIL/LkQqtZ5VDCiB6oo/jy5dZTOTomerh/R3w\u003d",
+            "toneUrl":"http://10.84.75.128:9000/stream-media/get-tone-path?fileId\u003dY7z3CuJFgvvXXw3HzbvBhRADARCeQHW1P8gzE2ZlQy0ugp0/kVFhOB5xVuAWj6sbjDnrTyrnh4iuG1eviC6UH/WWPIugDx8B98Beu2hDeDeLiu7ac3i2ZYL0pd0pr3KK30aeSk+ZVtU\u003d",
+            "toneName":"ဢမ်ႇမေႃတိူဝ်ႉၸႂ်",
+            "artistName":"ပူႇပီး",
+            "price":300.0,
+            "categoryId":30,
+            
+            "expiryDate":"31/12/2025",
+            "likeCount":"NULL",
+            "toneIdStreamingUrl":"http://10.84.75.128:9000/stream-media/get-tone-path?fileId\u003d4KMDbdHL91E\u003d",
+            "toneIdpreviewImageUrl":"http://10.84.75.128:9000/stream-media/get-preview-image?fileId\u003d4KMDbdHL91E\u003d"
+         }
+      ],
+      "songTotalCount":1,
+      "toneTotalCount":1,
+      "songList":[
+         {
+            "toneId":"5665613",
+            "previewImageUrl":"http://10.84.75.128:9000/stream-media/get-preview-image?fileId\u003dY7z3CuJFgvvXXw3HzbvBhRADARCeQHW1P8gzE2ZlQy0ugp0/kVFhOB5xVuAWj6sbjDnrTyrnh4h5oTigfJlg01SVN8hOWyu7nLfBTKPIL/LkQqtZ5VDCiB6oo/jy5dZTOTomerh/R3w\u003d",
+            "toneUrl":"http://10.84.75.128:9000/stream-media/get-tone-path?fileId\u003dY7z3CuJFgvvXXw3HzbvBhRADARCeQHW1P8gzE2ZlQy0ugp0/kVFhOB5xVuAWj6sbjDnrTyrnh4iuG1eviC6UH/WWPIugDx8B98Beu2hDeDeLiu7ac3i2ZYL0pd0pr3KK30aeSk+ZVtU\u003d",
+            "toneName":"ဢမ်ႇမေႃတိူဝ်ႉၸႂ်",
+            "artistName":"ပူႇပီး",
+            
+            "price":300.0,
+            "categoryId":30,
+            "expiryDate":"31/12/2025",
+            "likeCount":"NULL",
+            "toneIdStreamingUrl":"http://10.84.75.128:9000/stream-media/get-tone-path?fileId\u003d4KMDbdHL91E\u003d",
+            "toneIdpreviewImageUrl":"http://10.84.75.128:9000/stream-media/get-preview-image?fileId\u003d4KMDbdHL91E\u003d"
+         }
+      ]
+   },
+   "message":"Success",
+   "respTime":"Jan 8, 2024 5:22:53 PM",
+   "statusCode":"SC0000"
+} """;
+
+var newVal1 = """{
+   "responseMap":{
+      
+      "toneList":[
+         {
+          
+            "toneId":"55513527",
+            "previewImageUrl":"http://10.84.75.128:9000/stream-media/get-preview-image?fileId\u003dY7z3CuJFgvvXXw3HzbvBhRADARCeQHW1P8gzE2ZlQy0ugp0/kVFhOCMEPdd1h3mpk2YBQhcUYAh5oTigfJlg0wUVjL0vyr3EHxDoLy3c6hhhMal4fCr3fC19QTvtKCTkflnzhX15GYwCVaj8Eq3hi9f+PgeCKRrI",
+            "toneUrl":"http://10.84.75.128:9000/stream-media/get-tone-path?fileId\u003dY7z3CuJFgvvXXw3HzbvBhRADARCeQHW1P8gzE2ZlQy0ugp0/kVFhOCMEPdd1h3mpk2YBQhcUYAjeibXy+5ONy3vwQ1lw66Qu6XWpsaf+tUN/AN10YFq/vGdTb92XHqAxbYtTKefx3ODonfSgud4OEw\u003d\u003d",
+            "toneName":"SHIV",
+            "artistName":"Theory Khualpu",
+            "albumName":"Suang Manpha Sang Manpha Zaw",
+            "price":300.0,
+            "categoryId":3,
+            "expiryDate":"31/12/2025",
+            "likeCount":"NULL",
+            "toneIdStreamingUrl":"http://10.84.75.128:9000/stream-media/get-tone-path?fileId\u003dQAedrjZPFwHfRp5KT5lW1Q\u003d\u003d",
+            "toneIdpreviewImageUrl":"http://10.84.75.128:9000/stream-media/get-preview-image?fileId\u003dQAedrjZPFwHfRp5KT5lW1Q\u003d\u003d"
+         }
+      ],
+      "songTotalCount":91,
+      "toneTotalCount":91,
+      "songList":[
+         {
+            "toneId":"55513527",
+            "previewImageUrl":"http://10.84.75.128:9000/stream-media/get-preview-image?fileId\u003dY7z3CuJFgvvXXw3HzbvBhRADARCeQHW1P8gzE2ZlQy0ugp0/kVFhOCMEPdd1h3mpk2YBQhcUYAh5oTigfJlg0wUVjL0vyr3EHxDoLy3c6hhhMal4fCr3fC19QTvtKCTkflnzhX15GYwCVaj8Eq3hi9f+PgeCKRrI",
+            "toneUrl":"http://10.84.75.128:9000/stream-media/get-tone-path?fileId\u003dY7z3CuJFgvvXXw3HzbvBhRADARCeQHW1P8gzE2ZlQy0ugp0/kVFhOCMEPdd1h3mpk2YBQhcUYAjeibXy+5ONy3vwQ1lw66Qu6XWpsaf+tUN/AN10YFq/vGdTb92XHqAxbYtTKefx3ODonfSgud4OEw\u003d\u003d",
+            "toneName":"SKumar",
+            "artistName":"Theory Khualpu",
+            "albumName":"Suang Manpha Sang Manpha Zaw",
+            "price":300.0,
+            "categoryId":3,
+            "expiryDate":"31/12/2025",
+            "likeCount":"NULL",
+            "toneIdStreamingUrl":"http://10.84.75.128:9000/stream-media/get-tone-path?fileId\u003dQAedrjZPFwHfRp5KT5lW1Q\u003d\u003d",
+            "toneIdpreviewImageUrl":"http://10.84.75.128:9000/stream-media/get-preview-image?fileId\u003dQAedrjZPFwHfRp5KT5lW1Q\u003d\u003d"
+         }
+      ]
+   },
+   "message":"Success",
+   "respTime":"Jan 8, 2024 5:20:31 PM",
+   "statusCode":"SC0000"
+}""";
+*/

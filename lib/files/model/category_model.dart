@@ -82,7 +82,7 @@ class AppCategory {
 
     return AppCategory(
       categoryId: json["categoryId"],
-      categoryName: unescape.convert(json["categoryName"]),
+      categoryName: unescape.convert(json["categoryName"] ?? ''),
       menuImagePath: json["menuImagePath"],
       language: json["language"],
     );

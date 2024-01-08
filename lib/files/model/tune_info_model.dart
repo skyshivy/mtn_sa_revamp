@@ -75,8 +75,8 @@ class TuneInfo {
       msisdn: json['msisdn'],
       createdDate: json['createdDate'],
       wishListType: json['wishListType'],
-      albumName: unescape?.convert(json['albumName'] ?? json['album']),
-      artistName: unescape?.convert(json['artistName'] ?? json['artist']),
+      albumName: unescape?.convert(json['albumName'] ?? json['album'] ?? ''),
+      artistName: unescape?.convert(json['artistName'] ?? json['artist'] ?? ''),
       categoryId: '${json['categoryId']}',
       downloadCount: json['downloadCount'],
       likeCount: json['likeCount'],
@@ -85,7 +85,8 @@ class TuneInfo {
       toneIdStreamingUrl: json['toneIdStreamingUrl'] ?? json['path'],
       toneIdpreviewImageUrl:
           json['toneIdpreviewImageUrl'] ?? json['previewImageUrl'],
-      toneName: unescape?.convert(json['toneName'] ?? json['contentName']),
+      toneName:
+          unescape?.convert(json['toneName'] ?? json['contentName'] ?? ''),
       toneUrl: json['toneUrl'],
       price: '${json['price']}',
       expiryDate: json['expiryDate'],

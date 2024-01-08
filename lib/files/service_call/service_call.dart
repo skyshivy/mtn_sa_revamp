@@ -140,6 +140,7 @@ class ServiceCall {
       printCustom("resp code is ${response1.statusCode}");
       if (response1.statusCode == 200) {
         Map<String, dynamic> valueMap = json.decode(stringData);
+
         return valueMap;
       } else if (response1.statusCode == 498) {
         await ServiceCall().regenarateTokenFromOtherClass();

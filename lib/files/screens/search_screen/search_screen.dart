@@ -106,13 +106,13 @@ class _SearchScreenState extends State<SearchScreen> {
     return InkWell(
       onTap: () {
         context.goNamed(artistGoRoute, queryParameters: {
-          'artist': controller.artistList[index].matchedParam ?? ''
+          'artist': controller.artistList[index]?.matchedParam ?? ''
         });
         // Get.toNamed(artistTuneRoute, parameters: {
         //   "artist": controller.artistList[index].matchedParam ?? ''
         // });
         printCustom(
-            "Tapped artist is ${controller.artistList[index].matchedParam ?? ''}");
+            "Tapped artist is ${controller.artistList[index]?.matchedParam ?? ''}");
       },
       child: Container(
           clipBehavior: Clip.hardEdge,
@@ -139,7 +139,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    title: (controller.artistList[index].matchedParam ?? '')
+                    title: (controller.artistList[index]?.matchedParam ?? '')
                         .toUpperCase(),
                     fontName: si.isMobile ? FontName.medium : FontName.bold,
                     fontSize: si.isMobile ? 12 : 14,
