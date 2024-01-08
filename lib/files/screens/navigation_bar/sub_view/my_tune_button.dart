@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.da
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_popup_view.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
@@ -33,12 +34,17 @@ class HomeMyTuneButton extends StatelessWidget {
   }
 
   Padding rightWidget() {
-    return const Padding(
-      padding: EdgeInsets.only(top: 2),
-      child: Icon(
-        Icons.arrow_drop_down_outlined,
-        color: white,
-      ),
-    );
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: Image.asset(
+          downArrowImg,
+          width: 18,
+          color: white,
+        )
+        // Icon(
+        //   Icons.arrow_drop_down_outlined,
+        //   color: white,
+        // ),
+        );
   }
 }

@@ -37,7 +37,7 @@ const playImg = 'assets/pngs/playImg.png';
 const pauseImg = 'assets/pngs/pauseImg.png';
 const personImg = 'assets/pngs/personImg.png';
 const arrowBackImg = 'assets/pngs/arrowBack.png';
-
+const downArrowImg = 'assets/pngs/downArrowImg.png';
 // svg image bottom =======================
 
 const wishlistSvg = 'assets/svg/wishlistSvg.svg';
