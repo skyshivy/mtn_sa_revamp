@@ -29,6 +29,7 @@ import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/help_screen/help_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/history_screen/history_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/music_pack_screen/music_pack_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_bar.dart';
@@ -72,6 +73,7 @@ final router = GoRouter(
         wishlistScreen(),
         myTuneScreen(),
         tuneSettingScreen(),
+        musicPackScreenRoute(),
         //deleteScreenRoute(),
         historyScreenRoute(),
         _privatePolicyScreen(),
@@ -328,6 +330,18 @@ StatefulShellBranch deleteScreenRoute() {
       path: deleteGoRoute,
       builder: (context, state) {
         return DeleteScreen(); //CustomText(title: "title  $searchkey");
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch musicPackScreenRoute() {
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: musicPackGoRoute,
+      path: musicPackGoRoute,
+      builder: (context, state) {
+        return MusicPackScreen(); //CustomText(title: "title  $searchkey");
       },
     ),
   ]);

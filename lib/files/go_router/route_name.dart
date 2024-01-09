@@ -1,6 +1,6 @@
 const String homeGoRoute = '/';
 const String faqGoRoute = '/faq';
-
+const String musicPackGoRoute = '/musicPack';
 const String helpGoRoute = '/help';
 const String policyGoRoute = '/privacyPolicy';
 const String termsGoRoute = '/termsCondition';

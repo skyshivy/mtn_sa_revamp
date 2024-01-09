@@ -117,6 +117,7 @@ const myAccountStr = "My Account";
 const cancelStr = "Cancel";
 const editStr = "Edit";
 const saveStr = "Save";
+const musicPackStr = "Music Pack";
 const viewStr = "View";
 const selectAtleastOneCatStr = "Select at least one category.";
 const confirmStr = "Confirm";

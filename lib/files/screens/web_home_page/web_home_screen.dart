@@ -13,6 +13,7 @@ import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settn
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/home_search_widget.dart';
 import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/buy_opt_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_info_page/home_info_page.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/home_music_pack_view/home_music_pack_view.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/home_page_banner.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_bottom_section/home_page_bottom_section.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/home_rec_view.dart';
@@ -69,6 +70,8 @@ class _WebLandingPageState extends State<WebLandingPage> {
                 SizedBox(height: 20),
                 const LandingRecoView(),
                 SizedBox(height: si.isMobile ? 10 : 80),
+                HomeMusicPackView(),
+                //SizedBox(height: si.isMobile ? 10 : 80),
                 LandingInfoPage(),
                 const LandingPageBottomSection()
               ],

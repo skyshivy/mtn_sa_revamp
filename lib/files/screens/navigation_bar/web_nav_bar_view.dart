@@ -59,19 +59,9 @@ class WebNavBarView extends StatelessWidget {
           _onTap(0);
         }),
         leftSpacing(width: 30),
-        HomeMyTuneButton(
-          onTap: (category) {
-            printCustom("Tapped === ${category.categoryName}");
-
-            Map<String, dynamic> map = {
-              "categoryName": category.categoryName ?? '',
-              "categoryId": category.categoryId ?? ''
-            };
-            printCustom("Map is ========$map");
-            context.goNamed(tuneGoRoute, queryParameters: map);
-            //_onTap(2);
-          },
-        ),
+        muTuneButtonWidget(),
+        leftSpacing(width: 20),
+        musicPackWidget(),
         // leftSpacing(),
         // HomeAboutButton(),
         leftSpacing(),
@@ -91,6 +81,35 @@ class WebNavBarView extends StatelessWidget {
         //   },
         // )
       ],
+    );
+  }
+
+  Widget musicPackWidget() {
+    return CustomButton(
+      title: musicPackStr,
+      textColor: white,
+      fontName: FontName.bold,
+      fontSize: 16,
+      onTap: () {
+        context.goNamed(musicPackGoRoute);
+        printCustom("Music pack");
+      },
+    );
+  }
+
+  HomeMyTuneButton muTuneButtonWidget() {
+    return HomeMyTuneButton(
+      onTap: (category) {
+        printCustom("Tapped === ${category.categoryName}");
+
+        Map<String, dynamic> map = {
+          "categoryName": category.categoryName ?? '',
+          "categoryId": category.categoryId ?? ''
+        };
+        printCustom("Map is ========$map");
+        context.goNamed(tuneGoRoute, queryParameters: map);
+        //_onTap(2);
+      },
     );
   }
 
