@@ -1,14 +1,87 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
+import 'package:mtn_sa_revamp/files/screens/web_home_page/home_music_pack_view/widgtes/music_pack_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeMusicPackView extends StatelessWidget {
-  const HomeMusicPackView({super.key});
-
+  HomeMusicPackView({super.key});
+  List<String> imgList = [musicBox1Img, musicBox2Img, musicBox3Img];
+  List<String> infoList = [musicPackInfo1, musicPackInfo2, musicPackInfo3];
+  final CarouselController carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 360,
-      color: red,
+      color: white,
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          carouselSlider(),
+          indicator(),
+        ],
+      ),
     );
+  }
+
+  Widget indicator() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 30),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: red,
+        ),
+        height: 10,
+        width: 10,
+      ),
+    );
+  }
+
+  Widget carouselSlider() {
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return CarouselSlider(
+            carouselController: carouselController,
+            options: carousalOptionWidget(si),
+            items: [
+              for (int i = 0; i < imgList.length; i++)
+                musicPackCell(imgList[i], infoList[i], i),
+            ]);
+      },
+    );
+  }
+
+// itemsWidget(int index){
+//   return cont.map((i,e){
+//     return musicPackCell("img", "info", index);
+//   });
+//}
+  CarouselOptions carousalOptionWidget(SizingInformation si) {
+    return CarouselOptions(
+      height: si.isMobile ? 600 : 500, //currentSize.height,
+      aspectRatio: 16 / 4, //(Get.width == 600) ? 16 / 9 : 16 / 9,
+      viewportFraction: 1,
+      initialPage: 0,
+      pauseAutoPlayOnTouch: true,
+      enableInfiniteScroll: false,
+      reverse: false,
+      autoPlay: true,
+      autoPlayInterval: const Duration(seconds: 3),
+      autoPlayAnimationDuration: const Duration(milliseconds: 800),
+      autoPlayCurve: Curves.fastOutSlowIn,
+      enlargeCenterPage: false,
+      scrollDirection: Axis.horizontal,
+      // onScrolled: onScrolledCalled(),
+      onPageChanged: onPageChange,
+    );
+  }
+
+  void onPageChange(int index, CarouselPageChangedReason season) {
+    print("index tapped $index");
+    //controller.updateSelectedIndex(index);
   }
 }

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 
 import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:get/instance_manager.dart';

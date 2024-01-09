@@ -33,6 +33,10 @@ const radioButtonSelectedImg = 'assets/pngs/radio_button_selected.png';
 const moreHorzontalImg = 'assets/pngs/more_horiz.png';
 const settingImg = 'assets/pngs/settingImage.png';
 
+const musicBox1Img = 'assets/pngs/music_box1.png';
+const musicBox2Img = 'assets/pngs/music_box2.png';
+const musicBox3Img = 'assets/pngs/music_box3.png';
+
 const playImg = 'assets/pngs/playImg.png';
 const pauseImg = 'assets/pngs/pauseImg.png';
 const personImg = 'assets/pngs/personImg.png';

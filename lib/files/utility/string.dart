@@ -116,6 +116,8 @@ const countryCodeStr = "+95";
 const myAccountStr = "My Account";
 const cancelStr = "Cancel";
 const editStr = "Edit";
+const musicPackageStr = "Music Package";
+const madeWithStr = "Made with";
 const saveStr = "Save";
 const musicPackStr = "Music Pack";
 const viewStr = "View";
@@ -198,3 +200,16 @@ const pleaseActivateToUnsubscribeStr =
 //=====================================================
 
 const nameTuneStr = "Name Tunes";
+const musicPackInfo1 =
+    "You can enjoy with Three famous Tunes together in one package.\n- Three selected tunes includes in each package.\n- Available Four Music Packages by the selected famous singers: Myo Gyi, Sai Sai Kham Leng, R Zar Ni and Ni Ni Khin Zaw.\n- Muisc Package price 787.50 Kyats and each tune is valid for 30 days.";
+const musicPackInfo2 = """How to buy the music package:
+To buy Myo Gyi Package: Send MP 55595001 to 333
+Available tunes on Music Package: Min Shid Tae Myot, Pyan Lar Chein Lay, Myit Tar Tayar
+
+To buy Sai Sai Kham Leng Package: Send MP 55595003 to 333
+Available tunes on Music Package: Thu Ngal Chin, Char Tate A Twat, Yee Sar Sar""";
+const musicPackInfo3 = """To buy R Zar Ni Package: Send MP 55595004 to 333
+Available tunes on Music Package: Min Thar Shi Yin, Yoe Thar Swar Khit Nyout Kya Thu Myer, Kabar Thar
+
+To buy Ni Ni Khin Zaw Package: Send MP 55595002 to 333
+Available tunes on Music Package: Thit Sar Ma Pyat Kyae , Yat Sat Thwar Thu, Myaw Lint Chat Ta Sone Ta Yar""";

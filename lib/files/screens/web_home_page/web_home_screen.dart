@@ -70,7 +70,7 @@ class _WebLandingPageState extends State<WebLandingPage> {
                 SizedBox(height: 20),
                 const LandingRecoView(),
                 SizedBox(height: si.isMobile ? 10 : 80),
-                HomeMusicPackView(),
+                Flexible(child: HomeMusicPackView()),
                 //SizedBox(height: si.isMobile ? 10 : 80),
                 LandingInfoPage(),
                 const LandingPageBottomSection()
