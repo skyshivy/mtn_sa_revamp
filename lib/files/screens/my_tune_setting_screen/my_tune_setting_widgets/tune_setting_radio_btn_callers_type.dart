@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
@@ -25,10 +26,10 @@ Widget tuneSettingRadioButtonCallersType() {
                 _combinedWidget(0, cont.callerType.value == 0, allCallerStr.tr),
                 const SizedBox(width: 20),
                 _combinedWidget(
-                    1, cont.callerType.value == 1, callerGroupStr.tr),
-                // const SizedBox(width: 20),
-                // _combinedWidget(
-                //     2, cont.callerType.value == 2, specificCallerStr.tr),
+                    1, cont.callerType.value == 1, specificCallerStr.tr),
+                const SizedBox(width: 20),
+                _combinedWidget(
+                    2, cont.callerType.value == 2, addToShuffleStr.tr),
               ],
             );
           })
@@ -51,8 +52,11 @@ Widget _combinedWidget(int index, bool isSelected, String title) {
   return InkWell(
     onTap: () {
       cont.callerType.value = index;
-      cont.updateToWhom(
-          index == 0 ? ToWhomAction.allCaller : ToWhomAction.specificCaller
+      cont.updateToWhom(index == 0
+              ? ToWhomAction.allCaller
+              : (index == 1
+                  ? ToWhomAction.specificCaller
+                  : ToWhomAction.addToSuffle)
           // (index == 1
           //     ? ToWhomAction.specificCaller
           //     : ToWhomAction.callerGroup)
@@ -70,7 +74,11 @@ Widget _combinedWidget(int index, bool isSelected, String title) {
 }
 
 Widget _radioButton(bool isSelected) {
-  return Icon(
+  return Image.asset(
+    isSelected ? radioButtonSelectedImg : radioButtonUnSelectedImg,
+    width: 18,
+  );
+  Icon(
     isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
     color: isSelected ? atomCryan : subTitleColor,
     size: 18,

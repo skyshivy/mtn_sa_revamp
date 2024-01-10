@@ -71,8 +71,9 @@ const songStr = "Song";
 const singerStr = "Singer";
 const codeStr = "Code";
 const allCallerStr = "All Callers";
-const specificCallerStr = "Callers Group";
-const callerGroupStr = "Specific Caller";
+const specificCallerStr = "Specific Caller";
+const addToShuffleStr = "Add to Suffle";
+const callerGroupStr = "Callers Group";
 const whomYouWantToPlayItStr = "Whom You Want To Play It?";
 const whenYouWantToPlayItStr = "When You Want To Play It?";
 
@@ -198,7 +199,7 @@ const pleaseActivateToUnsubscribeStr =
     "Please activate your pack before unsubscribing.";
 
 //=====================================================
-
+const upgradeMessageStr = 'Upgrade to EAUC and enjoy unlimited tunes';
 const nameTuneStr = "Name Tunes";
 const musicPackInfo1 =
     "You can enjoy with Three famous Tunes together in one package.\n- Three selected tunes includes in each package.\n- Available Four Music Packages by the selected famous singers: Myo Gyi, Sai Sai Kham Leng, R Zar Ni and Ni Ni Khin Zaw.\n- Muisc Package price 787.50 Kyats and each tune is valid for 30 days.";

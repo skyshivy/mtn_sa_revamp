@@ -67,13 +67,16 @@ class HomeSearchTypeButton extends StatelessWidget {
                 //   size: si.isMobile ? 18 : 20,
                 // ),
                 const SizedBox(width: 4),
-                CustomText(
-                  title: title,
-                  textColor: (index == sCont.searchType.value) ? red : white,
-                  fontName: si.isMobile
-                      ? FontName.medium
-                      : FontName.bold, //si.isMobile ?  18:20,
-                  fontSize: si.isMobile ? 14 : 16,
+                Padding(
+                  padding: const EdgeInsets.only(top: 3),
+                  child: CustomText(
+                    title: title,
+                    textColor: (index == sCont.searchType.value) ? red : white,
+                    fontName: si.isMobile
+                        ? FontName.medium
+                        : FontName.bold, //si.isMobile ?  18:20,
+                    fontSize: si.isMobile ? 14 : 16,
+                  ),
                 )
               ],
             );

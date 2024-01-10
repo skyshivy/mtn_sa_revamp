@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/controllers/music_box_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_music_pack_view/widgtes/music_pack_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -8,10 +10,33 @@ import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class HomeMusicPackView extends StatelessWidget {
-  HomeMusicPackView({super.key});
-  List<String> imgList = [musicBox1Img, musicBox2Img, musicBox3Img];
-  List<String> infoList = [musicPackInfo1, musicPackInfo2, musicPackInfo3];
+class HomeMusicPackView extends StatefulWidget {
+  const HomeMusicPackView({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _HomeMusicPackViewState();
+}
+
+class _HomeMusicPackViewState extends State<HomeMusicPackView> {
+  final List<String> imgList = [musicBox1Img, musicBox2Img, musicBox3Img];
+  final List<String> infoList = [
+    musicPackInfo1,
+    musicPackInfo2,
+    musicPackInfo3
+  ];
+  var scroll = ScrollController();
+  MusicPackController cont = Get.put(MusicPackController());
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    Get.delete<MusicPackController>();
+    super.dispose();
+  }
+
   final CarouselController carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
@@ -28,15 +53,33 @@ class HomeMusicPackView extends StatelessWidget {
   }
 
   Widget indicator() {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 30),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: red,
-        ),
-        height: 10,
-        width: 10,
+    return SizedBox(
+      height: 40,
+      child: ListView.builder(
+        controller: scroll,
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: imgList.length,
+        itemBuilder: (context, index) {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Obx(() {
+                return CustomButton(
+                  onTap: () {
+                    carouselController.animateToPage(index);
+
+                    cont.selectedIndex.value = index;
+                  },
+                  radius: 5,
+                  color: cont.selectedIndex.value == index ? red : blue,
+                  height: 10,
+                  width: 10,
+                );
+              }),
+            ),
+          );
+        },
       ),
     );
   }
@@ -82,6 +125,7 @@ class HomeMusicPackView extends StatelessWidget {
 
   void onPageChange(int index, CarouselPageChangedReason season) {
     print("index tapped $index");
+    cont.selectedIndex.value = index;
     //controller.updateSelectedIndex(index);
   }
 }

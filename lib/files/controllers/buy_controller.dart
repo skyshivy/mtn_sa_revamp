@@ -4,9 +4,12 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_popup_widget.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_tune_charge.dart';
 import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
+import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_existing_model.dart';
+import 'package:mtn_sa_revamp/files/model/custom_validity_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
 import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
@@ -42,13 +45,30 @@ class BuyController extends GetxController {
   RxString successMessage = ''.obs;
   RxBool isMsisdnVarified = false.obs;
   bool isNewUser = false;
+  RxBool isLoagTuneCharge = false.obs;
   RxString otp = ''.obs;
   String securityCounter = '';
-  String tuneCharge = '';
+  RxString tuneCharge = enterMobileNumberStr.obs;
+  RxBool isUpgradeSelected = false.obs;
+  RxBool isHideUpgrade = true.obs;
   RxString msisdn = ''.obs;
+  bool isGotTunePrice = false;
   late TuneInfo? info;
+  //List<CustomValidtyModel> _validityModel = [];
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
   customInit() {
+    isGotTunePrice = false;
+    if (StoreManager().isLoggedIn) {
+      tuneCharge.value = '';
+    } else {
+      tuneCharge.value = enterMobileNumberStr;
+    }
+    isHideUpgrade.value = true;
+    isUpgradeSelected.value = false;
     isShowSubscriptionPlan.value = false;
     isVerifying.value = false;
     errorMessage.value = '';
@@ -58,7 +78,6 @@ class BuyController extends GetxController {
     msisdn.value = '';
     isBuySuccess.value = false;
     successMessage.value = '';
-    getTuneCharge();
   }
 
   onEditAction() {
@@ -71,15 +90,52 @@ class BuyController extends GetxController {
     successMessage.value = '';
   }
 
-  getTuneCharge() {
-    tuneCharge = StoreManager()
-            .appSetting
-            ?.responseMap
-            ?.settings
-            ?.others
-            ?.tonePrice
-            ?.attribute ??
-        '';
+  getTuneCharge(String toneId) async {
+    String msis = '';
+    if (StoreManager().isLoggedIn) {
+      msis = StoreManager().msisdn;
+    } else {
+      msis = msisdn.value;
+    }
+
+    if (msis.isEmpty) {
+      print("Msisdn is empty so can not call get tune price api");
+      return false;
+    }
+    isLoagTuneCharge.value = true;
+    isVerifying.value = true;
+    print("Get tune price called");
+    Map<String, dynamic>? map = await GetTunePrice().api(msis, toneId, '3');
+    isVerifying.value = false;
+    isLoagTuneCharge.value = false;
+    if (map != null) {
+      TonePriceModel mode = TonePriceModel.fromJson(map);
+      print("model=======$mode");
+
+      if (mode.statusCode == "SC0000") {
+        String amount = mode.responseMap?.responseDetails?.first.amount ?? '0';
+        String status =
+            mode.responseMap?.responseDetails?.first.subscriberStatus ?? '';
+        if ((status == 'NA') || (status == 'D') || (status == 'd')) {
+          isHideUpgrade.value = true;
+        } else {
+          isHideUpgrade.value = amount == "0";
+        }
+
+        print("AMount is $amount");
+        String packName1 =
+            mode.responseMap?.responseDetails?.first.packName ?? '';
+        tuneCharge.value = await customTuneChanrge(packName1, amount);
+
+        return true;
+      } else {
+        errorMessage.value = mode.message ??
+            mode.responseMap?.description ??
+            someThingWentWrongStr;
+        print("Some thing went wrong while fetching tune price");
+        return false;
+      }
+    }
   }
 
   msisdnValidation(TuneInfo? inf) async {
@@ -90,46 +146,54 @@ class BuyController extends GetxController {
 
     //   return;
     // }
+    if (isGotTunePrice) {
+      isShowOtpView.value = false;
 
-    isShowOtpView.value = false;
-    info = inf;
-    if (msisdn.value.length == StoreManager().msisdnLength) {
-      isVerifying.value = true;
-      String stringData = await LoginVm().subscribeMsisdn(msisdn.value);
-      Map<String, dynamic> valueMap = json.decode(stringData);
-      isVerifying.value = true;
-      SubscriberValidationModel model =
-          SubscriberValidationModel.fromJson(valueMap);
-      if (model.statusCode == "SC0000") {
-        if (model.responseMap?.respCode == 'SC0000') {
-          var resu = await _generateOtp(msisdn.value, false);
-          isNewUser = false;
-          isShowOtpView.value = true;
-          isVerifying.value = false;
-          //Get.dialog(BuyOtpView());
+      info = inf;
+      if (msisdn.value.length == StoreManager().msisdnLength) {
+        isVerifying.value = true;
+        String stringData = await LoginVm().subscribeMsisdn(msisdn.value);
+        Map<String, dynamic> valueMap = json.decode(stringData);
+        isVerifying.value = true;
+        SubscriberValidationModel model =
+            SubscriberValidationModel.fromJson(valueMap);
+        if (model.statusCode == "SC0000") {
+          if (model.responseMap?.respCode == 'SC0000') {
+            var resu = await _generateOtp(msisdn.value, false);
+            isNewUser = false;
+            isShowOtpView.value = true;
+            isVerifying.value = false;
+            //Get.dialog(BuyOtpView());
 
-          printCustom("Existing user******");
-        } else if (model.responseMap?.respCode == '100') {
-          printCustom("New User*******");
-          isNewUser = true;
-          await getSecurityTokenForNew(msisdn.value);
-          //getTunePrice();
-          isShowOtpView.value = true;
-          //Get.dialog(BuyOtpView());
-        } else if (model.responseMap?.respCode == '101') {
-          errorMessage.value = model.responseMap?.respDesc ?? '';
-          isVerifying.value = false;
-          printCustom("Invalid number*******");
+            printCustom("Existing user******");
+          } else if (model.responseMap?.respCode == '100') {
+            printCustom("New User*******");
+            isNewUser = true;
+            await getSecurityTokenForNew(msisdn.value);
+            //getTunePrice();
+            isShowOtpView.value = true;
+            //Get.dialog(BuyOtpView());
+          } else if (model.responseMap?.respCode == '101') {
+            errorMessage.value = model.responseMap?.respDesc ?? '';
+            isVerifying.value = false;
+            printCustom("Invalid number*******");
+          } else {
+            errorMessage.value = model.responseMap?.respDesc ?? '';
+            isVerifying.value = false;
+            printCustom("Invalid number*******");
+          }
         } else {
-          errorMessage.value = model.responseMap?.respDesc ?? '';
+          errorMessage.value = pleaseEnterValidMsisdnStr.tr;
           isVerifying.value = false;
-          printCustom("Invalid number*******");
         }
-      } else {
-        errorMessage.value = pleaseEnterValidMsisdnStr.tr;
-        isVerifying.value = false;
       }
+    } else {
+      isGotTunePrice = await getTuneCharge(inf?.toneId ?? '');
     }
+
+    // } else {
+    //   print("getTunePrice not success");
+    // }
   }
 
   Future<GenerateOtpModel> _generateOtp(String msisdn, bool isNewUser) async {

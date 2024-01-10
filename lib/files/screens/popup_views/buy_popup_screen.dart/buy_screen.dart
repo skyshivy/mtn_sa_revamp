@@ -18,6 +18,7 @@ import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/bu
 import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_views/home_cell_title_sub_title.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -47,6 +48,7 @@ class _BuyScreenState extends State<_BuyScreen> {
   @override
   void initState() {
     buyController.customInit();
+    buyController.getTuneCharge(info?.toneId ?? '');
     super.initState();
   }
 
@@ -109,6 +111,7 @@ class _BuyScreenState extends State<_BuyScreen> {
               children: [
                 imageWidget(),
                 titleAndTuneChargeRow(),
+                upgradeRadioNutton(),
                 buttons(),
               ],
             ),
@@ -116,6 +119,46 @@ class _BuyScreenState extends State<_BuyScreen> {
         ],
       ),
     );
+  }
+
+  Widget upgradeRadioNutton() {
+    return InkWell(
+      onTap: () {
+        buyController.isUpgradeSelected.value =
+            !buyController.isUpgradeSelected.value;
+      },
+      child: Obx(() {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Visibility(
+              visible: !buyController.isHideUpgrade.value,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Obx(() {
+                    return Image.asset(
+                      buyController.isUpgradeSelected.value
+                          ? radioButtonSelectedImg
+                          : radioButtonUnSelectedImg,
+                      height: 18,
+                    );
+                  }),
+                  const SizedBox(width: 4),
+                  Flexible(
+                      child: CustomText(
+                    title: upgradeMessageStr.tr,
+                    fontName: FontName.bold,
+                  ))
+                ],
+              )),
+        );
+      }),
+    );
+    // Obx(() {
+    //   return
+    // });
   }
 
   Row titleAndTuneChargeRow() {
@@ -194,9 +237,12 @@ class _BuyScreenState extends State<_BuyScreen> {
     return Obx(() {
       return Visibility(
           visible: buyController.errorMessage.isNotEmpty,
-          child: CustomText(
-            title: buyController.errorMessage.value,
-            textColor: red,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: CustomText(
+              title: buyController.errorMessage.value,
+              textColor: red,
+            ),
           ));
     });
   }
@@ -256,19 +302,22 @@ class _BuyScreenState extends State<_BuyScreen> {
   }
 
   Widget tuneCharge() {
-    return HomeCellTitleSubTilte(
-      mainAxisAlignment:
-          isPhone(context) ? MainAxisAlignment.center : MainAxisAlignment.start,
-      crossAxisAlignment: isPhone(context)
-          ? CrossAxisAlignment.center
-          : CrossAxisAlignment.start,
-      title: tuneChargeStr.tr,
-      subTitle: buyController.tuneCharge,
-      titleFontName: FontName.medium,
-      titleFontSize: 16,
-      subTitleFontName: FontName.bold,
-      subTitleFontSize: 20,
-    );
+    return Obx(() {
+      return HomeCellTitleSubTilte(
+        mainAxisAlignment: isPhone(context)
+            ? MainAxisAlignment.center
+            : MainAxisAlignment.start,
+        crossAxisAlignment: isPhone(context)
+            ? CrossAxisAlignment.center
+            : CrossAxisAlignment.start,
+        title: tuneChargeStr.tr,
+        subTitle: buyController.tuneCharge.value,
+        titleFontName: FontName.medium,
+        titleFontSize: 16,
+        subTitleFontName: FontName.bold,
+        subTitleFontSize: 20,
+      );
+    });
   }
 
   Widget buttons() {

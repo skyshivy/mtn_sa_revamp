@@ -17,6 +17,7 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget tuneSettingRightWidgte() {
+  TuneSettingController con = Get.find();
   return Container(
     clipBehavior: Clip.hardEdge,
     decoration: BoxDecoration(
@@ -26,11 +27,16 @@ Widget tuneSettingRightWidgte() {
     child: Column(
       children: [
         _topWidgetContaner(),
-        Row(
-          children: [
-            _bottomWidget(),
-          ],
-        ),
+        Obx(() {
+          return Visibility(
+            visible: !(con.callerType.value == 2),
+            child: Row(
+              children: [
+                _bottomWidget(),
+              ],
+            ),
+          );
+        })
       ],
     ),
   );

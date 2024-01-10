@@ -10,10 +10,15 @@ Future<dynamic> showPopup(
       Center(
         child: Material(
           color: transparent,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+          child: ListView(
+            shrinkWrap: true,
             children: [
-              widget,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  widget,
+                ],
+              ),
             ],
           ),
         ),

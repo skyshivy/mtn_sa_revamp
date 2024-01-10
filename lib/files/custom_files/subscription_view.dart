@@ -234,7 +234,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
                   ),
                   Obx(() {
                     return CustomText(
-                      title: sCont.tuneCharge.value,
+                      title: bCont.tuneCharge.value,
                       fontName: FontName.bold,
                       fontSize: si.isMobile ? 13 : 16,
                     );

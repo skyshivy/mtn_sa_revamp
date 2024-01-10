@@ -14,6 +14,7 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/model/day_model.dart';
 import 'package:mtn_sa_revamp/files/utility/style.dart';
+import 'package:mtn_sa_revamp/files/view_model/add_to_suffle_api_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/tune_setting_all_caller_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/tune_setting_dedicated_vm.dart';
@@ -154,12 +155,20 @@ class TuneSettingController extends GetxController {
         }
         _setTuneForSpecificCaller();
         break;
-      // case ToWhomAction.callerGroup:
-      //   customPrint("callerGroup is ");
-      //   //_setTuneForCallergroup();
-      //   break;
+      case ToWhomAction.addToSuffle:
+        printCustom("ToWhomAction.addToSuffle");
+        _addToSuffleApiCall();
+        //_setTuneForCallergroup();
+        break;
       default:
     }
+  }
+
+  _addToSuffleApiCall() async {
+    isLoading.value = true;
+    Map<String, dynamic>? map = await addToSuffleApi(tuneId);
+    _result(map);
+    print("object");
   }
 
   _setTuneForAllCaller() async {
