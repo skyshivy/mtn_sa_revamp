@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/model/day_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -72,6 +73,14 @@ Widget _dayButton(
       fontName: isSelected ? FontName.medium : FontName.medium,
       title: title,
       onTap: () {
+        print("cont.selectedDays ${cont.selectedDays.split(',')}");
+
+        //print("cont.selectedDays ${cont.daysList[i].isSelected}");
+        if (cont.selectedDays.length <= 2) {
+          cont.daysList[index].isSelected?.value = true;
+          return;
+        }
+
         cont.daysList[index].isSelected!.value =
             !(cont.daysList[index].isSelected!.value);
         selectedDaysUpdate(cont);

@@ -139,8 +139,9 @@ class MyTuneController extends GetxController {
     printCustom("Does contain msisdn ===== ${playingList[index].msisdnB}");
 
     if (playingList[index].msisdnB == null) {
-      bool isFullday =
-          !(playingList[index].toneDetails?.first.weeklyDays == "0");
+      bool isFullday = (playingList[index].toneDetails?.first.weeklyDays == "0")
+          ? true
+          : false;
 
       print(
           "toneDetails?.first.weeklyDays ${playingList[index].toneDetails?.first.weeklyDays}");
