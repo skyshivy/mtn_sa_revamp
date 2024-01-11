@@ -105,6 +105,10 @@ class BuyController extends GetxController {
     isLoagTuneCharge.value = true;
     isVerifying.value = true;
     print("Get tune price called");
+    // TonePriceModel mode = await getTunePrice();
+    // isVerifying.value = false;
+    // isLoagTuneCharge.value = false;
+
     Map<String, dynamic>? map = await GetTunePrice().api(msis, toneId, '3');
     isVerifying.value = false;
     isLoagTuneCharge.value = false;
@@ -116,10 +120,12 @@ class BuyController extends GetxController {
         String amount = mode.responseMap?.responseDetails?.first.amount ?? '0';
         String status =
             mode.responseMap?.responseDetails?.first.subscriberStatus ?? '';
+
+        isHideUpgrade.value = (amount == "0");
         if ((status == 'NA') || (status == 'D') || (status == 'd')) {
           isHideUpgrade.value = true;
         } else {
-          isHideUpgrade.value = amount == "0";
+          isHideUpgrade.value = (amount == "0");
         }
 
         print("AMount is $amount");
@@ -432,7 +438,11 @@ class BuyController extends GetxController {
   }
 
   Future<void> setTune(String packName) async {
-    BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(), packName, '0');
+    print(
+        "set tune called  isUpgradeSelected.value =${isUpgradeSelected.value}");
+
+    BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(), packName, '0',
+        isPackUpgrade: isUpgradeSelected.value);
     packName = '';
     if (res.statusCode == 'SC0000') {
       printCustom("Success buy tune api");

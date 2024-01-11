@@ -17,6 +17,7 @@ class CustomMsisdnTextField extends StatelessWidget {
   final double height;
   final Color borderColor;
   final Color bgColor;
+  final Iterable<String>? autoFillHint;
   final double? fontSiz;
   final Widget? rightWidget;
   final Color countryCodeColor;
@@ -32,6 +33,7 @@ class CustomMsisdnTextField extends StatelessWidget {
     this.prefixWidget,
     this.height = 45,
     this.enabled = true,
+    this.autoFillHint,
     this.cornerRadius = 25,
     this.countryCodeColor = greyDark,
     this.bgColor = transparent,
@@ -97,6 +99,7 @@ class CustomMsisdnTextField extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, si) {
         return TextField(
+          autofillHints: autoFillHint,
           controller: textEditingController,
           enabled: enabled,
           onSubmitted: (value) {

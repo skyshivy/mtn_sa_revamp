@@ -161,19 +161,22 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget textfieldWidget(SizingInformation si) {
-    return Obx(() {
-      return CustomMsisdnTextField(
-        height: si.isMobile ? 40 : 44,
-        cornerRadius: si.isMobile ? 20 : 22,
-        hintText: textFieldHint(),
-        borderColor: textFieldBorderColorChange(),
-        text: textFieldText(),
-        addCountryCode: !controller.isMsisdnVarified.value,
-        isMsisdn: !controller.isMsisdnVarified.value,
-        onChanged: onChange,
-        onSubmit: onSubmit,
-      );
-    });
+    return AutofillGroup(
+      child: Obx(() {
+        return CustomMsisdnTextField(
+          autoFillHint: const [AutofillHints.telephoneNumber],
+          height: si.isMobile ? 40 : 44,
+          cornerRadius: si.isMobile ? 20 : 22,
+          hintText: textFieldHint(),
+          borderColor: textFieldBorderColorChange(),
+          text: textFieldText(),
+          addCountryCode: !controller.isMsisdnVarified.value,
+          isMsisdn: !controller.isMsisdnVarified.value,
+          onChanged: onChange,
+          onSubmit: onSubmit,
+        );
+      }),
+    );
   }
 
   String textFieldText() {

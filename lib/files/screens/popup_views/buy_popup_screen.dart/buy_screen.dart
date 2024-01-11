@@ -129,7 +129,7 @@ class _BuyScreenState extends State<_BuyScreen> {
       },
       child: Obx(() {
         return Padding(
-          padding: const EdgeInsets.only(bottom: 10),
+          padding: const EdgeInsets.only(bottom: 10, top: 10),
           child: Visibility(
               visible: !buyController.isHideUpgrade.value,
               child: Row(

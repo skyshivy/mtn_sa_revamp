@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_tune_charge.dart';
 import 'package:mtn_sa_revamp/files/model/send_gift_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -19,24 +20,47 @@ class GiftTuneController extends GetxController {
   RxBool isVerifing = false.obs;
   RxString bPartyMsisdn = ''.obs;
   RxString errorMessage = ''.obs;
-  String tuneCharge = '';
+  RxString tuneCharge = ''.obs;
+  bool isGotTunePrice = false;
   String packName = '';
+  RxBool isLoadingTuneCharge = false.obs;
   late TuneInfo info;
   @override
   void onInit() {
-    getTuneCharge();
+    // getTuneCharge();
     super.onInit();
   }
 
-  getTuneCharge() {
-    tuneCharge = StoreManager()
-            .appSetting
-            ?.responseMap
-            ?.settings
-            ?.others
-            ?.tonePrice
-            ?.attribute ??
-        '';
+  getTuneCharge(TuneInfo info) async {
+    isLoadingTuneCharge.value = true;
+    this.info = info;
+
+    Map<String, dynamic>? map =
+        await GetTunePrice().api(bPartyMsisdn.value, info.toneId ?? '', "3");
+    isLoadingTuneCharge.value = false;
+    if (map != null) {
+      isGotTunePrice = true;
+
+      TonePriceModel mode = TonePriceModel.fromJson(map);
+      if (mode.statusCode == "SC0000") {
+        String amount = mode.responseMap?.responseDetails?.first.amount ?? '0';
+        String pckName =
+            mode.responseMap?.responseDetails?.first.packName ?? '';
+        tuneCharge.value = await customTuneChanrge(pckName, amount);
+        //tuneCharge =
+      } else {
+        isGotTunePrice = false;
+        errorMessage.value = mode.message ?? someThingWentWrongStr.tr;
+      }
+    }
+    // tuneCharge = StoreManager()
+    //         .appSetting
+    //         ?.responseMap
+    //         ?.settings
+    //         ?.others
+    //         ?.tonePrice
+    //         ?.attribute ??
+    //     '';
   }
 
   updateMsisdn(String value) {
@@ -44,18 +68,25 @@ class GiftTuneController extends GetxController {
     errorMessage.value = '';
   }
 
-  confirmButtonAction(TuneInfo info) {
+  confirmButtonAction(TuneInfo info) async {
     this.info = info;
-    printCustom("MSIDN is ${StoreManager().msisdn}");
-    if (bPartyMsisdn.value.length < StoreManager().msisdnLength) {
-      errorMessage.value = enterValidMsisdnStr.tr;
-      return;
+    if (isGotTunePrice) {
+// if (tuneCharge.isEmpty) {
+//       await getTuneCharge(info);
+//     }
+      printCustom("MSIDN is ${StoreManager().msisdn}");
+      if (bPartyMsisdn.value.length < StoreManager().msisdnLength) {
+        errorMessage.value = enterValidMsisdnStr.tr;
+        return;
+      }
+      if (bPartyMsisdn.value == StoreManager().msisdn) {
+        errorMessage.value = bothMsisdnCanBeSameStr.tr;
+        return;
+      }
+      _validateMsisdn();
+    } else {
+      await getTuneCharge(info);
     }
-    if (bPartyMsisdn.value == StoreManager().msisdn) {
-      errorMessage.value = bothMsisdnCanBeSameStr.tr;
-      return;
-    }
-    _validateMsisdn();
   }
 
   _validateMsisdn() async {

@@ -27,6 +27,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
   @override
   void initState() {
     cont = Get.put(GiftTuneController());
+    //cont.getTuneCharge(widget.info);
     super.initState();
   }
 
@@ -92,7 +93,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
         tuneDetail(si),
         const SizedBox(height: 10),
         tuneCharge(),
-        const SizedBox(height: 4),
+        const SizedBox(height: 10),
         friendNumber(),
         errorMessageWidget(),
         const SizedBox(height: 20),
@@ -110,7 +111,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
           child: CustomText(
             title: cont.errorMessage.value,
             textColor: red,
-            fontSize: 12,
+            fontSize: 14,
           ),
         ),
       );
@@ -215,17 +216,22 @@ class _GiftTuneViewState extends State<GiftTuneView> {
     );
   }
 
-  CustomText tuneChargeWidget() {
-    return CustomText(
-      title: cont.tuneCharge,
-      fontSize: 14,
-    );
+  Widget tuneChargeWidget() {
+    return Obx(() {
+      return cont.isLoadingTuneCharge.value
+          ? Center(child: loadingIndicator(radius: 12))
+          : CustomText(
+              title: cont.tuneCharge.value,
+              fontName: FontName.bold,
+              fontSize: 18,
+            );
+    });
   }
 
   CustomText tuneChargeTitle() {
     return CustomText(
       title: tuneChargeStr.tr,
-      fontName: FontName.bold,
+      fontName: FontName.medium,
     );
   }
 

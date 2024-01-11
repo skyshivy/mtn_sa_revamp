@@ -21,7 +21,12 @@ class TonePriceModel {
     this.respTime,
     this.statusCode,
   });
-
+// {
+//     // "responseMap": {},
+//     // "message": "Tone already active",
+//     // "respTime": "Jan 11, 2024 2:53:39 PM",
+//     // "statusCode": "FL0000"
+// }
   factory TonePriceModel.fromJson(Map<String, dynamic> json) => TonePriceModel(
         responseMap: json["responseMap"] == null
             ? ResponseMap()

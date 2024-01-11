@@ -23,6 +23,7 @@ String baseUrlSecurity = '';
 String faqUrl = '';
 String settingUrl = '${baseUrl}settings';
 String checkOtpNewUserUrl = "${baseUrl}otp-check";
+String upgradePackUrl = "${baseUrlSecurity}pack-upgrade";
 String buyTuneUrl = "${baseUrlSecurity}set-tone";
 String getHistoryUrl = "${baseUrlSecurity}view-transactions-scm?";
 String getTonePriceUrl = "${baseUrl}get-tone-price";
