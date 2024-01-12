@@ -25,13 +25,18 @@ class HomeTuneCell extends StatelessWidget {
   final TuneInfo? info;
   final bool isWishlist;
   final Function()? onTap;
+  final Widget? buttomButtonWidget;
+  final Widget? moreButtonWidget;
   PlayerController pCont = Get.find();
-  HomeTuneCell(
-      {super.key,
-      this.isWishlist = false,
-      required this.index,
-      this.info,
-      this.onTap});
+  HomeTuneCell({
+    super.key,
+    this.isWishlist = false,
+    required this.index,
+    this.info,
+    this.onTap,
+    this.moreButtonWidget,
+    this.buttomButtonWidget,
+  });
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -72,10 +77,11 @@ class HomeTuneCell extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: likeAndMoreWidget(),
-        ),
+        moreButtonWidget ??
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: likeAndMoreWidget(),
+            ),
         Expanded(child: Center(child: Center(child: playButton()))),
         const SizedBox(
           height: 30,
@@ -87,35 +93,33 @@ class HomeTuneCell extends StatelessWidget {
   Widget playButton() {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return Visibility(
-            visible: !si.isMobile,
-            child: Obx(() {
-              return CustomButton(
-                height: 35,
-                width: 35,
-                color: white,
-                leftWidget:
-                    //Icon(Icons.play_arrow),
+        return Obx(() {
+          return CustomButton(
+            height: 35,
+            width: 35,
+            color: white,
+            leftWidget:
+                //Icon(Icons.play_arrow),
 
-                    (info?.toneId ?? '') == pCont.toneId
-                        ? pCont.isPlaying.value
-                            ? Image.asset(pauseImg,
-                                height: 20) //const Icon(Icons.pause, size: 20)
-                            : Image.asset(playImg,
-                                height:
-                                    20) //const Icon(Icons.play_arrow_rounded, size: 20)
-                        : pCont.isPlaying.value
-                            ? Image.asset(playImg,
-                                height:
-                                    20) //const Icon(Icons.play_arrow_rounded, size: 20)
-                            : Image.asset(playImg,
-                                height:
-                                    20), //const Icon(Icons.play_arrow_rounded, size: 20),
-                onTap: () {
-                  pCont.playUrl(info, index);
-                },
-              );
-            }));
+                (info?.toneId ?? '') == pCont.toneId
+                    ? pCont.isPlaying.value
+                        ? Image.asset(pauseImg,
+                            height: 20) //const Icon(Icons.pause, size: 20)
+                        : Image.asset(playImg,
+                            height:
+                                20) //const Icon(Icons.play_arrow_rounded, size: 20)
+                    : pCont.isPlaying.value
+                        ? Image.asset(playImg,
+                            height:
+                                20) //const Icon(Icons.play_arrow_rounded, size: 20)
+                        : Image.asset(playImg,
+                            height:
+                                20), //const Icon(Icons.play_arrow_rounded, size: 20),
+            onTap: () {
+              pCont.playUrl(info, index);
+            },
+          );
+        });
       },
     );
   }
@@ -210,10 +214,11 @@ class HomeTuneCell extends StatelessWidget {
                 fontSize: si.isMobile ? 12 : null,
               ),
               const SizedBox(height: 8),
-              BuyAndPlayButton(
-                info: info,
-                index: index,
-              ),
+              buttomButtonWidget ??
+                  BuyAndPlayButton(
+                    info: info,
+                    index: index,
+                  ),
             ],
           ),
         );

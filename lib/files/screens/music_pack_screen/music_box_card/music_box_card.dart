@@ -6,11 +6,15 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/gift_tune_view.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/music_box_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
+import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/buy_screen.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -191,41 +195,72 @@ class MusicBoxCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            playButton(),
+            //  playButton(),
             viewButton(context),
           ],
         ),
         Row(
           children: [
-            CustomButton(
-              onTap: () {
-                print("Gift button");
-              },
-              titlePadding: EdgeInsets.only(left: 2, top: 6),
-              height: 40,
-              leftWidget: SvgPicture.asset(
-                giftTuneSvg,
-                height: 20,
-              ),
-              title: giftStr,
-            ),
+            // giftButton(),
             const SizedBox(width: 8),
-            CustomButton(
-              onTap: () {
-                print("buy taped");
-              },
-              titlePadding: EdgeInsets.only(left: 4, top: 6),
-              height: 40,
-              leftWidget: Image.asset(
-                buyImg,
-                height: 20,
-                color: black,
-              ),
-              title: buyStr,
-            ),
+            buyButton(context),
           ],
         ),
       ],
+    );
+  }
+
+  CustomButton buyButton(BuildContext context) {
+    return CustomButton(
+      onTap: () {
+        BuyTuneScreen().show(
+            context,
+            TuneInfo(
+              toneName: info.channelName,
+              albumName: info.artistName,
+              toneId: info.toneCode,
+            ),
+            isBuyMusicChannel: true);
+        print("buy taped");
+      },
+      titlePadding: EdgeInsets.only(left: 4, top: 6),
+      height: 40,
+      leftWidget: Image.asset(
+        buyImg,
+        height: 20,
+        color: black,
+      ),
+      title: buyStr,
+    );
+  }
+
+  CustomButton giftButton() {
+    return CustomButton(
+      onTap: () {
+        if (StoreManager().isLoggedIn) {
+          Get.dialog(Center(
+            child: GiftTuneView(
+              info: TuneInfo(
+                toneName: info.channelName,
+                albumName: info.artistName,
+                toneId: info.toneCode,
+              ),
+            ),
+          ));
+        } else {
+          Get.dialog(
+              CustomAlertView(title: featureIsAvailableForLoggedInStr.tr));
+        }
+
+        print("Gift button");
+      },
+      titlePadding: EdgeInsets.only(left: 2, top: 6),
+      height: 40,
+      leftWidget: SvgPicture.asset(
+        giftTuneSvg,
+        height: 20,
+      ),
+      title: giftStr,
     );
   }
 }

@@ -37,25 +37,30 @@ class _MusicPackDetailListScreenState extends State<MusicPackDetailListScreen> {
   Widget build(BuildContext context) {
     return Obx(() {
       return cont.isloading.value
-          ? loadingIndicator(radius: 15)
-          : CustomGridView(list: cont.list, onTap: () {}); //gridView();
+          ? loadingIndicator()
+          : Container(
+              color: greyLight,
+              child: gridView(),
+            );
+      CustomGridView(list: cont.list, onTap: () {}); //gridView();
     });
-    // Container(
-    //   color: greyLight,
-    //   child: ,
-    // );
   }
 
   Widget gridView() {
     return ResponsiveBuilder(
       builder: (context, si) {
         return GridView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+          padding: EdgeInsets.symmetric(
+              horizontal: si.isMobile ? 12 : 30, vertical: 20),
           shrinkWrap: true,
           itemCount: cont.list.length,
-          gridDelegate: delegate(si),
+          gridDelegate: delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
           itemBuilder: (context, index) {
             return HomeTuneCell(
+              moreButtonWidget: SizedBox(
+                height: 35,
+              ),
+              buttomButtonWidget: SizedBox(),
               index: index,
               info: cont.list[index],
             );

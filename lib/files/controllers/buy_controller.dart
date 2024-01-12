@@ -18,6 +18,7 @@ import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/view_model/buy_music_channel_api.dart';
 import 'package:mtn_sa_revamp/files/view_model/confirm_otp_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -54,6 +55,7 @@ class BuyController extends GetxController {
   RxString msisdn = ''.obs;
   bool isGotTunePrice = false;
   late TuneInfo? info;
+  bool isBuyMusicChannel = false;
   //List<CustomValidtyModel> _validityModel = [];
   @override
   void onInit() {
@@ -61,6 +63,7 @@ class BuyController extends GetxController {
   }
 
   customInit() {
+    isBuyMusicChannel = false;
     isGotTunePrice = false;
     if (StoreManager().isLoggedIn) {
       tuneCharge.value = '';
@@ -91,6 +94,7 @@ class BuyController extends GetxController {
   }
 
   getTuneCharge(String toneId) async {
+    print("SKy 123-------");
     String msis = '';
     if (StoreManager().isLoggedIn) {
       msis = StoreManager().msisdn;
@@ -127,7 +131,9 @@ class BuyController extends GetxController {
         } else {
           isHideUpgrade.value = (amount == "0");
         }
-
+        if (isBuyMusicChannel) {
+          isHideUpgrade.value = true;
+        }
         print("AMount is $amount");
         String packName1 =
             mode.responseMap?.responseDetails?.first.packName ?? '';
@@ -144,7 +150,11 @@ class BuyController extends GetxController {
     }
   }
 
-  msisdnValidation(TuneInfo? inf) async {
+  msisdnValidation(TuneInfo? inf, {bool isBuyMusicChannel = false}) async {
+    this.isBuyMusicChannel = isBuyMusicChannel;
+    if (isBuyMusicChannel) {
+      isHideUpgrade.value = false;
+    }
     // if (StoreManager().isLoggedIn) {
     //   isVerifying.value = true;
     //   customPrint("User is already loggedin plese direct buy");
@@ -194,6 +204,12 @@ class BuyController extends GetxController {
         }
       }
     } else {
+      if (!StoreManager().isLoggedIn) {
+        if (msisdn.isEmpty) {
+          errorMessage.value = enterMobileNumberStr;
+          return;
+        }
+      }
       isGotTunePrice = await getTuneCharge(inf?.toneId ?? '');
     }
 
@@ -402,7 +418,10 @@ class BuyController extends GetxController {
     }
   }
 
-  Future<void> getTunePriceAndBuyTune(TuneInfo? info) async {
+  Future<void> getTunePriceAndBuyTune(TuneInfo? info,
+      {bool isBuyMusicChannel = false}) async {
+    this.isBuyMusicChannel = isBuyMusicChannel;
+
     errorMessage.value = '';
     this.info = info;
     isVerifying.value = true;
@@ -419,7 +438,11 @@ class BuyController extends GetxController {
         isShowOtpView.value = false;
         isShowSubscriptionPlan.value = true;
       } else {
-        await setTune(packName);
+        if (isBuyMusicChannel) {
+          await buyMusicChannel();
+        } else {
+          await setTune(packName);
+        }
       }
     } else {
       isBuySuccess.value = true;
@@ -434,7 +457,29 @@ class BuyController extends GetxController {
     isShowOtpView.value = !StoreManager().isLoggedIn;
     isShowSubscriptionPlan.value = false;
     printCustom("Pack name is $packName");
-    await setTune(packName);
+    if (isBuyMusicChannel) {
+      await buyMusicChannel();
+    } else {
+      await setTune(packName);
+    }
+  }
+
+  Future<void> buyMusicChannel() async {
+    BuyTuneModel mode = await buyMusicChannelApi(info?.toneId ?? '');
+    if (mode.statusCode == 'SC0000') {
+      printCustom("Success buy tune api");
+      isVerifyingOtp.value = false;
+      isVerifying.value = false;
+      isBuySuccess.value = true;
+      successMessage.value = mode.message ?? '';
+    } else {
+      printCustom("set tune failed");
+      isVerifyingOtp.value = false;
+      errorMessage.value = mode.responseMap?.responseMessage ??
+          mode.message ??
+          someThingWentWrongStr.tr;
+      isVerifying.value = false;
+    }
   }
 
   Future<void> setTune(String packName) async {

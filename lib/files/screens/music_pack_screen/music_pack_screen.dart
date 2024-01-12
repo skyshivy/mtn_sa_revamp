@@ -21,7 +21,7 @@ class MusicPackScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Obx(() {
-        return cont.isloading.value ? loadingIndicator(radius: 15) : gridView();
+        return cont.isloading.value ? loadingIndicator() : gridView();
       }),
     );
   }
@@ -30,6 +30,7 @@ class MusicPackScreen extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, si) {
         return GridView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
           shrinkWrap: true,
           itemCount: cont.list.length,
           gridDelegate: musicBoxDelegate(),
@@ -45,7 +46,7 @@ class MusicPackScreen extends StatelessWidget {
   }
 
   SliverGridDelegateWithMaxCrossAxisExtent musicBoxDelegate() {
-    return SliverGridDelegateWithMaxCrossAxisExtent(
+    return const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 400, mainAxisExtent: 120);
   }
 }

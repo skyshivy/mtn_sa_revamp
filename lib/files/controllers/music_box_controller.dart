@@ -24,6 +24,7 @@ class MusicPackController extends GetxController {
           '${getMusicBoxUrl}language=English&pageNo=0&perPageCount=20&type=MB';
     }
     isloading.value = true;
+
     Map<String, dynamic>? map = await ServiceCall().get(url);
     isloading.value = false;
     if (map != null) {

@@ -14,17 +14,21 @@ class MusicBoxDetailController extends GetxController {
     String url = '';
 
     if (kDebugMode) {
-      url =
-          'http://10.84.75.129:3445/apigw/Middleware/api/adapter/v1/crbt/music-box-contents?language=English&pageNo=0&perPageCount=20&type=$type&toneCode=$toneCode';
+      url = 'https://mocki.io/v1/31f25e71-141c-4a6f-8679-ed4a6fc5056b';
+      //'http://10.84.75.129:3445/apigw/Middleware/api/adapter/v1/crbt/music-box-contents?language=English&pageNo=0&perPageCount=20&type=$type&toneCode=$toneCode';
     } else {
       url =
           '${getMusicBoxContentUrl}language=English&pageNo=0&perPageCount=20&type=$type&toneCode=$toneCode';
     }
     isloading.value = true;
-    //Map<String, dynamic>? map = await ServiceCall().get(url);
+    Map<String, dynamic>? map;
+    // if (kDebugMode) {
+    //   await Future.delayed(const Duration(seconds: 2));
+    //   map = json.decode(_json);
+    // } else {
+    map = await ServiceCall().get(url);
+    //}
 
-    await Future.delayed(Duration(seconds: 2));
-    Map<String, dynamic> map = json.decode(_json);
     isloading.value = false;
     print("Map $map");
     if (map != null) {

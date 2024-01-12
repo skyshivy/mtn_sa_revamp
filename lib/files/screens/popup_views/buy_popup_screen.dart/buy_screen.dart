@@ -26,18 +26,22 @@ class BuyTuneScreen {
   TextEditingController textFieldController = TextEditingController();
   late TuneInfo? info;
 
-  Future<dynamic> show(BuildContext context, TuneInfo? info) {
+  BuyTuneScreen();
+
+  Future<dynamic> show(BuildContext context, TuneInfo? info,
+      {bool isBuyMusicChannel = false}) {
     this.info = info;
     return showPopup(_BuyScreen(
       info: info,
+      isBuyMusicPack: isBuyMusicChannel,
     ));
   }
 }
 
 class _BuyScreen extends StatefulWidget {
   final TuneInfo? info;
-
-  const _BuyScreen({super.key, this.info});
+  final bool isBuyMusicPack;
+  const _BuyScreen({super.key, this.info, this.isBuyMusicPack = false});
   @override
   State<StatefulWidget> createState() => _BuyScreenState(info);
 }
@@ -48,6 +52,7 @@ class _BuyScreenState extends State<_BuyScreen> {
   @override
   void initState() {
     buyController.customInit();
+    buyController.isBuyMusicChannel = widget.isBuyMusicPack;
     buyController.getTuneCharge(info?.toneId ?? '');
     super.initState();
   }
@@ -225,9 +230,11 @@ class _BuyScreenState extends State<_BuyScreen> {
 
   void validateMsisdnAction(BuildContext context, TuneInfo info) async {
     if (StoreManager().isLoggedIn) {
-      await buyController.getTunePriceAndBuyTune(info);
+      await buyController.getTunePriceAndBuyTune(info,
+          isBuyMusicChannel: widget.isBuyMusicPack);
     } else {
-      await buyController.msisdnValidation(info);
+      await buyController.msisdnValidation(info,
+          isBuyMusicChannel: widget.isBuyMusicPack);
     }
 
     printCustom("Confirm buy button tapped 234");

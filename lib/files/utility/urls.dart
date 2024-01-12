@@ -22,6 +22,7 @@ String baseUrl = "";
 String baseUrlSecurity = '';
 String faqUrl = '';
 
+String buyMusicChannelUrl = '${baseUrl}buy-music-channel';
 String settingUrl = '${baseUrl}settings';
 String getMusicBoxUrl = '${baseUrl}music-box-search?';
 String getMusicBoxContentUrl = '${baseUrl}music-box-contents?';
