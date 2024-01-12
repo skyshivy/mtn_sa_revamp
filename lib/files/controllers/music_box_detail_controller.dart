@@ -14,6 +14,7 @@ class MusicBoxDetailController extends GetxController {
     String url = '';
 
     if (kDebugMode) {
+      print("debug mode api called in MusicBoxDetailController");
       url = 'https://mocki.io/v1/31f25e71-141c-4a6f-8679-ed4a6fc5056b';
       //'http://10.84.75.129:3445/apigw/Middleware/api/adapter/v1/crbt/music-box-contents?language=English&pageNo=0&perPageCount=20&type=$type&toneCode=$toneCode';
     } else {
