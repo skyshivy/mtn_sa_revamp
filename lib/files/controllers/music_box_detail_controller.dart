@@ -22,7 +22,7 @@ class MusicBoxDetailController extends GetxController {
     }
     isloading.value = true;
     //Map<String, dynamic>? map = await ServiceCall().get(url);
-    //Map<String, dynamic> map = json.decode(_json);
+
     await Future.delayed(Duration(seconds: 2));
     Map<String, dynamic> map = json.decode(_json);
     isloading.value = false;

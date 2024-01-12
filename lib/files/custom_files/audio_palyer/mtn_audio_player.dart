@@ -14,7 +14,7 @@ class MtnAudioPlayer {
 
   Future<void> playUrl(
       String url, Function(AudioPlayer player) action, Function() error) async {
-    printCustom("playing url is $url");
+    printCustom("playing url is = $url");
     await stop();
     action(_player);
     await stop();

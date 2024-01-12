@@ -23,8 +23,14 @@ class _MusicPackDetailListScreenState extends State<MusicPackDetailListScreen> {
   final MusicBoxDetailController cont = Get.find();
   @override
   void initState() {
-    //cont.getMusicBoxContent(widget.toneCode, widget.type);
+    print("_MusicPackDetailListScreenState initialized");
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    print("_MusicPackDetailListScreenState desposed");
+    super.dispose();
   }
 
   @override
