@@ -34,7 +34,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: buttonsColumn() //customColumn(),
+    return Center(child: customColumn() //buttonsColumn() //customColumn(),
         );
   }
 
@@ -200,11 +200,18 @@ class _DeleteScreenState extends State<DeleteScreen> {
       children: [
         Obx(() {
           return AnimatedContainer(
-              duration: Duration(milliseconds: 200),
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                borderRadius:
+                    BorderRadius.circular(deCont.isAnimating.value ? 20 : 4),
+              ),
+              duration: const Duration(milliseconds: 200),
+              height: deCont.isAnimating.value ? 150 : 150,
+              width: deCont.isAnimating.value ? 100 : 200,
               child: Container(
-                height: deCont.isCHanged.value ? 150 : 150,
-                width: deCont.isCHanged.value ? 100 : 200,
-                color: blue,
+                height: 200,
+                width: 200,
+                color: red,
               ));
         }),
         const SizedBox(height: 30),

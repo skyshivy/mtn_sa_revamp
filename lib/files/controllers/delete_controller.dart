@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DeleteController extends GetxController
-    with GetSingleTickerProviderStateMixin {
-  RxBool isCHanged = false.obs;
-  late AnimationController animationController;
+class DeleteController extends GetxController {
+  RxBool isAnimating = false.obs;
+  //late AnimationController animationController;
   @override
   void onInit() {
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 2));
+    // animationController =
+    //     AnimationController(vsync: this, duration: const Duration(seconds: 2));
     super.onInit();
   }
 
@@ -25,6 +24,6 @@ class DeleteController extends GetxController
   }
 
   animate() {
-    isCHanged.value = !isCHanged.value;
+    isAnimating.value = !isAnimating.value;
   }
 }
