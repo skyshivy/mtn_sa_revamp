@@ -34,7 +34,7 @@ class MyTunePlayingView extends StatelessWidget {
           shrinkWrap: true,
           scrollDirection: si.isMobile ? Axis.horizontal : Axis.vertical,
           physics: si.isMobile ? null : const NeverScrollableScrollPhysics(),
-          gridDelegate: _delegate(si),
+          gridDelegate: delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
           itemBuilder: (context, index) {
             var item = controller.playingList[index];
             return Padding(

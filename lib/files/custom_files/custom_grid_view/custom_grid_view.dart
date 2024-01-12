@@ -6,14 +6,17 @@ import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/sub_vi
 import 'package:responsive_builder/responsive_builder.dart';
 
 class CustomGridView extends StatelessWidget {
-  final int itemCount;
   final List<TuneInfo> list;
-  final Function() onTap;
+
+  final Function()? onTap;
+  final Widget? cell;
+  final SliverGridDelegate? gridDelegate;
   const CustomGridView(
       {super.key,
-      required this.itemCount,
+      this.cell,
       required this.list,
-      required this.onTap});
+      this.onTap,
+      this.gridDelegate});
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +26,15 @@ class CustomGridView extends StatelessWidget {
   Widget gridView() {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return Obx(() {
-          return GridView.builder(
-              itemCount: itemCount,
-              shrinkWrap: true,
-              gridDelegate:
-                  delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return homeCell(index);
-              });
-        });
+        return GridView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            itemCount: list.length,
+            shrinkWrap: true,
+            gridDelegate: gridDelegate ??
+                delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
+            itemBuilder: (context, index) {
+              return cell ?? homeCell(index);
+            });
       },
     );
   }

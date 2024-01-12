@@ -7,6 +7,7 @@ import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/banner_detail_controller/banner_detail_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/faq_controller/faq_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/music_box_detail_controller.dart';
 
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
@@ -29,6 +30,7 @@ import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/help_screen/help_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/history_screen/history_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/music_pack_screen/music_pack_detail_list_screen/music_detail_list_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/music_pack_screen/music_pack_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
@@ -79,6 +81,7 @@ final router = GoRouter(
         _privatePolicyScreen(),
         _helpScreen(),
         _termsScreen(),
+        _viewMusicDetailScreen(),
         //openMyTuneSettingScreen(),
         //newSceen(),
       ],
@@ -159,6 +162,35 @@ StatefulShellBranch _privatePolicyScreen() {
       builder: (context, state) {
         //pCont.getProfileDetail();
         return const PrivacyPolicyScreen();
+      },
+    ),
+  ]);
+}
+
+StatefulShellBranch _viewMusicDetailScreen() {
+  return StatefulShellBranch(routes: <RouteBase>[
+    GoRoute(
+      name: musicDetailListGoRoute,
+      path: musicDetailListGoRoute,
+      builder: (context, state) {
+        //pCont.getProfileDetail();
+        String toneCode = state.uri.queryParameters['toneCode'] ?? '';
+        String type = state.uri.queryParameters['type'] ?? '';
+        late MusicBoxDetailController cont;
+        try {
+          cont = Get.find();
+        } catch (e) {
+          cont = Get.put(MusicBoxDetailController());
+        }
+
+        print("Called MusicPackDetailListScreen");
+        cont.getMusicBoxContent(toneCode, type);
+        var screen = MusicPackDetailListScreen(
+          toneCode: toneCode,
+          type: type,
+        );
+
+        return screen;
       },
     ),
   ]);

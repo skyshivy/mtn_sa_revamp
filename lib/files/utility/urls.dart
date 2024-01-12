@@ -21,7 +21,10 @@ String defaultImageUrl = ''; //DEFAULT_IMAGE_URL
 String baseUrl = "";
 String baseUrlSecurity = '';
 String faqUrl = '';
+
 String settingUrl = '${baseUrl}settings';
+String getMusicBoxUrl = '${baseUrl}music-box-search?';
+String getMusicBoxContentUrl = '${baseUrl}music-box-contents?';
 String checkOtpNewUserUrl = "${baseUrl}otp-check";
 String upgradePackUrl = "${baseUrlSecurity}pack-upgrade";
 String buyTuneUrl = "${baseUrlSecurity}set-tone";

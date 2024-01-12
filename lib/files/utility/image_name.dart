@@ -43,7 +43,7 @@ const personImg = 'assets/pngs/personImg.png';
 const arrowBackImg = 'assets/pngs/arrowBack.png';
 const downArrowImg = 'assets/pngs/downArrowImg.png';
 // svg image bottom =======================
-
+const viewSvg = 'assets/svg/viewSvg.svg';
 const wishlistSvg = 'assets/svg/wishlistSvg.svg';
 const tellFriendSvg = 'assets/svg/tellFriendSvg.svg';
 const shareSvg = 'assets/svg/shareSvg.svg';
