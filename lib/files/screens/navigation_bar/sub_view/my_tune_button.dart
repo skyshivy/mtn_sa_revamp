@@ -35,7 +35,7 @@ class HomeMyTuneButton extends StatelessWidget {
 
   Padding rightWidget() {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
+        padding: const EdgeInsets.only(left: 4, bottom: 4),
         child: Image.asset(
           downArrowImg,
           width: 18,
