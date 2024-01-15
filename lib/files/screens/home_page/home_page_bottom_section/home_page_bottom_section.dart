@@ -4,8 +4,8 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_bottom_section/sub_views/landing_company_view.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_bottom_section/sub_views/landing_social_meida.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_page_bottom_section/sub_views/landing_company_view.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_page_bottom_section/sub_views/landing_social_meida.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -15,12 +15,16 @@ class LandingPageBottomSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: bottomColor,
-      child: Padding(
-        padding: EdgeInsets.only(left: isPhone(context) ? 20 : 130),
-        child: mainColumn(context),
-      ),
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return Container(
+          color: bottomColor,
+          child: Padding(
+            padding: EdgeInsets.only(left: si.isMobile ? 20 : 130),
+            child: mainColumn(context),
+          ),
+        );
+      },
     );
   }
 

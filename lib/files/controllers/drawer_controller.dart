@@ -26,6 +26,7 @@ class MyDrawerController extends GetxController {
         DrawerModel(wishlistStr.tr),
         DrawerModel(tunesStr.tr, isExpanded: true),
         DrawerModel(historyStr.tr),
+        DrawerModel(musicPackStr.tr),
         //DrawerModel(faqStr.tr),
         DrawerModel(StoreManager().isEnglish ? burmeseStr : englishStr),
         DrawerModel(logoutStr.tr),
@@ -34,6 +35,7 @@ class MyDrawerController extends GetxController {
       menuList.value = [
         DrawerModel(homeStr.tr),
         DrawerModel(tunesStr.tr, isExpanded: true),
+        DrawerModel(musicPackStr.tr),
         DrawerModel(signinStr.tr),
         //DrawerModel(faqStr.tr),
         DrawerModel(StoreManager().isEnglish ? burmeseStr : englishStr),

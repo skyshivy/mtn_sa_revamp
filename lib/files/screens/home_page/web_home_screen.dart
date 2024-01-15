@@ -12,11 +12,11 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/home_search_widget.dart';
 import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/buy_opt_view.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_info_page/home_info_page.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_music_pack_view/home_music_pack_view.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_banner/home_page_banner.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_page_bottom_section/home_page_bottom_section.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_recomended/home_rec_view.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_info_page/home_info_page.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_music_pack_view/home_music_pack_view.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_page_banner/home_page_banner.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_page_bottom_section/home_page_bottom_section.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/home_rec_view.dart';
 
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 

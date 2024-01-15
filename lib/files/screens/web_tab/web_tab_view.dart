@@ -4,7 +4,7 @@ import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/web_home_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/web_home_screen.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class WebTabView extends StatelessWidget {

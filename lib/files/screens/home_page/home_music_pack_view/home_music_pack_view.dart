@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/music_box_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
-import 'package:mtn_sa_revamp/files/screens/web_home_page/home_music_pack_view/widgtes/music_pack_cell.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_music_pack_view/widgtes/music_pack_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';

@@ -139,7 +139,7 @@ _tappedOnSubCell(BuildContext context, AppCategory cat) async {
 }
 
 _tappedOnCell(BuildContext context, String title) async {
-  printCustom("=========_tappedOnCell==============");
+  printCustom("=========_tappedOnCell==============$title");
   if ((title == englishStr.tr) || (title == burmeseStr.tr)) {
   } else {
     Navigator.pop(context);
@@ -159,6 +159,8 @@ _tappedOnCell(BuildContext context, String title) async {
   } else if (title == wishlistStr.tr) {
     context.goNamed(wishlistGoRoute);
     //Get.toNamed(wishlistTapped);
+  } else if (title == musicPackStr.tr) {
+    context.goNamed(musicPackGoRoute);
   } else if (title == faqStr.tr) {
     printCustom("FAQ tapped");
     context.goNamed(faqGoRoute);

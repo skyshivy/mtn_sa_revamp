@@ -10,6 +10,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.da
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 Widget mobileAppBarLogoButton(BuildContext context) {
   PlayerController con = Get.find();
@@ -32,13 +33,21 @@ Widget mobileAppBarLogoButton(BuildContext context) {
 
               //Navigator.of(context).maybePop();
             },
-            leftWidget: Center(
-              child: Image.asset(
-                appCont.index.value != 0 ? mobileBackImg : atomLogoBigImg,
-                color: appCont.index.value != 0 ? white : transparent,
-                height: 25,
-                width: 25,
-              ),
+            leftWidget: ResponsiveBuilder(
+              builder: (context, si) {
+                return Center(
+                  child: Image.asset(
+                    appCont.index.value != 0
+                        ? mobileBackImg
+                        : si.isMobile
+                            ? atomLogoMobileImg
+                            : atomLogoBigImg,
+                    color: appCont.index.value != 0 ? white : transparent,
+                    // height: 25,
+                    // width: 25,
+                  ),
+                );
+              },
             ),
           );
         })),

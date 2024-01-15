@@ -120,7 +120,7 @@ const editStr = "Edit";
 const musicPackageStr = "Music Package";
 const madeWithStr = "Made with";
 const saveStr = "Save";
-const musicPackStr = "Music Pack";
+
 const viewStr = "View";
 const selectAtleastOneCatStr = "Select at least one category.";
 const confirmStr = "Confirm";
@@ -199,6 +199,7 @@ const pleaseActivateToUnsubscribeStr =
     "Please activate your pack before unsubscribing.";
 
 //=====================================================
+const musicPackStr = "Music Pack";
 const upgradeMessageStr =
     'Upgrade to EAUC at Kyat 100/1 day and enjoy unlimited tunes';
 const nameTuneStr = "Name Tunes";
