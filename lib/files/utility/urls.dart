@@ -4,7 +4,7 @@ import 'package:mtn_sa_revamp/files/utility/constants.dart';
 String versionCode = '7.0';
 String appVersion = '1.0.6';
 String channelId = '4';
-String appId = "com.sixdee.oml_rbt_portal"; //'com.sixdee.oml_rbt_portal'; //
+String appId = "com.sixdee.atom_rbt_portal"; //'com.sixdee.oml_rbt_portal'; //
 String os = "ios";
 String ccid = '';
 String userName = '';
