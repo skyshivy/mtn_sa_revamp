@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -8,11 +10,16 @@ Widget musicPackCell(String img, String info, int index) {
   print("index = ${index % 2}");
   return ResponsiveBuilder(
     builder: (context, si) {
-      return Padding(
-        padding: EdgeInsets.symmetric(horizontal: (si.isDesktop) ? 120 : 12),
-        child: si.isMobile
-            ? _mobileCell(img, info, si, isOnTop: (index % 2) == 0)
-            : _deskTopCell(img, info, si, isLeft: (index % 2) == 0),
+      return InkWell(
+        onTap: () {
+          context.goNamed(musicPackGoRoute);
+        },
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: (si.isDesktop) ? 120 : 12),
+          child: si.isMobile
+              ? _mobileCell(img, info, si, isOnTop: (index % 2) == 0)
+              : _deskTopCell(img, info, si, isLeft: (index % 2) == 0),
+        ),
       );
     },
   );
