@@ -40,11 +40,11 @@ Widget mobileAppBarLogoButton(BuildContext context) {
                     appCont.index.value != 0
                         ? mobileBackImg
                         : si.isMobile
-                            ? atomLogoMobileImg
+                            ? atomLogoIcon
                             : atomLogoBigImg,
-                    color: appCont.index.value != 0 ? white : transparent,
-                    // height: 25,
-                    // width: 25,
+                    color: appCont.index.value != 0 ? white : null,
+                    height: 25,
+                    width: 25,
                   ),
                 );
               },
