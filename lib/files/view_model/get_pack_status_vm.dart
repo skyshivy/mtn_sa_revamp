@@ -62,6 +62,9 @@ Future<PackStatusModel> getPackStatusApiCall({bool isCrbt = true}) async {
   printCustom("Map is ========= $map");
   if (map != null) {
     PackStatusModel model = PackStatusModel.fromJson(map);
+    if (model.statusCode == 'SC0000') {
+      StoreManager().packStatus = model.responseMap?.packStatusDetails;
+    }
     return model;
   } else {
     return PackStatusModel(

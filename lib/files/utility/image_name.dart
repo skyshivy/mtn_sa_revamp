@@ -3,6 +3,8 @@ const atomLogoBigImg = 'assets/pngs/atom_logo.png';
 const atomLogoMobileImg = 'assets/pngs/atom_logo_mobile.png';
 const atomLogoIcon = 'assets/pngs/atom_logo_icon.png';
 
+const expandArrowPng = 'assets/pngs/expandArrowPng.png';
+
 const bannerBigImg = 'assets/pngs/banner.png';
 const historyImg = 'assets/pngs/history.png';
 const buyImg = 'assets/pngs/buy.png';

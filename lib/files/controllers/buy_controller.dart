@@ -12,6 +12,7 @@ import 'package:mtn_sa_revamp/files/model/confirm_otp_existing_model.dart';
 import 'package:mtn_sa_revamp/files/model/custom_validity_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
+import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_price_model.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
@@ -20,6 +21,7 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/buy_music_channel_api.dart';
 import 'package:mtn_sa_revamp/files/view_model/confirm_otp_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/model/generate_otp_model.dart';
@@ -56,6 +58,7 @@ class BuyController extends GetxController {
   bool isGotTunePrice = false;
   late TuneInfo? info;
   bool isBuyMusicChannel = false;
+  TonePriceModel? tonePriceModel;
   //List<CustomValidtyModel> _validityModel = [];
   @override
   void onInit() {
@@ -63,6 +66,7 @@ class BuyController extends GetxController {
   }
 
   customInit() {
+    tonePriceModel = null;
     isBuyMusicChannel = false;
     isGotTunePrice = false;
     if (StoreManager().isLoggedIn) {
@@ -93,7 +97,8 @@ class BuyController extends GetxController {
     successMessage.value = '';
   }
 
-  getTuneCharge(String toneId) async {
+  getTuneCharge(TuneInfo info) async {
+    this.info = info;
     print("SKy 123-------");
     String msis = '';
     if (StoreManager().isLoggedIn) {
@@ -109,11 +114,54 @@ class BuyController extends GetxController {
     isLoagTuneCharge.value = true;
     isVerifying.value = true;
     print("Get tune price called");
-    // TonePriceModel mode = await getTunePrice();
+    tonePriceModel = await _getTunePrice();
+    if (StoreManager().packStatus == null) {
+      PackStatusModel mode = await getPackStatusApiCall();
+      if (mode.statusCode == "SC0000") {
+      } else {
+        errorMessage.value = tonePriceModel?.message ??
+            tonePriceModel?.responseMap?.description ??
+            someThingWentWrongStr;
+        print("Some thing went wrong while fetching tune price");
+        return false;
+      }
+    }
+
+    isVerifying.value = false;
+    isLoagTuneCharge.value = false;
+    if (tonePriceModel?.statusCode == "SC0000") {
+      String amount =
+          tonePriceModel?.responseMap?.responseDetails?.first.amount ?? '0';
+      String status = StoreManager().packStatus?.packName ?? '';
+
+      isHideUpgrade.value = (amount == "0");
+      //if ((status == 'NA') || (status == 'D') || (status == 'd')) {
+      if (status.isEmpty) {
+        isHideUpgrade.value = true;
+      } else {
+        isHideUpgrade.value = (amount == "0");
+      }
+      if (isBuyMusicChannel) {
+        isHideUpgrade.value = true;
+      }
+      print("AMount is $amount");
+      String packName1 =
+          tonePriceModel?.responseMap?.responseDetails?.first.packName ?? '';
+      tuneCharge.value = await customTuneChanrge(packName1, amount);
+
+      return true;
+    } else {
+      errorMessage.value = tonePriceModel?.message ??
+          tonePriceModel?.responseMap?.description ??
+          someThingWentWrongStr;
+      print("Some thing went wrong while fetching tune price");
+      return false;
+    }
+
     // isVerifying.value = false;
     // isLoagTuneCharge.value = false;
-
-    Map<String, dynamic>? map = await GetTunePrice().api(msis, toneId, '3');
+/*
+    Map<String, dynamic>? map = await //GetTunePrice().api(msis, toneId, '3');
     isVerifying.value = false;
     isLoagTuneCharge.value = false;
     if (map != null) {
@@ -147,7 +195,10 @@ class BuyController extends GetxController {
         print("Some thing went wrong while fetching tune price");
         return false;
       }
+      
     }
+
+    */
   }
 
   msisdnValidation(TuneInfo? inf, {bool isBuyMusicChannel = false}) async {
@@ -210,7 +261,7 @@ class BuyController extends GetxController {
           return;
         }
       }
-      isGotTunePrice = await getTuneCharge(inf?.toneId ?? '');
+      isGotTunePrice = await getTuneCharge(inf ?? TuneInfo());
     }
 
     // } else {
@@ -289,7 +340,7 @@ class BuyController extends GetxController {
     return;
   }
 */
-  Future<TonePriceModel> getTunePrice() async {
+  Future<TonePriceModel> _getTunePrice() async {
     errorMessage.value = '';
     String msisdn3 = '';
     if (StoreManager().isLoggedIn) {
@@ -297,7 +348,9 @@ class BuyController extends GetxController {
     } else {
       msisdn3 = msisdn.value;
     }
-
+    if (tonePriceModel != null) {
+      return tonePriceModel!;
+    }
     Map<String, dynamic>? map =
         await GetTunePrice().api(msisdn3, info?.toneId ?? '', '3');
     if (map != null) {
@@ -426,15 +479,28 @@ class BuyController extends GetxController {
     this.info = info;
     isVerifying.value = true;
 
-    TonePriceModel model = await getTunePrice();
-
+    TonePriceModel model = await _getTunePrice();
+    if (StoreManager().packStatus == null) {
+      PackStatusModel packStatusModel = await getPackStatusApiCall();
+      if (packStatusModel.statusCode == 'SC0000') {
+      } else {
+        isBuySuccess.value = true;
+        successMessage.value = model.message ?? '';
+        isVerifyingOtp.value = false;
+        isVerifying.value = false;
+        errorMessage.value = model.message ?? someThingWentWrongStr.tr;
+        return;
+      }
+    }
     if (model.statusCode == 'SC0000') {
       ResponseDetail? responseDetail =
           model.responseMap?.responseDetails?.first;
       String packName = responseDetail?.packName ?? '';
-      String status = responseDetail?.subscriberStatus ?? '';
+      String status = StoreManager().packStatus?.packName ??
+          ''; //responseDetail?.subscriberStatus ?? '';
 
-      if ((status == 'NA') || (status == 'D') || (status == 'd')) {
+      // if ((status == 'NA') || (status == 'D') || (status == 'd')) {
+      if (status.isEmpty) {
         isShowOtpView.value = false;
         isShowSubscriptionPlan.value = true;
       } else {

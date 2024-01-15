@@ -53,7 +53,7 @@ class _BuyScreenState extends State<_BuyScreen> {
   void initState() {
     buyController.customInit();
     buyController.isBuyMusicChannel = widget.isBuyMusicPack;
-    buyController.getTuneCharge(info?.toneId ?? '');
+    buyController.getTuneCharge(info ?? TuneInfo());
     super.initState();
   }
 

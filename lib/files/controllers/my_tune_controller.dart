@@ -44,7 +44,6 @@ class MyTuneController extends GetxController {
     bool status = await getPackStatus();
     if (status) {
       getMyPlayingList();
-
       getTuneList();
     } else {
       isLoadingPlaying.value = false;

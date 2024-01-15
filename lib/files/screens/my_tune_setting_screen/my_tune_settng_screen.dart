@@ -122,7 +122,7 @@ class _MyTuneSettingScreenState extends State<MyTuneSettingScreen> {
 
   Widget topTitleWidget() {
     return Padding(
-      padding: EdgeInsets.only(top: 20, bottom: 20),
+      padding: const EdgeInsets.only(top: 20, bottom: 20),
       child: ResponsiveBuilder(
         builder: (context, si) {
           return Row(
