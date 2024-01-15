@@ -199,7 +199,7 @@ const pleaseActivateToUnsubscribeStr =
     "Please activate your pack before unsubscribing.";
 
 //=====================================================
-const musicPackStr = "Music Pack";
+const musicPackStr = "Music Box";
 const upgradeMessageStr =
     'Upgrade to EAUC at Kyat 100/1 day and enjoy unlimited tunes';
 const nameTuneStr = "Name Tunes";
