@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable, must_be_immutable
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -19,6 +20,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
+import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/header_inrichment.dart';
@@ -33,16 +35,23 @@ import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_preview_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
+import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
+import 'package:mtn_sa_revamp/files/view_model/get_tune_price_vm.dart';
 
 import 'package:url_strategy/url_strategy.dart';
 
 BuildContext? goRouterContext;
 FocusNode keyScrollFocusNode = FocusNode();
 void main() async {
+  if (kDebugMode) {
+    appId = "com.sixdee.oml_rbt_portal";
+  } else {}
+
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
   //SharedPreferences.setMockInitialValues({});
   AppController controller = Get.put(AppController());
+
   initStoreManager();
 
 // below line added to for dalay so can store manager can initialized
@@ -53,7 +62,7 @@ void main() async {
   await getJson();
 
   controller.settinApiCall();
-
+  _getPackStatus();
   CategoryPoupupController catCont = Get.put(CategoryPoupupController());
   SearchTuneController _ = Get.put(SearchTuneController());
   RecoController recCont = Get.put(RecoController());
@@ -69,6 +78,16 @@ void main() async {
   MyTuneController myTuneCon = Get.put(MyTuneController());
   WishlistController wishCont = Get.put(WishlistController());
   runApp(MyApp());
+}
+
+_getPackStatus() async {
+  if (StoreManager().isLoggedIn) {
+    PackStatusModel packStatusModel = await getPackStatusApiCall();
+    if (packStatusModel.statusCode == "SC0000") {
+      StoreManager().packStatus =
+          packStatusModel.responseMap?.packStatusDetails;
+    } else {}
+  }
 }
 
 Future<void> initStoreManager() async {

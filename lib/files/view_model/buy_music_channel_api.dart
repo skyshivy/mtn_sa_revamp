@@ -16,7 +16,7 @@ Future<BuyTuneModel> buyMusicChannelApi(String toneId) async {
     "toneId": toneId,
     "clientTxnId": "$randomNumber",
     "language": StoreManager().languageCode,
-    "serviceId": "7",
+    "serviceId": "16",
     "channelId": channelId,
     "priority": "0",
     "paymentMode": "2",

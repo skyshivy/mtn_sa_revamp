@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/localization/localizatio_service.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
+import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
@@ -32,7 +33,7 @@ class StoreManager {
   String securityToken = '';
   String securityCounter = '';
   String refreshToken = '';
-
+  PackStatusDetails? packStatus;
   bool isLoggedIn = false;
   //bool testBool = false;
   int otpLength = 6;
