@@ -5,7 +5,7 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 Future<Map<String, dynamic>?> deletePlayingTuneApiCall(
-    String tuneId, String timeType, bool isFullDay) async {
+    String tuneId, String timeType, bool isCrbt, bool isFullDay) async {
   Random random = Random();
   var randomNumber = random.nextInt(1000000000);
   var url = deletePlayingTuneUrl;
@@ -16,7 +16,7 @@ Future<Map<String, dynamic>?> deletePlayingTuneApiCall(
       {"toneId": tuneId}
     ],
     'language': StoreManager().languageCode,
-    'priority': '0',
+    'priority': isCrbt ? '0' : '1',
     'channelId': channelId,
     'timeType': timeType,
     'activityId': '3',

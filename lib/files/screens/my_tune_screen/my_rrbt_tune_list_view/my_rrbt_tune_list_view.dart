@@ -76,7 +76,8 @@ class MyRrbtTuneListView extends StatelessWidget {
               itemCount: cont.rrbtTuneList.length,
               gridDelegate: _delegate(si),
               itemBuilder: (context, index) {
-                return myTunePlayingCell(cont.rrbtTuneList[index], index);
+                return myTunePlayingCell(
+                    cont.rrbtTuneList[index], index, false);
                 // MyRrbtTuneCell(
                 //   length: "${cont.rrbtTuneList.length}",
                 // );

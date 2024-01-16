@@ -134,7 +134,7 @@ class MyTuneController extends GetxController {
 
 //========================================================
   Future<bool> deletePlayingTune(
-      String toneId, int index, BuildContext context) async {
+      String toneId, int index, bool isCrbt, BuildContext context) async {
     Map<String, dynamic>? resp;
     printCustom(
         "Delete playing tune name ${toneId} ===== ${playingList[index].msisdnB}");
@@ -148,7 +148,7 @@ class MyTuneController extends GetxController {
       print(
           "toneDetails?.first.weeklyDays ${playingList[index].toneDetails?.first.weeklyDays}");
       resp = await deletePlayingTuneApiCall(
-          toneId, isFullday ? "2" : '2', isFullday);
+          toneId, isFullday ? "2" : '2', isCrbt, isFullday);
     } else {
       printCustom("Delete dedicate tune ");
       resp = await deleteDedicatedTuneApiCall(toneId,

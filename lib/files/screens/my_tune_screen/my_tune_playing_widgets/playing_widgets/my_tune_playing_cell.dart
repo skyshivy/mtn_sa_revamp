@@ -14,7 +14,7 @@ import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widge
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell_widgtes/playing_tune_time.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
-Widget myTunePlayingCell(ListToneApk item, int index) {
+Widget myTunePlayingCell(ListToneApk item, int index, bool isCrbt) {
   return Container(
     clipBehavior: Clip.hardEdge,
     decoration: _myTunePlayingCellDecoration(),
@@ -27,7 +27,7 @@ Widget myTunePlayingCell(ListToneApk item, int index) {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _playingTuneInfoRow(item, index),
+              _playingTuneInfoRow(item, index, isCrbt),
               playingTuneDivider(),
               playingTuneStatus(item),
               //playingTuneDivider(),
@@ -57,7 +57,7 @@ Widget repeatView(ListToneApk item) {
         );
 }
 
-Row _playingTuneInfoRow(ListToneApk item, int index) {
+Row _playingTuneInfoRow(ListToneApk item, int index, bool isCrbt) {
   ToneDetail? detail = item.toneDetails?.first;
   TuneInfo inf = TuneInfo(
       toneId: detail?.toneId,
@@ -75,7 +75,7 @@ Row _playingTuneInfoRow(ListToneApk item, int index) {
         children: [
           playingTunePlayButton(inf, index),
           const SizedBox(width: 8),
-          playingTuneMoreButton(index, inf),
+          playingTuneMoreButton(index, inf, isCrbt),
         ],
       ),
     ],

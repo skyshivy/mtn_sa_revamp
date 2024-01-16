@@ -45,7 +45,7 @@ class MyTunePlayingView extends StatelessWidget {
             var item = controller.playingList[index];
             return Padding(
               padding: const EdgeInsets.all(4.0),
-              child: myTunePlayingCell(item, index),
+              child: myTunePlayingCell(item, index, true),
             );
           },
         );

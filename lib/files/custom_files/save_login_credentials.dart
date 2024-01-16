@@ -1,6 +1,7 @@
 import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
 
 Future<void> saveCredentialHere(PasswordValidationModel model) async {
   printCustom("1 saveCredentialHere ===================================");
@@ -22,6 +23,7 @@ Future<void> saveCredentialHere(PasswordValidationModel model) async {
   printCustom("set 6");
   await StoreManager().initStoreManager();
   StoreManager().setLoggedIn(true);
+  getPackStatusApiCall();
   printCustom("set 7");
   printCustom("saveCredentialHere 16");
   return;

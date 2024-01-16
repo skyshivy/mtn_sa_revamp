@@ -16,11 +16,12 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 class MyTunePlayimgMoreButton extends StatefulWidget {
   final TuneInfo info;
   final int index;
-
+  final bool isCrbt;
   const MyTunePlayimgMoreButton({
     super.key,
     required this.index,
     required this.info,
+    required this.isCrbt,
   });
 
   @override
@@ -91,7 +92,7 @@ class _MyTunePlayimgMoreButtonState extends State<MyTunePlayimgMoreButton> {
           ));
         } else if (p0.title == deleteStr.tr) {
           mCont.deletePlayingTune(
-              widget.info.toneId ?? '', widget.index, context);
+              widget.info.toneId ?? '', widget.index, widget.isCrbt, context);
         }
         printCustom("Item name is ${p0.title}");
       },

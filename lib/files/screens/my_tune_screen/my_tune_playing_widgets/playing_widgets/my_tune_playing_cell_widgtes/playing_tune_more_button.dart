@@ -12,7 +12,7 @@ import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-Widget playingTuneMoreButton(int index, TuneInfo info) {
+Widget playingTuneMoreButton(int index, TuneInfo info, bool isCrbt) {
   MyTuneController mCont = Get.find();
 
   return ResponsiveBuilder(
@@ -31,7 +31,8 @@ Widget playingTuneMoreButton(int index, TuneInfo info) {
             message: areYouSureYouWantToDeleteStr.tr,
             cancelTitle: cancelStr.tr,
             onOk: () {
-              mCont.deletePlayingTune(info.toneId ?? '', index, context);
+              mCont.deletePlayingTune(
+                  info.toneId ?? '', index, isCrbt, context);
             },
           ));
         },

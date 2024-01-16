@@ -40,9 +40,6 @@ class StoreManager {
   int msisdnLength = 10;
   int timeOutDuration = 15;
   late Box<dynamic> prefs;
-
-  //final storage = FlutterSecureStorage();
-  //late SharedPreferences prefs;
   AppSettingModel? appSetting;
 
   Future<void> initStoreManager() async {
@@ -140,9 +137,10 @@ class StoreManager {
     setUserName('');
     setPassword('');
     setChannelId('4');
+    packStatus = null;
     print("Logout called from StoreManager");
     appController.isLoggedIn.value = false;
-    //initStoreManager();
+
     return;
   }
 
