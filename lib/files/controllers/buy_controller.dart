@@ -119,18 +119,24 @@ class BuyController extends GetxController {
     isLoagTuneCharge.value = true;
     isVerifying.value = true;
     print("Get tune price called");
-    tonePriceModel = await _getTunePrice();
-    if (StoreManager().packStatus == null) {
-      PackStatusModel mode = await getPackStatusApiCall();
-      if (mode.statusCode == "SC0000") {
-      } else {
-        errorMessage.value = tonePriceModel?.message ??
-            tonePriceModel?.responseMap?.description ??
-            someThingWentWrongStr;
-        print("Some thing went wrong while fetching tune price");
-        return false;
-      }
+    String number = '';
+    if (StoreManager().isLoggedIn) {
+      number = StoreManager().msisdn;
+    } else {
+      number = msisdn.value;
     }
+    tonePriceModel = await _getTunePrice();
+    //if (StoreManager().packStatus == null) {
+    PackStatusModel mode = await getPackStatusApiCall(number);
+    if (mode.statusCode == "SC0000") {
+    } else {
+      errorMessage.value = tonePriceModel?.message ??
+          tonePriceModel?.responseMap?.description ??
+          someThingWentWrongStr;
+      print("Some thing went wrong while fetching tune price");
+      return false;
+    }
+    //}
     print("Pack name = ${StoreManager().packStatus?.packName}");
     print("crbtVipOfferCode = $crbtVipOfferCode");
     isVerifying.value = false;
@@ -154,10 +160,15 @@ class BuyController extends GetxController {
         isHideUpgrade.value = true;
       }
       print("AMount is $amount");
+      print("Pack name is $status");
       String packName1 =
           tonePriceModel?.responseMap?.responseDetails?.first.packName ?? '';
       tuneCharge.value = await customTuneChanrge(packName1, amount);
-
+      print("Pack name is1 $status");
+      if (status.isEmpty) {
+        print("Pack name is2 $status");
+        isHideUpgrade.value = true;
+      }
       return true;
     } else {
       isHideUpgrade.value = true;
@@ -491,7 +502,8 @@ class BuyController extends GetxController {
     isHideUpgrade.value = false;
     TonePriceModel model = await _getTunePrice();
     if (StoreManager().packStatus == null) {
-      PackStatusModel packStatusModel = await getPackStatusApiCall();
+      PackStatusModel packStatusModel =
+          await getPackStatusApiCall(StoreManager().msisdn);
       if (packStatusModel.statusCode == 'SC0000') {
       } else {
         isBuySuccess.value = true;

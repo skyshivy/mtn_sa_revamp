@@ -73,7 +73,8 @@ class ProfileController extends GetxController {
   }
 
   Future<void> getCrbtPackStatus() async {
-    PackStatusModel? packStatusModel = await getPackStatusApiCall(isCrbt: true);
+    PackStatusModel? packStatusModel =
+        await getPackStatusApiCall(StoreManager().msisdn, isCrbt: true);
     print("getCrbtPackStatus resp message is = ${packStatusModel.message}");
     print("getCrbtPackStatus resp message is = ${packStatusModel.statusCode}");
     if (packStatusModel.statusCode == 'SC0000') {
@@ -141,7 +142,7 @@ class ProfileController extends GetxController {
 
   Future<void> getRrbtPackStatus() async {
     PackStatusModel? packStatusModel =
-        await getPackStatusApiCall(isCrbt: false);
+        await getPackStatusApiCall(StoreManager().msisdn, isCrbt: false);
     print("getCrbtPackStatus resp message is = ${packStatusModel.message}");
     print("getCrbtPackStatus resp message is = ${packStatusModel.statusCode}");
     if (packStatusModel.statusCode == 'SC0000') {

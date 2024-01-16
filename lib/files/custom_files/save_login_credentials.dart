@@ -23,7 +23,7 @@ Future<void> saveCredentialHere(PasswordValidationModel model) async {
   printCustom("set 6");
   await StoreManager().initStoreManager();
   StoreManager().setLoggedIn(true);
-  getPackStatusApiCall();
+  getPackStatusApiCall(StoreManager().msisdn);
   printCustom("set 7");
   printCustom("saveCredentialHere 16");
   return;

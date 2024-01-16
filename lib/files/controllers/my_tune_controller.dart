@@ -72,7 +72,8 @@ class MyTuneController extends GetxController {
   }
 
   Future<bool> getPackStatus() async {
-    PackStatusModel mo = await getPackStatusApiCall(isCrbt: true);
+    PackStatusModel mo =
+        await getPackStatusApiCall(StoreManager().msisdn, isCrbt: true);
     if (mo.statusCode == "SC0000") {
       return (mo.responseMap?.packStatusDetails?.packName != null);
     } else {
@@ -179,7 +180,8 @@ class MyTuneController extends GetxController {
       message: areYouSureYouWantToDeleteStr.tr,
       cancelTitle: callersStr.tr,
       onOk: () async {
-        PackStatusModel model = await getPackStatusApiCall();
+        PackStatusModel model =
+            await getPackStatusApiCall(StoreManager().msisdn);
 
         if (model.statusCode == 'SC0000') {
           String packName =

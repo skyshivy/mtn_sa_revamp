@@ -8,9 +8,10 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
-Future<PackStatusModel> getPackStatusApiCall({bool isCrbt = true}) async {
-  String msisdn = StoreManager().msisdn;
-  String lang = StoreManager().language;
+Future<PackStatusModel> getPackStatusApiCall(String msisdn,
+    {bool isCrbt = true}) async {
+  //String msisdn = StoreManager().msisdn;
+  //String lang = StoreManager().language;
   String priority = isCrbt ? "0" : "1";
   String url = "${getpackStatusUrl}msisdn=$msisdn&priority=$priority";
   Map<String, dynamic>? map = await ServiceCall().get(url);

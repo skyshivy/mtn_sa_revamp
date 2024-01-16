@@ -84,7 +84,8 @@ class TuneSettingController extends GetxController {
   }
 
   getPackName() async {
-    PackStatusModel packStatusModel = await getPackStatusApiCall();
+    PackStatusModel packStatusModel =
+        await getPackStatusApiCall(StoreManager().msisdn);
     if (packStatusModel.statusCode == 'SC0000') {
       packName = packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
     }

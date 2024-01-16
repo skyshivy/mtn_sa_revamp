@@ -65,7 +65,9 @@ class SetTuneVM {
     if (map != null) {
       BuyTuneModel? model = BuyTuneModel.fromJson(map);
       if (model.statusCode == 'SC0000') {
-        getPackStatusApiCall();
+        if (StoreManager().isLoggedIn) {
+          getPackStatusApiCall(StoreManager().msisdn);
+        }
       }
 
       return model;

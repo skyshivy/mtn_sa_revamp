@@ -82,7 +82,7 @@ void main() async {
 
 _getPackStatus() async {
   if (StoreManager().isLoggedIn) {
-    PackStatusModel packStatusModel = await getPackStatusApiCall();
+    PackStatusModel packStatusModel = await getPackStatusApiCall("");
     if (packStatusModel.statusCode == "SC0000") {
       StoreManager().packStatus =
           packStatusModel.responseMap?.packStatusDetails;
