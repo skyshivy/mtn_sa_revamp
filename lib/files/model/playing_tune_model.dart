@@ -15,12 +15,14 @@ String playingTuneModelToJson(PlayingTuneModel data) =>
 
 class PlayingTuneModel {
   ResponseMap? responseMap;
+  ResponseMap? rrbtResponseMap;
   String? message;
   String? respTime;
   String? statusCode;
   bool? isSuffle = false;
   PlayingTuneModel({
     this.responseMap,
+    this.rrbtResponseMap,
     this.message,
     this.respTime,
     this.statusCode,

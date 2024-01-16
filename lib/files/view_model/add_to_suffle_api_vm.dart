@@ -5,7 +5,7 @@ import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
-Future<Map<String, dynamic>?> addToSuffleApi(String toneId) async {
+Future<Map<String, dynamic>?> addToSuffleApi(String toneId, bool isCrbt) async {
   String url = timeBaseTuneSetUrl;
   Random random = Random();
   var randomNumber = random.nextInt(1000000000);
@@ -14,7 +14,7 @@ Future<Map<String, dynamic>?> addToSuffleApi(String toneId) async {
     'aPartyMsisdn': StoreManager().msisdn,
     'toneId': toneId,
     'language': StoreManager().languageCode,
-    'priority': '0',
+    'priority': isCrbt ? '0' : '1',
     'channelId': channelId,
     'serviceId': '17',
     'activityId': '1',

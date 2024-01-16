@@ -4,7 +4,8 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 class MyRrbtTuneCell extends StatelessWidget {
-  const MyRrbtTuneCell({super.key});
+  const MyRrbtTuneCell({super.key, required this.length});
+  final String length;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class MyRrbtTuneCell extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomText(title: 'title'),
+        CustomText(title: length),
         CustomText(title: 'title'),
       ],
     );

@@ -238,6 +238,7 @@ Future<ListToneApk> _newDetail(ListToneApk info, TimeType toneDetailTimeType,
 //========================================================
 Future<PlayingTuneModel?> _displayTune(Map<String, dynamic>? result) async {
   List<ListToneApk> lst = [];
+  List<ListToneApk> rrbtList = [];
   bool switchEnabled = false;
   if (result != null) {
     PlayingTuneModel? playing = PlayingTuneModel.fromJson(result);
@@ -246,7 +247,6 @@ Future<PlayingTuneModel?> _displayTune(Map<String, dynamic>? result) async {
           playing.responseMap?.listToneApk ?? [];
       for (ListToneApk element in tempListToneApkList) {
         if ((element.serviceName == "SpecialCallerSetting") ||
-            (element.serviceName == "RAllCaller") ||
             (element.serviceName == "AllCaller")) {
           if (element.toneDetails != null) {
             print("===========It is not null");
@@ -259,8 +259,18 @@ Future<PlayingTuneModel?> _displayTune(Map<String, dynamic>? result) async {
           } else {
             print("It is  null");
           }
+        } else if ((element.serviceName == "RAllCaller")) {
+          if (element.toneDetails != null) {
+            ToneDetail? tD = element.toneDetails?.first;
+
+            bool isFlDay = ((tD?.weeklyDays ?? "0") == "0") ? true : false;
+            rrbtList.add(await _newDetail(element, TimeType.fullDay, "",
+                element.sTime ?? '', element.eTime ?? '',
+                isFullday: isFlDay));
+          }
         } else {}
       }
+
       print("Total list =========== ${lst.length}");
 
       if (playing.responseMap?.listToneApk != null ||
@@ -279,6 +289,7 @@ Future<PlayingTuneModel?> _displayTune(Map<String, dynamic>? result) async {
         }
         PlayingTuneModel model = PlayingTuneModel(
             isSuffle: switchEnabled,
+            rrbtResponseMap: ResponseMap(listToneApk: rrbtList),
             responseMap: ResponseMap(listToneApk: lst));
         printCustom("Total get in list sorted new ${lst.length}");
         //for (var element in listToneApkList) {

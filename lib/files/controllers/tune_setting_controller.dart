@@ -166,7 +166,7 @@ class TuneSettingController extends GetxController {
 
   _addToSuffleApiCall() async {
     isLoading.value = true;
-    Map<String, dynamic>? map = await addToSuffleApi(tuneId);
+    Map<String, dynamic>? map = await addToSuffleApi(tuneId, isCrbt.value);
     _result(map);
     print("object");
   }

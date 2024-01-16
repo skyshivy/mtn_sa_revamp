@@ -31,6 +31,7 @@ class MyTuneController extends GetxController {
   RxInt selectedSection = 0.obs;
   RxList<ListToneApk> playingList = <ListToneApk>[].obs;
   RxList<ListToneApk1> tuneList = <ListToneApk1>[].obs;
+  RxList<ListToneApk> rrbtTuneList = <ListToneApk>[].obs;
   bool loadingData = false;
   getPlayingTuneList() async {
     if (loadingData) {
@@ -88,6 +89,7 @@ class MyTuneController extends GetxController {
       isSuffle.value = playingTune.isSuffle!;
       switchEnabled.value = playingTune.isSuffle!;
       playingList.value = playingTune.responseMap?.listToneApk ?? [];
+      rrbtTuneList.value = playingTune.rrbtResponseMap?.listToneApk ?? [];
     }
     isLoadingPlaying.value = false;
     return;

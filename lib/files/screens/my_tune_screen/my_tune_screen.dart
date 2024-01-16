@@ -91,7 +91,7 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
     return Obx(() {
       return Visibility(
         visible: controller.selectedSection.value == 1,
-        child: const MyRrbtTuneListView(),
+        child: MyRrbtTuneListView(),
       );
     });
   }

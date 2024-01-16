@@ -1,16 +1,19 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
+import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_rrbt_tune_list_view/my_rrbt_tune_cell.dart';
+import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class MyRrbtTuneListView extends StatelessWidget {
-  const MyRrbtTuneListView({super.key});
-
+  MyRrbtTuneListView({super.key});
+  final MyTuneController cont = Get.find();
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
@@ -46,26 +49,48 @@ class MyRrbtTuneListView extends StatelessWidget {
     );
   }
 
+  Widget emptyListWidget(SizingInformation si) {
+    return SizedBox(
+        height: 200,
+        child: Center(child: Obx(() {
+          return cont.isLoadingPlaying.value
+              ? loadingIndicator()
+              : CustomText(
+                  title: tuneListEmptyStr.tr,
+                  fontName: FontName.bold,
+                  fontSize: si.isMobile ? 14 : 20,
+                );
+        })));
+  }
+
   Widget gridView(SizingInformation si) {
-    return GridView.builder(
-      padding: EdgeInsets.all(8),
-      shrinkWrap: true,
-      scrollDirection: si.isMobile ? Axis.horizontal : Axis.vertical,
-      physics: si.isMobile ? null : const NeverScrollableScrollPhysics(),
-      itemCount: 3,
-      gridDelegate: _delegate(si),
-      itemBuilder: (context, index) {
-        return MyRrbtTuneCell();
-      },
-    );
+    return Obx(() {
+      return cont.rrbtTuneList.isEmpty
+          ? emptyListWidget(si)
+          : GridView.builder(
+              padding: EdgeInsets.all(8),
+              shrinkWrap: true,
+              scrollDirection: si.isMobile ? Axis.horizontal : Axis.vertical,
+              physics:
+                  si.isMobile ? null : const NeverScrollableScrollPhysics(),
+              itemCount: cont.rrbtTuneList.length,
+              gridDelegate: _delegate(si),
+              itemBuilder: (context, index) {
+                return myTunePlayingCell(cont.rrbtTuneList[index], index);
+                // MyRrbtTuneCell(
+                //   length: "${cont.rrbtTuneList.length}",
+                // );
+              },
+            );
+    });
   }
 }
 
 SliverGridDelegateWithMaxCrossAxisExtent _delegate(SizingInformation si) {
   return delegate(
     si,
-    mainAxisExtent: si.isMobile ? 280 : 320,
-    maxCrossAxisExtent: si.isMobile ? 420 : 340,
+    mainAxisExtent: si.isMobile ? 280 : 400,
+    maxCrossAxisExtent: si.isMobile ? 420 : 380,
     crossAxisSpacing: 10,
     mainAxisSpacing: 10,
   );

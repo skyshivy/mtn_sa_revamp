@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_day_selection_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_dedicated_msisdn_view.dart';
@@ -15,6 +16,7 @@ import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setti
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_settng_time_date_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget tuneSettingRightWidgte() {
@@ -32,23 +34,64 @@ Widget tuneSettingRightWidgte() {
         callerTypeWidget(con),
         Obx(() {
           return Visibility(
-            visible: !(con.callerType.value == 2),
-            child: Row(
-              children: [
-                _bottomWidget(),
-              ],
-            ),
-          );
+              visible: con.isCrbt.value, child: bottomSectionWidget(con));
         })
       ],
     ),
   );
 }
 
+Widget bottomSectionWidget(TuneSettingController con) {
+  return Obx(() {
+    return Visibility(
+      visible: !(con.callerType.value == 2),
+      child: Row(
+        children: [
+          _bottomWidget(),
+        ],
+      ),
+    );
+  });
+}
+
 Widget callerTypeWidget(TuneSettingController con) {
   return Obx(() {
-    return Visibility(visible: con.isCrbt.value, child: _topWidgetContaner());
+    return con.isCrbt.value
+        ? _topWidgetContaner()
+        : _combinedWidget(
+            addToShuffleStr); //Visibility(visible: con.isCrbt.value, child: _topWidgetContaner());
   });
+}
+
+Widget _combinedWidget(String title) {
+  TuneSettingController cont = Get.find();
+  cont.updateToWhom(ToWhomAction.addToSuffle);
+  return Padding(
+    padding: const EdgeInsets.only(left: 20, bottom: 50, top: 20),
+    child: Row(
+      children: [
+        _radioButton(true),
+        const SizedBox(width: 2),
+        _titleButton(true, title),
+      ],
+    ),
+  );
+}
+
+Widget _titleButton(bool isSelected, String title) {
+  return CustomText(
+    title: title,
+    fontName: FontName.medium,
+    fontSize: 14,
+    textColor: black,
+  );
+}
+
+Widget _radioButton(bool isSelected) {
+  return Image.asset(
+    radioButtonSelectedImg,
+    width: 18,
+  );
 }
 
 Widget crbtRrbtButtonContainer() {
