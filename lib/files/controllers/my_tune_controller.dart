@@ -28,7 +28,7 @@ class MyTuneController extends GetxController {
   RxBool isSuffle = false.obs;
   RxBool switchEnabled = false.obs;
   RxString message = ''.obs;
-
+  RxInt selectedSection = 0.obs;
   RxList<ListToneApk> playingList = <ListToneApk>[].obs;
   RxList<ListToneApk1> tuneList = <ListToneApk1>[].obs;
   bool loadingData = false;

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
+import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_rrbt_tune_list_view/my_rrbt_tune_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -14,22 +15,20 @@ class MyRrbtTuneListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return Padding(
-          padding: EdgeInsets.only(bottom: si.isMobile ? 25 : 80),
-          child: Container(
-            decoration: BoxDecoration(
-                color: white, borderRadius: BorderRadius.circular(4)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                headerView(si),
-                SizedBox(height: si.isMobile ? 5 : 10),
-                si.isMobile
-                    ? SizedBox(height: 360, child: gridView(si))
-                    : gridView(si),
-              ],
-            ),
+        return Container(
+          decoration: BoxDecoration(
+              color: white, borderRadius: BorderRadius.circular(4)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              headerView(si),
+              SizedBox(height: si.isMobile ? 5 : 10),
+              si.isMobile
+                  ? SizedBox(height: 360, child: gridView(si))
+                  : gridView(si),
+            ],
           ),
         );
       },
@@ -56,12 +55,7 @@ class MyRrbtTuneListView extends StatelessWidget {
       itemCount: 3,
       gridDelegate: _delegate(si),
       itemBuilder: (context, index) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: atomCryan,
-          ),
-        );
+        return MyRrbtTuneCell();
       },
     );
   }

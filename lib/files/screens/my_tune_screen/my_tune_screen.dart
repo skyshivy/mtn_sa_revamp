@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_rrbt_tune_list_view/my_rrbt_tune_list_view.dart';
@@ -47,9 +48,12 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
         builder: (context, si) {
           return SingleChildScrollView(
               child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               const MyTuneHeaderView(),
+              const SizedBox(height: 15),
+              sectionTabContainer(si),
               const SizedBox(height: 15),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 4 : 20),
@@ -58,19 +62,11 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Obx(() {
-                      return controller.isLoadingPlaying.value
-                          ? loadInd()
-                          : checkMyPlayingTuneEmpty();
-                    }),
-                    SizedBox(height: si.isMobile ? 25 : 80),
-                    const MyRrbtTuneListView(),
-                    Obx(() {
-                      return controller.isLoadingTune.value
-                          ? loadInd()
-                          : checkMyTuneListEmpty();
-                    }),
-                    SizedBox(height: si.isMobile ? 20 : 200),
+                    myPlayintTuneSection(),
+                    // SizedBox(height: si.isMobile ? 25 : 80),
+                    myRrbtSection(),
+                    myTuneListSection(),
+                    SizedBox(height: si.isMobile ? 20 : 60),
                   ],
                 ),
               ),
@@ -79,6 +75,81 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
         },
       ),
     );
+  }
+
+  Obx myTuneListSection() {
+    return Obx(() {
+      return Visibility(
+          visible: controller.selectedSection.value == 2,
+          child: controller.isLoadingTune.value
+              ? loadInd()
+              : checkMyTuneListEmpty());
+    });
+  }
+
+  Obx myRrbtSection() {
+    return Obx(() {
+      return Visibility(
+        visible: controller.selectedSection.value == 1,
+        child: const MyRrbtTuneListView(),
+      );
+    });
+  }
+
+  Obx myPlayintTuneSection() {
+    return Obx(() {
+      return Visibility(
+          visible: controller.selectedSection.value == 0,
+          child: controller.isLoadingPlaying.value
+              ? loadInd()
+              : checkMyPlayingTuneEmpty());
+    });
+  }
+
+  Padding sectionTabContainer(SizingInformation si) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 4 : 20),
+      child: Container(
+        decoration:
+            BoxDecoration(color: white, borderRadius: BorderRadius.circular(4)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+          child: SizedBox(
+            height: 40,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              children: [
+                tabSection(playingTuneStr, 0, si),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 6),
+                  child: tabSection(myRrbtTunesStr, 1, si),
+                ),
+                tabSection(myTuneStr, 2, si),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget tabSection(String title, int index, SizingInformation si) {
+    return Obx(() {
+      return CustomButton(
+        onTap: () {
+          controller.selectedSection.value = index;
+        },
+        titlePadding: const EdgeInsets.symmetric(horizontal: 10),
+        height: 45,
+        fontSize: si.isMobile ? 12 : 14,
+        fontName: FontName.bold,
+        color: (controller.selectedSection.value == index) ? blue : greyLight,
+        textColor: (controller.selectedSection.value == index) ? white : black,
+        title: title,
+        radius: 4,
+      );
+    });
   }
 
   Widget checkMyTuneListEmpty() {

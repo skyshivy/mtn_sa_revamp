@@ -199,6 +199,10 @@ const pleaseActivateToUnsubscribeStr =
     "Please activate your pack before unsubscribing.";
 
 //=====================================================
+
+const playingTuneStr = "My Playing Tunes";
+const myRrbtTunesStr = "My RRBT Tunes";
+
 const crbtStr = "CRBT";
 const rrbtStr = "RRBT";
 const myRrbtTunes = "My RRBT tunes";
