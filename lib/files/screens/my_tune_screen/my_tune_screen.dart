@@ -5,10 +5,12 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_rrbt_tune_list_view/my_rrbt_tune_list_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_header_widgets/my_tune_header_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_list_widgets/myTune_list_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/my_tune_playing_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
@@ -39,39 +41,43 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
-      builder: (context, si) {
-        return SingleChildScrollView(
-            child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const MyTuneHeaderView(),
-            const SizedBox(height: 15),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 4 : 20),
+    return Scaffold(
+      backgroundColor: grey,
+      body: ResponsiveBuilder(
+        builder: (context, si) {
+          return SingleChildScrollView(
               child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Obx(() {
-                    return controller.isLoadingPlaying.value
-                        ? loadInd()
-                        : checkMyPlayingTuneEmpty();
-                  }),
-                  const SizedBox(height: 35),
-                  Obx(() {
-                    return controller.isLoadingTune.value
-                        ? loadInd()
-                        : checkMyTuneListEmpty();
-                  }),
-                  const SizedBox(height: 200),
-                ],
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const MyTuneHeaderView(),
+              const SizedBox(height: 15),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 4 : 20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Obx(() {
+                      return controller.isLoadingPlaying.value
+                          ? loadInd()
+                          : checkMyPlayingTuneEmpty();
+                    }),
+                    SizedBox(height: si.isMobile ? 25 : 80),
+                    const MyRrbtTuneListView(),
+                    Obx(() {
+                      return controller.isLoadingTune.value
+                          ? loadInd()
+                          : checkMyTuneListEmpty();
+                    }),
+                    SizedBox(height: si.isMobile ? 20 : 200),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ));
-      },
+            ],
+          ));
+        },
+      ),
     );
   }
 

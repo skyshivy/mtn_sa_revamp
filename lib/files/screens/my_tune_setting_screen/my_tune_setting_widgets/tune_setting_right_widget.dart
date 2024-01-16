@@ -4,6 +4,7 @@ import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_day_selection_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_dedicated_msisdn_view.dart';
@@ -26,6 +27,7 @@ Widget tuneSettingRightWidgte() {
     ),
     child: Column(
       children: [
+        crbtRrbtButtonContainer(),
         _topWidgetContaner(),
         Obx(() {
           return Visibility(
@@ -40,6 +42,45 @@ Widget tuneSettingRightWidgte() {
       ],
     ),
   );
+}
+
+Widget crbtRrbtButtonContainer() {
+  TuneSettingController con = Get.find();
+  return Container(
+      color: whiteTrans,
+      child: Obx(() {
+        return Row(
+          children: [
+            Expanded(
+              child: CustomButton(
+                radius: 0,
+                color: con.isCrbt.value ? blue : atomCryan,
+                textColor: con.isCrbt.value ? white : black,
+                //width: 80,
+                title: crbtStr.tr,
+                fontName: FontName.bold,
+                onTap: () {
+                  con.isCrbt.value = true;
+                },
+              ),
+            ),
+            const SizedBox(width: 1),
+            Expanded(
+              child: CustomButton(
+                color: con.isCrbt.value ? atomCryan : blue,
+                radius: 0,
+                textColor: con.isCrbt.value ? black : white,
+                //width: 80,
+                title: rrbtStr.tr,
+                fontName: FontName.bold,
+                onTap: () {
+                  con.isCrbt.value = false;
+                },
+              ),
+            ),
+          ],
+        );
+      }));
 }
 
 Widget _topWidgetContaner() {

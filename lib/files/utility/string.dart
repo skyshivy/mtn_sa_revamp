@@ -199,6 +199,9 @@ const pleaseActivateToUnsubscribeStr =
     "Please activate your pack before unsubscribing.";
 
 //=====================================================
+const crbtStr = "CRBT";
+const rrbtStr = "RRBT";
+const myRrbtTunes = "My RRBT tunes";
 const musicPackStr = "Music Box";
 const upgradeMessageStr =
     'Upgrade to EAUC at Kyat 100/1 day and enjoy unlimited tunes';

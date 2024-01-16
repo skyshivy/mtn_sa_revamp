@@ -7,6 +7,7 @@ import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
 
 class SetTuneVM {
   Future<BuyTuneModel> set(TuneInfo info, String packName, String priority,
@@ -63,6 +64,10 @@ class SetTuneVM {
 
     if (map != null) {
       BuyTuneModel? model = BuyTuneModel.fromJson(map);
+      if (model.statusCode == 'SC0000') {
+        getPackStatusApiCall();
+      }
+
       return model;
     } else {
       BuyTuneModel? model =

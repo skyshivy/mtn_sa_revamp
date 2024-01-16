@@ -4,6 +4,7 @@ import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_cell.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/playing_tune_header.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class MyTunePlayingView extends StatelessWidget {
@@ -13,14 +14,18 @@ class MyTunePlayingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return Column(
-          children: [
-            myTuneplayingHeaderView(),
-            const SizedBox(height: 30),
-            si.isMobile
-                ? SizedBox(height: 360, child: gridView(si))
-                : gridView(si),
-          ],
+        return Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8), color: white),
+          child: Column(
+            children: [
+              myTuneplayingHeaderView(),
+              const SizedBox(height: 30),
+              si.isMobile
+                  ? SizedBox(height: 360, child: gridView(si))
+                  : gridView(si),
+            ],
+          ),
         );
       },
     );
@@ -30,6 +35,7 @@ class MyTunePlayingView extends StatelessWidget {
     return Obx(
       () {
         return GridView.builder(
+          padding: const EdgeInsets.all(8),
           itemCount: controller.playingList.length,
           shrinkWrap: true,
           scrollDirection: si.isMobile ? Axis.horizontal : Axis.vertical,

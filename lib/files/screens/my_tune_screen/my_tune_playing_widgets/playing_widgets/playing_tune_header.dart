@@ -16,19 +16,22 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 Widget myTuneplayingHeaderView() {
   return ResponsiveBuilder(
     builder: (context, si) {
-      return SizedBox(
-        height: 60,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _leftWidget(si),
-            Row(
-              children: [
-                _suffleText(si),
-                _toggleButton(),
-              ],
-            )
-          ],
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: SizedBox(
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _leftWidget(si),
+              Row(
+                children: [
+                  _suffleText(si),
+                  _toggleButton(),
+                ],
+              )
+            ],
+          ),
         ),
       );
     },

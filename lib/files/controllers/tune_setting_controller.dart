@@ -34,7 +34,7 @@ class TuneSettingController extends GetxController {
   String _toTimeStr = '';
   String tuneImage = '';
   String tuneArtist = '';
-
+  RxBool isCrbt = true.obs;
   String _dedicatedMsisdn = '';
   String packName = '';
   late BuildContext context;

@@ -58,6 +58,8 @@ class BuyController extends GetxController {
   bool isGotTunePrice = false;
   late TuneInfo? info;
   bool isBuyMusicChannel = false;
+  String crbtVipOfferCode = '';
+  Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
   TonePriceModel? tonePriceModel;
   //List<CustomValidtyModel> _validityModel = [];
   @override
@@ -66,6 +68,7 @@ class BuyController extends GetxController {
   }
 
   customInit() {
+    others?.crbtVipOfferCode?.attribute ?? '';
     tonePriceModel = null;
     isBuyMusicChannel = false;
     isGotTunePrice = false;
@@ -134,13 +137,14 @@ class BuyController extends GetxController {
           tonePriceModel?.responseMap?.responseDetails?.first.amount ?? '0';
       String status = StoreManager().packStatus?.packName ?? '';
 
-      isHideUpgrade.value = (amount == "0");
+      //isHideUpgrade.value = (amount == "0");
       //if ((status == 'NA') || (status == 'D') || (status == 'd')) {
-      if (status.isEmpty) {
+      if (status == crbtVipOfferCode) {
         isHideUpgrade.value = true;
-      } else {
-        isHideUpgrade.value = (amount == "0");
       }
+      // else {
+      //   isHideUpgrade.value = (amount == "0");
+      // }
       if (isBuyMusicChannel) {
         isHideUpgrade.value = true;
       }
@@ -500,7 +504,7 @@ class BuyController extends GetxController {
           ''; //responseDetail?.subscriberStatus ?? '';
 
       // if ((status == 'NA') || (status == 'D') || (status == 'd')) {
-      if (status.isEmpty) {
+      if (status == crbtVipOfferCode) {
         isShowOtpView.value = false;
         isShowSubscriptionPlan.value = true;
       } else {
