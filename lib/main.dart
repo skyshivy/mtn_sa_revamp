@@ -87,6 +87,8 @@ _getPackStatus() async {
       StoreManager().packStatus =
           packStatusModel.responseMap?.packStatusDetails;
     } else {}
+  } else {
+    StoreManager().packStatus = null;
   }
 }
 

@@ -135,6 +135,7 @@ class BuyController extends GetxController {
     print("crbtVipOfferCode = $crbtVipOfferCode");
     isVerifying.value = false;
     isLoagTuneCharge.value = false;
+    isHideUpgrade.value = false;
     if (tonePriceModel?.statusCode == "SC0000") {
       String amount =
           tonePriceModel?.responseMap?.responseDetails?.first.amount ?? '0';
@@ -159,6 +160,7 @@ class BuyController extends GetxController {
 
       return true;
     } else {
+      isHideUpgrade.value = true;
       errorMessage.value = tonePriceModel?.message ??
           tonePriceModel?.responseMap?.description ??
           someThingWentWrongStr;
@@ -486,7 +488,7 @@ class BuyController extends GetxController {
     errorMessage.value = '';
     this.info = info;
     isVerifying.value = true;
-
+    isHideUpgrade.value = false;
     TonePriceModel model = await _getTunePrice();
     if (StoreManager().packStatus == null) {
       PackStatusModel packStatusModel = await getPackStatusApiCall();
@@ -511,6 +513,7 @@ class BuyController extends GetxController {
 //tonePriceModel?.responseMap?.responseDetails?.first.subscriberStatus ?? ''; //
       // if ((status == 'NA') || (status == 'D') || (status == 'd')) {
       if (status == crbtVipOfferCode) {
+        isHideUpgrade.value = true;
         isShowOtpView.value = false;
         isShowSubscriptionPlan.value = true;
       } else {
