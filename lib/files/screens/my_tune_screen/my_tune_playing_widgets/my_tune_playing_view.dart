@@ -16,7 +16,7 @@ class MyTunePlayingView extends StatelessWidget {
       builder: (context, si) {
         return Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8), color: white),
+              borderRadius: BorderRadius.circular(4), color: white),
           child: Column(
             children: [
               myTuneplayingHeaderView(),

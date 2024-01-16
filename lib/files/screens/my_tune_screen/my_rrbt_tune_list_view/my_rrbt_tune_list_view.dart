@@ -18,7 +18,7 @@ class MyRrbtTuneListView extends StatelessWidget {
           padding: EdgeInsets.only(bottom: si.isMobile ? 25 : 80),
           child: Container(
             decoration: BoxDecoration(
-                color: white, borderRadius: BorderRadius.circular(8)),
+                color: white, borderRadius: BorderRadius.circular(4)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,

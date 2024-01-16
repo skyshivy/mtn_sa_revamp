@@ -26,9 +26,10 @@ Widget tuneSettingRightWidgte() {
       color: grey,
     ),
     child: Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         crbtRrbtButtonContainer(),
-        _topWidgetContaner(),
+        callerTypeWidget(con),
         Obx(() {
           return Visibility(
             visible: !(con.callerType.value == 2),
@@ -42,6 +43,12 @@ Widget tuneSettingRightWidgte() {
       ],
     ),
   );
+}
+
+Widget callerTypeWidget(TuneSettingController con) {
+  return Obx(() {
+    return Visibility(visible: con.isCrbt.value, child: _topWidgetContaner());
+  });
 }
 
 Widget crbtRrbtButtonContainer() {
@@ -60,6 +67,7 @@ Widget crbtRrbtButtonContainer() {
                 title: crbtStr.tr,
                 fontName: FontName.bold,
                 onTap: () {
+                  con.callerType.value = 0;
                   con.isCrbt.value = true;
                 },
               ),
@@ -74,6 +82,7 @@ Widget crbtRrbtButtonContainer() {
                 title: rrbtStr.tr,
                 fontName: FontName.bold,
                 onTap: () {
+                  con.callerType.value = 0;
                   con.isCrbt.value = false;
                 },
               ),
