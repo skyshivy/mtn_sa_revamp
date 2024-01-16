@@ -68,7 +68,9 @@ class BuyController extends GetxController {
   }
 
   customInit() {
+    others = StoreManager().appSetting?.responseMap?.settings?.others;
     crbtVipOfferCode = others?.crbtVipOfferCode?.attribute ?? '';
+    print("crbtVipOfferCode customInit $crbtVipOfferCode");
     tonePriceModel = null;
     isBuyMusicChannel = false;
     isGotTunePrice = false;
