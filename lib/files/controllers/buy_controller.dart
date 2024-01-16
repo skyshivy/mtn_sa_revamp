@@ -68,7 +68,7 @@ class BuyController extends GetxController {
   }
 
   customInit() {
-    others?.crbtVipOfferCode?.attribute ?? '';
+    crbtVipOfferCode = others?.crbtVipOfferCode?.attribute ?? '';
     tonePriceModel = null;
     isBuyMusicChannel = false;
     isGotTunePrice = false;
@@ -129,13 +129,15 @@ class BuyController extends GetxController {
         return false;
       }
     }
-
+    print("Pack name = ${StoreManager().packStatus?.packName}");
+    print("crbtVipOfferCode = $crbtVipOfferCode");
     isVerifying.value = false;
     isLoagTuneCharge.value = false;
     if (tonePriceModel?.statusCode == "SC0000") {
       String amount =
           tonePriceModel?.responseMap?.responseDetails?.first.amount ?? '0';
       String status = StoreManager().packStatus?.packName ?? '';
+      //tonePriceModel?.responseMap?.responseDetails?.first.subscriberStatus ?? ''; //
 
       //isHideUpgrade.value = (amount == "0");
       //if ((status == 'NA') || (status == 'D') || (status == 'd')) {
@@ -496,13 +498,15 @@ class BuyController extends GetxController {
         return;
       }
     }
+    print("Pack name = ${StoreManager().packStatus?.packName}");
+    print("crbtVipOfferCode = $crbtVipOfferCode");
     if (model.statusCode == 'SC0000') {
       ResponseDetail? responseDetail =
           model.responseMap?.responseDetails?.first;
       String packName = responseDetail?.packName ?? '';
       String status = StoreManager().packStatus?.packName ??
           ''; //responseDetail?.subscriberStatus ?? '';
-
+//tonePriceModel?.responseMap?.responseDetails?.first.subscriberStatus ?? ''; //
       // if ((status == 'NA') || (status == 'D') || (status == 'd')) {
       if (status == crbtVipOfferCode) {
         isShowOtpView.value = false;
