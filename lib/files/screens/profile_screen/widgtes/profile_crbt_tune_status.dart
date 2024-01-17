@@ -31,24 +31,10 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
                     children: [
                       firstRowWidget(sizingInformation),
                       const SizedBox(height: 5),
-                      Obx(() {
-                        return cont.tuneExire.isEmpty
-                            ? const SizedBox()
-                            : CustomText(
-                                title:
-                                    "${expireDateStr.tr} : ${cont.tuneExire.value}",
-                                fontName: FontName.medium,
-                                fontSize: 14,
-                              ); //expireDateStr.tr + " : " + '12/10/23'),
-                      }),
+                      expiryWidget(),
+                      packName(),
                       const SizedBox(height: 4),
-                      Obx(() {
-                        return CustomText(
-                          title: cont.crbtTuneStatusMessage.value,
-                          fontName: FontName.medium,
-                          fontSize: 14,
-                        );
-                      }),
+                      messageWidget(),
                       const SizedBox(height: 15),
                       buttonaRow(sizingInformation),
                     ],
@@ -60,6 +46,49 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
         );
       },
     );
+  }
+
+  Widget packName() {
+    return Obx(() {
+      String pNamec = (cont.crbtPackName.value);
+      // .replaceAll("CRBT_", " ")
+      // .replaceAll("crbt_", " ")
+      // .toUpperCase();
+      return Visibility(
+        visible: cont.crbtPackName.isNotEmpty,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 4),
+          child: CustomText(
+            title: "${packNameStr.tr} : $pNamec",
+            fontName: FontName.medium,
+            fontSize: 14,
+          ),
+          //child: CustomText(title: cont.crbtPackName.value),
+        ),
+      );
+    });
+  }
+
+  Obx messageWidget() {
+    return Obx(() {
+      return CustomText(
+        title: cont.crbtTuneStatusMessage.value,
+        fontName: FontName.medium,
+        fontSize: 14,
+      );
+    });
+  }
+
+  Obx expiryWidget() {
+    return Obx(() {
+      return cont.tuneExire.isEmpty
+          ? const SizedBox()
+          : CustomText(
+              title: "${expireDateStr.tr} : ${cont.tuneExire.value}",
+              fontName: FontName.medium,
+              fontSize: 14,
+            ); //expireDateStr.tr + " : " + '12/10/23'),
+    });
   }
 
   Widget firstRowWidget(SizingInformation si) {

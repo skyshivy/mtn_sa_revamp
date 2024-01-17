@@ -500,31 +500,32 @@ class BuyController extends GetxController {
     this.info = info;
     isVerifying.value = true;
     isHideUpgrade.value = false;
-    TonePriceModel model = await _getTunePrice();
+    TonePriceModel tonePriceModel = await _getTunePrice();
     if (StoreManager().packStatus == null) {
       PackStatusModel packStatusModel =
           await getPackStatusApiCall(StoreManager().msisdn);
       if (packStatusModel.statusCode == 'SC0000') {
       } else {
         isBuySuccess.value = true;
-        successMessage.value = model.message ?? '';
+        successMessage.value = tonePriceModel.message ?? '';
         isVerifyingOtp.value = false;
         isVerifying.value = false;
-        errorMessage.value = model.message ?? someThingWentWrongStr.tr;
+        errorMessage.value = tonePriceModel.message ?? someThingWentWrongStr.tr;
         return;
       }
     }
     print("Pack name = ${StoreManager().packStatus?.packName}");
     print("crbtVipOfferCode = $crbtVipOfferCode");
-    if (model.statusCode == 'SC0000') {
+    if (tonePriceModel.statusCode == 'SC0000') {
       ResponseDetail? responseDetail =
-          model.responseMap?.responseDetails?.first;
+          tonePriceModel.responseMap?.responseDetails?.first;
       String packName = responseDetail?.packName ?? '';
       String status = StoreManager().packStatus?.packName ??
           ''; //responseDetail?.subscriberStatus ?? '';
 //tonePriceModel?.responseMap?.responseDetails?.first.subscriberStatus ?? ''; //
       // if ((status == 'NA') || (status == 'D') || (status == 'd')) {
-      if (status == crbtVipOfferCode) {
+
+      if (status.isEmpty) {
         isHideUpgrade.value = true;
         isShowOtpView.value = false;
         isShowSubscriptionPlan.value = true;
@@ -537,10 +538,10 @@ class BuyController extends GetxController {
       }
     } else {
       isBuySuccess.value = true;
-      successMessage.value = model.message ?? '';
+      successMessage.value = tonePriceModel.message ?? '';
       isVerifyingOtp.value = false;
       isVerifying.value = false;
-      errorMessage.value = model.message ?? someThingWentWrongStr.tr;
+      errorMessage.value = tonePriceModel.message ?? someThingWentWrongStr.tr;
     }
   }
 

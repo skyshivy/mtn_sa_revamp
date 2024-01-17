@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
@@ -11,18 +9,18 @@ import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/model/edit_profile.dart';
 import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
-import 'package:mtn_sa_revamp/files/model/playing_tune_model.dart';
+
 import 'package:mtn_sa_revamp/files/model/profile_model.dart';
 import 'package:mtn_sa_revamp/files/model/suspend_resume_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
-import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
+
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
-import 'package:mtn_sa_revamp/files/utility/colors.dart';
+
 import 'package:mtn_sa_revamp/files/utility/string.dart';
-import 'package:mtn_sa_revamp/files/utility/urls.dart';
+
 import 'package:mtn_sa_revamp/files/view_model/active_suspend_api.dart';
 import 'package:mtn_sa_revamp/files/view_model/deactivate_pack_api.dart';
-import 'package:mtn_sa_revamp/files/view_model/delete_my_tune_vm.dart';
+
 import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/profile_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/set_tune_vm.dart';
@@ -42,7 +40,7 @@ class ProfileController extends GetxController {
   RxBool isHideCrbtActiveSuspendButton = false.obs;
   RxBool isHideRrbtActiveSuspendButton = false.obs;
   RxString crbtPackName = ''.obs;
-  String rrbtPackName = '';
+  RxString rrbtPackName = ''.obs;
   bool _isCrbtSuspendMode = false;
   bool _isRrbtSuspendMode = false;
   RxString crbtTuneStatus = ''.obs;
@@ -85,7 +83,7 @@ class ProfileController extends GetxController {
       isHideCrbtActiveSuspendButton.value =
           (packStatusModel.responseMap?.packStatusDetails?.packName == null);
       crbtPackName.value =
-          packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
+          (packStatusModel.responseMap?.packStatusDetails?.packName ?? '');
       activeCrbtButtonName.value =
           (packStatusModel.responseMap?.packStatusDetails == null)
               ? activateStr.tr
@@ -151,7 +149,7 @@ class ProfileController extends GetxController {
       bool isPackName =
           packStatusModel.responseMap?.packStatusDetails?.packName == null;
 
-      rrbtPackName =
+      rrbtPackName.value =
           packStatusModel.responseMap?.packStatusDetails?.packName ?? '';
       activeRrbtButtonName.value =
           (packStatusModel.responseMap?.packStatusDetails == null)
@@ -182,7 +180,7 @@ class ProfileController extends GetxController {
       isHideRRBTStatus.value = false;
     } else {
       _isCrbtSuspendMode = false;
-      rrbtPackName = '';
+      rrbtPackName.value = '';
       rrbtSubscriptionButtonName.value = subscribeStr.tr;
       //isHideRRBTStatus.value = true;
       return;
@@ -454,7 +452,7 @@ class ProfileController extends GetxController {
         onOk: () async {
           isUpdatingRrbtStatus.value = true;
           SuspendResumeModel res =
-              await activeSuspendApi(rrbtPackName, true, false);
+              await activeSuspendApi(rrbtPackName.value, true, false);
           isUpdatingRrbtStatus.value = false;
           if (res.statusCode == 'SC0000') {
             activeRrbtButtonName.value =
@@ -485,7 +483,7 @@ class ProfileController extends GetxController {
         onOk: () async {
           isUpdatingRrbtStatus.value = true;
           SuspendResumeModel res =
-              await activeSuspendApi(rrbtPackName, false, false);
+              await activeSuspendApi(rrbtPackName.value, false, false);
           isUpdatingRrbtStatus.value = false;
           if (res.statusCode == 'SC0000') {
             _packApiCalls();
@@ -530,7 +528,8 @@ class ProfileController extends GetxController {
           cancelTitle: cancelStr.tr,
           onOk: () async {
             isUpdatingRrbtStatus.value = true;
-            PackStatusModel mod = await deactivatePackApi(rrbtPackName, false);
+            PackStatusModel mod =
+                await deactivatePackApi(rrbtPackName.value, false);
             if (mod.statusCode == 'SC0000') {
               _packApiCalls();
             } else {

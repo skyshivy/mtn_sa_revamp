@@ -162,7 +162,11 @@ class MyTuneController extends GetxController {
       DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(resp);
       printCustom("Delete playing tune ${result}");
       if (result.statusCode == "SC0000") {
-        playingList.removeAt(index);
+        if (isCrbt) {
+          playingList.removeAt(index);
+        } else {
+          rrbtTuneList.removeAt(index);
+        }
       }
 
       message.value = result.message ?? someThingWentWrongStr;

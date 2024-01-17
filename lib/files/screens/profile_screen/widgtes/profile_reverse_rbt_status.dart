@@ -30,24 +30,10 @@ class ProfileReverseRbtStatus extends StatelessWidget {
                     children: [
                       firstRowWidget(si),
                       const SizedBox(height: 5),
-                      Obx(() {
-                        return cont.tuneExire.isEmpty
-                            ? const SizedBox()
-                            : CustomText(
-                                title:
-                                    "${expireDateStr.tr} : ${cont.rrbtExpire.value}",
-                                fontName: FontName.medium,
-                                fontSize: 14,
-                              );
-                      }),
+                      expiryWidget(),
+                      packName(),
                       const SizedBox(height: 4),
-                      Obx(() {
-                        return CustomText(
-                          title: cont.rrbtStatusMessage.value,
-                          fontName: FontName.medium,
-                          fontSize: 14,
-                        );
-                      }),
+                      messageWidget(),
                       const SizedBox(height: 15),
                       buttonsRow(si),
                     ],
@@ -59,6 +45,49 @@ class ProfileReverseRbtStatus extends StatelessWidget {
         );
       },
     );
+  }
+
+  Obx expiryWidget() {
+    return Obx(() {
+      return cont.tuneExire.isEmpty
+          ? const SizedBox()
+          : CustomText(
+              title: "${expireDateStr.tr} : ${cont.rrbtExpire.value}",
+              fontName: FontName.medium,
+              fontSize: 14,
+            );
+    });
+  }
+
+  Obx messageWidget() {
+    return Obx(() {
+      return CustomText(
+        title: cont.rrbtStatusMessage.value,
+        fontName: FontName.medium,
+        fontSize: 14,
+      );
+    });
+  }
+
+  Widget packName() {
+    return Obx(() {
+      String pNamec = (cont.crbtPackName.value);
+      // .replaceAll("RRBT_", " ")
+      // .replaceAll("rrbt_", " ")
+      // .toUpperCase();
+
+      return Visibility(
+        visible: cont.rrbtPackName.isNotEmpty,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 4),
+          child: CustomText(
+            title: "${packNameStr.tr} : $pNamec",
+            fontName: FontName.medium,
+            fontSize: 14,
+          ),
+        ),
+      );
+    });
   }
 
   Widget firstRowWidget(SizingInformation si) {

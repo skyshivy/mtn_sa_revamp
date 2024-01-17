@@ -131,7 +131,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       children: [
         profileImageWidget(),
         const SizedBox(height: 30),
-        profileActiveStatus(),
+        //profileActiveStatus(),
         //const SizedBox(height: 20),
         //profileSubscribeButtonWidget(si, () => null),
       ],
