@@ -2,12 +2,11 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Map<String, String> enUS = {
   testStr: "Testing string",
-  myTuneStr: "My Tunes",
   aboutStr: "About",
   homeStr: "Home",
   faqStr: "FAQ",
-  englishStr: "English",
-  burmeseStr: "Burmese",
+  englishStr: "English", //"အင်္ဂလိပ်", //
+  burmeseStr: "Burmese", //"မြန်မာ", //
   transactionTypeStr: "Transaction Type",
   channelStr: "Channel",
   historyStr: "History",
@@ -19,7 +18,6 @@ Map<String, String> enUS = {
   expireDateStr: 'Expired',
   suspendStr: 'Suspend',
   activeStr: 'Active',
-  activateStr: 'Activate',
   packNameStr: "Pack Name",
   unSubscribeStr: 'UNSUBSCRIBE',
   reverseRBTStatusStr: 'Reverse RBT Status',
@@ -30,23 +28,31 @@ Map<String, String> enUS = {
   musicBundleStr: "Music Bundle",
   customiseYourTunesStr: "Customise your tunes",
   profileTunesStr: "Profile Tunes",
+
   statusStr: "Status",
   callersStr: "Callers",
   playAtStr: "Play at",
   fulldayStr: "FullDay",
   allStr: "All",
+
   noneStr: "None",
   monthlyStr: "Monthly",
   yearlyStr: "Yearly",
+
   fromTimeStr: "From Time",
   toTimeStr: "To Time",
+
   fromDateStr: "From Date",
   toDateStr: "To Date",
+
   advancedSettingsStr: "Advanced Settings",
+
   selectTimeTypeStr: "Select Time Type",
   fullDay24HourStr: "Full Day - 24 hr",
+
   selecteTimeStr: "Select Time",
   selectRepeatStr: "Select Repeat",
+
   sunStr: "Sun",
   monStr: "Mon",
   tueStr: "Tue",
@@ -54,6 +60,7 @@ Map<String, String> enUS = {
   thusStr: "Thus",
   friStr: "Fri",
   satStr: "Sat",
+
   sStr: "S",
   mStr: "M",
   tuStr: "T",
@@ -65,18 +72,21 @@ Map<String, String> enUS = {
   singerStr: "Singer",
   codeStr: "Code",
   allCallerStr: "All Callers",
-  specificCallerStr: "Callers Group",
-  callerGroupStr: "Specific Caller",
+  specificCallerStr: "Specific Caller",
+  callerGroupStr: "Callers Group",
   whomYouWantToPlayItStr: "Whom You Want To Play It?",
   whenYouWantToPlayItStr: "When You Want To Play It?",
+
   startTimeStr: "Start Time",
   endTimeStr: "End Time",
   repeatStr: "Repeat",
   pleaseEnterFriendNumberStr: "Please enter friend number.",
   addNuberStr: "Add Number",
   enterNuberStr: "Enter Number",
+
   shuffleStr: "Shuffle",
   customStr: "Custom",
+
   noActivePlanStr: "No Active Plan",
   buyStr: "Buy",
   userNameStr: "User Name*",
@@ -93,12 +103,14 @@ Map<String, String> enUS = {
   giftStr: "Gift",
   shareStr: "Share",
   logoutStr: "Logout",
+
   okStr: "Ok",
   verifyOTPStr: "Verify OTP",
   successFullyLoggedInStr: "Login Successful",
   someThingWentWrongStr: "Some thing went wrong",
   enterValidMsisdnStr: "Please enter a valid msisdn.",
   enterValidOtpStr: "Please enter a valid OTP.",
+
   bothMsisdnCanBeSameStr: "Number cannot be same as the logged in number",
   enterMobileNumberStr: "Enter Mobile Number",
   countryCodeStr: "+95",
@@ -106,6 +118,7 @@ Map<String, String> enUS = {
   cancelStr: "Cancel",
   editStr: "Edit",
   saveStr: "Save",
+
   viewStr: "View",
   selectAtleastOneCatStr: "Select at least one category.",
   confirmStr: "Confirm",
@@ -120,13 +133,14 @@ Map<String, String> enUS = {
   artistListEmptyStr: "Artist list empty",
   artistStr: "Artist",
   myTuneLocationStr: "My Tune | Location",
+
   searchedResultForStr: "Search result for ",
   loginStr: "Login",
   companyStr: "Company",
   contactusStr: "Contact Us",
   fallowUsStr: "Follow Us On",
   helpStr: "Help",
-  copyRightStr: "© 2023 Copyright. All Rights Reserved",
+  copyRightStr: "© 2020 Copyright. All Rights Reserved",
   privacyStr: "Privacy Policy",
   termsStr: "Terms and conditions",
   pleaseEnterMsisdn: "Please enter msisdn",
@@ -134,12 +148,12 @@ Map<String, String> enUS = {
   pleaseEnterOtp: "Please enter Otp",
   pleaseEnterAValidOtpStr: "Please enter a Valid Otp",
   whatrLookingForStr: "What are you looking for?",
+
   express: "Express Your Moods",
   homeInfo1: 'What are you looking for?',
   homeInfo2: 'Callers will listen to the ringback tone that you set',
   homeInfo3: 'Monthly Subscription fee of 59.18 SDG for 30 days',
   homeInfo4: 'Subscription will be renewed after 30 days',
-  homeInfo5: 'Tone price at 37.07 SDG valid per month',
   homeInfo6: 'Limited fallback available',
   signInToYourAccountStr: "Sign in to your Account",
   pleaseEnterYourMobileNumberInOrderToAuthenticateStr:
@@ -166,6 +180,15 @@ Map<String, String> enUS = {
   yourServiceIsNotCurrentlyRunningStr:
       "You have temporarily suspended your  service.",
   notSubscribedToAnyService: "You are not subscribed to mytune service.",
+
+//--------------------------------------
+
+  myTuneStr: "My Tunes",
+  activateStr: 'Activate',
+  addToShuffleStr: "Add to Suffle",
+  musicPackageStr: "Music Package",
+  madeWithStr: "Made with",
+  homeInfo5: 'Tone price at 37.07 SDG valid per month',
   inActiveStr: 'InActive',
   sessionExpiredStr:
       'Session expired.\n You will be logged out and redirected to Home page.',
@@ -177,5 +200,27 @@ Map<String, String> enUS = {
   sentOtpStr: "Resent Otp",
   pleaseActivateToUnsubscribeStr:
       "Please activate your pack before unsubscribing.",
+  playingTuneStr: "My Playing Tunes",
+  myRrbtTunesStr: "My RRBT Tunes",
+
+  crbtStr: "CRBT",
+  rrbtStr: "RRBT",
+  myRrbtTunes: "My RRBT tunes",
+  musicPackStr: "Music Box",
+  upgradeMessageStr:
+      'Upgrade to EAUC at Kyat 100/1 day and enjoy unlimited tunes',
   nameTuneStr: "Name Tunes",
+  musicPackInfo1:
+      "You can enjoy with Three famous Tunes together in one package.\n- Three selected tunes includes in each package.\n- Available Four Music Packages by the selected famous singers: Myo Gyi, Sai Sai Kham Leng, R Zar Ni and Ni Ni Khin Zaw.\n- Muisc Package price 787.50 Kyats and each tune is valid for 30 days.",
+  musicPackInfo2: """How to buy the music package:
+To buy Myo Gyi Package: Send MP 55595001 to 333
+Available tunes on Music Package: Min Shid Tae Myot, Pyan Lar Chein Lay, Myit Tar Tayar
+
+To buy Sai Sai Kham Leng Package: Send MP 55595003 to 333
+Available tunes on Music Package: Thu Ngal Chin, Char Tate A Twat, Yee Sar Sar""",
+  musicPackInfo3: """To buy R Zar Ni Package: Send MP 55595004 to 333
+Available tunes on Music Package: Min Thar Shi Yin, Yoe Thar Swar Khit Nyout Kya Thu Myer, Kabar Thar
+
+To buy Ni Ni Khin Zaw Package: Send MP 55595002 to 333
+Available tunes on Music Package: Thit Sar Ma Pyat Kyae , Yat Sat Thwar Thu, Myaw Lint Chat Ta Sone Ta Yar""",
 };

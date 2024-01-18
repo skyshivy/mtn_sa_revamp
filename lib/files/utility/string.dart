@@ -1,5 +1,5 @@
 const testStr = "Testing string";
-const myTuneStr = "My Tunes";
+
 const aboutStr = "About";
 const homeStr = "Home";
 const faqStr = "FAQ";
@@ -16,7 +16,7 @@ const myTuneStatusStr = 'MyTune Status';
 const expireDateStr = 'Expired';
 const suspendStr = 'Suspend';
 const activeStr = 'Active';
-const activateStr = 'Activate';
+
 const packNameStr = "Pack Name";
 const unSubscribeStr = 'UNSUBSCRIBE';
 const reverseRBTStatusStr = 'Reverse RBT Status';
@@ -72,7 +72,7 @@ const singerStr = "Singer";
 const codeStr = "Code";
 const allCallerStr = "All Callers";
 const specificCallerStr = "Specific Caller";
-const addToShuffleStr = "Add to Suffle";
+
 const callerGroupStr = "Callers Group";
 const whomYouWantToPlayItStr = "Whom You Want To Play It?";
 const whenYouWantToPlayItStr = "When You Want To Play It?";
@@ -117,8 +117,7 @@ const countryCodeStr = "+95";
 const myAccountStr = "My Account";
 const cancelStr = "Cancel";
 const editStr = "Edit";
-const musicPackageStr = "Music Package";
-const madeWithStr = "Made with";
+
 const saveStr = "Save";
 
 const viewStr = "View";
@@ -156,7 +155,7 @@ const homeInfo1 = 'What are you looking for?';
 const homeInfo2 = 'Callers will listen to the ringback tone that you set';
 const homeInfo3 = 'Monthly Subscription fee of 59.18 SDG for 30 days';
 const homeInfo4 = 'Subscription will be renewed after 30 days';
-const homeInfo5 = 'Tone price at 37.07 SDG valid per month';
+
 const homeInfo6 = 'Limited fallback available';
 const signInToYourAccountStr = "Sign in to your Account";
 const pleaseEnterYourMobileNumberInOrderToAuthenticateStr =
@@ -185,7 +184,15 @@ const yourServiceIsCurrentlyRunningStr = "Your service is currently running.";
 const yourServiceIsNotCurrentlyRunningStr =
     "You have temporarily suspended your  service.";
 const notSubscribedToAnyService = "You are not subscribed to mytune service.";
-//-------------------------------------
+
+//=====================================================
+
+const myTuneStr = "My Tunes";
+const activateStr = 'Activate';
+const addToShuffleStr = "Add to Suffle";
+const musicPackageStr = "Music Package";
+const madeWithStr = "Made with";
+const homeInfo5 = 'Tone price at 37.07 SDG valid per month';
 const inActiveStr = 'InActive';
 const sessionExpiredStr =
     'Session expired.\n You will be logged out and redirected to Home page.';
@@ -197,12 +204,8 @@ const sentOtpInTimeStr = "Resent Otp in ";
 const sentOtpStr = "Resent Otp";
 const pleaseActivateToUnsubscribeStr =
     "Please activate your pack before unsubscribing.";
-
-//=====================================================
-
 const playingTuneStr = "My Playing Tunes";
 const myRrbtTunesStr = "My RRBT Tunes";
-
 const crbtStr = "CRBT";
 const rrbtStr = "RRBT";
 const myRrbtTunes = "My RRBT tunes";
