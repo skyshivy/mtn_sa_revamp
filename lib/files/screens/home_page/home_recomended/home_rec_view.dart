@@ -56,22 +56,24 @@ class _LandingRecoViewState extends State<LandingRecoView> {
   Widget seeMoreButton(BuildContext context, SizingInformation si) {
     return Obx(() {
       return Visibility(
-        visible: ((controller.displayList!.length > 8)),
+        visible: !(controller.isLoading.value),
         child: Padding(
           padding: EdgeInsets.only(top: si.isMobile ? 10 : 50),
-          child: CustomButton(
-            onTap: () {
-              //Get.toNamed(seeMoreTapped);
-              List<TuneInfo>? list = controller.displayList.value;
+          child: controller.displayList.length > 8
+              ? CustomButton(
+                  onTap: () {
+                    //Get.toNamed(seeMoreTapped);
+                    List<TuneInfo>? list = controller.displayList;
 
-              printCustom("List is $list");
-              context.goNamed(moreGoRoute, extra: list);
-              printCustom("See more tapped");
-            },
-            title: seeMoreStr.tr,
-            fontName: FontName.bold,
-            fontSize: si.isMobile ? 12 : 18,
-          ),
+                    printCustom("List is $list");
+                    context.goNamed(moreGoRoute, extra: list);
+                    printCustom("See more tapped");
+                  },
+                  title: seeMoreStr.tr,
+                  fontName: FontName.bold,
+                  fontSize: si.isMobile ? 12 : 18,
+                )
+              : SizedBox(),
         ),
       );
     });
