@@ -71,7 +71,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
 
   Widget packName() {
     return Obx(() {
-      String pNamec = (cont.crbtPackName.value);
+      String pNamec = (cont.rrbtPackName.value);
       // .replaceAll("RRBT_", " ")
       // .replaceAll("rrbt_", " ")
       // .toUpperCase();

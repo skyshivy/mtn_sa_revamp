@@ -126,11 +126,20 @@ class BuyController extends GetxController {
       number = msisdn.value;
     }
     tonePriceModel = await _getTunePrice();
+    if (tonePriceModel?.statusCode == "SC0000") {
+    } else {
+      isVerifying.value = false;
+      errorMessage.value = tonePriceModel?.message ??
+          tonePriceModel?.responseMap?.description ??
+          someThingWentWrongStr;
+      return;
+    }
     //if (StoreManager().packStatus == null) {
     PackStatusModel mode = await getPackStatusApiCall(number);
     if (mode.statusCode == "SC0000") {
     } else {
-      errorMessage.value = tonePriceModel?.message ??
+      isVerifying.value = false;
+      errorMessage.value = mode.message ??
           tonePriceModel?.responseMap?.description ??
           someThingWentWrongStr;
       print("Some thing went wrong while fetching tune price");
@@ -577,8 +586,14 @@ class BuyController extends GetxController {
   Future<void> setTune(String packName) async {
     print(
         "set tune called  isUpgradeSelected.value =${isUpgradeSelected.value}");
-
-    BuyTuneModel res = await SetTuneVM().set(info ?? TuneInfo(), packName, '0',
+    String strPackName = '';
+    if (isUpgradeSelected.value) {
+      strPackName = others?.crbtVipOfferCode?.attribute ?? '';
+    } else {
+      strPackName = packName;
+    }
+    BuyTuneModel res = await SetTuneVM().set(
+        info ?? TuneInfo(), strPackName, '0',
         isPackUpgrade: isUpgradeSelected.value);
     packName = '';
     if (res.statusCode == 'SC0000') {
