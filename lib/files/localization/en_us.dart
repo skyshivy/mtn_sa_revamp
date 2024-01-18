@@ -181,35 +181,6 @@ Map<String, String> enUS = {
       "You have temporarily suspended your  service.",
   notSubscribedToAnyService: "You are not subscribed to mytune service.",
   homeInfo5: 'Tone price at 37.07 SDG valid per month',
-//--------------------------------------
-
-  myTuneStr: "My Tunes",
-  activateStr: 'Activate',
-  addToShuffleStr: "Add to Suffle",
-  musicPackageStr: "Music Package",
-  madeWithStr: "Made with",
-
-  inActiveStr: 'InActive',
-  sessionExpiredStr:
-      'Session expired.\n You will be logged out and redirected to Home page.',
-  changeStatusConfirmMessageStr: "Are you sure you want to change Status?",
-  unSubscribeConfirmMessageStr: "Are you sure you want to unsubscribe?",
-  notActiveSubscriberMessageStr: "You are not an active subscriber",
-  areYouSureYouWantToDeleteStr: "Are you sure you want to delete?",
-  sentOtpInTimeStr: "Resend Otp in ",
-  sentOtpStr: "Resend Otp",
-  pleaseActivateToUnsubscribeStr:
-      "Please activate your pack before unsubscribing.",
-  playingTuneStr: "CRBT",
-  myRrbtTunesStr: "RRBT",
-  libraryStr: 'Library',
-  crbtStr: "CRBT",
-  rrbtStr: "RRBT",
-
-  musicPackStr: "Music Box",
-  upgradeMessageStr:
-      'Upgrade to EAUC at Kyat 100/1 day and enjoy unlimited tunes',
-  nameTuneStr: "Name Tunes",
   musicPackInfo1:
       "You can enjoy with Three famous Tunes together in one package.\n- Three selected tunes includes in each package.\n- Available Four Music Packages by the selected famous singers: Myo Gyi, Sai Sai Kham Leng, R Zar Ni and Ni Ni Khin Zaw.\n- Muisc Package price 787.50 Kyats and each tune is valid for 30 days.",
   musicPackInfo2: """How to buy the music package:
@@ -223,4 +194,29 @@ Available tunes on Music Package: Min Thar Shi Yin, Yoe Thar Swar Khit Nyout Kya
 
 To buy Ni Ni Khin Zaw Package: Send MP 55595002 to 333
 Available tunes on Music Package: Thit Sar Ma Pyat Kyae , Yat Sat Thwar Thu, Myaw Lint Chat Ta Sone Ta Yar""",
+//--------------------------------------
+
+  myTuneStr: "My Tunes",
+  activateStr: 'Activate',
+  addToShuffleStr: "Add to Suffle",
+  musicPackageStr: "Music Package",
+  madeWithStr: "Made with \u2764",
+  inActiveStr: 'InActive',
+  sessionExpiredStr:
+      'Session expired.\n You will be logged out and redirected to Home page.',
+  changeStatusConfirmMessageStr: "Are you sure you want to change Status?",
+  unSubscribeConfirmMessageStr: "Are you sure you want to unsubscribe?",
+  notActiveSubscriberMessageStr: "You are not an active subscriber",
+  areYouSureYouWantToDeleteStr: "Are you sure you want to delete?",
+  sentOtpInTimeStr: "Resend Otp in ",
+  sentOtpStr: "Resend Otp",
+  pleaseActivateToUnsubscribeStr:
+      "Please activate your pack before unsubscribing.",
+  libraryStr: 'Library',
+  crbtStr: "CRBT",
+  rrbtStr: "RRBT",
+  musicPackStr: "Music Box",
+  upgradeMessageStr:
+      'Upgrade to EAUC at Kyat 100/1 day and enjoy unlimited tunes',
+  nameTuneStr: "Name Tunes",
 };

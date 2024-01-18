@@ -138,9 +138,34 @@ _tappedOnSubCell(BuildContext context, AppCategory cat) async {
   printCustom("object ==== ${cat.categoryId}");
 }
 
+languageChange(BuildContext context) {
+  final RecoController recCont = Get.find();
+  final BannerController banCont = Get.find();
+  Get.dialog(CustomConfirmAlertView(
+    message: languageChangeConfirmMessageStr.tr,
+    cancelTitle: cancelStr,
+    onOk: () async {
+      CategoryPoupupController cont = Get.find();
+      StoreManager().setLanguageEnglish(!StoreManager().isEnglish);
+      await Future.delayed(const Duration(milliseconds: 300));
+      context.go(homeGoRoute);
+
+      await Future.delayed(const Duration(milliseconds: 300));
+
+      banCont.getBanner();
+      cont.getCatList();
+      recCont.getTabList();
+    },
+  )); //CustomAlertView(title: languageChangeConfirmMessageStr));
+}
+
 _tappedOnCell(BuildContext context, String title) async {
-  printCustom("=========_tappedOnCell==============$title");
-  if ((title == englishStr.tr) || (title == burmeseStr.tr)) {
+  printCustom(
+      "=========_tappedOnCell==============$title \n ==englishStr.tr =${englishStr.tr} ==== burmeseStr.tr =${burmeseStr.tr}");
+  if ((title == englishStr) || (title == burmeseStr)) {
+    print("languageChange tepped");
+    languageChange(context);
+    Navigator.pop(context);
   } else {
     Navigator.pop(context);
   }
@@ -174,31 +199,6 @@ _tappedOnCell(BuildContext context, String title) async {
     Get.dialog(const LoginScreen(), barrierDismissible: false);
   } else if (title == historyStr.tr) {
     context.goNamed(historyGoRoute);
-  } else if ((title == englishStr.tr) || (title == burmeseStr.tr)) {
-    Get.dialog(CustomConfirmAlertView(
-      message: languageChangeConfirmMessageStr,
-      okTitle: confirmStr,
-      cancelTitle: cancelStr,
-      onOk: () async {
-        print("Change langugage here");
-        BannerController banCont = Get.find();
-        RecoController recCont = Get.find();
-        CategoryPoupupController cont = Get.find();
-        StoreManager().setLanguageEnglish(!StoreManager().isEnglish);
-        await Future.delayed(const Duration(milliseconds: 300));
-        context.go(homeGoRoute);
-
-        await Future.delayed(const Duration(milliseconds: 300));
-
-        banCont.getBanner();
-        cont.getCatList();
-        recCont.getTabList();
-
-        Navigator.pop(context);
-        printCustom(
-            "is selected languagage is English ${StoreManager().isEnglish}");
-      },
-    ));
   } else {
     printCustom("=========Default tapped==============");
   }

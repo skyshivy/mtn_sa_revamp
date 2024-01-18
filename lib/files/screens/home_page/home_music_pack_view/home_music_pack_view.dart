@@ -66,15 +66,16 @@ class _HomeMusicPackViewState extends State<HomeMusicPackView> {
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Obx(() {
                 return CustomButton(
+                  borderColor: white,
                   onTap: () {
                     carouselController.animateToPage(index);
 
                     cont.selectedIndex.value = index;
                   },
-                  radius: 5,
-                  color: cont.selectedIndex.value == index ? red : blue,
-                  height: 10,
-                  width: 10,
+                  radius: 6,
+                  color: cont.selectedIndex.value == index ? atomCryan : blue,
+                  height: 12,
+                  width: 12,
                 );
               }),
             ),

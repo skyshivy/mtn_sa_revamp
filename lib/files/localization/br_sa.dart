@@ -155,8 +155,11 @@ Map<String, String> brBR = {
   chooseSubscriptionPlanStr: "စာရင်းသွင်းမှုပလန်ကိုရွေးချယ်ပါ",
   youShouldSubscribeAPlanStr:
       "တေးသွားများကိုမ၀ယ်ယူခင် သို့မဟုတ် လက်ဆောင်မပေးခင် သင့်အနေဖြင့် ၀န်",
-  myTuneLocationValueStr:
-      "နံပါတ် (၂၂၁) ၊ အလွှာ (၁၇-၂၂-၂၃)  ဆူးလေဘုရားလမ်း ကျောက်တံတားမြို့နယ် ရန်ကုန်မြို့ ၁၁၁၈၂ မြန်မာ",
+  myTuneLocationValueStr: """အမှတ် ၂၂၁၊ Level 17-22-23၊
+ဆူးလေဘုရားလမ်း၊
+ကျောက်တံတားမြို့နယ်၊
+ရန်ကုန်၊ 11182 မြန်မာ""",
+
   tuneSuffleOnMessageStr:
       "သင်၏ကျပန်းတေးသွားသည်ပိတ်သွားမည်ဖြစ်ပြီး သင့်ထံဖုန်းခေါ်ဆိုသူများသည် နောက်ဆုံးတေးသွားကိုသာ နားဆင်ရမည်ဖြစ်သည်။ သင်၏အဆင့်မြင့်သောချိန်ညှိမှုများမှာ မပြောင်းလဲပဲရှိနေမည်ဖြစ်သည်",
   tuneSuffleOffMessageStr: "ကျပန်းတေးသွားကို ဖွင့်လိုပါသလား",
@@ -167,14 +170,19 @@ Map<String, String> brBR = {
       "သင်၏၀န်ဆောင်မှုကိုခေတ္တရပ်နားလိုက်ပါပြီ",
   notSubscribedToAnyService: "သင်သည် mytune ၀န်ဆောင်မှုကိုရယူထားခြင်းမရှိပါ",
   homeInfo5: 'တေးသွားတစ်ပုဒ်အတွက် ရက် (၃၀) လျှင် ၃၁၅ ကျပ်ကျသင့်မည်ဖြစ်သည်',
+  musicPackInfo1:
+      "ေးသွားသုံးပုဒ်ကို ပျော်ရွှင်စွာ တစ်စုတစ်စည်းတည်း ဝယ်ယူနိုင်ပါသည်။<br/>- Package တစ်ခုတွင် တေးသွားသုံးပုဒ်ပါဝင်ပါသည်။<br/>- မျိုးကြီး၊ စိုင်းစိုင်းခမ်းလှိုင်၊ အာဇာနည် နှင့် နီနီခင်ဇော် တို့၏ ရွေးချယ်ထားသော တေးသွားလေးပုဒ်ကို ဝယ်ယူရရှိနိုင်မှာ ဖြစ်ပါတယ်။<br/>- Music Package တစ်ခုကို ၇၈၇.၅၀ ကျပ် ဖြင့်ဝယ်ယူရရှိနိုင်မှာဖြစ်ပြီး တေးသွားတစ်ပုဒ်ချင်းစီ၏ အသုံးပြုခွင့်သက်တမ်းမှာ ၃၆၅ရက် ဖြစ်ပါသည်။",
+  musicPackInfo2:
+      """သင်နှစ်ရာ Music Package ကို ဝယ်ယူရန်:<br/>မျိုးကြီး၏ music package ကို ဝယ်ယူရန်: 333 သို့ MP 55595001 ဟုပေးပို့ဝယ်ယူနိုင်ပါတယ်။<br/>ပါဝင်သောတေးသွားများမှာ - မင်းရှိတဲ့မြို့ ၊ ပြန်လာချိန်လေး ၊ မေတ္တာတရား<br/><br/>စိုင်းစိုင်းခမ်းလှိုင်၏ music package ကို ဝယ်ယူရန်: 333 သို့ MP 55595003 ဟုပေးပို့ဝယ်ယူနိုင်ပါတယ်။<br/>ပါဝင်သောတေးသွားများမှာ - သူငယ်ချင်း ၊ ချာတိတ်အတွက် ၊ ရည်းစားစာ""",
+  musicPackInfo3:
+      """သင်နှစ်ရာ Music Package ကို ဝယ်ယူရန်:<br/>R ဇာနည်၏ music package ကို ဝယ်ယူရန် : 333 သို့ MP 55595004 ဟုပေးပို့ဝယ်ယူနိုင်ပါတယ်။ပါဝင်သောတေးသွားများမှာ - မင်းသာရှိရင် ၊ ရိုးသားစွာ ခေတ်နောက်ကျသူများ ၊ ကမ္ဘာသား<br/>နီနီခင်ဇော်၏ music package ကို ဝယ်ယူရန်: 333 သို့ MP 55595002 ဟုပေးပို့ဝယ်ယူနိုင်ပါတယ်။ပါဝင်သောတေးသွားများမှာ - သစ္စာမပျက်ကြေး ၊ ရက်စက်သွားသူ ၊ မျှော်လင့်ချက်တစ်စုံတစ်ရာ""",
 //--------------------------------------
 
   myTuneStr: "My Tunes",
   activateStr: 'Activate',
   addToShuffleStr: "Add to Suffle",
   musicPackageStr: "Music Package",
-  madeWithStr: "Made with",
-
+  madeWithStr: "Made with \u2764",
   inActiveStr: 'InActive',
   sessionExpiredStr:
       'Session expired.\n You will be logged out and redirected to Home page.',
@@ -186,27 +194,11 @@ Map<String, String> brBR = {
   sentOtpStr: "Resend Otp",
   pleaseActivateToUnsubscribeStr:
       "Please activate your pack before unsubscribing.",
-  playingTuneStr: "CRBT",
-  myRrbtTunesStr: "RRBT",
   libraryStr: 'Library',
   crbtStr: "CRBT",
   rrbtStr: "RRBT",
-
   musicPackStr: "Music Box",
   upgradeMessageStr:
       'Upgrade to EAUC at Kyat 100/1 day and enjoy unlimited tunes',
   nameTuneStr: "Name Tunes",
-  musicPackInfo1:
-      "You can enjoy with Three famous Tunes together in one package.\n- Three selected tunes includes in each package.\n- Available Four Music Packages by the selected famous singers: Myo Gyi, Sai Sai Kham Leng, R Zar Ni and Ni Ni Khin Zaw.\n- Muisc Package price 787.50 Kyats and each tune is valid for 30 days.",
-  musicPackInfo2: """How to buy the music package:
-To buy Myo Gyi Package: Send MP 55595001 to 333
-Available tunes on Music Package: Min Shid Tae Myot, Pyan Lar Chein Lay, Myit Tar Tayar
-
-To buy Sai Sai Kham Leng Package: Send MP 55595003 to 333
-Available tunes on Music Package: Thu Ngal Chin, Char Tate A Twat, Yee Sar Sar""",
-  musicPackInfo3: """To buy R Zar Ni Package: Send MP 55595004 to 333
-Available tunes on Music Package: Min Thar Shi Yin, Yoe Thar Swar Khit Nyout Kya Thu Myer, Kabar Thar
-
-To buy Ni Ni Khin Zaw Package: Send MP 55595002 to 333
-Available tunes on Music Package: Thit Sar Ma Pyat Kyae , Yat Sat Thwar Thu, Myaw Lint Chat Ta Sone Ta Yar""",
 };

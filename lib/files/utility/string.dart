@@ -191,7 +191,7 @@ const myTuneStr = "My Tunes";
 const activateStr = 'Activate';
 const addToShuffleStr = "Add to Suffle";
 const musicPackageStr = "Music Package";
-const madeWithStr = "Made with";
+const madeWithStr = "Made with \u2764";
 
 const inActiveStr = 'InActive';
 const sessionExpiredStr =
@@ -204,8 +204,6 @@ const sentOtpInTimeStr = "Resend Otp in ";
 const sentOtpStr = "Resend Otp";
 const pleaseActivateToUnsubscribeStr =
     "Please activate your pack before unsubscribing.";
-const playingTuneStr = "My Playing Tunes";
-const myRrbtTunesStr = "My RRBT Tunes";
 
 const libraryStr = 'Library';
 

@@ -120,10 +120,10 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               children: [
-                tabSection(playingTuneStr, 0, si),
+                tabSection(crbtStr, 0, si),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 6),
-                  child: tabSection(myRrbtTunesStr, 1, si),
+                  child: tabSection(rrbtStr, 1, si),
                 ),
                 tabSection(libraryStr, 2, si),
               ],
