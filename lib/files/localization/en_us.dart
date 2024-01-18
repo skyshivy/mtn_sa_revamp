@@ -180,7 +180,7 @@ Map<String, String> enUS = {
   yourServiceIsNotCurrentlyRunningStr:
       "You have temporarily suspended your  service.",
   notSubscribedToAnyService: "You are not subscribed to mytune service.",
-
+  homeInfo5: 'Tone price at 37.07 SDG valid per month',
 //--------------------------------------
 
   myTuneStr: "My Tunes",
@@ -188,7 +188,7 @@ Map<String, String> enUS = {
   addToShuffleStr: "Add to Suffle",
   musicPackageStr: "Music Package",
   madeWithStr: "Made with",
-  homeInfo5: 'Tone price at 37.07 SDG valid per month',
+
   inActiveStr: 'InActive',
   sessionExpiredStr:
       'Session expired.\n You will be logged out and redirected to Home page.',
@@ -196,16 +196,16 @@ Map<String, String> enUS = {
   unSubscribeConfirmMessageStr: "Are you sure you want to unsubscribe?",
   notActiveSubscriberMessageStr: "You are not an active subscriber",
   areYouSureYouWantToDeleteStr: "Are you sure you want to delete?",
-  sentOtpInTimeStr: "Resent Otp in ",
-  sentOtpStr: "Resent Otp",
+  sentOtpInTimeStr: "Resend Otp in ",
+  sentOtpStr: "Resend Otp",
   pleaseActivateToUnsubscribeStr:
       "Please activate your pack before unsubscribing.",
-  playingTuneStr: "My Playing Tunes",
-  myRrbtTunesStr: "My RRBT Tunes",
-
+  playingTuneStr: "CRBT",
+  myRrbtTunesStr: "RRBT",
+  libraryStr: 'Library',
   crbtStr: "CRBT",
   rrbtStr: "RRBT",
-  myRrbtTunes: "My RRBT tunes",
+
   musicPackStr: "Music Box",
   upgradeMessageStr:
       'Upgrade to EAUC at Kyat 100/1 day and enjoy unlimited tunes',

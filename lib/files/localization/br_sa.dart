@@ -166,7 +166,7 @@ Map<String, String> brBR = {
   yourServiceIsNotCurrentlyRunningStr:
       "သင်၏၀န်ဆောင်မှုကိုခေတ္တရပ်နားလိုက်ပါပြီ",
   notSubscribedToAnyService: "သင်သည် mytune ၀န်ဆောင်မှုကိုရယူထားခြင်းမရှိပါ",
-
+  homeInfo5: 'တေးသွားတစ်ပုဒ်အတွက် ရက် (၃၀) လျှင် ၃၁၅ ကျပ်ကျသင့်မည်ဖြစ်သည်',
 //--------------------------------------
 
   myTuneStr: "My Tunes",
@@ -174,7 +174,7 @@ Map<String, String> brBR = {
   addToShuffleStr: "Add to Suffle",
   musicPackageStr: "Music Package",
   madeWithStr: "Made with",
-  homeInfo5: 'Tone price at 37.07 SDG valid per month',
+
   inActiveStr: 'InActive',
   sessionExpiredStr:
       'Session expired.\n You will be logged out and redirected to Home page.',
@@ -182,15 +182,16 @@ Map<String, String> brBR = {
   unSubscribeConfirmMessageStr: "Are you sure you want to unsubscribe?",
   notActiveSubscriberMessageStr: "You are not an active subscriber",
   areYouSureYouWantToDeleteStr: "Are you sure you want to delete?",
-  sentOtpInTimeStr: "Resent Otp in ",
-  sentOtpStr: "Resent Otp",
+  sentOtpInTimeStr: "Resend Otp in ",
+  sentOtpStr: "Resend Otp",
   pleaseActivateToUnsubscribeStr:
       "Please activate your pack before unsubscribing.",
-  playingTuneStr: "My Playing Tunes",
-  myRrbtTunesStr: "My RRBT Tunes",
+  playingTuneStr: "CRBT",
+  myRrbtTunesStr: "RRBT",
+  libraryStr: 'Library',
   crbtStr: "CRBT",
   rrbtStr: "RRBT",
-  myRrbtTunes: "My RRBT tunes",
+
   musicPackStr: "Music Box",
   upgradeMessageStr:
       'Upgrade to EAUC at Kyat 100/1 day and enjoy unlimited tunes',

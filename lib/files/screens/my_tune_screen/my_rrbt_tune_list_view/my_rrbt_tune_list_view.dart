@@ -42,7 +42,7 @@ class MyRrbtTuneListView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: CustomText(
-        title: myRrbtTunes.tr,
+        title: myRrbtTunesStr.tr,
         fontName: FontName.light,
         fontSize: si.isMobile ? 18 : 30,
       ),

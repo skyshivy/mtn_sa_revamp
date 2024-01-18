@@ -184,7 +184,7 @@ const yourServiceIsCurrentlyRunningStr = "Your service is currently running.";
 const yourServiceIsNotCurrentlyRunningStr =
     "You have temporarily suspended your  service.";
 const notSubscribedToAnyService = "You are not subscribed to mytune service.";
-
+const homeInfo5 = 'Tune price at 315 Ks valid per 30 days';
 //=====================================================
 
 const myTuneStr = "My Tunes";
@@ -192,7 +192,7 @@ const activateStr = 'Activate';
 const addToShuffleStr = "Add to Suffle";
 const musicPackageStr = "Music Package";
 const madeWithStr = "Made with";
-const homeInfo5 = 'Tone price at 37.07 SDG valid per month';
+
 const inActiveStr = 'InActive';
 const sessionExpiredStr =
     'Session expired.\n You will be logged out and redirected to Home page.';
@@ -200,15 +200,18 @@ const changeStatusConfirmMessageStr = "Are you sure you want to change Status?";
 const unSubscribeConfirmMessageStr = "Are you sure you want to unsubscribe?";
 const notActiveSubscriberMessageStr = "You are not an active subscriber";
 const areYouSureYouWantToDeleteStr = "Are you sure you want to delete?";
-const sentOtpInTimeStr = "Resent Otp in ";
-const sentOtpStr = "Resent Otp";
+const sentOtpInTimeStr = "Resend Otp in ";
+const sentOtpStr = "Resend Otp";
 const pleaseActivateToUnsubscribeStr =
     "Please activate your pack before unsubscribing.";
 const playingTuneStr = "My Playing Tunes";
 const myRrbtTunesStr = "My RRBT Tunes";
+
+const libraryStr = 'Library';
+
 const crbtStr = "CRBT";
 const rrbtStr = "RRBT";
-const myRrbtTunes = "My RRBT tunes";
+
 const musicPackStr = "Music Box";
 const upgradeMessageStr =
     'Upgrade to EAUC at Kyat 100/1 day and enjoy unlimited tunes';

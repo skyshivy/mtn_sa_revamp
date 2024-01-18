@@ -61,7 +61,7 @@ class WebNavBarView extends StatelessWidget {
         leftSpacing(width: 30),
         muTuneButtonWidget(),
         leftSpacing(width: 20),
-        musicPackWidget(),
+        //musicPackWidget(),
         // leftSpacing(),
         // HomeAboutButton(),
         leftSpacing(),

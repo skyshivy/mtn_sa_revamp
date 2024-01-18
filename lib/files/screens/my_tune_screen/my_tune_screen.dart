@@ -48,8 +48,8 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
         builder: (context, si) {
           return SingleChildScrollView(
               child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
             children: [
               const MyTuneHeaderView(),
               const SizedBox(height: 15),
@@ -125,7 +125,7 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 6),
                   child: tabSection(myRrbtTunesStr, 1, si),
                 ),
-                tabSection(myTuneStr, 2, si),
+                tabSection(libraryStr, 2, si),
               ],
             ),
           ),
