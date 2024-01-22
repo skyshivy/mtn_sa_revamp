@@ -19,7 +19,8 @@ class CustomHeader {
       request.headers
           .set('deviceId', StoreManager().deviceId, preserveHeaderCase: true);
     }
-    request.headers.set('Content-Type', 'application/x-www-form-urlencoded',
+    request.headers.set(
+        'Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8',
         preserveHeaderCase: true);
     request.headers.set('versionCode', versionCode, preserveHeaderCase: true);
     request.headers.set('appVersion', appVersion, preserveHeaderCase: true);

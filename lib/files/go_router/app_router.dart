@@ -336,7 +336,12 @@ StatefulShellBranch tuneSettingScreen() {
 }
 
 StatefulShellBranch searchScreen() {
-  SearchTuneController sCOnt = Get.find();
+  SearchTuneController sCOnt;
+  try {
+    sCOnt = Get.find();
+  } catch (e) {
+    sCOnt = Get.put(SearchTuneController());
+  }
 
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
@@ -345,11 +350,15 @@ StatefulShellBranch searchScreen() {
       builder: (context, state) {
         String searchkey = state.uri.queryParameters['key'] ?? '';
         String index = state.uri.queryParameters['index'] ?? "0";
-        sCOnt.stopMultipleApiCall = true;
-        sCOnt.getSearchedResult(searchkey, 0,
-            searchTypeIndex: int.parse(index));
+        //sCOnt.stopMultipleApiCall = false;
 
-        return const SearchScreen(); //CustomText(title: "title  $searchkey");
+        // sCOnt.getSearchedResult(searchkey, 0,
+        //     searchTypeIndex: int.parse(index));
+
+        return SearchScreen(
+          title: searchkey,
+          index: index,
+        ); //CustomText(title: "title  $searchkey");
       },
     ),
   ]);

@@ -52,6 +52,7 @@ class HomeSearchWidget extends StatelessWidget {
         children: [
           Flexible(
               child: HomeSearchTextField(
+                
             hintColor: blue,
             textColor: black,
             onChanged: (p0) {

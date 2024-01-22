@@ -40,11 +40,12 @@ class SearchTuneController extends GetxController {
 
     if (!stopMultipleApiCall) {
       print("object  not searching here");
-      await Future.delayed(const Duration(milliseconds: 80));
+      await Future.delayed(const Duration(milliseconds: 300));
       stopMultipleApiCall = true;
       return;
     }
     stopMultipleApiCall = false;
+
     if (searchTypeIndex != null) {
       searchType.value = searchTypeIndex;
     }
@@ -127,16 +128,17 @@ class SearchTuneController extends GetxController {
   _getSearchResultByTuneId(String tuneId) async {
     printCustom("Tune is id $tuneId");
 
-    toneList.value = [];
-    songList.value = [];
-    artistList.value = [];
+    // toneList.value = [];
+    // songList.value = [];
+    // artistList.value = [];
 
-    String s = tuneId.trim();
-    if (s != null) {
-      s = s.replaceAll(' ', '+');
-    }
+    // String s = tuneId.trim();
+    // if (s != null) {
+    //   s = s.replaceAll(' ', '+');
+    // }
     isLoading.value = true;
     isLoadingCode.value = true;
+    printCustom("Tune is id 1 $tuneId");
     //await Future.delayed(Duration(seconds: 3));
     SearchToneidModel mode = await searchToneIdApi(tuneId);
     isLoading.value = false;
@@ -183,11 +185,11 @@ class SearchTuneController extends GetxController {
 
     String catId = others?.nameTuneCategoryid?.attribute ?? '0';
     var url =
-        "$nameTuneSearchUrl?language=${StoreManager().language}&categoryId=$catId&pageNo=${songList.length}&perPageCount=$pagePerCount&searchLanguage=${StoreManager().language}";
+        "$nameTuneSearchUrl?language=${StoreManager().language}&searchKey=$searchKey&categoryId=$catId&pageNo=${songList.length}&perPageCount=$pagePerCount&searchLanguage=${StoreManager().language}";
 
     //"$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=${songList.length}&searchLanguage=English&perPageCount=$pagePerCount";
     Map<String, dynamic>? result =
-        await ServiceCall().get(url, params: {'searchKey': searchKey});
+        await ServiceCall().get(url); //, params: {'searchKey': searchKey}
     print("result is $result");
     if (result != null) {
       SearchTuneModel model = SearchTuneModel.fromJson(result);

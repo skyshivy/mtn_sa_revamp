@@ -64,7 +64,7 @@ void main() async {
   controller.settinApiCall();
   _getPackStatus();
   CategoryPoupupController catCont = Get.put(CategoryPoupupController());
-  SearchTuneController _ = Get.put(SearchTuneController());
+  //SearchTuneController _ = Get.put(SearchTuneController());
   RecoController recCont = Get.put(RecoController());
   PlayerController playerController = Get.put(PlayerController());
   WebTabController tabController = Get.put(WebTabController());

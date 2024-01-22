@@ -123,18 +123,24 @@ class ServiceCall {
           .getUrl(Uri.parse(url))
           .timeout(Duration(seconds: StoreManager().timeOutDuration));
       request = await CustomHeader().settingHeader(url, request);
+
       if (params != null) {
         for (var entry in params.entries) {
           print(entry.key);
           print(entry.value);
-          request.headers.set(entry.key, entry.value, preserveHeaderCase: true);
+          String val = entry.value;
+          request.headers.set(entry.key, val, preserveHeaderCase: true);
+          print("setting header is ===");
+          print("setting header is === ${request.headers}");
+          ;
         }
       }
+
       String stringData = '';
       HttpClientResponse response1 = await request.close();
-
+      print("setting header is ===2");
       stringData = await response1.transform(utf8.decoder).join();
-      printCustom(stringData);
+      printCustom('stringData  = $stringData');
 
       printCustom("resp code is ${response1.statusCode}");
       if (response1.statusCode == 200) {

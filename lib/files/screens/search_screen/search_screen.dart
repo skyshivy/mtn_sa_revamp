@@ -25,7 +25,9 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+  final String title;
+  final String index;
+  const SearchScreen({super.key, required this.title, required this.index});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -33,12 +35,15 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final ScrollController _controller = ScrollController();
+  SearchTuneController controller = Get.find();
   @override
   void initState() {
+    //controller.getSearchedResult(widget.title, widget.index);
+    controller.getSearchedResult(widget.title, 0,
+        searchTypeIndex: int.parse(widget.index));
     super.initState();
   }
 
-  SearchTuneController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return customScroll(
