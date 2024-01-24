@@ -14,7 +14,7 @@ Future<Map<String, dynamic>?> addToSuffleApi(String toneId, bool isCrbt) async {
     'serviceId': '1',
     'aPartyMsisdn': StoreManager().msisdn,
     'channelId': channelId,
-    'toneId': [
+    'toneIdList': [
       {"toneId": toneId}
     ],
     'priority': isCrbt ? '0' : '1',

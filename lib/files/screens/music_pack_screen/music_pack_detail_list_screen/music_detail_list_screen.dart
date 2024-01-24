@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/music_box_detail_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_grid_view/custom_grid_view.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class MusicPackDetailListScreen extends StatefulWidget {
@@ -35,15 +39,27 @@ class _MusicPackDetailListScreenState extends State<MusicPackDetailListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return cont.isloading.value
-          ? loadingIndicator()
-          : Container(
-              color: greyLight,
-              child: gridView(),
-            );
-      CustomGridView(list: cont.list, onTap: () {}); //gridView();
-    });
+    return Column(
+      children: [
+        CustomTopHeaderView(
+          title: musicPackStr.tr,
+          onTap: () {
+            context.goNamed(musicPackGoRoute);
+          },
+        ),
+        Expanded(
+          child: Obx(() {
+            return cont.isloading.value
+                ? loadingIndicator()
+                : Container(
+                    color: greyLight,
+                    child: gridView(),
+                  );
+            CustomGridView(list: cont.list, onTap: () {}); //gridView();
+          }),
+        ),
+      ],
+    );
   }
 
   Widget gridView() {

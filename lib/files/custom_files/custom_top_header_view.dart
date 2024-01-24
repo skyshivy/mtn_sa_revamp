@@ -12,8 +12,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 class CustomTopHeaderView extends StatelessWidget {
   final String title;
-
-  const CustomTopHeaderView({super.key, required this.title});
+  final Function()? onTap;
+  const CustomTopHeaderView({super.key, required this.title, this.onTap});
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
@@ -29,7 +29,14 @@ class CustomTopHeaderView extends StatelessWidget {
                     leftWidgetPadding: const EdgeInsets.only(right: 10),
                     leftWidget: const Icon(Icons.arrow_back),
                     onTap: () {
-                      context.go(homeGoRoute);
+                      if (onTap == null) {
+                        context.go(homeGoRoute);
+                      } else {
+                        onTap!();
+                      }
+
+                      //
+                      //context.pop();
                     },
                   ),
                   CustomText(
