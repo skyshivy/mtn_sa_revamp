@@ -143,11 +143,14 @@ class MyTuneController extends GetxController {
       printCustom("Does contain msisdn ===== ${playingList[index].msisdnB}");
     } else {
       printCustom(
-          "Delete playing tune name ${toneId} ===== ${rrbtTuneList[index].msisdnB}");
-      printCustom("Does contain msisdn ===== ${rrbtTuneList[index].msisdnB}");
+          "Delete playing tune name rrbtTuneList ${toneId} ===== ${rrbtTuneList[index].msisdnB}");
+      printCustom(
+          "Does contain msisdn rrbtTuneList ===== ${rrbtTuneList[index].msisdnB}");
     }
-
-    if (playingList[index].msisdnB == null) {
+    bool v = isCrbt
+        ? (playingList[index].msisdnB == null)
+        : (rrbtTuneList[index].msisdnB == null);
+    if (v) {
       bool isFullday = (isCrbt
               ? (playingList[index].toneDetails?.first.weeklyDays == "0")
               : (rrbtTuneList[index].toneDetails?.first.weeklyDays == "0"))
@@ -158,7 +161,7 @@ class MyTuneController extends GetxController {
             "toneDetails?.first.weeklyDays ${playingList[index].toneDetails?.first.weeklyDays}");
       } else {
         print(
-            "toneDetails?.first.weeklyDays ${rrbtTuneList[index].toneDetails?.first.weeklyDays}");
+            "toneDetails?.first.weeklyDays rrbtTuneList ${rrbtTuneList[index].toneDetails?.first.weeklyDays}");
       }
 
       resp = await deletePlayingTuneApiCall(
