@@ -10,6 +10,7 @@ class SubscribePlanController extends GetxController {
   RxInt selectedIndex = 0.obs;
   RxBool enableSubmitButton = false.obs;
   RxString tuneCharge = ''.obs;
+  String _tuneCharge = '';
   @override
   void onInit() {
     printCustom("init SubscribePlanController");
@@ -25,6 +26,7 @@ class SubscribePlanController extends GetxController {
         '';
     createPackList(arra);
     tuneCharge.value = others?.tonePrice?.attribute ?? '';
+    _tuneCharge = others?.tonePrice?.attribute ?? '';
     super.onInit();
   }
 

@@ -153,7 +153,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
       Color colors, String title, String subTitle, int index) {
     return InkWell(onTap: () {
       sCont.updateSelectedIndex(index);
-
+      //sCont.tuneCharge.
       printCustom("cell tapped");
     }, child: Obx(() {
       return Container(

@@ -68,7 +68,7 @@ class MyRrbtTuneListView extends StatelessWidget {
       return cont.rrbtTuneList.isEmpty
           ? emptyListWidget(si)
           : GridView.builder(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               shrinkWrap: true,
               scrollDirection: si.isMobile ? Axis.horizontal : Axis.vertical,
               physics:

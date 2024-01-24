@@ -1,7 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -21,6 +25,13 @@ class CustomTopHeaderView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
               child: Row(
                 children: [
+                  CustomButton(
+                    leftWidgetPadding: const EdgeInsets.only(right: 10),
+                    leftWidget: const Icon(Icons.arrow_back),
+                    onTap: () {
+                      context.go(homeGoRoute);
+                    },
+                  ),
                   CustomText(
                     title: homeStr.tr,
                     fontName: FontName.medium,

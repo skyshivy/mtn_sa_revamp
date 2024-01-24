@@ -31,6 +31,7 @@ Widget playingTuneMoreButton(int index, TuneInfo info, bool isCrbt) {
             message: areYouSureYouWantToDeleteStr.tr,
             cancelTitle: cancelStr.tr,
             onOk: () {
+              print("delete tune called");
               mCont.deletePlayingTune(
                   info.toneId ?? '', index, isCrbt, context);
             },

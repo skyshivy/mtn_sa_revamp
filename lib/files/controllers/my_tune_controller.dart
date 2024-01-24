@@ -137,17 +137,30 @@ class MyTuneController extends GetxController {
   Future<bool> deletePlayingTune(
       String toneId, int index, bool isCrbt, BuildContext context) async {
     Map<String, dynamic>? resp;
-    printCustom(
-        "Delete playing tune name ${toneId} ===== ${playingList[index].msisdnB}");
-    printCustom("Does contain msisdn ===== ${playingList[index].msisdnB}");
+    if (isCrbt) {
+      printCustom(
+          "Delete playing tune name ${toneId} ===== ${playingList[index].msisdnB}");
+      printCustom("Does contain msisdn ===== ${playingList[index].msisdnB}");
+    } else {
+      printCustom(
+          "Delete playing tune name ${toneId} ===== ${rrbtTuneList[index].msisdnB}");
+      printCustom("Does contain msisdn ===== ${rrbtTuneList[index].msisdnB}");
+    }
 
     if (playingList[index].msisdnB == null) {
-      bool isFullday = (playingList[index].toneDetails?.first.weeklyDays == "0")
+      bool isFullday = (isCrbt
+              ? (playingList[index].toneDetails?.first.weeklyDays == "0")
+              : (rrbtTuneList[index].toneDetails?.first.weeklyDays == "0"))
           ? true
           : false;
+      if (isCrbt) {
+        print(
+            "toneDetails?.first.weeklyDays ${playingList[index].toneDetails?.first.weeklyDays}");
+      } else {
+        print(
+            "toneDetails?.first.weeklyDays ${rrbtTuneList[index].toneDetails?.first.weeklyDays}");
+      }
 
-      print(
-          "toneDetails?.first.weeklyDays ${playingList[index].toneDetails?.first.weeklyDays}");
       resp = await deletePlayingTuneApiCall(
           toneId, isFullday ? "2" : '2', isCrbt, isFullday);
     } else {
