@@ -567,7 +567,7 @@ class BuyController extends GetxController {
           isHideUpgrade.value = true;
           isShowOtpView.value = false;
           isShowSubscriptionPlan.value = false;
-          await setTune(rrbtStatus);
+          await setTune(rrbtStatus, priority: "1");
         } else {
           isHideUpgrade.value = true;
           isShowOtpView.value = false;
@@ -618,7 +618,7 @@ class BuyController extends GetxController {
     }
   }
 
-  Future<void> setTune(String packName) async {
+  Future<void> setTune(String packName, {String priority = "0"}) async {
     print(
         "set tune called  isUpgradeSelected.value =${isUpgradeSelected.value}");
     print("Setting tune for packName = $packName");
@@ -631,7 +631,7 @@ class BuyController extends GetxController {
     // await Future.delayed(Duration(seconds: 3));
     // BuyTuneModel res = BuyTuneModel(message: 'Success', statusCode: 'SC0000');
     BuyTuneModel res = await SetTuneVM().set(
-        info ?? TuneInfo(), strPackName, '0',
+        info ?? TuneInfo(), strPackName, priority,
         isPackUpgrade: isUpgradeSelected.value);
     packName = '';
     if (res.statusCode == 'SC0000') {
