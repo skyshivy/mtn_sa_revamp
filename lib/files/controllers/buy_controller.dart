@@ -52,6 +52,7 @@ class BuyController extends GetxController {
   RxString otp = ''.obs;
   String securityCounter = '';
   RxString tuneCharge = enterMobileNumberStr.obs;
+  String storeTuneCharge = '0';
   RxBool isUpgradeSelected = false.obs;
   RxBool isHideUpgrade = true.obs;
   RxString msisdn = ''.obs;
@@ -79,6 +80,7 @@ class BuyController extends GetxController {
     } else {
       tuneCharge.value = enterMobileNumberStr;
     }
+    storeTuneCharge = tuneCharge.value;
     isHideUpgrade.value = true;
     isUpgradeSelected.value = false;
     isShowSubscriptionPlan.value = false;
@@ -135,11 +137,13 @@ class BuyController extends GetxController {
       return;
     }
     //if (StoreManager().packStatus == null) {
-    PackStatusModel mode = await getPackStatusApiCall(number);
-    if (mode.statusCode == "SC0000") {
+    PackStatusModel crbtPackStatusModel = await getPackStatusApiCall(number);
+    PackStatusModel rrbtPackStatusModel =
+        await getPackStatusApiCall(number, isCrbt: false);
+    if (crbtPackStatusModel.statusCode == "SC0000") {
     } else {
       isVerifying.value = false;
-      errorMessage.value = mode.message ??
+      errorMessage.value = crbtPackStatusModel.message ??
           tonePriceModel?.responseMap?.description ??
           someThingWentWrongStr;
       print("Some thing went wrong while fetching tune price");
@@ -173,11 +177,13 @@ class BuyController extends GetxController {
       String packName1 =
           tonePriceModel?.responseMap?.responseDetails?.first.packName ?? '';
       tuneCharge.value = await customTuneChanrge(packName1, amount);
+      storeTuneCharge = tuneCharge.value;
       print("Pack name is1 $status");
       if (status.isEmpty) {
         print("Pack name is2 $status");
         isHideUpgrade.value = true;
       }
+      //rrbtPackStatusModel.message
       return true;
     } else {
       isHideUpgrade.value = true;

@@ -179,7 +179,7 @@ class SearchTuneController extends GetxController {
 
     isLoaded.value = false;
     if (StoreManager().appSetting == null) {
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
     }
     Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
 

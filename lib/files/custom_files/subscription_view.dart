@@ -153,8 +153,15 @@ class _SubscriptionViewState extends State<SubscriptionView> {
       Color colors, String title, String subTitle, int index) {
     return InkWell(onTap: () {
       sCont.updateSelectedIndex(index);
-      //sCont.tuneCharge.
-      printCustom("cell tapped");
+
+      if ((bCont.crbtVipOfferCode == subTitle) ||
+          (bCont.crbtVipOfferCode == title)) {
+        bCont.tuneCharge.value = "0";
+      } else {
+        bCont.tuneCharge.value = bCont.storeTuneCharge;
+      }
+      printCustom(
+          "title $title \n subtitle $subTitle \n crbtVipOfferCode ${bCont.crbtVipOfferCode}");
     }, child: Obx(() {
       return Container(
         decoration: BoxDecoration(
