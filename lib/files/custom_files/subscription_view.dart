@@ -16,9 +16,10 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SubscriptionView extends StatefulWidget {
-  final TuneInfo info;
+  final TuneInfo? info;
 
-  const SubscriptionView({super.key, required this.info});
+  final Function(String)? onConfirm;
+  const SubscriptionView({super.key, required this.info, this.onConfirm});
   @override
   State<StatefulWidget> createState() => _SubscriptionViewState();
 }
@@ -80,7 +81,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
           //specialOfferWidget(),
           subscriptionListView(),
           const SizedBox(height: 20),
-          tuneCharge(si),
+          (widget.info == null) ? SizedBox() : tuneCharge(si),
           const SizedBox(height: 20),
           buttonsWidget(),
           const SizedBox(height: 20),
@@ -89,6 +90,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
     );
   }
 
+/*
   Widget specialOfferWidget() {
     return Visibility(
       child: Padding(
@@ -100,6 +102,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
           width: 120,
           child: subscriptionCell(
             greyLight,
+            'pack name',
             "150",
             "special",
             0,
@@ -108,7 +111,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
       ),
     );
   }
-
+*/
   Widget subscriptionInfo(SizingInformation si) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -137,6 +140,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
                     EdgeInsets.only(right: 16, left: (index == 0) ? 20 : 0),
                 child: subscriptionCell(
                   greyLight,
+                  sCont.packList[index],
                   sCont.packChargeList[index],
                   sCont.displayList[index],
                   index,
@@ -150,9 +154,12 @@ class _SubscriptionViewState extends State<SubscriptionView> {
   }
 
   Widget subscriptionCell(
-      Color colors, String title, String subTitle, int index) {
+      Color colors, String packName, String title, String subTitle, int index) {
     return InkWell(onTap: () {
       sCont.updateSelectedIndex(index);
+      // if (widget.onSelectetion != null) {
+      //   widget.onSelectetion!(packName);
+      // }
 
       if ((bCont.crbtVipOfferCode == subTitle) ||
           (bCont.crbtVipOfferCode == title)) {
@@ -219,12 +226,12 @@ class _SubscriptionViewState extends State<SubscriptionView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    title: widget.info.toneName ?? '',
+                    title: widget.info?.toneName ?? '',
                     fontName: FontName.bold,
                     fontSize: si.isMobile ? 13 : 16,
                   ),
                   CustomText(
-                    title: widget.info.albumName ?? '',
+                    title: widget.info?.albumName ?? '',
                     fontName: FontName.medium,
                     fontSize: si.isMobile ? 12 : 14,
                   ),
@@ -297,6 +304,13 @@ class _SubscriptionViewState extends State<SubscriptionView> {
         color: sCont.enableSubmitButton.value ? blue : grey,
         textColor: sCont.enableSubmitButton.value ? white : black,
         onTap: () {
+          // if (widget.onSelectetion != null) {
+          //   Navigator.of(context).pop();
+          // }
+          if (widget.onConfirm != null) {
+            widget.onConfirm!(sCont.packList[sCont.selectedIndex.value]);
+            Navigator.of(context).pop();
+          }
           if (sCont.enableSubmitButton.value) {
             bCont.onConfirmSubscriptionPlan(
                 sCont.packList[sCont.selectedIndex.value]);

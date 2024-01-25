@@ -4,6 +4,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart'
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/custom_files/snack_bar/snack_bar.dart';
+import 'package:mtn_sa_revamp/files/custom_files/subscription_view.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
@@ -118,11 +119,11 @@ class ProfileController extends GetxController {
     }
   }
 
-  Future<BuyTuneModel> setCrbtTune() async {
+  Future<BuyTuneModel> setCrbtTune({String packName = 'CRBT_WEEKLY'}) async {
     Others? other = StoreManager().appSetting?.responseMap?.settings?.others;
     String toneid = other?.defaultTone?.attribute ?? '';
     TuneInfo info = TuneInfo(toneId: toneid, toneName: 'DEFAULT');
-    BuyTuneModel model = await SetTuneVM().set(info, 'CRBT_WEEKLY', '0');
+    BuyTuneModel model = await SetTuneVM().set(info, packName, '0');
 
     return model;
   }
@@ -411,14 +412,22 @@ class ProfileController extends GetxController {
       );
       return;
     }
+
     printCustom("unsubscribeCrbtTuneStatusAction");
     if (crbtSubscriptionButtonName.value == subscribeStr.tr) {
       isUpdatingCrbtStatus.value = true;
-      BuyTuneModel model = await setCrbtTune();
-      if (model.statusCode == "SC0000") {
-        rrbtSubscriptionButtonName.value = unSubscribeStr.tr;
-        _packApiCalls();
-      }
+      Get.dialog(SubscriptionView(
+        info: null,
+        onConfirm: (p0) async {
+          print("selected pack name is $p0");
+          BuyTuneModel model = await setCrbtTune(packName: p0);
+          if (model.statusCode == "SC0000") {
+            rrbtSubscriptionButtonName.value = unSubscribeStr.tr;
+            _packApiCalls();
+          }
+        },
+      ));
+
       isUpdatingCrbtStatus.value = false;
     } else {
       Get.dialog(

@@ -42,8 +42,9 @@ class MyTuneController extends GetxController {
     isLoadingPlaying.value = true;
     isLoadingTune.value = true;
     playingList.value = <ListToneApk>[];
-    bool status = await getPackStatus();
-    if (status) {
+    bool crbtStatus = await getPackStatus(true);
+    bool rrbtStatus = await getPackStatus(false);
+    if (crbtStatus || rrbtStatus) {
       getMyPlayingList();
       getTuneList();
     } else {
@@ -71,9 +72,9 @@ class MyTuneController extends GetxController {
     }
   }
 
-  Future<bool> getPackStatus() async {
+  Future<bool> getPackStatus(bool isCrbt) async {
     PackStatusModel mo =
-        await getPackStatusApiCall(StoreManager().msisdn, isCrbt: true);
+        await getPackStatusApiCall(StoreManager().msisdn, isCrbt: isCrbt);
     if (mo.statusCode == "SC0000") {
       return (mo.responseMap?.packStatusDetails?.packName != null);
     } else {

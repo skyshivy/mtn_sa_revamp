@@ -16,12 +16,12 @@ Future<PackStatusModel> getPackStatusApiCall(String msisdn,
   String url = "${getpackStatusUrl}msisdn=$msisdn&priority=$priority";
   Map<String, dynamic>? map = await ServiceCall().get(url);
 /*
+  await Future.delayed(Duration(seconds: 1));
+
   String str = """{
     "responseMap": {
         "packStatusDetails": {
-            "languageId": "1",
-            "packName": "CRBT_DAILY"
-          
+            "languageId": "1"
         }
     },
     "message": "Success",
@@ -31,8 +31,8 @@ Future<PackStatusModel> getPackStatusApiCall(String msisdn,
   String str1 = """{
     "responseMap": {
         "packStatusDetails": {
-            "languageId": "1",
-            "packName": "CRBT_DAILY"
+            "languageId": "1"
+            
         }
     },
     "message": "Success",
@@ -56,15 +56,19 @@ Future<PackStatusModel> getPackStatusApiCall(String msisdn,
    "respTime":"Nov 17, 2023 9:05:50 PM",
    "statusCode":"SC0000"
 }""";
-  Map<String, dynamic> map = json.decode(str);
-  Map<String, dynamic> map = json.decode(isCrbt ? str : str1);
+Map<String, dynamic> map = json.decode(str);
+Map<String, dynamic> map = json.decode(isCrbt ? str : str1);
 */
 
   printCustom("Map is ========= $map");
   if (map != null) {
     PackStatusModel model = PackStatusModel.fromJson(map);
     if (model.statusCode == 'SC0000') {
-      StoreManager().packStatus = model.responseMap?.packStatusDetails;
+      if (isCrbt) {
+        StoreManager().crbtPackStatus = model.responseMap?.packStatusDetails;
+      } else {
+        StoreManager().rrbtPackStatus = model.responseMap?.packStatusDetails;
+      }
     }
     return model;
   } else {

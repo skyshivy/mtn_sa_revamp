@@ -82,13 +82,15 @@ void main() async {
 
 _getPackStatus() async {
   if (StoreManager().isLoggedIn) {
-    PackStatusModel packStatusModel = await getPackStatusApiCall("");
-    if (packStatusModel.statusCode == "SC0000") {
-      StoreManager().packStatus =
-          packStatusModel.responseMap?.packStatusDetails;
-    } else {}
+    PackStatusModel crbtPackStatusModel = await getPackStatusApiCall("");
+    PackStatusModel rrbtPackStatusModel =
+        await getPackStatusApiCall("", isCrbt: false);
+    // if (packStatusModel.statusCode == "SC0000") {
+    //   StoreManager().crbtPackStatus =
+    //       packStatusModel.responseMap?.packStatusDetails;
+    // } else {}
   } else {
-    StoreManager().packStatus = null;
+    StoreManager().crbtPackStatus = null;
   }
 }
 

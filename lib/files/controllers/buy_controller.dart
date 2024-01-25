@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:html';
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -150,7 +151,7 @@ class BuyController extends GetxController {
       return false;
     }
     //}
-    print("Pack name = ${StoreManager().packStatus?.packName}");
+    print("Pack name = ${StoreManager().crbtPackStatus?.packName}");
     print("crbtVipOfferCode = $crbtVipOfferCode");
     isVerifying.value = false;
     isLoagTuneCharge.value = false;
@@ -158,7 +159,7 @@ class BuyController extends GetxController {
     if (tonePriceModel?.statusCode == "SC0000") {
       String amount =
           tonePriceModel?.responseMap?.responseDetails?.first.amount ?? '0';
-      String status = StoreManager().packStatus?.packName ?? '';
+      String status = StoreManager().crbtPackStatus?.packName ?? '';
       //tonePriceModel?.responseMap?.responseDetails?.first.subscriberStatus ?? ''; //
 
       //isHideUpgrade.value = (amount == "0");
@@ -182,7 +183,17 @@ class BuyController extends GetxController {
       if (status.isEmpty) {
         print("Pack name is2 $status");
         isHideUpgrade.value = true;
+
+        if (rrbtPackStatusModel.statusCode == 'SC0000') {
+          String rrbtPackName =
+              rrbtPackStatusModel.responseMap?.packStatusDetails?.packName ??
+                  '';
+          if (rrbtPackName.isNotEmpty) {
+            isHideUpgrade.value = true;
+          }
+        }
       }
+
       //rrbtPackStatusModel.message
       return true;
     } else {
@@ -516,10 +527,12 @@ class BuyController extends GetxController {
     isVerifying.value = true;
     isHideUpgrade.value = false;
     TonePriceModel tonePriceModel = await _getTunePrice();
-    if (StoreManager().packStatus == null) {
-      PackStatusModel packStatusModel =
+    if (StoreManager().crbtPackStatus == null) {
+      PackStatusModel crbtPackStatusModel =
           await getPackStatusApiCall(StoreManager().msisdn);
-      if (packStatusModel.statusCode == 'SC0000') {
+      PackStatusModel rrbtPackStatusModel =
+          await getPackStatusApiCall(StoreManager().msisdn, isCrbt: false);
+      if (crbtPackStatusModel.statusCode == 'SC0000') {
       } else {
         isBuySuccess.value = true;
         successMessage.value = tonePriceModel.message ?? '';
@@ -529,21 +542,37 @@ class BuyController extends GetxController {
         return;
       }
     }
-    print("Pack name = ${StoreManager().packStatus?.packName}");
+
+    print("Pack name = ${StoreManager().crbtPackStatus?.packName}");
     print("crbtVipOfferCode = $crbtVipOfferCode");
     if (tonePriceModel.statusCode == 'SC0000') {
       ResponseDetail? responseDetail =
           tonePriceModel.responseMap?.responseDetails?.first;
       String packName = responseDetail?.packName ?? '';
-      String status = StoreManager().packStatus?.packName ??
-          ''; //responseDetail?.subscriberStatus ?? '';
+      String crbtStatus = StoreManager().crbtPackStatus?.packName ?? "";
+      String rrbtStatus = StoreManager().rrbtPackStatus?.packName ?? "";
+      ''; //responseDetail?.subscriberStatus ?? '';
 //tonePriceModel?.responseMap?.responseDetails?.first.subscriberStatus ?? ''; //
       // if ((status == 'NA') || (status == 'D') || (status == 'd')) {
+      print("\n-\n-\nCrbt pack name = $crbtStatus");
+      print("Rrbt pack name = $rrbtStatus\n-\n-\n");
 
-      if (status.isEmpty) {
+      if (crbtStatus == crbtVipOfferCode) {
         isHideUpgrade.value = true;
-        isShowOtpView.value = false;
-        isShowSubscriptionPlan.value = true;
+        packName = crbtVipOfferCode;
+      }
+
+      if (crbtStatus.isEmpty) {
+        if (rrbtStatus.isNotEmpty) {
+          isHideUpgrade.value = true;
+          isShowOtpView.value = false;
+          isShowSubscriptionPlan.value = false;
+          await setTune(rrbtStatus);
+        } else {
+          isHideUpgrade.value = true;
+          isShowOtpView.value = false;
+          isShowSubscriptionPlan.value = true;
+        }
       } else {
         if (isBuyMusicChannel) {
           await buyMusicChannel();
@@ -592,12 +621,15 @@ class BuyController extends GetxController {
   Future<void> setTune(String packName) async {
     print(
         "set tune called  isUpgradeSelected.value =${isUpgradeSelected.value}");
+    print("Setting tune for packName = $packName");
     String strPackName = '';
     if (isUpgradeSelected.value) {
       strPackName = others?.crbtVipOfferCode?.attribute ?? '';
     } else {
       strPackName = packName;
     }
+    // await Future.delayed(Duration(seconds: 3));
+    // BuyTuneModel res = BuyTuneModel(message: 'Success', statusCode: 'SC0000');
     BuyTuneModel res = await SetTuneVM().set(
         info ?? TuneInfo(), strPackName, '0',
         isPackUpgrade: isUpgradeSelected.value);

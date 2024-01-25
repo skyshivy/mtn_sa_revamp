@@ -33,7 +33,8 @@ class StoreManager {
   String securityToken = '';
   String securityCounter = '';
   String refreshToken = '';
-  PackStatusDetails? packStatus;
+  PackStatusDetails? crbtPackStatus;
+  PackStatusDetails? rrbtPackStatus;
   bool isLoggedIn = false;
   //bool testBool = false;
   int otpLength = 6;
@@ -137,7 +138,7 @@ class StoreManager {
     setUserName('');
     setPassword('');
     setChannelId('4');
-    packStatus = null;
+    crbtPackStatus = null;
     print("Logout called from StoreManager");
     appController.isLoggedIn.value = false;
 

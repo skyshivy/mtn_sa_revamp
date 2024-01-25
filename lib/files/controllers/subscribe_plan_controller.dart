@@ -60,8 +60,14 @@ class SubscribePlanController extends GetxController {
       printCustom("packname ${element.split(',')[0]}");
       printCustom("display name ${element.split(',')[1]}");
     }
+    // packListTemp.add('EAUC');
+    // displayListTemp.add('EAUC');
+    // packChargeListTemp.add("0");
     packList.value = packListTemp;
     displayList.value = displayListTemp;
+
+    // displayList.add("EAUC");
+    // packList.add("EAUC");
     packChargeList.value = packChargeListTemp;
   }
 
