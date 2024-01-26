@@ -209,10 +209,11 @@ class HomeTuneCell extends StatelessWidget {
                 subTitleFontSize: si.isMobile ? 12 : null,
               ),
               const SizedBox(height: 3),
-              CustomText(
+              SelectionArea(
+                  child: CustomText(
                 title: "${tuneCodeStr.tr} : ${info?.toneId ?? ''}",
                 fontSize: si.isMobile ? 12 : null,
-              ),
+              )),
               const SizedBox(height: 8),
               buttomButtonWidget ??
                   BuyAndPlayButton(

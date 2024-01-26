@@ -310,10 +310,11 @@ class _SubscriptionViewState extends State<SubscriptionView> {
           if (widget.onConfirm != null) {
             widget.onConfirm!(sCont.packList[sCont.selectedIndex.value]);
             Navigator.of(context).pop();
-          }
-          if (sCont.enableSubmitButton.value) {
-            bCont.onConfirmSubscriptionPlan(
-                sCont.packList[sCont.selectedIndex.value]);
+          } else {
+            if (sCont.enableSubmitButton.value) {
+              bCont.onConfirmSubscriptionPlan(
+                  sCont.packList[sCont.selectedIndex.value]);
+            }
           }
         },
       );

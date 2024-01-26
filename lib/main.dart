@@ -1,5 +1,5 @@
 // ignore_for_file: unused_local_variable, must_be_immutable
-
+import 'dart:html' as html;
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -46,7 +46,10 @@ void main() async {
   if (kDebugMode) {
     appId = "com.sixdee.oml_rbt_portal";
   } else {}
-
+  html.window.onBeforeUnload.listen((event) async {
+    print("Tab closed flutter");
+    StoreManager().logout();
+  });
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
   //SharedPreferences.setMockInitialValues({});
@@ -147,6 +150,7 @@ class MyApp extends StatelessWidget {
         sessionLogoutTime();
       }
     });
+
     return SessionTimeoutManager(
       sessionConfig: sessionConfig,
       child: MaterialApp.router(

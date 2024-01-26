@@ -21,23 +21,24 @@ Future<PackStatusModel> getPackStatusApiCall(String msisdn,
   String str = """{
     "responseMap": {
         "packStatusDetails": {
-            "languageId": "1"
+            "languageId": "1",
+            "packName": "CRBT_DAILY"
         }
     },
     "message": "Success",
     "respTime": "Nov 28, 2023 4:14:26 PM",
-    "statusCode": "SC0000"
+    "statusCode": "FL0014"
 }""";
   String str1 = """{
     "responseMap": {
         "packStatusDetails": {
-            "languageId": "1"
-            
+            "languageId": "1",
+            "packName": "RRBT_DAILY"
         }
     },
     "message": "Success",
     "respTime": "Nov 28, 2023 4:14:26 PM",
-    "statusCode": "SC0000"
+    "statusCode": "FL0014"
 }""";
 
   // below for testing perpose

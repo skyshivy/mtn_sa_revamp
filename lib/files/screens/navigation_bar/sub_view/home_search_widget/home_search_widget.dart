@@ -52,7 +52,6 @@ class HomeSearchWidget extends StatelessWidget {
         children: [
           Flexible(
               child: HomeSearchTextField(
-                
             hintColor: blue,
             textColor: black,
             onChanged: (p0) {
@@ -70,15 +69,6 @@ class HomeSearchWidget extends StatelessWidget {
                 searchTuneController.getSearchedResult(
                     searchTuneController.searchedText.value, 0);
               }
-              // if (si.isMobile) {
-              //   printCustom("onChanged====asdas==$p0");
-              //   //Get.toNamed(searchTapped);
-              //   context.goNamed(searchGoRoute, queryParameters: {"key": p0});
-              // } else {
-              //   //controller.loadPage(3);
-              //   context.goNamed(searchGoRoute, queryParameters: {"key": p0});
-              // }
-              // //searchTuneController.getSearchedResult(p0, 0);
 
               printCustom("onSubmit======$p0");
             },
@@ -94,29 +84,12 @@ class HomeSearchWidget extends StatelessWidget {
               width: 35,
               height: 37,
               onTap: () {
-                // if (si.isMobile) {
-                //   printCustom("text filedon tapped");
-
-                //   context.goNamed(searchGoRoute, queryParameters: {
-                //     "key": searchTuneController.searchedText.value
-                //   });
-                //   //Get.toNamed(searchTapped);
-                // } else {
-                //   if (searchTuneController.searchedText.isNotEmpty) {
-                //     context.goNamed(searchGoRoute, queryParameters: {
-                //       "key": searchTuneController.searchedText.value
-                //     });
-                //   }
-
-                //   printCustom(" on search button tape");
-                // }
-
-                //context.goNamed(searchRoute, queryParameters: {"key": p0});
                 if (searchTuneController.searchedText.isNotEmpty) {
                   context.goNamed(searchGoRoute, queryParameters: {
                     "key": searchTuneController.searchedText.value,
                     "index": "${searchTuneController.searchType.value}",
                   });
+                  searchTuneController.stopMultipleApiCall = true;
                   searchTuneController.getSearchedResult(
                       searchTuneController.searchedText.value, 0);
                 }

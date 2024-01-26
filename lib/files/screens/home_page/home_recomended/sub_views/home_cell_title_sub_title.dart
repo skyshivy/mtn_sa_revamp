@@ -33,16 +33,12 @@ class HomeCellTitleSubTilte extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
-      crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
-      children: [
-        InkWell(
-          onTap: () {
-            print(
-                "Tapped== ${title ?? info?.toneName ?? info?.contentName ?? ""}");
-          },
-          child: Tooltip(
+    return SelectionArea(
+      child: Column(
+        mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
+        crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
+        children: [
+          Tooltip(
             waitDuration: const Duration(milliseconds: 600),
             message: title ?? info?.toneName ?? info?.contentName ?? "",
             child: CustomText(
@@ -57,31 +53,26 @@ class HomeCellTitleSubTilte extends StatelessWidget {
               fontSize: titleFontSize ?? 18,
             ),
           ),
-        ),
-        InkWell(
-          onTap: () {
-            print("on artist tap");
-          },
-          child: Tooltip(
+          Tooltip(
             waitDuration: const Duration(milliseconds: 600),
             message: subTitle ??
-                info?.albumName ??
                 info?.artistName ??
+                info?.artist ??
                 ' ARtist name here',
             child: CustomText(
               maxLine: 1,
               overFlow: TextOverflow.ellipsis,
               title: subTitle ??
-                  info?.albumName ??
                   info?.artistName ??
+                  info?.artist ??
                   ' ARtist name here',
               fontName: subTitleFontName ?? FontName.mediumItalic,
               fontSize: subTitleFontSize ?? 12,
               textColor: subTitleColor,
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
