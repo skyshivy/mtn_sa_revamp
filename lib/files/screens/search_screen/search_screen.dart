@@ -141,11 +141,13 @@ class _SearchScreenState extends State<SearchScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(
-                    title: (controller.artistList[index]?.matchedParam ?? '')
-                        .toUpperCase(),
-                    fontName: si.isMobile ? FontName.medium : FontName.bold,
-                    fontSize: si.isMobile ? 12 : 14,
+                  SelectionArea(
+                    child: CustomText(
+                      title: (controller.artistList[index]?.matchedParam ?? '')
+                          .toUpperCase(),
+                      fontName: si.isMobile ? FontName.medium : FontName.bold,
+                      fontSize: si.isMobile ? 12 : 14,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   CustomButton(

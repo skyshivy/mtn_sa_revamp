@@ -16,6 +16,7 @@ class ArtistController extends GetxController {
   RxList<TuneInfo> searchList = <TuneInfo>[].obs;
 
   getArtistSongs(String artist, {int page = 0, bool isLoadMore = false}) async {
+    searchList.clear();
     searchedArtist = artist;
     if (!isLoadMore) {
       isLaoding.value = true;
