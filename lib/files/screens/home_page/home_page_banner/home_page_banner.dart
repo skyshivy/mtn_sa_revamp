@@ -87,7 +87,9 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
           hoverColor: transparent,
           onTap: () {
             printCustom("Banner path is ${banner.bannerPath}");
-            printCustom("Banner path is ${banner.bannerOrder}");
+            printCustom("Banner searchKey ${banner.searchKey}");
+            printCustom("Banner type ${banner.type}");
+            printCustom("Banner bannerOrder ${banner.bannerOrder}");
             String searchKey = banner.searchKey ?? '';
             String type = banner.type ?? '';
             String bannerOrder = banner.bannerOrder ?? '';

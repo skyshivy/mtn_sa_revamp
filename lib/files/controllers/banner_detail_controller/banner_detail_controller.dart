@@ -28,7 +28,7 @@ class BannerDetailController extends GetxController {
       list.value = mode.responseMap?.bannerDetailsList ?? [];
     } else {
       url =
-          "$bannerDetailUrl?language=${StoreManager().language}&pageNo=$page&pagePerCount=$pagePerCount&type=$bannerOrder&searchKey=$searchKey";
+          "$bannerDetailUrl?language=${StoreManager().language}&pageNo=$page&pagePerCount=$pagePerCount&type=$type&searchKey=$searchKey";
       res = await ServiceCall().get(url);
     }
 
