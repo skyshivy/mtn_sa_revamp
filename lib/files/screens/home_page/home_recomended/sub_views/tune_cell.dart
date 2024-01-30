@@ -218,11 +218,8 @@ class HomeTuneCell extends StatelessWidget {
                           ClipboardData(text: value?.plainText ?? ''));
                     }
                   },
-                  child: Tooltip(
-                    waitDuration: const Duration(milliseconds: 600),
-                    message: info?.toneId ?? '',
-                    triggerMode: TooltipTriggerMode.tap,
-                    onTriggered: () async {
+                  child: InkWell(
+                    onDoubleTap: () {
                       Clipboard.setData(ClipboardData(text: info?.toneId ?? ''))
                           .then((_) {
                         Get.snackbar("Copied", info?.toneId ?? '',
@@ -230,9 +227,13 @@ class HomeTuneCell extends StatelessWidget {
                             duration: const Duration(seconds: 2));
                       });
                     },
-                    child: CustomText(
-                      title: "${tuneCodeStr.tr} : ${info?.toneId ?? ''}",
-                      fontSize: si.isMobile ? 12 : null,
+                    child: Tooltip(
+                      waitDuration: const Duration(milliseconds: 600),
+                      message: info?.toneId ?? '',
+                      child: CustomText(
+                        title: "${tuneCodeStr.tr} : ${info?.toneId ?? ''}",
+                        fontSize: si.isMobile ? 12 : null,
+                      ),
                     ),
                   )),
               const SizedBox(height: 8),

@@ -56,9 +56,8 @@ class HomeCellTitleSubTilte extends StatelessWidget {
         mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
         crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
         children: [
-          Tooltip(
-            triggerMode: TooltipTriggerMode.tap,
-            onTriggered: () async {
+          InkWell(
+            onDoubleTap: () {
               Clipboard.setData(ClipboardData(
                       text:
                           "${title ?? info?.toneName ?? info?.contentName ?? ""}"))
@@ -72,24 +71,24 @@ class HomeCellTitleSubTilte extends StatelessWidget {
               print(
                   "Tapped text is ${title ?? info?.toneName ?? info?.contentName ?? ""}");
             },
-            waitDuration: const Duration(milliseconds: 600),
-            message: title ?? info?.toneName ?? info?.contentName ?? "",
-            child: CustomText(
-              overFlow: TextOverflow.ellipsis,
-              textColor: titleColor,
-              maxLine: 1,
-              title: title ??
-                  info?.toneName ??
-                  info?.contentName ??
-                  "Tune name here",
-              fontName: titleFontName ?? FontName.bold,
-              fontSize: titleFontSize ?? 18,
+            child: Tooltip(
+              waitDuration: const Duration(milliseconds: 600),
+              message: title ?? info?.toneName ?? info?.contentName ?? "",
+              child: CustomText(
+                overFlow: TextOverflow.ellipsis,
+                textColor: titleColor,
+                maxLine: 1,
+                title: title ??
+                    info?.toneName ??
+                    info?.contentName ??
+                    "Tune name here",
+                fontName: titleFontName ?? FontName.bold,
+                fontSize: titleFontSize ?? 18,
+              ),
             ),
           ),
-          Tooltip(
-            waitDuration: const Duration(milliseconds: 600),
-            triggerMode: TooltipTriggerMode.tap,
-            onTriggered: () async {
+          InkWell(
+            onDoubleTap: () {
               Clipboard.setData(ClipboardData(
                       text:
                           "${subTitle ?? info?.artistName ?? info?.artist ?? ' ARtist name here'}"))
@@ -103,20 +102,23 @@ class HomeCellTitleSubTilte extends StatelessWidget {
               print(
                   "Tapped text is ${title ?? info?.toneName ?? info?.contentName ?? ""}");
             },
-            message: subTitle ??
-                info?.artistName ??
-                info?.artist ??
-                ' ARtist name here',
-            child: CustomText(
-              maxLine: 1,
-              overFlow: TextOverflow.ellipsis,
-              title: subTitle ??
+            child: Tooltip(
+              waitDuration: const Duration(milliseconds: 600),
+              message: subTitle ??
                   info?.artistName ??
                   info?.artist ??
                   ' ARtist name here',
-              fontName: subTitleFontName ?? FontName.mediumItalic,
-              fontSize: subTitleFontSize ?? 12,
-              textColor: subTitleColor,
+              child: CustomText(
+                maxLine: 1,
+                overFlow: TextOverflow.ellipsis,
+                title: subTitle ??
+                    info?.artistName ??
+                    info?.artist ??
+                    ' ARtist name here',
+                fontName: subTitleFontName ?? FontName.mediumItalic,
+                fontSize: subTitleFontSize ?? 12,
+                textColor: subTitleColor,
+              ),
             ),
           ),
         ],
