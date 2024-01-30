@@ -3,6 +3,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_web_launcher.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/string_json_file/terms_condition_file.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -20,60 +21,158 @@ class TermsConditionScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: si.isMobile ? 20 : 30),
-                  customHeader(termsAndCondHeaderFile, si),
+                  customHeader(
+                      StoreManager().isEnglish
+                          ? termsAndCondHeaderFile
+                          : termsAndCondHeaderFileBr,
+                      si),
                   verticalHeight(si),
-                  infoWidget(termsAndConditionSubTitleFile, si,
+                  infoWidget(
+                      StoreManager().isEnglish
+                          ? termsAndConditionSubTitleFile
+                          : termsAndConditionSubTitleFileBr,
+                      si,
                       size: si.isMobile ? 15 : 16),
                   verticalHeight(si),
-                  infoWidget(termsAndConditionInfoFile, si),
+                  infoWidget(
+                      StoreManager().isEnglish
+                          ? termsAndConditionInfoFile
+                          : termsAndConditionInfoFileBr,
+                      si),
                   verticalHeight(si),
-                  customHeader(registrationHeaderFile, si),
+                  customHeader(
+                      StoreManager().isEnglish
+                          ? registrationHeaderFile
+                          : registrationHeaderFileBr,
+                      si),
                   verticalHeight(si),
-                  infoWidget(registrationInfoFile, si),
+                  infoWidget(
+                      StoreManager().isEnglish
+                          ? registrationInfoFile
+                          : registrationInfoFileBr,
+                      si),
                   verticalHeight(si),
-                  customHeader(privacyFile, si),
+                  customHeader(
+                      StoreManager().isEnglish ? privacyFile : privacyFileBr,
+                      si),
                   verticalHeight(si),
-                  infoWidget(privacyInfoFile, si),
+                  infoWidget(
+                      StoreManager().isEnglish
+                          ? privacyInfoFile
+                          : privacyInfoFileBr,
+                      si),
                   verticalHeight(si),
-                  customHeader(accountFile, si),
+                  customHeader(
+                      StoreManager().isEnglish ? accountFile : accountFileBr,
+                      si),
                   verticalHeight(si),
-                  infoWidget(accountInfo, si),
+                  infoWidget(
+                      StoreManager().isEnglish ? accountInfo : accountInfoBr,
+                      si),
                   verticalHeight(si),
-                  customHeader(copyRightFile, si),
+                  customHeader(
+                      StoreManager().isEnglish
+                          ? copyRightFile
+                          : copyRightFileBr,
+                      si),
                   verticalHeight(si),
-                  infoWidget(copyRightInfoFile, si),
+                  infoWidget(
+                      StoreManager().isEnglish
+                          ? copyRightInfoFile
+                          : copyRightInfoFileBr,
+                      si),
                   verticalHeight(si),
-                  customHeader(trademarksFile, si),
+                  customHeader(
+                      StoreManager().isEnglish
+                          ? trademarksFile
+                          : trademarksFileBr,
+                      si),
                   verticalHeight(si),
-                  infoWidget(trademarksInfoFile, si),
+                  infoWidget(
+                      StoreManager().isEnglish
+                          ? trademarksInfoFile
+                          : trademarksInfoFileBr,
+                      si),
                   verticalHeight(si),
-                  customHeader(productDescriptionFile, si),
+                  customHeader(
+                      StoreManager().isEnglish
+                          ? productDescriptionFile
+                          : productDescriptionFileBr,
+                      si),
                   verticalHeight(si),
-                  infoWidget(productDescriptionInfoFile, si),
+                  infoWidget(
+                      StoreManager().isEnglish
+                          ? productDescriptionInfoFile
+                          : productDescriptionInfoFileBr,
+                      si),
                   verticalHeight(si),
-                  customHeader(paymentSetlementFile, si),
+                  customHeader(
+                      StoreManager().isEnglish
+                          ? paymentSetlementFile
+                          : paymentSetlementFileBr,
+                      si),
                   verticalHeight(si),
-                  infoWidget(paymentSetlementInfoFile, si),
+                  infoWidget(
+                      StoreManager().isEnglish
+                          ? paymentSetlementInfoFile
+                          : paymentSetlementInfoFileBr,
+                      si),
                   verticalHeight(si),
-                  customHeader(accountFile, si),
+                  customHeader(
+                      StoreManager().isEnglish ? accountFile : accountFileBr,
+                      si),
                   verticalHeight(si),
-                  infoWidget(accountInfo, si),
+                  infoWidget(
+                      StoreManager().isEnglish ? accountInfo : accountInfoBr,
+                      si),
                   verticalHeight(si),
-                  customHeader(termsAndCondHeaderFile, si),
+                  customHeader(
+                      StoreManager().isEnglish
+                          ? termsAndCondHeaderFile
+                          : termsAndCondHeaderFileBr,
+                      si),
                   verticalHeight(si),
-                  infoWidget(termsAndConditionInfoFile, si),
+                  infoWidget(
+                      StoreManager().isEnglish
+                          ? termsAndConditionInfoFile
+                          : termsAndConditionInfoFileBr,
+                      si),
                   verticalHeight(si),
-                  customHeader(sitePolicyFile, si),
+                  customHeader(
+                      StoreManager().isEnglish
+                          ? sitePolicyFile
+                          : sitePolicyFileBr,
+                      si),
                   verticalHeight(si),
-                  infoWidget(sitePolicyInfoFile, si),
+                  infoWidget(
+                      StoreManager().isEnglish
+                          ? sitePolicyInfoFile
+                          : sitePolicyInfoFileBr,
+                      si),
                   verticalHeight(si),
-                  customHeader(disclaimerFile, si),
+                  customHeader(
+                      StoreManager().isEnglish
+                          ? disclaimerFile
+                          : disclaimerFileBr,
+                      si),
                   verticalHeight(si),
-                  infoWidget(disclaimerInfoFile, si),
+                  infoWidget(
+                      StoreManager().isEnglish
+                          ? disclaimerInfoFile
+                          : disclaimerInfoFileBr,
+                      si),
                   verticalHeight(si),
-                  customHeader(applicableFile, si),
+                  customHeader(
+                      StoreManager().isEnglish
+                          ? applicableFile
+                          : applicableFileBr,
+                      si),
                   verticalHeight(si),
-                  infoWidget(applicableInfoFile, si),
+                  infoWidget(
+                      StoreManager().isEnglish
+                          ? applicableInfoFile
+                          : applicableInfoFileBr,
+                      si),
                   verticalHeight(si),
                   verticalHeight(si),
                 ],

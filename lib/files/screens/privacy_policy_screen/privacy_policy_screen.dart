@@ -3,6 +3,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_web_launcher.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/string_json_file/privacy_policy.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -24,13 +25,17 @@ class PrivacyPolicyScreen extends StatelessWidget {
               children: [
                 SizedBox(height: si.isMobile ? 15 : 25),
                 CustomText(
-                  title: privacyHeaderString,
+                  title: StoreManager().isEnglish
+                      ? privacyHeaderString
+                      : privacyHeaderStringBr,
                   fontName: FontName.extraBold,
                   fontSize: si.isMobile ? 18 : 25,
                 ),
                 SizedBox(height: si.isMobile ? 8 : 20),
                 CustomText(
-                  title: privacySubTitle,
+                  title: StoreManager().isEnglish
+                      ? privacySubTitle
+                      : privacySubTitleBr,
                   fontName: FontName.bold,
                   fontSize: si.isMobile ? 12 : 14,
                 ),
@@ -45,7 +50,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                     customWebLauncher(link.url);
                     print("Clicked ${link.url}!");
                   },
-                  text: pricacyInfo,
+                  text: StoreManager().isEnglish ? pricacyInfo : pricacyInfoBr,
                   style: TextStyle(
                       fontFamily: FontName.medium.name,
                       fontSize: si.isMobile ? 12 : 14),
