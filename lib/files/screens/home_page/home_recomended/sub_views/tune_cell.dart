@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
@@ -210,10 +211,30 @@ class HomeTuneCell extends StatelessWidget {
               ),
               const SizedBox(height: 3),
               SelectionArea(
-                  child: CustomText(
-                title: "${tuneCodeStr.tr} : ${info?.toneId ?? ''}",
-                fontSize: si.isMobile ? 12 : null,
-              )),
+                  onSelectionChanged: (value) {
+                    if (value?.plainText.isEmpty ?? true) {
+                    } else {
+                      Clipboard.setData(
+                          ClipboardData(text: value?.plainText ?? ''));
+                    }
+                  },
+                  child: Tooltip(
+                    waitDuration: const Duration(milliseconds: 600),
+                    message: info?.toneId ?? '',
+                    triggerMode: TooltipTriggerMode.tap,
+                    onTriggered: () async {
+                      Clipboard.setData(ClipboardData(text: info?.toneId ?? ''))
+                          .then((_) {
+                        Get.snackbar("Copied", info?.toneId ?? '',
+                            backgroundColor: white,
+                            duration: const Duration(seconds: 2));
+                      });
+                    },
+                    child: CustomText(
+                      title: "${tuneCodeStr.tr} : ${info?.toneId ?? ''}",
+                      fontSize: si.isMobile ? 12 : null,
+                    ),
+                  )),
               const SizedBox(height: 8),
               buttomButtonWidget ??
                   BuyAndPlayButton(

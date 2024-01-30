@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -34,11 +38,40 @@ class HomeCellTitleSubTilte extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SelectionArea(
+      onSelectionChanged: (value) {
+        if (value?.plainText.isEmpty ?? true) {
+        } else {
+          Clipboard.setData(ClipboardData(text: value?.plainText ?? ''));
+        }
+      },
+      contextMenuBuilder: (context, selectableRegionState) {
+        print("selectableRegionState ${selectableRegionState}");
+        return Container(
+          height: 20,
+          width: 300,
+          color: red,
+        );
+      },
       child: Column(
         mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
         crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
         children: [
           Tooltip(
+            triggerMode: TooltipTriggerMode.tap,
+            onTriggered: () async {
+              Clipboard.setData(ClipboardData(
+                      text:
+                          "${title ?? info?.toneName ?? info?.contentName ?? ""}"))
+                  .then((_) {
+                Get.snackbar("Copied",
+                    "${title ?? info?.toneName ?? info?.contentName ?? ""}",
+                    backgroundColor: white,
+                    duration: const Duration(seconds: 2));
+              });
+
+              print(
+                  "Tapped text is ${title ?? info?.toneName ?? info?.contentName ?? ""}");
+            },
             waitDuration: const Duration(milliseconds: 600),
             message: title ?? info?.toneName ?? info?.contentName ?? "",
             child: CustomText(
@@ -55,6 +88,21 @@ class HomeCellTitleSubTilte extends StatelessWidget {
           ),
           Tooltip(
             waitDuration: const Duration(milliseconds: 600),
+            triggerMode: TooltipTriggerMode.tap,
+            onTriggered: () async {
+              Clipboard.setData(ClipboardData(
+                      text:
+                          "${subTitle ?? info?.artistName ?? info?.artist ?? ' ARtist name here'}"))
+                  .then((_) {
+                Get.snackbar("Copied",
+                    "${subTitle ?? info?.artistName ?? info?.artist ?? ' ARtist name here'}",
+                    backgroundColor: white,
+                    duration: const Duration(seconds: 2));
+              });
+
+              print(
+                  "Tapped text is ${title ?? info?.toneName ?? info?.contentName ?? ""}");
+            },
             message: subTitle ??
                 info?.artistName ??
                 info?.artist ??

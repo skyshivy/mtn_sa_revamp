@@ -123,9 +123,9 @@ class ProfileController extends GetxController {
     Others? other = StoreManager().appSetting?.responseMap?.settings?.others;
     String toneid = other?.defaultTone?.attribute ?? '';
     TuneInfo info = TuneInfo(toneId: toneid, toneName: 'DEFAULT');
-    await Future.delayed(Duration(seconds: 2));
-    BuyTuneModel model = BuyTuneModel(statusCode: 'SC0000', message: 'Success');
-//    BuyTuneModel model = await SetTuneVM().set(info, packName, '0');
+    //await Future.delayed(Duration(seconds: 2));
+    //BuyTuneModel model = BuyTuneModel(statusCode: 'SC0000', message: 'Success');
+    BuyTuneModel model = await SetTuneVM().set(info, packName, '0');
 
     return model;
   }
