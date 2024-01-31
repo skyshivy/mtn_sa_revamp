@@ -42,7 +42,7 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  static final formKey = GlobalKey();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   FocusNode _node = FocusNode();
   bool _focused = false;
@@ -81,7 +81,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     widget.controller.text = widget.text;
     return TextField(
       autofocus: true,
-      key: formKey,
+      //key: _formKey,
       focusNode: _node,
       textInputAction: TextInputAction.done,
       enabled: widget.editEnable,
