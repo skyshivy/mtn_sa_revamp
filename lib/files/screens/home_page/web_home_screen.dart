@@ -39,47 +39,49 @@ class _WebLandingPageState extends State<WebLandingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return customScroll(
-      _controller,
-      SingleChildScrollView(
-        controller: _controller,
-        child: ResponsiveBuilder(
-          builder: (context, si) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // CustomButton(
-                //   title: "Open",
-                //   onTap: () {
-                //     Get.dialog(SubscriptionView(info: TuneInfo()));
-                //   },
-                // ),
-                // CustomButton(
-                //   title: "Open",
-                //   onTap: () {
-                //     Decryptor().aesEnc("sampleTextToEncode");
-                //     // Decryptor().decryptWithAES(
-                //     //     "U2FsdGVkX19cs092M9hqJnx/pGcYbuvKiSVXI+npyEAITk5mdFo1f1UGzyyxOlZy");
-                //     //Get.dialog(BuyOtpView());
-                //   },
-                // ),
+    return ResponsiveBuilder(
+      builder: (context, si) {
+        return ListView(
+          primary: true,
+          shrinkWrap: true,
+          children: [
+            // CustomButton(
+            //   title: "Open",
+            //   onTap: () {
+            //     Get.dialog(SubscriptionView(info: TuneInfo()));
+            //   },
+            // ),
+            // CustomButton(
+            //   title: "Open",
+            //   onTap: () {
+            //     Decryptor().aesEnc("sampleTextToEncode");
+            //     // Decryptor().decryptWithAES(
+            //     //     "U2FsdGVkX19cs092M9hqJnx/pGcYbuvKiSVXI+npyEAITk5mdFo1f1UGzyyxOlZy");
+            //     //Get.dialog(BuyOtpView());
+            //   },
+            // ),
 
-                LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
-                SizedBox(height: 20),
-                homeSearchTopView(),
-                SizedBox(height: 20),
-                const LandingRecoView(),
-                SizedBox(height: si.isMobile ? 10 : 80),
-                Flexible(child: HomeMusicPackView()),
-                //SizedBox(height: si.isMobile ? 10 : 80),
-                LandingInfoPage(),
-                const LandingPageBottomSection()
-              ],
-            );
-          },
-        ),
-      ),
+            LandingPageBanner(), //ProfileScreen(), //MyTuneScreen(), //
+            SizedBox(height: 20),
+            homeSearchTopView(),
+            SizedBox(height: 20),
+            const LandingRecoView(),
+            SizedBox(height: si.isMobile ? 10 : 80),
+            HomeMusicPackView(),
+            //SizedBox(height: si.isMobile ? 10 : 80),
+            LandingInfoPage(),
+            const LandingPageBottomSection()
+          ],
+        );
+      },
     );
+    // customScroll(
+    //   _controller,
+    //   SingleChildScrollView(
+    //     controller: _controller,
+    //     child:
+    //   ),
+    // );
   }
 
   Widget homeSearchTopView() {

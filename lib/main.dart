@@ -41,7 +41,7 @@ import 'package:mtn_sa_revamp/files/view_model/get_tune_price_vm.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 BuildContext? goRouterContext;
-FocusNode keyScrollFocusNode = FocusNode();
+//FocusNode keyScrollFocusNode = FocusNode();
 void main() async {
   if (kDebugMode) {
     appId = "com.sixdee.oml_rbt_portal";

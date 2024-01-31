@@ -261,8 +261,8 @@ StatefulShellBranch historyScreenRoute() {
 
 StatefulShellBranch seeMoreScreen() {
   BannerDetailController bannerCont = Get.put(BannerDetailController());
-  keyScrollFocusNode = FocusNode();
-  keyScrollFocusNode.requestFocus();
+  // keyScrollFocusNode = FocusNode();
+  // keyScrollFocusNode.requestFocus();
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: moreGoRoute,
@@ -478,7 +478,7 @@ Widget shellRouteIndex(BuildContext context, GoRouterState state,
     title: "Atom",
     home: ResponsiveBuilder(
       builder: (context, si) {
-        keyScrollFocusNode.requestFocus();
+        // keyScrollFocusNode.requestFocus();
         return Material(
           child: Column(
             children: [

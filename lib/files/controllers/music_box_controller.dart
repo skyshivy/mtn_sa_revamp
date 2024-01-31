@@ -17,13 +17,12 @@ class MusicPackController extends GetxController {
   Future<MusicBoxModel> getMusicBox() async {
     String url = '';
 
-    if (kDebugMode) {
-      print("debug mode api called in MusicPackController");
-      url = 'https://mocki.io/v1/5a415b89-7579-49bc-936d-8b61f818638e';
-    } else {
-      url =
-          '${getMusicBoxUrl}language=English&pageNo=0&perPageCount=20&type=MB';
-    }
+    // if (kDebugMode) {
+    //   print("debug mode api called in MusicPackController");
+    //   url = 'https://mocki.io/v1/5a415b89-7579-49bc-936d-8b61f818638e';
+    // } else {
+    url = '${getMusicBoxUrl}language=English&pageNo=0&perPageCount=20&type=MB';
+    //}
     isloading.value = true;
 
     Map<String, dynamic>? map = await ServiceCall().get(url);

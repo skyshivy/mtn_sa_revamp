@@ -66,7 +66,7 @@ class SearchTuneController extends GetxController {
       print("Search narmal tune herr");
     }
 
-    keyScrollFocusNode.requestFocus();
+    //keyScrollFocusNode.requestFocus();
     if (!isloadMore) {
       toneList.clear();
       songList.clear();

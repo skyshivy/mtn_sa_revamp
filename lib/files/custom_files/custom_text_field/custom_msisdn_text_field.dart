@@ -9,7 +9,9 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class CustomMsisdnTextField extends StatelessWidget {
+class CustomMsisdnTextField extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _CustomMsisdnTextFieldSate();
   final String text;
   final String? hintText;
   final bool isMsisdn;
@@ -26,7 +28,7 @@ class CustomMsisdnTextField extends StatelessWidget {
   final bool addCountryCode;
   final Function(String)? onChanged;
   final Function(String)? onSubmit;
-  final TextEditingController textEditingController = TextEditingController();
+
   CustomMsisdnTextField({
     super.key,
     this.isMsisdn = true,
@@ -46,11 +48,35 @@ class CustomMsisdnTextField extends StatelessWidget {
     required this.text,
     this.borderColor = grey,
   });
+}
+
+class _CustomMsisdnTextFieldSate extends State<CustomMsisdnTextField> {
+  static final TextEditingController textEditingController =
+      TextEditingController();
+  static final formKey = GlobalKey();
+
+  FocusNode _node = FocusNode();
+  bool _focused = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    _node.addListener(_handleFocusChange);
+    super.initState();
+  }
+
+  void _handleFocusChange() {
+    if (_node.hasFocus != _focused) {
+      setState(() {
+        _focused = _node.hasFocus;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    textEditingController.text = text;
+    textEditingController.text = widget.text;
     return Container(
-      height: height,
+      height: widget.height,
       decoration: mainDecoration(),
       child: Center(
           child: Row(
@@ -59,26 +85,26 @@ class CustomMsisdnTextField extends StatelessWidget {
         children: [
           prefixContainerWidget(),
           Expanded(child: textField()),
-          rightWidget ?? const SizedBox()
+          widget.rightWidget ?? const SizedBox()
         ],
       )),
     );
   }
 
   Widget prefixContainerWidget() {
-    return prefixWidget ??
-        (addCountryCode ? countryCode() : const SizedBox(width: 20));
+    return widget.prefixWidget ??
+        (widget.addCountryCode ? countryCode() : const SizedBox(width: 20));
   }
 
   Widget countryCode() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: addCountryCode
+      child: widget.addCountryCode
           ? CustomText(
               title: countryCodeStr.tr,
               fontName: FontName.medium,
-              textColor: countryCodeColor,
-              fontSize: fontSiz ?? fontSize(12, 16),
+              textColor: widget.countryCodeColor,
+              fontSize: widget.fontSiz ?? fontSize(12, 16),
             )
           : const SizedBox(width: 10),
     );
@@ -87,9 +113,9 @@ class CustomMsisdnTextField extends StatelessWidget {
   BoxDecoration mainDecoration() {
     return BoxDecoration(
       //color: yellow,
-      color: bgColor,
+      color: widget.bgColor,
       border: Border.all(color: borderColor),
-      borderRadius: BorderRadius.circular(cornerRadius),
+      borderRadius: BorderRadius.circular(widget.cornerRadius),
     );
   }
 
@@ -99,19 +125,25 @@ class CustomMsisdnTextField extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, si) {
         return TextField(
-          autofillHints: autoFillHint,
+          autofocus: true,
+          key: formKey,
+          focusNode: _node,
+          autofillHints: widget.autoFillHint,
           controller: textEditingController,
-          enabled: enabled,
+          enabled: widget.enabled,
           onSubmitted: (value) {
-            onSubmit!(value);
+            widget.onSubmit!(value);
           },
           onChanged: (value) {
-            onChanged!(value);
+            widget.onChanged!(value);
+          },
+          onTap: () {
+            FocusScope.of(context).requestFocus(_node);
           },
 
           style: TextStyle(
               fontFamily: FontName.medium.name,
-              fontSize: fontSiz ?? (si.isMobile ? 12 : 16)),
+              fontSize: widget.fontSiz ?? (si.isMobile ? 12 : 16)),
           decoration: inputDecoration(si),
           keyboardType: TextInputType.phone,
 
@@ -124,18 +156,19 @@ class CustomMsisdnTextField extends StatelessWidget {
   List<TextInputFormatter> get inputFormate {
     return <TextInputFormatter>[
       FilteringTextInputFormatter.digitsOnly,
-      LengthLimitingTextInputFormatter(
-          isMsisdn ? StoreManager().msisdnLength : StoreManager().otpLength),
+      LengthLimitingTextInputFormatter(widget.isMsisdn
+          ? StoreManager().msisdnLength
+          : StoreManager().otpLength),
     ];
   }
 
   InputDecoration inputDecoration(SizingInformation si) {
     return InputDecoration(
-      hintText: hintText?.tr,
+      hintText: widget.hintText?.tr,
       isDense: true,
       hintStyle: TextStyle(
           fontFamily: FontName.medium.name,
-          fontSize: fontSiz ?? (si.isMobile ? 12 : 16)),
+          fontSize: widget.fontSiz ?? (si.isMobile ? 12 : 16)),
       border: InputBorder.none,
     );
   }

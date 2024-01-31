@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mtn_sa_revamp/main.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
-
+/*
 Widget customScroll(ScrollController controller, Widget widget) {
   int inde = 0;
   void handleKeyEvent(RawKeyEvent event) {
@@ -42,9 +42,10 @@ Widget customScroll(ScrollController controller, Widget widget) {
   }
 
   return RawKeyboardListener(
-    focusNode: keyScrollFocusNode,
+    //focusNode: keyScrollFocusNode,
     autofocus: true,
     onKey: handleKeyEvent,
     child: widget,
   );
 }
+*/

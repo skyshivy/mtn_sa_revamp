@@ -4,7 +4,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   final String text;
   final String hintText;
   final bool? isBorder;
@@ -18,7 +18,7 @@ class CustomTextField extends StatelessWidget {
   final Function(String)? onChanged;
   final Function()? onTap;
   final Function(String)? onSubmit;
-  TextEditingController controller = TextEditingController();
+  final TextEditingController controller = TextEditingController();
 
   CustomTextField({
     super.key,
@@ -36,13 +36,38 @@ class CustomTextField extends StatelessWidget {
     this.fontName = FontName.medium,
     this.editEnable,
   });
+
+  @override
+  State<StatefulWidget> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  static final formKey = GlobalKey();
+
+  FocusNode _node = FocusNode();
+  bool _focused = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    _node.addListener(_handleFocusChange);
+    super.initState();
+  }
+
+  void _handleFocusChange() {
+    if (_node.hasFocus != _focused) {
+      setState(() {
+        _focused = _node.hasFocus;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
         height: 50,
         decoration: BoxDecoration(
-          color: bgColor,
-          border: isBorder! ? Border.all(color: greyDark) : null,
+          color: widget.bgColor,
+          border: widget.isBorder! ? Border.all(color: greyDark) : null,
           borderRadius: BorderRadius.circular(25),
         ),
         child: Center(
@@ -53,17 +78,20 @@ class CustomTextField extends StatelessWidget {
   }
 
   TextField textField() {
-    controller.text = text;
+    widget.controller.text = widget.text;
     return TextField(
+      autofocus: true,
+      key: formKey,
+      focusNode: _node,
       textInputAction: TextInputAction.done,
-      enabled: editEnable,
+      enabled: widget.editEnable,
       autocorrect: false,
       enableSuggestions: false,
       controller: textEditingController(),
-      cursorColor: cursorColor,
-      onChanged: onChanged,
-      onSubmitted: onSubmit,
-      onTap: onTap,
+      cursorColor: widget.cursorColor,
+      onChanged: widget.onChanged,
+      onSubmitted: widget.onSubmit,
+      onTap: widget.onTap,
       decoration: inputDecoration(),
       style: textStyle(),
     );
@@ -71,27 +99,27 @@ class CustomTextField extends StatelessWidget {
 
   TextStyle textStyle() {
     return TextStyle(
-      fontFamily: fontName.name,
-      color: textColor,
-      fontSize: fontSize,
+      fontFamily: widget.fontName.name,
+      color: widget.textColor,
+      fontSize: widget.fontSize,
     );
   }
 
   TextEditingController textEditingController() {
     return TextEditingController.fromValue(
       TextEditingValue(
-          text: text.tr,
+          text: widget.text.tr,
           selection: TextSelection(
-            baseOffset: text.length,
-            extentOffset: text.length,
+            baseOffset: widget.text.length,
+            extentOffset: widget.text.length,
           )),
     );
   }
 
   InputDecoration inputDecoration() {
     return InputDecoration(
-      hintText: hintText.tr,
-      hintStyle: TextStyle(color: hintColor),
+      hintText: widget.hintText.tr,
+      hintStyle: TextStyle(color: widget.hintColor),
       isDense: true,
       border: InputBorder.none,
     );
