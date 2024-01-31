@@ -128,14 +128,17 @@ class BuyController extends GetxController {
     } else {
       number = msisdn.value;
     }
+
     tonePriceModel = await _getTunePrice();
+
     if (tonePriceModel?.statusCode == "SC0000") {
     } else {
       isVerifying.value = false;
       errorMessage.value = tonePriceModel?.message ??
           tonePriceModel?.responseMap?.description ??
           someThingWentWrongStr;
-      return;
+      tonePriceModel = null;
+      return false;
     }
     //if (StoreManager().packStatus == null) {
     PackStatusModel crbtPackStatusModel = await getPackStatusApiCall(number);

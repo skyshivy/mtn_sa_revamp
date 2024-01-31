@@ -63,7 +63,7 @@ class ResponseMap {
         feature: json["feature"],
         aPartyMsisdn: json["aPartyMsisdn"],
         responseDetails: json["responseDetails"] == null
-            ? [ResponseDetail()]
+            ? []
             : List<ResponseDetail>.from(json["responseDetails"]!
                 .map((x) => ResponseDetail.fromJson(x))),
         description: json["description"],

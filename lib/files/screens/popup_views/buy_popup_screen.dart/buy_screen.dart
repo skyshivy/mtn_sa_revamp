@@ -109,7 +109,7 @@ class _BuyScreenState extends State<_BuyScreen> {
         children: [
           headerWidget(),
           Padding(
-            padding: EdgeInsets.all(isPhone(context!) ? 10 : 30),
+            padding: EdgeInsets.all(isPhone(context) ? 10 : 30),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -133,10 +133,10 @@ class _BuyScreenState extends State<_BuyScreen> {
             !buyController.isUpgradeSelected.value;
       },
       child: Obx(() {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 10, top: 10),
-          child: Visibility(
-              visible: !buyController.isHideUpgrade.value,
+        return Visibility(
+            visible: !buyController.isHideUpgrade.value,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8, top: 4),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -157,8 +157,8 @@ class _BuyScreenState extends State<_BuyScreen> {
                     fontName: FontName.bold,
                   ))
                 ],
-              )),
-        );
+              ),
+            ));
       }),
     );
     // Obx(() {
@@ -174,10 +174,10 @@ class _BuyScreenState extends State<_BuyScreen> {
         Flexible(
           child: Column(
             mainAxisAlignment: isPhone(context)
-                ? MainAxisAlignment.start
+                ? MainAxisAlignment.center
                 : MainAxisAlignment.start,
             crossAxisAlignment: isPhone(context)
-                ? CrossAxisAlignment.start
+                ? CrossAxisAlignment.center
                 : CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
@@ -338,7 +338,7 @@ class _BuyScreenState extends State<_BuyScreen> {
   Column buttonColumns() {
     return Column(
       children: [
-        const SizedBox(height: 20),
+        const SizedBox(height: 4),
         cancelButton(),
         const SizedBox(height: 10),
         confirmButton(),
