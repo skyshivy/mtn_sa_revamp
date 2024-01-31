@@ -237,14 +237,14 @@ class _BuyScreenState extends State<_BuyScreen> {
   }
 
   void validateMsisdnAction(BuildContext context, TuneInfo info) async {
-    if (buyController.msisdn.value.length < StoreManager().msisdnLength) {
-      buyController.errorMessage.value = enterValidMsisdnStr.tr;
-      return;
-    }
     if (StoreManager().isLoggedIn) {
       await buyController.getTunePriceAndBuyTune(info,
           isBuyMusicChannel: widget.isBuyMusicPack);
     } else {
+      if (buyController.msisdn.value.length < StoreManager().msisdnLength) {
+        buyController.errorMessage.value = enterValidMsisdnStr.tr;
+        return;
+      }
       await buyController.msisdnValidation(info,
           isBuyMusicChannel: widget.isBuyMusicPack);
     }
