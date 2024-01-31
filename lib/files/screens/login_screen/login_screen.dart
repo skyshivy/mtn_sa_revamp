@@ -313,7 +313,7 @@ class _LoginScreenState extends State<LoginScreen> {
               CustomText(
                 title: title,
                 fontName: FontName.bold,
-                fontSize: si.isMobile ? 14 : 24,
+                fontSize: si.isMobile ? 16 : 24,
               ),
             ],
           );
@@ -359,7 +359,7 @@ class _LoginScreenState extends State<LoginScreen> {
           return CustomText(
             title: title,
             textColor: black,
-            fontName: si.isMobile ? FontName.light : FontName.medium,
+            fontName: si.isMobile ? FontName.medium : FontName.medium,
             fontSize: si.isMobile ? 12 : 14,
           );
         },
