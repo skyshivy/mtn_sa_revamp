@@ -145,14 +145,14 @@ class _LoginScreenState extends State<LoginScreen> {
               height: si.isMobile ? 15 : 10,
             )
           : Padding(
-              padding: EdgeInsets.only(top: 12),
+              padding: EdgeInsets.only(top: 4, bottom: 12),
               child: ResponsiveBuilder(
                 builder: (context, si) {
                   return CustomText(
                     title: controller.errorMessage.value,
                     fontName: FontName.medium,
                     textColor: red,
-                    fontSize: si.isMobile ? 10 : 16,
+                    fontSize: si.isMobile ? 13 : 16,
                   );
                 },
               ),
@@ -244,7 +244,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: termsAndPolicyStr.tr,
                   style: TextStyle(
                     fontFamily: FontName.medium.name,
-                    fontSize: si.isMobile ? 10 : 14,
+                    fontSize: si.isMobile ? 12 : 14,
                     color: blue,
                   )),
             ],
@@ -257,7 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextStyle richTextStyle(SizingInformation si) {
     return TextStyle(
       fontFamily: FontName.light.name,
-      fontSize: si.isMobile ? 10 : 14,
+      fontSize: si.isMobile ? 12 : 14,
       color: black,
     );
   }
@@ -360,7 +360,7 @@ class _LoginScreenState extends State<LoginScreen> {
             title: title,
             textColor: black,
             fontName: si.isMobile ? FontName.light : FontName.medium,
-            fontSize: si.isMobile ? 10 : 14,
+            fontSize: si.isMobile ? 12 : 14,
           );
         },
       );
@@ -385,7 +385,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       textColor: white,
                       title: requestButtonTitle(),
                       fontName: si.isMobile ? FontName.medium : FontName.bold,
-                      fontSize: si.isMobile ? 12 : 16,
+                      fontSize: si.isMobile ? 14 : 16,
                     );
                   });
                 },
