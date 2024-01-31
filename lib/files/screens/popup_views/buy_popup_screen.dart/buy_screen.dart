@@ -218,7 +218,15 @@ class _BuyScreenState extends State<_BuyScreen> {
                   buyController.msisdn.value = p0;
                   buyController.updateMsisdn(p0);
                 },
-                onSubmit: (p0) {},
+                onSubmit: (p0) {
+                  if (buyController.msisdn.value.length <
+                      StoreManager().msisdnLength) {
+                    buyController.errorMessage.value = enterValidMsisdnStr.tr;
+                    return;
+                  }
+                  validateMsisdnAction(context, widget.info ?? TuneInfo());
+                  //buyController.updateMsisdn(p0);
+                },
               );
             }),
             _msisdnErrorMessage(),
@@ -229,6 +237,10 @@ class _BuyScreenState extends State<_BuyScreen> {
   }
 
   void validateMsisdnAction(BuildContext context, TuneInfo info) async {
+    if (buyController.msisdn.value.length < StoreManager().msisdnLength) {
+      buyController.errorMessage.value = enterValidMsisdnStr.tr;
+      return;
+    }
     if (StoreManager().isLoggedIn) {
       await buyController.getTunePriceAndBuyTune(info,
           isBuyMusicChannel: widget.isBuyMusicPack);
@@ -291,8 +303,8 @@ class _BuyScreenState extends State<_BuyScreen> {
 
   Widget imageWidget() {
     return SizedBox(
-      width: isPhone(context!) ? 200 : double.infinity,
-      height: isPhone(context!) ? 200 : 200,
+      width: isPhone(context) ? 200 : double.infinity,
+      height: isPhone(context) ? 200 : 200,
       child: remoteImageContainer(info),
     );
   }
