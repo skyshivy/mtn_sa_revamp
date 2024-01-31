@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_empty_tune_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -87,20 +88,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
             return controller.isLoading.value
                 ? loadingIndicator()
                 : controller.searchList.isEmpty
-                    ? emptyText()
+                    ? customEmptyTuneView()
                     : mainGridview(si);
           },
         );
       },
-    );
-  }
-
-  Widget emptyText() {
-    return Center(
-      child: CustomText(
-        title: tuneListEmptyStr.tr,
-        fontName: FontName.bold,
-      ),
     );
   }
 

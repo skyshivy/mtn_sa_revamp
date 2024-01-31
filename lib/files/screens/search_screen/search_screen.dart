@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_empty_tune_view.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
@@ -216,7 +217,9 @@ class _SearchScreenState extends State<SearchScreen> {
       Center(child: SizedBox(height: 300, child: loadingIndicator()));
 
   Widget emptyWidget(String title) {
-    return Center(
+    return customEmptyTuneView(
+        title: controller.isLoaded.value ? title : searchTuneStr.tr);
+    Center(
       child: CustomText(
         title: controller.isLoaded.value ? title : searchTuneStr.tr,
         fontName: FontName.medium,

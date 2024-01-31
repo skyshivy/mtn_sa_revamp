@@ -1,7 +1,7 @@
 {
-    "BASE_URL":"https://funtone.ooredoo.com.mm/apigw/Middleware/api/adapter/v1/crbt/",
-    "BASE_URL_SECURITY":"https://funtone.ooredoo.com.mm/security/Middleware/api/adapter/v1/crbt/",
-    "FAQ_URL":"https://callertunez.mtn.co.za/callertunez/assets/FAQ.json",
+    "BASE_URL":"https://mytune.atom.com.mm/apigw/Middleware/api/adapter/v1/crbt/",
+    "BASE_URL_SECURITY":"https://mytune.atom.com.mm/security/Middleware/api/adapter/v1/crbt/",
+    "FAQ_URL":"https://mytune.atom.com.mm/callertunez/assets/FAQ.json",
     "DEFAULT_IMAGE_URL":"https://picsum.photos/id/11/400/500",
     "SESSION_TIME_OUT":30,
     "RESEND_OTP_DURATION":10,

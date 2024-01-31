@@ -5,6 +5,7 @@ import 'package:get/instance_manager.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/music_box_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_empty_tune_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
@@ -37,22 +38,27 @@ class MusicPackScreen extends StatelessWidget {
   }
 
   Widget gridView() {
-    return ResponsiveBuilder(
-      builder: (context, si) {
-        return GridView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          shrinkWrap: true,
-          itemCount: cont.list.length,
-          gridDelegate: musicBoxDelegate(),
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MusicBoxCard(info: cont.list[index]),
+    return Obx(() {
+      return cont.list.isEmpty
+          ? customEmptyTuneView()
+          : ResponsiveBuilder(
+              builder: (context, si) {
+                return GridView.builder(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  shrinkWrap: true,
+                  itemCount: cont.list.length,
+                  gridDelegate: musicBoxDelegate(),
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: MusicBoxCard(info: cont.list[index]),
+                    );
+                  },
+                );
+              },
             );
-          },
-        );
-      },
-    );
+    });
   }
 
   SliverGridDelegateWithMaxCrossAxisExtent musicBoxDelegate() {

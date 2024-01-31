@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_mobile_nav_bar.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -30,13 +32,13 @@ class LandingRecoView extends StatefulWidget {
 }
 
 class _LandingRecoViewState extends State<LandingRecoView> {
-  RecoController controller = Get.put(RecoController());
+  RecoController controller = Get.find();
   late SizingInformation si;
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
-        this.si = sizingInformation;
+        si = sizingInformation;
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -128,6 +130,7 @@ class _LandingRecoViewState extends State<LandingRecoView> {
         index: index,
         onTap: si.isMobile
             ? () {
+                MtnAudioPlayer.instance.stop();
                 printCustom("homeCell tapped");
                 pushToTunePreView(context, controller.displayList, index);
               }

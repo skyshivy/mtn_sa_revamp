@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/music_box_detail_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_empty_tune_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_grid_view/custom_grid_view.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
@@ -52,7 +54,7 @@ class _MusicPackDetailListScreenState extends State<MusicPackDetailListScreen> {
             return cont.isloading.value
                 ? loadingIndicator()
                 : Container(
-                    color: greyLight,
+                    color: cont.list.isEmpty ? transparent : greyLight,
                     child: gridView(),
                   );
             CustomGridView(list: cont.list, onTap: () {}); //gridView();
@@ -63,27 +65,32 @@ class _MusicPackDetailListScreenState extends State<MusicPackDetailListScreen> {
   }
 
   Widget gridView() {
-    return ResponsiveBuilder(
-      builder: (context, si) {
-        return GridView.builder(
-          padding: EdgeInsets.symmetric(
-              horizontal: si.isMobile ? 12 : 30, vertical: 20),
-          shrinkWrap: true,
-          itemCount: cont.list.length,
-          gridDelegate: delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
-          itemBuilder: (context, index) {
-            return HomeTuneCell(
-              moreButtonWidget: SizedBox(
-                height: 35,
-              ),
-              buttomButtonWidget: SizedBox(),
-              index: index,
-              info: cont.list[index],
+    return Obx(() {
+      return cont.list.isEmpty
+          ? customEmptyTuneView()
+          : ResponsiveBuilder(
+              builder: (context, si) {
+                return GridView.builder(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: si.isMobile ? 12 : 30, vertical: 20),
+                  shrinkWrap: true,
+                  itemCount: cont.list.length,
+                  gridDelegate:
+                      delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
+                  itemBuilder: (context, index) {
+                    return HomeTuneCell(
+                      moreButtonWidget: SizedBox(
+                        height: 35,
+                      ),
+                      buttomButtonWidget: SizedBox(),
+                      index: index,
+                      info: cont.list[index],
+                    );
+                  },
+                );
+              },
             );
-          },
-        );
-      },
-    );
+    });
   }
 }
 //MusicBoxDetailController

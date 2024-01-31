@@ -18,14 +18,14 @@ class _HomeRecoTabViewState extends State<HomeRecoTabView> {
   RecoController controller = Get.find();
   @override
   void initState() {
-    controller.getTabList();
+    //controller.getTabList();
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
-    Get.delete<RecoController>();
+    //Get.delete<RecoController>();
   }
 
   @override

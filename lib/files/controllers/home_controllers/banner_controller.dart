@@ -8,6 +8,12 @@ class BannerController extends GetxController {
   RxBool isLoading = false.obs;
   RxList<HomeBanner> bannerList = <HomeBanner>[].obs;
   RxInt selectedIndex = 0.obs;
+  @override
+  void onInit() {
+    getBanner();
+    super.onInit();
+  }
+
   getBanner() async {
     isLoading.value = true;
     var url = homeBannerurl + StoreManager().language;

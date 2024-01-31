@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_empty_tune_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
@@ -53,11 +54,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
   }
 
   Widget checkEmptyList() {
-    return const CustomText(
-      title: tuneListEmptyStr,
-      fontName: FontName.bold,
-      fontSize: 20,
-    );
+    return customEmptyTuneView();
   }
 
   Widget gridView() {

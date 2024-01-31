@@ -21,6 +21,11 @@ class RecoController extends GetxController {
   List<List<TuneInfo>?> tuneList = <List<TuneInfo>?>[].obs;
   RxList<TuneInfo> displayList = <TuneInfo>[].obs;
   RxBool isLoading = false.obs;
+  @override
+  void onInit() {
+    getTabList();
+    super.onInit();
+  }
 
   getTabList() async {
     tabTitle.value = [];

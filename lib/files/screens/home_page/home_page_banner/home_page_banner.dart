@@ -27,7 +27,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
   @override
   void initState() {
     super.initState();
-    controller.getBanner();
+    //controller.getBanner();
   }
 
   @override
