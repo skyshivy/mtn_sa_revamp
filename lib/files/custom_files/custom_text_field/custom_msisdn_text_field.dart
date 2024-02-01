@@ -10,8 +10,6 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class CustomMsisdnTextField extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _CustomMsisdnTextFieldSate();
   final String text;
   final String? hintText;
   final bool isMsisdn;
@@ -26,10 +24,11 @@ class CustomMsisdnTextField extends StatefulWidget {
   final double cornerRadius;
   final Widget? prefixWidget;
   final bool addCountryCode;
+
   final Function(String)? onChanged;
   final Function(String)? onSubmit;
 
-  CustomMsisdnTextField({
+  const CustomMsisdnTextField({
     super.key,
     this.isMsisdn = true,
     this.prefixWidget,
@@ -47,34 +46,35 @@ class CustomMsisdnTextField extends StatefulWidget {
     this.onSubmit,
     required this.text,
     this.borderColor = grey,
+    //required this.controller,
   });
+  @override
+  State<StatefulWidget> createState() => _CustomMsisdnTextFieldSate();
 }
 
 class _CustomMsisdnTextFieldSate extends State<CustomMsisdnTextField> {
-  static final TextEditingController textEditingController =
-      TextEditingController();
-  static final formKey = GlobalKey();
-
-  FocusNode _node = FocusNode();
-  bool _focused = false;
+  final TextEditingController controller = TextEditingController();
+  Key key = Key('New');
+  late FocusNode _node1;
+  bool _focused1 = false;
   @override
   void initState() {
-    // TODO: implement initState
-    _node.addListener(_handleFocusChange);
+    _node1 = FocusNode();
+    _node1.addListener(_handleFocusChange);
     super.initState();
   }
 
   void _handleFocusChange() {
-    if (_node.hasFocus != _focused) {
+    if (_node1.hasFocus != _focused1) {
       setState(() {
-        _focused = _node.hasFocus;
+        _focused1 = _node1.hasFocus;
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    textEditingController.text = widget.text;
+    controller.text = widget.text;
     return Container(
       height: widget.height,
       decoration: mainDecoration(),
@@ -120,25 +120,21 @@ class _CustomMsisdnTextFieldSate extends State<CustomMsisdnTextField> {
   }
 
   Widget textField() {
-    textEditingController.selection = TextSelection.fromPosition(
-        TextPosition(offset: textEditingController.text.length));
+    // textEditingController.selection = TextSelection.fromPosition(
+    //     TextPosition(offset: textEditingController.text.length));
+    controller.text = widget.text;
     return ResponsiveBuilder(
       builder: (context, si) {
         return TextField(
-          autofocus: true,
-          key: formKey,
-          focusNode: _node,
+          focusNode: _node1,
           autofillHints: widget.autoFillHint,
-          controller: textEditingController,
+          controller: textEditingController(),
           enabled: widget.enabled,
           onSubmitted: (value) {
             widget.onSubmit!(value);
           },
           onChanged: (value) {
             widget.onChanged!(value);
-          },
-          onTap: () {
-            FocusScope.of(context).requestFocus(_node);
           },
 
           style: TextStyle(
@@ -150,6 +146,17 @@ class _CustomMsisdnTextFieldSate extends State<CustomMsisdnTextField> {
           inputFormatters: inputFormate, // Only numbers can be entered
         );
       },
+    );
+  }
+
+  TextEditingController textEditingController() {
+    return TextEditingController.fromValue(
+      TextEditingValue(
+          text: widget.text.tr,
+          selection: TextSelection(
+            baseOffset: widget.text.length,
+            extentOffset: widget.text.length,
+          )),
     );
   }
 

@@ -18,6 +18,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 class HomeSearchWidget extends StatelessWidget {
   final WebTabController controller = Get.find();
   final SearchTuneController searchTuneController = Get.find();
+  final TextEditingController textEditingController = TextEditingController();
   HomeSearchWidget({super.key});
   @override
   Widget build(BuildContext context) {

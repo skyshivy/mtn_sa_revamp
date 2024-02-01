@@ -15,12 +15,12 @@ class CustomTextField extends StatefulWidget {
   final double? fontSize;
   final bool? editEnable;
   final FontName fontName;
+
   final Function(String)? onChanged;
   final Function()? onTap;
   final Function(String)? onSubmit;
-  final TextEditingController controller = TextEditingController();
 
-  CustomTextField({
+  const CustomTextField({
     super.key,
     this.bgColor = transparent,
     this.isBorder = true,
@@ -42,13 +42,13 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  FocusNode _node = FocusNode();
+  static final key = GlobalKey<FormState>();
+  late FocusNode _node;
+  final TextEditingController controller = TextEditingController();
   bool _focused = false;
   @override
   void initState() {
-    // TODO: implement initState
+    _node = FocusNode();
     _node.addListener(_handleFocusChange);
     super.initState();
   }
@@ -78,10 +78,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
   }
 
   TextField textField() {
-    widget.controller.text = widget.text;
+    controller.text = widget.text;
     return TextField(
-      autofocus: true,
-      //key: _formKey,
+      //autofocus: true,
+      key: key,
       focusNode: _node,
       textInputAction: TextInputAction.done,
       enabled: widget.editEnable,
