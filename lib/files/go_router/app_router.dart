@@ -183,7 +183,7 @@ StatefulShellBranch _viewMusicDetailScreen() {
           cont = Get.put(MusicBoxDetailController());
         }
 
-        print("Called MusicPackDetailListScreen");
+        printCustom("Called MusicPackDetailListScreen");
         cont.getMusicBoxContent(toneCode, type);
         var screen = MusicPackDetailListScreen(
           toneCode: toneCode,
@@ -450,7 +450,7 @@ Widget shellRouteIndex(BuildContext context, GoRouterState state,
   var pat4 = myTuneGoRoute;
   var pat5 = myTuneSettingGoRoute;
 
-  print("is this transaction ${pat == pat1} ");
+  printCustom("is this transaction ${pat == pat1} ");
 
   appCont.updateIndex(navigationShell.currentIndex);
   bool isLoad = true;

@@ -36,10 +36,10 @@ class SearchTuneController extends GetxController {
   bool stopMultipleApiCall = true;
   getSearchedResult(String searchedTxt, int p,
       {bool isloadMore = false, int? searchTypeIndex}) async {
-    print("called getSearchedResult");
+    printCustom("called getSearchedResult");
 
     if (!stopMultipleApiCall) {
-      print("object  not searching here");
+      printCustom("object  not searching here");
       await Future.delayed(const Duration(milliseconds: 300));
       stopMultipleApiCall = true;
       return;
@@ -52,18 +52,18 @@ class SearchTuneController extends GetxController {
     searchedText.value = searchedTxt;
 
     if (searchType.value == 3) {
-      print("name tune search here");
+      printCustom("name tune search here");
       _searchNameTune(searchedTxt);
       return;
     } else if (searchType.value == 2) {
-      print("Search Tune code here");
+      printCustom("Search Tune code here");
       _getSearchResultByTuneId(searchedTxt);
       return;
     } else if (searchType.value == 1) {
-      print("Search Singer list here");
+      printCustom("Search Singer list here");
       isLoadingArtist.value = true;
     } else {
-      print("Search narmal tune herr");
+      printCustom("Search narmal tune herr");
     }
 
     //keyScrollFocusNode.requestFocus();
@@ -104,10 +104,10 @@ class SearchTuneController extends GetxController {
         printCustom(
             "Tune list length is ${toneList.length} Tune list length ${songList.length}");
       } catch (e) {
-        print("decoding issue = $e");
+        printCustom("decoding issue = $e");
       }
     } else {
-      print("some thing went wrong  in search");
+      printCustom("some thing went wrong  in search");
     }
     isLoading.value = false;
     isLoaded.value = true;
@@ -156,7 +156,7 @@ class SearchTuneController extends GetxController {
 
   loadMoreData() async {
     if (searchType.value == 3) {
-      print("name tune search here");
+      printCustom("name tune search here");
       _searchNameTune(searchedText.value, isloadMore: true);
       return;
     }
@@ -194,15 +194,15 @@ class SearchTuneController extends GetxController {
     //"$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=${songList.length}&searchLanguage=English&perPageCount=$pagePerCount";
     Map<String, dynamic>? result =
         await ServiceCall().get(url); //, params: {'searchKey': searchKey}
-    print("result is $result");
+    printCustom("result is $result");
     if (result != null) {
       SearchTuneModel model = SearchTuneModel.fromJson(result);
-      print("list length is  ${model.responseMap?.songList?.length}");
+      printCustom("list length is  ${model.responseMap?.songList?.length}");
 
       songList.value +=
           model.responseMap?.songList ?? model.responseMap?.toneList ?? [];
     } else {
-      print("some thing went wrong  in search");
+      printCustom("some thing went wrong  in search");
     }
 
     isLoading.value = false;

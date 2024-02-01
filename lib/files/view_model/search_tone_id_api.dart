@@ -1,3 +1,4 @@
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/model/search_toneid_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -12,10 +13,12 @@ Future<SearchToneidModel> searchToneIdApi(String toneId,
   if (map != null) {
     SearchToneidModel searchToneidModel = SearchToneidModel.fromJson(map);
 
-    print("list is ===== ${searchToneidModel.responseMap?.toneList?.length}");
+    printCustom(
+        "list is ===== ${searchToneidModel.responseMap?.toneList?.length}");
     return searchToneidModel;
   } else {
-    print("Map is ");
+    printCustom("Map is ");
+
     return SearchToneidModel();
   }
 }

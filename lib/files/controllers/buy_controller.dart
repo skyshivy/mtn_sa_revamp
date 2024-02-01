@@ -72,7 +72,7 @@ class BuyController extends GetxController {
   customInit() {
     others = StoreManager().appSetting?.responseMap?.settings?.others;
     crbtVipOfferCode = others?.crbtVipOfferCode?.attribute ?? '';
-    print("crbtVipOfferCode customInit $crbtVipOfferCode");
+    printCustom("crbtVipOfferCode customInit $crbtVipOfferCode");
     tonePriceModel = null;
     isBuyMusicChannel = false;
     isGotTunePrice = false;
@@ -107,7 +107,7 @@ class BuyController extends GetxController {
 
   getTuneCharge(TuneInfo info) async {
     this.info = info;
-    print("SKy 123-------");
+    printCustom("SKy 123-------");
     String msis = '';
     if (StoreManager().isLoggedIn) {
       msis = StoreManager().msisdn;
@@ -116,12 +116,12 @@ class BuyController extends GetxController {
     }
 
     if (msis.isEmpty) {
-      print("Msisdn is empty so can not call get tune price api");
+      printCustom("Msisdn is empty so can not call get tune price api");
       return false;
     }
     isLoagTuneCharge.value = true;
     isVerifying.value = true;
-    print("Get tune price called");
+    printCustom("Get tune price called");
     String number = '';
     if (StoreManager().isLoggedIn) {
       number = StoreManager().msisdn;
@@ -150,12 +150,12 @@ class BuyController extends GetxController {
       errorMessage.value = crbtPackStatusModel.message ??
           tonePriceModel?.responseMap?.description ??
           someThingWentWrongStr;
-      print("Some thing went wrong while fetching tune price");
+      printCustom("Some thing went wrong while fetching tune price");
       return false;
     }
     //}
-    print("Pack name = ${StoreManager().crbtPackStatus?.packName}");
-    print("crbtVipOfferCode = $crbtVipOfferCode");
+    printCustom("Pack name = ${StoreManager().crbtPackStatus?.packName}");
+    printCustom("crbtVipOfferCode = $crbtVipOfferCode");
     isVerifying.value = false;
     isLoagTuneCharge.value = false;
     isHideUpgrade.value = false;
@@ -176,15 +176,15 @@ class BuyController extends GetxController {
       if (isBuyMusicChannel) {
         isHideUpgrade.value = true;
       }
-      print("AMount is $amount");
-      print("Pack name is $status");
+      printCustom("AMount is $amount");
+      printCustom("Pack name is $status");
       String packName1 =
           tonePriceModel?.responseMap?.responseDetails?.first.packName ?? '';
       tuneCharge.value = await customTuneChanrge(packName1, amount);
       storeTuneCharge = tuneCharge.value;
-      print("Pack name is1 $status");
+      printCustom("Pack name is1 $status");
       if (status.isEmpty) {
-        print("Pack name is2 $status");
+        printCustom("Pack name is2 $status");
         isHideUpgrade.value = true;
 
         if (rrbtPackStatusModel.statusCode == 'SC0000') {
@@ -204,7 +204,7 @@ class BuyController extends GetxController {
       errorMessage.value = tonePriceModel?.message ??
           tonePriceModel?.responseMap?.description ??
           someThingWentWrongStr;
-      print("Some thing went wrong while fetching tune price");
+      printCustom("Some thing went wrong while fetching tune price");
       return false;
     }
 
@@ -216,7 +216,7 @@ class BuyController extends GetxController {
     isLoagTuneCharge.value = false;
     if (map != null) {
       TonePriceModel mode = TonePriceModel.fromJson(map);
-      print("model=======$mode");
+      printCustom("model=======$mode");
 
       if (mode.statusCode == "SC0000") {
         String amount = mode.responseMap?.responseDetails?.first.amount ?? '0';
@@ -232,7 +232,7 @@ class BuyController extends GetxController {
         if (isBuyMusicChannel) {
           isHideUpgrade.value = true;
         }
-        print("AMount is $amount");
+        printCustom("AMount is $amount");
         String packName1 =
             mode.responseMap?.responseDetails?.first.packName ?? '';
         tuneCharge.value = await customTuneChanrge(packName1, amount);
@@ -242,7 +242,7 @@ class BuyController extends GetxController {
         errorMessage.value = mode.message ??
             mode.responseMap?.description ??
             someThingWentWrongStr;
-        print("Some thing went wrong while fetching tune price");
+        printCustom("Some thing went wrong while fetching tune price");
         return false;
       }
       
@@ -315,7 +315,7 @@ class BuyController extends GetxController {
     }
 
     // } else {
-    //   print("getTunePrice not success");
+    //   printCustom("getTunePrice not success");
     // }
   }
 
@@ -514,7 +514,7 @@ class BuyController extends GetxController {
         await saveCredentialHere(model);
         getTunePriceAndBuyTune(info);
       } else {
-        print("password validation failed");
+        printCustom("password validation failed");
         isVerifyingOtp.value = false;
         errorMessage.value = someThingWentWrongStr.tr;
       }
@@ -546,8 +546,8 @@ class BuyController extends GetxController {
       }
     }
 
-    print("Pack name = ${StoreManager().crbtPackStatus?.packName}");
-    print("crbtVipOfferCode = $crbtVipOfferCode");
+    printCustom("Pack name = ${StoreManager().crbtPackStatus?.packName}");
+    printCustom("crbtVipOfferCode = $crbtVipOfferCode");
     if (tonePriceModel.statusCode == 'SC0000') {
       ResponseDetail? responseDetail =
           tonePriceModel.responseMap?.responseDetails?.first;
@@ -557,8 +557,8 @@ class BuyController extends GetxController {
       ''; //responseDetail?.subscriberStatus ?? '';
 //tonePriceModel?.responseMap?.responseDetails?.first.subscriberStatus ?? ''; //
       // if ((status == 'NA') || (status == 'D') || (status == 'd')) {
-      print("\n-\n-\nCrbt pack name = $crbtStatus");
-      print("Rrbt pack name = $rrbtStatus\n-\n-\n");
+      printCustom("\n-\n-\nCrbt pack name = $crbtStatus");
+      printCustom("Rrbt pack name = $rrbtStatus\n-\n-\n");
 
       if (crbtStatus == crbtVipOfferCode) {
         isHideUpgrade.value = true;
@@ -622,9 +622,9 @@ class BuyController extends GetxController {
   }
 
   Future<void> setTune(String packName, {String priority = "0"}) async {
-    print(
+    printCustom(
         "set tune called  isUpgradeSelected.value =${isUpgradeSelected.value}");
-    print("Setting tune for packName = $packName");
+    printCustom("Setting tune for packName = $packName");
     String strPackName = '';
     if (isUpgradeSelected.value) {
       strPackName = others?.crbtVipOfferCode?.attribute ?? '';

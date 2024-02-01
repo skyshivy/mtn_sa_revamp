@@ -85,7 +85,7 @@ class MyTuneController extends GetxController {
   Future<void> getMyPlayingList() async {
     PlayingTuneModel? playingTune =
         await MyTunePlayingVM().getPlayingTuneListApiCall();
-    print("called shiv");
+    printCustom("called shiv");
     if (playingTune != null) {
       printCustom("Is suffle status 1 ${playingTune.isSuffle!}");
       isSuffle.value = playingTune.isSuffle!;
@@ -158,10 +158,10 @@ class MyTuneController extends GetxController {
           ? true
           : false;
       if (isCrbt) {
-        print(
+        printCustom(
             "toneDetails?.first.weeklyDays ${playingList[index].toneDetails?.first.weeklyDays}");
       } else {
-        print(
+        printCustom(
             "toneDetails?.first.weeklyDays rrbtTuneList ${rrbtTuneList[index].toneDetails?.first.weeklyDays}");
       }
 

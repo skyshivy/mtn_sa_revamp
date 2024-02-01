@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
@@ -45,7 +46,7 @@ class HomeSearchTypeButton extends StatelessWidget {
       BuildContext context, String title, int index, SizingInformation si) {
     return InkWell(
       onTap: () {
-        print("object");
+        printCustom("object");
         sCont.updateSearchType(index);
       },
       child: SizedBox(

@@ -47,10 +47,10 @@ class StoreManager {
   AppSettingModel? appSetting;
 
   Future<void> initStoreManager() async {
-    print("before init manager initialized");
+    printCustom("before init manager initialized");
     prefs = await Hive.openBox('StoreManager');
     prefs = Hive.box("StoreManager");
-    print("Store manager initialized");
+    printCustom("Store manager initialized");
     //prefs = await SharedPreferences.getInstance();
     //String v = await storage.read(key: "isLoggedIn") ?? 'no';
     //isLoggedIn = (v == "yes") ? true : false;
@@ -143,7 +143,7 @@ class StoreManager {
     setChannelId('4');
     crbtPackStatus = null;
 
-    print("Logout called from StoreManager");
+    printCustom("Logout called from StoreManager");
     appController.isLoggedIn.value = false;
     try {
       goRouterContext?.go(homeGoRoute);
@@ -159,10 +159,10 @@ class StoreManager {
       prefs.put('TestBool', value);
       //storage.write(key: 'TestBool', value: value ? 'yes' : 'no');
     } on Exception catch (e) {
-      print("Error saving isLoogedin = ${e.toString()}");
+      printCustom("Error saving isLoogedin = ${e.toString()}");
     }
 
-    print("Storing isLoggedin = $value");
+    printCustom("Storing isLoggedin = $value");
   }
 
   setLanguageEnglish(bool english) async {
@@ -176,22 +176,22 @@ class StoreManager {
       //prefs.setBool('isEnglish', english);
       //storage.write(key: 'isLoggedIn', value: value ? 'yes' : 'no');
     } on Exception catch (e) {
-      print("Error saving isEnglish = ${e.toString()}");
+      printCustom("Error saving isEnglish = ${e.toString()}");
     }
 
-    print("Storing isLoggedin = $english");
+    printCustom("Storing isLoggedin = $english");
   }
 
   setMsisdn(String value) async {
     msisdn = value;
-    print("Storing msisdn = $msisdn");
+    printCustom("Storing msisdn = $msisdn");
     try {
       prefs.put('msisdn', value);
       //prefs.setString('msisdn', value);
       //storage.write(key: 'msisdn', value: value);
     } catch (e) {
-      print("Print Error only  = $e");
-      print("Error saving msisdn = ${e.toString()}");
+      printCustom("Print Error only  = $e");
+      printCustom("Error saving msisdn = ${e.toString()}");
     }
 
     printCustom("Setting msisdn = $value");
@@ -199,27 +199,27 @@ class StoreManager {
 
   setccid(String value) async {
     ccid = value;
-    print("Storing ccid = $value");
+    printCustom("Storing ccid = $value");
     try {
       prefs.put('ccid', value);
       //prefs.setString('ccid', value);
 
       //storage.write(key: 'ccid', value: value);
     } on Exception catch (e) {
-      print("Error saving ccid = ${e.toString()}");
+      printCustom("Error saving ccid = ${e.toString()}");
     }
   }
 
   setUserName(String value) async {
     userName = value;
-    print("Storing userName = $value");
+    printCustom("Storing userName = $value");
     try {
       prefs.put('userName', value);
       //prefs.setString('userName', value);
 
       //storage.write(key: 'userName', value: value);
     } on Exception catch (e) {
-      print("Error saving msuserName is = ${e.toString()}");
+      printCustom("Error saving msuserName is = ${e.toString()}");
     }
   }
 
@@ -228,14 +228,14 @@ class StoreManager {
       value = 'Oem@L#@1';
     }
     password = value;
-    print("Storing password = $value");
+    printCustom("Storing password = $value");
     try {
       prefs.put('password', value);
       //prefs.setString('password', value);
 
       //storage.write(key: 'password', value: value);
     } on Exception catch (e) {
-      print("Error saving password = ${e.toString()}");
+      printCustom("Error saving password = ${e.toString()}");
     }
   }
 
@@ -244,14 +244,14 @@ class StoreManager {
       value = channelId;
     }
     channelId = value;
-    print("Storing channelid = $value");
+    printCustom("Storing channelid = $value");
 
     try {
       prefs.put('channelId', value);
       //prefs.setString('channelId', value);
       //storage.write(key: 'channelId', value: value);
     } on Exception catch (e) {
-      print("Error saving channelId = ${e.toString()}");
+      printCustom("Error saving channelId = ${e.toString()}");
     }
   }
 
@@ -263,45 +263,45 @@ class StoreManager {
       //prefs.setBool('isLoggedIn', value);
       //storage.write(key: 'isLoggedIn', value: value ? 'yes' : 'no');
     } on Exception catch (e) {
-      print("Error saving isLoogedin = ${e.toString()}");
+      printCustom("Error saving isLoogedin = ${e.toString()}");
     }
 
-    print("Storing isLoggedin = $value");
+    printCustom("Storing isLoggedin = $value");
   }
 
   setAccessToken(String value) async {
     accessToken = value;
-    print("Storing accessToken = $value");
+    printCustom("Storing accessToken = $value");
     try {
       prefs.put('accessToken', value);
       //prefs.setString('accessToken', value);
       //storage.write(key: 'accessToken', value: value);
     } on Exception catch (e) {
-      print("Error saving accessToken = ${e.toString()}");
+      printCustom("Error saving accessToken = ${e.toString()}");
     }
   }
 
   setDeviceId(String value) async {
     deviceId = value;
-    print("Storing device id = $value");
+    printCustom("Storing device id = $value");
     try {
       prefs.put('deviceId', value);
       //prefs.setString('deviceId', value);
       //storage.write(key: 'deviceId', value: value);
     } on Exception catch (e) {
-      print("Error saving deviceId = ${e.toString()}");
+      printCustom("Error saving deviceId = ${e.toString()}");
     }
   }
 
   setRefreshToken(String value) async {
     refreshToken = value;
-    print("Storing refresh token = $value");
+    printCustom("Storing refresh token = $value");
     try {
       prefs.put('refreshToken', value);
       //prefs.setString('refreshToken', value);
       //storage.write(key: 'refreshToken', value: value);
     } on Exception catch (e) {
-      print("Error saving refreshToken = ${e.toString()}");
+      printCustom("Error saving refreshToken = ${e.toString()}");
     }
   }
 }

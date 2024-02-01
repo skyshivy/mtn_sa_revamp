@@ -10,6 +10,7 @@ import 'package:html_unescape/html_unescape.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/model/category_model.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -92,7 +93,7 @@ class CategoryPopupView extends StatelessWidget {
       var unescape = HtmlUnescape();
       decodedText = unescape.convert(name);
     } catch (e) {
-      print("error decode $e");
+      printCustom("error decode $e");
     }
 
     return Stack(

@@ -65,20 +65,20 @@ class LoginController extends GetxController {
       errorMessage.value = enterValidOtpStr.tr;
       return false;
     }
-    print("on confirm  verifyOtpButtonAction   before _confirmOtpApi");
+    printCustom("on confirm  verifyOtpButtonAction   before _confirmOtpApi");
     var isConfirmed = await _confirmOtpApi();
-    print(
+    printCustom(
         "on confirm  verifyOtpButtonAction   after _confirmOtpApi == value is $isConfirmed");
 
     if (isConfirmed) {
       bool isGotSecurityToekn = await _securityToken();
-      print("on confirm after _securityToken = $isGotSecurityToekn");
+      printCustom("on confirm after _securityToken = $isGotSecurityToekn");
       if (isGotSecurityToekn) {
-        print("on confirm before _passwordValidationToken");
+        printCustom("on confirm before _passwordValidationToken");
         return await _passwordValidationToken();
       }
     }
-    print("Not confirm otp api");
+    printCustom("Not confirm otp api");
     return false;
   }
 
@@ -140,17 +140,17 @@ class LoginController extends GetxController {
     Map<String, dynamic>? map = await NewUserOtpCheckVm()
         .check(otp.value, msisdn.value, securityCounter);
     printCustom("newUserOtpCheck ========== ${map}");
-    print("sky =========4");
+    printCustom("sky =========4");
     isVerifying.value = false;
     if (map != null) {
-      print("sky =========5");
+      printCustom("sky =========5");
       NewUserCheckOtpModel model = NewUserCheckOtpModel.fromJson(map);
       if (model.statusCode == 'SC0000') {
-        print("sky =========6");
+        printCustom("sky =========6");
         isMsisdnVarified.value = true;
         return true;
       } else {
-        print("sky =========7");
+        printCustom("sky =========7");
         errorMessage.value = model.message ?? '';
         isMsisdnVarified.value = true;
         isVerifying.value = false;
@@ -168,12 +168,12 @@ class LoginController extends GetxController {
     printCustom("Resu =Sky========");
     isVerifying.value = true;
     if (isNewUser) {
-      print("sky =========0");
+      printCustom("sky =========0");
       bool isLoggedInSuccess = await newUserOtpCheck(securityCounter);
-      print("sky =========1");
+      printCustom("sky =========1");
       return isLoggedInSuccess;
     } else {
-      print("sky =========2");
+      printCustom("sky =========2");
       ConfirmOtpModel? model =
           await LoginVm().confirmOtp(msisdn.value, otp.value);
       printCustom(

@@ -140,7 +140,7 @@ class _BuyOtpViewState extends State<BuyOtpView> {
                         " ${otpController.timeLeft.value}",
                     onTap: () {
                       otpController.startTimer();
-                      print("resent otp ");
+                      printCustom("resent otp ");
                     },
                   );
           }),

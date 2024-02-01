@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/model/music_box_content_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
@@ -14,7 +15,7 @@ class MusicBoxDetailController extends GetxController {
     String url = '';
 
     // if (kDebugMode) {
-    //   print("debug mode api called in MusicBoxDetailController");
+    //   printCustom("debug mode api called in MusicBoxDetailController");
     //   url = 'https://mocki.io/v1/31f25e71-141c-4a6f-8679-ed4a6fc5056b';
     //   //'http://10.84.75.129:3445/apigw/Middleware/api/adapter/v1/crbt/music-box-contents?language=English&pageNo=0&perPageCount=20&type=$type&toneCode=$toneCode';
     // } else {
@@ -31,7 +32,8 @@ class MusicBoxDetailController extends GetxController {
     //}
 
     isloading.value = false;
-    print("Map $map");
+
+    printCustom("Map $map");
     if (map != null) {
       MusicBoxContentModel mode = MusicBoxContentModel.fromJson(map);
       if (mode.statusCode == "SC0000") {

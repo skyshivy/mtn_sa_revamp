@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_playing_widgets/playing_widgets/my_tune_playing_more_button.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -31,7 +32,7 @@ Widget playingTuneMoreButton(int index, TuneInfo info, bool isCrbt) {
             message: areYouSureYouWantToDeleteStr.tr,
             cancelTitle: cancelStr.tr,
             onOk: () {
-              print("delete tune called");
+              printCustom("delete tune called");
               mCont.deletePlayingTune(
                   info.toneId ?? '', index, isCrbt, context);
             },

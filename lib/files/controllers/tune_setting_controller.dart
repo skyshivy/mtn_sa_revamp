@@ -169,7 +169,7 @@ class TuneSettingController extends GetxController {
     isLoading.value = true;
     Map<String, dynamic>? map = await addToSuffleApi(tuneId, isCrbt.value);
     _result(map);
-    print("object");
+    printCustom("object");
   }
 
   _setTuneForAllCaller() async {

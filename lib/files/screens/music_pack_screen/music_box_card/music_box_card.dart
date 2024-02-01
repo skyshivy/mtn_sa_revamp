@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/gift_tune_view.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
@@ -172,7 +173,7 @@ class MusicBoxCard extends StatelessWidget {
       onTap: () {
         context.goNamed(musicDetailListGoRoute,
             queryParameters: {"toneCode": info.toneCode, "type": info.type});
-        print("View detail called");
+        printCustom("View detail called");
       },
       height: 40,
       leftWidget: SvgPicture.asset(
@@ -221,7 +222,7 @@ class MusicBoxCard extends StatelessWidget {
               toneId: info.toneCode,
             ),
             isBuyMusicChannel: true);
-        print("buy taped");
+        printCustom("buy taped");
       },
       titlePadding: EdgeInsets.only(left: 4, top: 6),
       height: 40,
@@ -252,7 +253,7 @@ class MusicBoxCard extends StatelessWidget {
               CustomAlertView(title: featureIsAvailableForLoggedInStr.tr));
         }
 
-        print("Gift button");
+        printCustom("Gift button");
       },
       titlePadding: EdgeInsets.only(left: 2, top: 6),
       height: 40,

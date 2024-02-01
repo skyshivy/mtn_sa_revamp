@@ -1,4 +1,5 @@
 import 'package:html_unescape/html_unescape.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class TuneInfo {
   String? id;
@@ -63,7 +64,7 @@ class TuneInfo {
     try {
       unescape = HtmlUnescape();
     } catch (e) {
-      print("error decode $e");
+      printCustom("error decode $e");
     }
     return TuneInfo(
       id: json['id'],

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/music_box_detail_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_empty_tune_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_grid_view/custom_grid_view.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
@@ -29,13 +30,14 @@ class _MusicPackDetailListScreenState extends State<MusicPackDetailListScreen> {
   final MusicBoxDetailController cont = Get.find();
   @override
   void initState() {
-    print("_MusicPackDetailListScreenState initialized");
+    printCustom("_MusicPackDetailListScreenState initialized");
+
     super.initState();
   }
 
   @override
   void dispose() {
-    print("_MusicPackDetailListScreenState desposed");
+    printCustom("_MusicPackDetailListScreenState desposed");
     super.dispose();
   }
 

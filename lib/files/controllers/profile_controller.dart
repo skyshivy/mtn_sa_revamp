@@ -67,15 +67,17 @@ class ProfileController extends GetxController {
     // if (result != null) {
     //   CategoryModel model = CategoryModel.fromJson(result);
     //   catList.value = model.responseMap?.categories ?? [];
-    //   print("category is ${catList.length}");
+    //   printCustom("category is ${catList.length}");
     // }
   }
 
   Future<void> getCrbtPackStatus() async {
     PackStatusModel? packStatusModel =
         await getPackStatusApiCall(StoreManager().msisdn, isCrbt: true);
-    print("getCrbtPackStatus resp message is = ${packStatusModel.message}");
-    print("getCrbtPackStatus resp message is = ${packStatusModel.statusCode}");
+    printCustom(
+        "getCrbtPackStatus resp message is = ${packStatusModel.message}");
+    printCustom(
+        "getCrbtPackStatus resp message is = ${packStatusModel.statusCode}");
     if (packStatusModel.statusCode == 'SC0000') {
       // isHideCRBTStatus.value =
       //     !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
@@ -144,8 +146,10 @@ class ProfileController extends GetxController {
   Future<void> getRrbtPackStatus() async {
     PackStatusModel? packStatusModel =
         await getPackStatusApiCall(StoreManager().msisdn, isCrbt: false);
-    print("getCrbtPackStatus resp message is = ${packStatusModel.message}");
-    print("getCrbtPackStatus resp message is = ${packStatusModel.statusCode}");
+    printCustom(
+        "getCrbtPackStatus resp message is = ${packStatusModel.message}");
+    printCustom(
+        "getCrbtPackStatus resp message is = ${packStatusModel.statusCode}");
     if (packStatusModel.statusCode == 'SC0000') {
       // isHideRRBTStatus.value =
       //     !(packStatusModel.responseMap?.packStatusDetails?.packName != null);
@@ -194,7 +198,7 @@ class ProfileController extends GetxController {
   Future<PlayingTuneModel?> getMyTunes() async {
     PlayingTuneModel? playing;
     Map<String, dynamic>? result = await ServiceCall().get(getPlayingTunesUrl);
-    print("result si ");
+    printCustom("result si ");
     if (result != null) {
       PlayingTuneModel? mod = PlayingTuneModel.fromJson(result);
       playing = PlayingTuneModel.fromJson(result);
@@ -233,10 +237,10 @@ class ProfileController extends GetxController {
     if (!stopMultipleApiCall) {
       await Future.delayed(const Duration(milliseconds: 100));
       stopMultipleApiCall = true;
-      print("prevented getProfileDetail called multiple");
+      printCustom("prevented getProfileDetail called multiple");
       return;
     }
-    print("prevented getProfileDetail called multiple");
+    printCustom("prevented getProfileDetail called multiple");
     stopMultipleApiCall = false;
     selectedCatList.clear();
     isLoading.value = true;
@@ -247,7 +251,7 @@ class ProfileController extends GetxController {
     // await getRrbtPackStatus();
 
     // checkHideAndUnhide();
-    print(
+    printCustom(
         "Status is = ${isHideCRBTStatus.value}  \n ${isHideRRBTStatus.value}");
     Map<String, dynamic>? res =
         await ProfileVM().getProfileDetail(StoreManager().msisdn);
@@ -286,7 +290,7 @@ class ProfileController extends GetxController {
     } else {
       isBothStatusHidden.value = false;
     }
-    print("Should hide Status both ${isBothStatusHidden.value}");
+    printCustom("Should hide Status both ${isBothStatusHidden.value}");
   }
 
   updateSelection(int index) {
@@ -421,7 +425,7 @@ class ProfileController extends GetxController {
       Get.dialog(SubscriptionView(
         info: null,
         onConfirm: (p0) async {
-          print("selected pack name is $p0");
+          printCustom("selected pack name is $p0");
           BuyTuneModel model = await setCrbtTune(packName: p0);
           if (model.statusCode == "SC0000") {
             rrbtSubscriptionButtonName.value = unSubscribeStr.tr;

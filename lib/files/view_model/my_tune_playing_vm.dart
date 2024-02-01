@@ -23,7 +23,7 @@ class MyTunePlayingVM {
 //===========================================================================
     if (result != null) {
       PlayingTuneModel? playing = PlayingTuneModel.fromJson(result);
-      print("check sky = ${playing.responseMap?.listToneApk?.length}");
+      printCustom("check sky = ${playing.responseMap?.listToneApk?.length}");
       //playingList = playing.responseMap?.listToneApk ?? [];
 
       var tempPlayingList = <ListToneApk>[];
@@ -77,7 +77,8 @@ class MyTunePlayingVM {
         bool isFullDay = true;
         await _createPlayingList1(isFullDay, info, tD, playingList);
       } else {
-        print("this item has not ToneDetail = ${info.toneDetails?.first}");
+        printCustom(
+            "this item has not ToneDetail = ${info.toneDetails?.first}");
       }
     }
 
@@ -131,7 +132,7 @@ Future<void> _fulldayCheck(bool isFullDay, ListToneApk info, ToneDetail? tD,
           info, TimeType.fullDay, "", info.sTime!, info.eTime!,
           isFullday: isFlDay));
     } else {
-      print("Staus is pending = ${info.status}");
+      printCustom("Staus is pending = ${info.status}");
     }
     //printCustom("_fulldayCheck");
   }
@@ -151,7 +152,7 @@ Future<void> _weeklyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
       playingList.add(await newDetail(
           info, TimeType.weekDay, "2", info.sTime!, info.eTime!));
     } else {
-      print("Staus is pending = ${info.status}");
+      printCustom("Staus is pending = ${info.status}");
     }
     printCustom("_weeklyCheck");
   }
@@ -169,7 +170,7 @@ Future<void> _noneCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
       playingList.add(
           await _newDetail(info, TimeType.none, "7", info.sTime!, info.eTime!));
     } else {
-      print("Staus is pending = ${info.status}");
+      printCustom("Staus is pending = ${info.status}");
     }
     // printCustom("_noneCheck");
   }
@@ -188,7 +189,7 @@ Future<void> _monthlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
       playingList.add(await _newDetail(
           info, TimeType.monthly, "3", info.sTime!, info.eTime!));
     } else {
-      print("Staus is pending = ${info.status}");
+      printCustom("Staus is pending = ${info.status}");
     }
     //printCustom("_monthlyCheck");
   }
@@ -206,7 +207,7 @@ Future<void> _yearlyCheck(ToneDetail? tD, bool isFullDay, ListToneApk info,
       playingList.add(await _newDetail(
           info, TimeType.yearly, "4", info.sTime!, info.eTime!));
     } else {
-      print("Staus is pending = ${info.status}");
+      printCustom("Staus is pending = ${info.status}");
     }
 
     //printCustom("_yearlyCheck");
@@ -249,7 +250,7 @@ Future<PlayingTuneModel?> _displayTune(Map<String, dynamic>? result) async {
         if ((element.serviceName == "SpecialCallerSetting") ||
             (element.serviceName == "AllCaller")) {
           if (element.toneDetails != null) {
-            print("===========It is not null");
+            printCustom("===========It is not null");
             ToneDetail? tD = element.toneDetails?.first;
 
             bool isFlDay = ((tD?.weeklyDays ?? "0") == "0") ? true : false;
@@ -257,7 +258,7 @@ Future<PlayingTuneModel?> _displayTune(Map<String, dynamic>? result) async {
                 element.sTime ?? '', element.eTime ?? '',
                 isFullday: isFlDay));
           } else {
-            print("It is  null");
+            printCustom("It is  null");
           }
         } else if ((element.serviceName == "RAllCaller")) {
           if (element.toneDetails != null) {
@@ -271,7 +272,7 @@ Future<PlayingTuneModel?> _displayTune(Map<String, dynamic>? result) async {
         } else {}
       }
 
-      print("Total list =========== ${lst.length}");
+      printCustom("Total list =========== ${lst.length}");
 
       if (playing.responseMap?.listToneApk != null ||
           (playing.responseMap?.listToneApk?.isNotEmpty ?? true)) {
@@ -295,7 +296,7 @@ Future<PlayingTuneModel?> _displayTune(Map<String, dynamic>? result) async {
         //for (var element in listToneApkList) {
         printCustom(
             "Total item in model ${model.responseMap?.listToneApk?.length}");
-        //print("elements in ${listToneApkList?.packUserDetailsCrbt}");
+        //printCustom("elements in ${listToneApkList?.packUserDetailsCrbt}");
         return model;
       }
     }

@@ -163,7 +163,7 @@ _tappedOnCell(BuildContext context, String title) async {
   printCustom(
       "=========_tappedOnCell==============$title \n ==englishStr.tr =${englishStr.tr} ==== burmeseStr.tr =${burmeseStr.tr}");
   if ((title == englishStr) || (title == burmeseStr)) {
-    print("languageChange tepped");
+    printCustom("languageChange tepped");
     languageChange(context);
     Navigator.pop(context);
   } else {
@@ -192,7 +192,7 @@ _tappedOnCell(BuildContext context, String title) async {
     //Get.toNamed(faqTapped);
   } else if (title == logoutStr.tr) {
     printCustom("Logout btapped");
-    print("Logout called from mobile drawer");
+    printCustom("Logout called from mobile drawer");
     StoreManager().logout();
   } else if (title == signinStr.tr) {
     StoreManager().checkStoredValue();

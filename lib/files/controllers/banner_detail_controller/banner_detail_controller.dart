@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/model/banner_detail_manual_model.dart';
 import 'package:mtn_sa_revamp/files/model/banner_detail_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -16,7 +17,7 @@ class BannerDetailController extends GetxController {
       {int page = 0}) async {
     isloading.value = true;
 
-    print(
+    printCustom(
         "Called banner detail api type is = $type promoCode = $bannerOrder searchKey =$searchKey");
 
     String url = '';

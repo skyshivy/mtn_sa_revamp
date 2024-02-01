@@ -128,15 +128,16 @@ Future<String> _getValueForTag(List<String> lst) async {
     printCustom("Some thing went wrong === $e");
   }
   if (!StoreManager().isLoggedIn) {
-    print("Login issue user is auto login");
+    printCustom("Login issue user is auto login");
     loginCont.autoLogin(tempMsisdn);
     printCustom("StoreManager().msisdn ==== ${StoreManager().msisdn}");
     printCustom("Make here auto login for msisdn $tempMsisdn");
   } else {
     if (tempMsisdn == StoreManager().msisdn) {
-      print("Login issue Redirection with same number so no login api call");
+      printCustom(
+          "Login issue Redirection with same number so no login api call");
     } else {
-      print("Login issue user is re Auto login with different number");
+      printCustom("Login issue user is re Auto login with different number");
       StoreManager().logout();
       await Future.delayed(const Duration(milliseconds: 500));
       loginCont.autoLogin(tempMsisdn);

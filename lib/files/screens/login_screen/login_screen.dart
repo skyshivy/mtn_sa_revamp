@@ -129,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         " ${otpController.timeLeft.value}",
                     onTap: () {
                       otpController.startTimer();
-                      print("resent otp ");
+                      printCustom("resent otp ");
                     },
                   );
           }),

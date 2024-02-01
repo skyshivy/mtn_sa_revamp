@@ -85,7 +85,7 @@ class ServiceCall {
     request = await CustomHeader().settingHeader(url, request);
     if (jsonData != null) {
       String jsonstringmap = json.encode(jsonData);
-      print("print formed data $jsonstringmap");
+      printCustom("printCustom formed data $jsonstringmap");
       request.write(jsonstringmap);
     }
     if (formData != null) {
@@ -126,19 +126,19 @@ class ServiceCall {
 
       if (params != null) {
         for (var entry in params.entries) {
-          print(entry.key);
-          print(entry.value);
+          printCustom(entry.key);
+          printCustom(entry.value);
           String val = entry.value;
           request.headers.set(entry.key, val, preserveHeaderCase: true);
-          print("setting header is ===");
-          print("setting header is === ${request.headers}");
+          printCustom("setting header is ===");
+          printCustom("setting header is === ${request.headers}");
           ;
         }
       }
 
       String stringData = '';
       HttpClientResponse response1 = await request.close();
-      print("setting header is ===2");
+      printCustom("setting header is ===2");
       stringData = await response1.transform(utf8.decoder).join();
       printCustom('stringData  = $stringData');
 
@@ -185,7 +185,7 @@ class ServiceCall {
       AppController appCont = Get.find();
       appCont.isLoggedIn.value = false;
       StoreManager().logout();
-      print("Logout called from sercice call if reGeneratToken fails");
+      printCustom("Logout called from sercice call if reGeneratToken fails");
       //html.window.location.reload();
     }
     printCustom("======Regene token ====== ${model.statusCode}");

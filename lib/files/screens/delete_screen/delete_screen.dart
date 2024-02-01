@@ -278,7 +278,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
       width: 200,
       title: "Animate",
       onTap: () {
-        print("Change status");
+        printCustom("Change status");
         deCont.animate();
       },
     );

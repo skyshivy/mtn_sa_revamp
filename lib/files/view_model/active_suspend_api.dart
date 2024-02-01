@@ -1,3 +1,4 @@
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/model/suspend_resume_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -5,7 +6,8 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 Future<SuspendResumeModel> activeSuspendApi(
     String packName, bool isSuspend, bool isCrbt) async {
-  print("object url is $suspendResumePackUrl");
+  printCustom("object url is $suspendResumePackUrl");
+
   var myPost = {
     "msisdn": StoreManager().msisdn,
     "feature": isSuspend ? "Suspend" : "Resume",
@@ -22,7 +24,7 @@ Future<SuspendResumeModel> activeSuspendApi(
   Map<String, dynamic>? res =
       await ServiceCall().post(suspendResumePackUrl, formData);
 
-  print("result is $res");
+  printCustom("result is $res");
   if (res != null) {
     return SuspendResumeModel.fromJson(res);
   } else {

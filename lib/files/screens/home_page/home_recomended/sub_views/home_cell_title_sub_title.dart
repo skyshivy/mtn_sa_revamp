@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -45,7 +46,7 @@ class HomeCellTitleSubTilte extends StatelessWidget {
         }
       },
       contextMenuBuilder: (context, selectableRegionState) {
-        print("selectableRegionState ${selectableRegionState}");
+        printCustom("selectableRegionState ${selectableRegionState}");
         return Container(
           height: 20,
           width: 300,
@@ -68,7 +69,7 @@ class HomeCellTitleSubTilte extends StatelessWidget {
                     duration: const Duration(seconds: 2));
               });
 
-              print(
+              printCustom(
                   "Tapped text is ${title ?? info?.toneName ?? info?.contentName ?? ""}");
             },
             child: Tooltip(
@@ -99,7 +100,7 @@ class HomeCellTitleSubTilte extends StatelessWidget {
                     duration: const Duration(seconds: 2));
               });
 
-              print(
+              printCustom(
                   "Tapped text is ${title ?? info?.toneName ?? info?.contentName ?? ""}");
             },
             child: Tooltip(

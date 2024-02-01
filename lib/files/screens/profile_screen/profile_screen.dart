@@ -4,6 +4,7 @@ import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_active_status.dart';
@@ -37,13 +38,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     profileController = Get.find();
     profileController.getProfileDetail();
-    print("init profile page");
+    printCustom("init profile page");
+
     super.initState();
   }
 
   @override
   void dispose() {
-    print("deinit profile page");
+    printCustom("deinit profile page");
     Get.delete<ProfileController>();
     super.dispose();
   }

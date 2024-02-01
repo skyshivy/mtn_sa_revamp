@@ -1,6 +1,7 @@
 import 'package:encrypt/encrypt.dart' as encrypt;
 
 import 'package:encrypt/encrypt.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class Decryptor {
   String encryptedKey = "d2AQuZZDfTIlZeXW"; //"mofSSBh+ys/nwHn8EBmXgg==";
@@ -12,8 +13,8 @@ class Decryptor {
     final encrypter = encrypt.Encrypter(encrypt.AES(key, mode: AESMode.cbc));
     final encrypted = encrypter.encrypt(text, iv: iv);
     final decrypted = encrypter.decrypt(encrypted, iv: iv);
-    print("Encrypted otp is ${encrypted.base64}");
-    print("dencrypted otp is ${decrypted}");
+    printCustom("Encrypted otp is ${encrypted.base64}");
+    printCustom("dencrypted otp is ${decrypted}");
     return encrypted.base64;
   }
 
@@ -23,7 +24,8 @@ class Decryptor {
     final encrypter = encrypt.Encrypter(encrypt.AES(key, mode: AESMode.cbc));
     final decrypted =
         encrypter.decrypt(encrypt.Encrypted.fromBase64(text), iv: iv);
-    print("Decrypted text in base 64 is  \n$decrypted");
+    printCustom("Decrypted text in base 64 is  \n$decrypted");
+
     return decrypted;
   }
   // String encryptedKey = 'mofSSBh+ys/nwHn8EBmXgg==';

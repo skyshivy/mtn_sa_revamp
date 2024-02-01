@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class OtpTimerController extends GetxController {
@@ -14,14 +15,15 @@ class OtpTimerController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    print("OtpTimerController initialized");
+    printCustom("OtpTimerController initialized");
+
     //initTimer();
   }
 
   @override
   void onClose() {
     cancelTimer();
-    print("OtpTimerController disposed");
+    printCustom("OtpTimerController disposed");
     super.onClose();
   }
 
@@ -35,7 +37,7 @@ class OtpTimerController extends GetxController {
     if (isRunning.value) {
       return;
     }
-    print("tapped start timer");
+    printCustom("tapped start timer");
     _start = resendOtpDuration;
     isLoading.value = true;
     await logCont.generateOtp();
@@ -55,7 +57,7 @@ class OtpTimerController extends GetxController {
 
   initTimer() {
     timeLeft.value = _formatDuration(_start);
-    print("start time ${_start}===== ${timeLeft.value}");
+    printCustom("start time ${_start}===== ${timeLeft.value}");
 
     isRunning.value = true;
     _timer = Timer.periodic(
@@ -63,7 +65,7 @@ class OtpTimerController extends GetxController {
       (Timer timer) {
         if (_start == 0) {
           isRunning.value = false;
-          print("start time ${_start}");
+          printCustom("start time ${_start}");
           timeLeft.value = '';
           isRunning.value = false;
           cancelTimer();
@@ -71,7 +73,7 @@ class OtpTimerController extends GetxController {
           _start--;
 
           timeLeft.value = _formatDuration(_start);
-          print("start time ${_start}===== ${timeLeft.value}");
+          printCustom("start time ${_start}===== ${timeLeft.value}");
         }
       },
     );

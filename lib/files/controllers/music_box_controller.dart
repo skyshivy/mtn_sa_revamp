@@ -18,7 +18,7 @@ class MusicPackController extends GetxController {
     String url = '';
 
     // if (kDebugMode) {
-    //   print("debug mode api called in MusicPackController");
+    //   printCustom("debug mode api called in MusicPackController");
     //   url = 'https://mocki.io/v1/5a415b89-7579-49bc-936d-8b61f818638e';
     // } else {
     url = '${getMusicBoxUrl}language=English&pageNo=0&perPageCount=20&type=MB';

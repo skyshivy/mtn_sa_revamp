@@ -18,6 +18,7 @@ import 'package:mtn_sa_revamp/files/controllers/otp_timer_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
@@ -47,7 +48,7 @@ void main() async {
     appId = "com.sixdee.oml_rbt_portal";
   } else {}
   // html.window.onBeforeUnload.listen((event) async {
-  //   print("Tab closed flutter");
+  //   printCustom("Tab closed flutter");
   //   StoreManager().logout();
   // });
   WidgetsFlutterBinding.ensureInitialized();
@@ -170,7 +171,8 @@ class MyApp extends StatelessWidget {
         message: sessionExpiredStr,
         onOk: () {
           goRouterContext?.go(homeGoRoute);
-          print("Logout called from main");
+
+          printCustom("Logout called from main");
           StoreManager().logout();
         },
       ));

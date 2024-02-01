@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_web_launcher.dart';
 import 'package:mtn_sa_revamp/files/string_json_file/help_file.dart';
@@ -65,7 +66,7 @@ class HelpScreen extends StatelessWidget {
       options: const LinkifyOptions(humanize: false),
       onOpen: (link) {
         customWebLauncher(link.url);
-        print("Clicked ${link.url}!");
+        printCustom("Clicked ${link.url}!");
       },
       text: text,
       style: TextStyle(

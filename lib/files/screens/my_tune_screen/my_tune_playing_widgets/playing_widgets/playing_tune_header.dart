@@ -76,7 +76,7 @@ Widget _toggleButton() {
                   okTitle: confirmStr.tr,
                   onOk: () {
                     controller.suffleTune();
-                    print("Relaod data");
+                    printCustom("Relaod data");
                   },
                 ));
 
