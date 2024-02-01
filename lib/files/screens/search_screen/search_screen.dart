@@ -36,7 +36,6 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final ScrollController _controller = ScrollController();
   SearchTuneController controller = Get.find();
   @override
   void initState() {
@@ -59,12 +58,9 @@ class _SearchScreenState extends State<SearchScreen> {
                   //SeacrhHeaderTab(),
                   //const SizedBox(height: 20),
                   Expanded(
-                    child: SingleChildScrollView(
-                      controller: _controller,
-                      child: controller.searchType.value == 1
-                          ? artistList()
-                          : gridView(),
-                    ),
+                    child: controller.searchType.value == 1
+                        ? artistList()
+                        : gridView(),
                   ),
 
                   //const SizedBox(height: 30),

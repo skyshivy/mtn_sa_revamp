@@ -1,12 +1,15 @@
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
+import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/localization/localizatio_service.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+import 'package:mtn_sa_revamp/main.dart';
 
 //import 'package:shared_preferences/shared_preferences.dart';
 
@@ -139,9 +142,12 @@ class StoreManager {
     setPassword('');
     setChannelId('4');
     crbtPackStatus = null;
+
     print("Logout called from StoreManager");
     appController.isLoggedIn.value = false;
-
+    try {
+      goRouterContext?.go(homeGoRoute);
+    } catch (e) {}
     return;
   }
 

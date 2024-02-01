@@ -350,15 +350,10 @@ StatefulShellBranch searchScreen() {
       builder: (context, state) {
         String searchkey = state.uri.queryParameters['key'] ?? '';
         String index = state.uri.queryParameters['index'] ?? "0";
-        //sCOnt.stopMultipleApiCall = false;
-
-        // sCOnt.getSearchedResult(searchkey, 0,
-        //     searchTypeIndex: int.parse(index));
-
         return SearchScreen(
           title: searchkey,
           index: index,
-        ); //CustomText(title: "title  $searchkey");
+        );
       },
     ),
   ]);
@@ -370,7 +365,7 @@ StatefulShellBranch deleteScreenRoute() {
       name: deleteGoRoute,
       path: deleteGoRoute,
       builder: (context, state) {
-        return DeleteScreen(); //CustomText(title: "title  $searchkey");
+        return DeleteScreen();
       },
     ),
   ]);
@@ -382,7 +377,7 @@ StatefulShellBranch musicPackScreenRoute() {
       name: musicPackGoRoute,
       path: musicPackGoRoute,
       builder: (context, state) {
-        return MusicPackScreen(); //CustomText(title: "title  $searchkey");
+        return MusicPackScreen();
       },
     ),
   ]);
