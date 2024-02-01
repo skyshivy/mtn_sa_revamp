@@ -211,11 +211,13 @@ class MyTuneController extends GetxController {
           //MyTuneService().deleteMyTune(toneId, packName);
           if (respo != null) {
             DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(respo);
-            printCustom("Delete My tune tune ${result}");
+            printCustom("Delete My tune tune $result");
             message.value = result.message ?? '';
             showSnackBar(message: message.value);
+
             if (result.statusCode == "SC0000") {
               tuneList.removeAt(index);
+              getMyPlayingList();
             }
 
             return true;

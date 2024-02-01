@@ -38,7 +38,9 @@ class TunePreviewController extends GetxController {
 
   addToWishlistAction(TuneInfo info) async {
     isAddingWishlist.value = true;
+    print("Add to wishlist calledd");
     bool _ = await AddToWishlistVm().add(info);
+    print("Add to wishlist calledd1234");
     isAddingWishlist.value = false;
   }
 

@@ -42,16 +42,14 @@ class HomeSearchWidget extends StatelessWidget {
   }
 
   Widget borderWidget(BuildContext context, SizingInformation si) {
-    GlobalKey key = GlobalKey();
     return Container(
-      key: key,
       clipBehavior: Clip.hardEdge,
       height: 40,
       width: 40,
       decoration: decoration(),
       child: Row(
         children: [
-          Flexible(
+          Expanded(
               child: HomeSearchTextField(
             hintColor: blue,
             textColor: black,
