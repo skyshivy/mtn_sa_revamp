@@ -95,7 +95,7 @@ final router = GoRouter(
 Widget errorWidget(BuildContext context, GoRouterState state) {
   return Scaffold(
       body: MobileAppBar(
-    widget: const Center(
+    widget: Center(
       child: CustomText(
         title: "Page Not Found",
         fontName: FontName.bold,
@@ -390,7 +390,7 @@ Widget askForLoginScreen() {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const CustomText(
+          CustomText(
             alignment: TextAlign.center,
             title: featureIsAvailableForLoggedInStr,
             fontName: FontName.bold,

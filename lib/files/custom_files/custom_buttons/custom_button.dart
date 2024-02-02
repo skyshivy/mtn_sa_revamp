@@ -110,3 +110,110 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
+/*
+Widget CustomButton({
+  final String? title,
+  double height = 40,
+  double borderWidth = 1,
+  double? width,
+  double? radius,
+  EdgeInsetsGeometry? titlePadding,
+  EdgeInsetsGeometry? leftWidgetPadding,
+  EdgeInsetsGeometry mainPadding = const EdgeInsets.all(0),
+  Color? color = transparent,
+  Color? borderColor,
+  Widget? leftWidget,
+  Widget? rightWidget,
+  Color? textColor,
+  double? fontSize,
+  int? maxLine,
+  FontName? fontName,
+  TextAlign? alignment,
+  MainAxisAlignment? mainAxisAlignment,
+  Function()? onTap,
+}) {
+  return InkWell(
+    focusColor: transparent,
+    hoverColor: transparent,
+    splashColor: transparent,
+    highlightColor: transparent,
+    onTap: onTap,
+    child: Container(
+      height: height,
+      width: width,
+      decoration: _decoration(borderColor, color, borderWidth, radius, height),
+      child: Padding(
+        padding: mainPadding,
+        child: _buttonRow(
+            mainAxisAlignment,
+            leftWidgetPadding,
+            leftWidget,
+            title,
+            rightWidget,
+            titlePadding,
+            textColor,
+            fontSize,
+            fontName,
+            alignment),
+      ),
+    ),
+  );
+}
+
+Widget _buttonRow(
+    MainAxisAlignment? mainAxisAlignment,
+    EdgeInsetsGeometry? leftWidgetPadding,
+    Widget? leftWidget,
+    String? title,
+    Widget? rightWidget,
+    EdgeInsetsGeometry? titlePadding,
+    Color? textColor,
+    double? fontSize,
+    FontName? fontName,
+    TextAlign? alignment) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
+    children: [
+      Padding(
+        padding: leftWidgetPadding ?? const EdgeInsets.all(0),
+        child: leftWidget ?? const SizedBox(),
+      ),
+      (title == null)
+          ? const SizedBox()
+          : (title.isEmpty
+              ? const SizedBox()
+              : _titleWidget(titlePadding, title, textColor, fontSize, fontName,
+                  alignment)),
+      rightWidget ?? const SizedBox(),
+    ],
+  );
+}
+
+BoxDecoration _decoration(Color? borderColor, Color? color, double borderWidth,
+    double? radius, double height) {
+  return BoxDecoration(
+      color: color,
+      border: Border.all(color: borderColor ?? transparent, width: borderWidth),
+      borderRadius: BorderRadius.circular(radius ?? height / 2));
+}
+
+Widget _titleWidget(
+    EdgeInsetsGeometry? titlePadding,
+    String? title,
+    Color? textColor,
+    double? fontSize,
+    FontName? fontName,
+    TextAlign? alignment) {
+  return Padding(
+    padding: (titlePadding == null) ? const EdgeInsets.all(0.0) : titlePadding,
+    child: CustomText(
+      title: (title ?? '').tr,
+      textColor: textColor,
+      fontSize: fontSize,
+      fontName: fontName ?? FontName.medium,
+      alignment: alignment,
+    ),
+  );
+}
+*/

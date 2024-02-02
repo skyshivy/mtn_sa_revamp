@@ -130,7 +130,7 @@ class BuyAndPlayButton extends StatelessWidget {
         return CustomButton(
           onTap: () {
             printCustom("Buy button");
-            BuyTuneScreen().show(context, info);
+            BuyTuneScreen().show(info);
           },
           color: blue,
           titlePadding: const EdgeInsets.only(top: 4, left: 4),
@@ -148,3 +148,130 @@ class BuyAndPlayButton extends StatelessWidget {
     );
   }
 }
+/*
+
+Widget BuyAndPlayButton({
+  TuneInfo? info,
+  int index = 0,
+  bool isNameTune = false,
+}) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      isNameTune
+          ? Expanded(child: _giftButton(info ?? TuneInfo()))
+          : const SizedBox(),
+      SizedBox(width: isNameTune ? 10 : 0),
+      Expanded(child: buyButtonWidget(info ?? TuneInfo())),
+    ],
+  );
+}
+
+Widget _giftButton(TuneInfo info) {
+  return ResponsiveBuilder(
+    builder: (context, si) {
+      return CustomButton(
+        leftWidget: SvgPicture.asset(
+          giftTuneSvg,
+          height: si.isMobile ? 15 : 18,
+          width: si.isMobile ? 15 : 18,
+        ), //Image.asset(giftTuneSvg),
+        fontSize: si.isMobile ? 13 : 15,
+        titlePadding: const EdgeInsets.only(top: 4, left: 4),
+        title: giftStr.tr,
+        fontName: si.isMobile ? FontName.medium : FontName.bold,
+        borderColor: red,
+        onTap: () {
+          if (StoreManager().isLoggedIn) {
+            Get.dialog(Center(
+              child: GiftTuneView(
+                info: info ?? TuneInfo(),
+              ),
+            ));
+          } else {
+            Get.dialog(
+                CustomAlertView(title: featureIsAvailableForLoggedInStr.tr));
+          }
+        },
+      );
+    },
+  );
+}
+
+Widget playButtonWidget(
+    TuneInfo info, PlayerController playerController, int index) {
+  return ResponsiveBuilder(
+    builder: (context, si) {
+      return Obx(() {
+        return CustomButton(
+          fontName: si.isMobile ? FontName.medium : FontName.medium,
+          fontSize: si.isMobile ? 12 : 16,
+          titlePadding: const EdgeInsets.all(4),
+          borderColor: red,
+          leftWidget: playAndPauseButtonIcon(playerController, index),
+          title: playButtonTitleWidget(playerController, index),
+          onTap: () {
+            playerController.playUrl(info, index);
+            info.isPlaying = !(info.isPlaying);
+          },
+        );
+      });
+    },
+  );
+}
+
+String playButtonTitleWidget(PlayerController playerController, int index) {
+  return (playerController.playingIndex.value == index)
+      ? (playerController.isPlaying.value
+          ? (playerController.isBuffering.value ? "" : playingStr.tr)
+          : playStr.tr)
+      : playStr.tr;
+}
+
+Widget playAndPauseButtonIcon(PlayerController playerController, int index) {
+  return (playerController.playingIndex.value == index)
+      ? (playerController.isPlaying.value
+          ? (playerController.isBuffering.value
+              ? loadingIndicator(color: red, radius: 10)
+              : Image.asset(
+                  pauseImg,
+                  width: 18,
+                ))
+          // const Icon(
+          //     Icons.pause,
+          //     size: 20,
+          //   ))
+          : Image.asset(
+              playImg,
+              width: 18,
+            )) //const Icon(Icons.play_arrow))
+      : Image.asset(
+          playImg,
+          width: 18,
+        ); //const Icon(Icons.play_arrow);
+}
+
+Widget buyButtonWidget(TuneInfo info) {
+  return ResponsiveBuilder(
+    builder: (context, si) {
+      return CustomButton(
+        onTap: () {
+          printCustom("Buy button");
+          BuyTuneScreen().show(info);
+        },
+        color: blue,
+        titlePadding: const EdgeInsets.only(top: 4, left: 4),
+        fontName: si.isMobile ? FontName.medium : FontName.bold,
+        fontSize: si.isMobile ? 13 : 15,
+        leftWidget: Image.asset(
+          buyImg,
+          height: si.isMobile ? 15 : 18,
+          width: si.isMobile ? 15 : 18,
+        ),
+        title: buyStr.tr,
+        textColor: white,
+      );
+    },
+  );
+}
+*/

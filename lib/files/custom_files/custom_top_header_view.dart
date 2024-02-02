@@ -44,7 +44,7 @@ class CustomTopHeaderView extends StatelessWidget {
                     fontName: FontName.medium,
                     textColor: grey,
                   ),
-                  const CustomText(title: "/"),
+                  CustomText(title: "/"),
                   CustomText(title: title, fontName: FontName.medium)
                 ],
               ),

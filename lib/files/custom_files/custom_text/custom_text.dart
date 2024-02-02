@@ -4,6 +4,30 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
+Widget CustomText({
+  String? title,
+  Color? textColor = black,
+  double? fontSize = 16,
+  int? maxLine,
+  TextOverflow? overFlow,
+  FontName? fontName = FontName.medium,
+  TextAlign? alignment = TextAlign.start,
+}) {
+  return Text(
+    title ?? '',
+    textAlign: alignment,
+    maxLines: maxLine,
+    style: TextStyle(
+      overflow: overFlow,
+      fontFamily: fontName!.name,
+      fontSize: (fontSize == null)
+          ? fontSize
+          : (fontSize! * (StoreManager().isEnglish ? 1 : 0.95)),
+      color: textColor,
+    ),
+  );
+}
+/*
 class CustomText extends StatelessWidget {
   final String title;
   final Color? textColor;
@@ -41,3 +65,4 @@ class CustomText extends StatelessWidget {
     );
   }
 }
+*/

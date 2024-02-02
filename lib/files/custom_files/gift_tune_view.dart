@@ -132,7 +132,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
     );
   }
 
-  CustomButton closeButtonWidget(BuildContext context) {
+  Widget closeButtonWidget(BuildContext context) {
     return CustomButton(
       onTap: () {
         Navigator.of(context).pop();
@@ -143,7 +143,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
     );
   }
 
-  CustomText titleWidget(SizingInformation si) {
+  Widget titleWidget(SizingInformation si) {
     return CustomText(
       title: giftStr.tr,
       fontName: FontName.extraBold,
@@ -174,7 +174,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
     );
   }
 
-  CustomText tuneSubtitle(SizingInformation si) {
+  Widget tuneSubtitle(SizingInformation si) {
     return CustomText(
       alignment: si.isMobile ? TextAlign.center : null,
       title: widget.info.albumName ?? '',
@@ -183,7 +183,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
     );
   }
 
-  CustomText tuneTitle(SizingInformation si) {
+  Widget tuneTitle(SizingInformation si) {
     return CustomText(
       alignment: si.isMobile ? TextAlign.center : null,
       title: widget.info.toneName ?? '',
@@ -228,7 +228,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
     });
   }
 
-  CustomText tuneChargeTitle() {
+  Widget tuneChargeTitle() {
     return CustomText(
       title: tuneChargeStr.tr,
       fontName: FontName.medium,
@@ -273,7 +273,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
     });
   }
 
-  CustomButton cancelButton(BuildContext context) {
+  Widget cancelButton(BuildContext context) {
     return CustomButton(
       title: cancelStr.tr,
       fontName: FontName.bold,

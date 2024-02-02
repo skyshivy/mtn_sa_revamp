@@ -141,7 +141,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
     );
   }
 
-  CustomButton unSubscribeButton() {
+  Widget unSubscribeButton() {
     return CustomButton(
       height: 35,
       titlePadding: EdgeInsets.symmetric(horizontal: 12),

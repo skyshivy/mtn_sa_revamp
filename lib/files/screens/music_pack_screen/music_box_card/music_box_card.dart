@@ -211,11 +211,10 @@ class MusicBoxCard extends StatelessWidget {
     );
   }
 
-  CustomButton buyButton(BuildContext context) {
+  Widget buyButton(BuildContext context) {
     return CustomButton(
       onTap: () {
         BuyTuneScreen().show(
-            context,
             TuneInfo(
               toneName: info.channelName,
               albumName: info.artistName,
@@ -235,7 +234,7 @@ class MusicBoxCard extends StatelessWidget {
     );
   }
 
-  CustomButton giftButton() {
+  Widget giftButton() {
     return CustomButton(
       onTap: () {
         if (StoreManager().isLoggedIn) {

@@ -54,8 +54,8 @@ class LandingSocialMedia extends StatelessWidget {
     );
   }
 
-  CustomText titleWidget() {
-    return const CustomText(
+  Widget titleWidget() {
+    return CustomText(
       title: fallowUsStr,
       fontName: FontName.bold,
       fontSize: 18,

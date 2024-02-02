@@ -321,7 +321,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
     });
   }
 
-  CustomButton cancelButton() {
+  Widget cancelButton() {
     return CustomButton(
       title: cancelStr.tr,
       fontName: FontName.medium,

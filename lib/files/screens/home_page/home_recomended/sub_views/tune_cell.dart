@@ -40,12 +40,20 @@ class HomeTuneCell extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        clipBehavior: Clip.hardEdge,
-        decoration: decoration(),
-        child: mainList(),
+    return SelectionArea(
+      onSelectionChanged: (value) {
+        if (value?.plainText.isEmpty ?? true) {
+        } else {
+          Clipboard.setData(ClipboardData(text: value?.plainText ?? ''));
+        }
+      },
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          clipBehavior: Clip.hardEdge,
+          decoration: decoration(),
+          child: mainList(),
+        ),
       ),
     );
   }
@@ -210,32 +218,24 @@ class HomeTuneCell extends StatelessWidget {
                 subTitleFontSize: si.isMobile ? 12 : null,
               ),
               const SizedBox(height: 3),
-              SelectionArea(
-                  onSelectionChanged: (value) {
-                    if (value?.plainText.isEmpty ?? true) {
-                    } else {
-                      Clipboard.setData(
-                          ClipboardData(text: value?.plainText ?? ''));
-                    }
-                  },
-                  child: InkWell(
-                    onDoubleTap: () {
-                      Clipboard.setData(ClipboardData(text: info?.toneId ?? ''))
-                          .then((_) {
-                        Get.snackbar("Copied", info?.toneId ?? '',
-                            backgroundColor: white,
-                            duration: const Duration(seconds: 2));
-                      });
-                    },
-                    child: Tooltip(
-                      waitDuration: const Duration(milliseconds: 600),
-                      message: info?.toneId ?? '',
-                      child: CustomText(
-                        title: "${tuneCodeStr.tr} : ${info?.toneId ?? ''}",
-                        fontSize: si.isMobile ? 12 : null,
-                      ),
-                    ),
-                  )),
+              InkWell(
+                onDoubleTap: () {
+                  Clipboard.setData(ClipboardData(text: info?.toneId ?? ''))
+                      .then((_) {
+                    Get.snackbar("Copied", info?.toneId ?? '',
+                        backgroundColor: white,
+                        duration: const Duration(seconds: 2));
+                  });
+                },
+                child: Tooltip(
+                  waitDuration: const Duration(milliseconds: 600),
+                  message: info?.toneId ?? '',
+                  child: CustomText(
+                    title: "${tuneCodeStr.tr} : ${info?.toneId ?? ''}",
+                    fontSize: si.isMobile ? 12 : null,
+                  ),
+                ),
+              ),
               const SizedBox(height: 8),
               buttomButtonWidget ??
                   BuyAndPlayButton(

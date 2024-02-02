@@ -122,7 +122,7 @@ class _TunePreviewScreenState extends State<TunePreviewScreen> {
     );
   }
 
-  CustomButton _closeButtonWidgte() {
+  Widget _closeButtonWidgte() {
     return CustomButton(
       width: 40,
       color: black.withOpacity(0.4),
@@ -228,7 +228,7 @@ class _TunePreviewScreenState extends State<TunePreviewScreen> {
       child: CustomButton(
         onTap: () {
           cont.stopPlayer();
-          BuyTuneScreen().show(context, cont.list[cont.index.value]);
+          BuyTuneScreen().show(cont.list[cont.index.value]);
         },
         textColor: white,
         fontName: FontName.bold,

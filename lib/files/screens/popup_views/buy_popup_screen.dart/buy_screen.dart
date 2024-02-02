@@ -28,8 +28,7 @@ class BuyTuneScreen {
 
   BuyTuneScreen();
 
-  Future<dynamic> show(BuildContext context, TuneInfo? info,
-      {bool isBuyMusicChannel = false}) {
+  Future<dynamic> show(TuneInfo? info, {bool isBuyMusicChannel = false}) {
     this.info = info;
     return showPopup(_BuyScreen(
       info: info,
@@ -284,7 +283,7 @@ class _BuyScreenState extends State<_BuyScreen> {
     );
   }
 
-  CustomButton headerCloseButton() {
+  Widget headerCloseButton() {
     return CustomButton(
       onTap: () {
         Navigator.pop(context!);
@@ -293,7 +292,7 @@ class _BuyScreenState extends State<_BuyScreen> {
     );
   }
 
-  CustomText heaerTitle() {
+  Widget heaerTitle() {
     return CustomText(
       title: buyTuneStr.tr,
       fontName: fontName(FontName.medium, FontName.bold),
