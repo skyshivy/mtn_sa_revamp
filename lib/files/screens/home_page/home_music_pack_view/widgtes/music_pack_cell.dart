@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
@@ -56,7 +57,7 @@ Widget infoText(String info, SizingInformation si) {
         fontSize: si.isMobile ? 18 : 25,
       ),
       CustomText(
-        title: info,
+        title: info.tr,
         fontSize: si.isMobile ? 15 : 18,
       ),
     ],

@@ -14,7 +14,7 @@ Widget CustomText({
   TextAlign? alignment = TextAlign.start,
 }) {
   return Text(
-    title ?? '',
+    (title ?? '').tr,
     textAlign: alignment,
     maxLines: maxLine,
     style: TextStyle(
