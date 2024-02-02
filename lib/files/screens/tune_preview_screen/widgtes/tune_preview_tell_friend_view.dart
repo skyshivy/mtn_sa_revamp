@@ -13,8 +13,7 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
-Widget tunePreviewTellFriendView(
-    TunePreviewController pCont, PlayerController playCont, TuneInfo info) {
+Widget tunePreviewTellFriendView(TunePreviewController pCont, TuneInfo info) {
   return Container(
     height: 60,
     decoration: _decoration(),

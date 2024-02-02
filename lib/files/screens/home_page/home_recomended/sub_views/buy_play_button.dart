@@ -18,7 +18,7 @@ import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
-
+/*
 class BuyAndPlayButton extends StatelessWidget {
   final PlayerController playerController = Get.find();
   final TuneInfo? info;
@@ -148,7 +148,7 @@ class BuyAndPlayButton extends StatelessWidget {
     );
   }
 }
-/*
+
 
 Widget BuyAndPlayButton({
   TuneInfo? info,

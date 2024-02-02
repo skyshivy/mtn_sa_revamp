@@ -10,10 +10,10 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.da
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
+import 'package:mtn_sa_revamp/main.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 Widget mobileAppBarLogoButton(BuildContext context) {
-  PlayerController con = Get.find();
   AppController appCont = Get.find();
   return Center(
     child: Padding(
@@ -23,7 +23,7 @@ Widget mobileAppBarLogoButton(BuildContext context) {
             color: appCont.index.value != 0 ? transparent : white,
             radius: 2,
             onTap: () {
-              con.stop();
+              playerController.stop();
 
               if (appCont.index.value == 0) {
                 context.go(homeGoRoute);

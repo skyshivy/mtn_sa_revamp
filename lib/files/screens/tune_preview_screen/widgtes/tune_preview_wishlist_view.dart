@@ -16,8 +16,7 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/view_model/add_to_wishist_vm.dart';
 
-Widget tunePreviewWishlistView(
-    TunePreviewController pCont, PlayerController playCont, TuneInfo info) {
+Widget tunePreviewWishlistView(TunePreviewController pCont, TuneInfo info) {
   return Container(
     height: 60,
     decoration: _decoration(),

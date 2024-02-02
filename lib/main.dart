@@ -42,6 +42,7 @@ import 'package:mtn_sa_revamp/files/view_model/get_tune_price_vm.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 BuildContext? goRouterContext;
+late PlayerController playerController;
 //FocusNode keyScrollFocusNode = FocusNode();
 void main() async {
   if (kDebugMode) {
@@ -70,7 +71,7 @@ void main() async {
   CategoryPoupupController catCont = Get.put(CategoryPoupupController());
   //SearchTuneController _ = Get.put(SearchTuneController());
   RecoController recCont = Get.put(RecoController());
-  PlayerController playerController = Get.put(PlayerController());
+  playerController = Get.put(PlayerController());
   WebTabController tabController = Get.put(WebTabController());
   TunePreviewController preview = Get.put(TunePreviewController());
   BuyController buyController = Get.put(BuyController());

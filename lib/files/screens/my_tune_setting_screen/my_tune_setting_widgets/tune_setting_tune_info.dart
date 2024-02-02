@@ -14,7 +14,7 @@ Widget tuneSettingTuneInfo() {
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      HomeCellTitleSubTilte(
+      homeCellTitleSubTilte(
         title: con.tuneName,
         titleFontName: FontName.bold,
         titleFontSize: 16,

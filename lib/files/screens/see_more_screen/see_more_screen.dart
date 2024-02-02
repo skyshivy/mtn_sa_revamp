@@ -43,8 +43,9 @@ class _SeeMoreScreenState extends State<SeeMoreScreen> {
                 crossAxisSpacing: si.isMobile ? 8 : null),
             itemBuilder: (context, index) {
               return HomeTuneCell(
+                si: si,
                 index: index,
-                info: recCont.displayList?[index],
+                info: recCont.displayList[index],
                 onTap: si.isMobile
                     ? () {
                         pushToTunePreView(context, recCont.displayList, index);

@@ -5,7 +5,7 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
-Widget CustomImage(
+Widget customImage(
     {String? url,
     int index = 1,
     Gradient? gradient,
@@ -23,7 +23,7 @@ Widget CustomImage(
               )
             : CachedNetworkImage(
                 fit: BoxFit.cover,
-                // height: height ?? size.height,
+                height: double.infinity,
                 width: double.infinity,
                 imageUrl: url ?? defaultImageUrl,
                 placeholder: (context, url) =>

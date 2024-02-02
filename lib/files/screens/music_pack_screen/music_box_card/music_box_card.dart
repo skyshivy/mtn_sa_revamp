@@ -19,12 +19,12 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/main.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class MusicBoxCard extends StatelessWidget {
   final MusicBoxSearchList info;
 
-  final PlayerController pCont = Get.find();
   MusicBoxCard({super.key, required this.info});
   @override
   Widget build(BuildContext context) {
@@ -64,14 +64,14 @@ class MusicBoxCard extends StatelessWidget {
         return Obx(() {
           return CustomButton(
             width: 35,
-            leftWidget: (info.previewContent ?? '') == pCont.toneId
-                ? pCont.isPlaying.value
+            leftWidget: (info.previewContent ?? '') == playerController.toneId
+                ? playerController.isPlaying.value
                     ? Image.asset(pauseImg,
                         height: 20) //const Icon(Icons.pause, size: 20)
                     : Image.asset(playImg,
                         height:
                             20) //const Icon(Icons.play_arrow_rounded, size: 20)
-                : pCont.isPlaying.value
+                : playerController.isPlaying.value
                     ? Image.asset(playImg,
                         height:
                             20) //const Icon(Icons.play_arrow_rounded, size: 20)
@@ -105,7 +105,7 @@ class MusicBoxCard extends StatelessWidget {
 //     this.isCopy,
 //     this.isGift,
 
-              pCont.playUrl(
+              playerController.playUrl(
                   TuneInfo(
                       toneIdStreamingUrl: info.previewContent,
                       toneId: info.entityId),

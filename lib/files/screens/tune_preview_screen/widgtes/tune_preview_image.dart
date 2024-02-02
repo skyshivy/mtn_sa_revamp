@@ -6,7 +6,7 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 
 Widget tunePreviewImage(TunePreviewController cont) {
   return Obx(() {
-    return CustomImage(
+    return customImage(
       url: cont.list[cont.index.value].toneIdpreviewImageUrl,
     );
   });

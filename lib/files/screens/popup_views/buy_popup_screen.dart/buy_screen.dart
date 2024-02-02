@@ -309,7 +309,7 @@ class _BuyScreenState extends State<_BuyScreen> {
   }
 
   Widget title() {
-    return HomeCellTitleSubTilte(
+    return homeCellTitleSubTilte(
       mainAxisAlignment:
           isPhone(context) ? MainAxisAlignment.center : MainAxisAlignment.start,
       crossAxisAlignment: isPhone(context)
@@ -321,7 +321,7 @@ class _BuyScreenState extends State<_BuyScreen> {
 
   Widget tuneCharge() {
     return Obx(() {
-      return HomeCellTitleSubTilte(
+      return homeCellTitleSubTilte(
         mainAxisAlignment: isPhone(context)
             ? MainAxisAlignment.center
             : MainAxisAlignment.start,

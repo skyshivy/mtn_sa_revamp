@@ -81,6 +81,7 @@ class _MusicPackDetailListScreenState extends State<MusicPackDetailListScreen> {
                       delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
                   itemBuilder: (context, index) {
                     return HomeTuneCell(
+                      si: si,
                       moreButtonWidget: SizedBox(
                         height: 35,
                       ),

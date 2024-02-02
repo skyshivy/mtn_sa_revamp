@@ -33,14 +33,15 @@ class CustomGridView extends StatelessWidget {
             gridDelegate: gridDelegate ??
                 delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
             itemBuilder: (context, index) {
-              return cell ?? homeCell(index);
+              return cell ?? homeCell(index, si);
             });
       },
     );
   }
 
-  HomeTuneCell homeCell(int index) {
+  HomeTuneCell homeCell(int index, SizingInformation si) {
     return HomeTuneCell(
+      si: si,
       info: list[index],
       index: index,
       onTap: onTap,

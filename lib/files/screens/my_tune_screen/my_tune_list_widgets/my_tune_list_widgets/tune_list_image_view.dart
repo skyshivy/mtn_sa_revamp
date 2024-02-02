@@ -23,7 +23,7 @@ Widget tuneListImageView(ListToneApk1 info, int index) {
       Stack(
         alignment: Alignment.topCenter,
         children: [
-          CustomImage(
+          customImage(
               url: info.toneDetails?.first.toneIdpreviewImageUrl,
               gradient: customGredient(blackGredient, blackGredient)),
           Padding(

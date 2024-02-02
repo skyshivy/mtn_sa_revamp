@@ -10,7 +10,7 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
-Widget HomeCellTitleSubTilte({
+Widget homeCellTitleSubTilte({
   final TuneInfo? info,
   Color? titleColor,
   Color? subTitleColor,

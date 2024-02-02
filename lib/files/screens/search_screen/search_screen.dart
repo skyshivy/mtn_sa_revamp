@@ -226,6 +226,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   HomeTuneCell homeCell(int index, SizingInformation si) {
     return HomeTuneCell(
+      si: si,
       info: controller.songList[index],
       index: index,
       onTap: si.isMobile

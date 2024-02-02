@@ -11,7 +11,7 @@ Widget playingTuneInfo(ListToneApk item) {
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      HomeCellTitleSubTilte(
+      homeCellTitleSubTilte(
         title: item.toneDetails?.first.toneName ?? '',
         subTitle: item.toneDetails?.first.artistName ??
             item.toneDetails?.first.albumName ??

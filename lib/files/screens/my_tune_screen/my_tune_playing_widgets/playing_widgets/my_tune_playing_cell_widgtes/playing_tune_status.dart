@@ -30,7 +30,7 @@ Widget _playAt(ListToneApk item) {
 }
 
 Widget _titleSubTitleWidget(ListToneApk item, String title, String subTitle) {
-  return HomeCellTitleSubTilte(
+  return homeCellTitleSubTilte(
     title: title,
     subTitle: subTitle,
     titleColor: subTitleColor,

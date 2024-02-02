@@ -22,7 +22,7 @@ Widget CustomText({
       fontFamily: fontName!.name,
       fontSize: (fontSize == null)
           ? fontSize
-          : (fontSize! * (StoreManager().isEnglish ? 1 : 0.95)),
+          : (fontSize * (StoreManager().isEnglish ? 1 : 0.95)),
       color: textColor,
     ),
   );

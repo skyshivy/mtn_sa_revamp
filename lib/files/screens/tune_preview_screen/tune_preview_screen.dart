@@ -206,16 +206,15 @@ class _TunePreviewScreenState extends State<TunePreviewScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-              child: tunePreviewWishlistView(
-                  cont, playCont, cont.list[cont.index.value])),
+              child:
+                  tunePreviewWishlistView(cont, cont.list[cont.index.value])),
           Container(
             color: white,
             height: 60,
             width: 1,
           ),
           Expanded(
-            child: tunePreviewTellFriendView(
-                cont, playCont, cont.list[cont.index.value]),
+            child: tunePreviewTellFriendView(cont, cont.list[cont.index.value]),
           ),
         ],
       ),

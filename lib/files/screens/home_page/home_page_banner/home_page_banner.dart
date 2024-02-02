@@ -110,7 +110,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
           child: Stack(alignment: Alignment.bottomCenter, children: [
             Container(
                 color: white,
-                child: CustomImage(url: banner.bannerPath ?? logoBigImg)
+                child: customImage(url: banner.bannerPath ?? logoBigImg)
                 // FadeInImage.assetNetwork(
                 //   placeholder: placeholderImage,
                 //   image: banner.bannerPath ?? logoBigImg,

@@ -103,6 +103,7 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
 
   Widget cell(int index, SizingInformation si) {
     return HomeTuneCell(
+      si: si,
       index: index,
       info: controller.list[index],
       onTap: si.isMobile

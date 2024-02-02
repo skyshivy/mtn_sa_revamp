@@ -154,7 +154,7 @@ class _GiftTuneViewState extends State<GiftTuneView> {
   Widget tuneImageWidget(SizingInformation si) {
     return SizedBox(
       width: si.isMobile ? 150 : null,
-      child: CustomImage(
+      child: customImage(
         height: 150,
         radius: 8,
         url: widget.info.toneIdpreviewImageUrl,

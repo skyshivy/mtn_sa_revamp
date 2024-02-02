@@ -26,7 +26,7 @@ class MyRrbtTuneCell extends StatelessWidget {
   }
 
   Widget tuneImage() {
-    return CustomImage();
+    return customImage();
   }
 
   Widget tuneInfo() {

@@ -78,6 +78,7 @@ class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
                   delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
               itemBuilder: (context, index) {
                 return HomeTuneCell(
+                  si: si,
                   index: index,
                   info: controller.searchList[index],
                   onTap: si.isMobile

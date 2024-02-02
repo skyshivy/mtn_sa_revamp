@@ -3,9 +3,9 @@ import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/view_model/add_to_wishist_vm.dart';
+import 'package:mtn_sa_revamp/main.dart';
 
 class TunePreviewController extends GetxController {
-  PlayerController playerController = Get.find();
   RxInt index = 0.obs;
   RxBool isPlaying = false.obs;
   RxList<TuneInfo> list = <TuneInfo>[].obs;

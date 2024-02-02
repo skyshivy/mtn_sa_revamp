@@ -131,7 +131,7 @@ Widget _preferenceGridCell(ProfileController controller, int index) {
                   borderRadius: BorderRadius.circular(6),
                   color: greyLight.withOpacity(0.2),
                 ),
-                child: CustomImage(
+                child: customImage(
                   url: controller.catList[index].menuImagePath,
                   gradient: customGredient(blackGredient, blackGredient),
                 ),

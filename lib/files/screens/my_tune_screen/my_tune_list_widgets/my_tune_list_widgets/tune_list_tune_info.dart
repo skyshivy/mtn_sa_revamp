@@ -12,7 +12,7 @@ Widget tuneListTuneInfo(ListToneApk1 info) {
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      HomeCellTitleSubTilte(
+      homeCellTitleSubTilte(
         title: info.toneDetails?.first.toneName,
         subTitle: info.toneDetails?.first.artistName ??
             info.toneDetails?.first.albumName ??

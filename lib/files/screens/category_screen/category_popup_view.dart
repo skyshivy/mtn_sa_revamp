@@ -99,7 +99,7 @@ class CategoryPopupView extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.hardEdge,
       children: [
-        CustomImage(
+        customImage(
           url: controller.catList[index].menuImagePath,
           gradient: customGredient(blackGredient, blackGredient),
         ),

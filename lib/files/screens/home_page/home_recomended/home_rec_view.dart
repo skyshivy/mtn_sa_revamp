@@ -126,6 +126,7 @@ class _LandingRecoViewState extends State<LandingRecoView> {
   Widget homeCell(int index) {
     return ResponsiveBuilder(builder: (context, si) {
       return HomeTuneCell(
+        si: si,
         info: controller.displayList[index],
         index: index,
         onTap: si.isMobile

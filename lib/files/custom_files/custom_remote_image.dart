@@ -12,7 +12,7 @@ Widget remoteImageContainer(TuneInfo? item) {
               defaultTuneImagePng,
               fit: BoxFit.cover,
             )
-          : CustomImage(url: item?.toneIdpreviewImageUrl ?? defaultImageUrl)
+          : customImage(url: item?.toneIdpreviewImageUrl ?? defaultImageUrl)
       // FadeInImage.assetNetwork(
       //     placeholder: placeholderImage,
       //     image: item?.toneIdpreviewImageUrl ?? defaultImageUrl,

@@ -57,7 +57,7 @@ class TuneSettingTimeView extends StatelessWidget {
   }
 
   Widget titleSubtitleWidget(String title, String subtitle) {
-    return HomeCellTitleSubTilte(
+    return homeCellTitleSubTilte(
       title: title,
       titleColor: subTitleColor,
       titleFontSize: 12,

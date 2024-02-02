@@ -12,7 +12,7 @@ Widget playingTuneImageWidget(ListToneApk? item) {
   return Stack(
     alignment: Alignment.topLeft,
     children: [
-      CustomImage(
+      customImage(
         url: item?.toneDetails?.first.toneIdpreviewImageUrl,
         gradient: customGredient(blackGredient, blackGredient),
       ),

@@ -18,7 +18,7 @@ Widget tuneSettingImage() {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-            child: CustomImage(
+            child: customImage(
           url: con.tuneImage,
           gradient: customGredient(blackGredient, blackGredient),
         )),

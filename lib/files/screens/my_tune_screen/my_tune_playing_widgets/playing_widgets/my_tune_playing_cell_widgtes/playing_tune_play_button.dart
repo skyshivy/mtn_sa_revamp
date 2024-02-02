@@ -7,22 +7,22 @@ import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
+import 'package:mtn_sa_revamp/main.dart';
 
 Widget playingTunePlayButton(TuneInfo info, int index) {
-  PlayerController pCont = Get.find();
   return Obx(
     () {
       return CustomButton(
         height: 40,
         width: 40,
         color: blue,
-        leftWidget: _playAndPauseButtonIcon(pCont, index),
+        leftWidget: _playAndPauseButtonIcon(playerController, index),
         // Icon(
         //   Icons.play_arrow,
         //   color: white,
         // ),
         onTap: () {
-          pCont.playUrl(info, index);
+          playerController.playUrl(info, index);
         },
       );
     },
