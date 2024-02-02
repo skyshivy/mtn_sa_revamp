@@ -26,7 +26,7 @@ class _HomeMusicPackViewState extends State<HomeMusicPackView> {
     musicPackInfo3
   ];
   var scroll = ScrollController();
-  MusicPackController cont = Get.put(MusicPackController());
+  MusicPackController cont = Get.find();
   @override
   void initState() {
     super.initState();
@@ -34,7 +34,7 @@ class _HomeMusicPackViewState extends State<HomeMusicPackView> {
 
   @override
   void dispose() {
-    Get.delete<MusicPackController>();
+    //Get.delete<MusicPackController>();
     super.dispose();
   }
 

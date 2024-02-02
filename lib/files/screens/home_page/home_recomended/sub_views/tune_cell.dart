@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
@@ -15,6 +18,7 @@ import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/
 
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/home_cell_title_sub_title.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/home_more_button.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/popover_view.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/gredient.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
@@ -161,15 +165,36 @@ class HomeTuneCell extends StatelessWidget {
   }
 
   Widget moreButton() {
-    return Container(
-      height: 35,
-      width: 34,
-      color: red,
-    );
-    HomeMoreButton(
-      info: info,
-      index: index,
-      isWishlist: isWishlist,
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        return InkWell(
+          onTap: () {
+            popoverView(context, () {
+              if (isWishlist) {
+                WishlistController wishCont = Get.find();
+                wishCont.deleteFromWishlistAction(info ?? TuneInfo(), index);
+              } else {
+                RecoController recoController = Get.find();
+                recoController.wishlistTapped(info);
+              }
+            }, isWishlist: isWishlist);
+
+            printCustom("More button tapped isWishlist $isWishlist");
+          },
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(17), color: Colors.white38),
+            height: 35,
+            width: 34,
+            child: Center(
+              child: Image.asset(
+                moreHorzontalImg,
+                width: 20,
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -232,9 +257,7 @@ class HomeTuneCell extends StatelessWidget {
     bool isNameTune = (info?.categoryId != appCont.tuneCategoryid);
     return Row(
       children: [
-        (info?.categoryId != appCont.tuneCategoryid)
-            ? Expanded(child: giftButton(si, info))
-            : const SizedBox(),
+        isNameTune ? Expanded(child: giftButton(si, info)) : const SizedBox(),
         const SizedBox(width: 8),
         Expanded(child: buyButton(si, info ?? TuneInfo()))
       ],

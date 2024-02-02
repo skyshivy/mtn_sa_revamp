@@ -55,6 +55,8 @@ SvgPicture _giftIcon(SizingInformation si) {
 
 void _onGiftTap(TuneInfo? info) {
   if (StoreManager().isLoggedIn) {
+    print("Open gift $info");
+
     Get.dialog(Center(
       child: GiftTuneView(
         info: info ?? TuneInfo(),

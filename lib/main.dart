@@ -13,6 +13,7 @@ import 'package:mtn_sa_revamp/files/controllers/history_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/music_box_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/otp_timer_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
@@ -23,6 +24,7 @@ import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/music_pack_screen/music_box_card/music_box_card.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/header_inrichment.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -82,6 +84,7 @@ void main() async {
   otpController = Get.put(OtpTimerController());
   MyTuneController myTuneCon = Get.put(MyTuneController());
   WishlistController wishCont = Get.put(WishlistController());
+  MusicPackController musicCont = Get.put(MusicPackController());
   runApp(MyApp());
 }
 

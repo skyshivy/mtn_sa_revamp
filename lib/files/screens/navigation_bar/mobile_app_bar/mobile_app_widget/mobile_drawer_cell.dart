@@ -10,6 +10,7 @@ import 'package:mtn_sa_revamp/files/controllers/drawer_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
@@ -183,6 +184,11 @@ _tappedOnCell(BuildContext context, String title) async {
     //Get.toNamed(myTuneTapped);
   } else if (title == wishlistStr.tr) {
     context.goNamed(wishlistGoRoute);
+    if (StoreManager().isLoadWishlist) {
+      WishlistController wishListCont = Get.find();
+      wishListCont.getWishlist();
+    }
+
     //Get.toNamed(wishlistTapped);
   } else if (title == musicPackStr.tr) {
     context.goNamed(musicPackGoRoute);

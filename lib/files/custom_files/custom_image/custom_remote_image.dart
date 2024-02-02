@@ -10,6 +10,7 @@ Widget customImage(
     int index = 1,
     Gradient? gradient,
     double? height,
+    double? width,
     double radius = 0}) {
   //Size size = MediaQuery.of(context).size;
   return ClipRRect(
@@ -23,8 +24,8 @@ Widget customImage(
               )
             : CachedNetworkImage(
                 fit: BoxFit.cover,
-                height: double.infinity,
-                width: double.infinity,
+                height: height ?? double.infinity,
+                width: width ?? double.infinity,
                 imageUrl: url ?? defaultImageUrl,
                 placeholder: (context, url) =>
                     const Center(child: CircularProgressIndicator()),
