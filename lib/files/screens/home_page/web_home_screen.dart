@@ -29,20 +29,21 @@ class _WebLandingPageState extends State<WebLandingPage> {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return ListView(
+        return SingleChildScrollView(
           primary: true,
-          shrinkWrap: true,
-          children: [
-            const LandingPageBanner(),
-            const SizedBox(height: 20),
-            homeSearchTopView(),
-            const SizedBox(height: 20),
-            const LandingRecoView(),
-            SizedBox(height: si.isMobile ? 10 : 80),
-            const HomeMusicPackView(),
-            const LandingInfoPage(),
-            const LandingPageBottomSection()
-          ],
+          child: Column(
+            children: [
+              const LandingPageBanner(),
+              const SizedBox(height: 20),
+              homeSearchTopView(),
+              const SizedBox(height: 20),
+              const LandingRecoView(),
+              SizedBox(height: si.isMobile ? 10 : 80),
+              const HomeMusicPackView(),
+              const LandingInfoPage(),
+              const LandingPageBottomSection()
+            ],
+          ),
         );
       },
     );
