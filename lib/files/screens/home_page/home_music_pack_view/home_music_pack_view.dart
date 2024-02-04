@@ -126,7 +126,7 @@ class _HomeMusicPackViewState extends State<HomeMusicPackView> {
   }
 
   void onPageChange(int index, CarouselPageChangedReason season) {
-    printCustom("index tapped $index");
+    //printCustom("index tapped $index");
     cont.selectedIndex.value = index;
     //controller.updateSelectedIndex(index);
   }
