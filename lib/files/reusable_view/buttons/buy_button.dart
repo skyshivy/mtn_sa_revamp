@@ -12,19 +12,19 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 Widget buyButton(SizingInformation si, TuneInfo info) {
-  return Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20),
-      color: blue,
-    ),
-    height: 40,
-    child: MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () {
-          printCustom("Buy button");
-          BuyTuneScreen().show(info);
-        },
+  return MouseRegion(
+    cursor: SystemMouseCursors.click,
+    child: GestureDetector(
+      onTap: () {
+        printCustom("Buy button");
+        BuyTuneScreen().show(info);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: blue,
+        ),
+        height: 40,
         child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -201,11 +201,6 @@ class _BottomSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        // homeCellTitleSubTilte(
-        //   info: info,
-        //   titleFontSize: 14,
-        //   subTitleFontSize: 12,
-        // ),
         GestureDetector(
           onDoubleTap: () {
             Clipboard.setData(ClipboardData(

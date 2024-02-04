@@ -55,14 +55,23 @@ class HomeTuneCell extends StatelessWidget {
       }
     }, child: ResponsiveBuilder(
       builder: (context, si) {
-        return InkWell(
-          onTap: onTap,
-          child: Container(
-            clipBehavior: Clip.hardEdge,
-            decoration: decoration(),
-            child: mainList(),
-          ),
-        );
+        return si.isMobile
+            ? MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: onTap,
+                  child: Container(
+                    clipBehavior: Clip.hardEdge,
+                    decoration: decoration(),
+                    child: mainList(),
+                  ),
+                ),
+              )
+            : Container(
+                clipBehavior: Clip.hardEdge,
+                decoration: decoration(),
+                child: mainList(),
+              );
       },
     ));
   }
@@ -111,23 +120,26 @@ class HomeTuneCell extends StatelessWidget {
 
   Widget playButton() {
     return Obx(() {
-      return InkWell(
-        onTap: () {
-          playerController.playUrl(info, index);
-        },
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(17), color: white),
-          height: 35,
-          width: 35,
-          child: Center(
-            child: (info?.toneId ?? '') == playerController.toneId
-                ? playerController.isPlaying.value
-                    ? Image.asset(pauseImg, height: 20)
-                    : Image.asset(playImg, height: 20)
-                : playerController.isPlaying.value
-                    ? Image.asset(playImg, height: 20)
-                    : Image.asset(playImg, height: 20),
+      return MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () {
+            playerController.playUrl(info, index);
+          },
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(17), color: white),
+            height: 35,
+            width: 35,
+            child: Center(
+              child: (info?.toneId ?? '') == playerController.toneId
+                  ? playerController.isPlaying.value
+                      ? Image.asset(pauseImg, height: 20)
+                      : Image.asset(playImg, height: 20)
+                  : playerController.isPlaying.value
+                      ? Image.asset(playImg, height: 20)
+                      : Image.asset(playImg, height: 20),
+            ),
           ),
         ),
       );
@@ -167,29 +179,33 @@ class HomeTuneCell extends StatelessWidget {
   Widget moreButton() {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
-        return InkWell(
-          onTap: () {
-            popoverView(context, () {
-              if (isWishlist) {
-                WishlistController wishCont = Get.find();
-                wishCont.deleteFromWishlistAction(info ?? TuneInfo(), index);
-              } else {
-                RecoController recoController = Get.find();
-                recoController.wishlistTapped(info);
-              }
-            }, isWishlist: isWishlist);
+        return MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () {
+              popoverView(context, () {
+                if (isWishlist) {
+                  WishlistController wishCont = Get.find();
+                  wishCont.deleteFromWishlistAction(info ?? TuneInfo(), index);
+                } else {
+                  RecoController recoController = Get.find();
+                  recoController.wishlistTapped(info);
+                }
+              }, isWishlist: isWishlist);
 
-            printCustom("More button tapped isWishlist $isWishlist");
-          },
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(17), color: Colors.white38),
-            height: 35,
-            width: 34,
-            child: Center(
-              child: Image.asset(
-                moreHorzontalImg,
-                width: 20,
+              printCustom("More button tapped isWishlist $isWishlist");
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(17),
+                  color: Colors.white38),
+              height: 35,
+              width: 34,
+              child: Center(
+                child: Image.asset(
+                  moreHorzontalImg,
+                  width: 20,
+                ),
               ),
             ),
           ),
@@ -226,18 +242,18 @@ class HomeTuneCell extends StatelessWidget {
           const SizedBox(height: 3),
           InkWell(
             onDoubleTap: () {
-              Clipboard.setData(ClipboardData(text: info?.toneId ?? ''))
+              Clipboard.setData(ClipboardData(text: info.toneId ?? ''))
                   .then((_) {
-                Get.snackbar("Copied", info?.toneId ?? '',
+                Get.snackbar("Copied", info.toneId ?? '',
                     backgroundColor: white,
                     duration: const Duration(seconds: 2));
               });
             },
             child: Tooltip(
               waitDuration: const Duration(milliseconds: 600),
-              message: info?.toneId ?? '',
+              message: info.toneId ?? '',
               child: CustomText(
-                title: "${tuneCodeStr.tr} : ${info?.toneId ?? ''}",
+                title: "${tuneCodeStr.tr} : ${info.toneId ?? ''}",
                 fontSize: si.isMobile ? 12 : null,
               ),
             ),
@@ -254,7 +270,7 @@ class HomeTuneCell extends StatelessWidget {
   }
 
   Widget giftAndBuyButton(SizingInformation si) {
-    bool isNameTune = (info?.categoryId != appCont.tuneCategoryid);
+    bool isNameTune = (info.categoryId != appCont.tuneCategoryid);
     return Row(
       children: [
         isNameTune ? Expanded(child: giftButton(si, info)) : const SizedBox(),

@@ -19,6 +19,8 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class WishlistScreen extends StatefulWidget {
+  const WishlistScreen({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _WishlistScreenState();
@@ -74,13 +76,16 @@ class _WishlistScreenState extends State<WishlistScreen> {
         cellCont.si = si;
         return Obx(() {
           return GridView.builder(
+            shrinkWrap: true,
             itemCount: wishlistController.list.length,
             gridDelegate:
                 delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
             itemBuilder: (context, index) {
-              return HomeTuneCell2(
-                index: index,
-              );
+              return HomeTuneCell(
+                  index: index, info: wishlistController.list[index], si: si);
+              // HomeTuneCell2(
+              //   index: index,
+              // );
             },
           );
         });

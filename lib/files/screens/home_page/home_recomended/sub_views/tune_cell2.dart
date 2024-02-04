@@ -161,7 +161,6 @@ class _HomeTuneCell2State extends State<HomeTuneCell2> {
                     ),
                     const SizedBox(height: 3),
                     _GiftAndBuyButton(
-                      si: cont.si,
                       index: widget.index,
                     ),
                   ],
@@ -297,10 +296,8 @@ class _BottomSection extends StatelessWidget {
 }
 
 class _GiftAndBuyButton extends StatelessWidget {
-  final SizingInformation si;
-
   final int index;
-  const _GiftAndBuyButton({required this.si, required this.index});
+  const _GiftAndBuyButton({required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -341,16 +338,16 @@ class _GiftAndBuyButton extends StatelessWidget {
                           children: [
                             SvgPicture.asset(
                               giftTuneSvg,
-                              height: si.isMobile ? 15 : 18,
-                              width: si.isMobile ? 15 : 18,
+                              height: cont.si.isMobile ? 15 : 18,
+                              width: cont.si.isMobile ? 15 : 18,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 4, top: 3),
                               child: CustomText(
                                   title: giftStr.tr,
-                                  fontSize: si.isMobile ? 13 : 15,
+                                  fontSize: cont.si.isMobile ? 13 : 15,
                                   textColor: black,
-                                  fontName: si.isMobile
+                                  fontName: cont.si.isMobile
                                       ? FontName.medium
                                       : FontName.bold),
                             )
@@ -384,17 +381,18 @@ class _GiftAndBuyButton extends StatelessWidget {
                     children: [
                       Image.asset(
                         buyImg,
-                        height: si.isMobile ? 15 : 18,
-                        width: si.isMobile ? 15 : 18,
+                        height: cont.si.isMobile ? 15 : 18,
+                        width: cont.si.isMobile ? 15 : 18,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 4, top: 4),
                         child: CustomText(
                             title: buyStr.tr,
-                            fontSize: si.isMobile ? 13 : 15,
+                            fontSize: cont.si.isMobile ? 13 : 15,
                             textColor: white,
-                            fontName:
-                                si.isMobile ? FontName.medium : FontName.bold),
+                            fontName: cont.si.isMobile
+                                ? FontName.medium
+                                : FontName.bold),
                       )
                     ],
                   ),

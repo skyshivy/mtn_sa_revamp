@@ -11,10 +11,8 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
-import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
-import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell1.dart';
-import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell2.dart';
-import 'package:mtn_sa_revamp/files/utility/colors.dart';
+
+import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -67,7 +65,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       ? loadingIndicator()
                       : controller.searchList.isEmpty
                           ? customEmptyTuneView()
-                          : customGridView(si: si); //mainGridview(si);
+                          : CustomGridView(si: si); //mainGridview(si);
                 },
               );
             },
@@ -98,10 +96,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 }
 
-class customGridView extends StatelessWidget {
+class CustomGridView extends StatelessWidget {
   final SizingInformation si;
 
-  const customGridView({super.key, required this.si});
+  const CustomGridView({super.key, required this.si});
 
   @override
   Widget build(BuildContext context) {
@@ -119,9 +117,11 @@ class customGridView extends StatelessWidget {
             SliverGrid(
                 delegate: SliverChildBuilderDelegate((context, index) {
                   printCustom('Is mobile ${si.isMobile}');
-                  return HomeTuneCell2(
-                    index: index,
-                  );
+                  return HomeTuneCell(
+                      index: index, info: controller.searchList[index], si: si);
+                  // HomeTuneCell2(
+                  //   index: index,
+                  // );
                 }, childCount: controller.searchList.length),
                 gridDelegate:
                     delegate(si, mainAxisExtent: si.isMobile ? 230 : null))
