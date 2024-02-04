@@ -27,7 +27,7 @@ Widget homeCellTitleSubTilte({
     mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
     crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
     children: [
-      InkWell(
+      GestureDetector(
         onDoubleTap: () {
           Clipboard.setData(ClipboardData(
                   text: title ?? info?.toneName ?? info?.contentName ?? ""))
@@ -56,7 +56,7 @@ Widget homeCellTitleSubTilte({
           ),
         ),
       ),
-      InkWell(
+      GestureDetector(
         onDoubleTap: () {
           Clipboard.setData(ClipboardData(
                   text:

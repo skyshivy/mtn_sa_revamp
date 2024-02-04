@@ -16,6 +16,7 @@ import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/music_box_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/otp_timer_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/tune_cell_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
@@ -85,6 +86,7 @@ void main() async {
   MyTuneController myTuneCon = Get.put(MyTuneController());
   WishlistController wishCont = Get.put(WishlistController());
   MusicPackController musicCont = Get.put(MusicPackController());
+  TuneCellController tuneCont = Get.put(TuneCellController());
   runApp(MyApp());
 }
 

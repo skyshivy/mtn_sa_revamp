@@ -28,7 +28,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeTuneCell extends StatelessWidget {
   final int index;
-  final TuneInfo? info;
+  final TuneInfo info;
   final bool isWishlist;
   final SizingInformation si;
   final Function()? onTap;
@@ -40,7 +40,7 @@ class HomeTuneCell extends StatelessWidget {
     super.key,
     this.isWishlist = false,
     required this.index,
-    this.info,
+    required this.info,
     this.onTap,
     this.moreButtonWidget,
     this.buttomButtonWidget,

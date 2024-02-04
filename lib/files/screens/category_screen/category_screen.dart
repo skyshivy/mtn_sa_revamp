@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
-import 'package:mtn_sa_revamp/enums/font_enum.dart';
+
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/tune_cell_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_empty_tune_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
-import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
-import 'package:mtn_sa_revamp/files/service_call/header.dart';
-import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell1.dart';
+import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell2.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -27,6 +28,7 @@ class CategoryScreen extends StatefulWidget {
 
 class _CategoryScreenState extends State<CategoryScreen> {
   CategoryController controller = Get.find();
+
   @override
   void initState() {
     super.initState();
@@ -55,7 +57,22 @@ class _CategoryScreenState extends State<CategoryScreen> {
     return Column(
       children: [
         CustomTopHeaderView(title: widget.category),
-        Expanded(child: gridView()),
+        Expanded(
+          child: ResponsiveBuilder(
+            builder: (context, si) {
+              controller.si = si;
+              return Obx(
+                () {
+                  return controller.isLoading.value
+                      ? loadingIndicator()
+                      : controller.searchList.isEmpty
+                          ? customEmptyTuneView()
+                          : customGridView(si: si); //mainGridview(si);
+                },
+              );
+            },
+          ),
+        ),
         loadMoreActivity()
       ],
     );
@@ -79,43 +96,36 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 );
     });
   }
+}
 
-  Widget gridView() {
-    return ResponsiveBuilder(
-      builder: (context, si) {
-        return Obx(
-          () {
-            return controller.isLoading.value
-                ? loadingIndicator()
-                : controller.searchList.isEmpty
-                    ? customEmptyTuneView()
-                    : mainGridview(si);
-          },
-        );
-      },
-    );
-  }
+class customGridView extends StatelessWidget {
+  final SizingInformation si;
 
-  Padding mainGridview(SizingInformation si) {
+  const customGridView({super.key, required this.si});
+
+  @override
+  Widget build(BuildContext context) {
+    CategoryController controller = Get.find();
+    TuneCellController cellCont = Get.find();
+    cellCont.tuneList.value = controller.searchList;
+    cellCont.si = si;
+    cellCont.isWishlist = false;
     return Padding(
-      padding:
-          EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30, vertical: 8),
-      child: GridView.builder(
+        padding:
+            EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30, vertical: 8),
+        child: CustomScrollView(
           shrinkWrap: true,
-          itemCount: controller.searchList.length,
-          gridDelegate: delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
-          itemBuilder: (context, index) {
-            return HomeTuneCell(
-              si: si,
-              index: index,
-              info: controller.searchList[index],
-              onTap: si.isMobile
-                  ? () {
-                      pushToTunePreView(context, controller.searchList, index);
-                    }
-                  : null,
-            );
-          }),
-    );
+          slivers: [
+            SliverGrid(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  printCustom('Is mobile ${si.isMobile}');
+                  return HomeTuneCell2(
+                    index: index,
+                  );
+                }, childCount: controller.searchList.length),
+                gridDelegate:
+                    delegate(si, mainAxisExtent: si.isMobile ? 230 : null))
+          ],
+        ));
   }
 }

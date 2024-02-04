@@ -109,6 +109,7 @@ class _LandingRecoViewState extends State<LandingRecoView> {
     return ResponsiveBuilder(
       builder: (context, si) {
         return GridView.builder(
+            shrinkWrap: true,
             itemCount: count,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: delegate(si,

@@ -13,21 +13,24 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 Widget giftButton(SizingInformation si, TuneInfo? info) {
-  return InkWell(
-    onTap: () {
-      _onGiftTap(info);
-    },
-    child: Container(
-      height: 40,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: white,
-          border: Border.all(color: red)),
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [_giftIcon(si), _giftTitle(si)],
+  return MouseRegion(
+    cursor: SystemMouseCursors.click,
+    child: GestureDetector(
+      onTap: () {
+        _onGiftTap(info);
+      },
+      child: Container(
+        height: 40,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: white,
+            border: Border.all(color: red)),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [_giftIcon(si), _giftTitle(si)],
+          ),
         ),
       ),
     ),

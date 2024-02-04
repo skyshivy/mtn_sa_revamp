@@ -27,6 +27,8 @@ Widget customImage(
                 height: height ?? double.infinity,
                 width: width ?? double.infinity,
                 imageUrl: url ?? defaultImageUrl,
+                memCacheHeight: 20, //add this line
+                memCacheWidth: 20,
                 placeholder: (context, url) =>
                     const Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) {

@@ -18,30 +18,33 @@ Widget buyButton(SizingInformation si, TuneInfo info) {
       color: blue,
     ),
     height: 40,
-    child: InkWell(
-      onTap: () {
-        printCustom("Buy button");
-        BuyTuneScreen().show(info);
-      },
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              buyImg,
-              height: si.isMobile ? 15 : 18,
-              width: si.isMobile ? 15 : 18,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 4, top: 4),
-              child: CustomText(
-                  title: buyStr.tr,
-                  fontSize: si.isMobile ? 13 : 15,
-                  textColor: white,
-                  fontName: si.isMobile ? FontName.medium : FontName.bold),
-            )
-          ],
+    child: MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () {
+          printCustom("Buy button");
+          BuyTuneScreen().show(info);
+        },
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                buyImg,
+                height: si.isMobile ? 15 : 18,
+                width: si.isMobile ? 15 : 18,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 4, top: 4),
+                child: CustomText(
+                    title: buyStr.tr,
+                    fontSize: si.isMobile ? 13 : 15,
+                    textColor: white,
+                    fontName: si.isMobile ? FontName.medium : FontName.bold),
+              )
+            ],
+          ),
         ),
       ),
     ),
