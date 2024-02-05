@@ -10,6 +10,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
@@ -88,6 +89,11 @@ class _MusicPackDetailListScreenState extends State<MusicPackDetailListScreen> {
                       buttomButtonWidget: SizedBox(),
                       index: index,
                       info: cont.list[index],
+                      onTap: () {
+                        if (si.isMobile) {
+                          pushToTunePreView(context, cont.list, index);
+                        }
+                      },
                     );
                   },
                 );

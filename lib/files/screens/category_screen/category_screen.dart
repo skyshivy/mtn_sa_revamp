@@ -11,6 +11,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -118,7 +119,16 @@ class CustomGridView extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate((context, index) {
                   printCustom('Is mobile ${si.isMobile}');
                   return HomeTuneCell(
-                      index: index, info: controller.searchList[index], si: si);
+                    index: index,
+                    info: controller.searchList[index],
+                    si: si,
+                    onTap: () {
+                      if (si.isMobile) {
+                        pushToTunePreView(
+                            context, controller.searchList, index);
+                      }
+                    },
+                  );
                   // HomeTuneCell2(
                   //   index: index,
                   // );

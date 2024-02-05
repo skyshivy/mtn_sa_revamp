@@ -10,6 +10,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_empty_tune_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
+import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell2.dart';
@@ -82,7 +83,15 @@ class _WishlistScreenState extends State<WishlistScreen> {
                 delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
             itemBuilder: (context, index) {
               return HomeTuneCell(
-                  index: index, info: wishlistController.list[index], si: si);
+                index: index,
+                info: wishlistController.list[index],
+                si: si,
+                onTap: () {
+                  if (si.isMobile) {
+                    pushToTunePreView(context, wishlistController.list, index);
+                  }
+                },
+              );
               // HomeTuneCell2(
               //   index: index,
               // );

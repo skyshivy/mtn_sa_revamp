@@ -48,12 +48,20 @@ class HomeTuneCell extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return SelectionArea(onSelectionChanged: (value) {
-      if (value?.plainText.isEmpty ?? true) {
-      } else {
-        Clipboard.setData(ClipboardData(text: value?.plainText ?? ''));
-      }
-    }, child: ResponsiveBuilder(
+    return (GetPlatform.isAndroid || GetPlatform.isIOS)
+        ? mainResponsiveBuilder()
+        : SelectionArea(
+            onSelectionChanged: (value) {
+              if (value?.plainText.isEmpty ?? true) {
+              } else {
+                Clipboard.setData(ClipboardData(text: value?.plainText ?? ''));
+              }
+            },
+            child: mainResponsiveBuilder());
+  }
+
+  ResponsiveBuilder mainResponsiveBuilder() {
+    return ResponsiveBuilder(
       builder: (context, si) {
         return si.isMobile
             ? MouseRegion(
@@ -73,7 +81,7 @@ class HomeTuneCell extends StatelessWidget {
                 child: mainList(),
               );
       },
-    ));
+    );
   }
 
   Column mainList() {
