@@ -16,6 +16,7 @@ import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/music_box_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/otp_timer_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_cell_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 
@@ -70,7 +71,7 @@ void main() async {
   controller.settinApiCall();
   _getPackStatus();
   CategoryPoupupController catCont = Get.put(CategoryPoupupController());
-  //SearchTuneController _ = Get.put(SearchTuneController());
+  SearchTuneController _ = Get.put(SearchTuneController());
   RecoController recCont = Get.put(RecoController());
   playerController = Get.put(PlayerController());
   WebTabController tabController = Get.put(WebTabController());
