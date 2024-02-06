@@ -11,7 +11,7 @@ import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 class HomeMyTuneButton extends StatelessWidget {
-  WebTabController controller = Get.find();
+  final WebTabController controller = Get.find();
   final Function(AppCategory category) onTap;
   HomeMyTuneButton({super.key, required this.onTap});
 

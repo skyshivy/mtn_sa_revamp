@@ -6,7 +6,7 @@ import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controll
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
-import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
+
 import 'package:mtn_sa_revamp/files/screens/home_page/home_page_banner/sub_views/banner_indicator.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';

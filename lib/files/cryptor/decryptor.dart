@@ -14,7 +14,7 @@ class Decryptor {
     final encrypted = encrypter.encrypt(text, iv: iv);
     final decrypted = encrypter.decrypt(encrypted, iv: iv);
     printCustom("Encrypted otp is ${encrypted.base64}");
-    printCustom("dencrypted otp is ${decrypted}");
+    printCustom("dencrypted otp is $decrypted");
     return encrypted.base64;
   }
 

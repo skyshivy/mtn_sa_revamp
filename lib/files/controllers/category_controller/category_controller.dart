@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/model/category_detail_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';

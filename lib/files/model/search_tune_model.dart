@@ -4,7 +4,6 @@
 
 import 'dart:convert';
 
-import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 
 SearchTuneModel searchTuneModelFromJson(String str) =>

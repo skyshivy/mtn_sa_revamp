@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DeleteController extends GetxController {
@@ -13,13 +12,11 @@ class DeleteController extends GetxController {
 
   @override
   void onClose() {
-    // TODO: implement onClose
     super.onClose();
   }
 
   @override
   void onReady() {
-    // TODO: implement onReady
     super.onReady();
   }
 

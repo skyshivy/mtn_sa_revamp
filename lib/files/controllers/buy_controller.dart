@@ -273,7 +273,7 @@ class BuyController extends GetxController {
             SubscriberValidationModel.fromJson(valueMap);
         if (model.statusCode == "SC0000") {
           if (model.responseMap?.respCode == 'SC0000') {
-            var resu = await _generateOtp(msisdn.value, false);
+            var _ = await _generateOtp(msisdn.value, false);
             isNewUser = false;
             isShowOtpView.value = true;
             isVerifying.value = false;
@@ -431,7 +431,7 @@ class BuyController extends GetxController {
     isVerifyingOtp.value = true;
     Map<String, dynamic>? map = await NewUserOtpCheckVm()
         .check(otp.value, msisdn.value, StoreManager().securityToken);
-    printCustom("newUserOtpCheck ========== ${map}");
+    printCustom("newUserOtpCheck ========== $map");
     if (map != null) {
       NewUserCheckOtpModel model = NewUserCheckOtpModel.fromJson(map);
       if (model.statusCode == 'SC0000') {

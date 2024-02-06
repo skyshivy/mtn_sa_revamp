@@ -10,14 +10,14 @@ Future<String> customTuneChanrge(String packName, String charge) async {
       ? (others?.validityEnglish?.attribute ?? '')
       : (others?.validityBurmese?.attribute ?? '');
   List<String> listOfValidity = attributes.split('|');
-  printCustom("listOfValidity =====${listOfValidity}");
+  printCustom("listOfValidity =====$listOfValidity");
   for (var item in listOfValidity) {
     CustomValidtyModel mode =
         CustomValidtyModel(item.split(',')[0], item.split(',')[1]);
     validityModel.add(mode);
   }
-  await Future.delayed(Duration(milliseconds: 100));
-  printCustom("validityModel===== ${validityModel}");
+  await Future.delayed(const Duration(milliseconds: 100));
+  printCustom("validityModel===== $validityModel");
   String customPrice = '';
   var price = validityModel.map((e) {
     printCustom("item = $e");

@@ -70,9 +70,9 @@ Widget _deskTopCell(String img, String info, SizingInformation si,
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      isLeft ? Flexible(child: infoText(info, si)) : SizedBox(),
+      isLeft ? Flexible(child: infoText(info, si)) : const SizedBox(),
       SizedBox(width: 300, child: Image.asset(img)),
-      isLeft ? SizedBox() : Flexible(child: infoText(info, si)),
+      isLeft ? const SizedBox() : Flexible(child: infoText(info, si)),
     ],
   );
 }

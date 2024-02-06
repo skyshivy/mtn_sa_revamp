@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:mtn_sa_revamp/files/controllers/otp_timer_controller.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
@@ -139,7 +139,7 @@ class LoginController extends GetxController {
     isVerifying.value = true;
     Map<String, dynamic>? map = await NewUserOtpCheckVm()
         .check(otp.value, msisdn.value, securityCounter);
-    printCustom("newUserOtpCheck ========== ${map}");
+    printCustom("newUserOtpCheck ========== $map");
     printCustom("sky =========4");
     isVerifying.value = false;
     if (map != null) {

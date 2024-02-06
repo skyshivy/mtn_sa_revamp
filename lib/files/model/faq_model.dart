@@ -8,8 +8,6 @@ import 'dart:convert';
 //
 //     final faqModel = faqModelFromJson(jsonString);
 
-import 'dart:convert';
-
 import 'package:get/get.dart';
 
 FaqModel faqModelFromJson(String str) => FaqModel.fromJson(json.decode(str));

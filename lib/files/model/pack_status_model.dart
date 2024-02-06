@@ -82,12 +82,8 @@ class PackStatusDetails {
         activeCrbtStatus: json["activeCRBTStatus"],
         languageId: json["languageId"],
         packName: json["packName"],
-        rrbtServiceExpiry: json["rrbtServiceExpiry"] == null
-            ? null
-            : json["rrbtServiceExpiry"],
-        crbtServiceExpiry: json["crbtServiceExpiry"] == null
-            ? null
-            : json["crbtServiceExpiry"],
+        rrbtServiceExpiry: json["rrbtServiceExpiry"],
+        crbtServiceExpiry: json["crbtServiceExpiry"],
       );
 
   Map<String, dynamic> toJson() => {

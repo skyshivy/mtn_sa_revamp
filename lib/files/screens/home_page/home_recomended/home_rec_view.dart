@@ -73,7 +73,7 @@ class _LandingRecoViewState extends State<LandingRecoView> {
                   fontName: FontName.bold,
                   fontSize: si.isMobile ? 12 : 18,
                 )
-              : SizedBox(),
+              : const SizedBox(),
         ),
       );
     });

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
+
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/view_model/add_to_wishist_vm.dart';

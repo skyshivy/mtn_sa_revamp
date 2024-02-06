@@ -71,28 +71,28 @@ class LandingCompanyView extends StatelessWidget {
     printCustom("helpTapped tapped");
     return;
 
-    Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
-    String url = '';
-    if (StoreManager().isEnglish) {
-      url = others?.helpEnglish?.attribute ?? '';
-    } else {
-      url = others?.helpBurmese?.attribute ?? '';
-    }
-    customWebLauncher(url);
+    // Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
+    // String url = '';
+    // if (StoreManager().isEnglish) {
+    //   url = others?.helpEnglish?.attribute ?? '';
+    // } else {
+    //   url = others?.helpBurmese?.attribute ?? '';
+    // }
+    // customWebLauncher(url);
   }
 
   void privacyTapped(BuildContext context) {
     printCustom("privacyTapped tapped");
     context.goNamed(policyGoRoute);
     return;
-    Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
-    String url = '';
-    if (StoreManager().isEnglish) {
-      url = others?.pPolicyEnglish?.attribute ?? '';
-    } else {
-      url = others?.pPolicyBurmese?.attribute ?? '';
-    }
-    customWebLauncher(url);
+    // Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
+    // String url = '';
+    // if (StoreManager().isEnglish) {
+    //   url = others?.pPolicyEnglish?.attribute ?? '';
+    // } else {
+    //   url = others?.pPolicyBurmese?.attribute ?? '';
+    // }
+    // customWebLauncher(url);
   }
 
   void termsTapped(BuildContext context) {

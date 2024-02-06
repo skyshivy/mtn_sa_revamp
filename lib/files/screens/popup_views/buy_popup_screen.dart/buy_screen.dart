@@ -78,7 +78,7 @@ class _BuyScreenState extends State<_BuyScreen> {
                 title: buyController.successMessage.value,
               )
             : buyController.isShowOtpView.value
-                ? BuyOtpView()
+                ? const BuyOtpView()
                 : Obx(() {
                     return buyController.isShowSubscriptionPlan.value
                         ? subscriptionView()

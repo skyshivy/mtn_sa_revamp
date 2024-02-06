@@ -54,7 +54,7 @@ class CustomMsisdnTextField extends StatefulWidget {
 
 class _CustomMsisdnTextFieldSate extends State<CustomMsisdnTextField> {
   final TextEditingController controller = TextEditingController();
-  Key key = Key('New');
+  Key key = const Key('New');
   late FocusNode _node1;
   bool _focused1 = false;
   @override

@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/buy_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/subscribe_plan_controller.dart';
@@ -81,7 +80,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
           //specialOfferWidget(),
           subscriptionListView(),
           const SizedBox(height: 20),
-          (widget.info == null) ? SizedBox() : tuneCharge(si),
+          (widget.info == null) ? const SizedBox() : tuneCharge(si),
           const SizedBox(height: 20),
           buttonsWidget(),
           const SizedBox(height: 20),

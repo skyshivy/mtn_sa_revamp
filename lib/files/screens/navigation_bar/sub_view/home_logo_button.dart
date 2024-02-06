@@ -7,7 +7,7 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 
 class HomePageLogoButton extends StatelessWidget {
-  WebTabController controller = Get.find();
+  final WebTabController controller = Get.find();
   final Function() onTap;
 
   HomePageLogoButton({super.key, required this.onTap});

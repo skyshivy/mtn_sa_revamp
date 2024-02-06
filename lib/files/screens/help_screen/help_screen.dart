@@ -5,10 +5,12 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_web_launcher.dart';
 import 'package:mtn_sa_revamp/files/string_json_file/help_file.dart';
-import 'package:mtn_sa_revamp/files/utility/colors.dart';
+
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HelpScreen extends StatelessWidget {
+  const HelpScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(

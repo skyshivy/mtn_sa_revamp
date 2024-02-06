@@ -72,9 +72,7 @@ class SearchTuneController extends GetxController {
     // }
 
     String s = searchedText.value; //.value.trim();
-    if (s != null) {
-      s = s.replaceAll('+', '%2B');
-    }
+    s = s.replaceAll('+', '%2B');
     if (!isloadMore) {
       isLoading.value = true;
       isLoaded.value = false;
@@ -170,9 +168,7 @@ class SearchTuneController extends GetxController {
     }
 
     String s = searchedText.value; //.value.trim();
-    if (s != null) {
-      s = s.replaceAll('+', '%2B');
-    }
+    s = s.replaceAll('+', '%2B');
     isLoaded.value = false;
     if (StoreManager().appSetting == null) {
       await Future.delayed(const Duration(seconds: 2));

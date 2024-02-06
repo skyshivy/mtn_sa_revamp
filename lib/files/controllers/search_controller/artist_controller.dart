@@ -36,7 +36,7 @@ class ArtistController extends GetxController {
       }
       searchList.value += list;
     }
-    printCustom('Artist songs list ==== ${res}');
+    printCustom('Artist songs list ==== $res');
 
     isLaoding.value = false;
     this.isLoadMore.value = false;

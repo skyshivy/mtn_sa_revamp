@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/delete_controller.dart';
@@ -8,11 +8,13 @@ import 'package:mtn_sa_revamp/files/cryptor/decryptor.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_text_field.dart';
+
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 class DeleteScreen extends StatefulWidget {
+  const DeleteScreen({super.key});
+
   @override
   State<StatefulWidget> createState() => _DeleteScreenState();
 }
@@ -42,11 +44,11 @@ class _DeleteScreenState extends State<DeleteScreen> {
     return Column(
       children: [
         buttonOne(),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         buttonTwo(),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         customButtonTwo(),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         buttonThree()
       ],
     );
@@ -55,13 +57,13 @@ class _DeleteScreenState extends State<DeleteScreen> {
   Widget buttonOne() {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 50,
         ),
         ElevatedButton.icon(
           // <-- ElevatedButton
           onPressed: () {},
-          icon: SizedBox(
+          icon: const SizedBox(
             height: 40,
             child: Icon(
               Icons.radio_button_checked,
@@ -76,11 +78,11 @@ class _DeleteScreenState extends State<DeleteScreen> {
             shadowColor: MaterialStateProperty.all<Color>(transparent),
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         ElevatedButton.icon(
           // <-- ElevatedButton
           onPressed: () {},
-          icon: SizedBox(
+          icon: const SizedBox(
             height: 40,
             child: Icon(
               Icons.download,
@@ -92,7 +94,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
         TextButton.icon(
           // <-- TextButton
           onPressed: () {},
-          icon: SizedBox(
+          icon: const SizedBox(
             height: 40,
             child: Icon(
               Icons.download,
@@ -105,7 +107,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
         OutlinedButton.icon(
           // <-- OutlinedButton
           onPressed: () {},
-          icon: SizedBox(
+          icon: const SizedBox(
             height: 40,
             child: Icon(
               Icons.download,
@@ -234,7 +236,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
             },
           );
         }),
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
         CustomButton(
           width: 200,
           radius: 4,

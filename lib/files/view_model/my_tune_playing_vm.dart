@@ -12,8 +12,8 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class MyTunePlayingVM {
   Future<PlayingTuneModel?> getPlayingTuneListApiCall() async {
-    List<ListToneApk> playingList = <ListToneApk>[];
-    bool switchEnabled = false;
+    List<ListToneApk> _ = <ListToneApk>[];
+    //bool switchEnabled = false;
     Map<String, dynamic>? result = await ServiceCall()
         .get("$getPlayingTunesUrl&msisdn=${StoreManager().msisdn}");
     //===========================================================================
@@ -21,6 +21,7 @@ class MyTunePlayingVM {
     return await _displayTune(result);
     // to Display for time base, all caller , and specific caller  , comment above line line
 //===========================================================================
+/*
     if (result != null) {
       PlayingTuneModel? playing = PlayingTuneModel.fromJson(result);
       printCustom("check sky = ${playing.responseMap?.listToneApk?.length}");
@@ -64,6 +65,7 @@ class MyTunePlayingVM {
     } else {
       return null;
     }
+    */
   }
 
   Future<List<ListToneApk>> createPlayingList(

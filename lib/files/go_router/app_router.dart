@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:local_session_timeout/local_session_timeout.dart';
+
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/banner_detail_controller/banner_detail_controller.dart';
@@ -12,17 +12,15 @@ import 'package:mtn_sa_revamp/files/controllers/music_box_detail_controller.dart
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_controller.dart';
-import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
-import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
-import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/localization/localizatio_service.dart';
-import 'package:mtn_sa_revamp/files/model/home_banner_model.dart';
+
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/delete_screen/delete_screen.dart';
@@ -141,7 +139,7 @@ StatefulShellBranch bannerDetailScreen() {
 }
 
 StatefulShellBranch profileScreen() {
-  ProfileController pCont = Get.put(ProfileController());
+  ProfileController _ = Get.put(ProfileController());
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: profileGoRoute,
@@ -203,7 +201,7 @@ StatefulShellBranch _helpScreen() {
       path: helpGoRoute,
       builder: (context, state) {
         //pCont.getProfileDetail();
-        return HelpScreen();
+        return const HelpScreen();
       },
     ),
   ]);
@@ -216,7 +214,7 @@ StatefulShellBranch _termsScreen() {
       path: termsGoRoute,
       builder: (context, state) {
         //pCont.getProfileDetail();
-        return TermsConditionScreen();
+        return const TermsConditionScreen();
       },
     ),
   ]);
@@ -228,7 +226,7 @@ StatefulShellBranch wishlistScreen() {
       name: wishlistGoRoute,
       path: wishlistGoRoute,
       builder: (context, state) {
-        return WishlistScreen();
+        return const WishlistScreen();
       },
     ),
   ]);
@@ -241,7 +239,7 @@ StatefulShellBranch myTuneScreen() {
       path: myTuneGoRoute,
       builder: (context, state) {
         // myTuneController.getPlayingTuneList();
-        return MyTuneScreen();
+        return const MyTuneScreen();
       },
     ),
   ]);
@@ -253,14 +251,14 @@ StatefulShellBranch historyScreenRoute() {
       name: historyGoRoute,
       path: historyGoRoute,
       builder: (context, state) {
-        return HistoryScreen();
+        return const HistoryScreen();
       },
     ),
   ]);
 }
 
 StatefulShellBranch seeMoreScreen() {
-  BannerDetailController bannerCont = Get.put(BannerDetailController());
+  BannerDetailController _ = Get.put(BannerDetailController());
   // keyScrollFocusNode = FocusNode();
   // keyScrollFocusNode.requestFocus();
   return StatefulShellBranch(routes: <RouteBase>[
@@ -272,9 +270,9 @@ StatefulShellBranch seeMoreScreen() {
         //customPrint("List is =========== $list");
         if (list.isEmpty) {
           context.go(homeGoRoute);
-          return WebLandingPage();
+          return const WebLandingPage();
         }
-        return SeeMoreScreen();
+        return const SeeMoreScreen();
       },
     ),
   ]);
@@ -301,13 +299,13 @@ StatefulShellBranch categoryDetailScreen() {
 }
 
 StatefulShellBranch faqScreen() {
-  FaqController faqCont = Get.put(FaqController());
+  FaqController _ = Get.put(FaqController());
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: faqGoRoute,
       path: faqGoRoute,
       builder: (context, state) {
-        return FAQScreen();
+        return const FAQScreen();
       },
     ),
   ]);
@@ -336,12 +334,12 @@ StatefulShellBranch tuneSettingScreen() {
 }
 
 StatefulShellBranch searchScreen() {
-  SearchTuneController sCOnt;
-  try {
-    sCOnt = Get.find();
-  } catch (e) {
-    sCOnt = Get.put(SearchTuneController());
-  }
+  // SearchTuneController sCOnt;
+  // try {
+  //   sCOnt = Get.find();
+  // } catch (e) {
+  //   sCOnt = Get.put(SearchTuneController());
+  // }
 
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
@@ -365,7 +363,7 @@ StatefulShellBranch deleteScreenRoute() {
       name: deleteGoRoute,
       path: deleteGoRoute,
       builder: (context, state) {
-        return DeleteScreen();
+        return const DeleteScreen();
       },
     ),
   ]);
@@ -422,7 +420,7 @@ StatefulShellBranch homeScreen() {
       GoRoute(
           path: homeGoRoute,
           builder: (context, state) {
-            return WebLandingPage();
+            return const WebLandingPage();
           }),
     ],
   );

@@ -25,7 +25,7 @@ class AppController extends GetxController {
     tuneCategoryid =
         setting?.responseMap?.settings?.others?.nameTuneCategoryid?.attribute ??
             '';
-    printCustom("Tune price is =======================${items}");
+    printCustom("Tune price is =======================$items");
   }
 
   updateIndex(int index) {

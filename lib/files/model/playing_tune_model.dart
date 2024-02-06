@@ -4,7 +4,6 @@
 
 import 'dart:convert';
 
-import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 
 PlayingTuneModel playingTuneModelFromJson(String str) =>

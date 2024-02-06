@@ -57,7 +57,7 @@ class OtpTimerController extends GetxController {
 
   initTimer() {
     timeLeft.value = _formatDuration(_start);
-    printCustom("start time ${_start}===== ${timeLeft.value}");
+    printCustom("start time $_start===== ${timeLeft.value}");
 
     isRunning.value = true;
     _timer = Timer.periodic(
@@ -65,7 +65,7 @@ class OtpTimerController extends GetxController {
       (Timer timer) {
         if (_start == 0) {
           isRunning.value = false;
-          printCustom("start time ${_start}");
+          printCustom("start time $_start");
           timeLeft.value = '';
           isRunning.value = false;
           cancelTimer();
@@ -73,7 +73,7 @@ class OtpTimerController extends GetxController {
           _start--;
 
           timeLeft.value = _formatDuration(_start);
-          printCustom("start time ${_start}===== ${timeLeft.value}");
+          printCustom("start time $_start===== ${timeLeft.value}");
         }
       },
     );

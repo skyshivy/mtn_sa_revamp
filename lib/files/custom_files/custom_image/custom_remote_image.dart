@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:mtn_sa_revamp/files/utility/colors.dart';
+
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
-import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 Widget customImage(
     {String? url,
@@ -26,7 +24,7 @@ Widget customImage(
                 fit: BoxFit.cover,
                 height: height ?? double.infinity,
                 width: width ?? double.infinity,
-                imageUrl: url ?? defaultImageUrl,
+                imageUrl: url,
                 memCacheHeight: 20, //add this line
                 memCacheWidth: 20,
                 placeholder: (context, url) =>
@@ -41,7 +39,7 @@ Widget customImage(
         gradient == null
             ? const SizedBox()
             : Container(
-                decoration: BoxDecoration(gradient: gradient!),
+                decoration: BoxDecoration(gradient: gradient),
               ),
       ],
     ),
