@@ -8,7 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.da
 import 'package:mtn_sa_revamp/files/custom_files/custom_empty_tune_view.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
@@ -215,13 +215,13 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget emptyWidget(String title) {
     return customEmptyTuneView(
         title: controller.isLoaded.value ? title : searchTuneStr.tr);
-    Center(
-      child: CustomText(
-        title: controller.isLoaded.value ? title : searchTuneStr.tr,
-        fontName: FontName.medium,
-        fontSize: 16,
-      ),
-    );
+    // Center(
+    //   child: CustomText(
+    //     title: controller.isLoaded.value ? title : searchTuneStr.tr,
+    //     fontName: FontName.medium,
+    //     fontSize: 16,
+    //   ),
+    // );
   }
 
   HomeTuneCell homeCell(int index, SizingInformation si) {

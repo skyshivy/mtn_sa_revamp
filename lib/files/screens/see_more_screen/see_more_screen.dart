@@ -12,6 +12,8 @@ import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SeeMoreScreen extends StatefulWidget {
+  const SeeMoreScreen({super.key});
+
   @override
   State<StatefulWidget> createState() => _SeeMoreScreenState();
 }
@@ -43,7 +45,7 @@ class _SeeMoreScreenState extends State<SeeMoreScreen> {
           child: SingleChildScrollView(
             child: GridView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: cellCont.tuneList.length,
               gridDelegate: delegate(si,
                   mainAxisExtent: si.isMobile ? 260 : null,

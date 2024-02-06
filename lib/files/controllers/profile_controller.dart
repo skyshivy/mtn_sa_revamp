@@ -318,7 +318,7 @@ class ProfileController extends GetxController {
   }
 
   saveEdit() async {
-    printCustom("Save api call ======== ${selectedCatList} ");
+    printCustom("Save api call ======== $selectedCatList ");
     if (selectedCatList.isEmpty) {
       editEnable.value = true;
       showSnackBar(message: selectAtleastOneCatStr.tr);
@@ -335,7 +335,7 @@ class ProfileController extends GetxController {
         userName.value = profileDetails?.userName ?? '';
       }
     }
-    EditProfileModel? result =
+    EditProfileModel? _ =
         await ProfileVM().editProfile(true, catIs: selectedCatList.join(','));
 
     isSaving.value = false;

@@ -8,15 +8,16 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SeacrhHeaderTab extends StatelessWidget {
-  SearchTuneController controller = Get.find();
+  final SearchTuneController controller = Get.find();
+
+  SeacrhHeaderTab({super.key});
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return ResponsiveBuilder(
       builder: (context, si) {
         return Obx(() {
           return !controller.isLoaded.value
-              ? SizedBox()
+              ? const SizedBox()
               : Row(
                   children: [
                     Expanded(

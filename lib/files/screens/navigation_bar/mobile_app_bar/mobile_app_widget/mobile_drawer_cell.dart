@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
@@ -175,7 +175,7 @@ _tappedOnCell(BuildContext context, String title) async {
   if (title == homeStr.tr) {
     context.go(homeGoRoute);
   } else if (title == profileStr.tr) {
-    ProfileController profileController = Get.find();
+    ProfileController _ = Get.find();
     context.goNamed(profileGoRoute);
     //profileController.getProfileDetail();
     //Get.toNamed(profileTapped);

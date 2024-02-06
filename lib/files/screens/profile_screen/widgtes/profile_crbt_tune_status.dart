@@ -104,7 +104,7 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
         ),
         Obx(() {
           return CustomText(
-            title: " : " + cont.crbtTuneStatus.value,
+            title: " : ${cont.crbtTuneStatus.value}",
             fontName: FontName.medium,
             fontSize: 14,
           );
@@ -143,7 +143,7 @@ class ProfileCrbtTuneStatus extends StatelessWidget {
               fontName: FontName.medium,
               fontSize: 12,
               height: 35,
-              titlePadding: EdgeInsets.symmetric(horizontal: 12),
+              titlePadding: const EdgeInsets.symmetric(horizontal: 12),
               title: cont.crbtSubscriptionButtonName.value,
               textColor: white,
               color: blue,

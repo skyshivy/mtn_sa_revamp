@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 
-import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
@@ -14,10 +13,9 @@ import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/reusable_view/buttons/buy_button.dart';
 import 'package:mtn_sa_revamp/files/reusable_view/buttons/gift_button.dart';
-import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/buy_play_button.dart';
 
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/home_cell_title_sub_title.dart';
-import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/home_more_button.dart';
+
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/popover_view.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/gredient.dart';
@@ -99,7 +97,7 @@ class HomeTuneCell extends StatelessWidget {
     return Stack(
       children: [
         customImage(
-          url: info?.toneIdpreviewImageUrl ?? info?.previewImageUrl,
+          url: info.toneIdpreviewImageUrl ?? info.previewImageUrl,
           index: index,
           gradient: customGredient(blackGredient, blackGredient),
         ),
@@ -140,7 +138,7 @@ class HomeTuneCell extends StatelessWidget {
             height: 35,
             width: 35,
             child: Center(
-              child: (info?.toneId ?? '') == playerController.toneId
+              child: (info.toneId ?? '') == playerController.toneId
                   ? playerController.isPlaying.value
                       ? Image.asset(pauseImg, height: 20)
                       : Image.asset(playImg, height: 20)
@@ -156,7 +154,7 @@ class HomeTuneCell extends StatelessWidget {
 
   Widget likeAndMoreWidget() {
     return Visibility(
-      visible: appCont.tuneCategoryid != info?.categoryId,
+      visible: appCont.tuneCategoryid != info.categoryId,
       child: si.isMobile
           ? const SizedBox()
           : Row(
@@ -170,7 +168,7 @@ class HomeTuneCell extends StatelessWidget {
   }
 
   Widget likeButton() {
-    return SizedBox();
+    return const SizedBox();
   }
 
   Padding likeImage() {
@@ -194,7 +192,7 @@ class HomeTuneCell extends StatelessWidget {
               popoverView(context, () {
                 if (isWishlist) {
                   WishlistController wishCont = Get.find();
-                  wishCont.deleteFromWishlistAction(info ?? TuneInfo(), index);
+                  wishCont.deleteFromWishlistAction(info, index);
                 } else {
                   RecoController recoController = Get.find();
                   recoController.wishlistTapped(info);
@@ -283,7 +281,7 @@ class HomeTuneCell extends StatelessWidget {
       children: [
         isNameTune ? Expanded(child: giftButton(si, info)) : const SizedBox(),
         const SizedBox(width: 8),
-        Expanded(child: buyButton(si, info ?? TuneInfo()))
+        Expanded(child: buyButton(si, info))
       ],
     );
   }

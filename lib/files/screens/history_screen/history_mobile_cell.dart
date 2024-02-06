@@ -88,7 +88,7 @@ class HistoryMobileCell extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(),
+        const SizedBox(),
         // bottomTitleSubTitle(
         //   transactionTypeStr.tr,
         //   info.transactionType ?? '',

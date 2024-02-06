@@ -1,13 +1,6 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
-import 'package:html_unescape/html_unescape.dart';
-import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
-import 'package:mtn_sa_revamp/files/model/category_detail_model.dart';
+
 import 'package:mtn_sa_revamp/files/model/search_toneid_model.dart';
 import 'package:mtn_sa_revamp/files/model/search_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -15,7 +8,6 @@ import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/utility/constants.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/search_tone_id_api.dart';
-import 'package:mtn_sa_revamp/main.dart';
 
 import '../../store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';

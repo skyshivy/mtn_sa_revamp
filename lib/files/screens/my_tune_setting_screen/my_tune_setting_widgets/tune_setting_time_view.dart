@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/home_cell_title_sub_title.dart';
@@ -11,7 +10,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class TuneSettingTimeView extends StatelessWidget {
   TuneSettingTimeView({super.key});
-  TuneSettingController con = Get.find();
+  final TuneSettingController con = Get.find();
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
-import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_active_status.dart';
+
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_cancel_button.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_edit_button.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_image.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_mobile_number.dart';
-import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_prefrence.dart';
+
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_reverse_rbt_status.dart';
-import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_subscribe_button.dart';
+
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_crbt_tune_status.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/widgtes/profile_user_name.dart';
-import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -180,7 +180,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ))),
             )
-          : SizedBox();
+          : const SizedBox();
       // Visibility(
       //   visible: profileController.isBothStatusHidden.value,
       //   child:
@@ -193,7 +193,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       runSpacing: 10,
       children: [
         ProfileCrbtTuneStatus(),
-        SizedBox(width: 20),
+        const SizedBox(width: 20),
         ProfileReverseRbtStatus(),
       ],
     );

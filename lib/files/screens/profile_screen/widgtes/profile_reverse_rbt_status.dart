@@ -11,7 +11,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 class ProfileReverseRbtStatus extends StatelessWidget {
   ProfileReverseRbtStatus({super.key});
-  ProfileController cont = Get.find();
+  final ProfileController cont = Get.find();
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -103,7 +103,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
         ),
         Obx(() {
           return CustomText(
-            title: ' : ' + cont.rrbtStatus.value,
+            title: ' : ${cont.rrbtStatus.value}',
             fontName: FontName.medium,
             fontSize: 14,
           );
@@ -123,7 +123,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
               children: [
                 Obx(() {
                   return cont.isHideRrbtActiveSuspendButton.value
-                      ? SizedBox()
+                      ? const SizedBox()
                       : resumeSuspendButton();
                 }),
                 SizedBox(
@@ -144,7 +144,7 @@ class ProfileReverseRbtStatus extends StatelessWidget {
   Widget unSubscribeButton() {
     return CustomButton(
       height: 35,
-      titlePadding: EdgeInsets.symmetric(horizontal: 12),
+      titlePadding: const EdgeInsets.symmetric(horizontal: 12),
       title: cont.rrbtSubscriptionButtonName.value, //unSubscribeStr.tr,
       textColor: white,
       color: blue,

@@ -270,7 +270,7 @@ class _BuyScreenState extends State<_BuyScreen> {
       height: 50,
       color: grey,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: isPhone(context!) ? 20 : 40),
+        padding: EdgeInsets.symmetric(horizontal: isPhone(context) ? 20 : 40),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
@@ -286,9 +286,9 @@ class _BuyScreenState extends State<_BuyScreen> {
   Widget headerCloseButton() {
     return CustomButton(
       onTap: () {
-        Navigator.pop(context!);
+        Navigator.pop(context);
       },
-      leftWidget: Icon(Icons.close),
+      leftWidget: const Icon(Icons.close),
     );
   }
 
@@ -397,7 +397,7 @@ class _BuyScreenState extends State<_BuyScreen> {
   Widget cancelButton() {
     return CustomButton(
       onTap: () {
-        Navigator.pop(context!);
+        Navigator.pop(context);
       },
       fontName: FontName.bold,
       title: cancelStr.tr,

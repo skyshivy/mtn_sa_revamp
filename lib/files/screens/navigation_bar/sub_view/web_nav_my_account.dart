@@ -78,7 +78,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
 
   Padding leftWidgetPadding() {
     return Padding(
-      padding: EdgeInsets.only(left: 14, right: 4),
+      padding: const EdgeInsets.only(left: 14, right: 4),
       child: Image.asset(
         personImg,
         height: 20,
@@ -88,7 +88,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
 
   void navigateTo(MenuModel item) {
     printCustom("Items tapped is ====== $item");
-    ProfileController profileController = Get.find();
+    ProfileController _ = Get.find();
     if (item.title == profileStr.tr) {
       context.goNamed(profileGoRoute);
       //profileController.getProfileDetail();

@@ -24,8 +24,8 @@ Future<Map<String, dynamic>?> deletePlayingTuneApiCall(
   };
   var parts = [];
   params.forEach((key, value) {
-    parts.add('${key}='
-        '${value}');
+    parts.add('$key='
+        '$value');
   });
   var formData = parts.join('&');
   Map<String, dynamic>? map = await ServiceCall().post(url, formData);

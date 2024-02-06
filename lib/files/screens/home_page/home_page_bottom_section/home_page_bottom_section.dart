@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
-import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 
 import 'package:mtn_sa_revamp/files/screens/home_page/home_page_bottom_section/sub_views/landing_company_view.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_page_bottom_section/sub_views/landing_social_meida.dart';

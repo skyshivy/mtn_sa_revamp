@@ -1,15 +1,13 @@
-import 'package:calendar_date_picker2/calendar_date_picker2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/home_cell_title_sub_title.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
-import 'package:mtn_sa_revamp/files/utility/style.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class TuneSettingTimeDateView extends StatelessWidget {

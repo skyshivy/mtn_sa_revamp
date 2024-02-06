@@ -1,9 +1,7 @@
-import 'dart:js';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
+
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
@@ -22,7 +20,7 @@ Widget tuneListSettingWidget(BuildContext context, ListToneApk1 info) {
     fontSize: 16,
     textColor: white,
     leftWidget: Padding(
-      padding: EdgeInsets.only(left: 6),
+      padding: const EdgeInsets.only(left: 6),
       child: Image.asset(
         settingImg,
         width: 20,

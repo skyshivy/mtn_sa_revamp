@@ -25,27 +25,27 @@ class LandingSocialMedia extends StatelessWidget {
             shrinkWrap: true,
             children: [
               mediaButton(facebookImg, () {
-                customWebLauncher(facebook_url);
+                customWebLauncher(facebookUrl);
               }),
               const SizedBox(width: 12),
               mediaButton(instagramImg, () {
-                customWebLauncher(instagram_url);
+                customWebLauncher(instagramUrl);
               }),
               const SizedBox(width: 12),
               mediaButton(twitterImg, () {
-                customWebLauncher(twitter_url);
+                customWebLauncher(twitterUrl);
               }),
               const SizedBox(width: 12),
               mediaButton(linkedInImg, () {
-                customWebLauncher(linkedin_url);
+                customWebLauncher(linkedinUrl);
               }),
               const SizedBox(width: 12),
               mediaButton(youtubeImg, () {
-                customWebLauncher(youtube_url);
+                customWebLauncher(youtubeUrl);
               }),
               const SizedBox(width: 12),
               mediaButton(messangerImg, () {
-                customWebLauncher(messanger_url);
+                customWebLauncher(messangerUrl);
               }),
             ],
           ),

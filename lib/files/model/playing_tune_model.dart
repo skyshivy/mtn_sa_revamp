@@ -92,14 +92,14 @@ class ListToneApk {
 
   ListToneApk.fromJson(Map<String, dynamic> json) {
     packUserDetailsCrbt = json['packUserDetails_Crbt'] != null
-        ? new PackUserDetailsCrbt.fromJson(json['packUserDetails_Crbt'])
+        ? PackUserDetailsCrbt.fromJson(json['packUserDetails_Crbt'])
         : null;
     serviceName = json['serviceName'];
     groupId = json['groupId'];
     if (json['toneDetails'] != null) {
       toneDetails = <ToneDetail>[];
       json['toneDetails'].forEach((v) {
-        toneDetails!.add(new ToneDetail.fromJson(v));
+        toneDetails!.add(ToneDetail.fromJson(v));
       });
     }
 
@@ -107,16 +107,16 @@ class ListToneApk {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.packUserDetailsCrbt != null) {
-      data['packUserDetails_Crbt'] = this.packUserDetailsCrbt!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (packUserDetailsCrbt != null) {
+      data['packUserDetails_Crbt'] = packUserDetailsCrbt!.toJson();
     }
-    data['serviceName'] = this.serviceName;
-    data['groupId'] = this.groupId;
-    if (this.toneDetails != null) {
-      data['toneDetails'] = this.toneDetails!.map((v) => v.toJson()).toList();
+    data['serviceName'] = serviceName;
+    data['groupId'] = groupId;
+    if (toneDetails != null) {
+      data['toneDetails'] = toneDetails!.map((v) => v.toJson()).toList();
     }
-    data['msisdnB'] = this.msisdnB;
+    data['msisdnB'] = msisdnB;
     return data;
   }
 }

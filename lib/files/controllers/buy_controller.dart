@@ -1,25 +1,22 @@
 import 'dart:convert';
-import 'dart:html';
 
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_popup_widget.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_tune_charge.dart';
 import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_existing_model.dart';
-import 'package:mtn_sa_revamp/files/model/custom_validity_model.dart';
+
 import 'package:mtn_sa_revamp/files/model/new_user_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
 import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_price_model.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
-import 'package:mtn_sa_revamp/files/utility/colors.dart';
+
 import 'package:mtn_sa_revamp/files/utility/string.dart';
-import 'package:mtn_sa_revamp/files/utility/urls.dart';
+
 import 'package:mtn_sa_revamp/files/view_model/buy_music_channel_api.dart';
 import 'package:mtn_sa_revamp/files/view_model/confirm_otp_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';

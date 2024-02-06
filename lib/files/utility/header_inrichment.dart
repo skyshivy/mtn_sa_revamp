@@ -3,14 +3,14 @@ import 'package:mtn_sa_revamp/files/controllers/login_controller.dart';
 import 'package:mtn_sa_revamp/files/cryptor/decryptor.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
-import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 void parseUrl() async {
   printCustom(
       "========== Uri parser ============ ${Uri.parse(Uri.base.toString())}");
   var uri = Uri.parse(Uri.base.toString());
-  printCustom("++++++++++++++${uri}");
+  printCustom("++++++++++++++$uri");
   printCustom("hasPort++++++++++++++ ${uri.hasPort}");
   printCustom("host++++++++++++++ ${uri.host}");
   printCustom("origin++++++++++++++ ${uri.origin}");
@@ -80,11 +80,13 @@ Future<String> _getValueForTag(List<String> lst) async {
       try {
         if (newL[0] == 'msisdn') {
           printCustom("msisdn = ${newL[1]}");
-          var msisdn1 = newL[1];
+          //var msisdn1 = newL[1];
           tempMsisdn = newL[1];
           //await StoreManager().setMsisdn(msisdn1);
         }
-      } catch (e) {}
+      } catch (e) {
+        printCustom('obj');
+      }
 
       try {
         if (newL[0] == 'ccusername') {
@@ -93,14 +95,18 @@ Future<String> _getValueForTag(List<String> lst) async {
           ccid = newL[1];
           StoreManager().setccid(ccid);
         }
-      } catch (e) {}
+      } catch (e) {
+        printCustom('obj');
+      }
       try {
         if (newL[0] == 'userName') {
           printCustom("userName = ${newL[1]}");
           userName = newL[1];
           StoreManager().setUserName(userName);
         }
-      } catch (e) {}
+      } catch (e) {
+        printCustom('obj');
+      }
 
       try {
         if (newL[0] == 'password') {
@@ -108,7 +114,9 @@ Future<String> _getValueForTag(List<String> lst) async {
           //password = newL[1];
           //StoreManager().setPassword(password);
         }
-      } catch (e) {}
+      } catch (e) {
+        printCustom('obj');
+      }
 
       try {
         if (newL[0] == 'channel') {
@@ -116,7 +124,9 @@ Future<String> _getValueForTag(List<String> lst) async {
           channelId = newL[1];
           StoreManager().setChannelId(channelId);
         }
-      } catch (e) {}
+      } catch (e) {
+        printCustom('obj');
+      }
     }
 
     printCustom("SKY Msisdn = ${StoreManager().msisdn}");

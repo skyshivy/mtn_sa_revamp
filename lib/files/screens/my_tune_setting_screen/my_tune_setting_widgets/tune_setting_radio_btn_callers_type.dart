@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -78,11 +78,11 @@ Widget _radioButton(bool isSelected) {
     isSelected ? radioButtonSelectedImg : radioButtonUnSelectedImg,
     width: 18,
   );
-  Icon(
-    isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-    color: isSelected ? atomCryan : subTitleColor,
-    size: 18,
-  ); //SizedBox(child: ,);
+  // Icon(
+  //   isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+  //   color: isSelected ? atomCryan : subTitleColor,
+  //   size: 18,
+  // ); //SizedBox(child: ,);
 }
 
 Widget _titleButton(bool isSelected, String title) {

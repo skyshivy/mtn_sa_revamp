@@ -4,7 +4,7 @@ import 'package:mtn_sa_revamp/files/controllers/tune_preview_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
-Widget tunePreviewControls_view(TunePreviewController cont) {
+Widget tunePreviewControlsView(TunePreviewController cont) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,7 +29,7 @@ Widget _nextButton(TunePreviewController cont) {
               width: 40,
               height: 40,
               borderColor: grey,
-              leftWidget: Icon(
+              leftWidget: const Icon(
                 Icons.skip_next,
                 color: greyDark,
               ),
@@ -51,7 +51,7 @@ Widget _previousButton(TunePreviewController cont) {
               width: 40,
               height: 40,
               borderColor: grey,
-              leftWidget: Icon(
+              leftWidget: const Icon(
                 Icons.skip_previous,
                 color: greyDark,
               ),
@@ -88,7 +88,7 @@ BoxDecoration _shadowDecoration() {
     BoxShadow(
         blurRadius: 5,
         spreadRadius: 2,
-        offset: Offset(0, 2),
+        offset: const Offset(0, 2),
         color: black.withOpacity(0.25))
   ], borderRadius: BorderRadius.circular(30), color: white);
 }

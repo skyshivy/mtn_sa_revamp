@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class BannerIndicator extends StatelessWidget {
-  BannerController controller = Get.find();
+  final BannerController controller = Get.find();
   final Function(int) tapIndex;
 
   BannerIndicator({super.key, required this.tapIndex});

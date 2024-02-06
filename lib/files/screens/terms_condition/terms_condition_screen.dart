@@ -9,6 +9,8 @@ import 'package:mtn_sa_revamp/files/string_json_file/terms_condition_file.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class TermsConditionScreen extends StatelessWidget {
+  const TermsConditionScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(

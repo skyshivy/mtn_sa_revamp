@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
@@ -132,7 +131,6 @@ class ServiceCall {
           request.headers.set(entry.key, val, preserveHeaderCase: true);
           printCustom("setting header is ===");
           printCustom("setting header is === ${request.headers}");
-          ;
         }
       }
 
@@ -163,8 +161,8 @@ class ServiceCall {
         return null;
       }
     } catch (error) {
-      printCustom("error for url #${url}");
-      printCustom("error =   =  ${error}");
+      printCustom("error for url #$url");
+      printCustom("error =   =  $error");
       return null;
     }
   }
@@ -194,7 +192,7 @@ class ServiceCall {
 
   reGeneratToken() async {
     String refreshToken = StoreManager().refreshToken;
-    String accessToken = StoreManager().accessToken;
+    //String accessToken = StoreManager().accessToken;
 
     String url = regenTokenUrl;
     printCustom("3url used currently is $url");
@@ -232,7 +230,7 @@ class ServiceCall {
       Map<String, dynamic> valueMap = json.decode(stringData);
       return valueMap;
     } on Exception catch (error) {
-      printCustom('catched ${error}');
+      printCustom('catched $error');
       return null;
     }
   }

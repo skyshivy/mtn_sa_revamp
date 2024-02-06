@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
@@ -14,7 +14,7 @@ Widget tuneSettingRepeatView() {
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      SizedBox(height: 20),
+      const SizedBox(height: 20),
       CustomText(
         title: repeatStr.tr,
         fontName: FontName.medium,
@@ -60,7 +60,7 @@ Widget _monthlyButton(TuneSettingController con) {
       textColor: (con.repeatYear.value == 1) ? white : black,
       borderColor: (con.repeatYear.value == 1) ? null : atomCryan,
       color: (con.repeatYear.value == 1) ? blue : white,
-      titlePadding: EdgeInsets.symmetric(horizontal: 16),
+      titlePadding: const EdgeInsets.symmetric(horizontal: 16),
       onTap: () {
         con.updateRepeatYear(1);
       },

@@ -122,7 +122,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
   Widget buttonTwo() {
     return ElevatedButton(
       onPressed: () {},
-      child: SizedBox(
+      child: const SizedBox(
         height: 40,
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -156,10 +156,10 @@ class _DeleteScreenState extends State<DeleteScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             CustomText(title: 'Custom ElevatedButton row'), // <-- Text
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
-            Icon(
+            const Icon(
               // <-- Icon
               Icons.download,
               color: red,
@@ -174,7 +174,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
   Widget buttonThree() {
     return ElevatedButton(
       onPressed: () {},
-      child: SizedBox(
+      child: const SizedBox(
         height: 40,
         child: Row(
           mainAxisSize: MainAxisSize.min,

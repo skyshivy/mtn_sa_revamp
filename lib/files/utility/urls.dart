@@ -1,4 +1,3 @@
-import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/constants.dart';
 
 String versionCode = '7.0';
@@ -11,12 +10,12 @@ String userName = '';
 String password = 'Oem@L#@1';
 int timeOut = 30;
 int resendOtpDuration = 90;
-String facebook_url = '';
-String instagram_url = '';
-String twitter_url = '';
-String linkedin_url = '';
-String youtube_url = '';
-String messanger_url = '';
+String facebookUrl = '';
+String instagramUrl = '';
+String twitterUrl = '';
+String linkedinUrl = '';
+String youtubeUrl = '';
+String messangerUrl = '';
 String defaultImageUrl = ''; //DEFAULT_IMAGE_URL
 String baseUrl = "";
 String baseUrlSecurity = '';

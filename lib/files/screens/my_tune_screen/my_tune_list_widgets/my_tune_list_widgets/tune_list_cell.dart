@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/cupertino.dart';
 import 'package:mtn_sa_revamp/files/model/my_tunel_list_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';

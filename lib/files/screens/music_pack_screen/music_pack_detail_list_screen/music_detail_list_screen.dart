@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/music_box_detail_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_empty_tune_view.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_grid_view/custom_grid_view.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
-import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
+
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -60,7 +60,7 @@ class _MusicPackDetailListScreenState extends State<MusicPackDetailListScreen> {
                     color: cont.list.isEmpty ? transparent : greyLight,
                     child: gridView(),
                   );
-            CustomGridView(list: cont.list, onTap: () {}); //gridView();
+            //CustomGridView(list: cont.list, onTap: () {}); //gridView();
           }),
         ),
       ],
@@ -83,10 +83,10 @@ class _MusicPackDetailListScreenState extends State<MusicPackDetailListScreen> {
                   itemBuilder: (context, index) {
                     return HomeTuneCell(
                       si: si,
-                      moreButtonWidget: SizedBox(
+                      moreButtonWidget: const SizedBox(
                         height: 35,
                       ),
-                      buttomButtonWidget: SizedBox(),
+                      buttomButtonWidget: const SizedBox(),
                       index: index,
                       info: cont.list[index],
                       onTap: () {

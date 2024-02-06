@@ -34,13 +34,13 @@ class HomeLoginButton extends StatelessWidget {
       return;
     }
     StoreManager().checkStoredValue();
-    Get.dialog(LoginScreen(), barrierDismissible: false);
+    Get.dialog(const LoginScreen(), barrierDismissible: false);
     //Get.toNamed(loginTapped);
   }
 
   Padding loaginLeftWidgetPadding() {
     return Padding(
-      padding: EdgeInsets.only(left: 12),
+      padding: const EdgeInsets.only(left: 12),
       child: Image.asset(
         personImg,
         height: 20,

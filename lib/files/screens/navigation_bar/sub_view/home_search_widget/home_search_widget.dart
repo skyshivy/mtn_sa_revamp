@@ -3,15 +3,14 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_scroll_by_key.dart';
-import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
+
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
-import 'package:mtn_sa_revamp/files/model/menu_model.dart';
+
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/sub_views/home_seach_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/sub_views/home_search_text_field.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/sub_views/home_search_type_button.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
-import 'package:mtn_sa_revamp/main.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 

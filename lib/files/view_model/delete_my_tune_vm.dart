@@ -1,12 +1,10 @@
-import 'dart:math';
-
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 Future<Map<String, dynamic>?> deleteMyTuneApiCall(
     String tuneId, String packName) async {
-  Random random = Random();
+  //Random random = Random();
   //var randomNumber = random.nextInt(1000000000);
   var url = deleteTuneUrl;
   Map<String, dynamic> params = {
@@ -17,8 +15,8 @@ Future<Map<String, dynamic>?> deleteMyTuneApiCall(
   };
   var parts = [];
   params.forEach((key, value) {
-    parts.add('${key}='
-        '${value}');
+    parts.add('$key='
+        '$value');
   });
   var formData = parts.join('&');
   Map<String, dynamic>? map = await ServiceCall().post(url, formData);

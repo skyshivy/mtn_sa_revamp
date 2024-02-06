@@ -1,11 +1,9 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
-import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
@@ -25,7 +23,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 class MusicBoxCard extends StatelessWidget {
   final MusicBoxSearchList info;
 
-  MusicBoxCard({super.key, required this.info});
+  const MusicBoxCard({super.key, required this.info});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -223,7 +221,7 @@ class MusicBoxCard extends StatelessWidget {
             isBuyMusicChannel: true);
         printCustom("buy taped");
       },
-      titlePadding: EdgeInsets.only(left: 4, top: 6),
+      titlePadding: const EdgeInsets.only(left: 4, top: 6),
       height: 40,
       leftWidget: Image.asset(
         buyImg,
@@ -254,7 +252,7 @@ class MusicBoxCard extends StatelessWidget {
 
         printCustom("Gift button");
       },
-      titlePadding: EdgeInsets.only(left: 2, top: 6),
+      titlePadding: const EdgeInsets.only(left: 2, top: 6),
       height: 40,
       leftWidget: SvgPicture.asset(
         giftTuneSvg,

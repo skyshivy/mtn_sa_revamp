@@ -87,7 +87,7 @@ class _MyTunePlayimgMoreButtonState extends State<MyTunePlayimgMoreButton> {
         if (p0.title == giftStr.tr) {
           Get.dialog(Center(
             child: GiftTuneView(
-              info: widget.info ?? TuneInfo(),
+              info: widget.info,
             ),
           ));
         } else if (p0.title == deleteStr.tr) {

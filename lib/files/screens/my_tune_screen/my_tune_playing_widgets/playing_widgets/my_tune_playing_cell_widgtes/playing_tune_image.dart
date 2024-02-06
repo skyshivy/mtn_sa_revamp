@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/basic.dart';
+
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
@@ -29,7 +29,7 @@ Widget _playingTuneLikeButton() {
         CustomButton(
           height: 30,
           color: whiteTrans,
-          titlePadding: EdgeInsets.only(left: 4, right: 12),
+          titlePadding: const EdgeInsets.only(left: 4, right: 12),
           leftWidget: Padding(
             padding: const EdgeInsets.only(left: 12),
             child: Image.asset(

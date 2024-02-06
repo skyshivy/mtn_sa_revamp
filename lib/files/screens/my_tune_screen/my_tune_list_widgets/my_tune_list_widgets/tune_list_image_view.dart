@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/model/my_tunel_list_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_list_widgets/my_tune_list_widgets/tune_list_more_button.dart';
-import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_list_widgets/my_tune_list_widgets/tune_list_pay_button.dart';
+
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/gredient.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
@@ -85,22 +85,22 @@ Widget inActiveStatus(ListToneApk1 info) {
 }
 
 Widget _tuneListLikeButton(ListToneApk1 info) {
-  return SizedBox();
-  CustomButton(
-    color: whiteTrans,
-    height: 30,
-    title: "",
-    fontName: FontName.medium,
-    titlePadding: const EdgeInsets.only(left: 4, right: 12),
-    leftWidget: Padding(
-      padding: const EdgeInsets.only(left: 12),
-      child: Image.asset(
-        likeImg,
-        height: 15,
-        width: 15,
-      ),
-    ),
-  );
+  return const SizedBox();
+  // CustomButton(
+  //   color: whiteTrans,
+  //   height: 30,
+  //   title: "",
+  //   fontName: FontName.medium,
+  //   titlePadding: const EdgeInsets.only(left: 4, right: 12),
+  //   leftWidget: Padding(
+  //     padding: const EdgeInsets.only(left: 12),
+  //     child: Image.asset(
+  //       likeImg,
+  //       height: 15,
+  //       width: 15,
+  //     ),
+  //   ),
+  // );
 }
 
 Widget _tuneListMoreButton(int index, TuneInfo info) {

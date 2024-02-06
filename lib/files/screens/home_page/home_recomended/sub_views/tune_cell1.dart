@@ -5,8 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_controller.dart';
-import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
-import 'package:mtn_sa_revamp/files/controllers/tune_cell_controller.dart';
+
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
@@ -15,8 +14,7 @@ import 'package:mtn_sa_revamp/files/custom_files/gift_tune_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
-import 'package:mtn_sa_revamp/files/reusable_view/buttons/buy_button.dart';
-import 'package:mtn_sa_revamp/files/reusable_view/buttons/gift_button.dart';
+
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/popover_view.dart';
 import 'package:mtn_sa_revamp/files/screens/popup_views/buy_popup_screen.dart/buy_screen.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
@@ -94,7 +92,7 @@ class _HomeTuneCell1State extends State<HomeTuneCell1> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    SizedBox(),
+                                    const SizedBox(),
                                     ResponsiveBuilder(
                                       builder: (context, sizingInformation) {
                                         return GestureDetector(
@@ -107,12 +105,13 @@ class _HomeTuneCell1State extends State<HomeTuneCell1> {
                                                     .deleteFromWishlistAction(
                                                         info ?? TuneInfo(),
                                                         widget.index);
-                                              } else {
-                                                RecoController recoController =
-                                                    Get.find();
-                                                recoController
-                                                    .wishlistTapped(info);
                                               }
+                                              // else {
+                                              //   RecoController recoController =
+                                              //       Get.find();
+                                              //   recoController
+                                              //       .wishlistTapped(info);
+                                              // }
                                             }, isWishlist: true);
 
                                             printCustom(
@@ -296,11 +295,9 @@ class _GiftAndBuyButton extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       if (StoreManager().isLoggedIn) {
-                        print("Open gift $cont.searchList[index]");
-
                         Get.dialog(Center(
                           child: GiftTuneView(
-                            info: cont.searchList[index] ?? TuneInfo(),
+                            info: cont.searchList[index],
                           ),
                         ));
                       } else {

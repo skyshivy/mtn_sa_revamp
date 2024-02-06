@@ -147,7 +147,9 @@ class StoreManager {
     appController.isLoggedIn.value = false;
     try {
       goRouterContext?.go(homeGoRoute);
-    } catch (e) {}
+    } catch (e) {
+      printCustom("errro23");
+    }
     return;
   }
 

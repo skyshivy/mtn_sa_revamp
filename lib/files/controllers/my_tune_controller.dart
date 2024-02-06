@@ -140,11 +140,11 @@ class MyTuneController extends GetxController {
     Map<String, dynamic>? resp;
     if (isCrbt) {
       printCustom(
-          "Delete playing tune name ${toneId} ===== ${playingList[index].msisdnB}");
+          "Delete playing tune name $toneId ===== ${playingList[index].msisdnB}");
       printCustom("Does contain msisdn ===== ${playingList[index].msisdnB}");
     } else {
       printCustom(
-          "Delete playing tune name rrbtTuneList ${toneId} ===== ${rrbtTuneList[index].msisdnB}");
+          "Delete playing tune name rrbtTuneList $toneId ===== ${rrbtTuneList[index].msisdnB}");
       printCustom(
           "Does contain msisdn rrbtTuneList ===== ${rrbtTuneList[index].msisdnB}");
     }
@@ -173,11 +173,11 @@ class MyTuneController extends GetxController {
           playingList[index].msisdnB ?? '', playingList[index].timeType ?? '');
     }
 
-    printCustom("Response is =========== ${resp}");
+    printCustom("Response is =========== $resp");
 
     if (resp != null) {
       DeleteMyTuneModel result = DeleteMyTuneModel.fromJson(resp);
-      printCustom("Delete playing tune ${result}");
+      printCustom("Delete playing tune $result");
       if (result.statusCode == "SC0000") {
         if (isCrbt) {
           playingList.removeAt(index);

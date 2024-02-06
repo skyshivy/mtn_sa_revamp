@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
-import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
+
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_day_selection_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_dedicated_msisdn_view.dart';
@@ -14,7 +14,7 @@ import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setti
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_time_type_button.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_setting_time_view.dart';
 import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_setting_widgets/tune_settng_time_date_view.dart';
-import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
+
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -214,7 +214,7 @@ Widget _dedicatedUserTextField() {
 
 Widget _whenWantToPlayText() {
   return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 2),
+    padding: const EdgeInsets.symmetric(horizontal: 2),
     child: CustomText(
       title: whenYouWantToPlayItStr.tr,
       fontName: FontName.medium,
@@ -225,7 +225,7 @@ Widget _whenWantToPlayText() {
 
 Widget _addNumberText() {
   return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 2),
+    padding: const EdgeInsets.symmetric(horizontal: 2),
     child: CustomText(
       title: addNuberStr.tr,
       fontName: FontName.medium,

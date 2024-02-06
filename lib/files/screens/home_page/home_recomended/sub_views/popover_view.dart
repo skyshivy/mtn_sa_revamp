@@ -1,9 +1,8 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/hover/custom_hover.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -16,7 +15,7 @@ popoverView(BuildContext context, Function() onTap, {bool isWishlist = false}) {
     radius: 4,
     context: context,
     bodyBuilder: (context) => _listView(context, isWishlist, onTap),
-    onPop: () => print('Popover was popped!'),
+    onPop: () => printCustom('Popover was popped!'),
     direction: PopoverDirection.bottom,
     width: 120,
     arrowHeight: 6,
@@ -33,7 +32,7 @@ _listView(BuildContext context, bool isWishlist, Function() onTap) {
           Navigator.of(context).pop();
           onTap();
 
-          print("Tapped");
+          printCustom("Tapped");
         },
         child: CustomOnHover(
           builder: (isHovered) {

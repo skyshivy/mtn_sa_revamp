@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_setting_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
-import 'package:mtn_sa_revamp/files/custom_files/positioned_popup.dart';
+
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -21,7 +21,7 @@ class TuneSettingTimeTypeButton extends StatefulWidget {
 
 class TuneSettingTimeTypeButtonState extends State<TuneSettingTimeTypeButton> {
   TuneSettingController con = Get.find();
-  GlobalKey _key = GlobalKey();
+  final GlobalKey _key = GlobalKey();
   List<MenuModel> menuList = [
     MenuModel(fullDay24HourStr.tr),
     MenuModel(selecteTimeStr.tr),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
@@ -9,7 +8,9 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class MyTuneListView extends StatelessWidget {
-  MyTuneController controller = Get.find();
+  final MyTuneController controller = Get.find();
+
+  MyTuneListView({super.key});
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
@@ -40,7 +41,7 @@ class MyTuneListView extends StatelessWidget {
     return Obx(
       () {
         return GridView.builder(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           itemCount: controller.tuneList.length,
           scrollDirection: si.isMobile ? Axis.horizontal : Axis.vertical,
           physics: si.isMobile ? null : const NeverScrollableScrollPhysics(),

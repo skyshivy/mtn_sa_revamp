@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
+
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 Widget profileImageWidget() {

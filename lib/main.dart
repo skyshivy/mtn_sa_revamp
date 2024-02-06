@@ -18,14 +18,14 @@ import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/otp_timer_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_cell_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/go_router/app_router.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/pack_status_model.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/music_pack_screen/music_box_card/music_box_card.dart';
+
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/header_inrichment.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -38,9 +38,7 @@ import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_preview_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
-import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_pack_status_vm.dart';
-import 'package:mtn_sa_revamp/files/view_model/get_tune_price_vm.dart';
 
 import 'package:url_strategy/url_strategy.dart';
 
@@ -125,12 +123,12 @@ Future<String> getJson() async {
     resendOtpDuration = data['RESEND_OTP_DURATION'];
     baseUrlSecurity = data['BASE_URL_SECURITY'];
     timeOut = data['SESSION_TIME_OUT'];
-    facebook_url = data['FACEBOOK_URL'];
-    instagram_url = data['INSTAGRAM_URL'];
-    messanger_url = data['MESSANGER_URL'];
-    youtube_url = data['YOUTUBE_URL'];
-    twitter_url = data['TWITTER_URL'];
-    linkedin_url = data['LINKEDIN_URL'];
+    facebookUrl = data['FACEBOOK_URL'];
+    instagramUrl = data['INSTAGRAM_URL'];
+    messangerUrl = data['MESSANGER_URL'];
+    youtubeUrl = data['YOUTUBE_URL'];
+    twitterUrl = data['TWITTER_URL'];
+    linkedinUrl = data['LINKEDIN_URL'];
     defaultImageUrl = data["DEFAULT_IMAGE_URL"];
 
     parseUrl();

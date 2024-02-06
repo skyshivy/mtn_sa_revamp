@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
+
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
-import 'package:mtn_sa_revamp/files/custom_files/font.dart';
+
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
-import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 Widget homeCellTitleSubTilte({
   final TuneInfo? info,
@@ -59,12 +58,19 @@ Widget homeCellTitleSubTilte({
       GestureDetector(
         onDoubleTap: () {
           Clipboard.setData(ClipboardData(
-                  text:
-                      "${subTitle ?? info?.artistName ?? info?.artist ?? ' ARtist name here'}"))
+                  text: subTitle ??
+                      info?.artistName ??
+                      info?.artist ??
+                      ' ARtist name here'))
               .then((_) {
-            Get.snackbar("Copied",
-                "${subTitle ?? info?.artistName ?? info?.artist ?? ' ARtist name here'}",
-                backgroundColor: white, duration: const Duration(seconds: 2));
+            Get.snackbar(
+                "Copied",
+                subTitle ??
+                    info?.artistName ??
+                    info?.artist ??
+                    ' ARtist name here',
+                backgroundColor: white,
+                duration: const Duration(seconds: 2));
           });
 
           printCustom(

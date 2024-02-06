@@ -1,22 +1,20 @@
-import 'dart:js';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
-import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_mobile_nav_bar.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
-import 'package:mtn_sa_revamp/files/screens/tune_preview_screen/tune_preview_screen.dart';
+
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/home_reco_tab_view.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
 

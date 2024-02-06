@@ -80,54 +80,52 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
     );
   }
 
-  List<Container> itemsWidget() {
+  List<InkWell> itemsWidget() {
     return controller.bannerList.map((banner) {
-      return Container(
-        child: InkWell(
-          hoverColor: transparent,
-          onTap: () {
-            printCustom("Banner path is ${banner.bannerPath}");
-            printCustom("Banner searchKey ${banner.searchKey}");
-            printCustom("Banner type ${banner.type}");
-            printCustom("Banner bannerOrder ${banner.bannerOrder}");
-            String searchKey = banner.searchKey ?? '';
-            String type = banner.type ?? '';
-            String bannerOrder = banner.bannerOrder ?? '';
-            context.goNamed(
-              bannerGoRoute,
-              queryParameters: {
-                'searchKey': searchKey,
-                'type': type,
-                'bannerOrder': bannerOrder
-              },
-            );
-            // Get.toNamed(bannerTapped, parameters: {
-            //   "searchKey": searchKey,
-            //   "type": type,
-            //   "bannerOrder": bannerOrder
-            // });
-          },
-          child: Stack(alignment: Alignment.bottomCenter, children: [
-            Container(
-                color: white,
-                child: customImage(url: banner.bannerPath ?? logoBigImg)
-                // FadeInImage.assetNetwork(
-                //   placeholder: placeholderImage,
-                //   image: banner.bannerPath ?? logoBigImg,
-                //   fit: BoxFit.fill,
-                //   height: double.infinity,
-                //   width: double.infinity,
-                //   imageErrorBuilder: (context, error, stackTrace) {
-                //     return Image.asset(
-                //       defaultTuneImagePng,
-                //       width: double.infinity,
-                //       fit: BoxFit.cover,
-                //     );
-                //   },
-                // ),
-                ),
-          ]),
-        ),
+      return InkWell(
+        hoverColor: transparent,
+        onTap: () {
+          printCustom("Banner path is ${banner.bannerPath}");
+          printCustom("Banner searchKey ${banner.searchKey}");
+          printCustom("Banner type ${banner.type}");
+          printCustom("Banner bannerOrder ${banner.bannerOrder}");
+          String searchKey = banner.searchKey ?? '';
+          String type = banner.type ?? '';
+          String bannerOrder = banner.bannerOrder ?? '';
+          context.goNamed(
+            bannerGoRoute,
+            queryParameters: {
+              'searchKey': searchKey,
+              'type': type,
+              'bannerOrder': bannerOrder
+            },
+          );
+          // Get.toNamed(bannerTapped, parameters: {
+          //   "searchKey": searchKey,
+          //   "type": type,
+          //   "bannerOrder": bannerOrder
+          // });
+        },
+        child: Stack(alignment: Alignment.bottomCenter, children: [
+          Container(
+              color: white,
+              child: customImage(url: banner.bannerPath ?? logoBigImg)
+              // FadeInImage.assetNetwork(
+              //   placeholder: placeholderImage,
+              //   image: banner.bannerPath ?? logoBigImg,
+              //   fit: BoxFit.fill,
+              //   height: double.infinity,
+              //   width: double.infinity,
+              //   imageErrorBuilder: (context, error, stackTrace) {
+              //     return Image.asset(
+              //       defaultTuneImagePng,
+              //       width: double.infinity,
+              //       fit: BoxFit.cover,
+              //     );
+              //   },
+              // ),
+              ),
+        ]),
       );
     }).toList();
   }

@@ -17,6 +17,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class MyTuneScreen extends StatefulWidget {
+  const MyTuneScreen({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _MyTuneScreenState();

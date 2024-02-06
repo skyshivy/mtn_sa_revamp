@@ -6,8 +6,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_web_launcher.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/string_json_file/privacy_policy.dart';
-import 'package:mtn_sa_revamp/files/utility/colors.dart';
-import 'package:mtn_sa_revamp/files/utility/string.dart';
+
 import 'package:responsive_builder/responsive_builder.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {

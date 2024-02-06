@@ -1,7 +1,5 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
@@ -9,15 +7,14 @@ import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/category_controller/category_popup_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/banner_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/text_button.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/custom_confirm_alert_view.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
-import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_about_button.dart';
-import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_faq_button.dart';
+
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_login_button.dart';
-import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_search_widget/home_search_widget.dart';
+
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/home_logo_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/my_tune_button.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/sub_view/web_nav_my_account.dart';
@@ -26,10 +23,9 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class WebNavBarView extends StatelessWidget {
-  AppController appController = Get.find();
+  final AppController appController = Get.find();
   final StatefulNavigationShell navigationShell;
   final RecoController recCont = Get.find();
   final BannerController banCont = Get.find();

@@ -60,8 +60,8 @@ class _HomeRecoTabViewState extends State<HomeRecoTabView> {
     });
   }
 
-  Container mainContainer(int index) {
-    return Container(
+  Widget mainContainer(int index) {
+    return SizedBox(
       child: InkWell(
         onTap: () {
           controller.updateSelectedIndex(index);

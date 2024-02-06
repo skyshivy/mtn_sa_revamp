@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:mtn_sa_revamp/files/model/edit_profile.dart';
@@ -46,8 +45,8 @@ class ProfileVM {
     };
     var parts = [];
     params.forEach((key, value) {
-      parts.add('${key}='
-          '${value}');
+      parts.add('$key='
+          '$value');
     });
     var formData = parts.join('&');
     Map<String, dynamic>? res =

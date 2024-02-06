@@ -9,7 +9,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_msisdn_text_field.dart';
-import 'package:mtn_sa_revamp/files/custom_files/font.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: si.isMobile ? 15 : 10,
             )
           : Padding(
-              padding: EdgeInsets.only(top: 4, bottom: 12),
+              padding: const EdgeInsets.only(top: 4, bottom: 12),
               child: ResponsiveBuilder(
                 builder: (context, si) {
                   return CustomText(
@@ -215,7 +215,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void onSubmit(String value) async {
     if (controller.isMsisdnVarified.value) {
       controller.otp.value = value;
-      bool isVarified = await controller.verifyOtpButtonAction();
+      bool _ = await controller.verifyOtpButtonAction();
       printCustom("Login Screen \n onSubmit method  123\n");
     } else {
       controller.varifyMsisdnButtonAction();

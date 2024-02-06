@@ -106,7 +106,7 @@ class LandingCompanyView extends StatelessWidget {
     printCustom("Url is ===== $url");
     context.goNamed(termsGoRoute);
     return;
-    customWebLauncher(url);
-    printCustom("termsTapped tapped");
+    // customWebLauncher(url);
+    // printCustom("termsTapped tapped");
   }
 }

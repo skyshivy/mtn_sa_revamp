@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 import 'package:mtn_sa_revamp/files/controllers/app_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/drawer_controller.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_widget/mobile_drawer_cell.dart';
@@ -8,7 +7,7 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 class MobileDrawer extends StatelessWidget {
   final MyDrawerController con = Get.find();
-  AppController appCont = Get.find();
+  final AppController appCont = Get.find();
   MobileDrawer({super.key});
   @override
   Widget build(BuildContext context) {

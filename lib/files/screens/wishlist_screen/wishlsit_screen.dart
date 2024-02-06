@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
-import 'package:mtn_sa_revamp/enums/font_enum.dart';
+
 import 'package:mtn_sa_revamp/files/controllers/tune_cell_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_empty_tune_view.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
+
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
-import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell2.dart';
+
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
-import 'package:mtn_sa_revamp/files/utility/string.dart';
+
 import 'package:responsive_builder/responsive_builder.dart';
 
 class WishlistScreen extends StatefulWidget {
