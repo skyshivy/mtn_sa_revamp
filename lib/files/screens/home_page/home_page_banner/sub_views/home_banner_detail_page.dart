@@ -12,8 +12,17 @@ import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class HomeBannerDetailPage extends StatefulWidget {
-  const HomeBannerDetailPage({
+// class HomeBannerDetailPage extends StatefulWidget {
+
+//   @override
+//   State<StatefulWidget> createState() {
+//     return _HomeBannerDetailPageState();
+//   }
+// }
+
+class HomeBannerDetailPage extends StatelessWidget {
+  final BannerDetailController controller = Get.find();
+  HomeBannerDetailPage({
     super.key,
     required this.type,
     required this.bannerOrder,
@@ -22,27 +31,6 @@ class HomeBannerDetailPage extends StatefulWidget {
   final String type;
   final String bannerOrder;
   final String searchKey;
-
-  @override
-  State<StatefulWidget> createState() {
-    return _HomeBannerDetailPageState();
-  }
-}
-
-class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
-  late BannerDetailController controller;
-  @override
-  void initState() {
-    controller = Get.find();
-    //controller.getDetail(widget.bannerOrder, widget.searchKey);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    Get.delete<BannerDetailController>();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +80,7 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
               gridDelegate:
                   delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
               itemBuilder: (context, index) {
-                return cell(index, si);
+                return cell(context, index, si);
               },
             );
           }),
@@ -101,7 +89,7 @@ class _HomeBannerDetailPageState extends State<HomeBannerDetailPage> {
     );
   }
 
-  Widget cell(int index, SizingInformation si) {
+  Widget cell(BuildContext context, int index, SizingInformation si) {
     return HomeTuneCell(
       si: si,
       index: index,

@@ -12,23 +12,20 @@ import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
-class LandingPageBanner extends StatefulWidget {
-  const LandingPageBanner({
-    super.key,
-  });
+// class LandingPageBanner extends StatefulWidget {
+//   const LandingPageBanner({
+//     super.key,
+//   });
 
-  @override
-  State<LandingPageBanner> createState() => _LandingPageBannerState();
-}
+//   @override
+//   State<LandingPageBanner> createState() => _LandingPageBannerState();
+// }
 
-class _LandingPageBannerState extends State<LandingPageBanner> {
-  BannerController controller = Get.find();
-  CarouselController carouselController = CarouselController();
-  @override
-  void initState() {
-    super.initState();
-    //controller.getBanner();
-  }
+class LandingPageBanner extends StatelessWidget {
+  final BannerController controller = Get.find();
+  final CarouselController carouselController = CarouselController();
+
+  LandingPageBanner({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +55,9 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
     return Obx(() {
       return SizedBox(
           height: width > 700 ? (width / 3.5) : (width / 2.5),
-          child:
-              controller.isLoading.value ? loadingIndicator() : corosoulWidget()
+          child: controller.isLoading.value
+              ? loadingIndicator()
+              : corosoulWidget(context)
           // CustomImage(
           //     index: 8,
           //   ),
@@ -67,7 +65,7 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
     });
   }
 
-  Widget corosoulWidget() {
+  Widget corosoulWidget(BuildContext context) {
     return Container(
       color: white,
       width: double.infinity, //currentSize.width,
@@ -75,12 +73,12 @@ class _LandingPageBannerState extends State<LandingPageBanner> {
       child: CarouselSlider(
         carouselController: carouselController,
         options: carousalOptionWidget(),
-        items: itemsWidget(),
+        items: itemsWidget(context),
       ),
     );
   }
 
-  List<InkWell> itemsWidget() {
+  List<InkWell> itemsWidget(BuildContext context) {
     return controller.bannerList.map((banner) {
       return InkWell(
         hoverColor: transparent,

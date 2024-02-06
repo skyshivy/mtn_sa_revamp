@@ -33,13 +33,13 @@ class _WebLandingPageState extends State<WebLandingPage> {
           primary: true,
           child: Column(
             children: [
-              const LandingPageBanner(),
+              LandingPageBanner(),
               const SizedBox(height: 20),
               homeSearchTopView(),
               const SizedBox(height: 20),
-              const LandingRecoView(),
+              LandingRecoView(),
               SizedBox(height: si.isMobile ? 10 : 80),
-              const HomeMusicPackView(),
+              HomeMusicPackView(),
               const LandingInfoPage(),
               const LandingPageBottomSection()
             ],

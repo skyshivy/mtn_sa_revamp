@@ -10,32 +10,24 @@ import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class HomeMusicPackView extends StatefulWidget {
-  const HomeMusicPackView({super.key});
+// class HomeMusicPackView extends StatefulWidget {
+//   const HomeMusicPackView({super.key});
 
-  @override
-  State<StatefulWidget> createState() => _HomeMusicPackViewState();
-}
+//   @override
+//   State<StatefulWidget> createState() => _HomeMusicPackViewState();
+// }
 
-class _HomeMusicPackViewState extends State<HomeMusicPackView> {
+class HomeMusicPackView extends StatelessWidget {
+  HomeMusicPackView({super.key});
   final List<String> imgList = [musicBox1Img, musicBox2Img, musicBox3Img];
   final List<String> infoList = [
     musicPackInfo1,
     musicPackInfo2,
     musicPackInfo3
   ];
-  var scroll = ScrollController();
-  MusicPackController cont = Get.find();
-  @override
-  void initState() {
-    super.initState();
-  }
 
-  @override
-  void dispose() {
-    //Get.delete<MusicPackController>();
-    super.dispose();
-  }
+  final scroll = ScrollController();
+  final MusicPackController cont = Get.find();
 
   final CarouselController carouselController = CarouselController();
   @override

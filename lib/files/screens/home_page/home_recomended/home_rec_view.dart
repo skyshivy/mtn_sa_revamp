@@ -22,16 +22,18 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
-class LandingRecoView extends StatefulWidget {
-  const LandingRecoView({super.key});
+// class LandingRecoView extends StatefulWidget {
+//   const LandingRecoView({super.key});
 
-  @override
-  State<LandingRecoView> createState() => _LandingRecoViewState();
-}
+//   @override
+//   State<LandingRecoView> createState() => _LandingRecoViewState();
+// }
 
-class _LandingRecoViewState extends State<LandingRecoView> {
+class LandingRecoView extends StatelessWidget {
   RecoController controller = Get.find();
   late SizingInformation si;
+
+  LandingRecoView({super.key});
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
