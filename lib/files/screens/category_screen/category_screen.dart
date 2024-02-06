@@ -104,10 +104,10 @@ class CustomGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CategoryController controller = Get.find();
-    TuneCellController cellCont = Get.find();
-    cellCont.tuneList.value = controller.searchList;
-    cellCont.si = si;
-    cellCont.isWishlist = false;
+    //TuneCellController cellCont = Get.find();
+    // cellCont.tuneList.value = controller.searchList;
+    // cellCont.si = si;
+    // cellCont.isWishlist = false;
     return Padding(
         padding:
             EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30, vertical: 8),

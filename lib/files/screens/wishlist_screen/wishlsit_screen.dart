@@ -29,7 +29,7 @@ class WishlistScreen extends StatefulWidget {
 
 class _WishlistScreenState extends State<WishlistScreen> {
   late WishlistController wishlistController;
-  TuneCellController cellCont = Get.find();
+  //TuneCellController cellCont = Get.find();
   @override
   void initState() {
     wishlistController = Get.find();
@@ -69,11 +69,11 @@ class _WishlistScreenState extends State<WishlistScreen> {
   }
 
   Widget gridView() {
-    cellCont.tuneList.value = wishlistController.list;
-    cellCont.isWishlist = true;
+    // cellCont.tuneList.value = wishlistController.list;
+    // cellCont.isWishlist = true;
     return ResponsiveBuilder(
       builder: (context, si) {
-        cellCont.si = si;
+        //cellCont.si = si;
         return Obx(() {
           return GridView.builder(
             shrinkWrap: true,

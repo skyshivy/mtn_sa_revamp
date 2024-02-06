@@ -20,6 +20,9 @@ class MobileAppBar extends StatelessWidget {
         child: MobileDrawer(),
       ),
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: white,
+        ),
         leading: mobileAppBarLogoButton(context),
         backgroundColor: blue,
       ),
