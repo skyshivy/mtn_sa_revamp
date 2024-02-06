@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -19,7 +20,7 @@ class SeeMoreScreen extends StatefulWidget {
 }
 
 class _SeeMoreScreenState extends State<SeeMoreScreen> {
-  TuneCellController cellCont = Get.find();
+  //TuneCellController cellCont = Get.find();
   RecoController recCont = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -42,11 +43,11 @@ class _SeeMoreScreenState extends State<SeeMoreScreen> {
         // cellCont.isWishlist = false;
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 8 : 30),
-          child: SingleChildScrollView(
-            child: GridView.builder(
+          child: SingleChildScrollView(child: Obx(() {
+            return GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: cellCont.tuneList.length,
+              itemCount: recCont.displayList.length,
               gridDelegate: delegate(si,
                   mainAxisExtent: si.isMobile ? 260 : null,
                   mainAxisSpacing: si.isMobile ? 8 : null,
@@ -65,8 +66,8 @@ class _SeeMoreScreenState extends State<SeeMoreScreen> {
                       : null,
                 );
               },
-            ),
-          ),
+            );
+          })),
         );
       },
     );

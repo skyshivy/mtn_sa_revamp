@@ -30,7 +30,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 // }
 
 class LandingRecoView extends StatelessWidget {
-  RecoController controller = Get.find();
+  final RecoController controller = Get.find();
   late SizingInformation si;
 
   LandingRecoView({super.key});
