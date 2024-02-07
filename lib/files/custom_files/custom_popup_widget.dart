@@ -9,16 +9,23 @@ Future<dynamic> showPopup(
       Center(
         child: Material(
           color: transparent,
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
+          child: Scaffold(
+            backgroundColor: transparent,
+            body: Center(
+              child: ListView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.manual,
+                shrinkWrap: true,
                 children: [
-                  widget,
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      widget,
+                    ],
+                  ),
                 ],
               ),
-            ],
+            ),
           ),
         ),
       ),

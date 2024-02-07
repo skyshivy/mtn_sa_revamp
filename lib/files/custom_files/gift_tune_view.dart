@@ -50,27 +50,33 @@ class _GiftTuneViewState extends State<GiftTuneView> {
   }
 
   Widget mainContaner(BuildContext context) {
-    return ResponsiveBuilder(
-      builder: (context, si) {
-        return Padding(
-          padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 30 : 0),
-          child: Container(
-            width: si.isMobile ? null : 400,
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8), color: white),
-            child: mainColumn(context, si),
-          ),
-        );
-      },
+    return Scaffold(
+      backgroundColor: transparent,
+      body: Center(
+        child: ResponsiveBuilder(
+          builder: (context, si) {
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: si.isMobile ? 30 : 0),
+              child: Container(
+                width: si.isMobile ? null : 400,
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8), color: white),
+                child: mainColumn(context, si),
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 
-  Column mainColumn(BuildContext context, SizingInformation si) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+  Widget mainColumn(BuildContext context, SizingInformation si) {
+    return ListView(
+      shrinkWrap: true,
+      // mainAxisSize: MainAxisSize.min,
+      // mainAxisAlignment: MainAxisAlignment.center,
+      // crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         titleContaner(context, si),
         Padding(
