@@ -82,6 +82,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                 delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
             itemBuilder: (context, index) {
               return HomeTuneCell(
+                isWishlist: true,
                 index: index,
                 info: wishlistController.list[index],
                 si: si,
