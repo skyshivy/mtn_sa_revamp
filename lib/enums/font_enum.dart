@@ -1,18 +1,9 @@
 enum FontName {
   bold,
-  boldItalic,
   extraBold,
-  extraBoldItalic,
-  extraLight,
-  extraLightItalic,
   light,
-  lightItalic,
   medium,
   mediumItalic,
-  bLight,
-  bPm,
-  bRegular,
-  bThin
 }
 
 enum TimeType {

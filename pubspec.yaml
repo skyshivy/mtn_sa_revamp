@@ -109,27 +109,12 @@ flutter:
     - family: bold
       fonts:
         - asset: assets/fonts/ATOM_SANS_BOLD.OTF
-    - family: boldItalic
-      fonts:
-        - asset: assets/fonts/ATOM_SANS_BOLD_ITALIC.OTF
     - family: extraBold
       fonts:
         - asset: assets/fonts/ATOM_SANS_EXTRA_BOLD.OTF
-    - family: extraBoldItalic
-      fonts:
-        - asset: assets/fonts/ATOM_SANS_EXTRA_BOLD_ITALIC.OTF
-    - family: extraLight
-      fonts:
-        - asset: assets/fonts/ATOM_SANS_THIN.OTF
-    - family: extraLightItalic
-      fonts:
-        - asset: assets/fonts/ATOM_SANS_THIN_ITALIC.OTF
     - family: light
       fonts:
         - asset: assets/fonts/ATOM_SANS_LIGHT.OTF
-    - family: lightItalic
-      fonts:
-        - asset: assets/fonts/ATOM_SANS_LIGHT_ITALIC.OTF
     - family: medium
       fonts:
         - asset: assets/fonts/ATOM_SANS_MEDIUM.OTF
@@ -137,19 +122,6 @@ flutter:
       fonts:
         - asset: assets/fonts/ATOM_SANS_MEDIUM_ITALIC.OTF
 
-
-    - family: bLight
-      fonts:
-        - asset: assets/fonts/ATOM-Light.ttf
-    - family: bPm
-      fonts:
-        - asset: assets/fonts/ATOM-PM.otf
-    - family: bRegular
-      fonts:
-        - asset: assets/fonts/ATOM-Regular.ttf
-    - family: bThin
-      fonts:
-        - asset: assets/fonts/ATOM-Thin.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:
