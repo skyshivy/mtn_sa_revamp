@@ -16,6 +16,7 @@ import 'package:mtn_sa_revamp/files/model/tune_price_model.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 import 'package:mtn_sa_revamp/files/view_model/buy_music_channel_api.dart';
 import 'package:mtn_sa_revamp/files/view_model/confirm_otp_vm.dart';
@@ -67,6 +68,7 @@ class BuyController extends GetxController {
   }
 
   customInit() {
+    password = '';
     others = StoreManager().appSetting?.responseMap?.settings?.others;
     crbtVipOfferCode = others?.crbtVipOfferCode?.attribute ?? '';
     printCustom("crbtVipOfferCode customInit $crbtVipOfferCode");
@@ -249,6 +251,7 @@ class BuyController extends GetxController {
   }
 
   msisdnValidation(TuneInfo? inf, {bool isBuyMusicChannel = false}) async {
+    password = '';
     this.isBuyMusicChannel = isBuyMusicChannel;
     if (isBuyMusicChannel) {
       isHideUpgrade.value = false;
@@ -272,6 +275,7 @@ class BuyController extends GetxController {
         SubscriberValidationModel model =
             SubscriberValidationModel.fromJson(valueMap);
         if (model.statusCode == "SC0000") {
+          password = msisdn.value;
           if (model.responseMap?.respCode == 'SC0000') {
             var _ = await _generateOtp(msisdn.value, false);
             isNewUser = false;

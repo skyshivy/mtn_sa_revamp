@@ -10,7 +10,8 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 class PasswordValidationVm {
   Future<Map<String, dynamic>?> validatePassword(
       String msisdn, String securityCounter, bool isAutoLogin) async {
-    var pass = password; //isAutoLogin ? '' : 'Oem@L#@1';
+    var pass = "Oem@L#@1"; //"$password" "A@#"; //isAutoLogin ? '' : 'Oem@L#@1';
+    printCustom("My new hard code password is $pass");
     var appendPassword = "$pass$securityCounter";
     Random random = Random();
     int randomNumber = random.nextInt(1000000000);

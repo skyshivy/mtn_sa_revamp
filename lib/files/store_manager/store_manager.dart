@@ -90,7 +90,7 @@ class StoreManager {
 
     //password = await storage.read(key: "password") ?? 'Oem@L#@1';
     //password = prefs.getString('password') ?? 'Oem@L#@1';
-    password = prefs.get('password') ?? 'Oem@L#@1';
+    //password = prefs.get('password') ?? 'Oem@L#@1';
 
     //channelId = await storage.read(key: "channelId") ?? '4';
     //channelId = prefs.getString('channelId') ?? '4';
@@ -118,7 +118,7 @@ class StoreManager {
     refreshToken = prefs.get("refreshToken") ?? '';
     ccid = prefs.get('ccid') ?? '';
     userName = prefs.get('userName') ?? '';
-    password = prefs.get('password') ?? 'Oem@L#@1';
+    //password = prefs.get('password') ?? 'Oem@L#@1';
     channelId = prefs.get('channelId') ?? channelId;
     printCustom(
         "Stored value in pref is \nisEnglish = $isEnglish\nisLoggedIn=$isLoggedIn\naccessToken= $accessToken\ndeviceId=$deviceId\nmsisdn=$msisdn\nrefreshToken=$refreshToken");
@@ -139,7 +139,7 @@ class StoreManager {
     setLoggedIn(false);
     setccid('');
     setUserName('');
-    setPassword('');
+    //setPassword('');
     setChannelId('4');
     crbtPackStatus = null;
 
@@ -225,21 +225,21 @@ class StoreManager {
     }
   }
 
-  setPassword(String value) async {
-    if (value.isEmpty) {
-      value = 'Oem@L#@1';
-    }
-    password = value;
-    printCustom("Storing password = $value");
-    try {
-      prefs.put('password', value);
-      //prefs.setString('password', value);
+  // setPassword(String value) async {
+  //   if (value.isEmpty) {
+  //     value = 'Oem@L#@1';
+  //   }
+  //   password = value;
+  //   printCustom("Storing password = $value");
+  //   try {
+  //     prefs.put('password', value);
+  //     //prefs.setString('password', value);
 
-      //storage.write(key: 'password', value: value);
-    } on Exception catch (e) {
-      printCustom("Error saving password = ${e.toString()}");
-    }
-  }
+  //     //storage.write(key: 'password', value: value);
+  //   } on Exception catch (e) {
+  //     printCustom("Error saving password = ${e.toString()}");
+  //   }
+  // }
 
   setChannelId(String value) async {
     if (value.isEmpty) {

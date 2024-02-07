@@ -17,6 +17,7 @@ import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
+import 'package:mtn_sa_revamp/files/utility/urls.dart';
 import 'package:mtn_sa_revamp/files/view_model/get_security_token_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/login_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/new_registration_vm.dart';
@@ -52,6 +53,7 @@ class LoginController extends GetxController {
   }
 
   resetValue() async {
+    msisdn.value = '';
     errorMessage.value = '';
     isVerifying.value = false;
     isMsisdnVarified.value = false;
@@ -83,12 +85,14 @@ class LoginController extends GetxController {
   }
 
   Future<String> _validationMsisdn() async {
+    password = '';
     String stringData = await LoginVm().subscribeMsisdn(msisdn.value);
     Map<String, dynamic> valueMap = json.decode(stringData);
     isNewUser = false;
     SubscriberValidationModel model =
         SubscriberValidationModel.fromJson(valueMap);
     if (model.statusCode == "SC0000") {
+      password = msisdn.value;
       if (model.responseMap?.respCode == 'SC0000') {
         await generateOtp();
         otpController.initTimer();
@@ -241,11 +245,13 @@ class LoginController extends GetxController {
 
   Future<void> autoLogin(String msisdn1) async {
     msisdn.value = msisdn1;
+    password = '';
     String stringData = await LoginVm().subscribeMsisdn(msisdn1);
     Map<String, dynamic> valueMap = json.decode(stringData);
     SubscriberValidationModel model =
         SubscriberValidationModel.fromJson(valueMap);
     if (model.responseMap?.respCode == 'SC0000') {
+      password = msisdn1;
       //await _generateOtp();
       await _autoLoginPassowrdValidation();
       printCustom("Existing user******");

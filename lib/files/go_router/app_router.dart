@@ -74,7 +74,7 @@ final router = GoRouter(
         myTuneScreen(),
         tuneSettingScreen(),
         musicPackScreenRoute(),
-        //deleteScreenRoute(),
+        deleteScreenRoute(),
         historyScreenRoute(),
         _privatePolicyScreen(),
         _helpScreen(),
