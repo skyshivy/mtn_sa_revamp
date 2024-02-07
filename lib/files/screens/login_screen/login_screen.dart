@@ -57,19 +57,25 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget popupContainer() {
     return ResponsiveBuilder(
       builder: (context, si) {
-        return Container(
-          width: si.isMobile ? 300 : 550,
-          clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6), color: white),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              closeButtonPopup(),
-              paddingColumn(si),
-            ],
+        return Scaffold(
+          backgroundColor: transparent,
+          body: Center(
+            child: Container(
+              width: si.isMobile ? 300 : 550,
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6), color: white),
+              child: ListView(
+                shrinkWrap: true,
+                // mainAxisSize: MainAxisSize.min,
+                // mainAxisAlignment: MainAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  closeButtonPopup(),
+                  paddingColumn(si),
+                ],
+              ),
+            ),
           ),
         );
       },
