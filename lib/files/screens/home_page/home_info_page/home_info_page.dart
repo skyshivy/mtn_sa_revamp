@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mtn_sa_revamp/enums/font_enum.dart';
-import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
-import 'package:mtn_sa_revamp/files/custom_files/font.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
-import 'package:mtn_sa_revamp/files/utility/string.dart';
+
 import 'package:responsive_builder/responsive_builder.dart';
 
 class LandingInfoPage extends StatelessWidget {
@@ -25,7 +21,7 @@ class LandingInfoPage extends StatelessWidget {
       },
     );
   }
-
+/*
   Row mainRow(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -107,4 +103,5 @@ class LandingInfoPage extends StatelessWidget {
       ),
     );
   }
+  */
 }
