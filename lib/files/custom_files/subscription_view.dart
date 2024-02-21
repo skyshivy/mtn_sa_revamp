@@ -160,14 +160,14 @@ class _SubscriptionViewState extends State<SubscriptionView> {
       //   widget.onSelectetion!(packName);
       // }
 
-      if ((bCont.crbtVipOfferCode == subTitle) ||
+      if ((bCont.crbtVipOfferCode == packName) ||
           (bCont.crbtVipOfferCode == title)) {
-        bCont.tuneCharge.value = "0";
+        bCont.tuneCharge.value = "0 Ks";
       } else {
         bCont.tuneCharge.value = bCont.storeTuneCharge;
       }
       printCustom(
-          "title $title \n subtitle $subTitle \n crbtVipOfferCode ${bCont.crbtVipOfferCode}");
+          "title  = $title  subtitle = $subTitle  crbtVipOfferCode  = ${bCont.crbtVipOfferCode}");
     }, child: Obx(() {
       return Container(
         decoration: BoxDecoration(
