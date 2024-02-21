@@ -24,10 +24,10 @@ BuildContext? goRouterContext;
 late PlayerController playerController;
 //FocusNode keyScrollFocusNode = FocusNode();
 void main() async {
-  app_rout.loadLibrary();
   if (kDebugMode) {
     appId = "com.sixdee.oml_rbt_portal";
   } else {}
+  await app_rout.loadLibrary();
   await initial_init.loadLibrary();
   await initial_init.intialInitialization();
   runApp(MyApp());
