@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
+import 'package:mtn_sa_revamp/files/model/normal_tune_search_model.dart';
 
 import 'package:mtn_sa_revamp/files/model/search_toneid_model.dart';
 import 'package:mtn_sa_revamp/files/model/search_tune_model.dart';
@@ -7,6 +8,7 @@ import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/utility/constants.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/view_model/normal_search_tune_api.dart';
 import 'package:mtn_sa_revamp/files/view_model/search_tone_id_api.dart';
 
 import '../../store_manager/store_manager.dart';
@@ -56,6 +58,8 @@ class SearchTuneController extends GetxController {
       isLoadingArtist.value = true;
     } else {
       printCustom("Search narmal tune herr");
+      _normalTuneSearchApi();
+      return;
     }
 
     //keyScrollFocusNode.requestFocus();
@@ -106,6 +110,40 @@ class SearchTuneController extends GetxController {
     isLoadingArtist.value = false;
   }
 
+  _normalTuneSearchApi() async {
+    toneList.clear();
+    songList.clear();
+    artistList.clear();
+    isLoading.value = true;
+
+    await _makeNormalSearch();
+    isLoading.value = false;
+    isLoaded.value = true;
+    isLoadMore.value = false;
+    isLoadingArtist.value = false;
+  }
+
+  Future<void> _makeNormalSearch(
+      {bool isLoadMore1 = false, int pageNo = 0}) async {
+    if (isLoadMore1) {
+      isLoadMore.value = true;
+    }
+    Others? others = StoreManager().appSetting?.responseMap?.settings?.others;
+    String catId = others?.nameTuneCategoryid?.attribute ?? '0';
+    AdvanceSearchModel model =
+        await advanceSearchTuneVM([searchedText.value], catId, pageNo);
+    if (model.statusCode == 'SC0000') {
+      toneList.value += model.responseMap?.toneList ?? [];
+
+      songList.value += model.responseMap?.toneList ?? [];
+      printCustom("Search list is ${toneList.length}");
+    }
+    if (isLoadMore1) {
+      isLoadMore.value = false;
+    }
+    return;
+  }
+
   updateSearchType(int index) {
     searchType.value = index;
   }
@@ -149,6 +187,10 @@ class SearchTuneController extends GetxController {
     if (searchType.value == 3) {
       printCustom("name tune search here");
       _searchNameTune(searchedText.value, isloadMore: true);
+      return;
+    } else if (searchType.value == 0) {
+      printCustom("Normal tune search api ");
+      _makeNormalSearch(isLoadMore1: true, pageNo: songList.length);
       return;
     }
     getSearchedResult(searchedText.value, toneList.length, isloadMore: true);

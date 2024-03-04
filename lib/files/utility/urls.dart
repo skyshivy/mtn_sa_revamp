@@ -18,6 +18,7 @@ String youtubeUrl = '';
 String messangerUrl = '';
 String defaultImageUrl = ''; //DEFAULT_IMAGE_URL
 String baseUrl = "";
+String initialUrl = "";
 String baseUrlSecurity = '';
 String faqUrl = '';
 
@@ -79,7 +80,8 @@ String timeBaseTuneSetUrl =
 String addToneToSuffleUrl = '${baseUrlSecurity}add-tone-to-shuffle';
 String dedicatedTuneSetUrl =
     '${baseUrlSecurity}dedicated-user-tone-addition-with-time-setting';
-    
+String advanceSearchTuneUrl = "${initialUrl}advanced-search";
+
 
   
 // String fulldayTuneSetUrl =

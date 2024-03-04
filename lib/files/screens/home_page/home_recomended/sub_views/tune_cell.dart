@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 
@@ -106,20 +108,27 @@ class HomeTuneCell extends StatelessWidget {
     );
   }
 
-  Column tuneImageTopLayer() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
+  Widget tuneImageTopLayer() {
+    return Stack(
+      alignment: Alignment.center,
       children: [
-        moreButtonWidget ??
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: likeAndMoreWidget(),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            moreButtonWidget ??
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: likeAndMoreWidget(),
+                ),
+            const Expanded(
+              child: SizedBox(
+                height: 30,
+              ),
             ),
-        Expanded(child: Center(child: Center(child: playButton()))),
-        const SizedBox(
-          height: 30,
+          ],
         ),
+        Center(child: playButton()),
       ],
     );
   }

@@ -120,6 +120,7 @@ Future<String> _getJson() async {
     channelId = data['CHANNEL_ID'];
     resendOtpDuration = data['RESEND_OTP_DURATION'];
     baseUrlSecurity = data['BASE_URL_SECURITY'];
+    initialUrl = data['INITIAL_URL'];
     timeOut = data['SESSION_TIME_OUT'];
     facebookUrl = data['FACEBOOK_URL'];
     instagramUrl = data['INSTAGRAM_URL'];
