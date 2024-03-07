@@ -129,6 +129,7 @@ class StoreManager {
     languageCode = isEnglish ? "1" : "2";
     language = isEnglish ? "English" : "Burmese";
     appController.isLoggedIn.value = isLoggedIn;
+    LocalizationService().changeLocale(isEnglish);
   }
 
   Future<void> logout() async {
