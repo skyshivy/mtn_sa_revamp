@@ -10,7 +10,8 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 class NewRegistrartionVm {
   Future<NewUserRegistrationModel> register(String msisdn, String secCounter,
       {bool sendOtp = true}) async {
-    String encryptedPassword = Cryptom().text("Oem@L#@1");
+    String encryptedPassword =
+        Cryptom().text(msisdn); //Cryptom().text("Oem@L#@1");
 
     Random random = Random();
     int randomNumber = random.nextInt(1000000000);

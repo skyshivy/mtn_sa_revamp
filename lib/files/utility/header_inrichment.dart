@@ -82,6 +82,7 @@ Future<String> _getValueForTag(List<String> lst) async {
           printCustom("msisdn = ${newL[1]}");
           //var msisdn1 = newL[1];
           tempMsisdn = newL[1];
+
           //await StoreManager().setMsisdn(msisdn1);
         }
       } catch (e) {
@@ -144,6 +145,9 @@ Future<String> _getValueForTag(List<String> lst) async {
     printCustom("Make here auto login for msisdn $tempMsisdn");
   } else {
     if (tempMsisdn == StoreManager().msisdn) {
+      printCustom(
+          "Login issue Redirection with same number so no login api call");
+    } else if ("0$tempMsisdn" == StoreManager().msisdn) {
       printCustom(
           "Login issue Redirection with same number so no login api call");
     } else {

@@ -23,7 +23,9 @@ class SetToneModel {
   String? statusCode;
 
   factory SetToneModel.fromJson(Map<String, dynamic> json) => SetToneModel(
-        responseMap: ResponseMap.fromJson(json["responseMap"]),
+        responseMap: json["responseMap"] == null
+            ? null
+            : ResponseMap.fromJson(json["responseMap"]),
         message: json["message"],
         respTime: json["respTime"],
         statusCode: json["statusCode"],

@@ -6,8 +6,30 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class CustomHeader {
   settingHeader(String url, HttpClientRequest request) async {
+    //text.substring(3);
+
     if (url.contains("security") || StoreManager().isLoggedIn) {
       printCustom("Security url================");
+      String mobileNumber = StoreManager().msisdn;
+      printCustom("Security url================");
+      String checkString = mobileNumber[0];
+      printCustom("checkString SKY================ $checkString");
+      String msisdnWithoutZero = '';
+      if (mobileNumber[0] == "0") {
+        printCustom("Contain zero  ");
+        msisdnWithoutZero = mobileNumber.substring(1);
+
+        printCustom("Contain zero  $msisdnWithoutZero ");
+      } else {
+        msisdnWithoutZero = mobileNumber;
+        printCustom("does not Contain zero  $msisdnWithoutZero");
+      }
+      //text.substring(3);
+
+      printCustom("msisdn SKY================ ");
+      printCustom("msisdn SKY================ ");
+      request.headers
+          .set('msisdn', msisdnWithoutZero, preserveHeaderCase: true);
 // if (Constant.addMsisdn) {
 //       Constants.addMsisdn = false;
 //       request.headers.set('msisdn', msisdn!, preserveHeaderCase: true);

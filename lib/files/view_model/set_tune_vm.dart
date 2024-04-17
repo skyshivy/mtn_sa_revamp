@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
@@ -16,6 +17,7 @@ class SetTuneVM {
     Random random = Random();
     int randomNumber = random.nextInt(1000000000);
     Map<String, String?> body = {};
+    printCustom("CCID $ccid");
     if (isPackUpgrade) {
       body = {
         'clientTxnId': randomNumber.toString(),
@@ -60,6 +62,7 @@ class SetTuneVM {
     var formData = parts.join('&');
 
     String url = isPackUpgrade ? upgradePackUrl : buyTuneUrl;
+
     Map<String, dynamic>? map = await ServiceCall().post(url, formData);
 
     if (map != null) {
@@ -76,5 +79,9 @@ class SetTuneVM {
           BuyTuneModel(message: someThingWentWrongStr.tr, statusCode: '');
       return model;
     }
+
+    // BuyTuneModel? model =
+    //     BuyTuneModel(message: someThingWentWrongStr.tr, statusCode: '');
+    // return model;
   }
 }
