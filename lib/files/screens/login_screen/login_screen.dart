@@ -221,7 +221,19 @@ class _LoginScreenState extends State<LoginScreen> {
   void onSubmit(String value) async {
     if (controller.isMsisdnVarified.value) {
       controller.otp.value = value;
-      bool _ = await controller.verifyOtpButtonAction();
+      bool isSuccess = await controller.verifyOtpButtonAction();
+      if (isSuccess) {
+        printCustom("Verufied l and called in Login screen is success");
+        Get.back();
+
+        Navigator.pop(context);
+        await Future.delayed(const Duration(milliseconds: 200));
+        Get.dialog(
+          Center(
+            child: CustomAlertView(title: successFullyLoggedInStr.tr),
+          ),
+        );
+      }
       printCustom("Login Screen \n onSubmit method  123\n");
     } else {
       controller.varifyMsisdnButtonAction();
@@ -442,27 +454,26 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> onReqOtpAction() async {
-    {
-      if (controller.isMsisdnVarified.value) {
-        await controller.verifyOtpButtonAction();
-        bool isSuccess = await controller.verifyOtpButtonAction();
-        printCustom("Login Screen \n onReqOtpAction method  135\n");
-        printCustom("Verufied l and called in Login screen");
-        if (isSuccess) {
-          printCustom("Verufied l and called in Login screen is success");
-          Get.back();
+    printCustom("SKY On Confirm otp button tap");
+    if (controller.isMsisdnVarified.value) {
+      await controller.verifyOtpButtonAction();
+      bool isSuccess = await controller.verifyOtpButtonAction();
+      printCustom("Login Screen \n onReqOtpAction method  135\n");
+      printCustom("Verufied l and called in Login screen");
+      if (isSuccess) {
+        printCustom("Verufied l and called in Login screen is success");
+        Get.back();
 
-          Navigator.pop(context);
-          await Future.delayed(const Duration(milliseconds: 200));
-          Get.dialog(
-            Center(
-              child: CustomAlertView(title: successFullyLoggedInStr.tr),
-            ),
-          );
-        }
-      } else {
-        controller.varifyMsisdnButtonAction();
+        Navigator.pop(context);
+        await Future.delayed(const Duration(milliseconds: 200));
+        Get.dialog(
+          Center(
+            child: CustomAlertView(title: successFullyLoggedInStr.tr),
+          ),
+        );
       }
+    } else {
+      controller.varifyMsisdnButtonAction();
     }
   }
 }

@@ -11,6 +11,8 @@ class PasswordValidationVm {
   Future<Map<String, dynamic>?> validatePassword(
       String msisdn, String securityCounter, bool isAutoLogin) async {
     var pass = msisdn; //password; //isAutoLogin ? '' : 'Oem@L#@1';
+    printCustom("Password is $msisdn");
+    printCustom("securityCounter is $securityCounter");
     var appendPassword = "$pass$securityCounter";
     Random random = Random();
     int randomNumber = random.nextInt(1000000000);
