@@ -17,7 +17,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeSearchWidget extends StatelessWidget {
   final WebTabController controller = Get.find();
-  //final SearchTuneController searchTuneController = Get.find();
+  final SearchTuneController searchTuneController = Get.find();
   final NewSearchController newSearchController = Get.find();
   final TextEditingController textEditingController = TextEditingController();
   HomeSearchWidget({super.key});
@@ -55,7 +55,7 @@ class HomeSearchWidget extends StatelessWidget {
             hintColor: blue,
             textColor: black,
             onChanged: (p0) {
-              //searchTuneController.searchedText.value = p0;
+              searchTuneController.searchedText.value = p0;
               newSearchController.searchedText = p0;
               newSearchController.updateSearchedText(p0);
               //controller.loadPage(3);
@@ -64,10 +64,10 @@ class HomeSearchWidget extends StatelessWidget {
               if (p0.isNotEmpty) {
                 context.goNamed(searchGoRoute, queryParameters: {
                   "key": p0,
-                  "index": "${newSearchController.searchType.value}",
+                  "index": "${searchTuneController.searchType.value}",
                 });
                 SearchType searchType =
-                    getSearchType("${newSearchController.searchType.value}");
+                    getSearchType("${searchTuneController.searchType.value}");
                 newSearchController.getSearchedResult(searchType);
                 // searchTuneController.stopMultipleApiCall = true;
                 // searchTuneController.getSearchedResult(
@@ -88,11 +88,11 @@ class HomeSearchWidget extends StatelessWidget {
               onTap: () {
                 if (newSearchController.searchedText.isNotEmpty) {
                   context.goNamed(searchGoRoute, queryParameters: {
-                    "key": newSearchController.searchedText,
-                    "index": "${newSearchController.searchType.value}",
+                    "key": searchTuneController.searchedText.value,
+                    "index": "${searchTuneController.searchType.value}",
                   });
                   SearchType searchType =
-                      getSearchType("${newSearchController.searchType.value}");
+                      getSearchType("${searchTuneController.searchType.value}");
                   newSearchController.getSearchedResult(searchType);
                   // searchTuneController.stopMultipleApiCall = true;
                   // searchTuneController.getSearchedResult(
