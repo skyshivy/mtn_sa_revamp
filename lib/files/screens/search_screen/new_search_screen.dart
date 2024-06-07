@@ -44,19 +44,24 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
   }
 
   Widget nextAndPreviousButtonContainer() {
-    return Obx(() {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          _previousButton(),
-          cont.isLoadingMore.value
-              ? SizedBox(height: 30, child: loadingIndicator(radius: 12))
-              : _pageNumber(),
-          _nextButton(),
-        ],
-      );
-    });
+    return cont.searchType == SearchType.toneIdSearch
+        ? SizedBox()
+        : Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _previousButton(),
+              Obx(() {
+                return cont.isLoadingMore.value
+                    ? SizedBox(height: 30, child: loadingIndicator(radius: 12))
+                    : _pageNumber();
+              }),
+              _nextButton(),
+            ],
+          );
+    // Obx(() {
+    //   return
+    // });
   }
 
   Padding _pageNumber() {

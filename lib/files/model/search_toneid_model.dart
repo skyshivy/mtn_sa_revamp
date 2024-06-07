@@ -58,7 +58,10 @@ class ResponseMap {
 
   factory ResponseMap.fromJson(Map<String, dynamic> json) => ResponseMap(
         toneList: json["toneList"] == null
-            ? []
+            ? json["searchList"] == null
+                ? []
+                : List<TuneInfo>.from(
+                    json["searchList"]!.map((x) => TuneInfo.fromJson(x)))
             : List<TuneInfo>.from(
                 json["toneList"]!.map((x) => TuneInfo.fromJson(x))),
         songTotalCount: json["songTotalCount"],

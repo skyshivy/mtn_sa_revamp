@@ -354,7 +354,7 @@ StatefulShellBranch searchScreen() {
         SearchType searchType = getSearchType(index);
         NewSearchController newSearchController = Get.find();
         newSearchController.searchedText = searchkey;
-        newSearchController.getSearchedResult(searchType: searchType);
+        newSearchController.getSearchedResult(searchType);
         return NewSearchScreen();
         // SearchScreen(
         //   title: searchkey,

@@ -66,8 +66,9 @@ class HomeSearchWidget extends StatelessWidget {
                   "key": p0,
                   "index": "${searchTuneController.searchType.value}",
                 });
-                newSearchController.getSearchedResult(
-                    searchType: SearchType.toneSearch);
+                SearchType searchType =
+                    getSearchType("${searchTuneController.searchType.value}");
+                newSearchController.getSearchedResult(searchType);
                 // searchTuneController.stopMultipleApiCall = true;
                 // searchTuneController.getSearchedResult(
                 //     searchTuneController.searchedText.value, 0);
@@ -90,8 +91,9 @@ class HomeSearchWidget extends StatelessWidget {
                     "key": searchTuneController.searchedText.value,
                     "index": "${searchTuneController.searchType.value}",
                   });
-                  newSearchController.getSearchedResult(
-                      searchType: SearchType.toneSearch);
+                  SearchType searchType =
+                      getSearchType("${searchTuneController.searchType.value}");
+                  newSearchController.getSearchedResult(searchType);
                   // searchTuneController.stopMultipleApiCall = true;
                   // searchTuneController.getSearchedResult(
                   //     searchTuneController.searchedText.value, 0);
@@ -103,6 +105,21 @@ class HomeSearchWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  SearchType getSearchType(String index) {
+    printCustom("index = $index");
+    if (index == "0") {
+      return SearchType.toneSearch;
+    } else if (index == "1") {
+      return SearchType.artistSearch;
+    } else if (index == "2") {
+      return SearchType.toneIdSearch;
+    } else if (index == "3") {
+      return SearchType.nameToneSearch;
+    } else {
+      return SearchType.toneSearch;
+    }
   }
 
   BoxDecoration decoration() {

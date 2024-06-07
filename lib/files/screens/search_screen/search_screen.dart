@@ -43,7 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     //controller.getSearchedResult(widget.title, widget.index);
-    newSearchController.getSearchedResult(searchType: widget.searchType);
+    //newSearchController.getSearchedResult(widget.searchType);
     // controller.getSearchedResult(widget.title, 0,
     //     searchTypeIndex: int.parse(widget.index));
     super.initState();
