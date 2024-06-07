@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/controllers/search_controller/new_search_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_empty_tune_view.dart';
@@ -28,8 +29,9 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class SearchScreen extends StatefulWidget {
   final String title;
-  final String index;
-  const SearchScreen({super.key, required this.title, required this.index});
+  final SearchType searchType;
+  const SearchScreen(
+      {super.key, required this.title, required this.searchType});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -37,11 +39,13 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   SearchTuneController controller = Get.find();
+  NewSearchController newSearchController = Get.find();
   @override
   void initState() {
     //controller.getSearchedResult(widget.title, widget.index);
-    controller.getSearchedResult(widget.title, 0,
-        searchTypeIndex: int.parse(widget.index));
+    newSearchController.getSearchedResult(searchType: widget.searchType);
+    // controller.getSearchedResult(widget.title, 0,
+    //     searchTypeIndex: int.parse(widget.index));
     super.initState();
   }
 

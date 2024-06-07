@@ -12,6 +12,7 @@ import 'package:mtn_sa_revamp/files/controllers/music_box_detail_controller.dart
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/search_controller/new_search_controller.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
@@ -37,6 +38,7 @@ import 'package:mtn_sa_revamp/files/screens/navigation_bar/web_nav_bar_view.dart
 import 'package:mtn_sa_revamp/files/screens/privacy_policy_screen/privacy_policy_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/profile_screen/profile_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/search_screen/new_search_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/see_more_screen/see_more_screen.dart';
 import 'package:mtn_sa_revamp/files/screens/terms_condition/terms_condition_screen.dart';
@@ -348,13 +350,34 @@ StatefulShellBranch searchScreen() {
       builder: (context, state) {
         String searchkey = state.uri.queryParameters['key'] ?? '';
         String index = state.uri.queryParameters['index'] ?? "0";
-        return SearchScreen(
-          title: searchkey,
-          index: index,
-        );
+
+        SearchType searchType = getSearchType(index);
+        NewSearchController newSearchController = Get.find();
+        newSearchController.searchedText = searchkey;
+        newSearchController.getSearchedResult(searchType: searchType);
+        return NewSearchScreen();
+        // SearchScreen(
+        //   title: searchkey,
+        //   searchType: searchType,
+        // );
       },
     ),
   ]);
+}
+
+SearchType getSearchType(String index) {
+  printCustom("index = $index");
+  if (index == "0") {
+    return SearchType.toneSearch;
+  } else if (index == "1") {
+    return SearchType.artistSearch;
+  } else if (index == "2") {
+    return SearchType.toneIdSearch;
+  } else if (index == "3") {
+    return SearchType.nameToneSearch;
+  } else {
+    return SearchType.toneSearch;
+  }
 }
 
 StatefulShellBranch deleteScreenRoute() {
