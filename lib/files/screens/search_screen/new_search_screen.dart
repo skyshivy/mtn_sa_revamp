@@ -15,6 +15,7 @@ import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
 import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
+import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_header.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -32,27 +33,26 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Expanded(
-            child: Obx(
-              () {
-                return cont.isLoading.value
-                    ? loadingIndicator()
-                    : Obx(() {
-                        return cont.searchType.value == SearchType.artistSearch
-                            ? artistGridView()
-                            : (cont.displayList.isEmpty
-                                ? emptyList()
-                                : gridView());
-                      });
-              },
-            ),
+    return Column(
+      children: [
+        SearchHeader(),
+        Expanded(
+          child: Obx(
+            () {
+              return cont.isLoading.value
+                  ? loadingIndicator()
+                  : Obx(() {
+                      return cont.searchType.value == SearchType.artistSearch
+                          ? artistGridView()
+                          : (cont.displayList.isEmpty
+                              ? emptyList()
+                              : gridView());
+                    });
+            },
           ),
-          nextAndPreviousButtonContainer()
-        ],
-      ),
+        ),
+        nextAndPreviousButtonContainer()
+      ],
     );
   }
 
@@ -126,7 +126,7 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
   }
 
   Widget emptyList() {
-    return CustomText(title: tuneListEmptyStr);
+    return SizedBox(child: Center(child: CustomText(title: tuneListEmptyStr)));
   }
 
   Widget gridView() {
@@ -134,6 +134,8 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
       builder: (context, si) {
         return Obx(() {
           return GridView.builder(
+              padding: EdgeInsets.symmetric(
+                  horizontal: si.isMobile ? 8 : 30, vertical: 10),
               itemCount: cont.displayList.length,
               shrinkWrap: true,
               gridDelegate:
@@ -150,14 +152,18 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
     return ResponsiveBuilder(
       builder: (context, si) {
         return Obx(() {
-          return GridView.builder(
-              itemCount: cont.artistList.length,
-              shrinkWrap: true,
-              gridDelegate:
-                  delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
-              itemBuilder: (context, index) {
-                return artistCell(index, si);
-              });
+          return cont.artistList.isEmpty
+              ? emptyList()
+              : GridView.builder(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: si.isMobile ? 8 : 30, vertical: 10),
+                  itemCount: cont.artistList.length,
+                  shrinkWrap: true,
+                  gridDelegate:
+                      delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
+                  itemBuilder: (context, index) {
+                    return artistCell(index, si);
+                  });
         });
       },
     );
