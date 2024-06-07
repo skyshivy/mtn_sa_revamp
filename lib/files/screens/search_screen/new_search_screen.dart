@@ -126,7 +126,10 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
   }
 
   Widget emptyList() {
-    return SizedBox(child: Center(child: CustomText(title: tuneListEmptyStr)));
+    return SizedBox(
+        child: Center(
+            child:
+                CustomText(title: tuneListEmptyStr, fontName: FontName.bold)));
   }
 
   Widget gridView() {
