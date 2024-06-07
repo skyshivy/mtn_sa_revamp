@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:mtn_sa_revamp/files/custom_files/chunks.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/model/normal_tune_search_model.dart';
@@ -17,6 +18,7 @@ class NewSearchController extends GetxController {
   String searchedText = '';
   RxBool hideNextButton = false.obs;
   RxBool hidePreviousButton = false.obs;
+  RxBool hideMoreButtons = true.obs;
   RxBool isLoadingMore = false.obs;
   RxBool isLoading = false.obs;
   RxInt currentPage = 0.obs;
@@ -44,6 +46,7 @@ class NewSearchController extends GetxController {
   Rx<SearchType> searchType = SearchType.toneSearch.obs;
 
   getSearchedResult(SearchType searchType) {
+    hideMoreButtons.value = true;
     reset();
     this.searchType.value = searchType;
     printCustom("Searching text ===  $searchedText");
@@ -134,6 +137,9 @@ class NewSearchController extends GetxController {
     print("Current page = $currentPage");
     ChunksModel chunksModel =
         await createChunksOfSize(_toneList, displayIndex: currentPage.value);
+
+    hideMoreButtons.value = _toneList.length < pagePerCount;
+
     displayList.value = chunksModel.list;
     totalPage = chunksModel.pages;
   }
