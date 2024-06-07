@@ -32,7 +32,7 @@ class NewSearchController extends GetxController {
     isLoadingMore.value = false;
     currentPage.value = 0;
     totalPage = 1;
-
+    artistList.clear();
     _toneList.clear();
     displayList.clear();
   }
@@ -123,7 +123,7 @@ class NewSearchController extends GetxController {
     }
     isLoading.value = true;
     SearchTuneModel model = await searchArtistApi(searchedText);
-    artistList.value += (model.responseMap?.countList?.artistDetailList ?? []);
+    artistList.value = (model.responseMap?.countList?.artistDetailList ?? []);
     printCustom("_getArtistList");
     isLoading.value = false;
   }

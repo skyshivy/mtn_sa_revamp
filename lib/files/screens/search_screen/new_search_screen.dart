@@ -40,7 +40,13 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
               () {
                 return cont.isLoading.value
                     ? loadingIndicator()
-                    : (cont.displayList.isEmpty ? emptyList() : gridView());
+                    : Obx(() {
+                        return cont.searchType.value == SearchType.artistSearch
+                            ? artistGridView()
+                            : (cont.displayList.isEmpty
+                                ? emptyList()
+                                : gridView());
+                      });
               },
             ),
           ),
@@ -150,7 +156,7 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
               gridDelegate:
                   delegate(si, mainAxisExtent: si.isMobile ? 230 : null),
               itemBuilder: (context, index) {
-                return homeCell(index, si);
+                return artistCell(index, si);
               });
         });
       },
