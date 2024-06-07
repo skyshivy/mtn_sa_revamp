@@ -6,6 +6,7 @@ import 'package:mtn_sa_revamp/files/model/search_toneid_model.dart';
 import 'package:mtn_sa_revamp/files/model/search_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
 import 'package:mtn_sa_revamp/files/utility/constants.dart';
+import 'package:mtn_sa_revamp/files/view_model/search_apis/search_artist_api.dart';
 import 'package:mtn_sa_revamp/files/view_model/search_apis/search_name_tune_api.dart';
 import 'package:mtn_sa_revamp/files/view_model/search_apis/search_tone_id_api.dart';
 import 'package:mtn_sa_revamp/files/view_model/search_apis/search_tune_api.dart';
@@ -22,6 +23,7 @@ class NewSearchController extends GetxController {
   int totalPage = 1;
 
   List<TuneInfo> _toneList = <TuneInfo>[];
+  RxList<ArtistDetailList?> artistList = <ArtistDetailList>[].obs;
   final RxList<TuneInfo> displayList = <TuneInfo>[].obs;
 
   reset() {
@@ -61,10 +63,6 @@ class NewSearchController extends GetxController {
       default:
         _getTuneList();
     }
-  }
-
-  _getArtistList() async {
-    printCustom("_getArtistList");
   }
 
   // =========== Get tone ==========
@@ -111,10 +109,23 @@ class NewSearchController extends GetxController {
     }
     isLoading.value = true;
     SearchToneidModel model = await searchToneIdApi(searchedText);
-    _toneList = model.responseMap?.toneList ?? [];
-
+    _toneList = model.responseMap?.songList ?? [];
+    displayList.value = _toneList;
     isLoading.value = false;
     printCustom("_getTuneIdList");
+  }
+
+  // ========= search artist ============
+
+  _getArtistList() async {
+    if (isLoading.value) {
+      return;
+    }
+    isLoading.value = true;
+    SearchTuneModel model = await searchArtistApi(searchedText);
+    artistList.value += (model.responseMap?.countList?.artistDetailList ?? []);
+    printCustom("_getArtistList");
+    isLoading.value = false;
   }
 
   // ============ Load more, create chunk,next and previous section ===============

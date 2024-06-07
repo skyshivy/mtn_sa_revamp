@@ -336,13 +336,6 @@ StatefulShellBranch tuneSettingScreen() {
 }
 
 StatefulShellBranch searchScreen() {
-  // SearchTuneController sCOnt;
-  // try {
-  //   sCOnt = Get.find();
-  // } catch (e) {
-  //   sCOnt = Get.put(SearchTuneController());
-  // }
-
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: searchGoRoute,
