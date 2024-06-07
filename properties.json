@@ -12,7 +12,8 @@
     "TWITTER_URL":"https://twitter.com/atommyanmar?t=Fb121mY6O7Rj2T6-CTypxg&s=09",
     "LINKEDIN_URL":"https://www.linkedin.com/company/atom-myanmar/",
     "MESSANGER_URL":"https://www.messenger.com/t/603742072992573",
-    "YOUTUBE_URL":"https://www.youtube.com/channel/UCxVNSo-R1YUVXsjvwh-LWrA"
+    "YOUTUBE_URL":"https://www.youtube.com/channel/UCxVNSo-R1YUVXsjvwh-LWrA",
+    "ENABLE_LOG":"true" 
 }
 
 

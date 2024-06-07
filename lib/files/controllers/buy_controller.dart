@@ -7,6 +7,7 @@ import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
 import 'package:mtn_sa_revamp/files/model/app_setting_model.dart';
 import 'package:mtn_sa_revamp/files/model/buy_tune_model.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_existing_model.dart';
+import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
 
 import 'package:mtn_sa_revamp/files/model/new_user_model.dart';
 import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
@@ -282,10 +283,14 @@ class BuyController extends GetxController {
             printCustom("Existing user******");
           } else if (model.responseMap?.respCode == '100') {
             printCustom("New User*******");
-            isNewUser = true;
-            await getSecurityTokenForNew(msisdn.value);
-            //getTunePrice();
+            var _ = await _generateOtp(msisdn.value, false);
+            isNewUser = false;
             isShowOtpView.value = true;
+            isVerifying.value = false;
+            // isNewUser = true;
+            // await getSecurityTokenForNew(msisdn.value);
+            // //getTunePrice();
+            // isShowOtpView.value = true;
             //Get.dialog(BuyOtpView());
           } else if (model.responseMap?.respCode == '101') {
             errorMessage.value = model.responseMap?.respDesc ?? '';
@@ -322,8 +327,9 @@ class BuyController extends GetxController {
 
     if (result.statusCode == "SC0000") {
       //isMsisdnVarified.value = true;
+      return result;
     } else {
-      errorMessage.value = result.message;
+      errorMessage.value = result.message ?? '';
       isMsisdnVarified.value = false;
       isVerifying.value = false;
     }
@@ -356,37 +362,6 @@ class BuyController extends GetxController {
     }
   }
 
-/*
-  Future<void> getSecurityTokenForNew(String msisdn) async {
-    var map = await GetSecurityVM().token();
-    if (map != null) {
-      GetSecurityTokenModel model = GetSecurityTokenModel.fromJson(map);
-      StoreManager().securityCounter = model.responseMap.securityCounter;
-      securityCounter = model.responseMap.securityCounter;
-      bool isRegistered = false;
-      NewUserRegistrationModel newUserModel =
-          await NewRegistrartionVm().register(msisdn, securityCounter);
-      if (newUserModel.statusCode == "SC0000") {
-        isRegistered = true;
-        StoreManager().securityCounter = newUserModel.responseMap?.secToc ?? '';
-        securityCounter = newUserModel.responseMap?.secToc ?? '';
-      }
-      isVerifying.value = false;
-      if (isRegistered) {
-        //await _generateOtp(msisdn, true);
-        isVerifying.value = true;
-        return;
-      } else {
-        errorMessage.value = someThingWentWrongStr.tr;
-        isVerifying.value = false;
-      }
-      printCustom("NewRegistrartionVm status $isRegistered");
-      return;
-    }
-    isVerifying.value = false;
-    return;
-  }
-*/
   Future<TonePriceModel> _getTunePrice() async {
     errorMessage.value = '';
     String msisdn3 = '';
@@ -412,6 +387,7 @@ class BuyController extends GetxController {
       //   return model;
       // }
     } else {
+      printCustom("SKY Test _getTunePrice  error");
       TonePriceModel model = TonePriceModel(message: someThingWentWrongStr.tr);
       return model;
     }
@@ -464,19 +440,33 @@ class BuyController extends GetxController {
     if (otp.value.length == StoreManager().otpLength) {
       isVerifyingOtp.value = true;
 
-      if (isNewUser) {
-        await newUserOtpCheck();
+      // if (isNewUser) {
+      //   await newUserOtpCheck();
+      // } else {
+      ConfirmOtpModel res =
+          await ConfirmOtpVM().confirm(msisdn.value, otp.value);
+      printCustom("res = ${res.statusCode}");
+      if (res.statusCode == "SC0000") {
+        printCustom("SKY Confirmed otp done");
+        //ConfirmOtpModel
+        StoreManager().msisdn = msisdn.value;
+        printCustom("SKY test 1");
+        _saveLoginDetail(res);
+
+        printCustom("SKY test 21");
+        isVerifyingOtp.value = false;
+        isVerifying.value = false;
+        isBuySuccess.value = true;
+        successMessage.value = res.message ?? '';
+        await getTunePriceAndBuyTune(info);
+        printCustom("SKY test 22");
+
+        //await getSecurityTokenForOldUser();
       } else {
-        ConfirmOtpExistingModel res =
-            await ConfirmOtpVM().confirm(msisdn.value, otp.value);
-        printCustom("res = ${res.statusCode}");
-        if (res.statusCode == "SC0000") {
-          await getSecurityTokenForOldUser();
-        } else {
-          isVerifyingOtp.value = false;
-          errorMessage.value = res.message ?? '';
-        }
+        isVerifyingOtp.value = false;
+        errorMessage.value = res.message ?? '';
       }
+      //}
       return;
     }
     errorMessage.value = pleaseEnterAValidOtpStr.tr;
@@ -521,19 +511,26 @@ class BuyController extends GetxController {
   Future<void> getTunePriceAndBuyTune(TuneInfo? info,
       {bool isBuyMusicChannel = false}) async {
     this.isBuyMusicChannel = isBuyMusicChannel;
-
+    printCustom("SKY test 2");
     errorMessage.value = '';
     this.info = info;
     isVerifying.value = true;
     isHideUpgrade.value = false;
     TonePriceModel tonePriceModel = await _getTunePrice();
+    printCustom("SKY test 3");
     if (StoreManager().crbtPackStatus == null) {
+      printCustom("SKY test 4");
       PackStatusModel crbtPackStatusModel =
           await getPackStatusApiCall(StoreManager().msisdn);
+      printCustom("SKY test 5");
       PackStatusModel rrbtPackStatusModel =
           await getPackStatusApiCall(StoreManager().msisdn, isCrbt: false);
+      printCustom("SKY test 6");
       if (crbtPackStatusModel.statusCode == 'SC0000') {
+        printCustom("SKY test 7");
+        return;
       } else {
+        printCustom("SKY test 8");
         isBuySuccess.value = true;
         successMessage.value = tonePriceModel.message ?? '';
         isVerifyingOtp.value = false;
@@ -542,10 +539,11 @@ class BuyController extends GetxController {
         return;
       }
     }
-
+    printCustom("SKY test 9");
     printCustom("Pack name = ${StoreManager().crbtPackStatus?.packName}");
     printCustom("crbtVipOfferCode = $crbtVipOfferCode");
     if (tonePriceModel.statusCode == 'SC0000') {
+      printCustom("SKY test 10");
       ResponseDetail? responseDetail =
           tonePriceModel.responseMap?.responseDetails?.first;
       String packName = responseDetail?.packName ?? '';
@@ -648,5 +646,30 @@ class BuyController extends GetxController {
           someThingWentWrongStr.tr;
       isVerifying.value = false;
     }
+  }
+
+  _saveLoginDetail(ConfirmOtpModel? model) async {
+    printCustom("SKY test 23");
+    if (model == null) {
+      printCustom("confirm otp is Null");
+      return;
+    }
+    printCustom("SKY test 24");
+    StoreManager().msisdn = msisdn.value;
+    StoreManager().setAccessToken((model.responseMap?.accessToken) ?? "");
+
+    StoreManager().setDeviceId((model.responseMap?.deviceId) ?? "");
+
+    StoreManager().setMsisdn(msisdn.value);
+
+    StoreManager().setRefreshToken((model.responseMap?.refreshToken) ?? "");
+    printCustom("set 4 ${model.responseMap?.refreshToken ?? ""}");
+    StoreManager().setUserName(msisdn.value);
+
+    StoreManager().setLoggedIn(true);
+    printCustom("set 6");
+    await StoreManager().initStoreManager();
+    StoreManager().setLoggedIn(true);
+    getPackStatusApiCall(StoreManager().msisdn);
   }
 }

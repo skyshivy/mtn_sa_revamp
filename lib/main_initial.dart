@@ -129,6 +129,7 @@ Future<String> _getJson() async {
     twitterUrl = data['TWITTER_URL'];
     linkedinUrl = data['LINKEDIN_URL'];
     defaultImageUrl = data["DEFAULT_IMAGE_URL"];
+    isEnableLog = data["ENABLE_LOG"];
 
     parseUrl();
     return value;

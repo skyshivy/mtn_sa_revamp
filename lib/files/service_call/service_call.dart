@@ -60,11 +60,15 @@ class ServiceCall {
     // return stringData;
   }
 
-  Future<String> genOtp(String url, String msisdn) async {
+  Future<String> genOtp(String url, String msisdn, {String? type}) async {
     var request = await client
         .getUrl(Uri.parse(url))
         .timeout(Duration(seconds: StoreManager().timeOutDuration));
     request.headers.set('os', os, preserveHeaderCase: true);
+    if (type != null) {
+      request.headers.set('type', type, preserveHeaderCase: true);
+    }
+
     request.headers
         .set('language', StoreManager().language, preserveHeaderCase: true);
     request.headers.set('deviceId', '0191212', preserveHeaderCase: true);

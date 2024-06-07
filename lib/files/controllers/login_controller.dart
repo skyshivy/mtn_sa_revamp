@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:mtn_sa_revamp/files/cryptor/decryptor.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
@@ -67,10 +68,14 @@ class LoginController extends GetxController {
       return false;
     }
     printCustom("on confirm  verifyOtpButtonAction   before ");
+    printCustom("Sky Auto Login 23========");
+
     var isConfirmed = await _confirmOtpApi();
+    printCustom("Sky Auto Login 24========");
     printCustom(
         "on confirm  verifyOtpButtonAction   after  == value is $isConfirmed");
     if (isConfirmed) {
+      printCustom("Sky Auto Login 25========");
       return true;
     }
     // if (isConfirmed) {
@@ -82,6 +87,7 @@ class LoginController extends GetxController {
     //   }
     // }
     printCustom("Not confirm otp api");
+    printCustom("Sky Auto Login 26========");
     return false;
   }
 
@@ -131,7 +137,7 @@ class LoginController extends GetxController {
     if (result.statusCode == "SC0000") {
       isMsisdnVarified.value = true;
     } else {
-      errorMessage.value = result.message;
+      errorMessage.value = result.message ?? someThingWentWrongStr;
       isMsisdnVarified.value = false;
     }
 
@@ -173,15 +179,19 @@ class LoginController extends GetxController {
   Future<bool> _confirmOtpApi() async {
     printCustom("Resu =Sky========");
     isVerifying.value = true;
+    printCustom("Sky Auto Login 1========");
     ConfirmOtpModel? model =
         await LoginVm().confirmOtp(msisdn.value, otp.value);
+    printCustom("Sky Auto Login 2========");
     if (model?.statusCode == "SC0000") {
       isMsisdnVarified.value = true;
+      printCustom("Sky Auto Login 21========");
       isVerifying.value = false;
       _saveLoginDetail(model);
       //Get.dialog(CustomAlertView(title: model?.message ?? ''));
       return true;
     } else {
+      printCustom("Sky Auto Login 22========");
       isMsisdnVarified.value = false;
       isVerifying.value = false;
       errorMessage.value = model?.message ?? '';
@@ -261,19 +271,41 @@ class LoginController extends GetxController {
     SubscriberValidationModel model =
         SubscriberValidationModel.fromJson(valueMap);
     if (model.responseMap?.respCode == 'SC0000') {
-      //await _generateOtp();
-      await _autoLoginPassowrdValidation();
+      await _generateOtp();
+      //await _autoLoginPassowrdValidation();
       printCustom("Existing user******");
     } else if (model.responseMap?.respCode == '100') {
       isMsisdnVarified.value = true;
       printCustom("New user*****");
-      await autoLoginSecurityTokenForNewUser(msisdn.value);
+      //await autoLoginSecurityTokenForNewUser(msisdn.value);
+      await _generateOtp();
     } else if (model.responseMap?.respCode == '101') {
       errorMessage.value = model.responseMap?.respDesc ?? '';
       printCustom("Invalid number*******");
     } else {
       errorMessage.value = model.responseMap?.respDesc ?? '';
       printCustom("Invalid number*******");
+    }
+  }
+
+  _generateOtp() async {
+    GenerateOtpModel result =
+        await LoginVm().generateOtp(msisdn.value, type: 'web');
+    if (result.statusCode == 'SC0000') {
+      //result.responseMap.
+      String decryptedOtp =
+          Decryptor().decryptWithAES(result.responseMap?.userData ?? '');
+      _confirmOtp(decryptedOtp);
+    }
+  }
+
+  _confirmOtp(String otp) async {
+    print("Confirm otp");
+    ConfirmOtpModel? model = await LoginVm().confirmOtp(msisdn.value, otp);
+    if (model?.statusCode == 'SC0000') {
+      isMsisdnVarified.value = true;
+      isVerifying.value = false;
+      _saveLoginDetail(model);
     }
   }
 

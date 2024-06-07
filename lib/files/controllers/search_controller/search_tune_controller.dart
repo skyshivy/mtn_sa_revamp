@@ -156,19 +156,10 @@ class SearchTuneController extends GetxController {
 
   _getSearchResultByTuneId(String tuneId) async {
     printCustom("Tune is id $tuneId");
-
-    // toneList.value = [];
-    // songList.value = [];
-    // artistList.value = [];
-
-    // String s = tuneId.trim();
-    // if (s != null) {
-    //   s = s.replaceAll(' ', '+');
-    // }
     isLoading.value = true;
     isLoadingCode.value = true;
     printCustom("Tune is id 1 $tuneId");
-    //await Future.delayed(Duration(seconds: 3));
+
     SearchToneidModel mode = await searchToneIdApi(tuneId);
     isLoading.value = false;
     isLoaded.value = true;
@@ -222,7 +213,6 @@ class SearchTuneController extends GetxController {
     var url =
         "$nameTuneSearchUrl?language=${StoreManager().language}&searchKey=$s&categoryId=$catId&pageNo=${songList.length}&perPageCount=$pagePerCount&searchLanguage=${StoreManager().language}";
 
-    //"$getCategoryDetailUrl&searchKey=$searchKey&categoryId=$catId&sortBy=Order_By&alignBy=ASC&pageNo=${songList.length}&searchLanguage=English&perPageCount=$pagePerCount";
     Map<String, dynamic>? result =
         await ServiceCall().get(url); //, params: {'searchKey': searchKey}
     printCustom("result is $result");

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_image/custom_remote_image.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
@@ -19,6 +20,7 @@ import 'package:mtn_sa_revamp/files/reusable_view/buttons/gift_button.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/home_cell_title_sub_title.dart';
 
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/popover_view.dart';
+import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/gredient.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
@@ -203,8 +205,14 @@ class HomeTuneCell extends StatelessWidget {
                   WishlistController wishCont = Get.find();
                   wishCont.deleteFromWishlistAction(info, index);
                 } else {
-                  RecoController recoController = Get.find();
-                  recoController.wishlistTapped(info);
+                  if (StoreManager().isLoggedIn) {
+                    RecoController recoController = Get.find();
+                    recoController.wishlistTapped(info);
+                  } else {
+                    printCustom("User is not logged in");
+                    Get.dialog(CustomAlertView(
+                        title: featureIsAvailableForLoggedInStr.tr));
+                  }
                 }
               }, isWishlist: isWishlist);
 
