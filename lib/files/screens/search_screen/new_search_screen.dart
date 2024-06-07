@@ -83,7 +83,7 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
       child: CustomText(
           title: "${cont.currentPage.value + 1}",
           fontName: FontName.bold,
-          fontSize: 18),
+          fontSize: 16),
     );
   }
 
@@ -96,11 +96,14 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
         height: 40,
         width: 40,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-        child: const Center(
-          child: Icon(
-            Icons.arrow_forward_ios,
-            size: 20,
-          ),
+        child: Center(
+          child: Obx(() {
+            return Icon(
+              Icons.arrow_forward_ios,
+              size: 20,
+              color: cont.hideNextButton.value ? grey : black,
+            );
+          }),
         ),
       ),
     );
@@ -115,12 +118,13 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
         height: 40,
         width: 40,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-        child: const Center(
-          child: Icon(
+        child: Center(child: Obx(() {
+          return Icon(
             Icons.arrow_back_ios,
             size: 20,
-          ),
-        ),
+            color: cont.hidePreviousButton.value ? grey : black,
+          );
+        })),
       ),
     );
   }

@@ -17,7 +17,7 @@ enum SearchType { toneSearch, artistSearch, toneIdSearch, nameToneSearch }
 class NewSearchController extends GetxController {
   String searchedText = '';
   RxBool hideNextButton = false.obs;
-  RxBool hidePreviousButton = false.obs;
+  RxBool hidePreviousButton = true.obs;
   RxBool hideMoreButtons = true.obs;
   RxBool isLoadingMore = false.obs;
   RxBool isLoading = false.obs;
@@ -81,6 +81,8 @@ class NewSearchController extends GetxController {
     if ((model.responseMap?.toneList ?? []).isEmpty) {
       hideNextButton.value = true;
       hidePreviousButton.value = true;
+    } else {
+      hideNextButton.value = false;
     }
     _createChunks();
     isLoading.value = false;
@@ -99,6 +101,9 @@ class NewSearchController extends GetxController {
     if ((model.responseMap?.toneList ?? []).isEmpty) {
       hideNextButton.value = true;
       hidePreviousButton.value = true;
+    } else {
+      hideNextButton.value = false;
+      hidePreviousButton.value = true;
     }
     _createChunks();
     isLoading.value = false;
@@ -113,6 +118,13 @@ class NewSearchController extends GetxController {
     isLoading.value = true;
     SearchToneidModel model = await searchToneIdApi(searchedText);
     _toneList = model.responseMap?.songList ?? [];
+    if ((model.responseMap?.toneList ?? []).isEmpty) {
+      hideNextButton.value = true;
+      hidePreviousButton.value = true;
+    } else {
+      hideNextButton.value = false;
+      hidePreviousButton.value = true;
+    }
     displayList.value = _toneList;
     isLoading.value = false;
     printCustom("_getTuneIdList");
@@ -127,6 +139,15 @@ class NewSearchController extends GetxController {
     isLoading.value = true;
     SearchTuneModel model = await searchArtistApi(searchedText);
     artistList.value = (model.responseMap?.countList?.artistDetailList ?? []);
+    hideMoreButtons.value = artistList.length < pagePerCount;
+
+    if ((model.responseMap?.countList?.artistDetailList ?? []).isEmpty) {
+      hideNextButton.value = true;
+      hidePreviousButton.value = true;
+    } else {
+      hidePreviousButton.value = true;
+      hideNextButton.value = false;
+    }
     printCustom("_getArtistList");
     isLoading.value = false;
   }
@@ -147,9 +168,10 @@ class NewSearchController extends GetxController {
   loadMoreData() async {
     isLoadingMore.value = true;
     if (searchType.value == SearchType.artistSearch) {
+      await _loadMoreArtists();
     } else if (searchType.value == SearchType.toneIdSearch) {
     } else if (searchType.value == SearchType.nameToneSearch) {
-      _loadMoreNameTunes();
+      await _loadMoreNameTunes();
     } else {
       await _loadMoreTunes();
     }
@@ -157,7 +179,14 @@ class NewSearchController extends GetxController {
   }
 
   nextButtonAction() async {
+    if (hideNextButton.value) {
+      return;
+    }
+    if (isLoadingMore.value) {
+      return;
+    }
     currentPage.value += 1;
+    hidePreviousButton.value = false;
     print("next button totalPage = $totalPage and currentPage $currentPage");
     if ((totalPage) > currentPage.value) {
       _createChunks();
@@ -168,9 +197,14 @@ class NewSearchController extends GetxController {
   }
 
   previousButtonAction() async {
-    if (currentPage.value == 0) {
+    if (hidePreviousButton.value) {
       return;
     }
+    if (currentPage.value == 0) {
+      hidePreviousButton.value = true;
+      return;
+    }
+    hideNextButton.value = false;
     currentPage -= 1;
 
     if (totalPage > currentPage.value) {
@@ -184,38 +218,53 @@ class NewSearchController extends GetxController {
   }
 
   Future<void> _loadMoreTunes() async {
-    isLoadingMore.value = true;
-
     AdvanceSearchModel model =
         await searchTuneApi(searchedText, pageNo: _toneList.length);
     _toneList += model.responseMap?.toneList ?? [];
     if ((model.responseMap?.toneList ?? []).isEmpty) {
       hideNextButton.value = true;
-      hidePreviousButton.value = true;
+      hidePreviousButton.value = false;
     } else {
       hideNextButton.value = false;
       hidePreviousButton.value = false;
     }
 
     _createChunks();
-    isLoadingMore.value = false;
+    return;
   }
 
   Future<void> _loadMoreNameTunes() async {
-    isLoadingMore.value = true;
-
     SearchTuneModel model =
         await nameTuneSearchApi(searchedText, pageNo: _toneList.length);
     _toneList += model.responseMap?.toneList ?? [];
+
     if ((model.responseMap?.toneList ?? []).isEmpty) {
       hideNextButton.value = true;
-      hidePreviousButton.value = true;
+      hidePreviousButton.value = false;
     } else {
       hideNextButton.value = false;
       hidePreviousButton.value = false;
     }
 
     _createChunks();
-    isLoadingMore.value = false;
+    return;
+  }
+
+  Future<void> _loadMoreArtists() async {
+    isLoadingMore.value = true;
+    SearchTuneModel model = await searchArtistApi(searchedText);
+    List<ArtistDetailList?> lst =
+        (model.responseMap?.countList?.artistDetailList ?? []);
+    hideMoreButtons.value = lst.length < pagePerCount;
+    if ((model.responseMap?.countList?.artistDetailList ?? []).length <
+        pagePerCount) {
+      hideNextButton.value = true;
+      hidePreviousButton.value = false;
+    } else {
+      hideNextButton.value = false;
+      hidePreviousButton.value = false;
+    }
+    artistList.value += lst;
+    return;
   }
 }
