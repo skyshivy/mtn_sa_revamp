@@ -63,6 +63,7 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   calendar_date_picker2: ^0.5.2
   local_session_timeout: ^2.3.2
+  number_paginator: ^0.4.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
