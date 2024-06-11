@@ -22,7 +22,7 @@ class _CustomPaginationState extends State<CustomPagination> {
   //int _currentPage = 0;
   @override
   void initState() {
-    var anc = (widget.totalItem / pagePerCount).floor(); //.ceil();
+    var anc = (widget.totalItem / pagePerCount).ceil(); //.floor(); //
     _numPages = anc;
     super.initState();
   }

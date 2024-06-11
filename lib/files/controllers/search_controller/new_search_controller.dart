@@ -81,6 +81,7 @@ class NewSearchController extends GetxController {
     printCustom("_getTuneList");
     AdvanceSearchModel model = await searchTuneApi(searchedText);
     _toneList = model.responseMap?.toneList ?? [];
+    totalCount.value = model.responseMap?.resultCount ?? 0;
     if ((model.responseMap?.toneList ?? []).isEmpty) {
       hideNextButton.value = true;
       hidePreviousButton.value = true;
@@ -144,7 +145,7 @@ class NewSearchController extends GetxController {
     SearchTuneModel model = await searchArtistApi(searchedText);
     artistList.value = (model.responseMap?.countList?.artistDetailList ?? []);
     hideMoreButtons.value = artistList.length < pagePerCount;
-    totalCount.value = model.responseMap?.toneTotalCount ?? 0;
+    //totalCount.value = model.responseMap?.toneTotalCount ?? 40;
     if ((model.responseMap?.countList?.artistDetailList ?? []).isEmpty) {
       hideNextButton.value = true;
       hidePreviousButton.value = true;

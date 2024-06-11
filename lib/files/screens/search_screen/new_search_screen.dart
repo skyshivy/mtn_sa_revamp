@@ -53,15 +53,15 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
             },
           ),
         ),
-        nextAndPreviousButtonContainer()
-        /*
+        //nextAndPreviousButtonContainer()
+/*
         Obx(() {
           return Visibility(
             visible: !(cont.totalCount < pagePerCount),
             child: CustomPagination(
               totalItem: cont.totalCount.value,
               tappedIndex: (p0) {
-                cont.loadOnPageNumberData(pageNo: p0 + 1);
+                cont.loadOnPageNumberData(pageNo: p0);
                 //cont.loadByPageNoData(pageNo: p0 + 1);
               },
             ),
