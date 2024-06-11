@@ -18,6 +18,7 @@ import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:mtn_sa_revamp/files/screens/search_screen/search_sub_views/search_header.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:mtn_sa_revamp/files/utility/constants.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -53,9 +54,20 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
           ),
         ),
         nextAndPreviousButtonContainer()
-        // CustomPagination(
-        //   totalItem: 30,
-        // )
+        /*
+        Obx(() {
+          return Visibility(
+            visible: !(cont.totalCount < pagePerCount),
+            child: CustomPagination(
+              totalItem: cont.totalCount.value,
+              tappedIndex: (p0) {
+                cont.loadOnPageNumberData(pageNo: p0 + 1);
+                //cont.loadByPageNoData(pageNo: p0 + 1);
+              },
+            ),
+          );
+        })
+        */
       ],
     );
   }

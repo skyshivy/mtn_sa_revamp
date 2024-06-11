@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
+
+import 'package:get/state_manager.dart';
 import 'package:mtn_sa_revamp/files/custom_files/chunks.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/model/normal_tune_search_model.dart';
@@ -22,6 +23,7 @@ class NewSearchController extends GetxController {
   RxBool isLoadingMore = false.obs;
   RxBool isLoading = false.obs;
   RxInt currentPage = 0.obs;
+  RxInt totalCount = 0.obs;
   int totalPage = 1;
 
   List<TuneInfo> _toneList = <TuneInfo>[];
@@ -29,6 +31,7 @@ class NewSearchController extends GetxController {
   final RxList<TuneInfo> displayList = <TuneInfo>[].obs;
 
   reset() {
+    totalCount.value = 0;
     hideNextButton.value = false;
     hidePreviousButton.value = false;
     isLoadingMore.value = false;
@@ -98,6 +101,7 @@ class NewSearchController extends GetxController {
     printCustom("_getTuneList");
     SearchTuneModel model = await nameTuneSearchApi(searchedText);
     _toneList = model.responseMap?.toneList ?? [];
+    totalCount.value = model.responseMap?.toneTotalCount ?? 0;
     if ((model.responseMap?.toneList ?? []).isEmpty) {
       hideNextButton.value = true;
       hidePreviousButton.value = true;
@@ -140,7 +144,7 @@ class NewSearchController extends GetxController {
     SearchTuneModel model = await searchArtistApi(searchedText);
     artistList.value = (model.responseMap?.countList?.artistDetailList ?? []);
     hideMoreButtons.value = artistList.length < pagePerCount;
-
+    totalCount.value = model.responseMap?.toneTotalCount ?? 0;
     if ((model.responseMap?.countList?.artistDetailList ?? []).isEmpty) {
       hideNextButton.value = true;
       hidePreviousButton.value = true;
@@ -266,5 +270,40 @@ class NewSearchController extends GetxController {
     }
     artistList.value += lst;
     return;
+  }
+
+  //==================== Load page wise===================
+  loadOnPageNumberData({int pageNo = 0}) async {
+    if (searchType.value == SearchType.artistSearch) {
+      await _loadArtistsOnPage(pageNo * pagePerCount);
+    } else if (searchType.value == SearchType.toneIdSearch) {
+    } else if (searchType.value == SearchType.nameToneSearch) {
+      await _loadNameTunesOnPage(pageNo * pagePerCount);
+    } else {
+      await _loadTunesOnPage(pageNo * pagePerCount);
+    }
+  }
+
+  _loadArtistsOnPage(int pageNo) async {
+    isLoading.value = true;
+    SearchTuneModel model = await searchArtistApi(searchedText, pageNo: pageNo);
+    artistList.value = (model.responseMap?.countList?.artistDetailList ?? []);
+    isLoading.value = false;
+  }
+
+  _loadNameTunesOnPage(int pageNo) async {
+    isLoading.value = true;
+    SearchTuneModel model =
+        await nameTuneSearchApi(searchedText, pageNo: pageNo);
+    displayList.value = model.responseMap?.toneList ?? [];
+    isLoading.value = false;
+  }
+
+  _loadTunesOnPage(int pageNo) async {
+    isLoading.value = true;
+    AdvanceSearchModel model =
+        await searchTuneApi(searchedText, pageNo: pageNo);
+    displayList.value = model.responseMap?.toneList ?? [];
+    isLoading.value = false;
   }
 }
