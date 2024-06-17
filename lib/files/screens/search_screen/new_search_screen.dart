@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/new_search_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_pagination_widget.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
@@ -54,20 +55,11 @@ class _NewSearchScreenState extends State<NewSearchScreen> {
           ),
         ),
         //nextAndPreviousButtonContainer()
-/*
         Obx(() {
-          return Visibility(
-            visible: !(cont.totalCount < pagePerCount),
-            child: CustomPagination(
-              totalItem: cont.totalCount.value,
-              tappedIndex: (p0) {
-                cont.loadOnPageNumberData(pageNo: p0);
-                //cont.loadByPageNoData(pageNo: p0 + 1);
-              },
-            ),
-          );
-        })
-        */
+          return customLoadMoreData(cont.totalCount.value, (p0) {
+            cont.loadOnPageNumberData(pageNo: p0);
+          });
+        }),
       ],
     );
   }

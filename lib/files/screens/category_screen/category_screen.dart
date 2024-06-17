@@ -5,6 +5,7 @@ import 'package:mtn_sa_revamp/files/controllers/category_controller/category_con
 import 'package:mtn_sa_revamp/files/controllers/tune_cell_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_empty_tune_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_pagination_widget.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
@@ -82,7 +83,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   Widget loadMoreActivity() {
     return Obx(() {
-      return controller.isLoadMore.value
+      return customLoadMoreData(controller.totolCount.value, (p0) {
+        controller.loadMoreOnPageNumberData(p0);
+      });
+      /*
+      controller.isLoadMore.value
           ? loadingIndicator(radius: 12)
           : controller.isHideLoadMore.value
               ? const SizedBox()
@@ -92,6 +97,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     controller.loadMoreData();
                   },
                 );
+                */
     });
   }
 }

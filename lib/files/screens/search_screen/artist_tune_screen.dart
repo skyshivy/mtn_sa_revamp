@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_pagination_widget.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_load_more_data.dart';
@@ -58,12 +59,15 @@ class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
   }
 
   Widget loadMoreData() {
-    return loadMoreDataButton(
-      isLoading: controller.isLoadMore.value,
-      rightAction: () {
-        controller.loadMoreData();
-      },
-    );
+    return customLoadMoreData(controller.totalCount, (p0) {
+      controller.loadPageNoData(p0);
+    });
+    // loadMoreDataButton(
+    //   isLoading: controller.isLoadMore.value,
+    //   rightAction: () {
+    //     controller.loadMoreData();
+    //   },
+    // );
   }
 
   Widget gridView() {

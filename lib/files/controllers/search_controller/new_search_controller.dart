@@ -30,7 +30,7 @@ class NewSearchController extends GetxController {
   RxList<ArtistDetailList?> artistList = <ArtistDetailList>[].obs;
   final RxList<TuneInfo> displayList = <TuneInfo>[].obs;
 
-  reset() {
+  _reset() {
     totalCount.value = 0;
     hideNextButton.value = false;
     hidePreviousButton.value = false;
@@ -50,7 +50,7 @@ class NewSearchController extends GetxController {
 
   getSearchedResult(SearchType searchType) {
     hideMoreButtons.value = true;
-    reset();
+    _reset();
     this.searchType.value = searchType;
     printCustom("Searching text ===  $searchedText");
     switch (searchType) {

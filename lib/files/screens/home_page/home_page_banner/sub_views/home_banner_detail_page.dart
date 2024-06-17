@@ -3,11 +3,13 @@ import 'package:get/get.dart';
 
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/banner_detail_controller/banner_detail_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/custom_pagination_widget.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_top_header_view.dart';
 import 'package:mtn_sa_revamp/files/custom_files/grid_delegate.dart';
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/custom_files/push_to_preview.dart';
+import 'package:mtn_sa_revamp/files/custom_pagination/custom_pagination.dart';
 import 'package:mtn_sa_revamp/files/screens/home_page/home_recomended/sub_views/tune_cell.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -47,12 +49,31 @@ class HomeBannerDetailPage extends StatelessWidget {
                       children: [
                         CustomTopHeaderView(title: bannerDetailStr.tr),
                         Expanded(child: gridView()),
+                        Obx(() {
+                          return customLoadMoreData(
+                              controller.totalCount.value, (value) {});
+                        })
                       ],
                     );
         });
       },
     );
   }
+
+  // Widget loadMoreData() {
+  //   return
+  //   Obx(() {
+  //     return Visibility(
+  //       visible: !(controller.totalCount < pagePerCount),
+  //       child: CustomPagination(
+  //         totalItem: controller.totalCount.value,
+  //         tappedIndex: (p0) {
+  //           controller.loadOnPageNumberData(pageNo: p0);
+  //         },
+  //       ),
+  //     );
+  //   });
+  // }
 
   Widget emptyWidget() {
     return Center(
