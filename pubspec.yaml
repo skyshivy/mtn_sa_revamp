@@ -64,6 +64,7 @@ dependencies:
   calendar_date_picker2: ^0.5.2
   local_session_timeout: ^2.3.2
   number_paginator: ^0.4.1
+  web_smooth_scroll: ^1.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -50,7 +50,7 @@ intialInitialization() async {
   _initStoreManager();
 
 // below line added to for dalay so can store manager can initialized
-  await Future.delayed(const Duration(milliseconds: 500));
+  await Future.delayed(const Duration(milliseconds: 100));
 // above line added to for dalay so can store manager can initialized
 
   LoginController logCont = Get.put(LoginController());
