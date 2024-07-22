@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
-
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/save_login_credentials.dart';
 import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
@@ -12,7 +10,6 @@ import 'package:mtn_sa_revamp/files/model/new_user_otp_check_model.dart';
 import 'package:mtn_sa_revamp/files/model/password_validation_model.dart';
 import 'package:mtn_sa_revamp/files/model/subscriber_valid_model.dart';
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
-
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 
 import 'package:mtn_sa_revamp/files/utility/string.dart';
@@ -27,7 +24,6 @@ class LoginController extends GetxController {
   RxBool isMsisdnVarified = false.obs;
   RxString msisdn = ''.obs;
   String securityToken = '';
-
   String securityCounter = '';
   RxString errorMessage = ''.obs;
   RxString otp = ''.obs;
@@ -119,18 +115,15 @@ class LoginController extends GetxController {
     // if (isNewUser) {
     //   newUserOtpCheck();
     // } else {
-
     GenerateOtpModel result = await LoginVm().generateOtp(msisdn.value);
     isVerifying.value = false;
     if (result.statusCode == "SC0000") {
       isMsisdnVarified.value = true;
     } else {
-      errorMessage.value = result.message;
+      errorMessage.value = result.message ?? '';
       isMsisdnVarified.value = false;
     }
-
     //}
-
     printCustom("Generate otp api call here");
     return true;
   }
@@ -220,7 +213,6 @@ class LoginController extends GetxController {
         return false;
       }
     }
-
     if (resut != null) {
       PasswordValidationModel model = PasswordValidationModel.fromJson(resut);
       if (model.statusCode == "SC0000") {
@@ -277,7 +269,6 @@ class LoginController extends GetxController {
       securityCounter = model.responseMap.securityCounter;
       NewUserRegistrationModel newUserModel = await NewRegistrartionVm()
           .register(msisdn, securityCounter, sendOtp: false);
-
       if (newUserModel.statusCode == 'SC0000') {
         _autoLoginPassowrdValidation();
       } else {
@@ -294,7 +285,6 @@ class LoginController extends GetxController {
   }
 
 //=======================New user==================
-
   Future<void> getSecurityTokenForNew(String msisdn) async {
     var map = await GetSecurityVM().token();
     if (map != null) {
@@ -303,7 +293,6 @@ class LoginController extends GetxController {
       securityCounter = model.responseMap.securityCounter;
       NewUserRegistrationModel newUserModel =
           await NewRegistrartionVm().register(msisdn, securityCounter);
-
       if (newUserModel.statusCode == 'SC0000') {
         otpController.initTimer();
         securityCounter = newUserModel.responseMap?.secToc ?? '';

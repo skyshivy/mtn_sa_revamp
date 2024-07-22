@@ -12,7 +12,7 @@ import 'package:mtn_sa_revamp/files/view_model/get_banner_detail_manual_vm.dart'
 class BannerDetailController extends GetxController {
   RxBool isloading = false.obs;
   RxList<TuneInfo> list = <TuneInfo>[].obs;
-
+  RxInt totalCount = 0.obs;
   getDetail(String type, String bannerOrder, String searchKey,
       {int page = 0}) async {
     isloading.value = true;
@@ -40,5 +40,9 @@ class BannerDetailController extends GetxController {
     }
 
     isloading.value = false;
+  }
+
+  loadMoreData() {
+    printCustom("Load more data here");
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mtn_sa_revamp/files/controllers/search_controller/new_search_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/web_tab_controller.dart';
 
@@ -17,6 +18,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 class HomeSearchWidget extends StatelessWidget {
   final WebTabController controller = Get.find();
   final SearchTuneController searchTuneController = Get.find();
+  final NewSearchController newSearchController = Get.find();
   final TextEditingController textEditingController = TextEditingController();
   HomeSearchWidget({super.key});
   @override
@@ -54,8 +56,9 @@ class HomeSearchWidget extends StatelessWidget {
             textColor: black,
             onChanged: (p0) {
               searchTuneController.searchedText.value = p0;
+              newSearchController.searchedText = p0;
+              newSearchController.updateSearchedText(p0);
               //controller.loadPage(3);
-              printCustom("onChanged======$p0");
             },
             onSubmit: (p0) {
               if (p0.isNotEmpty) {
@@ -63,12 +66,13 @@ class HomeSearchWidget extends StatelessWidget {
                   "key": p0,
                   "index": "${searchTuneController.searchType.value}",
                 });
-                searchTuneController.stopMultipleApiCall = true;
-                searchTuneController.getSearchedResult(
-                    searchTuneController.searchedText.value, 0);
+                SearchType searchType =
+                    getSearchType("${searchTuneController.searchType.value}");
+                newSearchController.getSearchedResult(searchType);
+                // searchTuneController.stopMultipleApiCall = true;
+                // searchTuneController.getSearchedResult(
+                //     searchTuneController.searchedText.value, 0);
               }
-
-              printCustom("onSubmit======$p0");
             },
             onTap: () {
               controller.loadPage(3);
@@ -82,14 +86,17 @@ class HomeSearchWidget extends StatelessWidget {
               width: 35,
               height: 37,
               onTap: () {
-                if (searchTuneController.searchedText.isNotEmpty) {
+                if (newSearchController.searchedText.isNotEmpty) {
                   context.goNamed(searchGoRoute, queryParameters: {
                     "key": searchTuneController.searchedText.value,
                     "index": "${searchTuneController.searchType.value}",
                   });
-                  searchTuneController.stopMultipleApiCall = true;
-                  searchTuneController.getSearchedResult(
-                      searchTuneController.searchedText.value, 0);
+                  SearchType searchType =
+                      getSearchType("${searchTuneController.searchType.value}");
+                  newSearchController.getSearchedResult(searchType);
+                  // searchTuneController.stopMultipleApiCall = true;
+                  // searchTuneController.getSearchedResult(
+                  //     searchTuneController.searchedText.value, 0);
                 }
                 printCustom("On search tapped");
               },
@@ -98,6 +105,21 @@ class HomeSearchWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  SearchType getSearchType(String index) {
+    printCustom("index = $index");
+    if (index == "0") {
+      return SearchType.toneSearch;
+    } else if (index == "1") {
+      return SearchType.artistSearch;
+    } else if (index == "2") {
+      return SearchType.toneIdSearch;
+    } else if (index == "3") {
+      return SearchType.nameToneSearch;
+    } else {
+      return SearchType.toneSearch;
+    }
   }
 
   BoxDecoration decoration() {

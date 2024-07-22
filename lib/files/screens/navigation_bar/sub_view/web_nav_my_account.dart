@@ -87,7 +87,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
   }
 
   void navigateTo(MenuModel item) {
-    printCustom("Items tapped is ====== $item");
+    printCustom("Items tapped is ====== ${item.title}");
     ProfileController _ = Get.find();
     if (item.title == profileStr.tr) {
       context.goNamed(profileGoRoute);
@@ -109,6 +109,7 @@ class _WebMyAccountButtonState extends State<WebMyAccountButton> {
       myTuneController.getPlayingTuneList();
       printCustom("myTuneTapped tapped");
     } else if (item.title == logoutStr.tr) {
+      printCustom("SKY Logout called from web nav my account");
       context.go(homeGoRoute);
       printCustom("Logout called from web nav my account");
       StoreManager().logout();

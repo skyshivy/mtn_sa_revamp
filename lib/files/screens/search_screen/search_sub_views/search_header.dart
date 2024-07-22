@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:mtn_sa_revamp/files/controllers/search_controller/new_search_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -11,7 +12,7 @@ import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SearchHeader extends StatelessWidget {
-  final SearchTuneController controller = Get.find();
+  final NewSearchController controller = Get.find();
 
   SearchHeader({super.key});
   @override
@@ -19,7 +20,7 @@ class SearchHeader extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, si) {
         return Obx(() {
-          return !controller.isLoaded.value
+          return controller.isLoading.value
               ? const SizedBox()
               : Row(
                   children: [
@@ -51,7 +52,7 @@ class SearchHeader extends StatelessWidget {
           textColor: grey,
         ),
         CustomText(
-          title: controller.searchedText.value,
+          title: controller.searchedText,
         )
       ],
     );

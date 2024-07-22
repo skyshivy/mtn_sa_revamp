@@ -17,6 +17,8 @@ import 'package:mtn_sa_revamp/files/controllers/music_box_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/otp_timer_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/player_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/search_controller/new_search_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/search_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_cell_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_preview_controller.dart';
@@ -49,7 +51,7 @@ intialInitialization() async {
   _initStoreManager();
 
 // below line added to for dalay so can store manager can initialized
-  await Future.delayed(const Duration(milliseconds: 500));
+  await Future.delayed(const Duration(milliseconds: 100));
 // above line added to for dalay so can store manager can initialized
 
   LoginController logCont = Get.put(LoginController());
@@ -69,6 +71,7 @@ intialInitialization() async {
     printCustom('errro $e');
   }
   CategoryPoupupController catCont = Get.put(CategoryPoupupController());
+  ProfileController profileController = Get.put(ProfileController());
   SearchTuneController _ = Get.put(SearchTuneController());
   RecoController recCont = Get.put(RecoController());
   playerController = Get.put(PlayerController());
@@ -84,6 +87,7 @@ intialInitialization() async {
   WishlistController wishCont = Get.put(WishlistController());
   MusicPackController musicCont = Get.put(MusicPackController());
   TuneCellController tuneCont = Get.put(TuneCellController());
+  NewSearchController newSearchController = Get.put(NewSearchController());
 }
 
 Future<void> _initStoreManager() async {
@@ -129,6 +133,7 @@ Future<String> _getJson() async {
     twitterUrl = data['TWITTER_URL'];
     linkedinUrl = data['LINKEDIN_URL'];
     defaultImageUrl = data["DEFAULT_IMAGE_URL"];
+    isEnableLog = data["ENABLE_LOG"];
 
     parseUrl();
     return value;

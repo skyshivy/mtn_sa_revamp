@@ -45,9 +45,10 @@ class AdvanceSearchModel {
 
 class ResponseMap {
   List<TuneInfo>? toneList;
-
+  int? resultCount;
   ResponseMap({
     this.toneList,
+    this.resultCount,
   });
 
   factory ResponseMap.fromJson(Map<String, dynamic> json) => ResponseMap(
@@ -55,11 +56,13 @@ class ResponseMap {
             ? []
             : List<TuneInfo>.from(
                 json["toneList"]!.map((x) => TuneInfo.fromJson(x))),
+        resultCount: json["resultCount"],
       );
 
   Map<String, dynamic> toJson() => {
         "toneList": toneList == null
             ? []
             : List<dynamic>.from(toneList!.map((x) => x.toJson())),
+        "resultCount": resultCount,
       };
 }

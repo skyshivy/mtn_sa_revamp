@@ -1,10 +1,11 @@
 import 'package:mtn_sa_revamp/files/model/confirm_otp_existing_model.dart';
+import 'package:mtn_sa_revamp/files/model/confirm_otp_model.dart';
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 class ConfirmOtpVM {
-  Future<ConfirmOtpExistingModel> confirm(String msisdn, String otp) async {
+  Future<ConfirmOtpModel> confirm(String msisdn, String otp) async {
     var params = {
       "otp": otp,
       "msisdn": msisdn,
@@ -21,11 +22,10 @@ class ConfirmOtpVM {
     Map<String, dynamic>? map =
         await ServiceCall().post(url, formData); //.post(url, formData);
     if (map != null) {
-      ConfirmOtpExistingModel model = ConfirmOtpExistingModel.fromJson(map);
+      ConfirmOtpModel model = ConfirmOtpModel.fromJson(map);
       return model;
     } else {
-      ConfirmOtpExistingModel model =
-          ConfirmOtpExistingModel(message: "Errror");
+      ConfirmOtpModel model = ConfirmOtpModel(message: "Errror");
       return model;
     }
   }

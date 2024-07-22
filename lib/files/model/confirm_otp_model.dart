@@ -1,6 +1,78 @@
 // To parse this JSON data, do
 //
 //     final confirmOtpModel = confirmOtpModelFromJson(jsonString);
+/*
+import 'dart:convert';
+
+ConfirmOtpModel confirmOtpModelFromJson(String str) =>
+    ConfirmOtpModel.fromJson(json.decode(str));
+
+String confirmOtpModelToJson(ConfirmOtpModel data) =>
+    json.encode(data.toJson());
+
+class ConfirmOtpModel {
+  ResponseMap? responseMap;
+  String? message;
+  String? respTime;
+  String? statusCode;
+
+  ConfirmOtpModel({
+    this.responseMap,
+    this.message,
+    this.respTime,
+    this.statusCode,
+  });
+
+  factory ConfirmOtpModel.fromJson(Map<String, dynamic> json) =>
+      ConfirmOtpModel(
+        responseMap: json["responseMap"] == null
+            ? null
+            : ResponseMap.fromJson(json["responseMap"]),
+        message: json["message"],
+        respTime: json["respTime"],
+        statusCode: json["statusCode"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "responseMap": responseMap?.toJson(),
+        "message": message,
+        "respTime": respTime,
+        "statusCode": statusCode,
+      };
+}
+
+class ResponseMap {
+  int? expiry;
+  String? accessToken;
+  String? deviceId;
+  String? refreshToken;
+
+  ResponseMap({
+    this.expiry,
+    this.accessToken,
+    this.deviceId,
+    this.refreshToken,
+  });
+
+  factory ResponseMap.fromJson(Map<String, dynamic> json) => ResponseMap(
+        expiry: json["expiry"],
+        accessToken: json["accessToken"],
+        deviceId: json["deviceId"],
+        refreshToken: json["refreshToken"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "expiry": expiry,
+        "accessToken": accessToken,
+        "deviceId": deviceId,
+        "refreshToken": refreshToken,
+      };
+}
+*/
+
+// To parse this JSON data, do
+//
+//     final confirmOtpModel = confirmOtpModelFromJson(jsonString);
 
 import 'dart:convert';
 

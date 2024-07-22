@@ -38,7 +38,7 @@ class _MyTuneScreenState extends State<MyTuneScreen> {
   @override
   void dispose() {
     printCustom("Disposed");
-    Get.delete<MyTuneController>();
+    //Get.delete<MyTuneController>();
     super.dispose();
   }
 

@@ -15,6 +15,7 @@ String instagramUrl = '';
 String twitterUrl = '';
 String linkedinUrl = '';
 String youtubeUrl = '';
+String isEnableLog = "false";
 String messangerUrl = '';
 String defaultImageUrl = ''; //DEFAULT_IMAGE_URL
 String baseUrl = "";
@@ -48,7 +49,7 @@ String searchByTuneIdUrl =
 String getArtistSearchTuneUrl = "${baseUrl}search-tone?language=";
 String subscriberValidationUrl = "${baseUrl}subscriber-validation";
 String generateOtpUrl = "${baseUrl}generate-otp";
-String confirmOtpUrl = "${baseUrl}confirm-otp";
+String confirmOtpUrl = "${baseUrl}confirm-otp"; //confirm-otprbt";
 String getSecurityTokenUrl = "${baseUrl}security-token";
 String editProfileUrl = "${baseUrlSecurity}edit-profile";
 String passwordValidationUrl = "${baseUrl}password-validation";

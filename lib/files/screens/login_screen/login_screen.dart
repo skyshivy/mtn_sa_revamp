@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_interpolation_to_compose_strings
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
@@ -9,21 +7,18 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text_field/custom_msisdn_text_field.dart';
-
 import 'package:mtn_sa_revamp/files/custom_files/loading_indicator.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/utility/image_name.dart';
 import 'package:mtn_sa_revamp/files/utility/string.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
 import '../../custom_files/custom_print.dart';
 
 late OtpTimerController otpController; // = Get.put(OtpTimerController());
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -31,7 +26,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   late BuildContext context;
   late LoginController controller;
-
   @override
   void initState() {
     controller = Get.put(LoginController());
@@ -95,11 +89,11 @@ class _LoginScreenState extends State<LoginScreen> {
               logoImageWidget(si),
               vSpacing(height: si.isMobile ? 10 : 30),
               titleWidget(),
+
               vSpacing(height: 8),
               subTitleWidget(),
               vSpacing(height: si.isMobile ? 10 : 40),
               textfieldWidget(si),
-
               errorWidget(si),
               Obx(() {
                 return controller.isMsisdnVarified.value
@@ -214,15 +208,26 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
       controller.msisdn.value = value;
     }
-
     printCustom("On change ======$value");
   }
 
   void onSubmit(String value) async {
     if (controller.isMsisdnVarified.value) {
       controller.otp.value = value;
-      bool _ = await controller.verifyOtpButtonAction();
+      bool isSuccess = await controller.verifyOtpButtonAction();
       printCustom("Login Screen \n onSubmit method  123\n");
+
+      if (isSuccess) {
+        printCustom("Verufied l and called in Login screen is success");
+        Get.back();
+        Navigator.pop(context);
+        await Future.delayed(const Duration(milliseconds: 200));
+        Get.dialog(
+          Center(
+            child: CustomAlertView(title: successFullyLoggedInStr.tr),
+          ),
+        );
+      }
     } else {
       controller.varifyMsisdnButtonAction();
       controller.msisdn.value = value;
@@ -451,7 +456,6 @@ class _LoginScreenState extends State<LoginScreen> {
         if (isSuccess) {
           printCustom("Verufied l and called in Login screen is success");
           Get.back();
-
           Navigator.pop(context);
           await Future.delayed(const Duration(milliseconds: 200));
           Get.dialog(

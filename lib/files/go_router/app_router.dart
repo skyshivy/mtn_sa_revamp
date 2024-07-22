@@ -12,6 +12,7 @@ import 'package:mtn_sa_revamp/files/controllers/music_box_detail_controller.dart
 import 'package:mtn_sa_revamp/files/controllers/my_tune_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/profile_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/search_controller/artist_controller.dart';
+import 'package:mtn_sa_revamp/files/controllers/search_controller/new_search_controller.dart';
 
 import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
@@ -22,27 +23,45 @@ import 'package:mtn_sa_revamp/files/go_router/route_name.dart';
 import 'package:mtn_sa_revamp/files/localization/localizatio_service.dart';
 
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
-import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/category_screen/category_screen.dart'
+    deferred as def_cat_screen;
 import 'package:mtn_sa_revamp/files/screens/delete_screen/delete_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/help_screen/help_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/history_screen/history_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/faq_screen/faq_screen.dart'
+    deferred as def_faq_screen;
+import 'package:mtn_sa_revamp/files/screens/help_screen/help_screen.dart'
+    deferred as def_help;
+import 'package:mtn_sa_revamp/files/screens/history_screen/history_screen.dart'
+    deferred as def_history_screen;
 import 'package:mtn_sa_revamp/files/screens/login_screen/login_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/music_pack_screen/music_pack_detail_list_screen/music_detail_list_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/music_pack_screen/music_pack_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/music_pack_screen/music_pack_detail_list_screen/music_detail_list_screen.dart'
+    deferred as def_music_detail;
+import 'package:mtn_sa_revamp/files/screens/music_pack_screen/music_pack_screen.dart'
+    deferred as def_music_pack;
+import 'package:mtn_sa_revamp/files/screens/my_tune_screen/my_tune_screen.dart'
+    deferred as def_my_tune_screen;
+import 'package:mtn_sa_revamp/files/screens/my_tune_setting_screen/my_tune_settng_screen.dart'
+    deferred as def_my_tune_setting_screen;
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/mobile_app_bar/mobile_app_bar.dart';
 import 'package:mtn_sa_revamp/files/screens/navigation_bar/web_nav_bar_view.dart';
-import 'package:mtn_sa_revamp/files/screens/privacy_policy_screen/privacy_policy_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/profile_screen/profile_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/search_screen/search_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/see_more_screen/see_more_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/terms_condition/terms_condition_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/home_page/home_page_banner/sub_views/home_banner_detail_page.dart';
-import 'package:mtn_sa_revamp/files/screens/home_page/web_home_screen.dart';
-import 'package:mtn_sa_revamp/files/screens/wishlist_screen/wishlsit_screen.dart';
+import 'package:mtn_sa_revamp/files/screens/privacy_policy_screen/privacy_policy_screen.dart'
+    deferred as def_privacy;
+import 'package:mtn_sa_revamp/files/screens/profile_screen/profile_screen.dart'
+    deferred as def_profile_screen;
+import 'package:mtn_sa_revamp/files/screens/search_screen/artist_tune_screen.dart'
+    deferred as def_artist_tune_screen;
+import 'package:mtn_sa_revamp/files/screens/search_screen/new_search_screen.dart'
+    deferred as def_new_search_screen;
+
+import 'package:mtn_sa_revamp/files/screens/see_more_screen/see_more_screen.dart'
+    deferred as def_see_more_screen;
+import 'package:mtn_sa_revamp/files/screens/terms_condition/terms_condition_screen.dart'
+    deferred as def_terms;
+import 'package:mtn_sa_revamp/files/screens/home_page/home_page_banner/sub_views/home_banner_detail_page.dart'
+    deferred as def_home_banner_detail;
+import 'package:mtn_sa_revamp/files/screens/home_page/web_home_screen.dart'
+    deferred as web_home_screen;
+import 'package:mtn_sa_revamp/files/screens/wishlist_screen/wishlsit_screen.dart'
+    deferred as def_wishlist_screen;
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
 
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
@@ -110,43 +129,52 @@ StatefulShellBranch artistTuneDetailScreen() {
       name: artistGoRoute,
       path: artistGoRoute,
       builder: (context, state) {
-        printCustom(
-            "pathParameters is ===== ${state.uri.queryParameters['categoryName']}");
-        String artistName = state.uri.queryParameters['artist'] ?? '';
-        artCont.getArtistSongs(artistName);
-        return ArtistTuneScreen(artistName: artistName);
+        return DeferredRoute(() => def_artist_tune_screen.loadLibrary(), () {
+          printCustom(
+              "pathParameters is ===== ${state.uri.queryParameters['categoryName']}");
+          String artistName = state.uri.queryParameters['artist'] ?? '';
+          artCont.getArtistSongs(artistName);
+          return def_artist_tune_screen.ArtistTuneScreen(
+              artistName: artistName);
+        });
+        //ArtistTuneScreen(artistName: artistName);
       },
     ),
   ]);
 }
 
 StatefulShellBranch bannerDetailScreen() {
-  BannerDetailController bannerCont = Get.put(BannerDetailController());
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: bannerGoRoute,
       path: bannerGoRoute,
       builder: (context, state) {
-        String bannerOrder = state.uri.queryParameters['bannerOrder'] ?? '';
-        String type = state.uri.queryParameters['type'] ?? '';
-        String searchKey = state.uri.queryParameters['searchKey'] ?? '';
-        bannerCont.getDetail(type, bannerOrder, searchKey);
-        return HomeBannerDetailPage(
-            type: type, bannerOrder: bannerOrder, searchKey: searchKey);
+        return DeferredRoute(() => def_home_banner_detail.loadLibrary(), () {
+          BannerDetailController bannerCont = Get.put(BannerDetailController());
+          String bannerOrder = state.uri.queryParameters['bannerOrder'] ?? '';
+          String type = state.uri.queryParameters['type'] ?? '';
+          String searchKey = state.uri.queryParameters['searchKey'] ?? '';
+          bannerCont.getDetail(type, bannerOrder, searchKey);
+          return def_home_banner_detail.HomeBannerDetailPage(
+              type: type, bannerOrder: bannerOrder, searchKey: searchKey);
+        });
       },
     ),
   ]);
 }
 
 StatefulShellBranch profileScreen() {
-  ProfileController _ = Get.put(ProfileController());
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: profileGoRoute,
       path: profileGoRoute,
       builder: (context, state) {
         //pCont.getProfileDetail();
-        return const ProfileScreen();
+        return DeferredRoute(() => def_profile_screen.loadLibrary(), () {
+          ProfileController _ = Get.find();
+          return def_profile_screen.ProfileScreen();
+        });
+        //const ProfileScreen();
       },
     ),
   ]);
@@ -159,7 +187,10 @@ StatefulShellBranch _privatePolicyScreen() {
       path: policyGoRoute,
       builder: (context, state) {
         //pCont.getProfileDetail();
-        return const PrivacyPolicyScreen();
+        return DeferredRoute(() => def_privacy.loadLibrary(), () {
+          return def_privacy.PrivacyPolicyScreen();
+        });
+        // const PrivacyPolicyScreen();
       },
     ),
   ]);
@@ -172,23 +203,25 @@ StatefulShellBranch _viewMusicDetailScreen() {
       path: musicDetailListGoRoute,
       builder: (context, state) {
         //pCont.getProfileDetail();
-        String toneCode = state.uri.queryParameters['toneCode'] ?? '';
-        String type = state.uri.queryParameters['type'] ?? '';
-        late MusicBoxDetailController cont;
-        try {
-          cont = Get.find();
-        } catch (e) {
-          cont = Get.put(MusicBoxDetailController());
-        }
+        return DeferredRoute(() => def_music_detail.loadLibrary(), () {
+          String toneCode = state.uri.queryParameters['toneCode'] ?? '';
+          String type = state.uri.queryParameters['type'] ?? '';
+          late MusicBoxDetailController cont;
+          try {
+            cont = Get.find();
+          } catch (e) {
+            cont = Get.put(MusicBoxDetailController());
+          }
 
-        printCustom("Called MusicPackDetailListScreen");
-        cont.getMusicBoxContent(toneCode, type);
-        var screen = MusicPackDetailListScreen(
-          toneCode: toneCode,
-          type: type,
-        );
+          printCustom("Called MusicPackDetailListScreen");
+          cont.getMusicBoxContent(toneCode, type);
+          var screen = def_music_detail.MusicPackDetailListScreen(
+            toneCode: toneCode,
+            type: type,
+          );
 
-        return screen;
+          return screen;
+        });
       },
     ),
   ]);
@@ -201,7 +234,9 @@ StatefulShellBranch _helpScreen() {
       path: helpGoRoute,
       builder: (context, state) {
         //pCont.getProfileDetail();
-        return const HelpScreen();
+        return DeferredRoute(() => def_help.loadLibrary(), () {
+          return def_help.HelpScreen();
+        });
       },
     ),
   ]);
@@ -214,7 +249,10 @@ StatefulShellBranch _termsScreen() {
       path: termsGoRoute,
       builder: (context, state) {
         //pCont.getProfileDetail();
-        return const TermsConditionScreen();
+        return DeferredRoute(() => def_terms.loadLibrary(), () {
+          return def_terms.TermsConditionScreen();
+        });
+        //const TermsConditionScreen();
       },
     ),
   ]);
@@ -226,7 +264,10 @@ StatefulShellBranch wishlistScreen() {
       name: wishlistGoRoute,
       path: wishlistGoRoute,
       builder: (context, state) {
-        return const WishlistScreen();
+        return DeferredRoute(() => def_wishlist_screen.loadLibrary(), () {
+          return def_wishlist_screen.WishlistScreen();
+        });
+        //const WishlistScreen();
       },
     ),
   ]);
@@ -239,7 +280,10 @@ StatefulShellBranch myTuneScreen() {
       path: myTuneGoRoute,
       builder: (context, state) {
         // myTuneController.getPlayingTuneList();
-        return const MyTuneScreen();
+        return DeferredRoute(() => def_my_tune_screen.loadLibrary(), () {
+          return def_my_tune_screen.MyTuneScreen();
+        });
+        //const MyTuneScreen();
       },
     ),
   ]);
@@ -251,7 +295,10 @@ StatefulShellBranch historyScreenRoute() {
       name: historyGoRoute,
       path: historyGoRoute,
       builder: (context, state) {
-        return const HistoryScreen();
+        return DeferredRoute(() => def_history_screen.loadLibrary(), () {
+          return def_history_screen.HistoryScreen();
+        });
+        //const HistoryScreen();
       },
     ),
   ]);
@@ -266,13 +313,16 @@ StatefulShellBranch seeMoreScreen() {
       name: moreGoRoute,
       path: moreGoRoute,
       builder: (context, state) {
-        List<TuneInfo>? list = state.extra as List<TuneInfo>;
-        //customPrint("List is =========== $list");
-        if (list.isEmpty) {
-          context.go(homeGoRoute);
-          return const WebLandingPage();
-        }
-        return const SeeMoreScreen();
+        return DeferredRoute(() => def_see_more_screen.loadLibrary(), () {
+          List<TuneInfo>? list = state.extra as List<TuneInfo>;
+          //customPrint("List is =========== $list");
+          if (list.isEmpty) {
+            context.go(homeGoRoute);
+            return web_home_screen.WebLandingPage();
+          }
+          return def_see_more_screen.SeeMoreScreen();
+        });
+        //const SeeMoreScreen();
       },
     ),
   ]);
@@ -285,27 +335,33 @@ StatefulShellBranch categoryDetailScreen() {
       name: tuneGoRoute,
       path: tuneGoRoute,
       builder: (context, state) {
-        printCustom(
-            "pathParameters is ===== ${state.uri.queryParameters['categoryName']}");
-        String categoryName = state.uri.queryParameters['categoryName'] ?? '';
-        String categoryId = state.uri.queryParameters['categoryId'] ?? '';
-        CategoryScreen catScreen =
-            CategoryScreen(category: categoryName, id: categoryId);
-        catCont.getCategroyDetail(categoryName, categoryId);
-        return catScreen;
+        //return catScreen;
+        return DeferredRoute(() => def_cat_screen.loadLibrary(), () {
+          printCustom(
+              "pathParameters is ===== ${state.uri.queryParameters['categoryName']}");
+          String categoryName = state.uri.queryParameters['categoryName'] ?? '';
+          String categoryId = state.uri.queryParameters['categoryId'] ?? '';
+          var catScreen = def_cat_screen.CategoryScreen(
+              category: categoryName, id: categoryId);
+          catCont.getCategroyDetail(categoryName, categoryId);
+          return catScreen;
+        });
       },
     ),
   ]);
 }
 
 StatefulShellBranch faqScreen() {
-  FaqController _ = Get.put(FaqController());
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: faqGoRoute,
       path: faqGoRoute,
       builder: (context, state) {
-        return const FAQScreen();
+        return DeferredRoute(() => def_faq_screen.loadLibrary(), () {
+          FaqController _ = Get.put(FaqController());
+          return def_faq_screen.FAQScreen();
+        });
+        //const FAQScreen();
       },
     ),
   ]);
@@ -317,44 +373,61 @@ StatefulShellBranch tuneSettingScreen() {
       name: myTuneSettingGoRoute,
       path: myTuneSettingGoRoute,
       builder: (context, state) {
-        String toneId = state.uri.queryParameters['toneId'] ?? '';
-        String toneName = state.uri.queryParameters['toneName'] ?? '';
-        String toneArtist = state.uri.queryParameters['toneArtist'] ?? '';
-        String toneImage = state.uri.queryParameters['toneImage'] ?? '';
-
-        return MyTuneSettingScreen(
-          toneId: toneId,
-          toneName: toneName,
-          toneArtist: toneArtist,
-          toneImage: toneImage,
-        );
+        return DeferredRoute(() => def_my_tune_setting_screen.loadLibrary(),
+            () {
+          String toneId = state.uri.queryParameters['toneId'] ?? '';
+          String toneName = state.uri.queryParameters['toneName'] ?? '';
+          String toneArtist = state.uri.queryParameters['toneArtist'] ?? '';
+          String toneImage = state.uri.queryParameters['toneImage'] ?? '';
+          return def_my_tune_setting_screen.MyTuneSettingScreen(
+            toneId: toneId,
+            toneName: toneName,
+            toneArtist: toneArtist,
+            toneImage: toneImage,
+          );
+        });
       },
     ),
   ]);
 }
 
 StatefulShellBranch searchScreen() {
-  // SearchTuneController sCOnt;
-  // try {
-  //   sCOnt = Get.find();
-  // } catch (e) {
-  //   sCOnt = Get.put(SearchTuneController());
-  // }
-
   return StatefulShellBranch(routes: <RouteBase>[
     GoRoute(
       name: searchGoRoute,
       path: searchGoRoute,
       builder: (context, state) {
-        String searchkey = state.uri.queryParameters['key'] ?? '';
-        String index = state.uri.queryParameters['index'] ?? "0";
-        return SearchScreen(
-          title: searchkey,
-          index: index,
-        );
+        return DeferredRoute(() => def_new_search_screen.loadLibrary(), () {
+          String searchkey = state.uri.queryParameters['key'] ?? '';
+          String index = state.uri.queryParameters['index'] ?? "0";
+
+          SearchType searchType = getSearchType(index);
+          NewSearchController newSearchController = Get.find();
+          newSearchController.searchedText = searchkey;
+          if (searchkey.isNotEmpty) {
+            newSearchController.getSearchedResult(searchType);
+          }
+          return def_new_search_screen.NewSearchScreen();
+        });
+        //NewSearchScreen();
       },
     ),
   ]);
+}
+
+SearchType getSearchType(String index) {
+  printCustom("index = $index");
+  if (index == "0") {
+    return SearchType.toneSearch;
+  } else if (index == "1") {
+    return SearchType.artistSearch;
+  } else if (index == "2") {
+    return SearchType.toneIdSearch;
+  } else if (index == "3") {
+    return SearchType.nameToneSearch;
+  } else {
+    return SearchType.toneSearch;
+  }
 }
 
 StatefulShellBranch deleteScreenRoute() {
@@ -375,7 +448,10 @@ StatefulShellBranch musicPackScreenRoute() {
       name: musicPackGoRoute,
       path: musicPackGoRoute,
       builder: (context, state) {
-        return MusicPackScreen();
+        return DeferredRoute(() => def_music_pack.loadLibrary(), () {
+          return def_music_pack.MusicPackScreen();
+        });
+        //MusicPackScreen();
       },
     ),
   ]);
@@ -420,7 +496,10 @@ StatefulShellBranch homeScreen() {
       GoRoute(
           path: homeGoRoute,
           builder: (context, state) {
-            return const WebLandingPage();
+            //const WebLandingPage();
+
+            return DeferredRoute(() => web_home_screen.loadLibrary(),
+                () => web_home_screen.WebLandingPage());
           }),
     ],
   );

@@ -37,7 +37,7 @@ class LoginVm {
     return stringData;
   }
 
-  Future<GenerateOtpModel> generateOtp(String msisdn) async {
+  Future<GenerateOtpModel> generateOtp(String msisdn, {String? type}) async {
     var url = generateOtpUrl;
     // Map<String, String> headers = {
     //   'os': 'ios',
@@ -45,7 +45,7 @@ class LoginVm {
     //   'deviceId': '0191212',
     //   'msisdn': msisdn
     // };
-    final stringData = await ServiceCall().genOtp(url, msisdn);
+    final stringData = await ServiceCall().genOtp(url, msisdn, type: type);
     printCustom(stringData);
 
     Map<String, dynamic> valueMap = json.decode(stringData);
@@ -60,7 +60,7 @@ class LoginVm {
       "msisdn": msisdn,
       "language": StoreManager().language,
     };
-
+    printCustom("Sky Auto Login 3========");
     var parts = [];
     param.forEach((key, value) {
       parts.add('${Uri.encodeQueryComponent(key)}='
@@ -68,16 +68,19 @@ class LoginVm {
     });
     var formData = parts.join('&');
     printCustom("\nformed data is \n$formData\n");
-
+    printCustom("Sky Auto Login 4========");
     String url = confirmOtpUrl;
     Map<String, dynamic>? stringData = await ServiceCall().post(url, formData);
     //final stringData = await resp.transform(utf8.decoder).join();
     printCustom("Result is ======= $stringData");
     if (stringData != null) {
+      printCustom("Sky Auto Login 5========");
       ConfirmOtpModel model = ConfirmOtpModel.fromJson(stringData);
       printCustom("Result is ======= $stringData");
+      printCustom("Sky Auto Login 6========");
       return model;
     } else {
+      printCustom("Sky Auto Login 7========");
       return null;
     }
     // } else {

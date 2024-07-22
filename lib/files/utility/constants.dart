@@ -1,1 +1,1 @@
-int pagePerCount = 20;
+const int pagePerCount = 20;

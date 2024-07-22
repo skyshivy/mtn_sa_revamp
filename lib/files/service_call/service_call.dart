@@ -60,11 +60,15 @@ class ServiceCall {
     // return stringData;
   }
 
-  Future<String> genOtp(String url, String msisdn) async {
+  Future<String> genOtp(String url, String msisdn, {String? type}) async {
     var request = await client
         .getUrl(Uri.parse(url))
         .timeout(Duration(seconds: StoreManager().timeOutDuration));
     request.headers.set('os', os, preserveHeaderCase: true);
+    if (type != null) {
+      request.headers.set('type', type, preserveHeaderCase: true);
+    }
+
     request.headers
         .set('language', StoreManager().language, preserveHeaderCase: true);
     request.headers.set('deviceId', '0191212', preserveHeaderCase: true);
@@ -82,6 +86,7 @@ class ServiceCall {
         .postUrl(Uri.parse(url))
         .timeout(Duration(seconds: StoreManager().timeOutDuration));
     request = await CustomHeader().settingHeader(url, request);
+    printCustom("post url  $url \n ");
     if (jsonData != null) {
       String jsonstringmap = json.encode(jsonData);
       printCustom("printCustom formed data $jsonstringmap");
@@ -108,8 +113,17 @@ class ServiceCall {
       HttpClientResponse response = await request.close();
       stringData = await response.transform(utf8.decoder).join();
     }
-    Map<String, dynamic> valueMap = json.decode(stringData);
-    return valueMap;
+    try {
+      Map<String, dynamic> valueMap = json.decode(stringData);
+      return valueMap;
+    } catch (e) {
+      Map<String, dynamic> valueMap =
+          json.decode("""{"message": "status code ${response.statusCode}"}""");
+
+      printCustom("SKY error 5 ======$e");
+      return valueMap;
+    }
+
     // } else {
     //   return null;
     // }
@@ -158,12 +172,20 @@ class ServiceCall {
         Map<String, dynamic> valueMap = json.decode(stringData);
         return valueMap;
       } else {
-        return null;
+        Map<String, dynamic> valueMap = json
+            .decode("""{"message": "status code ${response1.statusCode}"}""");
+
+        printCustom("SKY error 5 ======");
+        return valueMap;
       }
     } catch (error) {
       printCustom("error for url #$url");
       printCustom("error =   =  $error");
-      return null;
+      Map<String, dynamic> valueMap =
+          json.decode("""{"message": "status code ${error.toString()}"}""");
+
+      printCustom("SKY error 5 ======$error");
+      return valueMap;
     }
   }
 
