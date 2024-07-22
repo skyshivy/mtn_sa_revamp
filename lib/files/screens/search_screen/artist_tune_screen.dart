@@ -27,12 +27,13 @@ class _ArtistTuneScreenState extends State<ArtistTuneScreen> {
   @override
   void initState() {
     controller.getArtistSongs(widget.artistName);
+    printCustom("initState controller ArtistController");
     super.initState();
   }
 
   @override
   void dispose() {
-    Get.delete<ArtistController>();
+    //Get.delete<ArtistController>();
     // TODO: implement dispose
     printCustom("Delete controller ArtistController");
     super.dispose();

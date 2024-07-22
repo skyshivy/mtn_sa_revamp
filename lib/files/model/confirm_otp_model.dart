@@ -1,7 +1,7 @@
 // To parse this JSON data, do
 //
 //     final confirmOtpModel = confirmOtpModelFromJson(jsonString);
-
+/*
 import 'dart:convert';
 
 ConfirmOtpModel confirmOtpModelFromJson(String str) =>
@@ -68,12 +68,11 @@ class ResponseMap {
         "refreshToken": refreshToken,
       };
 }
+*/
 
-/*
 // To parse this JSON data, do
 //
 //     final confirmOtpModel = confirmOtpModelFromJson(jsonString);
-
 
 import 'dart:convert';
 
@@ -119,4 +118,3 @@ class ResponseMap {
 
   Map<String, dynamic> toJson() => {};
 }
-*/

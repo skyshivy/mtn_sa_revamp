@@ -80,14 +80,17 @@ class NewSearchController extends GetxController {
     isLoading.value = true;
     printCustom("_getTuneList");
     AdvanceSearchModel model = await searchTuneApi(searchedText);
-    _toneList = model.responseMap?.toneList ?? [];
-    totalCount.value = model.responseMap?.resultCount ?? 0;
-    if ((model.responseMap?.toneList ?? []).isEmpty) {
-      hideNextButton.value = true;
-      hidePreviousButton.value = true;
-    } else {
-      hideNextButton.value = false;
-    }
+    if (model.statusCode == 'SC0000') {
+      _toneList = model.responseMap?.toneList ?? [];
+      totalCount.value = model.responseMap?.resultCount ?? 0;
+      if ((model.responseMap?.toneList ?? []).isEmpty) {
+        hideNextButton.value = true;
+        hidePreviousButton.value = true;
+      } else {
+        hideNextButton.value = false;
+      }
+    } else {}
+
     _createChunks();
     isLoading.value = false;
   }
@@ -101,15 +104,17 @@ class NewSearchController extends GetxController {
     isLoading.value = true;
     printCustom("_getTuneList");
     SearchTuneModel model = await nameTuneSearchApi(searchedText);
-    _toneList = model.responseMap?.toneList ?? [];
-    totalCount.value = model.responseMap?.toneTotalCount ?? 0;
-    if ((model.responseMap?.toneList ?? []).isEmpty) {
-      hideNextButton.value = true;
-      hidePreviousButton.value = true;
-    } else {
-      hideNextButton.value = false;
-      hidePreviousButton.value = true;
-    }
+    if (model.statusCode == 'SC0000') {
+      _toneList = model.responseMap?.toneList ?? [];
+      totalCount.value = model.responseMap?.toneTotalCount ?? 0;
+      if ((model.responseMap?.toneList ?? []).isEmpty) {
+        hideNextButton.value = true;
+        hidePreviousButton.value = true;
+      } else {
+        hideNextButton.value = false;
+        hidePreviousButton.value = true;
+      }
+    } else {}
     _createChunks();
     isLoading.value = false;
   }
@@ -122,14 +127,16 @@ class NewSearchController extends GetxController {
     }
     isLoading.value = true;
     SearchToneidModel model = await searchToneIdApi(searchedText);
-    _toneList = model.responseMap?.songList ?? [];
-    if ((model.responseMap?.toneList ?? []).isEmpty) {
-      hideNextButton.value = true;
-      hidePreviousButton.value = true;
-    } else {
-      hideNextButton.value = false;
-      hidePreviousButton.value = true;
-    }
+    if (model.statusCode == "SC0000") {
+      _toneList = model.responseMap?.songList ?? [];
+      if ((model.responseMap?.toneList ?? []).isEmpty) {
+        hideNextButton.value = true;
+        hidePreviousButton.value = true;
+      } else {
+        hideNextButton.value = false;
+        hidePreviousButton.value = true;
+      }
+    } else {}
     displayList.value = _toneList;
     isLoading.value = false;
     printCustom("_getTuneIdList");
@@ -143,16 +150,18 @@ class NewSearchController extends GetxController {
     }
     isLoading.value = true;
     SearchTuneModel model = await searchArtistApi(searchedText);
-    artistList.value = (model.responseMap?.countList?.artistDetailList ?? []);
-    hideMoreButtons.value = artistList.length < pagePerCount;
-    //totalCount.value = model.responseMap?.toneTotalCount ?? 40;
-    if ((model.responseMap?.countList?.artistDetailList ?? []).isEmpty) {
-      hideNextButton.value = true;
-      hidePreviousButton.value = true;
-    } else {
-      hidePreviousButton.value = true;
-      hideNextButton.value = false;
-    }
+    if (model.statusCode == "SC0000") {
+      artistList.value = (model.responseMap?.countList?.artistDetailList ?? []);
+      hideMoreButtons.value = artistList.length < pagePerCount;
+      //totalCount.value = model.responseMap?.toneTotalCount ?? 40;
+      if ((model.responseMap?.countList?.artistDetailList ?? []).isEmpty) {
+        hideNextButton.value = true;
+        hidePreviousButton.value = true;
+      } else {
+        hidePreviousButton.value = true;
+        hideNextButton.value = false;
+      }
+    } else {}
     printCustom("_getArtistList");
     isLoading.value = false;
   }
@@ -225,14 +234,16 @@ class NewSearchController extends GetxController {
   Future<void> _loadMoreTunes() async {
     AdvanceSearchModel model =
         await searchTuneApi(searchedText, pageNo: _toneList.length);
-    _toneList += model.responseMap?.toneList ?? [];
-    if ((model.responseMap?.toneList ?? []).isEmpty) {
-      hideNextButton.value = true;
-      hidePreviousButton.value = false;
-    } else {
-      hideNextButton.value = false;
-      hidePreviousButton.value = false;
-    }
+    if (model.statusCode == 'SC0000') {
+      _toneList += model.responseMap?.toneList ?? [];
+      if ((model.responseMap?.toneList ?? []).isEmpty) {
+        hideNextButton.value = true;
+        hidePreviousButton.value = false;
+      } else {
+        hideNextButton.value = false;
+        hidePreviousButton.value = false;
+      }
+    } else {}
 
     _createChunks();
     return;
@@ -241,15 +252,17 @@ class NewSearchController extends GetxController {
   Future<void> _loadMoreNameTunes() async {
     SearchTuneModel model =
         await nameTuneSearchApi(searchedText, pageNo: _toneList.length);
-    _toneList += model.responseMap?.toneList ?? [];
+    if (model.statusCode == 'SC0000') {
+      _toneList += model.responseMap?.toneList ?? [];
 
-    if ((model.responseMap?.toneList ?? []).isEmpty) {
-      hideNextButton.value = true;
-      hidePreviousButton.value = false;
-    } else {
-      hideNextButton.value = false;
-      hidePreviousButton.value = false;
-    }
+      if ((model.responseMap?.toneList ?? []).isEmpty) {
+        hideNextButton.value = true;
+        hidePreviousButton.value = false;
+      } else {
+        hideNextButton.value = false;
+        hidePreviousButton.value = false;
+      }
+    } else {}
 
     _createChunks();
     return;
@@ -258,18 +271,20 @@ class NewSearchController extends GetxController {
   Future<void> _loadMoreArtists() async {
     isLoadingMore.value = true;
     SearchTuneModel model = await searchArtistApi(searchedText);
-    List<ArtistDetailList?> lst =
-        (model.responseMap?.countList?.artistDetailList ?? []);
-    hideMoreButtons.value = lst.length < pagePerCount;
-    if ((model.responseMap?.countList?.artistDetailList ?? []).length <
-        pagePerCount) {
-      hideNextButton.value = true;
-      hidePreviousButton.value = false;
-    } else {
-      hideNextButton.value = false;
-      hidePreviousButton.value = false;
-    }
-    artistList.value += lst;
+    if (model.statusCode == 'SC0000') {
+      List<ArtistDetailList?> lst =
+          (model.responseMap?.countList?.artistDetailList ?? []);
+      hideMoreButtons.value = lst.length < pagePerCount;
+      if ((model.responseMap?.countList?.artistDetailList ?? []).length <
+          pagePerCount) {
+        hideNextButton.value = true;
+        hidePreviousButton.value = false;
+      } else {
+        hideNextButton.value = false;
+        hidePreviousButton.value = false;
+      }
+      artistList.value += lst;
+    } else {}
     return;
   }
 
@@ -288,7 +303,9 @@ class NewSearchController extends GetxController {
   _loadArtistsOnPage(int pageNo) async {
     isLoading.value = true;
     SearchTuneModel model = await searchArtistApi(searchedText, pageNo: pageNo);
-    artistList.value = (model.responseMap?.countList?.artistDetailList ?? []);
+    if (model.statusCode == 'SC0000') {
+      artistList.value = (model.responseMap?.countList?.artistDetailList ?? []);
+    } else {}
     isLoading.value = false;
   }
 
@@ -296,7 +313,9 @@ class NewSearchController extends GetxController {
     isLoading.value = true;
     SearchTuneModel model =
         await nameTuneSearchApi(searchedText, pageNo: pageNo);
-    displayList.value = model.responseMap?.toneList ?? [];
+    if (model.statusCode == 'SC0000') {
+      displayList.value = model.responseMap?.toneList ?? [];
+    } else {}
     isLoading.value = false;
   }
 
@@ -304,7 +323,9 @@ class NewSearchController extends GetxController {
     isLoading.value = true;
     AdvanceSearchModel model =
         await searchTuneApi(searchedText, pageNo: pageNo);
-    displayList.value = model.responseMap?.toneList ?? [];
+    if (model.statusCode == 'SC0000') {
+      displayList.value = model.responseMap?.toneList ?? [];
+    } else {}
     isLoading.value = false;
   }
 }

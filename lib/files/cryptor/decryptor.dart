@@ -6,8 +6,8 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 class Decryptor {
   String encryptedKey = "d2AQuZZDfTIlZeXW"; //"mofSSBh+ys/nwHn8EBmXgg==";
   String encryptedIV = "912QWA56CFB3SA3F";
-  String deEncryptedKey = "112QWA56CFB3SA3G";
-  String deEncryptedIV = "e2AQuZZDfTIlZeXX";
+  // String deEncryptedKey = "112QWA56CFB3SA3G";
+  // String deEncryptedIV = "e2AQuZZDfTIlZeXX";
 
   String aesEnc(String text) {
     final key = encrypt.Key.fromUtf8(encryptedKey);
@@ -34,8 +34,8 @@ class Decryptor {
 
   String decryptWithAES(String text) {
     print("Trying to decrypt $text");
-    final key = encrypt.Key.fromUtf8(deEncryptedKey);
-    final iv = encrypt.IV.fromUtf8(deEncryptedIV);
+    final key = encrypt.Key.fromUtf8(encryptedKey);
+    final iv = encrypt.IV.fromUtf8(encryptedIV);
     final encrypter = encrypt.Encrypter(encrypt.AES(key, mode: AESMode.cbc));
 
     String decrypted =

@@ -171,7 +171,7 @@ StatefulShellBranch profileScreen() {
       builder: (context, state) {
         //pCont.getProfileDetail();
         return DeferredRoute(() => def_profile_screen.loadLibrary(), () {
-          ProfileController _ = Get.put(ProfileController());
+          ProfileController _ = Get.find();
           return def_profile_screen.ProfileScreen();
         });
         //const ProfileScreen();

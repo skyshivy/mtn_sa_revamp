@@ -49,7 +49,7 @@ String searchByTuneIdUrl =
 String getArtistSearchTuneUrl = "${baseUrl}search-tone?language=";
 String subscriberValidationUrl = "${baseUrl}subscriber-validation";
 String generateOtpUrl = "${baseUrl}generate-otp";
-String confirmOtpUrl = "${baseUrl}confirm-otprbt"; //confirm-otp";
+String confirmOtpUrl = "${baseUrl}confirm-otp"; //confirm-otprbt";
 String getSecurityTokenUrl = "${baseUrl}security-token";
 String editProfileUrl = "${baseUrlSecurity}edit-profile";
 String passwordValidationUrl = "${baseUrl}password-validation";
