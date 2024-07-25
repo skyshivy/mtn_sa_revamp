@@ -491,7 +491,13 @@ class BuyController extends GetxController {
       PasswordValidationModel model = PasswordValidationModel.fromJson(map);
       if (model.statusCode == 'SC0000') {
         printCustom("save credential here ===================================");
-        await saveCredentialHere(model);
+        printCustom("getTunePriceAndBuyTune SKY 110}");
+        try {
+          await saveCredentialHere(model);
+        } catch (e) {
+          printCustom("getTunePriceAndBuyTune SKY 111 ${e.toString()}}");
+        }
+        printCustom("getTunePriceAndBuyTune SKY 111}");
         getTunePriceAndBuyTune(info);
       } else {
         printCustom("password validation failed");
@@ -504,36 +510,45 @@ class BuyController extends GetxController {
   Future<void> getTunePriceAndBuyTune(TuneInfo? info,
       {bool isBuyMusicChannel = false}) async {
     this.isBuyMusicChannel = isBuyMusicChannel;
-
+    printCustom("getTunePriceAndBuyTune SKY 1}");
     errorMessage.value = '';
     this.info = info;
     isVerifying.value = true;
     isHideUpgrade.value = false;
+    printCustom("getTunePriceAndBuyTune SKY 2}");
     TonePriceModel tonePriceModel = await _getTunePrice();
+    printCustom("getTunePriceAndBuyTune SKY 3}");
     if (StoreManager().crbtPackStatus == null) {
+      printCustom("getTunePriceAndBuyTune SKY 4}");
       PackStatusModel crbtPackStatusModel =
           await getPackStatusApiCall(StoreManager().msisdn);
+      printCustom("getTunePriceAndBuyTune SKY 5}");
       PackStatusModel rrbtPackStatusModel =
           await getPackStatusApiCall(StoreManager().msisdn, isCrbt: false);
+      printCustom("getTunePriceAndBuyTune SKY 6}");
       if (crbtPackStatusModel.statusCode == 'SC0000') {
+        printCustom("getTunePriceAndBuyTune SKY 7}");
       } else {
+        printCustom("getTunePriceAndBuyTune SKY 8}");
         isBuySuccess.value = true;
         successMessage.value = tonePriceModel.message ?? '';
         isVerifyingOtp.value = false;
 
         isVerifying.value = false;
         errorMessage.value = tonePriceModel.message ?? someThingWentWrongStr.tr;
+        printCustom("getTunePriceAndBuyTune SKY 9}");
         return;
       }
     }
-
+    printCustom("getTunePriceAndBuyTune SKY 10}");
     printCustom("Pack name = ${StoreManager().crbtPackStatus?.packName}");
     printCustom("crbtVipOfferCode = $crbtVipOfferCode");
     if (tonePriceModel.statusCode == 'SC0000') {
+      printCustom("getTunePriceAndBuyTune SKY 11}");
       ResponseDetail? responseDetail =
           tonePriceModel.responseMap?.responseDetails?.first;
       String packName = responseDetail?.packName ?? '';
-
+      printCustom("getTunePriceAndBuyTune SKY 12}");
       String crbtStatus = StoreManager().crbtPackStatus?.packName ?? "";
       String rrbtStatus = StoreManager().rrbtPackStatus?.packName ?? "";
       ''; //responseDetail?.subscriberStatus ?? '';
@@ -542,33 +557,45 @@ class BuyController extends GetxController {
       printCustom("\n-\n-\nCrbt pack name = $crbtStatus");
       printCustom("Rrbt pack name = $rrbtStatus\n-\n-\n");
       if (crbtStatus == crbtVipOfferCode) {
+        printCustom("getTunePriceAndBuyTune SKY 13}");
         isHideUpgrade.value = true;
         packName = crbtVipOfferCode;
       }
       if (crbtStatus.isEmpty) {
+        printCustom("getTunePriceAndBuyTune SKY 14}");
         if (rrbtStatus.isNotEmpty) {
+          printCustom("getTunePriceAndBuyTune SKY 15}");
           isHideUpgrade.value = true;
           isShowOtpView.value = false;
           isShowSubscriptionPlan.value = false;
           await setTune(rrbtStatus, priority: "1");
+          printCustom("getTunePriceAndBuyTune SKY 16}");
         } else {
+          printCustom("getTunePriceAndBuyTune SKY 17}");
           isHideUpgrade.value = true;
           isShowOtpView.value = false;
           isShowSubscriptionPlan.value = true;
         }
       } else {
+        printCustom("getTunePriceAndBuyTune SKY 18}");
         if (isBuyMusicChannel) {
+          printCustom("getTunePriceAndBuyTune SKY 19}");
           await buyMusicChannel();
+          printCustom("getTunePriceAndBuyTune SKY 20}");
         } else {
+          printCustom("getTunePriceAndBuyTune SKY 21}");
           await setTune(packName);
+          printCustom("getTunePriceAndBuyTune SKY 22}");
         }
       }
     } else {
+      printCustom("getTunePriceAndBuyTune SKY 23}");
       isBuySuccess.value = true;
       successMessage.value = tonePriceModel.message ?? '';
       isVerifyingOtp.value = false;
       isVerifying.value = false;
       errorMessage.value = tonePriceModel.message ?? someThingWentWrongStr.tr;
+      printCustom("getTunePriceAndBuyTune SKY 24}");
     }
   }
 
