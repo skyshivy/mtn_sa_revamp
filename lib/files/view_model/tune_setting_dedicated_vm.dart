@@ -18,7 +18,7 @@ class TuneSettingDedicatedVM {
       String dedicatedMsisdn, String packName, String selectedDays) {
     return {
       "clientTxnId": '$randomNumber',
-      "aPartyMsisdn": StoreManager().msisdn,
+      //"aPartyMsisdn": StoreManager().msisdn,
       'toneId': toneId,
       'language': StoreManager().languageCode,
       'priority': '0',
@@ -59,7 +59,7 @@ class TuneSettingDedicatedVM {
       String toTimeStr) {
     return {
       "clientTxnId": '$randomNumber',
-      "aPartyMsisdn": StoreManager().msisdn,
+      //"aPartyMsisdn": StoreManager().msisdn,
       'toneId': toneId,
       'language': StoreManager().languageCode,
       'priority': '0',
@@ -102,7 +102,7 @@ class TuneSettingDedicatedVM {
       String toTimeStr) {
     return {
       "clientTxnId": '$randomNumber',
-      "aPartyMsisdn": StoreManager().msisdn,
+      //"aPartyMsisdn": StoreManager().msisdn,
       'toneId': toneId,
       'language': StoreManager().languageCode,
       'priority': '0',
@@ -146,7 +146,7 @@ class TuneSettingDedicatedVM {
       String toTimeStr) {
     return {
       "clientTxnId": '$randomNumber',
-      "aPartyMsisdn": StoreManager().msisdn,
+      //"aPartyMsisdn": StoreManager().msisdn,
       'toneId': toneId,
       'language': StoreManager().languageCode,
       'priority': '0',
@@ -190,7 +190,7 @@ class TuneSettingDedicatedVM {
       String toTimeStr) {
     return {
       "clientTxnId": '$randomNumber',
-      "aPartyMsisdn": StoreManager().msisdn,
+      //"aPartyMsisdn": StoreManager().msisdn,
       'toneId': toneId,
       'language': StoreManager().languageCode,
       'priority': '0',

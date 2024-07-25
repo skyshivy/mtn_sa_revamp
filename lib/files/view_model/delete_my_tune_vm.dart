@@ -8,7 +8,7 @@ Future<Map<String, dynamic>?> deleteMyTuneApiCall(
   //var randomNumber = random.nextInt(1000000000);
   var url = deleteTuneUrl;
   Map<String, dynamic> params = {
-    'msisdn': StoreManager().msisdn,
+    //'msisdn': StoreManager().msisdn,
     'toneId': tuneId,
     'packName': packName,
     'language': StoreManager().languageCode,

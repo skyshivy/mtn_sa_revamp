@@ -8,7 +8,7 @@ Future<Map<String, dynamic>?> deleteDedicatedTuneApiCall(
 
   var url = deleteDedicatedTuneUrl;
   Map<String, dynamic> params = {
-    'aPartyMsisdn': StoreManager().msisdn,
+    //'aPartyMsisdn': StoreManager().msisdn,
     'bPartyMsisdn': bparty,
     'timeType': timeType,
     'toneId': tuneId,

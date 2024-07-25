@@ -95,7 +95,7 @@ class MyTunePlayingVM {
     printCustom(" randomNumber data is = 123");
     Map<String, dynamic> params = {
       'clientTxnId': '$randomNumber',
-      'aPartyMsisdn': StoreManager().msisdn,
+      //'aPartyMsisdn': StoreManager().msisdn,
       'identifier': activate ? 'activate' : 'deactivate',
       'language': StoreManager().languageCode,
     };

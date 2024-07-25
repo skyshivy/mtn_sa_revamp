@@ -16,7 +16,7 @@ Widget buyButton(SizingInformation si, TuneInfo info) {
     cursor: SystemMouseCursors.click,
     child: GestureDetector(
       onTap: () {
-        printCustom("Buy button");
+        printCustom("Buy button 12");
         BuyTuneScreen().show(info);
       },
       child: Container(

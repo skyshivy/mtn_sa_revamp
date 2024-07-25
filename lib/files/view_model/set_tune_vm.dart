@@ -21,7 +21,7 @@ class SetTuneVM {
     if (isPackUpgrade) {
       body = {
         'clientTxnId': randomNumber.toString(),
-        'aPartyMsisdn': StoreManager().msisdn,
+        //'aPartyMsisdn': StoreManager().msisdn,
         'serviceId': '9',
         'toneId': info.toneId,
         'packName': packName,
@@ -33,7 +33,7 @@ class SetTuneVM {
           ? {
               'clientTxnId': randomNumber.toString(),
               'language': StoreManager().languageCode,
-              'msisdn': StoreManager().msisdn,
+              //'msisdn': StoreManager().msisdn,
               'toneId': info.toneId,
               'toneName': info.toneName,
               'packName': packName,
@@ -44,7 +44,7 @@ class SetTuneVM {
           : {
               'clientTxnId': randomNumber.toString(),
               'language': StoreManager().languageCode,
-              'msisdn': StoreManager().msisdn,
+              //'msisdn': StoreManager().msisdn,
               'toneId': info.toneId,
               'toneName': info.toneName,
               'packName': packName,

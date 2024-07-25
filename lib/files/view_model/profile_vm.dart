@@ -14,7 +14,7 @@ class ProfileVM {
 
     Map<String, dynamic> params = {
       'clientTxnId': '$randomNumber',
-      'aPartyMsisdn': msisdn,
+      //'aPartyMsisdn': msisdn,
       'identifier': "GetUserDetails",
       'language': StoreManager().language,
     };
@@ -38,7 +38,7 @@ class ProfileVM {
     Map<String, dynamic> params = {
       'clientTxnId': '$randomNumber',
       'identifier': isCatUpdate ? 'UpdateCategories' : 'UpdateUserName',
-      'aPartyMsisdn': msisdn,
+      //'aPartyMsisdn': msisdn,
       'servType': isCatUpdate ? 'UPDATE_CATAGORIES' : 'UPDATE_USER_NAME',
       'language': StoreManager().language,
       isCatUpdate ? "categoryId" : "name": isCatUpdate ? catIs : userName,

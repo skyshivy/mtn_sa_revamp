@@ -5,7 +5,7 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 
 Future<PackStatusModel> deactivatePackApi(String packName, bool isCrbt) async {
   Map<String, dynamic> params = {
-    'msisdn': StoreManager().msisdn,
+    //'msisdn': StoreManager().msisdn,
     'packName': packName,
     'priority': isCrbt ? "0" : "1",
     'language': StoreManager().language,

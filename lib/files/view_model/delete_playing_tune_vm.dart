@@ -11,7 +11,7 @@ Future<Map<String, dynamic>?> deletePlayingTuneApiCall(
   var url = deletePlayingTuneUrl;
   Map<String, dynamic> params = {
     'clientTxnId': '$randomNumber',
-    'aPartyMsisdn': StoreManager().msisdn,
+    //'aPartyMsisdn': StoreManager().msisdn,
     'toneIdList': [
       {"toneId": tuneId}
     ],

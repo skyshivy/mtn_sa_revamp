@@ -31,7 +31,7 @@ class TuneSettingAllCallerVM {
       int randomNumber, String toneId, String days) {
     return {
       'clientTxnId': '$randomNumber',
-      'aPartyMsisdn': StoreManager().msisdn,
+      //'aPartyMsisdn': StoreManager().msisdn,
       'toneId': toneId,
       'language': StoreManager().languageCode,
       'priority': '0',
@@ -49,7 +49,7 @@ class TuneSettingAllCallerVM {
       int randomNumber, List<Map<String, dynamic>> toneIdList) {
     return {
       'clientTxnId': '$randomNumber',
-      'aPartyMsisdn': StoreManager().msisdn,
+      //'aPartyMsisdn': StoreManager().msisdn,
       'toneIdList': toneIdList,
       'language': StoreManager().languageCode,
       'activityId': '1',
@@ -73,7 +73,7 @@ class TuneSettingAllCallerVM {
       String days, String sTime, String eTime) {
     return {
       "clientTxnId": '$randomNumber',
-      "aPartyMsisdn": StoreManager().msisdn,
+      //"aPartyMsisdn": StoreManager().msisdn,
       'toneId': toneId,
       'language': StoreManager().languageCode,
       'priority': '0',
@@ -102,7 +102,7 @@ class TuneSettingAllCallerVM {
       DateTime? fromTD, DateTime? toTD, String fromTimeStr, String toTimeStr) {
     return {
       "clientTxnId": '$randomNumber',
-      "aPartyMsisdn": StoreManager().msisdn,
+      //"aPartyMsisdn": StoreManager().msisdn,
       'toneId': toneId,
       'language': StoreManager().languageCode,
       'priority': '0',
@@ -134,7 +134,7 @@ class TuneSettingAllCallerVM {
       DateTime? fromTD, DateTime? toTD, String fromTimeStr, String toTimeStr) {
     return {
       "clientTxnId": '$randomNumber',
-      "aPartyMsisdn": StoreManager().msisdn,
+      //"aPartyMsisdn": StoreManager().msisdn,
       'toneId': toneId,
       'language': StoreManager().languageCode,
       'priority': '0',
@@ -163,7 +163,7 @@ class TuneSettingAllCallerVM {
       DateTime? fromTD, DateTime? toTD, String fromTimeStr, String toTimeStr) {
     return {
       "clientTxnId": '$randomNumber',
-      "aPartyMsisdn": StoreManager().msisdn,
+      //"aPartyMsisdn": StoreManager().msisdn,
       'toneId': toneId,
       'language': StoreManager().languageCode,
       'priority': '0',

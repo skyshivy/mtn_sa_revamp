@@ -10,7 +10,7 @@ import 'package:mtn_sa_revamp/files/utility/urls.dart';
 class AddToWishlistVm {
   Future<bool> add(TuneInfo? info) async {
     var myPost = {
-      "msisdn": StoreManager().msisdn,
+      //"msisdn": StoreManager().msisdn,
       "contentId": info?.toneId,
       "language": StoreManager().language,
       "wishlistType": "1",

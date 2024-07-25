@@ -23,7 +23,7 @@ class WishlistController extends GetxController {
 
     isLoading.value = true;
     var myPost = {
-      "msisdn": StoreManager().msisdn,
+      //"msisdn": StoreManager().msisdn,
       "language": StoreManager().language,
       "identifier": "ViewWishListItems",
       "wishlistType": "1"

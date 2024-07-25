@@ -14,7 +14,7 @@ class DeleteFromWishlistVM {
     var myPost = {
       "clientTxnId": '$randomNumber',
       "identifier": "DeleteFromWishList",
-      "msisdn": StoreManager().msisdn,
+      //"msisdn": StoreManager().msisdn,
       "wishlistType": "1",
       'catagoryId': catId,
       'language': StoreManager().language,

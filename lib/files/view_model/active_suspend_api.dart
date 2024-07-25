@@ -9,7 +9,7 @@ Future<SuspendResumeModel> activeSuspendApi(
   printCustom("object url is $suspendResumePackUrl");
 
   var myPost = {
-    "msisdn": StoreManager().msisdn,
+    //"msisdn": StoreManager().msisdn,
     "feature": isSuspend ? "Suspend" : "Resume",
     "language": StoreManager().language,
     "priority": isCrbt ? "0" : "1",
