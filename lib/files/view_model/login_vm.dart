@@ -8,8 +8,10 @@ import 'package:mtn_sa_revamp/files/model/get_security_token_model.dart';
 
 import 'package:mtn_sa_revamp/files/service_call/service_call.dart';
 import 'package:mtn_sa_revamp/files/store_manager/store_manager.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
 
 import 'package:mtn_sa_revamp/files/utility/urls.dart';
+import 'package:mtn_sa_revamp/files/view_model/confirm_otp_vm.dart';
 import 'package:mtn_sa_revamp/files/view_model/password_validation_vm.dart';
 
 class LoginVm {
@@ -55,34 +57,43 @@ class LoginVm {
   }
 
   Future<ConfirmOtpModel?> confirmOtp(String msisdn, String otp) async {
-    var param = {
-      "otp": otp,
-      "msisdn": msisdn,
-      "language": StoreManager().language,
-    };
-    printCustom("Sky Auto Login 3========");
-    var parts = [];
-    param.forEach((key, value) {
-      parts.add('${Uri.encodeQueryComponent(key)}='
-          '${Uri.encodeQueryComponent(value)}');
-    });
-    var formData = parts.join('&');
-    printCustom("\nformed data is \n$formData\n");
-    printCustom("Sky Auto Login 4========");
-    String url = confirmOtpUrl;
-    Map<String, dynamic>? stringData = await ServiceCall().post(url, formData);
-    //final stringData = await resp.transform(utf8.decoder).join();
-    printCustom("Result is ======= $stringData");
-    if (stringData != null) {
-      printCustom("Sky Auto Login 5========");
-      ConfirmOtpModel model = ConfirmOtpModel.fromJson(stringData);
-      printCustom("Result is ======= $stringData");
-      printCustom("Sky Auto Login 6========");
-      return model;
+    ConfirmOtpModel res = await ConfirmOtpVM().confirm(msisdn, otp);
+    if (res.statusCode == 'SC0000') {
+      return res;
     } else {
-      printCustom("Sky Auto Login 7========");
-      return null;
+      return ConfirmOtpModel(
+          message: someThingWentWrongStr, statusCode: "FL0000");
     }
+
+    // var param = {
+    //   "otp": otp,
+    //   "msisdn": msisdn,
+    //   "language": StoreManager().language,
+    // };
+    // printCustom("Sky Auto Login 3========");
+    // var parts = [];
+    // param.forEach((key, value) {
+    //   parts.add('${Uri.encodeQueryComponent(key)}='
+    //       '${Uri.encodeQueryComponent(value)}');
+    // });
+    // var formData = parts.join('&');
+    // printCustom("\nformed data is \n$formData\n");
+    // printCustom("Sky Auto Login 4========");
+
+    // String url = confirmOtpUrl;
+    // Map<String, dynamic>? stringData = await ServiceCall().post(url, formData);
+    // //final stringData = await resp.transform(utf8.decoder).join();
+    // printCustom("Result is ======= $stringData");
+    // if (stringData != null) {
+    //   printCustom("Sky Auto Login 5========");
+    //   ConfirmOtpModel model = ConfirmOtpModel.fromJson(stringData);
+    //   printCustom("Result is ======= $stringData");
+    //   printCustom("Sky Auto Login 6========");
+    //   return model;
+    // } else {
+    //   printCustom("Sky Auto Login 7========");
+    //   return null;
+    // }
     // } else {
     //   return ConfirmOtpModel(
     //       message: someThingWentWrongStr.tr, statusCode: "FL0000");

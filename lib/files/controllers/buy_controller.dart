@@ -267,11 +267,15 @@ class BuyController extends GetxController {
             printCustom("Existing user******");
           } else if (model.responseMap?.respCode == '100') {
             printCustom("New User*******");
-            isNewUser = true;
-            await getSecurityTokenForNew(msisdn.value);
-            //getTunePrice();
+            var _ = await _generateOtp(msisdn.value, false);
+            isNewUser = false;
             isShowOtpView.value = true;
-            //Get.dialog(BuyOtpView());
+            isVerifying.value = false;
+            // isNewUser = true;
+            // await getSecurityTokenForNew(msisdn.value);
+            // //getTunePrice();
+            // isShowOtpView.value = true;
+            // //Get.dialog(BuyOtpView());
           } else if (model.responseMap?.respCode == '101') {
             errorMessage.value = model.responseMap?.respDesc ?? '';
 
@@ -449,19 +453,32 @@ class BuyController extends GetxController {
     if (otp.value.length == StoreManager().otpLength) {
       isVerifyingOtp.value = true;
 
-      if (isNewUser) {
-        await newUserOtpCheck();
+      // if (isNewUser) {
+      //   await newUserOtpCheck();
+      // } else {
+      ConfirmOtpModel res =
+          await ConfirmOtpVM().confirm(msisdn.value, otp.value);
+      printCustom("res = ${res.statusCode}");
+      if (res.statusCode == "SC0000") {
+        printCustom("SKY Confirmed otp done");
+        //ConfirmOtpModel
+        StoreManager().msisdn = msisdn.value;
+        printCustom("SKY test 1");
+        _saveLoginDetail(res);
+
+        printCustom("SKY test 21");
+        isVerifyingOtp.value = false;
+        isVerifying.value = false;
+        isBuySuccess.value = true;
+        successMessage.value = res.message ?? '';
+        await getTunePriceAndBuyTune(info);
+        printCustom("SKY test 22");
+        //await getSecurityTokenForOldUser();
       } else {
-        ConfirmOtpModel res =
-            await ConfirmOtpVM().confirm(msisdn.value, otp.value);
-        printCustom("res = ${res.statusCode}");
-        if (res.statusCode == "SC0000") {
-          await getSecurityTokenForOldUser();
-        } else {
-          isVerifyingOtp.value = false;
-          errorMessage.value = res.message ?? '';
-        }
+        isVerifyingOtp.value = false;
+        errorMessage.value = res.message ?? '';
       }
+      //}
       return;
     }
     errorMessage.value = pleaseEnterAValidOtpStr.tr;
@@ -516,6 +533,7 @@ class BuyController extends GetxController {
       PackStatusModel rrbtPackStatusModel =
           await getPackStatusApiCall(StoreManager().msisdn, isCrbt: false);
       if (crbtPackStatusModel.statusCode == 'SC0000') {
+        return;
       } else {
         isBuySuccess.value = true;
         successMessage.value = tonePriceModel.message ?? '';
@@ -631,5 +649,30 @@ class BuyController extends GetxController {
           someThingWentWrongStr.tr;
       isVerifying.value = false;
     }
+  }
+
+  _saveLoginDetail(ConfirmOtpModel? model) async {
+    printCustom("SKY test 23");
+    if (model == null) {
+      printCustom("confirm otp is Null");
+      return;
+    }
+    printCustom("SKY test 24");
+    StoreManager().msisdn = msisdn.value;
+    StoreManager().setAccessToken((model.responseMap?.accessToken) ?? "");
+
+    StoreManager().setDeviceId((model.responseMap?.deviceId) ?? "");
+
+    StoreManager().setMsisdn(msisdn.value);
+
+    StoreManager().setRefreshToken((model.responseMap?.refreshToken) ?? "");
+    printCustom("set 4 ${model.responseMap?.refreshToken ?? ""}");
+    StoreManager().setUserName(msisdn.value);
+
+    StoreManager().setLoggedIn(true);
+    printCustom("set 6");
+    await StoreManager().initStoreManager();
+    StoreManager().setLoggedIn(true);
+    getPackStatusApiCall(StoreManager().msisdn);
   }
 }
