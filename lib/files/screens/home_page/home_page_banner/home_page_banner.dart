@@ -1,4 +1,4 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -23,7 +23,7 @@ import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class LandingPageBanner extends StatelessWidget {
   final BannerController controller = Get.find();
-  final CarouselController carouselController = CarouselController();
+  final CarouselControllerPlus carouselController = CarouselControllerPlus();
 
   LandingPageBanner({super.key});
 
@@ -71,7 +71,7 @@ class LandingPageBanner extends StatelessWidget {
       width: double.infinity, //currentSize.width,
       height: 200, //currentSize.height,
       child: CarouselSlider(
-        carouselController: carouselController,
+        controller: carouselController,
         options: carousalOptionWidget(),
         items: itemsWidget(context),
       ),
@@ -107,22 +107,7 @@ class LandingPageBanner extends StatelessWidget {
         child: Stack(alignment: Alignment.bottomCenter, children: [
           Container(
               color: white,
-              child: customImage(url: banner.bannerPath ?? logoBigImg)
-              // FadeInImage.assetNetwork(
-              //   placeholder: placeholderImage,
-              //   image: banner.bannerPath ?? logoBigImg,
-              //   fit: BoxFit.fill,
-              //   height: double.infinity,
-              //   width: double.infinity,
-              //   imageErrorBuilder: (context, error, stackTrace) {
-              //     return Image.asset(
-              //       defaultTuneImagePng,
-              //       width: double.infinity,
-              //       fit: BoxFit.cover,
-              //     );
-              //   },
-              // ),
-              ),
+              child: customImage(url: banner.bannerPath ?? logoBigImg)),
         ]),
       );
     }).toList();
