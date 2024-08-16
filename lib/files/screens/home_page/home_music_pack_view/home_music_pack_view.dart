@@ -1,4 +1,4 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/files/controllers/music_box_controller.dart';
@@ -29,7 +29,8 @@ class HomeMusicPackView extends StatelessWidget {
   final scroll = ScrollController();
   final MusicPackController cont = Get.find();
 
-  final CarouselController carouselController = CarouselController();
+  final CarouselSliderController carouselController =
+      CarouselSliderController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -81,7 +82,7 @@ class HomeMusicPackView extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, si) {
         return CarouselSlider(
-            carouselController: carouselController,
+            controller: carouselController,
             options: carousalOptionWidget(si),
             items: [
               for (int i = 0; i < imgList.length; i++)
