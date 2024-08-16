@@ -4,10 +4,10 @@ import 'package:encrypt/encrypt.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 
 class Decryptor {
-  String encryptedKey = "d2AQuZZDfTIlZeXW"; //"mofSSBh+ys/nwHn8EBmXgg==";
+  String encryptedKey = "d2AQuZZDfTIlZeXW";
   String encryptedIV = "912QWA56CFB3SA3F";
-  // String deEncryptedKey = "112QWA56CFB3SA3G";
-  // String deEncryptedIV = "e2AQuZZDfTIlZeXX";
+  String otpDecryptionKey = "112QWA56CFB3SA3G";
+  String otpDecryptionIV = "e2AQuZZDfTIlZeXX";
 
   String aesEnc(String text) {
     final key = encrypt.Key.fromUtf8(encryptedKey);
@@ -20,56 +20,22 @@ class Decryptor {
     return encrypted.base64;
   }
 
-  // String decryptWithAES(String text) {
-  //   printCustom("Trying to Decrypte text in base 64 is  \n$text");
-  //   final key = encrypt.Key.fromUtf8(encryptedKey);
-  //   final iv = encrypt.IV.fromUtf8(encryptedIV);
-  //   final encrypter = encrypt.Encrypter(encrypt.AES(key, mode: AESMode.cbc));
-  //   final decrypted =
-  //       encrypter.decrypt(encrypt.Encrypted.fromBase64(text), iv: iv);
-  //   printCustom("Decrypted text in base 64 is  \n$decrypted");
-
-  //   return decrypted;
-  // }
-
-  String decryptWithAES(String text) {
+  String decryptWithAES(String text, {bool isOtpDecrypt = false}) {
     print("Trying to decrypt $text");
-    final key = encrypt.Key.fromUtf8(encryptedKey);
-    final iv = encrypt.IV.fromUtf8(encryptedIV);
+    final key =
+        encrypt.Key.fromUtf8(isOtpDecrypt ? otpDecryptionKey : encryptedKey);
+    final iv =
+        encrypt.IV.fromUtf8(isOtpDecrypt ? otpDecryptionIV : encryptedIV);
     final encrypter = encrypt.Encrypter(encrypt.AES(key, mode: AESMode.cbc));
 
     String decrypted =
         encrypter.decrypt(encrypt.Encrypted.fromBase64(text), iv: iv);
-    print("Decrypted text in base 64 is  \n$decrypted");
+    if (isOtpDecrypt) {
+      print("Decrypted otp text in base 64 is  \n$decrypted");
+    } else {
+      print("Decrypted text in base 64 is  \n$decrypted");
+    }
+
     return decrypted;
   }
-
-  // String encryptedKey = 'mofSSBh+ys/nwHn8EBmXgg==';
-  // String encryptedIV = '';
-
-  // String aesEnc(String text) {
-  //   final key = encrypt.Key.fromBase64(encryptedKey);
-  //   final iv = encrypt.IV.fromBase64(encryptedIV);
-
-  //   final encrypter = encrypt.Encrypter(
-  //       encrypt.AES(key, mode: AESMode.ecb, padding: "PKCS7"));
-  //   final encrypted = encrypter.encrypt(text, iv: iv);
-
-  //   final decrypted = encrypter.decrypt(encrypted, iv: iv);
-  //   printCustom("encrypted text in base 64 is ======= \n$text");
-  //   printCustom("\nEncrypted value is \n${encrypted.base64}\n");
-  //   printCustom("\ndencrypted value is \n$decrypted\n");
-  //   return encrypted.base64;
-  // }
-
-  // String decryptWithAES(String text) {
-  //   final key = encrypt.Key.fromBase64(encryptedKey);
-  //   final iv = encrypt.IV.fromBase64(encryptedIV);
-  //   final encrypter = encrypt.Encrypter(
-  //       encrypt.AES(key, mode: AESMode.ecb, padding: "PKCS7"));
-  //   final decrypted =
-  //       encrypter.decrypt(encrypt.Encrypted.fromBase64(text), iv: iv);
-  //   printCustom("Decrypted text in base 64 is  \n$decrypted");
-  //   return decrypted;
-  // }
 }

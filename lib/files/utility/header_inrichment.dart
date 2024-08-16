@@ -24,9 +24,11 @@ void parseUrl() async {
       printCustom("value is == $v");
       if (k == 'data') {
         if (v.isEmpty) {
+          print(" value is $v");
           return;
         }
         try {
+          print(" value is 1 $v");
           String decryptedValue =
               Decryptor().decryptWithAES(v.replaceAll(" ", "+"));
           printCustom("data decrypted value is  $decryptedValue");

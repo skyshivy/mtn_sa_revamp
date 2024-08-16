@@ -288,8 +288,10 @@ class LoginController extends GetxController {
         await LoginVm().generateOtp(msisdn.value, type: 'web');
     if (result.statusCode == 'SC0000') {
       //result.responseMap.
-      String decryptedOtp =
-          Decryptor().decryptWithAES(result.responseMap?.userData ?? '');
+      String decryptedOtp = Decryptor().decryptWithAES(
+        result.responseMap?.userData ?? '',
+        isOtpDecrypt: true,
+      );
       _confirmOtp(decryptedOtp);
     }
   }

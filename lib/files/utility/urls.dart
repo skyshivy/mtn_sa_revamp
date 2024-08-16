@@ -70,9 +70,9 @@ String bannerDetailManualUrl = "${baseUrl}get-banner-details";
 String tuneSuffleUrl = '${baseUrlSecurity}shuffle-activation-deactivation';
 String getprofileDetailUrl = "${baseUrlSecurity}get-profile-details";
 String getPlayingTunesUrl =
-    '${baseUrl}list-tones?language=0&startIndex=0&endIndex=40&rbtMode=0';
+    '${baseUrlSecurity}list-tones?language=0&startIndex=0&endIndex=40&rbtMode=0';
 String getMyTuneListUrl =
-    '${baseUrl}list-tones?language=0&startIndex=0&endIndex=40&rbtMode=400';
+    '${baseUrlSecurity}list-tones?language=0&startIndex=0&endIndex=40&rbtMode=400';
 
 //====================================
 
