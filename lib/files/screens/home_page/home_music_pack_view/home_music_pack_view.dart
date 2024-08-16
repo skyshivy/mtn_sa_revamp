@@ -1,14 +1,13 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:mtn_sa_revamp/files/utility/string.dart';
+import 'package:mtn_sa_revamp/files/utility/colors.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:mtn_sa_revamp/files/utility/image_name.dart';
+import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:mtn_sa_revamp/files/controllers/music_box_controller.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_buttons/custom_button.dart';
-
 import 'package:mtn_sa_revamp/files/screens/home_page/home_music_pack_view/widgtes/music_pack_cell.dart';
-import 'package:mtn_sa_revamp/files/utility/colors.dart';
-import 'package:mtn_sa_revamp/files/utility/image_name.dart';
-import 'package:mtn_sa_revamp/files/utility/string.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 // class HomeMusicPackView extends StatefulWidget {
 //   const HomeMusicPackView({super.key});
@@ -29,7 +28,8 @@ class HomeMusicPackView extends StatelessWidget {
   final scroll = ScrollController();
   final MusicPackController cont = Get.find();
 
-  final CarouselController carouselController = CarouselController();
+  final CarouselSliderController carouselController =
+      CarouselSliderController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -81,7 +81,7 @@ class HomeMusicPackView extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, si) {
         return CarouselSlider(
-            carouselController: carouselController,
+            controller: carouselController,
             options: carousalOptionWidget(si),
             items: [
               for (int i = 0; i < imgList.length; i++)

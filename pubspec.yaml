@@ -54,7 +54,7 @@ dependencies:
   universal_io: ^2.0.4
   url_strategy: ^0.2.0  
   flutter_linkify: ^6.0.0
-  carousel_slider: ^4.0.0
+  
   cupertino_icons: ^1.0.2
   dropdown_button2: ^2.3.6
   #shared_preferences: ^2.2.2
@@ -65,6 +65,7 @@ dependencies:
   local_session_timeout: ^2.3.2
   number_paginator: ^0.4.1
   web_smooth_scroll: ^1.1.0
+  carousel_slider_plus: ^7.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
