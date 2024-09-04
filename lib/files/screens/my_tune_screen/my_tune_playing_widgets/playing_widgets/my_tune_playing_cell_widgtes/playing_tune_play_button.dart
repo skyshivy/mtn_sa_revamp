@@ -13,6 +13,7 @@ Widget playingTunePlayButton(TuneInfo info, int index) {
   return Obx(
     () {
       return CustomButton(
+        isPlayButton: true,
         height: 40,
         width: 40,
         color: blue,

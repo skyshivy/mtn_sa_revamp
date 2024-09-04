@@ -8,6 +8,7 @@ import 'package:mtn_sa_revamp/enums/font_enum.dart';
 import 'package:mtn_sa_revamp/files/controllers/home_controllers/reco_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/tune_cell_controller.dart';
 import 'package:mtn_sa_revamp/files/controllers/wishlist_controller.dart';
+import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_alert.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
@@ -364,6 +365,7 @@ class _GiftAndBuyButton extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 printCustom("On tap buy");
+                MtnAudioPlayer.instance.stop();
                 BuyTuneScreen().show(cont.tuneList[index]);
               },
               child: Container(

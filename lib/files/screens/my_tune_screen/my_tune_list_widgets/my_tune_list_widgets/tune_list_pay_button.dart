@@ -17,6 +17,7 @@ Widget tuneListPlayButton(TuneInfo info, int index) {
   return Obx(
     () {
       return CustomButton(
+          isPlayButton: true,
           onTap: () {
             printCustom("tuneListPlayButton");
             pCont.playUrl(info, index);

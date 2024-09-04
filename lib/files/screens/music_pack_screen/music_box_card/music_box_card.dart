@@ -61,6 +61,7 @@ class MusicBoxCard extends StatelessWidget {
       builder: (context, si) {
         return Obx(() {
           return CustomButton(
+            isPlayButton: true,
             width: 35,
             leftWidget: (info.previewContent ?? '') == playerController.toneId
                 ? playerController.isPlaying.value

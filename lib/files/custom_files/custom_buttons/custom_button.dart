@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 
@@ -25,7 +26,7 @@ class CustomButton extends StatelessWidget {
   final int? maxLine;
   final FontName? fontName;
   final TextAlign? alignment;
-
+  final bool isPlayButton;
   final MainAxisAlignment? mainAxisAlignment;
   final Function()? onTap;
 
@@ -50,6 +51,7 @@ class CustomButton extends StatelessWidget {
     this.leftWidgetPadding,
     this.onTap,
     this.borderColor,
+    this.isPlayButton = false,
   });
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,14 @@ class CustomButton extends StatelessWidget {
       hoverColor: transparent,
       splashColor: transparent,
       highlightColor: transparent,
-      onTap: onTap,
+      onTap: () {
+        if (!isPlayButton) {
+          MtnAudioPlayer.instance.stop();
+        }
+        if (onTap != null) {
+          onTap!();
+        }
+      },
       child: Container(
         height: height,
         width: width,

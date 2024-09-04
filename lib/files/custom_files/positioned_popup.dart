@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/hover/custom_hover.dart';
 import 'package:mtn_sa_revamp/files/utility/colors.dart';
 import 'package:mtn_sa_revamp/files/model/menu_model.dart';
@@ -67,6 +68,7 @@ Widget _customMenuListView(
         return CustomOnHover(builder: (isHover) {
           return InkWell(
             onTap: () {
+              MtnAudioPlayer.instance.stop();
               //Get.back();
               Navigator.pop(context);
               onTap!(menuList[index]);

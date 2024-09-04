@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:mtn_sa_revamp/enums/font_enum.dart';
+import 'package:mtn_sa_revamp/files/custom_files/audio_palyer/mtn_audio_player.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_print.dart';
 import 'package:mtn_sa_revamp/files/custom_files/custom_text/custom_text.dart';
 import 'package:mtn_sa_revamp/files/model/tune_info_model.dart';
@@ -16,6 +17,7 @@ Widget buyButton(SizingInformation si, TuneInfo info) {
     cursor: SystemMouseCursors.click,
     child: GestureDetector(
       onTap: () {
+        MtnAudioPlayer.instance.stop();
         printCustom("Buy button 12");
         BuyTuneScreen().show(info);
       },
